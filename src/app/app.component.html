@@ -1,484 +1,693 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-<style>
-  :host {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 14px;
-    color: #333;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: 8px 0;
-  }
-
-  p {
-    margin: 0;
-  }
-
-  .spacer {
-    flex: 1;
-  }
-
-  .toolbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    background-color: #1976d2;
-    color: white;
-    font-weight: 600;
-  }
-
-  .toolbar img {
-    margin: 0 16px;
-  }
-
-  .toolbar #twitter-logo {
-    height: 40px;
-    margin: 0 8px;
-  }
-
-  .toolbar #youtube-logo {
-    height: 40px;
-    margin: 0 16px;
-  }
-
-  .toolbar #twitter-logo:hover,
-  .toolbar #youtube-logo:hover {
-    opacity: 0.8;
-  }
-
-  .content {
-    display: flex;
-    margin: 82px auto 32px;
-    padding: 0 16px;
-    max-width: 960px;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  svg.material-icons {
-    height: 24px;
-    width: auto;
-  }
-
-  svg.material-icons:not(:last-child) {
-    margin-right: 8px;
-  }
-
-  .card svg.material-icons path {
-    fill: #888;
-  }
-
-  .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 16px;
-  }
-
-  .card {
-    all: unset;
-    border-radius: 4px;
-    border: 1px solid #eee;
-    background-color: #fafafa;
-    height: 40px;
-    width: 200px;
-    margin: 0 8px 16px;
-    padding: 16px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.2s ease-in-out;
-    line-height: 24px;
-  }
-
-  .card-container .card:not(:last-child) {
-    margin-right: 0;
-  }
-
-  .card.card-small {
-    height: 16px;
-    width: 168px;
-  }
-
-  .card-container .card:not(.highlight-card) {
-    cursor: pointer;
-  }
-
-  .card-container .card:not(.highlight-card):hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
-  }
-
-  .card-container .card:not(.highlight-card):hover .material-icons path {
-    fill: rgb(105, 103, 103);
-  }
-
-  .card.highlight-card {
-    background-color: #1976d2;
-    color: white;
-    font-weight: 600;
-    border: none;
-    width: auto;
-    min-width: 30%;
-    position: relative;
-  }
-
-  .card.card.highlight-card span {
-    margin-left: 60px;
-  }
-
-  svg#rocket {
-    width: 80px;
-    position: absolute;
-    left: -10px;
-    top: -24px;
-  }
-
-  svg#rocket-smoke {
-    height: calc(100vh - 95px);
-    position: absolute;
-    top: 10px;
-    right: 180px;
-    z-index: -10;
-  }
-
-  a,
-  a:visited,
-  a:hover {
-    color: #1976d2;
-    text-decoration: none;
-  }
-
-  a:hover {
-    color: #125699;
-  }
-
-  .terminal {
-    position: relative;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 6px;
-    padding-top: 45px;
-    margin-top: 8px;
-    overflow: hidden;
-    background-color: rgb(15, 15, 16);
-  }
-
-  .terminal::before {
-    content: "\2022 \2022 \2022";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 4px;
-    background: rgb(58, 58, 58);
-    color: #c2c3c4;
-    width: 100%;
-    font-size: 2rem;
-    line-height: 0;
-    padding: 14px 0;
-    text-indent: 4px;
-  }
-
-  .terminal pre {
-    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
-    color: white;
-    padding: 0 1rem 1rem;
-    margin: 0;
-  }
-
-  .circle-link {
-    height: 40px;
-    width: 40px;
-    border-radius: 40px;
-    margin: 8px;
-    background-color: white;
-    border: 1px solid #eeeeee;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    transition: 1s ease-out;
-  }
-
-  .circle-link:hover {
-    transform: translateY(-0.25rem);
-    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-  }
-
-  footer {
-    margin-top: 8px;
-    display: flex;
-    align-items: center;
-    line-height: 20px;
-  }
-
-  footer a {
-    display: flex;
-    align-items: center;
-  }
-
-  .github-star-badge {
-    color: #24292e;
-    display: flex;
-    align-items: center;
-    font-size: 12px;
-    padding: 3px 10px;
-    border: 1px solid rgba(27,31,35,.2);
-    border-radius: 3px;
-    background-image: linear-gradient(-180deg,#fafbfc,#eff3f6 90%);
-    margin-left: 4px;
-    font-weight: 600;
-  }
-
-  .github-star-badge:hover {
-    background-image: linear-gradient(-180deg,#f0f3f6,#e6ebf1 90%);
-    border-color: rgba(27,31,35,.35);
-    background-position: -.5em;
-  }
-
-  .github-star-badge .material-icons {
-    height: 16px;
-    width: 16px;
-    margin-right: 4px;
-  }
-
-  svg#clouds {
-    position: fixed;
-    bottom: -160px;
-    left: -230px;
-    z-index: -10;
-    width: 1920px;
-  }
-
-  /* Responsive Styles */
-  @media screen and (max-width: 767px) {
-    .card-container > *:not(.circle-link) ,
-    .terminal {
-      width: 100%;
-    }
-
-    .card:not(.highlight-card) {
-      height: 16px;
-      margin: 8px 0;
-    }
-
-    .card.highlight-card span {
-      margin-left: 72px;
-    }
-
-    svg#rocket-smoke {
-      right: 120px;
-      transform: rotate(-5deg);
-    }
-  }
-
-  @media screen and (max-width: 575px) {
-    svg#rocket-smoke {
-      display: none;
-      visibility: hidden;
-    }
-  }
-</style>
-
-<!-- Toolbar -->
-<div class="toolbar" role="banner">
-  <img
-    width="40"
-    alt="Angular Logo"
-    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
-  />
-  <span>Welcome</span>
-    <div class="spacer"></div>
-    <a aria-label="Angular on twitter" target="_blank" rel="noopener" href="https://twitter.com/angular" title="Twitter">
-      <svg id="twitter-logo" height="24" data-name="Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
-        <rect width="400" height="400" fill="none"/>
-        <path d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23" fill="#fff"/>
-      </svg>
-    </a>
-    <a aria-label="Angular on YouTube" target="_blank" rel="noopener" href="https://youtube.com/angular" title="YouTube">
-      <svg id="youtube-logo" height="24" width="24" data-name="Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff">
-        <path d="M0 0h24v24H0V0z" fill="none"/>
-        <path d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z"/>
-      </svg>
-    </a>
-</div>
-
-<div class="content" role="main">
-
-  <!-- Highlight Card -->
-  <div class="card highlight-card card-small">
-
-    <svg id="rocket" xmlns="http://www.w3.org/2000/svg" width="101.678" height="101.678" viewBox="0 0 101.678 101.678">
-      <title>Rocket Ship</title>
-      <g id="Group_83" data-name="Group 83" transform="translate(-141 -696)">
-        <circle id="Ellipse_8" data-name="Ellipse 8" cx="50.839" cy="50.839" r="50.839" transform="translate(141 696)" fill="#dd0031"/>
-        <g id="Group_47" data-name="Group 47" transform="translate(165.185 720.185)">
-          <path id="Path_33" data-name="Path 33" d="M3.4,42.615a3.084,3.084,0,0,0,3.553,3.553,21.419,21.419,0,0,0,12.215-6.107L9.511,30.4A21.419,21.419,0,0,0,3.4,42.615Z" transform="translate(0.371 3.363)" fill="#fff"/>
-          <path id="Path_34" data-name="Path 34" d="M53.3,3.221A3.09,3.09,0,0,0,50.081,0,48.227,48.227,0,0,0,18.322,13.437c-6-1.666-14.991-1.221-18.322,7.218A33.892,33.892,0,0,1,9.439,25.1l-.333.666a3.013,3.013,0,0,0,.555,3.553L23.985,43.641a2.9,2.9,0,0,0,3.553.555l.666-.333A33.892,33.892,0,0,1,32.647,53.3c8.55-3.664,8.884-12.326,7.218-18.322A48.227,48.227,0,0,0,53.3,3.221ZM34.424,9.772a6.439,6.439,0,1,1,9.106,9.106,6.368,6.368,0,0,1-9.106,0A6.467,6.467,0,0,1,34.424,9.772Z" transform="translate(0 0.005)" fill="#fff"/>
-        </g>
-      </g>
-    </svg>
-
-    <span>{{ title }} app is running!</span>
-
-    <svg id="rocket-smoke" xmlns="http://www.w3.org/2000/svg" width="516.119" height="1083.632" viewBox="0 0 516.119 1083.632">
-      <title>Rocket Ship Smoke</title>
-      <path id="Path_40" data-name="Path 40" d="M644.6,141S143.02,215.537,147.049,870.207s342.774,201.755,342.774,201.755S404.659,847.213,388.815,762.2c-27.116-145.51-11.551-384.124,271.9-609.1C671.15,139.365,644.6,141,644.6,141Z" transform="translate(-147.025 -140.939)" fill="#f5f5f5"/>
-    </svg>
-
-  </div>
-
-  <!-- Resources -->
-  <h2>Resources</h2>
-  <p>Here are some links to help you get started:</p>
-
-  <div class="card-container">
-    <a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
-      <span>Learn Angular</span>
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>    </a>
-
-    <a class="card" target="_blank" rel="noopener" href="https://angular.io/cli">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
-      <span>CLI Documentation</span>
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-    </a>
-
-    <a class="card" target="_blank" rel="noopener" href="https://material.angular.io">
-      <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px" width="21.813" height="23.453" viewBox="0 0 179.2 192.7"><path fill="#ffa726" d="M89.4 0 0 32l13.5 118.4 75.9 42.3 76-42.3L179.2 32 89.4 0z"/><path fill="#fb8c00" d="M89.4 0v192.7l76-42.3L179.2 32 89.4 0z"/><path fill="#ffe0b2" d="m102.9 146.3-63.3-30.5 36.3-22.4 63.7 30.6-36.7 22.3z"/><path fill="#fff3e0" d="M102.9 122.8 39.6 92.2l36.3-22.3 63.7 30.6-36.7 22.3z"/><path fill="#fff" d="M102.9 99.3 39.6 68.7l36.3-22.4 63.7 30.6-36.7 22.4z"/></svg>
-      <span>Angular Material</span>
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-    </a>
-
-    <a class="card" target="_blank" rel="noopener" href="https://blog.angular.io/">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></svg>
-      <span>Angular Blog</span>
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-    </a>
-
-    <a class="card" target="_blank" rel="noopener" href="https://angular.io/devtools/">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><g><rect fill="none" height="24" width="24"/></g><g><g><path d="M14.73,13.31C15.52,12.24,16,10.93,16,9.5C16,5.91,13.09,3,9.5,3S3,5.91,3,9.5C3,13.09,5.91,16,9.5,16 c1.43,0,2.74-0.48,3.81-1.27L19.59,21L21,19.59L14.73,13.31z M9.5,14C7.01,14,5,11.99,5,9.5S7.01,5,9.5,5S14,7.01,14,9.5 S11.99,14,9.5,14z"/><polygon points="10.29,8.44 9.5,6 8.71,8.44 6.25,8.44 8.26,10.03 7.49,12.5 9.5,10.97 11.51,12.5 10.74,10.03 12.75,8.44"/></g></g></svg>
-      <span>Angular DevTools</span>
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-    </a>
-
-  </div>
-
-  <!-- Next Steps -->
-  <h2>Next Steps</h2>
-  <p>What do you want to do next with your app?</p>
-
-  <input type="hidden" #selection>
-
-  <div class="card-container">
-    <button class="card card-small" (click)="selection.value = 'component'" tabindex="0">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-      <span>New Component</span>
-    </button>
-
-    <button class="card card-small" (click)="selection.value = 'material'" tabindex="0">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-      <span>Angular Material</span>
-    </button>
-
-    <button class="card card-small" (click)="selection.value = 'pwa'" tabindex="0">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-      <span>Add PWA Support</span>
-    </button>
-
-    <button class="card card-small" (click)="selection.value = 'dependency'" tabindex="0">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-      <span>Add Dependency</span>
-    </button>
-
-    <button class="card card-small" (click)="selection.value = 'test'" tabindex="0">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-      <span>Run and Watch Tests</span>
-    </button>
-
-    <button class="card card-small" (click)="selection.value = 'build'" tabindex="0">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-      <span>Build for Production</span>
-    </button>
-  </div>
-
-  <!-- Terminal -->
-  <div class="terminal" [ngSwitch]="selection.value">
-      <pre *ngSwitchDefault>ng generate component xyz</pre>
-      <pre *ngSwitchCase="'material'">ng add @angular/material</pre>
-      <pre *ngSwitchCase="'pwa'">ng add @angular/pwa</pre>
-      <pre *ngSwitchCase="'dependency'">ng add _____</pre>
-      <pre *ngSwitchCase="'test'">ng test</pre>
-      <pre *ngSwitchCase="'build'">ng build</pre>
-  </div>
-
-  <!-- Links -->
-  <div class="card-container">
-    <a class="circle-link" title="Find a Local Meetup" href="https://www.meetup.com/find/?keywords=angular" target="_blank" rel="noopener">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24.607" height="23.447" viewBox="0 0 24.607 23.447">
-        <title>Meetup Logo</title>
-        <path id="logo--mSwarm" d="M21.221,14.95A4.393,4.393,0,0,1,17.6,19.281a4.452,4.452,0,0,1-.8.069c-.09,0-.125.035-.154.117a2.939,2.939,0,0,1-2.506,2.091,2.868,2.868,0,0,1-2.248-.624.168.168,0,0,0-.245-.005,3.926,3.926,0,0,1-2.589.741,4.015,4.015,0,0,1-3.7-3.347,2.7,2.7,0,0,1-.043-.38c0-.106-.042-.146-.143-.166a3.524,3.524,0,0,1-1.516-.69A3.623,3.623,0,0,1,2.23,14.557a3.66,3.66,0,0,1,1.077-3.085.138.138,0,0,0,.026-.2,3.348,3.348,0,0,1-.451-1.821,3.46,3.46,0,0,1,2.749-3.28.44.44,0,0,0,.355-.281,5.072,5.072,0,0,1,3.863-3,5.028,5.028,0,0,1,3.555.666.31.31,0,0,0,.271.03A4.5,4.5,0,0,1,18.3,4.7a4.4,4.4,0,0,1,1.334,2.751,3.658,3.658,0,0,1,.022.706.131.131,0,0,0,.1.157,2.432,2.432,0,0,1,1.574,1.645,2.464,2.464,0,0,1-.7,2.616c-.065.064-.051.1-.014.166A4.321,4.321,0,0,1,21.221,14.95ZM13.4,14.607a2.09,2.09,0,0,0,1.409,1.982,4.7,4.7,0,0,0,1.275.221,1.807,1.807,0,0,0,.9-.151.542.542,0,0,0,.321-.545.558.558,0,0,0-.359-.534,1.2,1.2,0,0,0-.254-.078c-.262-.047-.526-.086-.787-.138a.674.674,0,0,1-.617-.75,3.394,3.394,0,0,1,.218-1.109c.217-.658.509-1.286.79-1.918a15.609,15.609,0,0,0,.745-1.86,1.95,1.95,0,0,0,.06-1.073,1.286,1.286,0,0,0-1.051-1.033,1.977,1.977,0,0,0-1.521.2.339.339,0,0,1-.446-.042c-.1-.092-.2-.189-.307-.284a1.214,1.214,0,0,0-1.643-.061,7.563,7.563,0,0,1-.614.512A.588.588,0,0,1,10.883,8c-.215-.115-.437-.215-.659-.316a2.153,2.153,0,0,0-.695-.248A2.091,2.091,0,0,0,7.541,8.562a9.915,9.915,0,0,0-.405.986c-.559,1.545-1.015,3.123-1.487,4.7a1.528,1.528,0,0,0,.634,1.777,1.755,1.755,0,0,0,1.5.211,1.35,1.35,0,0,0,.824-.858c.543-1.281,1.032-2.584,1.55-3.875.142-.355.28-.712.432-1.064a.548.548,0,0,1,.851-.24.622.622,0,0,1,.185.539,2.161,2.161,0,0,1-.181.621c-.337.852-.68,1.7-1.018,2.552a2.564,2.564,0,0,0-.173.528.624.624,0,0,0,.333.71,1.073,1.073,0,0,0,.814.034,1.22,1.22,0,0,0,.657-.655q.758-1.488,1.511-2.978.35-.687.709-1.37a1.073,1.073,0,0,1,.357-.434.43.43,0,0,1,.463-.016.373.373,0,0,1,.153.387.7.7,0,0,1-.057.236c-.065.157-.127.316-.2.469-.42.883-.846,1.763-1.262,2.648A2.463,2.463,0,0,0,13.4,14.607Zm5.888,6.508a1.09,1.09,0,0,0-2.179.006,1.09,1.09,0,0,0,2.179-.006ZM1.028,12.139a1.038,1.038,0,1,0,.01-2.075,1.038,1.038,0,0,0-.01,2.075ZM13.782.528a1.027,1.027,0,1,0-.011,2.055A1.027,1.027,0,0,0,13.782.528ZM22.21,6.95a.882.882,0,0,0-1.763.011A.882.882,0,0,0,22.21,6.95ZM4.153,4.439a.785.785,0,1,0,.787-.78A.766.766,0,0,0,4.153,4.439Zm8.221,18.22a.676.676,0,1,0-.677.666A.671.671,0,0,0,12.374,22.658ZM22.872,12.2a.674.674,0,0,0-.665.665.656.656,0,0,0,.655.643.634.634,0,0,0,.655-.644A.654.654,0,0,0,22.872,12.2ZM7.171-.123A.546.546,0,0,0,6.613.43a.553.553,0,1,0,1.106,0A.539.539,0,0,0,7.171-.123ZM24.119,9.234a.507.507,0,0,0-.493.488.494.494,0,0,0,.494.494.48.48,0,0,0,.487-.483A.491.491,0,0,0,24.119,9.234Zm-19.454,9.7a.5.5,0,0,0-.488-.488.491.491,0,0,0-.487.5.483.483,0,0,0,.491.479A.49.49,0,0,0,4.665,18.936Z" transform="translate(0 0.123)" fill="#f64060"/>
-      </svg>
-    </a>
-
-    <a class="circle-link" title="Join the Conversation on Discord" href="https://discord.gg/angular" target="_blank" rel="noopener">
-      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 245 240">
-        <title>Discord Logo</title>
-        <path d="M104.4 103.9c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1.1-6.1-4.5-11.1-10.2-11.1zM140.9 103.9c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1s-4.5-11.1-10.2-11.1z"/>
-        <path d="M189.5 20h-134C44.2 20 35 29.2 35 40.6v135.2c0 11.4 9.2 20.6 20.5 20.6h113.4l-5.3-18.5 12.8 11.9 12.1 11.2 21.5 19V40.6c0-11.4-9.2-20.6-20.5-20.6zm-38.6 130.6s-3.6-4.3-6.6-8.1c13.1-3.7 18.1-11.9 18.1-11.9-4.1 2.7-8 4.6-11.5 5.9-5 2.1-9.8 3.5-14.5 4.3-9.6 1.8-18.4 1.3-25.9-.1-5.7-1.1-10.6-2.7-14.7-4.3-2.3-.9-4.8-2-7.3-3.4-.3-.2-.6-.3-.9-.5-.2-.1-.3-.2-.4-.3-1.8-1-2.8-1.7-2.8-1.7s4.8 8 17.5 11.8c-3 3.8-6.7 8.3-6.7 8.3-22.1-.7-30.5-15.2-30.5-15.2 0-32.2 14.4-58.3 14.4-58.3 14.4-10.8 28.1-10.5 28.1-10.5l1 1.2c-18 5.2-26.3 13.1-26.3 13.1s2.2-1.2 5.9-2.9c10.7-4.7 19.2-6 22.7-6.3.6-.1 1.1-.2 1.7-.2 6.1-.8 13-1 20.2-.2 9.5 1.1 19.7 3.9 30.1 9.6 0 0-7.9-7.5-24.9-12.7l1.4-1.6s13.7-.3 28.1 10.5c0 0 14.4 26.1 14.4 58.3 0 0-8.5 14.5-30.6 15.2z"/>
-      </svg>
-    </a>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-      Love Angular?&nbsp;
-      <a href="https://github.com/angular/angular" target="_blank" rel="noopener"> Give our repo a star.
-        <div class="github-star-badge">
-            <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-          Star
+<!-- Loader Start -->
+<!-- <div id="preloader">
+        <div id="status">
+            <div class="spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
         </div>
-      </a>
-      <a href="https://github.com/angular/angular" target="_blank" rel="noopener">
-        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="#1976d2"/><path d="M0 0h24v24H0z" fill="none"/></svg>
-      </a>
-  </footer>
+    </div> -->
+<!-- Loader End -->
 
-  <svg id="clouds" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677" viewBox="0 0 2611.084 485.677">
-    <title>Gray Clouds Background</title>
-    <path id="Path_39" data-name="Path 39" d="M2379.709,863.793c10-93-77-171-168-149-52-114-225-105-264,15-75,3-140,59-152,133-30,2.83-66.725,9.829-93.5,26.25-26.771-16.421-63.5-23.42-93.5-26.25-12-74-77-130-152-133-39-120-212-129-264-15-54.084-13.075-106.753,9.173-138.488,48.9-31.734-39.726-84.4-61.974-138.487-48.9-52-114-225-105-264,15a162.027,162.027,0,0,0-103.147,43.044c-30.633-45.365-87.1-72.091-145.206-58.044-52-114-225-105-264,15-75,3-140,59-152,133-53,5-127,23-130,83-2,42,35,72,70,86,49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33,61.112,8.015,113.854-5.72,150.492-29.764a165.62,165.62,0,0,0,110.861-3.236c47,94,178,113,251,33,31.385,4.116,60.563,2.495,86.487-3.311,25.924,5.806,55.1,7.427,86.488,3.311,73,80,204,61,251-33a165.625,165.625,0,0,0,120,0c51,13,108,15,157-5a147.188,147.188,0,0,0,33.5-18.694,147.217,147.217,0,0,0,33.5,18.694c49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33C2446.709,1093.793,2554.709,922.793,2379.709,863.793Z" transform="translate(142.69 -634.312)" fill="#eee"/>
-  </svg>
 
-</div>
+<!-- Start Navbar -->
+<nav id="topnav" class="defaultscroll is-sticky">
+  <div class="container relative">
+    <!-- Logo container-->
+    <a class="logo" href="index.html">
+      <img src="assets/images/munlogo.png" style="height: 24px;" class="inline-block dark:hidden" alt="">
+      <img src="assets/images/munlogo.png" style="height: 24px;" class="hidden dark:inline-block" alt="">
+    </a>
 
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+    <!-- End Logo container-->
+    <div class="menu-extras">
+      <div class="menu-item">
+        <!-- Mobile menu toggle-->
+        <a class="navbar-toggle" id="isToggle" onclick="toggleMenu()">
+          <div class="lines">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </a>
+        <!-- End mobile menu toggle-->
+      </div>
+    </div>
 
-<router-outlet></router-outlet>
+    <!--Login button Start-->
+    <ul class="buy-button list-none mb-0">
+      <li class="inline mb-0">
+        <a href="#!" data-type="youtube" data-id="S_CGed6E610"
+           class="lightbox py-1.5 ps-5 pe-2 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-primary hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-full">For
+          business <span
+                class="h-8 w-8 inline-flex items-center justify-center rounded-full bg-white border border-white text-indigo-600 ms-3"><span
+                  class="mdi mdi-office-building-cog-outline"></span></span></a>
+      </li>
+
+
+    </ul>
+    <!--Login button End-->
+
+    <div id="navigation">
+      <!-- Navigation Menu-->
+      <ul class="navigation-menu justify-end">
+        <li><a href="index.html" class="sub-menu-item">Home</a></li>
+
+        <li><a href="index.html" class="sub-menu-item">Categories</a></li>
+
+
+        <li><a href="index.html" class="sub-menu-item">About Mundaly</a></li>
+
+        <li><a href="contact-one.html" class="sub-menu-item">Login</a></li>
+      </ul><!--end navigation menu-->
+    </div><!--end navigation-->
+  </div><!--end container-->
+</nav><!--end header-->
+<!-- End Navbar -->
+
+<!-- Start Hero -->
+<section
+         class="relative table w-full py-36 lg:py-44 bg-gradient-to-br from-slate-200 via-secondary/30 to-primary/40 dark:from-indigo-600/20  dark:to-yellow-500/20">
+  <div class="container relative">
+    <div class="grid grid-cols-1 mt-10">
+      <h4 class="lg:leading-normal leading-normal text-4xl lg:text-5xl mb-5 font-bold"> The Community Intelligence<br> Plarform For
+        <span class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-secondary relative inline-block">
+          <span class="typewrite text-white relative" data-period="2000"
+                data-type="[ &quot;Organisation&quot;, &quot;NGOs&quot;, &quot;Governments&quot;, &quot;Startupss&quot;, &quot;Businesses&quot;]"><span
+                  class="wrap">Classic Saa</span></span></span>
+      </h4>
+      <p class="text-slate-400 text-lg max-w-xl">Verify the impact of social programs, track their reputational effects, and proactively
+        minimize headline risks.</p>
+
+      <div class="grid lg:grid-cols-12 grid-cols-1" id="reserve-form">
+        <div class="lg:col-span-10 mt-8">
+          <div class="bg-white dark:bg-slate-900 border-0 shadow rounded p-3">
+            <form action="#">
+              <div class="registration-form relative text-dark text-start">
+                <div
+                     class="grid lg:grid-cols-3 md:grid-cols-3grid-cols-1 lg:gap-0 gap-6 lg:divide-x-[1px] lg:divide-gray-200 lg:dark:divide-gray-700">
+                  <div class="filter-search-form relative">
+                    <i
+                       class="uil uil-briefcase-alt absolute top-[48%] -translate-y-1/2 start-3 z-1 text-primary text-[20px]"></i>
+                    <input name="name" type="text" id="job-keyword"
+                           class="form-input lg:rounded-t-sm lg:rounded-e-none lg:rounded-b-none lg:rounded-s-sm lg:outline-0 w-full filter-input-box bg-gray-50 dark:bg-slate-800 border-0 focus:ring-0"
+                           placeholder="Search your keaywords">
+                  </div>
+
+                  <div class="filter-search-form relative">
+                    <i
+                       class="uil uil-map-marker absolute top-[48%] -translate-y-1/2 start-3 z-1 text-primary text-[20px]"></i>
+                    <div class="choices" data-type="select-one" tabindex="0" role="combobox" aria-autocomplete="list"
+                         aria-haspopup="true"
+                         aria-expanded="false">
+                      <div class="choices__inner"><select class="form-select choices__input" data-trigger=""
+                                name="choices-location"
+                                id="choices-location" aria-label="Default select example" hidden="" tabindex="-1"
+                                data-choice="active">
+                          <option value="AF" data-custom-properties="[object Object]">Afghanistan</option>
+                        </select>
+                        <div class="choices__list choices__list--single">
+                          <div class="choices__item choices__item--selectable" data-item="" data-id="1" data-value="AF"
+                               data-custom-properties="[object Object]" aria-selected="true">Afghanistan</div>
+                        </div>
+                      </div>
+                      <div class="choices__list choices__list--dropdown" aria-expanded="false"><input type="search"
+                               name="search_terms"
+                               class="choices__input choices__input--cloned" autocomplete="off" autocapitalize="off"
+                               spellcheck="false" role="textbox" aria-autocomplete="list" aria-label="null"
+                               placeholder="">
+                        <div class="choices__list" role="listbox">
+                          <div id="choices--choices-location-item-choice-1"
+                               class="choices__item choices__item--choice is-selected choices__item--selectable is-highlighted"
+                               role="option" data-choice="" data-id="1" data-value="AF"
+                               data-select-text="Press to select"
+                               data-choice-selectable="" aria-selected="true">Afghanistan</div>
+                          <div id="choices--choices-location-item-choice-2"
+                               class="choices__item choices__item--choice choices__item--selectable" role="option"
+                               data-choice=""
+                               data-id="2" data-value="AZ" data-select-text="Press to select" data-choice-selectable="">
+                            Azerbaijan
+                          </div>
+                          <div id="choices--choices-location-item-choice-3"
+                               class="choices__item choices__item--choice choices__item--selectable" role="option"
+                               data-choice=""
+                               data-id="3" data-value="BS" data-select-text="Press to select" data-choice-selectable="">
+                            Bahamas
+                          </div>
+                          <div id="choices--choices-location-item-choice-4"
+                               class="choices__item choices__item--choice choices__item--selectable" role="option"
+                               data-choice=""
+                               data-id="4" data-value="BH" data-select-text="Press to select" data-choice-selectable="">
+                            Bahrain
+                          </div>
+                          <div id="choices--choices-location-item-choice-5"
+                               class="choices__item choices__item--choice choices__item--selectable" role="option"
+                               data-choice=""
+                               data-id="5" data-value="CA" data-select-text="Press to select" data-choice-selectable="">
+                            Canada</div>
+                          <div id="choices--choices-location-item-choice-6"
+                               class="choices__item choices__item--choice choices__item--selectable" role="option"
+                               data-choice=""
+                               data-id="6" data-value="CV" data-select-text="Press to select" data-choice-selectable="">
+                            Cape
+                            Verde
+                          </div>
+                          <div id="choices--choices-location-item-choice-7"
+                               class="choices__item choices__item--choice choices__item--selectable" role="option"
+                               data-choice=""
+                               data-id="7" data-value="DK" data-select-text="Press to select" data-choice-selectable="">
+                            Denmark
+                          </div>
+                          <div id="choices--choices-location-item-choice-8"
+                               class="choices__item choices__item--choice choices__item--selectable" role="option"
+                               data-choice=""
+                               data-id="8" data-value="DJ" data-select-text="Press to select" data-choice-selectable="">
+                            Djibouti
+                          </div>
+                          <div id="choices--choices-location-item-choice-9"
+                               class="choices__item choices__item--choice choices__item--selectable" role="option"
+                               data-choice=""
+                               data-id="9" data-value="ER" data-select-text="Press to select" data-choice-selectable="">
+                            Eritrea
+                          </div>
+                          <div id="choices--choices-location-item-choice-10"
+                               class="choices__item choices__item--choice choices__item--selectable" role="option"
+                               data-choice=""
+                               data-id="10" data-value="EE" data-select-text="Press to select"
+                               data-choice-selectable="">
+                            Estonia
+                          </div>
+                          <div id="choices--choices-location-item-choice-11"
+                               class="choices__item choices__item--choice choices__item--selectable" role="option"
+                               data-choice=""
+                               data-id="11" data-value="GM" data-select-text="Press to select"
+                               data-choice-selectable="">
+                            Gambia
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <input type="submit" id="search" name="search" style="height: 60px;"
+                         class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-primary hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white searchbtn lg:rounded-t-none lg:rounded-e-sm lg:rounded-b-sm lg:rounded-s-none rounded-lg w-100"
+                         value="Search">
+                </div><!--end grid-->
+              </div><!--end container-->
+            </form>
+          </div>
+        </div><!--ed col-->
+      </div><!--end grid-->
+
+      <div class="mt-6">
+        <span class="text-slate-400"><span class="text-dark">Popular Searches :</span> Designer Developer Web IOS PHP Senior
+          Engineer</span>
+      </div>
+    </div>
+  </div><!--end container-->
+</section><!--end section-->
+<!-- End Hero -->
+
+
+<!-- Categories -->
+<section class="relative md:py-24 py-16">
+  <div class="container relative">
+    <div class="grid md:grid-cols-12 grid-cols-1 pb-8 items-end">
+      <div class="lg:col-span-8 md:col-span-6 md:text-start text-center">
+        <h3 class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">Search by Categories</h3>
+        <p class="text-slate-400 max-w-xl">Search your career opportunity with our categories</p>
+      </div>
+
+      <div class="lg:col-span-4 md:col-span-6 md:text-end hidden md:block">
+        <a href=""
+           class="relative inline-block font-semibold tracking-wide align-middle text-base text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:end-0 hover:after:end-auto after:bottom-0 after:start-0 after:duration-500 text-slate-400 hover:text-primary after:bg-indigo-600 duration-500 ease-in-out">All
+          Categories <i class="uil uil-arrow-right align-middle"></i></a>
+      </div>
+    </div><!--end grid-->
+  </div><!--end container-->
+
+  <div class="container relative">
+    <div class="grid grid-cols-1 relative">
+      <div class="tns-outer" id="tns2-ow">
+        <div class="tns-controls" aria-label="Carousel Navigation" tabindex="0"><button type="button" data-controls="prev" tabindex="-1"
+                  aria-controls="tns2"><i class="mdi mdi-chevron-left "></i></button><button type="button" data-controls="next"
+                  tabindex="-1" aria-controls="tns2"><i class="mdi mdi-chevron-right"></i></button></div>
+        <div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">2 to 6</span> of
+          6
+        </div>
+        <div id="tns2-mw" class="tns-ovh">
+          <div class="tns-inner" id="tns2-iw">
+            <div class="tiny-five-item  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns2"
+                 style="transform: translate3d(-16.6667%, 0px, 0px);">
+              <div class="tiny-slide tns-item" id="tns2-item0" aria-hidden="true" tabindex="-1">
+                <div
+                     class="px-3 py-10 rounded-md shadow dark:shadow-gray-800 group text-center bg-white dark:bg-slate-900 hover:bg-indigo-600/5 dark:hover:bg-indigo-600/5 duration-500 m-2">
+                  <div
+                       class="w-[84px] h-[84px] bg-indigo-600/5 group-hover:bg-indigo-600 text-primary group-hover:text-white rounded-full text-3xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 duration-500 mx-auto">
+                    <i class="uil uil-gitlab"></i>
+                  </div>
+
+                  <div class="content mt-6">
+                    <a href="page-job-grid.html" class="title h5 text-lg font-medium hover:text-primary">Business <br>
+                      Development</a>
+                    <p class="text-slate-400 mt-3">74 Jobs</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tiny-slide tns-item tns-slide-active" id="tns2-item1">
+                <div
+                     class="px-3 py-10 rounded-md shadow dark:shadow-gray-800 group text-center bg-white dark:bg-slate-900 hover:bg-indigo-600/5 dark:hover:bg-indigo-600/5 duration-500 m-2">
+                  <div
+                       class="w-[84px] h-[84px] bg-indigo-600/5 group-hover:bg-indigo-600 text-primary group-hover:text-white rounded-full text-3xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 duration-500 mx-auto">
+                    <i class="uil uil-book-open"></i>
+                  </div>
+
+                  <div class="content mt-6">
+                    <a href="page-job-grid.html" class="title h5 text-lg font-medium hover:text-primary">Marketing &amp; <br>
+                      Communication</a>
+                    <p class="text-slate-400 mt-3">20 Jobs</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tiny-slide tns-item tns-slide-active" id="tns2-item2">
+                <div
+                     class="px-3 py-10 rounded-md shadow dark:shadow-gray-800 group text-center bg-white dark:bg-slate-900 hover:bg-indigo-600/5 dark:hover:bg-indigo-600/5 duration-500 m-2">
+                  <div
+                       class="w-[84px] h-[84px] bg-indigo-600/5 group-hover:bg-indigo-600 text-primary group-hover:text-white rounded-full text-3xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 duration-500 mx-auto">
+                    <i class="uil uil-chart-pie-alt"></i>
+                  </div>
+
+                  <div class="content mt-6">
+                    <a href="page-job-grid.html" class="title h5 text-lg font-medium hover:text-primary">Project <br>
+                      Management</a>
+                    <p class="text-slate-400 mt-3">35 Jobs</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tiny-slide tns-item tns-slide-active" id="tns2-item3">
+                <div
+                     class="px-3 py-10 rounded-md shadow dark:shadow-gray-800 group text-center bg-white dark:bg-slate-900 hover:bg-indigo-600/5 dark:hover:bg-indigo-600/5 duration-500 m-2">
+                  <div
+                       class="w-[84px] h-[84px] bg-indigo-600/5 group-hover:bg-indigo-600 text-primary group-hover:text-white rounded-full text-3xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 duration-500 mx-auto">
+                    <i class="uil uil-feedback"></i>
+                  </div>
+
+                  <div class="content mt-6">
+                    <a href="page-job-grid.html" class="title h5 text-lg font-medium hover:text-primary">Customer <br>
+                      Service</a>
+                    <p class="text-slate-400 mt-3">46 Jobs</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tiny-slide tns-item tns-slide-active" id="tns2-item4">
+                <div
+                     class="px-3 py-10 rounded-md shadow dark:shadow-gray-800 group text-center bg-white dark:bg-slate-900 hover:bg-indigo-600/5 dark:hover:bg-indigo-600/5 duration-500 m-2">
+                  <div
+                       class="w-[84px] h-[84px] bg-indigo-600/5 group-hover:bg-indigo-600 text-primary group-hover:text-white rounded-full text-3xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 duration-500 mx-auto">
+                    <i class="uil uil-presentation-line"></i>
+                  </div>
+
+                  <div class="content mt-6">
+                    <a href="page-job-grid.html" class="title h5 text-lg font-medium hover:text-primary">Software <br>
+                      Engineering</a>
+                    <p class="text-slate-400 mt-3">60 Jobs</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tiny-slide tns-item tns-slide-active" id="tns2-item5">
+                <div
+                     class="px-3 py-10 rounded-md shadow dark:shadow-gray-800 group text-center bg-white dark:bg-slate-900 hover:bg-indigo-600/5 dark:hover:bg-indigo-600/5 duration-500 m-2">
+                  <div
+                       class="w-[84px] h-[84px] bg-indigo-600/5 group-hover:bg-indigo-600 text-primary group-hover:text-white rounded-full text-3xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 duration-500 mx-auto">
+                    <i class="uil uil-fire"></i>
+                  </div>
+
+                  <div class="content mt-6">
+                    <a href="page-job-grid.html" class="title h5 text-lg font-medium hover:text-primary">Human <br>
+                      Resources</a>
+                    <p class="text-slate-400 mt-3">05 Jobs</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!--grid-->
+
+    <div class="grid md:grid-cols-12 grid-cols-1 md:hidden mt-8">
+      <div class="md:col-span-12 text-center">
+        <a href=""
+           class="relative inline-block font-semibold tracking-wide align-middle text-base text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:end-0 hover:after:end-auto after:bottom-0 after:start-0 after:duration-500 text-slate-400 hover:text-primary after:bg-indigo-600 duration-500 ease-in-out">All
+          Categories <i class="uil uil-arrow-right align-middle"></i></a>
+      </div>
+    </div><!--end grid-->
+  </div><!--end container-->
+</section>
+<!-- End categories -->
+
+
+<!-- Companies -->
+<section class="relative md:py-24 py-16 bg-gray-50 dark:bg-slate-800">
+  <div class="container relative">
+    <div class="grid grid-cols-1 pb-8 text-center">
+      <h6 class="text-primary text-base mb-2">Our Minds</h6>
+      <h3 class="mb-6 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold">Management Team</h3>
+
+      <p class="text-slate-400 max-w-xl mx-auto">Start working with Tailwind CSS that can provide everything you need to generate awareness,
+        drive
+        traffic, connect.</p>
+    </div>
+    <div class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-[30px]">
+
+
+
+      <!-- End Candidate Content -->
+
+      <!-- Start Candidate Content -->
+      <div
+           class="group relative p-6 rounded-md shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 bg-white dark:bg-slate-900 duration-500 text-center">
+        <div class="mt-8">
+          <img src="data:image/png;base64,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"
+               class="rounded-full shadow-md h-20 w-20 mx-auto block" alt="">
+
+          <div class="mt-3">
+            <a href="page-job-candidate-detail.html" class="text-lg font-medium hover:text-primary duration-500 block">MEST</a>
+            <span class="block text-sm text-slate-400">Education</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-around my-4">
+          <span class="text-slate-400"><i class="uil uil-map-marker text-primary me-1"></i>Accra</span>
+          <span class="text-slate-400"><i class="uil uil-globe text-primary me-1"></i>Ghana</span>
+        </div>
+
+        <a href=""
+           class="bg-gray-100 dark:bg-gray-800 text-slate-400 text-xs font-medium px-3 py-1 rounded-lg h-[24px] inline-block m-1">Entrepreneurships</a>
+        <a href=""
+           class="bg-gray-100 dark:bg-gray-800 text-slate-400 text-xs font-medium px-3 py-1 rounded-lg h-[24px] inline-block m-1">Technology</a>
+        <a href=""
+           class="bg-gray-100 dark:bg-gray-800 text-slate-400 text-xs font-medium px-3 py-1 rounded-lg h-[24px] inline-block m-1">Youth</a>
+
+
+        <div class="mt-4">
+          <a href="page-job-candidate-detail.html"
+             class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-primary hover:text-white rounded-md w-full">View
+            Profile</a>
+        </div>
+
+        <div class="absolute top-6 start-6">
+          <span class="bg-indigo-600/5 text-primary text-sm font-medium px-4 py-1 rounded-full h-[28px]">Featured</span>
+        </div>
+        <div class="absolute top-6 end-6">
+          <a href=""
+             class="h-8 w-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center bg-gray-50 hover:bg-gray-200 dark:bg-slate-900 dark:hover:bg-gray-700 border hover:border-gray-100 dark:border-gray-700 dark:hover:border-gray-700 rounded-full"><i
+               class="uil uil-bookmark"></i></a>
+        </div>
+      </div>
+      <!-- End Candidate Content -->
+
+
+      <!-- Start Candidate Content -->
+      <div
+           class="group relative p-6 rounded-md shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 bg-white dark:bg-slate-900 duration-500 text-center">
+        <div class="mt-8">
+          <img src="data:image/png;base64,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"
+               class="rounded-full shadow-md h-20 w-20 mx-auto block" alt="">
+
+          <div class="mt-3">
+            <a href="page-job-candidate-detail.html" class="text-lg font-medium hover:text-primary duration-500 block">MEST</a>
+            <span class="block text-sm text-slate-400">Education</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-around my-4">
+          <span class="text-slate-400"><i class="uil uil-map-marker text-primary me-1"></i>Accra</span>
+          <span class="text-slate-400"><i class="uil uil-globe text-primary me-1"></i>Ghana</span>
+        </div>
+
+        <a href=""
+           class="bg-gray-100 dark:bg-gray-800 text-slate-400 text-xs font-medium px-3 py-1 rounded-lg h-[24px] inline-block m-1">Entrepreneurships</a>
+        <a href=""
+           class="bg-gray-100 dark:bg-gray-800 text-slate-400 text-xs font-medium px-3 py-1 rounded-lg h-[24px] inline-block m-1">Technology</a>
+        <a href=""
+           class="bg-gray-100 dark:bg-gray-800 text-slate-400 text-xs font-medium px-3 py-1 rounded-lg h-[24px] inline-block m-1">Youth</a>
+
+
+        <div class="mt-4">
+          <a href="page-job-candidate-detail.html"
+             class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-primary hover:text-white rounded-md w-full">View
+            Profile</a>
+        </div>
+
+        <div class="absolute top-6 start-6">
+          <span class="bg-indigo-600/5 text-primary text-sm font-medium px-4 py-1 rounded-full h-[28px]">Featured</span>
+        </div>
+        <div class="absolute top-6 end-6">
+          <a href=""
+             class="h-8 w-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center bg-gray-50 hover:bg-gray-200 dark:bg-slate-900 dark:hover:bg-gray-700 border hover:border-gray-100 dark:border-gray-700 dark:hover:border-gray-700 rounded-full"><i
+               class="uil uil-bookmark"></i></a>
+        </div>
+      </div>
+      <!-- End Candidate Content -->
+
+      <!-- Start Candidate Content -->
+      <div
+           class="group relative p-6 rounded-md shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 bg-white dark:bg-slate-900 duration-500 text-center">
+        <div class="mt-8">
+          <img src="data:image/png;base64,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"
+               class="rounded-full shadow-md h-20 w-20 mx-auto block" alt="">
+
+          <div class="mt-3">
+            <a href="page-job-candidate-detail.html" class="text-lg font-medium hover:text-primary duration-500 block">MEST</a>
+            <span class="block text-sm text-slate-400">Education</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-around my-4">
+          <span class="text-slate-400"><i class="uil uil-map-marker text-primary me-1"></i>Accra</span>
+          <span class="text-slate-400"><i class="uil uil-globe text-primary me-1"></i>Ghana</span>
+        </div>
+
+        <a href=""
+           class="bg-gray-100 dark:bg-gray-800 text-slate-400 text-xs font-medium px-3 py-1 rounded-lg h-[24px] inline-block m-1">Entrepreneurships</a>
+        <a href=""
+           class="bg-gray-100 dark:bg-gray-800 text-slate-400 text-xs font-medium px-3 py-1 rounded-lg h-[24px] inline-block m-1">Technology</a>
+        <a href=""
+           class="bg-gray-100 dark:bg-gray-800 text-slate-400 text-xs font-medium px-3 py-1 rounded-lg h-[24px] inline-block m-1">Youth</a>
+
+
+        <div class="mt-4">
+          <a href="page-job-candidate-detail.html"
+             class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-primary hover:text-white rounded-md w-full">View
+            Profile</a>
+        </div>
+
+        <div class="absolute top-6 start-6">
+          <span class="bg-indigo-600/5 text-primary text-sm font-medium px-4 py-1 rounded-full h-[28px]">Featured</span>
+        </div>
+        <div class="absolute top-6 end-6">
+          <a href=""
+             class="h-8 w-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center bg-gray-50 hover:bg-gray-200 dark:bg-slate-900 dark:hover:bg-gray-700 border hover:border-gray-100 dark:border-gray-700 dark:hover:border-gray-700 rounded-full"><i
+               class="uil uil-bookmark"></i></a>
+        </div>
+      </div>
+      <!-- End Candidate Content -->
+    </div><!--end grid-->
+  </div><!--end container-->
+
+</section>
+
+
+<!-- Who we are -->
+<section class="relative md:py-24 py-16">
+  <div class="container relative">
+    <div class="grid grid-cols-1 pb-8 text-center">
+      <h6 class="text-primary text-sm font-bold uppercase mb-2">Who We Are ?</h6>
+
+    </div>
+    <div class="grid md:grid-cols-12 grid-cols-1 items-center gap-[30px]">
+      <div class="md:col-span-5">
+        <div class="relative">
+          <img src="assets/images/business/about01.jpg" class="rounded-md" alt="">
+
+          <div class="absolute bottom-24 end-0">
+            <img src="assets/images/business/about02.jpg" class="rounded-md shadow-md w-48 h-48" alt="">
+            <div class="absolute bottom-2/4 translate-y-2/4 start-0 end-0 text-center">
+              <a href="#!" data-type="youtube" data-id="S_CGed6E610"
+                 class="lightbox h-14 w-14 rounded-full shadow-md dark:shadow-gyay-700 inline-flex items-center justify-center bg-white dark:bg-slate-900 text-primary">
+                <i class="mdi mdi-play inline-flex items-center justify-center text-xl"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div><!--end col-->
+
+      <div class="md:col-span-7">
+        <div class="lg:ms-4">
+          <h4 class="mb-6 md:text-3xl text-2xl lg:leading-normal leading-normal font-medium">We are the largest <br> Business expert
+          </h4>
+          <p class="text-slate-400 max-w-xl">Start working with Tailwind CSS that can provide everything you need to generate awareness,
+            drive traffic, connect. Dummy text is text that is used in the publishing industry or by web designers to occupy the space
+            which will later be filled with 'real' content. This is required when, for example, the final text is not yet available.
+            Dummy
+            texts have been in use by typesetters since the 16th century.</p>
+          <a href=""
+             class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md mt-3">Buy
+            Now <i class="mdi mdi-chevron-right align-middle"></i></a>
+        </div>
+      </div><!--end col-->
+    </div><!--end grid-->
+  </div><!--end container-->
+
+
+</section>
+
+
+<!-- Footer Start -->
+<footer class="footer bg-dark-footer relative text-gray-200 dark:text-gray-200">
+  <div class="container relative">
+    <div class="grid grid-cols-12">
+      <div class="col-span-12">
+        <div class="py-[60px] px-0">
+          <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px]">
+            <div class="lg:col-span-4 md:col-span-12">
+              <a href="#" class="text-[22px] focus:outline-none">
+                <img src="assets/images/logo-light.png" alt="">
+              </a>
+              <p class="mt-6 text-gray-300">Start working with Tailwind CSS that can provide everything you need to generate
+                awareness, drive traffic, connect.</p>
+              <ul class="list-none mt-6">
+                <li class="inline"><a href="https://1.envato.market/techwind" target="_blank"
+                     class="h-8 w-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i
+                       class="uil uil-shopping-cart align-middle" title="Buy Now"></i></a></li>
+                <li class="inline"><a href="https://dribbble.com/shreethemes" target="_blank"
+                     class="h-8 w-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i
+                       class="uil uil-dribbble align-middle" title="dribbble"></i></a></li>
+                <li class="inline"><a href="https://www.behance.net/shreethemes" target="_blank"
+                     class="h-8 w-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i
+                       class="uil uil-behance" title="Behance"></i></a></li>
+                <li class="inline"><a href="http://linkedin.com/company/shreethemes" target="_blank"
+                     class="h-8 w-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i
+                       class="uil uil-linkedin" title="Linkedin"></i></a></li>
+                <li class="inline"><a href="https://www.facebook.com/shreethemes" target="_blank"
+                     class="h-8 w-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i
+                       class="uil uil-facebook-f align-middle" title="facebook"></i></a></li>
+                <li class="inline"><a href="https://www.instagram.com/shreethemes/" target="_blank"
+                     class="h-8 w-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i
+                       class="uil uil-instagram align-middle" title="instagram"></i></a></li>
+                <li class="inline"><a href="https://twitter.com/shreethemes" target="_blank"
+                     class="h-8 w-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i
+                       class="uil uil-twitter align-middle" title="twitter"></i></a></li>
+                <li class="inline"><a href="mailto:support@shreethemes.in"
+                     class="h-8 w-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i
+                       class="uil uil-envelope align-middle" title="email"></i></a></li>
+                <li class="inline"><a href="https://forms.gle/QkTueCikDGqJnbky9" target="_blank"
+                     class="h-8 w-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-base text-center border border-gray-800 rounded-md hover:border-indigo-600 dark:hover:border-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-600"><i
+                       class="uil uil-file align-middle" title="customization"></i></a></li>
+              </ul><!--end icon-->
+            </div><!--end col-->
+
+            <div class="lg:col-span-2 md:col-span-4">
+              <h5 class="tracking-[1px] text-gray-100 font-semibold">Company</h5>
+              <ul class="list-none footer-list mt-6">
+                <li><a href="page-aboutus.html" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i
+                       class="uil uil-angle-right-b"></i> About us</a></li>
+                <li class="mt-[10px]"><a href="page-services.html"
+                     class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b"></i>
+                    Services</a></li>
+                <li class="mt-[10px]"><a href="page-team.html"
+                     class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b"></i>
+                    Team</a></li>
+                <li class="mt-[10px]"><a href="page-pricing.html"
+                     class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b"></i>
+                    Pricing</a></li>
+                <li class="mt-[10px]"><a href="portfolio-creative-four.html"
+                     class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b"></i>
+                    Project</a></li>
+                <li class="mt-[10px]"><a href="blog.html" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i
+                       class="uil uil-angle-right-b"></i> Blog</a></li>
+                <li class="mt-[10px]"><a href="auth-login.html"
+                     class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b"></i>
+                    Login</a></li>
+              </ul>
+            </div><!--end col-->
+
+            <div class="lg:col-span-3 md:col-span-4">
+              <h5 class="tracking-[1px] text-gray-100 font-semibold">Usefull Links</h5>
+              <ul class="list-none footer-list mt-6">
+                <li><a href="page-terms.html" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i
+                       class="uil uil-angle-right-b"></i> Terms of Services</a></li>
+                <li class="mt-[10px]"><a href="page-privacy.html"
+                     class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b"></i>
+                    Privacy Policy</a></li>
+                <li class="mt-[10px]"><a href="documentation.html"
+                     class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b"></i>
+                    Documentation</a></li>
+                <li class="mt-[10px]"><a href="changelog.html"
+                     class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b"></i>
+                    Changelog</a></li>
+                <li class="mt-[10px]"><a href="widget.html" class="text-gray-300 hover:text-gray-400 duration-500 ease-in-out"><i
+                       class="uil uil-angle-right-b"></i> Widget</a></li>
+              </ul>
+            </div><!--end col-->
+
+            <div class="lg:col-span-3 md:col-span-4">
+              <h5 class="tracking-[1px] text-gray-100 font-semibold">Newsletter</h5>
+              <p class="mt-6">Sign up and receive the latest tips via email.</p>
+              <form>
+                <div class="grid grid-cols-1">
+                  <div class="my-3">
+                    <label class="form-label">Write your email <span class="text-red-600">*</span></label>
+                    <div class="form-icon relative mt-2">
+                      <i data-feather="mail" class="w-4 h-4 absolute top-3 start-4"></i>
+                      <input type="email"
+                             class="form-input ps-12 rounded w-full py-2 px-3 h-10 bg-gray-800 border-0 text-gray-100 focus:shadow-none focus:ring-0 placeholder:text-gray-200"
+                             placeholder="Email" name="email" required="">
+                    </div>
+                  </div>
+
+                  <button type="submit" id="submitsubscribe" name="send"
+                          class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md">Subscribe</button>
+                </div>
+              </form>
+            </div><!--end col-->
+          </div><!--end grid-->
+        </div><!--end col-->
+      </div>
+    </div><!--end grid-->
+  </div><!--end container-->
+
+  <div class="py-[30px] px-0 border-t border-slate-800">
+    <div class="container relative text-center">
+      <div class="grid md:grid-cols-2 items-center">
+        <div class="md:text-start text-center">
+          <p class="mb-0">©
+            <script>document.write(new Date().getFullYear())</script> Techwind. Design with <i class="mdi mdi-heart text-red-600"></i>
+            by <a href="https://shreethemes.in/" target="_blank" class="text-reset">Shreethemes</a>.
+          </p>
+        </div>
+
+        <ul class="list-none md:text-end text-center mt-6 md:mt-0">
+          <li class="inline"><a href=""><img src="assets/images/payments/american-ex.png" class="max-h-6 inline"
+                   title="American Express" alt=""></a></li>
+          <li class="inline"><a href=""><img src="assets/images/payments/discover.png" class="max-h-6 inline" title="Discover"
+                   alt=""></a></li>
+          <li class="inline"><a href=""><img src="assets/images/payments/master-card.png" class="max-h-6 inline" title="Master Card"
+                   alt=""></a></li>
+          <li class="inline"><a href=""><img src="assets/images/payments/paypal.png" class="max-h-6 inline" title="Paypal" alt=""></a>
+          </li>
+          <li class="inline"><a href=""><img src="assets/images/payments/visa.png" class="max-h-6 inline" title="Visa" alt=""></a></li>
+        </ul>
+      </div><!--end grid-->
+    </div><!--end container-->
+  </div>
+</footer><!--end footer-->
+<!-- Footer End -->

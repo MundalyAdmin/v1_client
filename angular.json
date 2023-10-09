@@ -20,19 +20,31 @@
             "outputPath": "dist/client",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/libs/tobii/css/tobii.min.css",
+              "src/assets/libs/tiny-slider/tiny-slider.css",
+              "src/assets/libs/choices.js/public/assets/styles/choices.min.css",
+              "src/assets/libs/@mdi/font/css/materialdesignicons.min.css",
+              "node_modules/@iconscout/unicons/css/line.css",
+              "src/assets/css/tailwind.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/libs/tobii/js/tobii.min.js",
+              "src/assets/libs/tiny-slider/min/tiny-slider.js",
+              "node_modules/feather-icons/dist/feather.min.js",
+              "src/assets/libs/choices.js/public/assets/scripts/choices.min.js",
+              {
+                "input": "src/assets/js/plugins.init.js",
+                "bundleName": "plugins",
+                "inject": true
+              },
+              "src/assets/js/app.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -82,23 +94,18 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "2ebae161-a4d7-48fc-97d1-11135e78a0f3"
   }
 }

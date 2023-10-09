@@ -1,10 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
+import { JsLoaderService } from './js-loader.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'client';
+  constructor(
+    private renderer: Renderer2,
+    public jsLoaderService: JsLoaderService
+  ) {}
+
+  ngOnInit() {
+    this.jsLoaderService.loadJsScript(
+      this.renderer,
+      'assets/js/plugins.init.js'
+    );
+  }
 }
