@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { PublicComponent } from './public/public.component';
 import { HomeComponent } from './public/home/home.component';
 import { HomeHeroSectionComponent } from './public/home/home-hero-section/home-hero-section.component';
-import { HomeNavbarComponent } from './public/home/home-navbar/home-navbar.component';
 import { HomeCategoryListComponent } from './public/home/home-category-list/home-category-list.component';
 import { HomeCompanyListComponent } from './public/home/home-company-list/home-company-list.component';
 import { HomeAboutUsComponent } from './public/home/home-about-us/home-about-us.component';
-import { HomeFooterComponent } from './public/home/home-footer/home-footer.component';
+import { CompaniesComponent } from './public/companies/companies.component';
+import { HeaderComponent } from './public/header/header.component';
+import { FooterComponent } from './public/footer/footer.component';
+import { CompaniesListComponent } from './public/companies/companies-list/companies-list.component';
 
 @NgModule({
   declarations: [
@@ -18,17 +20,16 @@ import { HomeFooterComponent } from './public/home/home-footer/home-footer.compo
     PublicComponent,
     HomeComponent,
     HomeHeroSectionComponent,
-    HomeNavbarComponent,
     HomeCategoryListComponent,
     HomeCompanyListComponent,
     HomeAboutUsComponent,
-    HomeFooterComponent
+    CompaniesComponent,
+    HeaderComponent,
+    FooterComponent,
+    CompaniesListComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
