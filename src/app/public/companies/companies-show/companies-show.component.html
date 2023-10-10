@@ -1,0 +1,81 @@
+<section class="relative md:pb-24 pb-16 ">
+  <!-- Hero -->
+  <app-companies-show-hero></app-companies-show-hero>
+
+  <!-- Content -->
+  <div class=" relative mt-16 mx-28">
+    <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[30px]">
+      <!-- Main content -->
+      <div
+           class="group col-span-2 relative overflow-hidden bg-white dark:bg-slate-900 rounded-md shadow dark:shadow-gray-800 hover:shadow-lg dark:hover:shadow-gray-800 duration-500 ease-in-out">
+
+        <!-- Tab list -->
+        <ul class=" w-full flex justify-center text-center p-3 bg-white dark:bg-slate-900 shadow dark:shadow-gray-800 rounded-md"
+            id="myTab" data-tabs-toggle="#StarterContent" role="tablist">
+
+          <!-- Overiew -->
+          <li role="presentation" class="md:inline-block block  w-full">
+            <button class="px-6 py-2 font-semibold rounded-md w-full duration-500 text-white" id="overview-tab"
+                    data-tabs-target="#overview"
+                    type="button" role="tab"
+                    aria-controls="overview" aria-selected="true">
+              Overview
+            </button>
+          </li>
+
+          <!-- Q&A -->
+          <li role="presentation" class="md:inline-block block  w-full">
+            <button class="px-6 py-2 font-semibold rounded-md w-full duration-500 hover:text-primary dark:hover:text-white hover:bg-gray-50 dark:hover:bg-slate-800"
+                    id="qa-tab" data-tabs-target="#qa" type="button" role="tab" aria-controls="qa" aria-selected="false">
+              Q&A
+            </button>
+          </li>
+
+          <!-- About -->
+          <li role="presentation" class="md:inline-block block  w-full">
+            <button class="px-6 py-2 font-semibold rounded-md w-full duration-500 hover:text-primary dark:hover:text-white hover:bg-gray-50 dark:hover:bg-slate-800"
+                    id="about-tab" data-tabs-target="#about" type="button" role="tab" aria-controls="about" aria-selected="false">
+              About
+            </button>
+          </li>
+        </ul>
+
+        <!-- Tab content -->
+        <div id="StarterContent" class="p-8">
+          <!-- Overview -->
+          <div class="" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+            <app-companies-show-overview></app-companies-show-overview>
+          </div>
+
+          <!-- FAQ -->
+          <div class="hidden" id="qa" role="tabpanel" aria-labelledby="qa-tab">
+            <app-companies-show-qanda></app-companies-show-qanda>
+          </div>
+
+          <!-- About -->
+          <div class="hidden" id="about" role="tabpanel" aria-labelledby="about-tab">
+            <app-companies-show-about></app-companies-show-about>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rating information (right sidebar)-->
+      <div class="sticky top-20">
+        <!-- Ratings -->
+        <app-companies-show-rating-informations></app-companies-show-rating-informations>
+
+
+        <!-- Get in touch with Mundaly -->
+        <div class="mt-12 text-center">
+          <h3 class="mb-6 text-xl leading-normal font-medium">Have Question ? Get in touch!</h3>
+
+          <div class="mt-6">
+            <a href="contact-one.html"
+               class="py-2 px-5 inline-block font-semibold tracking-wide align-middle duration-500 text-base text-center bg-transparent hover:bg-primary border border-primary text-primary hover:text-white rounded-md"><i
+                 class="uil uil-phone align-middle"></i> Contact us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
