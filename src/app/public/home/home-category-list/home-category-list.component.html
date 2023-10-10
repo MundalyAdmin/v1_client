@@ -1,32 +1,54 @@
 <section class="relative md:py-24 py-16">
+  <!-- Header -->
   <div class="container relative">
     <div class="grid md:grid-cols-12 grid-cols-1 pb-8 items-end">
       <div class="lg:col-span-8 md:col-span-6 md:text-start text-center">
+        <!-- Title -->
         <h3 class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">Search by Categories</h3>
-        <p class="text-slate-400 max-w-xl">Search your career opportunity with our categories</p>
+        <!-- Subtitles -->
+        <p class="text-slate-400 max-w-xl">Search organizations by categories</p>
       </div>
 
+      <!-- All categories -->
       <div class="lg:col-span-4 md:col-span-6 md:text-end hidden md:block">
         <a href=""
            class="relative inline-block font-semibold tracking-wide align-middle text-base text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:end-0 hover:after:end-auto after:bottom-0 after:start-0 after:duration-500 text-slate-400 hover:text-primary after:bg-indigo-600 duration-500 ease-in-out">All
           Categories <i class="uil uil-arrow-right align-middle"></i></a>
       </div>
-    </div><!--end grid-->
-  </div><!--end container-->
+    </div>
+  </div>
 
+  <!-- Category list -->
   <div class="container relative">
     <div class="grid grid-cols-1 relative">
       <div class="tns-outer" id="tns2-ow">
-        <div class="tns-controls" aria-label="Carousel Navigation" tabindex="0"><button type="button" data-controls="prev" tabindex="-1"
-                  aria-controls="tns2"><i class="mdi mdi-chevron-left "></i></button><button type="button" data-controls="next"
-                  tabindex="-1" aria-controls="tns2"><i class="mdi mdi-chevron-right"></i></button></div>
+
+        <!-- Control buttons -->
+        <div class="tns-controls" aria-label="Carousel Navigation" tabindex="0">
+          <!-- Previous button   -->
+          <button type="button" data-controls="prev" tabindex="-1"
+                  aria-controls="tns2">
+            <i class="mdi mdi-chevron-left "></i>
+          </button>
+
+          <!-- Next button -->
+          <button type="button" data-controls="next"
+                  tabindex="-1" aria-controls="tns2">
+            <i class="mdi mdi-chevron-right"></i>
+          </button>
+        </div>
+
+        <!-- Hidden information -->
         <div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">2 to 6</span> of
           6
         </div>
+
+        <!-- Slider -->
         <div id="tns2-mw" class="tns-ovh">
           <div class="tns-inner" id="tns2-iw">
             <div class="tiny-five-item  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns2"
                  style="transform: translate3d(-16.6667%, 0px, 0px);">
+
               <div class="tiny-slide tns-item" id="tns2-item0" aria-hidden="true" tabindex="-1">
                 <div
                      class="px-3 py-10 rounded-md shadow dark:shadow-gray-800 group text-center bg-white dark:bg-slate-900 hover:bg-indigo-600/5 dark:hover:bg-indigo-600/5 duration-500 m-2">
@@ -36,7 +58,7 @@
                   </div>
 
                   <div class="content mt-6">
-                    <a href="page-job-grid.html" class="title h5 text-lg font-medium hover:text-primary">Business <br>
+                    <a [routerLink]="['companies']" class="title h5 text-lg font-medium hover:text-primary">Business <br>
                       Development</a>
                     <p class="text-slate-400 mt-3">74 Jobs</p>
                   </div>
@@ -52,7 +74,7 @@
                   </div>
 
                   <div class="content mt-6">
-                    <a href="page-job-grid.html" class="title h5 text-lg font-medium hover:text-primary">Marketing &amp; <br>
+                    <a [routerLink]="['companies']" class="title h5 text-lg font-medium hover:text-primary">Marketing &amp; <br>
                       Communication</a>
                     <p class="text-slate-400 mt-3">20 Jobs</p>
                   </div>
@@ -68,7 +90,7 @@
                   </div>
 
                   <div class="content mt-6">
-                    <a href="page-job-grid.html" class="title h5 text-lg font-medium hover:text-primary">Project <br>
+                    <a [routerLink]="['companies']" class="title h5 text-lg font-medium hover:text-primary">Project <br>
                       Management</a>
                     <p class="text-slate-400 mt-3">35 Jobs</p>
                   </div>
@@ -84,7 +106,7 @@
                   </div>
 
                   <div class="content mt-6">
-                    <a href="page-job-grid.html" class="title h5 text-lg font-medium hover:text-primary">Customer <br>
+                    <a [routerLink]="['companies']" class="title h5 text-lg font-medium hover:text-primary">Customer <br>
                       Service</a>
                     <p class="text-slate-400 mt-3">46 Jobs</p>
                   </div>
@@ -100,7 +122,7 @@
                   </div>
 
                   <div class="content mt-6">
-                    <a href="page-job-grid.html" class="title h5 text-lg font-medium hover:text-primary">Software <br>
+                    <a [routerLink]="['companies']" class="title h5 text-lg font-medium hover:text-primary">Software <br>
                       Engineering</a>
                     <p class="text-slate-400 mt-3">60 Jobs</p>
                   </div>
@@ -116,7 +138,7 @@
                   </div>
 
                   <div class="content mt-6">
-                    <a href="page-job-grid.html" class="title h5 text-lg font-medium hover:text-primary">Human <br>
+                    <a [routerLink]="['companies']" class="title h5 text-lg font-medium hover:text-primary">Human <br>
                       Resources</a>
                     <p class="text-slate-400 mt-3">05 Jobs</p>
                   </div>
@@ -126,14 +148,7 @@
           </div>
         </div>
       </div>
-    </div><!--grid-->
+    </div>
 
-    <div class="grid md:grid-cols-12 grid-cols-1 md:hidden mt-8">
-      <div class="md:col-span-12 text-center">
-        <a href=""
-           class="relative inline-block font-semibold tracking-wide align-middle text-base text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:end-0 hover:after:end-auto after:bottom-0 after:start-0 after:duration-500 text-slate-400 hover:text-primary after:bg-indigo-600 duration-500 ease-in-out">All
-          Categories <i class="uil uil-arrow-right align-middle"></i></a>
-      </div>
-    </div><!--end grid-->
-  </div><!--end container-->
+  </div>
 </section>
