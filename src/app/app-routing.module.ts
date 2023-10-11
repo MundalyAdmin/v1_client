@@ -1,18 +1,36 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PublicComponent } from './public/public.component';
-import { HomeComponent } from './public/home/home.component';
-import { CompaniesComponent } from './public/companies/companies.component';
-import { CompaniesShowComponent } from './public/companies/companies-show/companies-show.component';
+import { PublicCommunityComponent } from './public/public-community/public-community.component';
+import { PublicBusinessComponent } from './public/public-business/public-business.component';
+import { HomeComponent } from './public/public-community/home/home.component';
+import { PublicBusinessHomeComponent } from './public/public-business/public-business-home/public-business-home.component';
 
 const routes: Routes = [
   {
     path: '',
     component: PublicComponent,
     children: [
-      { path: '', component: HomeComponent },
-      { path: 'companies', component: CompaniesComponent },
-      { path: 'companies/:id', component: CompaniesShowComponent },
+      {
+        path: '',
+        component: PublicCommunityComponent,
+        children: [
+          {
+            path: '',
+            component: HomeComponent,
+          },
+        ],
+      },
+      {
+        path: 'for-business',
+        component: PublicBusinessComponent,
+        children: [
+          {
+            path: '',
+            component: PublicBusinessHomeComponent,
+          },
+        ],
+      },
     ],
   },
 ];
