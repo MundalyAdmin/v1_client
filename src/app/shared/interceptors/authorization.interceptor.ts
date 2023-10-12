@@ -9,7 +9,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { Helper } from 'src/app/helpers/helper/helper';
+import { Helper } from '../helpers/helper/helper';
 
 @Injectable()
 export class AuthorizationInterceptor implements HttpInterceptor {

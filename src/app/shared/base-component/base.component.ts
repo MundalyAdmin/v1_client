@@ -1,10 +1,9 @@
 import { AppInjector } from './../services/app-injector.service';
 import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Helper } from 'src/app/helpers/helper/helper';
 
 import { BaseService } from '../services/base.service';
-import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Helper } from '../helpers/helper/helper';
 
 interface Subscriptions {
   [k: string]: Subscription;
@@ -21,16 +20,17 @@ export abstract class BaseComponent<T> implements OnDestroy {
   public subscriptions: Subscriptions = {};
 
   public helper: Helper;
-  public modalService: NgbModal;
-  public modalServiceConfig: NgbModalConfig;
+  modalService: any;
+  // public modalService: NgbModal;
+  // public modalServiceConfig: NgbModalConfig;
   // public auth: AuthService = null;
 
   constructor(public service?: BaseService<T>) {
     this.helper = AppInjector.injector.get(Helper);
-    this.modalService = AppInjector.injector.get(NgbModal);
-    this.modalServiceConfig = AppInjector.injector.get(NgbModalConfig);
-    this.modalServiceConfig.backdrop = 'static';
-    this.modalServiceConfig.keyboard = false;
+    // this.modalService = AppInjector.injector.get(NgbModal);
+    // this.modalServiceConfig = AppInjector.injector.get(NgbModalConfig);
+    // this.modalServiceConfig.backdrop = 'static';
+    // this.modalServiceConfig.keyboard = false;
     // this.auth = AppInjector.injector.get(AuthService);
   }
 
@@ -51,11 +51,11 @@ export abstract class BaseComponent<T> implements OnDestroy {
     centered: boolean = true,
     scrollable: boolean = true
   ) {
-    return this.modalService.open(content, {
-      size,
-      centered,
-      scrollable,
-    });
+    // return this.modalService.open(content, {
+    //   size,
+    //   centered,
+    //   scrollable,
+    // });
   }
 
   closeModal(content: any) {

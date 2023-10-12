@@ -1,7 +1,7 @@
-import { Helper } from 'src/app/helpers/helper/helper';
 import { AppInjector } from './../services/app-injector.service';
 import { Component, Input, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Helper } from '../helpers/helper/helper';
 
 interface Subscriptions {
   [k: string]: Subscription;
