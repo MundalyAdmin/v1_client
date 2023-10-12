@@ -34,7 +34,6 @@
               "src/assets/css/tailwind.css"
             ],
             "scripts": [
-              "src/assets/libs/tobii/js/tobii.min.js",
               "src/assets/libs/tiny-slider/min/tiny-slider.js",
               "node_modules/feather-icons/dist/feather.min.js",
               "src/assets/libs/choices.js/public/assets/scripts/choices.min.js",
