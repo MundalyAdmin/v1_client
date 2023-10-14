@@ -20,135 +20,24 @@
 
   <!-- Category list -->
   <div class="container relative">
-    <div class="grid grid-cols-1 relative">
-      <div class="tns-outer" id="tns2-ow">
 
-        <!-- Control buttons -->
-        <div class="tns-controls" aria-label="Carousel Navigation" tabindex="0">
-          <!-- Previous button   -->
-          <button type="button" data-controls="prev" tabindex="-1"
-                  aria-controls="tns2">
-            <i class="mdi mdi-chevron-left "></i>
-          </button>
-
-          <!-- Next button -->
-          <button type="button" data-controls="next"
-                  tabindex="-1" aria-controls="tns2">
-            <i class="mdi mdi-chevron-right"></i>
-          </button>
+    <div class="grid grid-cols-5">
+      <div *ngFor="let category of categoryService.data.slice(0,5)"
+           class="px-3 py-10 rounded-md shadow dark:shadow-gray-800 group text-center bg-white dark:bg-slate-900 hover:bg-indigo-600/5 dark:hover:bg-indigo-600/5 duration-500 m-2">
+        <div
+             class="w-[84px] h-[84px] bg-indigo-600/5 group-hover:bg-indigo-600 text-primary group-hover:text-white rounded-full text-3xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 duration-500 mx-auto">
+          <i [ngClass]="category.icon"></i>
         </div>
 
-        <!-- Hidden information -->
-        <div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">2 to 6</span> of
-          6
-        </div>
-
-        <!-- Slider -->
-        <div id="tns2-mw" class="tns-ovh">
-          <div class="tns-inner" id="tns2-iw">
-            <div class="tiny-five-item  tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="tns2"
-                 style="transform: translate3d(-16.6667%, 0px, 0px);">
-
-              <div class="tiny-slide tns-item" id="tns2-item0" aria-hidden="true" tabindex="-1">
-                <div
-                     class="px-3 py-10 rounded-md shadow dark:shadow-gray-800 group text-center bg-white dark:bg-slate-900 hover:bg-indigo-600/5 dark:hover:bg-indigo-600/5 duration-500 m-2">
-                  <div
-                       class="w-[84px] h-[84px] bg-indigo-600/5 group-hover:bg-indigo-600 text-primary group-hover:text-white rounded-full text-3xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 duration-500 mx-auto">
-                    <i class="uil uil-gitlab"></i>
-                  </div>
-
-                  <div class="content mt-6">
-                    <a [routerLink]="['companies']" class="title h5 text-lg font-medium hover:text-primary">Agricultural <br>
-                    Sector </a>
-                    <p class="text-slate-400 mt-3">3 Companies</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="tiny-slide tns-item tns-slide-active" id="tns2-item1">
-                <div
-                     class="px-3 py-10 rounded-md shadow dark:shadow-gray-800 group text-center bg-white dark:bg-slate-900 hover:bg-indigo-600/5 dark:hover:bg-indigo-600/5 duration-500 m-2">
-                  <div
-                       class="w-[84px] h-[84px] bg-indigo-600/5 group-hover:bg-indigo-600 text-primary group-hover:text-white rounded-full text-3xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 duration-500 mx-auto">
-                    <i class="uil uil-book-open"></i>
-                  </div>
-
-                  <div class="content mt-6">
-                    <a [routerLink]="['companies']" class="title h5 text-lg font-medium hover:text-primary">Education <br>
-                      Sector</a>
-                    <p class="text-slate-400 mt-3">6 Institutions</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="tiny-slide tns-item tns-slide-active" id="tns2-item2">
-                <div
-                     class="px-3 py-10 rounded-md shadow dark:shadow-gray-800 group text-center bg-white dark:bg-slate-900 hover:bg-indigo-600/5 dark:hover:bg-indigo-600/5 duration-500 m-2">
-                  <div
-                       class="w-[84px] h-[84px] bg-indigo-600/5 group-hover:bg-indigo-600 text-primary group-hover:text-white rounded-full text-3xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 duration-500 mx-auto">
-                    <i class="uil uil-chart-pie-alt"></i>
-                  </div>
-
-                  <div class="content mt-6">
-                    <a [routerLink]="['companies']" class="title h5 text-lg font-medium hover:text-primary">Financial <br>
-                      Sector</a>
-                    <p class="text-slate-400 mt-3">3 Institutions</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="tiny-slide tns-item tns-slide-active" id="tns2-item3">
-                <div
-                     class="px-3 py-10 rounded-md shadow dark:shadow-gray-800 group text-center bg-white dark:bg-slate-900 hover:bg-indigo-600/5 dark:hover:bg-indigo-600/5 duration-500 m-2">
-                  <div
-                       class="w-[84px] h-[84px] bg-indigo-600/5 group-hover:bg-indigo-600 text-primary group-hover:text-white rounded-full text-3xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 duration-500 mx-auto">
-                    <i class="uil uil-feedback"></i>
-                  </div>
-
-                  <div class="content mt-6">
-                    <a [routerLink]="['companies']" class="title h5 text-lg font-medium hover:text-primary">Health <br>
-                      Sector</a>
-                    <p class="text-slate-400 mt-3">50 Facilities</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="tiny-slide tns-item tns-slide-active" id="tns2-item4">
-                <div
-                     class="px-3 py-10 rounded-md shadow dark:shadow-gray-800 group text-center bg-white dark:bg-slate-900 hover:bg-indigo-600/5 dark:hover:bg-indigo-600/5 duration-500 m-2">
-                  <div
-                       class="w-[84px] h-[84px] bg-indigo-600/5 group-hover:bg-indigo-600 text-primary group-hover:text-white rounded-full text-3xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 duration-500 mx-auto">
-                    <i class="uil uil-presentation-line"></i>
-                  </div>
-
-                  <div class="content mt-6">
-                    <a [routerLink]="['companies']" class="title h5 text-lg font-medium hover:text-primary">Oil &amp; Energy <br>
-                      Sector</a>
-                    <p class="text-slate-400 mt-3">2 Firms</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="tiny-slide tns-item tns-slide-active" id="tns2-item5">
-                <div
-                     class="px-3 py-10 rounded-md shadow dark:shadow-gray-800 group text-center bg-white dark:bg-slate-900 hover:bg-indigo-600/5 dark:hover:bg-indigo-600/5 duration-500 m-2">
-                  <div
-                       class="w-[84px] h-[84px] bg-indigo-600/5 group-hover:bg-indigo-600 text-primary group-hover:text-white rounded-full text-3xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 duration-500 mx-auto">
-                    <i class="uil uil-fire"></i>
-                  </div>
-
-                  <div class="content mt-6">
-                    <a [routerLink]="['companies']" class="title h5 text-lg font-medium hover:text-primary">Non-Profit <br>
-                      Sector</a>
-                    <p class="text-slate-400 mt-3">3 NGOs</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="content mt-6">
+          <a [routerLink]="['categories', category.id]" class="title h5 text-lg font-medium hover:text-primary">{{ category.name }} <br>
+            Sector </a>
+          <p class="text-slate-400 mt-3">3 Companies</p>
         </div>
       </div>
     </div>
+
+
 
   </div>
 </section>

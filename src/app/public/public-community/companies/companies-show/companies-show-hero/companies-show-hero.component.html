@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="single">
   <!-- Gradient cover background -->
   <div
        class="relative table w-full py-32 lg:py-36 bg-gradient-to-br from-slate-200 via-secondary/30 to-primary/40 dark:from-primary/20  dark:to-yellow-500/20">
@@ -23,8 +23,8 @@
                class="relative h-200 w-200 mx-auto rounded-full shadow dark:shadow-gray-800 ring-4 ring-slate-50 dark:ring-slate-800 overflow-hidden">
 
             <!-- Image element -->
-            <img src="https://images.crunchbase.com/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/xx14nbbrbx6z9utti9mg"
-                 class="rounded-full" id="profile-image" alt="">
+            <img [src]="single.logo"
+                 class="rounded-full" id="profile-image" [alt]="single.name">
 
             <div class="absolute inset-0 group-hover:bg-slate-900/10 duration-500"></div>
             <label class="absolute inset-0 cursor-pointer" for="pro-img"></label>
@@ -35,22 +35,22 @@
         <div class="mt-4">
           <!-- Name -->
           <h5 class="text-3xl font-semibold">
-            Cocoa360
-            <i class="mdi mdi-check-decagram text-secondary align-middle text-lg"></i>
+            {{single.name}}
+            <i class="mdi mdi-check-decagram text-secondary align-middle text-lg" *ngIf="single.profile_status?.id == 2"></i>
           </h5>
 
           <!-- Additional information -->
           <div class="flex justify-center">
             <div class="flex items-center justify-around">
               <!-- Location -->
-              <span class="text-slate-600 font-medium mr-12"><i class="uil uil-map-marker text-secondary me-1"></i>Accra</span>
+              <span class="text-slate-600 font-medium mr-12"><i class="uil uil-map-marker text-secondary me-1"></i>{{ single.location }}</span>
 
               <!-- Country -->
-              <span class="text-slate-600 font-medium mr-12"><i class="uil uil-globe text-secondary me-1"></i>Ghana</span>
+              <span class="text-slate-600 font-medium mr-12"><i class="uil uil-globe text-secondary me-1"></i>{{ single.country?.name }}</span>
 
               <!-- Website -->
               <span class="text-slate-600 font-medium "><i class="uil uil-desktop-alt text-secondary me-1"></i><a
-                   href="https://cocoa360.org/" class="text-primary underline">visit website</a></span>
+                   [href]="single.website" target="_blank" class="text-primary underline">visit website</a></span>
             </div>
 
           </div>

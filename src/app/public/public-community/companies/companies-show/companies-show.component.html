@@ -1,4 +1,4 @@
-<section class="relative md:pb-24 pb-16 ">
+<section class="relative md:pb-24 pb-16 " *ngIf="single && !loading">
   <!-- Hero -->
   <app-companies-show-hero></app-companies-show-hero>
 
@@ -10,52 +10,44 @@
            class="group col-span-2 relative overflow-hidden bg-white dark:bg-slate-900 rounded-md shadow dark:shadow-gray-800 hover:shadow-lg dark:hover:shadow-gray-800 duration-500 ease-in-out">
 
         <!-- Tab list -->
-        <ul class=" w-full flex justify-center text-center p-3 bg-white dark:bg-slate-900 shadow dark:shadow-gray-800 rounded-md"
-            id="myTab" data-tabs-toggle="#StarterContent" role="tablist">
+        <div class="border-b border-gray-200 dark:border-gray-700">
+          <ul
+              class="text-md font-bold text-center text-gray-500 divide-x divide-gray-200 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
+            <!-- Overview -->
+            <li class="w-full">
+              <a [routerLink]="['overview']"
+                 [routerLinkActive]="['text-secondary', 'border-b-2', 'border-secondary' ]"
+                 class="inline-block w-full p-4 bg-white  rounded-l-lg hover:text-secondary focus:outline-none dark:bg-gray-700 dark:text-white"
+                 aria-current="page">
+                <i class="mdi mdi-information-outline mr-1"></i> Overview
+              </a>
+            </li>
+            <!-- QandA -->
+            <li class="w-full">
+              <a [routerLink]="['faq']"
+                 [routerLinkActive]="['text-secondary', 'border-b-2', 'border-secondary' ]"
+                 class="inline-block w-full p-4 bg-white hover:text-secondary hover:bg-gray-50 focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"><i
+                   class="mdi mdi-comment mr-1"></i> FAQ</a>
+            </li>
+            <!-- About -->
+            <li class="w-full">
+              <a [routerLink]="['about']"
+                 [routerLinkActive]="['text-secondary', 'border-b-2', 'border-secondary' ]"
+                 class="inline-block w-full p-4 bg-white hover:text-secondary hover:bg-gray-50 focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"><i
+                   class="mdi mdi-domain mr-1"></i> About</a>
+            </li>
 
-          <!-- Overiew -->
-          <li role="presentation" class="md:inline-block block  w-full">
-            <button class="px-6 py-2 font-semibold rounded-md w-full duration-500 text-white" id="overview-tab"
-                    data-tabs-target="#overview"
-                    type="button" role="tab"
-                    aria-controls="overview" aria-selected="true">
-              Overview
-            </button>
-          </li>
+          </ul>
+        </div>
 
-          <!-- Q&A -->
-          <li role="presentation" class="md:inline-block block  w-full">
-            <button class="px-6 py-2 font-semibold rounded-md w-full duration-500 hover:text-primary dark:hover:text-white hover:bg-gray-50 dark:hover:bg-slate-800"
-                    id="qa-tab" data-tabs-target="#qa" type="button" role="tab" aria-controls="qa" aria-selected="false">
-              Q&A
-            </button>
-          </li>
-
-          <!-- About -->
-          <li role="presentation" class="md:inline-block block  w-full">
-            <button class="px-6 py-2 font-semibold rounded-md w-full duration-500 hover:text-primary dark:hover:text-white hover:bg-gray-50 dark:hover:bg-slate-800"
-                    id="about-tab" data-tabs-target="#about" type="button" role="tab" aria-controls="about" aria-selected="false">
-              About
-            </button>
-          </li>
-        </ul>
 
         <!-- Tab content -->
         <div id="StarterContent" class="p-8">
           <!-- Overview -->
           <div class="" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-            <app-companies-show-overview></app-companies-show-overview>
+            <router-outlet></router-outlet>
           </div>
 
-          <!-- FAQ -->
-          <div class="hidden" id="qa" role="tabpanel" aria-labelledby="qa-tab">
-            <app-companies-show-qanda></app-companies-show-qanda>
-          </div>
-
-          <!-- About -->
-          <div class="hidden" id="about" role="tabpanel" aria-labelledby="about-tab">
-            <app-companies-show-about></app-companies-show-about>
-          </div>
         </div>
       </div>
 
@@ -79,3 +71,6 @@
     </div>
   </div>
 </section>
+
+
+<app-loading *ngIf="loading"></app-loading>

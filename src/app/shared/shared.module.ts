@@ -10,9 +10,10 @@ import { AuthorizationInterceptor } from './interceptors/authorization.intercept
 import { MissingDataModule } from './helpers/missing-data/missing-data.module';
 import { ModalModule } from './helpers/modal/modal.module';
 import { LoadingModule } from './helpers/loading/loading.module';
+import { CompanySoloComponent } from './ui-elements/company-solo/company-solo.component';
 
 @NgModule({
-  declarations: [ReadMoreComponent],
+  declarations: [ReadMoreComponent, CompanySoloComponent],
   providers: [
     // {
     //   provide: HTTP_INTERCEPTORS,
@@ -45,6 +46,7 @@ import { LoadingModule } from './helpers/loading/loading.module';
     LoadingModule,
     ReadMoreComponent,
     MissingDataModule,
+    CompanySoloComponent,
   ],
 })
 export class SharedModule {}

@@ -1,11 +1,4 @@
-<div class="grid grid-cols-1">
-  <p class="text-slate-400 dark:text-gray-400">Cocoa360 was established to address the de-prioritization of girls’ education and lack of access to quality medical care
-  in Tarkwa Breman, Ghana, and the surrounding villages. The organization is pioneering a model of community-driven
-  development, which invests revenue from community-owned cocoa farms to improve education outcomes. <br><br> To date, the
-  organization has established the Tarkwa Breman Center of Excellence – a campus that includes a girls’ school, medical
-  clinic, and cocoa farm – as a model to guide partner communities when investing cocoa revenue in education and
-  healthcare improvements. We have also begun relationship building with nearby communities interested in partnering with
-  the organization to scale Cocoa360’s innovative model of community-driven development, which we refer to as a “Farm for
-  Impact” model.
+<div class="grid grid-cols-1" *ngIf="single">
+  <p class="text-slate-400 dark:text-gray-400" [innerHTML]="single.about">
   </p>
 </div>
