@@ -1256,6 +1256,9 @@ video {
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
 }
+.grid-cols-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
 }
@@ -1477,12 +1480,7 @@ video {
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5 !important;
 }
-.bg-\[url\(\'\.\.\/\.\.\/assets\/images\/map\.png\'\)\] {
-  background-image: url("../../assets/images/map.png") !important;
-}
-.bg-\[url\(\'\.\.\/\.\.\/assets\/images\/business\/home\.jpg\'\)\] {
-  background-image: url("../../assets/images/business/home.jpg") !important;
-}
+
 .bg-gradient-to-br {
   background-image: -webkit-gradient(
     linear,
