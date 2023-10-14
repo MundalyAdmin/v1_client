@@ -1,14 +1,13 @@
 <!-- Elements -->
-<div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
-
-
+<div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]" *ngIf="!loading && companyService.data.length">
   <!-- Company 1 -->
   <app-company-solo *ngFor="let company of companyService.data" [company]="company"></app-company-solo>
-
-
-
-
 </div>
+
+
+<app-page-loading *ngIf="loading"></app-page-loading>
+
+<app-missing-data *ngIf="!loading && !companyService.data.length"></app-missing-data>
 
 
 <!-- Pagination -->
