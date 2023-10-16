@@ -23,7 +23,6 @@ const routes: Routes = [
           import('./public-community/public-community.module').then(
             (m) => m.PublicCommunityModule
           ),
-        pathMatch: 'full',
       },
     ],
   },

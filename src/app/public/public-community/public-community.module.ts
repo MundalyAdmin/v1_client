@@ -19,6 +19,7 @@ import { CompaniesShowRatingInformationsComponent } from './companies/companies-
 import { PublicCommunityComponent } from './public-community.component';
 import { SharedModule } from '../../shared/shared.module';
 import { SharedPublicModule } from '../shared-public/shared-public.module';
+import { ComingSoonComponent } from '../../shared/components/coming-soon/coming-soon.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,18 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent,
+      },
+      {
+        path: 'categories',
+        component: ComingSoonComponent,
+      },
+      {
+        path: 'join-and-earn',
+        component: ComingSoonComponent,
+      },
+      {
+        path: 'categories',
+        component: ComingSoonComponent,
       },
       {
         path: 'categories/:id',

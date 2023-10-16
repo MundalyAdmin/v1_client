@@ -11,6 +11,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PublicCommunityComponent } from '../public-community/public-community.component';
 import { SharedModule } from '../../shared/shared.module';
 import { SharedPublicModule } from '../shared-public/shared-public.module';
+import { ComingSoonComponent } from '../../shared/components/coming-soon/coming-soon.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,22 @@ const routes: Routes = [
       {
         path: '',
         component: PublicBusinessHomeComponent,
+      },
+      {
+        path: 'pricing',
+        component: ComingSoonComponent,
+      },
+      {
+        path: 'blog',
+        component: ComingSoonComponent,
+      },
+      {
+        path: 'login',
+        component: ComingSoonComponent,
+      },
+      {
+        path: 'book-demo',
+        component: ComingSoonComponent,
       },
     ],
   },

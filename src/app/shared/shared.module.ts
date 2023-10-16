@@ -11,9 +11,10 @@ import { MissingDataModule } from './helpers/missing-data/missing-data.module';
 import { ModalModule } from './helpers/modal/modal.module';
 import { LoadingModule } from './helpers/loading/loading.module';
 import { CompanySoloComponent } from './ui-elements/company-solo/company-solo.component';
+import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
 
 @NgModule({
-  declarations: [ReadMoreComponent, CompanySoloComponent],
+  declarations: [ReadMoreComponent, CompanySoloComponent, ComingSoonComponent],
   providers: [
     // {
     //   provide: HTTP_INTERCEPTORS,

@@ -38,14 +38,15 @@
     <div id="navigation">
       <!-- Navigation Menu-->
       <ul class="navigation-menu justify-end">
-        <li><a [routerLink]="['./']" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }" class="sub-menu-item">Home</a></li>
+        <li><a [routerLink]="['./']" [routerLinkActive]="'text-primary'" [routerLinkActiveOptions]="{ exact: true }"
+             class="sub-menu-item">Home</a></li>
 
-        <li><a [routerLink]="['categories']" [routerLinkActive]="'active'" class="sub-menu-item">Categories</a></li>
+        <li><a [routerLink]="['categories']" [routerLinkActive]="'text-primary'" class="sub-menu-item">Categories</a></li>
 
 
         <!-- <li><a [routerLink]="['about']" [routerLinkActive]="'active'" class="sub-menu-item">About Mundaly</a></li> -->
 
-        <li><a href="contact-one.html" class="sub-menu-item">Join and Earn</a></li>
+        <li><a [routerLink]="['join-and-earn']" [routerLinkActive]="'text-primary'" class="sub-menu-item">Join and Earn</a></li>
       </ul><!--end navigation menu-->
     </div><!--end navigation-->
   </div><!--end container-->
