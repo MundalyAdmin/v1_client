@@ -27,6 +27,7 @@
             "styles": [
               "src/styles.scss",
               "src/assets/libs/choices.js/public/assets/styles/choices.min.css",
+              "node_modules/@mdi/font/css/materialdesignicons.min.css",
               "node_modules/@iconscout/unicons/css/line.css",
               "src/assets/css/tailwind.css"
             ],
@@ -43,7 +44,6 @@
           },
           "configurations": {
             "production": {
-              "optimization": true,
               "budgets": [
                 {
                   "type": "initial",
