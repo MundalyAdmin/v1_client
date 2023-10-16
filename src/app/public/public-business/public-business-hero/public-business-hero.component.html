@@ -11,8 +11,9 @@
           <p class="text-slate-400 text-lg max-w-xl">Get community verified reviews for your social impact projects</p>
 
           <div class="subcribe-form mt-6 mb-3">
-            <form class="relative max-w-xl">
+            <form class="relative max-w-xl" [formGroup]="form" (submit)="create()">
               <input type="email" id="subcribe" name="email"
+                     formControlName="email"
                      class="py-4 pe-40 ps-6 w-full h-[50px] outline-none text-black dark:text-white rounded-full bg-white dark:bg-slate-900 shadow dark:shadow-gray-800"
                      placeholder="Your Email Address :">
               <button type="submit"
