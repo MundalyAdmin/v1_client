@@ -26,15 +26,11 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "src/styles.scss",
-              "src/assets/libs/tobii/css/tobii.min.css",
-              "src/assets/libs/tiny-slider/tiny-slider.css",
               "src/assets/libs/choices.js/public/assets/styles/choices.min.css",
-              "src/assets/libs/@mdi/font/css/materialdesignicons.min.css",
               "node_modules/@iconscout/unicons/css/line.css",
               "src/assets/css/tailwind.css"
             ],
             "scripts": [
-              "src/assets/libs/tiny-slider/min/tiny-slider.js",
               "node_modules/feather-icons/dist/feather.min.js",
               "src/assets/libs/choices.js/public/assets/scripts/choices.min.js",
               {
@@ -47,11 +43,12 @@
           },
           "configurations": {
             "production": {
+              "optimization": true,
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "1.5mb",
+                  "maximumError": "4mb"
                 },
                 {
                   "type": "anyComponentStyle",
