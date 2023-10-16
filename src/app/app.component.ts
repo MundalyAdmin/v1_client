@@ -1,5 +1,6 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { JsLoaderService } from './js-loader.service';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    initFlowbite();
     this.jsLoaderService.loadJsScript(
       this.renderer,
       'assets/js/plugins.init.js'
