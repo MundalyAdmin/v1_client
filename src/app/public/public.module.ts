@@ -11,18 +11,19 @@ const routes: Routes = [
     component: PublicComponent,
     children: [
       {
-        path: '',
-        loadChildren: () =>
-          import('./public-community/public-community.module').then(
-            (m) => m.PublicCommunityModule
-          ),
-      },
-      {
         path: 'for-business',
         loadChildren: () =>
           import('./public-business/public-business.module').then(
             (m) => m.PublicBusinessModule
           ),
+      },
+      {
+        path: '',
+        loadChildren: () =>
+          import('./public-community/public-community.module').then(
+            (m) => m.PublicCommunityModule
+          ),
+        pathMatch: 'full',
       },
     ],
   },

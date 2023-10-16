@@ -15,7 +15,7 @@ import { SharedPublicModule } from '../shared-public/shared-public.module';
 const routes: Routes = [
   {
     path: '',
-    component: PublicCommunityComponent,
+    component: PublicBusinessComponent,
     children: [
       {
         path: '',
