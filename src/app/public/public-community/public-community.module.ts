@@ -20,6 +20,7 @@ import { PublicCommunityComponent } from './public-community.component';
 import { SharedModule } from '../../shared/shared.module';
 import { SharedPublicModule } from '../shared-public/shared-public.module';
 import { ComingSoonComponent } from '../../shared/components/coming-soon/coming-soon.component';
+import { PublicCommunitiesCategorieListComponent } from '../public-communities/public-communities-categorie-list/public-communities-categorie-list.component';
 
 const routes: Routes = [
   {
@@ -31,16 +32,12 @@ const routes: Routes = [
         component: HomeComponent,
       },
       {
-        path: 'categories',
-        component: ComingSoonComponent,
-      },
-      {
         path: 'join-and-earn',
         component: ComingSoonComponent,
       },
       {
         path: 'categories',
-        component: ComingSoonComponent,
+        component: PublicCommunitiesCategorieListComponent,
       },
       {
         path: 'categories/:id',
