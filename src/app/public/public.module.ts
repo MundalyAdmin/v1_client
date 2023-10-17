@@ -4,6 +4,7 @@ import { PublicComponent } from './public.component';
 
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { PublicCommunitiesCategorieListComponent } from './public-communities/public-communities-categorie-list/public-communities-categorie-list.component';
 
 const routes: Routes = [
   {
@@ -29,7 +30,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [PublicComponent],
+  declarations: [PublicComponent, PublicCommunitiesCategorieListComponent],
   imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })
 export class PublicModule {}

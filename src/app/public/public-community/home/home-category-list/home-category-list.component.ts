@@ -5,7 +5,6 @@ import {
 } from '../../../../shared/base-component';
 import { Category } from '../../../../categories/categories.model';
 import { CategoriesService } from '../../../../categories/categories.service';
-import { JsLoaderService } from '../../../../js-loader.service';
 
 @Component({
   selector: 'app-home-category-list',
@@ -16,26 +15,11 @@ export class HomeCategoryListComponent
   extends BaseListComponent<Category>
   implements OnInit
 {
-  constructor(
-    public categoryService: CategoriesService,
-    private renderer: Renderer2,
-    public jsLoaderService: JsLoaderService
-  ) {
+  constructor(public categoryService: CategoriesService) {
     super(categoryService);
   }
 
   override ngOnInit(): void {
     super.ngOnInit();
   }
-
-  getCategories = () => {
-    this.loading = true;
-    this.categoryService.all().subscribe(() => {
-      this.loading = false;
-      this.jsLoaderService.loadJsScript(
-        this.renderer,
-        'assets/js/plugins.init.js'
-      );
-    });
-  };
 }
