@@ -12,6 +12,9 @@ import { PublicBusinessValuePropsComponent } from './public-business-home/public
 import { PublicBusinessAchievementsComponent } from './public-business-home/public-business-achievements/public-business-achievements.component';
 import { PublicBusinessContactUsComponent } from './public-business-home/public-business-contact-us/public-business-contact-us.component';
 import { PublicBusinessHeroComponent } from './public-business-home/public-business-hero/public-business-hero.component';
+import { PublicBusinessProductServiceFidelityComponent } from './public-business-product-service-fidelity/public-business-product-service-fidelity.component';
+import { PublicBusinessImpactFidelityComponent } from './public-business-impact-fidelity/public-business-impact-fidelity.component';
+import { PublicBusinessCommunityPerceptionComponent } from './public-business-community-perception/public-business-community-perception.component';
 
 const routes: Routes = [
   {
@@ -29,6 +32,18 @@ const routes: Routes = [
       {
         path: 'product/headline-risk',
         component: PublicBusinessHeadlineRiskComponent,
+      },
+      {
+        path: 'product/product-service-fidelity',
+        component: PublicBusinessProductServiceFidelityComponent,
+      },
+      {
+        path: 'product/impact-fidelity',
+        component: PublicBusinessImpactFidelityComponent,
+      },
+      {
+        path: 'product/community-perception',
+        component: PublicBusinessCommunityPerceptionComponent,
       },
       {
         path: 'blog',
@@ -56,6 +71,9 @@ const routes: Routes = [
     PublicBusinessAchievementsComponent,
     PublicBusinessContactUsComponent,
     PublicBusinessHeadlineRiskComponent,
+    PublicBusinessProductServiceFidelityComponent,
+    PublicBusinessImpactFidelityComponent,
+    PublicBusinessCommunityPerceptionComponent,
   ],
   imports: [
     CommonModule,
