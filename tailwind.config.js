@@ -44,6 +44,10 @@ module.exports = {
           dark: "#2C2A80",
         },
         secondary: "#22CDB8",
+        "impact-fidelity": "#2A804C",
+        "product-service-fidelity": "#8E8DD4",
+        "community-perception": "#80712A",
+        "headline-risk": "#802F2A",
       },
 
       boxShadow: {
