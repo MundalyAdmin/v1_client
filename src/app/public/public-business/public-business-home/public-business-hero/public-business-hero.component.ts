@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseCreateComponent } from '../../../shared/base-component';
-import { Waitlist } from '../../../waitlist/waitlist.model';
-import { WaitlistService } from '../../../waitlist/waitlist.service';
+import { BaseCreateComponent } from '../../../../shared/base-component';
+import { Waitlist } from '../../../../waitlist/waitlist.model';
+import { WaitlistService } from '../../../../waitlist/waitlist.service';
 
 @Component({
   selector: 'app-public-business-hero',

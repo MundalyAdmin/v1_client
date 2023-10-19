@@ -2,13 +2,207 @@
 <app-public-business-hero></app-public-business-hero>
 
 
+<!-- See what communities think about your business -->
+<div class="container relative bg-gray-50 py-16 ">
+  <div class="grid grid-cols-1 text-center">
+
+    <h3 class="mb-4  text-xl  font-bold">See what communities are saying about your business:</h3>
+    <div class="subcribe-form flex justify-center mt-6 mb-3">
+      <form class="relative w-1/2">
+        <input type="email" id="subcribe" name="text"
+               formControlName="email"
+               class="py-4 pe-40 ps-6 w-full h-[50px] outline-none text-black dark:text-white rounded-full bg-white dark:bg-slate-900 shadow dark:shadow-gray-800"
+               placeholder="Website URL ">
+        <button type="submit"
+                class="py-2 px-5 inline-block font-semibold tracking-wide align-middle duration-500 text-base text-center absolute top-[2px] end-[3px] h-[46px] bg-primary hover:bg-indigo-700 border border-primary hover:border-indigo-700 text-white rounded-full">Check
+          <i class="uil uil-arrow-right"></i></button>
+      </form><!--end form-->
+    </div>
+
+    <p><span class="text-slate-400 font-medium">Ex: www.mundaly.com</span></p>
+  </div><!--end grid-->
+</div>
+
+<!-- Achievement and social proof -->
+<app-public-business-achievements></app-public-business-achievements>
+
+
+<!-- List of company partners -->
+<div class="container relative p-8 border-y">
+
+  <div class="grid md:grid-cols-6 grid-cols-2 justify-center gap-[30px]">
+    <div class="mx-auto mt-2">
+      <img src="assets/images/client/aterian.png" class="h-6" alt="">
+    </div>
+
+    <div class="mx-auto mt-2">
+      <img src="assets/images/client/queen.png" class="h-6" alt="">
+    </div>
+
+    <div class="mx-auto mt-2">
+      <img src="assets/images/client/penn.png" class="h-6" alt="">
+    </div>
+
+    <div class="mx-auto mt-2">
+      <img src="assets/images/client/cocoa360.png" class="h-6" alt="">
+    </div>
+
+    <div class="mx-auto mt-2">
+      <img src="assets/images/client/clinton.png" class="h-6" alt="">
+    </div>
+
+    <div class="mx-auto mt-2">
+      <img src="assets/images/client/yale.png" class="h-6" alt="">
+    </div>
+  </div><!--end grid-->
+</div>
+
+
+<!-- Explore our products -->
+<section class="relative md:py-24  bg-slate-50 py-16 overflow-hidden">
+
+  <div class="container relative">
+    <div class="grid grid-cols-1 pb-8 text-center">
+      <h3 class="mb-6 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold">Explore our products</h3>
+
+      <!-- <p class="text-slate-400 max-w-xl mx-auto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero distinctio totam, voluptate animi ad
+        accusantium deser.
+      </p> -->
+    </div><!--end grid-->
+
+  </div>
+
+  <!-- Headline Risk -->
+  <div class="container relative md:mt-24 mt-16">
+    <div class="grid md:grid-cols-2 grid-cols-1 items-center gap-[30px]">
+      <div class="relative order-1 md:order-2">
+        <img src="assets/images/for-business/headline-risk.png" style="width: 530px; height: 395px; object-fit: cover" width="530px" height="395px"
+             class="rounded-lg shadow-md bg-cover dark:shadow-gray-800" alt="">
+        <div class="overflow-hidden absolute lg:h-[400px] h-[320px] lg:w-[400px] w-[320px] bg-indigo-600/5 bottom-0 end-0 rotate-45 -z-1 rounded-3xl">
+        </div>
+      </div>
+
+      <div class="lg:me-8 order-2 md:order-1">
+        <h4 class="mb-4 text-2xl leading-normal font-bold text-primary">Get Ahead of Negative Headlines</h4>
+        <p class="text-slate-400">No one wants their business to be in the spotlight for negative reasons; they can dwindle revenues and cause collapse.
+         Bonus?</p>
+        <ul class="list-none text-slate-400 mt-4">
+          <li class="mb-1 flex"><i class="uil uil-check-circle text-secondary text-xl me-2"></i> Get ahead of such headlines with Mundaly’s science-based tools and insights.
+          them.</li>
+          <li class="mb-1 flex"><i class="uil uil-check-circle text-secondary text-xl me-2"></i> The confidence and peace of mind to focus on running your business.</li>
+          <!-- <li class="mb-1 flex"><i class="uil uil-check-circle text-secondary text-xl me-2"></i> Set targets to reduce Social License Risks, track progress to achieving Social Trust, seek reports & certifications</li> -->
+        </ul>
+
+        <div class="mt-4">
+          <a [routerLink]="['product/headline-risk']"
+             class="relative inline-block font-semibold tracking-wide align-middle text-base text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:end-0 hover:after:end-auto after:bottom-0 after:start-0 after:duration-500 text-primary hover:text-primary after:bg-indigo-600 duration-500 ease-in-out">Find
+            Out More <i class="uil uil-angle-right-b align-middle"></i></a>
+        </div>
+      </div>
+    </div>
+  </div><!--end container-->
+
+
+  <!-- Product & service fidelity -->
+  <div class="container relative md:mt-24 mt-16">
+    <div class="grid md:grid-cols-2 grid-cols-1 items-center mt-10 gap-[30px]">
+      <div class="relative">
+        <img src="assets/images/for-business/product-service-fidelity.jpg" style="width: 530px; height: 395px; object-fit: cover" width="530px"
+             height="395px"
+             class="rounded-lg  bg-cover shadow-md dark:shadow-gray-800" alt="">
+        <div
+             class="overflow-hidden absolute lg:h-[400px] h-[320px] lg:w-[400px] w-[320px] bg-indigo-600/5 bottom-0 start-0 rotate-45 -z-1 rounded-3xl">
+        </div>
+      </div>
+
+      <div class="lg:ms-8">
+        <h4 class="mb-4 text-2xl leading-normal font-bold text-primary">Find and Track Product-Market Fit</h4>
+        <p class="text-slate-400">Subjective online reviews can be hard to sift through and apply. Use our research-backed tools to gain exclusive
+        insights on what matters most!</p>
+        <ul class="list-none text-slate-400 mt-4">
+          <li class="mb-1 flex"><i class="uil uil-check-circle text-secondary text-xl me-2"></i> Are your product and services meeting the customer needs you intended them to?</li>
+          <li class="mb-1 flex"><i class="uil uil-check-circle text-secondary text-xl me-2"></i> Find and track product-market fit, ramp up revenues and lead your industry with context-specific data!</li>
+          <li class="mb-1 flex"><i class="uil uil-check-circle text-secondary text-xl me-2"></i> 61% of top-revenue companies are already doing this with us. Join them today.</li>
+        </ul>
+
+        <div class="mt-4">
+          <a [routerLink]="['product/product-service-fidelity']"
+             class="relative inline-block font-semibold tracking-wide align-middle text-base text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:end-0 hover:after:end-auto after:bottom-0 after:start-0 after:duration-500 text-primary hover:text-primary after:bg-indigo-600 duration-500 ease-in-out">Find
+            Out More <i class="uil uil-angle-right-b align-middle"></i></a>
+        </div>
+      </div>
+    </div><!--end grid-->
+  </div><!--end container-->
+
+
+  <!-- Community Perception -->
+  <div class="container relative md:mt-24 mt-16">
+    <div class="grid md:grid-cols-2 grid-cols-1 items-center gap-[30px]">
+      <div class="relative order-1 md:order-2">
+        <img src="assets/images/for-business/community-perception.jpg" style="width: 530px; height: 395px; object-fit: cover" width="530px"
+             height="395px"
+             class="rounded-lg shadow-md bg-cover dark:shadow-gray-800" alt="">
+        <div class="overflow-hidden absolute lg:h-[400px] h-[320px] lg:w-[400px] w-[320px] bg-indigo-600/5 bottom-0 end-0 rotate-45 -z-1 rounded-3xl">
+        </div>
+      </div>
+
+      <div class="lg:me-8 order-2 md:order-1">
+        <h4 class="mb-4 text-2xl leading-normal font-bold text-primary">Track and Improve your Perception.</h4>
+        <p class="text-slate-400">Couldn’t secure that investment, grant or partnership deal? The intangible perception of the communities you operate in
+        could be the reason - they influence investor and partner due diligence.</p>
+        <ul class="list-none text-slate-400 mt-4">
+          <li class="mb-1 flex"><i class="uil uil-check-circle text-secondary text-xl me-2"></i> Mundaly turns ‘social license’ from an abstract concept into a measurable competitive asset.</li>
+          <li class="mb-1 flex"><i class="uil uil-check-circle text-secondary text-xl me-2"></i> Track how communities view you, and win their trust with actionable recommendations.</li>
+          <li class="mb-1 flex"><i class="uil uil-check-circle text-secondary text-xl me-2"></i> Create your own skin to match your brand</li>
+        </ul>
+
+        <div class="mt-4">
+          <a [routerLink]="['product/community-perception']"
+             class="relative inline-block font-semibold tracking-wide align-middle text-base text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:end-0 hover:after:end-auto after:bottom-0 after:start-0 after:duration-500 text-primary hover:text-primary after:bg-indigo-600 duration-500 ease-in-out">Find
+            Out More <i class="uil uil-angle-right-b align-middle"></i></a>
+        </div>
+      </div>
+    </div>
+  </div><!--end container-->
+
+
+  <!-- Impact Fidelity -->
+  <div class="container relative md:mt-24 mt-16">
+    <div class="grid md:grid-cols-2 grid-cols-1 items-center mt-10 gap-[30px]">
+      <div class="relative">
+        <img src="assets/images/for-business/impact-fidelity.jpg" style="width: 530px; height: 395px; object-fit: cover" width="530px" height="395px"
+             class="rounded-lg  bg-cover shadow-md dark:shadow-gray-800" alt="">
+        <div
+             class="overflow-hidden absolute lg:h-[400px] h-[320px] lg:w-[400px] w-[320px] bg-indigo-600/5 bottom-0 start-0 rotate-45 -z-1 rounded-3xl">
+        </div>
+      </div>
+
+      <div class="lg:ms-8">
+        <h4 class="mb-4 text-2xl leading-normal font-bold text-primary">Predict and Verify the impact of your ESG funding</h4>
+        <p class="text-slate-400">You and several businesses around the world spend $42billion on community initiatives every year to improve your
+        relationship with your customers and community.</p>
+        <ul class="list-none text-slate-400 mt-4">
+          <li class="mb-1 flex"><i class="uil uil-check-circle text-secondary text-xl me-2"></i> But how do you know if the social organizations you fund are really doing what they claim in the their progress reports?</li>
+          <li class="mb-1 flex"><i class="uil uil-check-circle text-secondary text-xl me-2"></i> Use our science-based platform to cut out the middleman, and hear directly from community members who are affected by
+          your funding’s intended impact.</li>
+          <!-- <li class="mb-1 flex"><i class="uil uil-check-circle text-secondary text-xl me-2"></i> Create your own skin to match your brand</li> -->
+        </ul>
+
+        <div class="mt-4">
+          <a [routerLink]="['product/impact-fidelity']"
+             class="relative inline-block font-semibold tracking-wide align-middle text-base text-center border-none after:content-[''] after:absolute after:h-px after:w-0 hover:after:w-full after:end-0 hover:after:end-auto after:bottom-0 after:start-0 after:duration-500 text-primary hover:text-primary after:bg-indigo-600 duration-500 ease-in-out">Find
+            Out More <i class="uil uil-angle-right-b align-middle"></i></a>
+        </div>
+      </div>
+    </div><!--end grid-->
+  </div><!--end container-->
+
+</section>
+
+
 
 <!-- Value proposition -->
 <app-public-business-value-props></app-public-business-value-props>
-
-
-<!-- AChievement (social proof) -->
-<app-public-business-achievements></app-public-business-achievements>
 
 
 <!-- Contact us -->
