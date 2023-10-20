@@ -21,6 +21,10 @@ import { SharedModule } from '../../shared/shared.module';
 import { SharedPublicModule } from '../shared-public/shared-public.module';
 import { ComingSoonComponent } from '../../shared/components/coming-soon/coming-soon.component';
 import { PublicCommunitiesCategorieListComponent } from '../public-communities/public-communities-categorie-list/public-communities-categorie-list.component';
+import { CommunityWaitlistComponent } from '../../waitlist/community-waitlist/community-waitlist.component';
+import { ThankYouPageComponent } from '../../shared/components/thank-you-page/thank-you-page.component';
+import { WaitlistModule } from '../../waitlist/waitlist.module';
+import { ThankYouForJoiningCommunityComponent } from '../../waitlist/community-waitlist/thank-you-for-joining-community/thank-you-for-joining-community.component';
 
 const routes: Routes = [
   {
@@ -33,7 +37,11 @@ const routes: Routes = [
       },
       {
         path: 'join-and-earn',
-        component: ComingSoonComponent,
+        component: CommunityWaitlistComponent,
+      },
+      {
+        path: 'thank-you',
+        component: ThankYouForJoiningCommunityComponent,
       },
       {
         path: 'categories',
@@ -90,6 +98,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     SharedModule,
+    WaitlistModule,
     RouterModule.forChild(routes),
     SharedPublicModule,
   ],

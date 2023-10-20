@@ -12,9 +12,15 @@ import { ModalModule } from './helpers/modal/modal.module';
 import { LoadingModule } from './helpers/loading/loading.module';
 import { CompanySoloComponent } from './ui-elements/company-solo/company-solo.component';
 import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
+import { ThankYouPageComponent } from './components/thank-you-page/thank-you-page.component';
 
 @NgModule({
-  declarations: [ReadMoreComponent, CompanySoloComponent, ComingSoonComponent],
+  declarations: [
+    ReadMoreComponent,
+    CompanySoloComponent,
+    ComingSoonComponent,
+    ThankYouPageComponent,
+  ],
   providers: [
     // {
     //   provide: HTTP_INTERCEPTORS,
@@ -48,6 +54,7 @@ import { ComingSoonComponent } from './components/coming-soon/coming-soon.compon
     ReadMoreComponent,
     MissingDataModule,
     CompanySoloComponent,
+    ThankYouPageComponent,
   ],
 })
 export class SharedModule {}
