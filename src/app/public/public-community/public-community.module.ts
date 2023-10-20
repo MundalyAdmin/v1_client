@@ -21,6 +21,8 @@ import { SharedModule } from '../../shared/shared.module';
 import { SharedPublicModule } from '../shared-public/shared-public.module';
 import { ComingSoonComponent } from '../../shared/components/coming-soon/coming-soon.component';
 import { PublicCommunitiesCategorieListComponent } from '../public-communities/public-communities-categorie-list/public-communities-categorie-list.component';
+import { CommunityWaitlistComponent } from '../../waitlist/community-waitlist/community-waitlist.component';
+import { ThankYouPageComponent } from '../../waitlist/thank-you-page/thank-you-page.component';
 
 const routes: Routes = [
   {
@@ -33,7 +35,11 @@ const routes: Routes = [
       },
       {
         path: 'join-and-earn',
-        component: ComingSoonComponent,
+        component: CommunityWaitlistComponent,
+      },
+      {
+        path: 'thank-you',
+        component: ThankYouPageComponent,
       },
       {
         path: 'categories',
