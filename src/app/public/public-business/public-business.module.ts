@@ -15,6 +15,9 @@ import { PublicBusinessHeroComponent } from './public-business-home/public-busin
 import { PublicBusinessProductServiceFidelityComponent } from './public-business-product-service-fidelity/public-business-product-service-fidelity.component';
 import { PublicBusinessImpactFidelityComponent } from './public-business-impact-fidelity/public-business-impact-fidelity.component';
 import { PublicBusinessCommunityPerceptionComponent } from './public-business-community-perception/public-business-community-perception.component';
+import { BusinessWaitlistComponent } from '../../waitlist/business-waitlist/business-waitlist.component';
+import { WaitlistModule } from '../../waitlist/waitlist.module';
+import { ThankYouForJoiningBusinessComponent } from '../../waitlist/business-waitlist/thank-you-for-joining-business/thank-you-for-join-business.component';
 
 const routes: Routes = [
   {
@@ -28,6 +31,10 @@ const routes: Routes = [
       {
         path: 'pricing',
         component: ComingSoonComponent,
+      },
+      {
+        path: 'thank-you',
+        component: ThankYouForJoiningBusinessComponent,
       },
       {
         path: 'product/headline-risk',
@@ -55,7 +62,7 @@ const routes: Routes = [
       },
       {
         path: 'book-demo',
-        component: ComingSoonComponent,
+        component: BusinessWaitlistComponent,
       },
     ],
   },
@@ -78,6 +85,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     SharedModule,
+    WaitlistModule,
     RouterModule.forChild(routes),
     SharedPublicModule,
   ],
