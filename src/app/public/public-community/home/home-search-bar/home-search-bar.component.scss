@@ -1,0 +1,9 @@
+:host ::ng-deep {
+  .autocomplete-container {
+    box-shadow: none !important;
+  }
+  .input-container input {
+    background-color: inherit !important;
+    padding: 0 !important;
+  }
+}

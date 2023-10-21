@@ -26,4 +26,11 @@ export class CompaniesService extends BaseService<Company> {
       map((response: ApiResponse<Company>) => response.data)
     );
   }
+
+  searchNames(keyword: string) {
+    return this.factory.get(`${this.endPoint}/search/names/${keyword}`).pipe(
+      tap((response: ApiResponse<{ name: string }>) => {}),
+      map((response: ApiResponse<{ name: string }>) => response.data)
+    );
+  }
 }

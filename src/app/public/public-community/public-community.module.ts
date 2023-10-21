@@ -25,6 +25,8 @@ import { CommunityWaitlistComponent } from '../../waitlist/community-waitlist/co
 import { ThankYouPageComponent } from '../../shared/components/thank-you-page/thank-you-page.component';
 import { WaitlistModule } from '../../waitlist/waitlist.module';
 import { ThankYouForJoiningCommunityComponent } from '../../waitlist/community-waitlist/thank-you-for-joining-community/thank-you-for-joining-community.component';
+import { HomeSearchBarComponent } from './home/home-search-bar/home-search-bar.component';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 const routes: Routes = [
   {
@@ -94,11 +96,13 @@ const routes: Routes = [
     CompaniesShowAboutComponent,
     CompaniesShowRatingInformationsComponent,
     PublicCommunityComponent,
+    HomeSearchBarComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     WaitlistModule,
+    AutocompleteLibModule,
     RouterModule.forChild(routes),
     SharedPublicModule,
   ],
