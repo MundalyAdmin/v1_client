@@ -16,6 +16,7 @@
                 <ng-autocomplete
                                  [data]="data"
                                  [isLoading]="loading"
+
                                  [searchKeyword]="keyword"
                                  placeholder="Company"
                                  (inputChanged)="getCompanyNames($event)"
@@ -37,6 +38,9 @@
             <div class="filter-search-form relative">
               <i
                  class="uil uil-map-marker absolute top-[48%] -translate-y-1/2 start-3 z-1 text-primary text-[20px]"></i>
+              <select2 [data]="dataCountries" (update)="update($event)" [placeholder]="'Country'"
+                       [displaySearchStatus]="'always'">
+              </select2>
               <!-- <div class="choices" data-type="select-one" tabindex="0" role="combobox" aria-autocomplete="list"
                    aria-haspopup="true"
                    aria-expanded="false">

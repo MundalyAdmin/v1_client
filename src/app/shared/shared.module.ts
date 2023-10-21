@@ -43,6 +43,7 @@ import { Select2Module } from 'ng-select2-component';
     RouterModule,
     ModalModule,
     LoadingModule,
+    Select2Module,
   ],
   exports: [
     HttpClientModule,
@@ -56,6 +57,7 @@ import { Select2Module } from 'ng-select2-component';
     MissingDataModule,
     CompanySoloComponent,
     ThankYouPageComponent,
+    Select2Module,
   ],
 })
 export class SharedModule {}

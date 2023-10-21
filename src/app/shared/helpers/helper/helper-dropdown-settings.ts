@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { IDropdownSettings } from './../../../../../node_modules/ng-multiselect-dropdown/multiselect.model.d';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HelperDropdownSettings {
-  single: IDropdownSettings = {
+  single = {
     singleSelection: true,
     textField: 'name',
 
