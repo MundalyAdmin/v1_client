@@ -1,4 +1,4 @@
-import { Component, Input, ElementRef, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'read-more',
@@ -27,7 +27,7 @@ export class ReadMoreComponent implements OnChanges {
 
   public isCollapsed: boolean = true;
 
-  constructor(private elementRef: ElementRef) {}
+  constructor() {}
   toggleView() {
     this.isCollapsed = !this.isCollapsed;
     this.determineView();

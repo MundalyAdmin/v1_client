@@ -13,6 +13,7 @@ import { LoadingModule } from './helpers/loading/loading.module';
 import { CompanySoloComponent } from './ui-elements/company-solo/company-solo.component';
 import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
 import { ThankYouPageComponent } from './components/thank-you-page/thank-you-page.component';
+import { Select2Module } from 'ng-select2-component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ThankYouPageComponent } from './components/thank-you-page/thank-you-pag
     RouterModule,
     ModalModule,
     LoadingModule,
+    Select2Module,
   ],
   exports: [
     HttpClientModule,
@@ -55,6 +57,7 @@ import { ThankYouPageComponent } from './components/thank-you-page/thank-you-pag
     MissingDataModule,
     CompanySoloComponent,
     ThankYouPageComponent,
+    Select2Module,
   ],
 })
 export class SharedModule {}
