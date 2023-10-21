@@ -27,6 +27,21 @@ export class CompaniesService extends BaseService<Company> {
     );
   }
 
+  research(keyword: string) {
+    return this.factory.get(`${this.endPoint}/search/${keyword}`).pipe(
+      tap((response: ApiResponse<Company>) => {
+        this.data = response.data;
+
+        this.paginationInfo = {
+          total: response.total,
+          itemsPerPage: response.per_page,
+          currentPage: response.current_page,
+        };
+      }),
+      map((response: ApiResponse<Company>) => response.data)
+    );
+  }
+
   searchNames(keyword: string) {
     return this.factory.get(`${this.endPoint}/search/names/${keyword}`).pipe(
       tap((response: ApiResponse<{ name: string }>) => {}),

@@ -27,6 +27,8 @@ import { WaitlistModule } from '../../waitlist/waitlist.module';
 import { ThankYouForJoiningCommunityComponent } from '../../waitlist/community-waitlist/thank-you-for-joining-community/thank-you-for-joining-community.component';
 import { HomeSearchBarComponent } from './home/home-search-bar/home-search-bar.component';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { CompaniesContainerComponent } from './companies/companies-container/companies-container.component';
+import { CompaniesSearchBarComponent } from './companies/companies-search-bar/companies-search-bar.component';
 
 const routes: Routes = [
   {
@@ -52,6 +54,10 @@ const routes: Routes = [
       {
         path: 'categories/:id',
         component: CompaniesComponent,
+      },
+      {
+        path: 'companies/search',
+        component: CompaniesContainerComponent,
       },
       {
         path: 'companies/:id',
@@ -97,6 +103,8 @@ const routes: Routes = [
     CompaniesShowRatingInformationsComponent,
     PublicCommunityComponent,
     HomeSearchBarComponent,
+    CompaniesContainerComponent,
+    CompaniesSearchBarComponent,
   ],
   imports: [
     CommonModule,

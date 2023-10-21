@@ -8,6 +8,7 @@ import {
   Select2UpdateEvent,
   Select2Value,
 } from 'ng-select2-component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-search-bar',
@@ -19,12 +20,14 @@ export class HomeSearchBarComponent
   implements OnInit
 {
   keyword: string = 'name';
+  name: unknown = '';
   countries: Country[] = [];
   dataCountries: Select2Data = [];
-  selectedCountry: Select2Value = {};
+  selectedCountry: any;
   constructor(
     public companyService: CompaniesService,
-    public countryService: CountryService
+    public countryService: CountryService,
+    public router: Router
   ) {
     super(companyService);
   }
@@ -35,10 +38,16 @@ export class HomeSearchBarComponent
 
   getCompanyNames(keyword: string) {
     this.loading = true;
+    this.name = keyword;
     this.companyService.searchNames(keyword).subscribe((data) => {
       this.data = data;
       this.loading = false;
     });
+  }
+
+  onSelected(event: any) {
+    console.log(event);
+    this.name = event.name;
   }
 
   getCountries() {
@@ -65,5 +74,18 @@ export class HomeSearchBarComponent
       this.selectedCountry = item.value;
     }
     console.log(this.selectedCountry);
+  }
+
+  search() {
+    console.log();
+    this.router.navigate(['/companies/search'], {
+      queryParams: {
+        keyword:
+          typeof this.name === 'string'
+            ? this.name
+            : (this.name as { name: string }).name,
+        country: this.selectedCountry.id,
+      },
+    });
   }
 }
