@@ -29,6 +29,8 @@ import { HomeSearchBarComponent } from './home/home-search-bar/home-search-bar.c
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { CompaniesContainerComponent } from './companies/companies-container/companies-container.component';
 import { CompaniesSearchBarComponent } from './companies/companies-search-bar/companies-search-bar.component';
+import { CommunitySuggestionComponent } from './community-suggestion/community-suggestion.component';
+import { CommunitySuggestionThanksComponent } from './community-suggestion/community-suggestion-thanks/community-suggestion-thanks.component';
 
 const routes: Routes = [
   {
@@ -40,12 +42,13 @@ const routes: Routes = [
         component: HomeComponent,
       },
       {
-        path: 'join-and-earn',
-        component: CommunityWaitlistComponent,
+        path: 'company-suggestion',
+        component: CommunitySuggestionComponent,
       },
+
       {
-        path: 'thank-you',
-        component: ThankYouForJoiningCommunityComponent,
+        path: 'company-suggestion/thank-you',
+        component: CommunitySuggestionThanksComponent,
       },
       {
         path: 'categories',
@@ -105,6 +108,8 @@ const routes: Routes = [
     HomeSearchBarComponent,
     CompaniesContainerComponent,
     CompaniesSearchBarComponent,
+    CommunitySuggestionComponent,
+    CommunitySuggestionThanksComponent,
   ],
   imports: [
     CommonModule,
