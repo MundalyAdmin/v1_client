@@ -1,29 +1,36 @@
 <div *ngIf="company"
-     class="group relative p-6 rounded-md shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 bg-white dark:bg-slate-900 duration-500 text-center">
-  <div class="mt-8">
+     class="group relative py-7 px-8 mt-16 rounded-md shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 bg-white dark:bg-slate-900 duration-500 ">
+  <div class="">
 
     <!-- Image -->
     <img [src]="company.logo"
-         class="rounded-full shadow-md h-20 w-20 mx-auto block" [alt]="company.name">
+         class="rounded-full absolute shadow-md h-20 w-20 mx-auto block" style="    left: 7%; top: -20%;
+    height: 6rem !important;
+    width: 6rem !important;" [alt]="company.name">
     <!-- Name and category -->
-    <div class="mt-3">
+    <div class="mt-8 mb-4">
 
       <!-- Name -->
-      <a [routerLink]="['/companies', company.id]" class="text-lg font-medium hover:text-primary duration-500 block">{{ company.name }}</a>
+      <a [routerLink]="['/companies', company.id]" class="text-xl font-bold text-slate-600 hover:text-primary duration-500 block">{{ company.name
+        }}</a>
 
       <!-- Category -->
-      <span class="block text-sm text-slate-400">{{ company.category?.name }} </span>
+      <span class="block text-lg text-slate-600">{{ company.category?.name }} </span>
+      <span class="block text-slate-400 text-sm">{{ company.location }}, {{ company.country?.name }}</span>
+      <span class="block text-slate-600 text-sm"><i class="mdi mdi-star text-emerald-600 me-1"></i> 4,99
+        <span class="ms-1"><span class=" text-slate-400">(99
+            reviews)</span></span> </span>
     </div>
   </div>
 
   <!-- Location and country -->
-  <div class="flex items-center justify-around my-4">
-    <!-- Location -->
-    <span class="text-slate-400"><i class="uil uil-map-marker text-primary me-1"></i>{{ company.location }}</span>
+  <!-- <div class="flex items-center justify-around my-4"> -->
+  <!-- Location -->
+  <!-- <span class="text-slate-400"><i class="uil uil-map-marker text-primary me-1"></i>{{ company.location }}</span> -->
 
-    <!-- Country -->
-    <span class="text-slate-400"><i class="uil uil-globe text-primary me-1"></i>{{ company.country?.name }}</span>
-  </div>
+  <!-- Country -->
+  <!-- <span class="text-slate-400"><i class="uil uil-globe text-primary me-1"></i>{{ company.country?.name }}</span> -->
+  <!-- </div> -->
 
   <!-- Tags -->
   <a href="" *ngFor="let tag of company.tags"
@@ -37,7 +44,7 @@
   </div>
 
   <!-- Profiles status -->
-  <div class="absolute top-6 start-6">
+  <div class="absolute top-6 end-6">
     <span class="bg-indigo-600/5 text-primary text-sm font-medium px-4 py-1 rounded-full h-[28px]">{{ company.profile_status?.name }}</span>
   </div>
 
