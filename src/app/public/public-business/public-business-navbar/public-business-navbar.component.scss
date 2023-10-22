@@ -1,0 +1,12 @@
+.submenu {
+  position: fixed !important;
+  top: 10% !important;
+  width: 100vw !important;
+  padding-left: 200px !important;
+
+  li {
+    &:hover > * {
+      @apply text-indigo-600 scale-105;
+    }
+  }
+}

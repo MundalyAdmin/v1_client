@@ -43,7 +43,10 @@ module.exports = {
           light: "#4f46e5",
           dark: "#2C2A80",
         },
-        secondary: "#22CDB8",
+        secondary: {
+          DEFAULT: "#22CDB8",
+          dark: "#1daf9e",
+        },
         "impact-fidelity": "#2A804C",
         "product-service-fidelity": "#8E8DD4",
         "community-perception": "#80712A",
