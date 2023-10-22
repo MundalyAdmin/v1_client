@@ -18,6 +18,7 @@ import { PublicBusinessCommunityPerceptionComponent } from './public-business-co
 import { BusinessWaitlistComponent } from '../../waitlist/business-waitlist/business-waitlist.component';
 import { WaitlistModule } from '../../waitlist/waitlist.module';
 import { ThankYouForJoiningBusinessComponent } from '../../waitlist/business-waitlist/thank-you-for-joining-business/thank-you-for-join-business.component';
+import { ProductMeasureComponent } from './product-measure/product-measure.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,10 @@ const routes: Routes = [
       {
         path: 'thank-you',
         component: ThankYouForJoiningBusinessComponent,
+      },
+      {
+        path: 'product/measure',
+        component: ProductMeasureComponent,
       },
       {
         path: 'product/headline-risk',
@@ -81,6 +86,7 @@ const routes: Routes = [
     PublicBusinessProductServiceFidelityComponent,
     PublicBusinessImpactFidelityComponent,
     PublicBusinessCommunityPerceptionComponent,
+    ProductMeasureComponent,
   ],
   imports: [
     CommonModule,
