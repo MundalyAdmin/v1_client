@@ -34,7 +34,10 @@
 
     <app-page-loading *ngIf="loading"></app-page-loading>
 
-    <app-missing-data *ngIf="!loading && !companyService.data.length"></app-missing-data>
+    <app-missing-data *ngIf="!loading && !companyService.data.length">
+      <p class="text-center"><a routerLink="/company-suggestion" class="text-slate-500 font-medium">Didn't find the company you want? <span
+                class="text-primary font-bold">Click Here</span></a></p>
+    </app-missing-data>
 
   </div><!--end container-->
 
