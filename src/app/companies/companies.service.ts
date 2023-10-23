@@ -27,6 +27,15 @@ export class CompaniesService extends BaseService<Company> {
     );
   }
 
+  getSimilar(companyId: number) {
+    return this.factory.get(`${this.endPoint}/similar/${companyId}`).pipe(
+      tap((response: ApiResponse<Company>) => {
+        this.data = response.data;
+      }),
+      map((response: ApiResponse<Company>) => response.data)
+    );
+  }
+
   research(keyword: string) {
     return this.factory.get(`${this.endPoint}/search/${keyword}`).pipe(
       tap((response: ApiResponse<Company>) => {

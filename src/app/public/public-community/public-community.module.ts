@@ -31,6 +31,7 @@ import { CompaniesContainerComponent } from './companies/companies-container/com
 import { CompaniesSearchBarComponent } from './companies/companies-search-bar/companies-search-bar.component';
 import { CommunitySuggestionComponent } from './community-suggestion/community-suggestion.component';
 import { CommunitySuggestionThanksComponent } from './community-suggestion/community-suggestion-thanks/community-suggestion-thanks.component';
+import { CompaniesShowOverviewSimilarComponent } from './companies/companies-show/companies-show-overview/companies-show-overview-similar/companies-show-overview-similar.component';
 
 const routes: Routes = [
   {
@@ -110,6 +111,7 @@ const routes: Routes = [
     CompaniesSearchBarComponent,
     CommunitySuggestionComponent,
     CommunitySuggestionThanksComponent,
+    CompaniesShowOverviewSimilarComponent,
   ],
   imports: [
     CommonModule,
