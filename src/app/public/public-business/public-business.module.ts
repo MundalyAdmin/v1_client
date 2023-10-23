@@ -20,6 +20,7 @@ import { WaitlistModule } from '../../waitlist/waitlist.module';
 import { ThankYouForJoiningBusinessComponent } from '../../waitlist/business-waitlist/thank-you-for-joining-business/thank-you-for-join-business.component';
 import { ProductMeasureComponent } from './product-measure/product-measure.component';
 import { ProductTrackComponent } from './product-track/product-track.component';
+import { ProductReportComponent } from './product-report/product-report.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,10 @@ const routes: Routes = [
       {
         path: 'product/track',
         component: ProductTrackComponent,
+      },
+      {
+        path: 'product/report',
+        component: ProductReportComponent,
       },
       {
         path: 'product/headline-risk',
@@ -93,6 +98,7 @@ const routes: Routes = [
     PublicBusinessCommunityPerceptionComponent,
     ProductMeasureComponent,
     ProductTrackComponent,
+    ProductReportComponent,
   ],
   imports: [
     CommonModule,
