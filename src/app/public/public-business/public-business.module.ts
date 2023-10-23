@@ -21,6 +21,7 @@ import { ThankYouForJoiningBusinessComponent } from '../../waitlist/business-wai
 import { ProductMeasureComponent } from './product-measure/product-measure.component';
 import { ProductTrackComponent } from './product-track/product-track.component';
 import { ProductReportComponent } from './product-report/product-report.component';
+import { ProductActComponent } from './product-act/product-act.component';
 
 const routes: Routes = [
   {
@@ -50,6 +51,10 @@ const routes: Routes = [
       {
         path: 'product/report',
         component: ProductReportComponent,
+      },
+      {
+        path: 'product/act',
+        component: ProductActComponent,
       },
       {
         path: 'product/headline-risk',
@@ -99,6 +104,7 @@ const routes: Routes = [
     ProductMeasureComponent,
     ProductTrackComponent,
     ProductReportComponent,
+    ProductActComponent,
   ],
   imports: [
     CommonModule,
