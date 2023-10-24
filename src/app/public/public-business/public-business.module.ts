@@ -22,6 +22,7 @@ import { ProductMeasureComponent } from './product-measure/product-measure.compo
 import { ProductTrackComponent } from './product-track/product-track.component';
 import { ProductReportComponent } from './product-report/product-report.component';
 import { ProductActComponent } from './product-act/product-act.component';
+import { ProductOvervirwComponent } from './product-overvirw/product-overvirw.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,10 @@ const routes: Routes = [
       {
         path: 'thank-you',
         component: ThankYouForJoiningBusinessComponent,
+      },
+      {
+        path: 'product/overview',
+        component: ProductOvervirwComponent,
       },
       {
         path: 'product/measure',
@@ -105,6 +110,7 @@ const routes: Routes = [
     ProductTrackComponent,
     ProductReportComponent,
     ProductActComponent,
+    ProductOvervirwComponent,
   ],
   imports: [
     CommonModule,
