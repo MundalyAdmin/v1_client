@@ -1,6 +1,6 @@
 <div class="grid grid-cols-1 mt-12" *ngIf="data.length">
   <h5 class="text-lg font-bold mb-2">Other organizations</h5>
-  <div class="grid grid-cols-2 gap-4">
+  <div class="grid grid-cols-3 gap-4">
     <app-company-solo [company]="company" *ngFor="let company of data"></app-company-solo>
   </div>
 </div>

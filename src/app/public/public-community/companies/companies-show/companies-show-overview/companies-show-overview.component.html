@@ -55,9 +55,10 @@
         </p>
 
 
-        <p class="text-primary font-medium underline my-4 text-md leading-relaxed">
+        <button data-modal-target="static-modal" data-modal-toggle="static-modal"
+                class="text-primary font-medium underline my-4 text-md leading-relaxed">
           <i class="mdi mdi-account-voice me-1"></i> See impact stories
-        </p>
+        </button>
       </div>
     </div>
   </div>
@@ -75,3 +76,24 @@
   <app-companies-show-overview-other-organizations></app-companies-show-overview-other-organizations>
 
 </ng-container>
+
+<div id="static-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
+     class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+  <div class="relative w-full max-w-3xl max-h-full">
+    <!-- Modal content -->
+    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+
+      <!-- Modal body -->
+      <div class="space-y-6">
+        <div style="padding:56.25% 0 0 0;position:relative;">
+          <iframe
+                  src="https://player.vimeo.com/video/869052534?h=dccc2e43c6&title=0&byline=0&portrait=0"
+                  style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"
+                  allowfullscreen></iframe>
+        </div>
+        <script src="https://player.vimeo.com/api/player.js"></script>
+      </div>
+
+    </div>
+  </div>
+</div>
