@@ -29,7 +29,8 @@ export class CompaniesSearchBarComponent extends HomeSearchBarComponent {
 
     this.route.queryParams.subscribe((params) => {
       this.form.controls['keyword'].setValue(params['keyword']);
-      this.form.controls['country_id'].setValue(+params['country_id']);
+      params['country_id'] &&
+        this.form.controls['country_id'].setValue(+params['country_id']);
     });
   }
 

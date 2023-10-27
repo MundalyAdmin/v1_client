@@ -10,10 +10,8 @@
       </h4> -->
       <h4 class="lg:leading-normal leading-normal text-4xl lg:text-5xl mb-5 font-bold"> Find
         <span class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-secondary relative inline-block">
-          <span class="typewrite text-white relative" data-period="2000"
-                data-type="[ &quot;Businesses&quot;, &quot;NGOs&quot;, &quot;Banks&quot;, &quot;Startups&quot;, &quot;Government Agencies&quot;]">
-            <span class="wrap">Businesses</span>
-          </span>
+          <span class="typewrite text-white relative">
+            <app-typewriter [textList]="['Organisation', 'NGOs', 'Governments', 'Startups', 'Businesses']"></app-typewriter></span>
         </span>
         <br>
         <h4 class="lg:leading-normal leading-normal text-4xl lg:text-5xl mb-5 font-bold wrap"> Communities Trust! </h4>

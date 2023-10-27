@@ -25,7 +25,7 @@ import { CompaniesContainerComponent } from './companies/companies-container/com
 import { CompaniesSearchBarComponent } from './companies/companies-search-bar/companies-search-bar.component';
 import { CommunitySuggestionComponent } from './community-suggestion/community-suggestion.component';
 import { CommunitySuggestionThanksComponent } from './community-suggestion/community-suggestion-thanks/community-suggestion-thanks.component';
-import { CompaniesShowOverviewOtherOrganizationsComponent } from './companies/companies-show/companies-show-overview/companies-show-overview-other-organizations/companies-show-overview-other-organizations.component';
+import { CompaniesShowOverviewOtherOrganizationsComponent } from './companies/companies-show/companies-show-overview/companies-show-overview-other-organization/companies-show-overview-other-organizations.component';
 
 const routes: Routes = [
   {

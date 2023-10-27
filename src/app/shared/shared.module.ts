@@ -14,6 +14,7 @@ import { CompanySoloComponent } from './ui-elements/company-solo/company-solo.co
 import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
 import { ThankYouPageComponent } from './components/thank-you-page/thank-you-page.component';
 import { Select2Module } from 'ng-select2-component';
+import { TypewriterComponent } from '../typewriter/typewriter.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { Select2Module } from 'ng-select2-component';
     CompanySoloComponent,
     ComingSoonComponent,
     ThankYouPageComponent,
+    TypewriterComponent,
   ],
   providers: [
     // {
@@ -58,6 +60,7 @@ import { Select2Module } from 'ng-select2-component';
     CompanySoloComponent,
     ThankYouPageComponent,
     Select2Module,
+    TypewriterComponent,
   ],
 })
 export class SharedModule {}

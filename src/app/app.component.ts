@@ -15,7 +15,7 @@ import { NavigationEnd, Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   constructor(
     private renderer: Renderer2,
     public jsLoaderService: JsLoaderService,
@@ -24,10 +24,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     initFlowbite();
-    this.jsLoaderService.loadJsScript(
-      this.renderer,
-      'assets/js/plugins.init.js'
-    );
 
     this.router.events.subscribe((event) => {
       if (!(event instanceof NavigationEnd)) {
@@ -35,5 +31,9 @@ export class AppComponent implements OnInit {
       }
       window.scrollTo(0, 0);
     });
+  }
+
+  ngAfterViewInit(): void {
+    this.jsLoaderService.loadJsScript(this.renderer, 'assets/js/app.js');
   }
 }
