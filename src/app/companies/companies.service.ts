@@ -3,6 +3,7 @@ import { BaseService } from '../shared/services';
 import { Company } from './companies.model';
 import { map, tap } from 'rxjs';
 import { ApiResponse } from '../shared/models/ApiResponse';
+import { CompanySearchData } from '../public/public-community/companies/companies-search-data.model';
 
 @Injectable({
   providedIn: 'root',
@@ -36,19 +37,21 @@ export class CompaniesService extends BaseService<Company> {
     );
   }
 
-  research(keyword: string) {
-    return this.factory.get(`${this.endPoint}/search/${keyword}`).pipe(
-      tap((response: ApiResponse<Company>) => {
-        this.data = response.data;
+  search(searchData: CompanySearchData) {
+    return this.factory
+      .get(`${this.endPoint}/search`, { params: searchData })
+      .pipe(
+        tap((response: ApiResponse<Company>) => {
+          this.data = response.data;
 
-        this.paginationInfo = {
-          total: response.total,
-          itemsPerPage: response.per_page,
-          currentPage: response.current_page,
-        };
-      }),
-      map((response: ApiResponse<Company>) => response.data)
-    );
+          this.paginationInfo = {
+            total: response.total,
+            itemsPerPage: response.per_page,
+            currentPage: response.current_page,
+          };
+        }),
+        map((response: ApiResponse<Company>) => response.data)
+      );
   }
 
   searchNames(keyword: string) {

@@ -4,26 +4,30 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class HelperObject {
-  omitNullValue(obj: any) {
-    let newObject: any = {};
-    Object.keys(obj).forEach((key: string) => {
-      if (obj[key] && obj[key] !== 'null') {
-        newObject[key] = obj[key];
-      }
-    });
+  /**
+   * This function removes null, empty string, and undefined values from an object.
+   * @param inputObject - The object to remove values from.
+   * @returns The object with blank values removed.
+   */
+  removeBlankValues(inputObject: any) {
+    let newObject: any = Object.fromEntries(
+      Object.entries(inputObject).filter(([_, value]) => {
+        return value !== null && value !== '' && value !== undefined;
+      })
+    );
 
     return newObject;
   }
 
   serialize(object: {}) {
-    return this.omitEmptyArrays(this.omitNullValue(object));
+    return this.removeEmptyArrays(this.removeBlankValues(object));
   }
 
   getKeys(object: Object): string[] {
     return Object.keys(object);
   }
 
-  omitEmptyArrays(obj: any) {
+  removeEmptyArrays(obj: any) {
     let newObject: any = {};
     Object.keys(obj).forEach((key) => {
       if (obj[key]) {
@@ -36,7 +40,7 @@ export class HelperObject {
     return newObject;
   }
 
-  omitField(obj: any, omitKeys: string[]): {} {
+  removeFields(obj: any, omitKeys: string[]): {} {
     if (Object.keys(obj).length) {
       return Object.keys(obj).reduce((result: any, key) => {
         if (!omitKeys.includes(key)) {

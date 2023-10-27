@@ -9,6 +9,7 @@ import {
   Select2Value,
 } from 'ng-select2-component';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home-search-bar',
@@ -19,73 +20,77 @@ export class HomeSearchBarComponent
   extends BaseComponent<any>
   implements OnInit
 {
-  keyword: string = 'name';
-  name: unknown = '';
-  countries: Country[] = [];
-  dataCountries: Select2Data = [];
-  selectedCountry: any;
+  // List of countries
+  // Object schema required by Select2
+  countries: Select2Data = [];
+
+  // List of companies
+  companyNames: { name: string }[] = [];
+
+  form!: FormGroup;
+
   constructor(
     public companyService: CompaniesService,
     public countryService: CountryService,
-    public router: Router
+    public router: Router,
+    public fb: FormBuilder
   ) {
     super(companyService);
   }
 
   ngOnInit(): void {
     this.getCountries();
+
+    this.form = this.fb.group({
+      keyword: ['', Validators.required],
+      country_id: [null],
+    });
   }
 
+  // Triggered when the user types a keyword
+  // Search Companies names into the database to
+  // to populate the Autocomplete component
   getCompanyNames(keyword: string) {
     this.loading = true;
-    this.name = keyword;
     this.companyService.searchNames(keyword).subscribe((data) => {
-      this.data = data;
+      this.companyNames = data;
       this.loading = false;
     });
   }
 
-  onSelected(event: any) {
-    console.log(event);
-    this.name = event.name;
-  }
-
+  // Get the list of all countries and parse it into Select2Data
   getCountries() {
     this.countryService.get().subscribe({
       next: (response) => {
-        this.countries = response;
         response.map((country: Country) => {
-          this.dataCountries.push({
+          this.countries.push({
             value: country.id!,
             label: country.name!,
             data: country,
           });
         });
-
-        this.selectedCountry = this.countries[0];
       },
 
       error: () => {},
     });
   }
 
-  update(item: Select2UpdateEvent) {
-    if (item.options) {
-      this.selectedCountry = item.value;
-    }
-    console.log(this.selectedCountry);
+  // Triggered when the user selects a country
+  // Update the form with the selected country
+  onCountrySelected(item: Select2UpdateEvent) {
+    this.form.controls['country_id'].setValue(item.value);
   }
 
   search() {
-    console.log();
+    const data = {
+      keyword:
+        typeof this.form.controls['keyword'].value === 'string'
+          ? this.form.controls['keyword'].value
+          : (this.form.controls['keyword'].value as { name: string }).name,
+      country_id: this.form.controls['country_id'].value,
+    };
     this.router.navigate(['/companies/search'], {
-      queryParams: {
-        keyword:
-          typeof this.name === 'string'
-            ? this.name
-            : (this.name as { name: string }).name,
-        country: this.selectedCountry.id,
-      },
+      queryParams: data,
     });
   }
 }
