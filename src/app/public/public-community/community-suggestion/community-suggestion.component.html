@@ -5,19 +5,28 @@
       <div class="max-w-[500px] w-full m-auto p-6 bg-white dark:bg-slate-900 shadow-md dark:shadow-gray-800 rounded-md">
         <!-- Title -->
         <div class="my-6  text-center ">
-          <h5 class="text-2xl font-bold"><span class="text-primary">Can't find a </span>
-            <span class="text-secondary"> Company?</span>
+          <h5 class="text-2xl font-bold"><span class="text-primary">We need your</span>
+            <span class="text-secondary"> voice</span>
           </h5>
-          <p class="text-slate-500 text-sm">They might not be listed on Mundaly yet. <br>
-            Please provide their details, and our team will be in touch.</p>
+          <p class="text-slate-500 text-sm">Do the companies really do what they claim?<br>
+            Tell us</p>
         </div>
 
 
         <!-- FOrm -->
         <form action="auth-signup-success.html" class="text-start" [formGroup]="form" (submit)="create()">
+
+          <!-- Community member email -->
+          <div class="mb-7">
+            <label class="font-semibold" for="community_member_email"> <i class="mdi mdi-email-outline me-1"></i> Your email:</label>
+            <input id="community_member_email" type="email"
+                   formControlName="community_member_email"
+                   class="form-input mt-3 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-200 focus:border-primary dark:border-gray-800 dark:focus:border-primary focus:ring-0"
+                   placeholder="johnDoe@email.com">
+          </div>
           <div class="grid grid-cols-1">
 
-            <!-- Name -->
+            <!-- Company Name -->
             <div class="mb-7">
               <label class="font-semibold" for="RegisterName"><i class="mdi mdi-office-building-outline me-1"></i>Company name:</label>
               <input id="RegisterName" type="text"
@@ -27,7 +36,7 @@
             </div>
 
 
-            <!-- Name -->
+            <!-- Comapny Website -->
             <div class="mb-7">
               <label class="font-semibold" for="RegisterName"><i class="mdi mdi-web me-1"></i>Company website:</label>
               <input id="RegisterName" type="url"
@@ -39,7 +48,7 @@
             <div class="mb-4">
               <button type="submit"
                       class="py-2 px-5 inline-block tracking-wide border align-middle duration-500 text-base text-center bg-primary hover:bg-indigo-700 border-primary hover:border-indigo-700 text-white rounded-md w-full"
-                      [disabled]="form.invalid">Done
+                      [disabled]="form.invalid">Be part of the movement
                 <i class="uil uil-arrow-right" *ngIf="!loading"></i>
                 <app-loading class="ms-1" *ngIf="loading"></app-loading>
               </button>

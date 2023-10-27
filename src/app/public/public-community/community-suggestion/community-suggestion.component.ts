@@ -24,6 +24,7 @@ export class CommunitySuggestionComponent extends BaseCreateComponent<CommunityS
 
   initForm() {
     this.form = this.fb.group({
+      community_member_email: ['', Validators.required],
       company_name: ['', Validators.required],
       company_website: ['', Validators.required],
     });

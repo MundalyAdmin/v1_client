@@ -43,12 +43,12 @@ const routes: Routes = [
         component: HomeComponent,
       },
       {
-        path: 'company-suggestion',
+        path: 'community-voice',
         component: CommunitySuggestionComponent,
       },
 
       {
-        path: 'company-suggestion/thank-you',
+        path: 'community-voice/thank-you',
         component: CommunitySuggestionThanksComponent,
       },
       {

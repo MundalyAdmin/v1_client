@@ -7,6 +7,6 @@ import { CommunitySuggestion } from './community-suggestion.model';
 })
 export class CommunitySuggestionService extends BaseService<CommunitySuggestion> {
   constructor() {
-    super('company-suggestions');
+    super('community-suggestions');
   }
 }
