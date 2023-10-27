@@ -1,6 +1,14 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { JsLoaderService } from './js-loader.service';
 import { initFlowbite } from 'flowbite';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +16,10 @@ import { initFlowbite } from 'flowbite';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'client';
   constructor(
     private renderer: Renderer2,
-    public jsLoaderService: JsLoaderService
+    public jsLoaderService: JsLoaderService,
+    public router: Router
   ) {}
 
   ngOnInit() {
@@ -20,5 +28,12 @@ export class AppComponent implements OnInit {
       this.renderer,
       'assets/js/plugins.init.js'
     );
+
+    this.router.events.subscribe((event) => {
+      if (!(event instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0);
+    });
   }
 }
