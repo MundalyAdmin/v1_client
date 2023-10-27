@@ -3,6 +3,7 @@ import { BaseListComponent } from '../../../../shared/base-component';
 import { Company } from '../../../../companies/companies.model';
 import { CompaniesService } from '../../../../companies/companies.service';
 import { ActivatedRoute } from '@angular/router';
+import { CompanySearchData } from '../companies-search-data.model';
 
 @Component({
   selector: 'app-companies-container',
@@ -19,13 +20,18 @@ export class CompaniesContainerComponent extends BaseListComponent<Company> {
 
   override ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      this.getData(params['keyword']);
+      const searchData = {
+        keyword: params['keyword'],
+        country_id: params['country_id'],
+      };
+
+      this.getData(this.helper.object.removeBlankValues(searchData));
     });
   }
 
-  getData(keyword: string) {
+  getData(searchData: CompanySearchData) {
     this.loading = true;
-    this.companyService.research(keyword).subscribe(() => {
+    this.companyService.search(searchData).subscribe(() => {
       this.loading = false;
     });
   }

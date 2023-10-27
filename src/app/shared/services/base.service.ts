@@ -86,12 +86,6 @@ export abstract class BaseService<T = any> {
       );
   }
 
-  search(word: string, fields: string[]) {
-    return this.factory
-      .post(`${this.endPoint}/search`, { word, fields })
-      .pipe(tap(this.listResponseHandler()));
-  }
-
   get(options: { emitData?: boolean; params?: Params } = { emitData: true }) {
     return this.factory
       .get(`${this.endPoint}`, { params: options?.params })
