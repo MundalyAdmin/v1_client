@@ -4,12 +4,20 @@
     <div class="flex justify-center">
       <div class="max-w-[500px] w-full m-auto p-6 bg-white dark:bg-slate-900 shadow-md dark:shadow-gray-800 rounded-md">
         <!-- Title -->
-        <div class="my-6  text-center ">
+        <div class="my-6  text-center " *ngIf="!company">
           <h5 class="text-2xl font-bold"><span class="text-primary">Let Your Voice</span>
             <span class="text-secondary"> Heard</span>
           </h5>
           <p class="text-slate-500 text-sm">Do the companies really do what they claim?<br>
             Tell us</p>
+        </div>
+
+        <div class="my-6  text-center " *ngIf="company">
+          <h5 class="text-2xl font-bold"><span class="text-primary">Let Your Voice</span>
+            <span class="text-secondary"> Heard</span>
+          </h5>
+          <p class="text-slate-500 text-sm">Enter your email<br>
+            Our team will get in touch very soon</p>
         </div>
 
 
@@ -24,43 +32,41 @@
                    class="form-input mt-3 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-200 focus:border-primary dark:border-gray-800 dark:focus:border-primary focus:ring-0"
                    placeholder="johnDoe@email.com">
           </div>
-          <div class="grid grid-cols-1">
 
-            <!-- Company Name -->
-            <div class="mb-7">
-              <label class="font-semibold" for="RegisterName"><i class="mdi mdi-office-building-outline me-1"></i>Company name:</label>
-              <input id="RegisterName" type="text"
-                     formControlName="company_name"
-                     class="form-input mt-3 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-200 focus:border-primary dark:border-gray-800 dark:focus:border-primary focus:ring-0"
-                     placeholder="Company Ltd">
-            </div>
-
-
-            <!-- Comapny Website -->
-            <div class="mb-7">
-              <label class="font-semibold" for="RegisterName"><i class="mdi mdi-web me-1"></i>Company website:</label>
-              <input id="RegisterName" type="url"
-                     formControlName="company_website"
-                     class="form-input mt-3 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-200 focus:border-primary dark:border-gray-800 dark:focus:border-primary focus:ring-0"
-                     placeholder="www.company.com">
-            </div>
-
-            <div class="mb-4">
-              <button type="submit"
-                      class="py-2 px-5 inline-block tracking-wide border align-middle duration-500 text-base text-center bg-primary hover:bg-indigo-700 border-primary hover:border-indigo-700 text-white rounded-md w-full"
-                      [disabled]="form.invalid">Done
-                <i class="uil uil-arrow-right" *ngIf="!loading"></i>
-                <app-loading class="ms-1" *ngIf="loading"></app-loading>
-              </button>
-            </div>
+          <!-- Company Name -->
+          <div class="mb-7" *ngIf="!company">
+            <label class="font-semibold" for="RegisterName"><i class="mdi mdi-office-building-outline me-1"></i>Company name:</label>
+            <input id="RegisterName" type="text"
+                   formControlName="company_name"
+                   class="form-input mt-3 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-200 focus:border-primary dark:border-gray-800 dark:focus:border-primary focus:ring-0"
+                   placeholder="Company Ltd">
+          </div>
 
 
-            <!-- Already have an account -->
-            <!-- <div class="text-center">
+          <!-- Comapny Website -->
+          <div class="mb-7" *ngIf="!company">
+            <label class="font-semibold" for="RegisterName"><i class="mdi mdi-web me-1"></i>Company website:</label>
+            <input id="RegisterName" type="url"
+                   formControlName="company_website"
+                   class="form-input mt-3 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-200 focus:border-primary dark:border-gray-800 dark:focus:border-primary focus:ring-0"
+                   placeholder="www.company.com">
+          </div>
+
+          <div class="mb-4">
+            <button type="submit"
+                    class="py-2 px-5 inline-block tracking-wide border align-middle duration-500 text-base text-center bg-primary hover:bg-indigo-700 border-primary hover:border-indigo-700 text-white rounded-md w-full"
+                    [disabled]="form.invalid">Done
+              <i class="uil uil-arrow-right" *ngIf="!loading"></i>
+              <app-loading class="ms-1" *ngIf="loading"></app-loading>
+            </button>
+          </div>
+
+
+          <!-- Already have an account -->
+          <!-- <div class="text-center">
               <span class="text-slate-400 me-2">Already have an account ? </span> <a href="auth-login.html"
                  class="text-black dark:text-white font-bold inline-block">Sign in</a>
             </div> -->
-          </div>
         </form>
       </div>
     </div>

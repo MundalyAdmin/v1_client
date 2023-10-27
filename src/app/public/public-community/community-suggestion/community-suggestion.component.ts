@@ -4,6 +4,7 @@ import { CommunitySuggestionService } from './community-suggestion.service';
 import { CommunitySuggestion } from './community-suggestion.model';
 import { Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Company } from '../../../companies/companies.model';
 
 @Component({
   selector: 'app-community-suggestion',
@@ -11,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./community-suggestion.component.scss'],
 })
 export class CommunitySuggestionComponent extends BaseCreateComponent<CommunitySuggestion> {
+  company: Company | null = null;
   constructor(
     public communitySuggestionService: CommunitySuggestionService,
     public route: ActivatedRoute
@@ -20,6 +22,16 @@ export class CommunitySuggestionComponent extends BaseCreateComponent<CommunityS
 
   ngOnInit(): void {
     this.initForm();
+    if (this.communitySuggestionService.company) {
+      this.subscriptions['company'] =
+        this.communitySuggestionService.company$.subscribe((company) => {
+          if (company) {
+            this.company = company;
+            this.formValuePatcher('company_name', company.name!);
+            this.formValuePatcher('company_website', company.website!);
+          }
+        });
+    }
   }
 
   initForm() {
