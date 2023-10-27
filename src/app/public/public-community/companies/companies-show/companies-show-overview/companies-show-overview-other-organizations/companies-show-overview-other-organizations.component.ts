@@ -4,11 +4,11 @@ import { Company } from '../../../../../../companies/companies.model';
 import { CompaniesService } from '../../../../../../companies/companies.service';
 
 @Component({
-  selector: 'app-companies-show-overview-similar',
-  templateUrl: './companies-show-overview-similar.component.html',
-  styleUrls: ['./companies-show-overview-similar.component.scss'],
+  selector: 'app-companies-show-overview-other-organizations',
+  templateUrl: './companies-show-overview-other-organizations.component.html',
+  styleUrls: ['./companies-show-overview-other-organizations.component.scss'],
 })
-export class CompaniesShowOverviewSimilarComponent extends BaseListComponent<Company> {
+export class CompaniesShowOverviewOtherOrganizationsComponent extends BaseListComponent<Company> {
   constructor(public companiesService: CompaniesService) {
     super(companiesService);
   }
