@@ -8,23 +8,17 @@ import { HomeCompanyListComponent } from './home/home-company-list/home-company-
 import { HomeAboutUsComponent } from './home/home-about-us/home-about-us.component';
 import { CompaniesComponent } from './companies/companies.component';
 import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
 import { CompaniesListComponent } from './companies/companies-list/companies-list.component';
 import { CompaniesShowComponent } from './companies/companies-show/companies-show.component';
 import { CompaniesShowHeroComponent } from './companies/companies-show/companies-show-hero/companies-show-hero.component';
 import { CompaniesShowOverviewComponent } from './companies/companies-show/companies-show-overview/companies-show-overview.component';
-import { CompaniesShowQandaComponent } from './companies/companies-show/companies-show-qanda/companies-show-qanda.component';
 import { CompaniesShowAboutComponent } from './companies/companies-show/companies-show-about/companies-show-about.component';
 import { CompaniesShowRatingInformationsComponent } from './companies/companies-show/companies-show-rating-informations/companies-show-rating-informations.component';
 import { PublicCommunityComponent } from './public-community.component';
 import { SharedModule } from '../../shared/shared.module';
 import { SharedPublicModule } from '../shared-public/shared-public.module';
-import { ComingSoonComponent } from '../../shared/components/coming-soon/coming-soon.component';
 import { PublicCommunitiesCategorieListComponent } from '../public-communities/public-communities-categorie-list/public-communities-categorie-list.component';
-import { CommunityWaitlistComponent } from '../../waitlist/community-waitlist/community-waitlist.component';
-import { ThankYouPageComponent } from '../../shared/components/thank-you-page/thank-you-page.component';
 import { WaitlistModule } from '../../waitlist/waitlist.module';
-import { ThankYouForJoiningCommunityComponent } from '../../waitlist/community-waitlist/thank-you-for-joining-community/thank-you-for-joining-community.component';
 import { HomeSearchBarComponent } from './home/home-search-bar/home-search-bar.component';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { CompaniesContainerComponent } from './companies/companies-container/companies-container.component';
@@ -76,10 +70,6 @@ const routes: Routes = [
             component: CompaniesShowOverviewComponent,
           },
           {
-            path: 'faq',
-            component: CompaniesShowQandaComponent,
-          },
-          {
             path: '**',
             redirectTo: 'overview',
           },
@@ -102,7 +92,6 @@ const routes: Routes = [
     CompaniesShowComponent,
     CompaniesShowHeroComponent,
     CompaniesShowOverviewComponent,
-    CompaniesShowQandaComponent,
     CompaniesShowAboutComponent,
     CompaniesShowRatingInformationsComponent,
     PublicCommunityComponent,
