@@ -30,11 +30,13 @@
   <div class="container relative">
     <div class="grid grid-cols-1 justify-center">
       <div class="relative z-1">
-        <div class="grid grid-cols-1  text-center justify-center">
-          <div class="relative"><img class="w-full" src="assets/images/for-business/measure/dashboard.png"
-                 alt="">
-            <div class="absolute bottom-2/4 translate-y-2/4 start-0 end-0 text-center"></div>
-          </div>
+        <div class="grid grid-cols-1  text-center justify-center" style="height: 730px; width: 1100px;">
+          <div style="padding:56.25% 0 0 0;position:relative;"><iframe
+                    src="https://player.vimeo.com/video/877547033?h=2c1e9f4331&title=0&byline=0&portrait=0"
+                    style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"
+                    allowfullscreen></iframe></div>
+          <script src="https://player.vimeo.com/api/player.js"></script>
+          <div class="absolute bottom-2/4 translate-y-2/4 start-0 end-0 text-center"></div>
         </div>
       </div>
     </div>
@@ -42,7 +44,7 @@
 </section>
 
 
-<section class="relative md:py-24 py-16 bg-slate-50 ">
+<section class="relative md:py-24 py-16 bg-slate-100 ">
   <!-- Solutions -->
   <div class="container relative">
     <div class="grid grid-cols-1 pb-8 text-center">
@@ -53,19 +55,60 @@
     </div><!--end grid-->
 
     <div class="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 mt-8 gap-[30px]">
-      <div class="text-center md:px-6">
+      <a [routerLink]="['product', 'measure']"
+         class="bg-slate-50 rounded-xl shadow border p-5 hover:scale-105 hover:border-primary hover:transition-all delay-150 ">
         <div
-             class="w-28 h-28 bg-secondary/5 text-secondary rounded-3xl text-4xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 mx-auto">
-          <i class="mdi mdi-chart-areaspline"></i>
+             class="w-52 h-52 flex align-middle justify-center items-center  mx-auto">
+          <img src="assets/images/illustrator/illustration-measure.svg" alt="">
         </div>
 
-        <div class="content mt-7">
-          <a href="page-services.html" class="title h5 text-lg font-medium hover:text-secondary">Measure</a>
-          <p class="text-slate-400 mt-3">Predict & Verify the Impact of Your CSR & ESG initiatives.</p>
+        <div class="content ">
+          <h5 href="" class="title h5 text-xl text-primary text-center font-bold ">Measure</h5>
+          <p class="text-slate-400 text-center mt-2">Generate Disclosures, Compliance, & Benchmarking.</p>
         </div>
-      </div>
+      </a>
 
-      <div class="text-center md:px-6">
+      <a [routerLink]="['product', 'track']"
+         class="bg-slate-50 rounded-xl shadow border p-5 hover:scale-105 hover:border-primary hover:transition-all delay-150 ">
+        <div
+             class="w-52 h-52 flex align-middle justify-center items-center  mx-auto">
+          <img src="assets/images/illustrator/illustration-track.svg" alt="">
+        </div>
+
+        <div class="content ">
+          <h5 href="" class="title h5 text-xl text-primary text-center font-bold ">Track</h5>
+          <p class="text-slate-400 text-center mt-2">See Progress & Metrics From Your Portfolio.</p>
+        </div>
+      </a>
+
+
+      <a [routerLink]="['product', 'report']"
+         class="bg-slate-50 rounded-xl shadow border p-5 hover:scale-105 hover:border-primary hover:transition-all delay-150 ">
+        <div
+             class="w-52 h-52 flex align-middle justify-center items-center  mx-auto">
+          <img src="assets/images/illustrator/illustration-report.svg" alt="">
+        </div>
+
+        <div class="content ">
+          <h5 href="" class="title h5 text-xl text-primary text-center font-bold ">Report</h5>
+          <p class="text-slate-400 text-center mt-2">Generate Disclosures, Compliance, & Benchmarking.</p>
+        </div>
+      </a>
+
+      <a [routerLink]="['product', 'act']"
+         class="bg-slate-50 rounded-xl shadow border p-5 hover:scale-105 hover:border-primary hover:transition-all delay-150 ">
+        <div
+             class="w-52 h-52 flex align-middle justify-center items-center  mx-auto">
+          <img src="assets/images/illustrator/illustration-act.svg" alt="">
+        </div>
+
+        <div class="content ">
+          <h5 href="" class="title h5 text-xl text-primary text-center font-bold ">Act</h5>
+          <p class="text-slate-400 text-center mt-2">View Location-Specific Social Issues & Plan Accordingly..</p>
+        </div>
+      </a>
+
+      <!-- <div class="text-center md:px-6">
         <div
              class="w-28 h-28 bg-red-600/5 text-red-600 rounded-3xl text-4xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 mx-auto">
           <i class="mdi mdi-chart-bar-stacked"></i>
@@ -79,12 +122,12 @@
 
       <div class="text-center md:px-6">
         <div
-             class="w-28 h-28 bg-emerald-600/5 text-emerald-600 rounded-3xl text-4xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 mx-auto">
+             class="w-28 h-28 bg-emerald- rounded-3xl text-4xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 mx-auto">
           <span class="mdi mdi-chart-box-outline"></span>
         </div>
 
         <div class="content mt-7">
-          <a href="" class="title h5 text-lg font-medium hover:text-emerald-600">Report</a>
+          <a href="" class="title h5 text-lg font-medium ">Report</a>
           <p class="text-slate-400 mt-3">Generate Disclosures, Compliance, & Benchmarking.</p>
         </div>
       </div>
@@ -99,9 +142,9 @@
           <a href="" class="title h5 text-lg font-medium hover:text-amber-600">Act</a>
           <p class="text-slate-400 mt-3">View Location-Specific Social Issues & Plan Accordingly.</p>
         </div>
-      </div>
+      </div> -->
     </div><!--end grid-->
-  </div><!--end container-->
+  </div>
 
 </section>
 
