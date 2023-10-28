@@ -1,5 +1,5 @@
 export class ApiResponse<T = any> {
-  data: T[] = [];
+  data: T[] | T = [];
   current_page?: number;
   first_page_url?: string;
   next_page_url?: string;

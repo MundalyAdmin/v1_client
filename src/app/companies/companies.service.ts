@@ -16,7 +16,7 @@ export class CompaniesService extends BaseService<Company> {
   getByCategory(categoryId: number) {
     return this.factory.get(`${this.endPoint}/categories/${categoryId}`).pipe(
       tap((response: ApiResponse<Company>) => {
-        this.data = response.data;
+        this.data = response.data as Company[];
 
         this.paginationInfo = {
           total: response.total,
@@ -31,9 +31,9 @@ export class CompaniesService extends BaseService<Company> {
   getSimilar(companyId: number) {
     return this.factory.get(`${this.endPoint}/similar/${companyId}`).pipe(
       tap((response: ApiResponse<Company>) => {
-        this.data = response.data;
+        this.data = response.data as Company[];
       }),
-      map((response: ApiResponse<Company>) => response.data)
+      map((response: ApiResponse<Company>) => response.data as Company[])
     );
   }
 
@@ -42,7 +42,7 @@ export class CompaniesService extends BaseService<Company> {
       .get(`${this.endPoint}/search`, { params: searchData })
       .pipe(
         tap((response: ApiResponse<Company>) => {
-          this.data = response.data;
+          this.data = response.data as Company[];
 
           this.paginationInfo = {
             total: response.total,
@@ -55,9 +55,24 @@ export class CompaniesService extends BaseService<Company> {
   }
 
   searchNames(keyword: string) {
-    return this.factory.get(`${this.endPoint}/search/names/${keyword}`).pipe(
-      tap((response: ApiResponse<{ name: string }>) => {}),
-      map((response: ApiResponse<{ name: string }>) => response.data)
-    );
+    return this.factory
+      .get(`${this.endPoint}/search/names/${keyword}`)
+      .pipe(
+        map(
+          (response: ApiResponse<{ name: string }>) =>
+            response.data as { name: string }[]
+        )
+      );
+  }
+
+  getIdByWebsiteUrl(websiteUrl: string) {
+    return this.factory
+      .get(`${this.endPoint}/website`, { params: { websiteUrl } })
+      .pipe(
+        map(
+          (response: ApiResponse<Partial<Company>>) =>
+            response.data as Partial<Company>
+        )
+      );
   }
 }

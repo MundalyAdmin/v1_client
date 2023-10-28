@@ -23,6 +23,7 @@ import { ProductTrackComponent } from './product-track/product-track.component';
 import { ProductReportComponent } from './product-report/product-report.component';
 import { ProductActComponent } from './product-act/product-act.component';
 import { ProductOvervirwComponent } from './product-overvirw/product-overvirw.component';
+import { PublicBusinessCheckCommunityReviewsComponent } from './public-business-home/public-business-check-community-reviews/public-business-check-community-reviews.component';
 
 const routes: Routes = [
   {
@@ -111,6 +112,7 @@ const routes: Routes = [
     ProductReportComponent,
     ProductActComponent,
     ProductOvervirwComponent,
+    PublicBusinessCheckCommunityReviewsComponent,
   ],
   imports: [
     CommonModule,

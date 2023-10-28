@@ -48,13 +48,13 @@ export class HelperNotification {
     });
   }
 
-  toastSuccess(word?: string): void {
+  toastSuccess(word?: string, timer = 3000): void {
     Swal.fire({
       icon: 'success',
       position: 'top-end',
       title: word || 'Succesfully done',
       showConfirmButton: false,
-      timer: 3000,
+      timer,
       timerProgressBar: true,
       toast: true,
       allowEscapeKey: true,

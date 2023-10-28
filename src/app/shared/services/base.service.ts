@@ -92,7 +92,7 @@ export abstract class BaseService<T = any> {
       .pipe(
         tap((response: ApiResponse<T>) => {
           if (options.emitData) {
-            this.data = response.data;
+            this.data = response.data as T[];
           }
 
           this.paginationInfo = {
@@ -101,7 +101,7 @@ export abstract class BaseService<T = any> {
             currentPage: response.current_page,
           };
         }),
-        map((response: ApiResponse<T>) => response.data)
+        map((response: ApiResponse<T>) => response.data as T[])
       );
   }
 
