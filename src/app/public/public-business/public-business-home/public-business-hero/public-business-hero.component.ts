@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BaseCreateComponent } from '../../../../shared/base-component';
 import { Waitlist } from '../../../../waitlist/waitlist.model';
 import { WaitlistService } from '../../../../waitlist/waitlist.service';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-public-business-hero',
@@ -22,7 +23,7 @@ export class PublicBusinessHeroComponent
 
   initForm() {
     this.form = this.fb.group({
-      email: [''],
+      email: ['', [Validators.required, Validators.email]],
     });
   }
 
@@ -30,8 +31,8 @@ export class PublicBusinessHeroComponent
     this.loading = true;
     this.waitlistService.store(this.form.value).subscribe({
       next: () => {
-        this.loading = false;
-        this.helper.notification.alertSuccess('Successfully registered');
+        this.waitlistService.businessEmail = this.form.controls['email'].value;
+        this.router.navigate(['/for-business/book-demo']);
         this.initForm();
       },
       error: () => {

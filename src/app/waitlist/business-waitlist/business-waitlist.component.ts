@@ -25,6 +25,11 @@ export class BusinessWaitlistComponent extends BaseCreateComponent<BusinessWaitl
   ngOnInit(): void {
     this.getCountries();
     this.initForm();
+
+    this.subscriptions['businessEmail'] =
+      this.waitListService.businessEmail$.subscribe((email) => {
+        this.form.controls['professional_email'].setValue(email);
+      });
   }
 
   getCountries() {
