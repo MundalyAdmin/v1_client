@@ -9,7 +9,7 @@ import { Storage } from '../storage/storage';
   providedIn: 'root',
 })
 export class Factory {
-  public baseUrl;
+  public apiUrl;
   private _headers = {
     Authorization: `Bearer ${this.storage.getAccessToken()}`,
   };
@@ -18,11 +18,11 @@ export class Factory {
     public storage: Storage,
     public http: HttpClient // public _tokenStorage: TokenStorage
   ) {
-    this.baseUrl = environment.baseUrl;
+    this.apiUrl = environment.apiUrl;
   }
 
   public get<Type = any>(endPoint: string, options?: object): Observable<Type> {
-    return this.http.get<any>(`${this.baseUrl}/${endPoint}`, {
+    return this.http.get<any>(`${this.apiUrl}/${endPoint}`, {
       headers: {
         Authorization: `Bearer ${this.storage.getAccessToken()}`,
       },
@@ -31,7 +31,7 @@ export class Factory {
   }
 
   public post(endPoint: string, data: {}, options?: object): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/${endPoint}`, data, {
+    return this.http.post<any>(`${this.apiUrl}/${endPoint}`, data, {
       headers: {
         Authorization: `Bearer ${this.storage.getAccessToken()}`,
       },
@@ -40,21 +40,21 @@ export class Factory {
   }
 
   public put(endPoint: string, elements: {}, options?: any): Observable<any> {
-    return this.http.patch<any>(`${this.baseUrl}/${endPoint}`, elements, {
+    return this.http.patch<any>(`${this.apiUrl}/${endPoint}`, elements, {
       headers: this._headers,
       ...options,
     });
   }
 
   public patch(endPoint: string, elements: {}, options?: any): Observable<any> {
-    return this.http.patch<any>(`${this.baseUrl}/${endPoint}`, elements, {
+    return this.http.patch<any>(`${this.apiUrl}/${endPoint}`, elements, {
       headers: this._headers,
       ...options,
     });
   }
 
   public delete(endPoint: string, options?: object): Observable<any> {
-    return this.http.delete<any>(`${this.baseUrl}/${endPoint}`, {
+    return this.http.delete<any>(`${this.apiUrl}/${endPoint}`, {
       headers: this._headers,
       ...options,
     });
