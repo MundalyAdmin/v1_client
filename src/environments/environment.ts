@@ -1,4 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: process.env['API_URL'],
+  baseUrl: 'https://dolphin-app-huaya.ondigitalocean.app/api/v1',
+  // urlEncryptionKey: '@kdiWolsa0ksdfm',
+  // moneyToPointRation: 0.9,
 };
