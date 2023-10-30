@@ -1,0 +1,53 @@
+<!-- Header -->
+<section
+         class="relative table w-full py-32 lg:py-36 bg-gradient-to-br from-slate-200 via-secondary/30 to-primary/40 dark:from-primary/20  dark:to-yellow-500/20">
+  <div class="container relative">
+    <div class="grid grid-cols-1 pb-8 text-center mt-10">
+      <h3 class="mb-4 md:text-5xl text-3xl md:leading-normal leading-normal font-bold ">List of available <span
+              class="after:absolute after:end-0 after:start-0 after:bottom-3 after:lg:h-3 after:h-2 after:w-auto after:rounded-md after:bg-secondary/30 relative text-secondary">Categories</span>
+      </h3>
+
+
+    </div><!--end grid-->
+  </div><!--end container-->
+</section><!--end section-->
+<div class="relative">
+  <div class="shape absolute sm:-bottom-px -bottom-[2px] start-0 end-0 overflow-hidden text-white dark:text-slate-900">
+    <svg class="w-full h-auto scale-[2.0] origin-top" viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+    </svg>
+  </div>
+</div>
+
+<!-- List of categories -->
+<section class="relative md:py-24 py-16" *ngIf="categoryService.data.length && !loading">
+
+  <!-- Category list -->
+  <div class="container relative">
+
+    <div class="grid grid-cols-5">
+      <div *ngFor="let category of categoryService.data"
+           class="px-3 py-10 rounded-md shadow dark:shadow-gray-800 group text-center bg-white dark:bg-slate-900 hover:bg-indigo-600/5 dark:hover:bg-indigo-600/5 duration-500 m-2">
+        <div
+             class="w-[84px] h-[84px] bg-indigo-600/5 group-hover:bg-indigo-600 text-primary group-hover:text-white rounded-full text-3xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 duration-500 mx-auto">
+          <i [ngClass]="category.icon"></i>
+        </div>
+
+        <div class="content mt-6">
+          <a [routerLink]="['/categories', category.id]" class="title h5 text-lg font-medium hover:text-primary">{{ category.name }} <br>
+          </a>
+          <!-- <p class="text-slate-400 mt-3">{{ category.companies?.length }}</p> -->
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</section>
+
+<!-- Page loading -->
+<app-page-loading [height]="300" *ngIf="loading"></app-page-loading>
+
+<!-- No data found -->
+<app-missing-data *ngIf="!categoryService.data.length && !loading"></app-missing-data>

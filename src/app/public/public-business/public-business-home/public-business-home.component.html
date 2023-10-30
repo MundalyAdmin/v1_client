@@ -1,0 +1,442 @@
+<!-- Hero section -->
+<app-public-business-hero></app-public-business-hero>
+
+
+<!-- See what communities think about your business -->
+<app-public-business-check-community-reviews></app-public-business-check-community-reviews>
+
+<!-- Achievement and social proof -->
+<app-public-business-achievements></app-public-business-achievements>
+
+
+<!-- List of company partners -->
+<!--  -->
+
+
+<!-- Explore our products -->
+
+
+
+<!-- Welcome Mundaly -->
+<section class="relative py-24 ">
+  <!-- Header -->
+  <div class="grid grid-cols-1 pb-8 text-center">
+    <h6 class="text-secondary text-sm font-bold uppercase mb-2">About us</h6>
+  </div>
+  <div class="container relative">
+    <div class="grid grid-cols-1 justify-center">
+      <div class="relative z-1">
+        <div style="padding:56.25% 0 0 0;position:relative;"><iframe
+            src="https://player.vimeo.com/video/879432569?badge=0&amp;autopause=0&amp;quality_selector=1&amp;player_id=0&amp;app_id=58479"
+            frameborder="0" allow="autoplay; fullscreen; picture-in-picture"
+            style="position:absolute;top:0;left:0;width:100%;height:100%;" title="About Mundaly"></iframe></div>
+        <script src="https://player.vimeo.com/api/player.js"></script>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="relative md:py-24 py-16 bg-slate-100 ">
+  <!-- Solutions -->
+  <div class="container relative">
+    <div class="grid grid-cols-1 pb-8 text-center">
+      <h3 class="mb-4 md:text-2xl md:leading-normal text-2xl leading-normal font-semibold">With Mundaly’s science-backed platform,<br> You can now
+      </h3>
+
+      <!-- <p class="text-slate-400 max-w-xl mx-auto">You can now:</p> -->
+    </div><!--end grid-->
+
+    <div class="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 mt-8 gap-[30px]">
+      <a [routerLink]="['product', 'measure']"
+         class="bg-slate-50 rounded-xl shadow border p-5 hover:scale-105 hover:border-primary hover:transition-all delay-150 ">
+        <div
+             class="w-52 h-52 flex align-middle justify-center items-center  mx-auto">
+          <img src="assets/images/illustrator/illustration-measure.svg" alt="">
+        </div>
+
+        <div class="content ">
+          <h5 href="" class="title h5 text-xl text-primary text-center font-bold ">Measure</h5>
+          <p class="text-slate-400 text-center mt-2">Generate disclosures, compliance, & benchmarking.</p>
+        </div>
+      </a>
+
+      <a [routerLink]="['product', 'track']"
+         class="bg-slate-50 rounded-xl shadow border p-5 hover:scale-105 hover:border-primary hover:transition-all delay-150 ">
+        <div
+             class="w-52 h-52 flex align-middle justify-center items-center  mx-auto">
+          <img src="assets/images/illustrator/illustration-track.svg" alt="">
+        </div>
+
+        <div class="content ">
+          <h5 href="" class="title h5 text-xl text-primary text-center font-bold ">Track</h5>
+          <p class="text-slate-400 text-center mt-2">See progress & metrics from your projects and initiatives.</p>
+        </div>
+      </a>
+
+
+      <a [routerLink]="['product', 'report']"
+         class="bg-slate-50 rounded-xl shadow border p-5 hover:scale-105 hover:border-primary hover:transition-all delay-150 ">
+        <div
+             class="w-52 h-52 flex align-middle justify-center items-center  mx-auto">
+          <img src="assets/images/illustrator/illustration-report.svg" alt="">
+        </div>
+
+        <div class="content ">
+          <h5 href="" class="title h5 text-xl text-primary text-center font-bold ">Report</h5>
+          <p class="text-slate-400 text-center mt-2">Generate disclosures, compliance, & benchmarking reports.</p>
+        </div>
+      </a>
+
+      <a [routerLink]="['product', 'act']"
+         class="bg-slate-50 rounded-xl shadow border p-5 hover:scale-105 hover:border-primary hover:transition-all delay-150 ">
+        <div
+             class="w-52 h-52 flex align-middle justify-center items-center  mx-auto">
+          <img src="assets/images/illustrator/illustration-act.svg" alt="">
+        </div>
+
+        <div class="content ">
+          <h5 href="" class="title h5 text-xl text-primary text-center font-bold ">Act</h5>
+          <p class="text-slate-400 text-center mt-2">View location-specific issues and engage accordingly.</p>
+        </div>
+      </a>
+
+      <!-- <div class="text-center md:px-6">
+        <div
+             class="w-28 h-28 bg-red-600/5 text-red-600 rounded-3xl text-4xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 mx-auto">
+          <i class="mdi mdi-chart-bar-stacked"></i>
+        </div>
+
+        <div class="content mt-7">
+          <a href="" class="title h5 text-lg font-medium hover:text-red-600">Track</a>
+          <p class="text-slate-400 mt-3">See Progress & Metrics From Your Portfolio.</p>
+        </div>
+      </div>
+
+      <div class="text-center md:px-6">
+        <div
+             class="w-28 h-28 bg-emerald- rounded-3xl text-4xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 mx-auto">
+          <span class="mdi mdi-chart-box-outline"></span>
+        </div>
+
+        <div class="content mt-7">
+          <a href="" class="title h5 text-lg font-medium ">Report</a>
+          <p class="text-slate-400 mt-3">Generate Disclosures, Compliance, & Benchmarking.</p>
+        </div>
+      </div>
+
+      <div class="text-center md:px-6">
+        <div
+             class="w-28 h-28 bg-amber-600/5 text-amber-600 rounded-3xl text-4xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 mx-auto">
+          <i class="mdi mdi-gesture-tap-button"></i>
+        </div>
+
+        <div class="content mt-7">
+          <a href="" class="title h5 text-lg font-medium hover:text-amber-600">Act</a>
+          <p class="text-slate-400 mt-3">View Location-Specific Social Issues & Plan Accordingly.</p>
+        </div>
+      </div> -->
+    </div><!--end grid-->
+  </div>
+
+</section>
+
+
+<!-- The opportunity -->
+<section class="relative md:py-24 py-16">
+  <!-- Opportunities -->
+  <div class="container relative">
+    <div class="grid grid-cols-1 pb-8 text-center">
+      <h6 class="text-secondary text-sm font-bold uppercase mb-2">The opportunity</h6>
+      <!-- <h3 class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">The opportunity</h3> -->
+
+    </div>
+    <!--end grid-->
+
+    <div class="grid lg:grid-cols-12 grid-cols-1 mt-8 gap-[60px]">
+      <div class="lg:col-span-6">
+        <div class="grid grid-cols-1 sticky top-28">
+          <div class="counter-box relative md:text-start text-center">
+            <h1 class="font-bold text-3xl text-secondary">We want your business to WIN</h1>
+            <ul class="list-none text-slate-400 my-6">
+              <li class="mb-1 flex"><i class="uil uil-check-circle text-secondary text-xl me-2"></i> Mundaly saves you Money</li>
+              <li class="mb-1 flex"><i class="uil uil-check-circle text-secondary text-xl me-2"></i> Mundaly saves you Time
+              </li>
+              <li class="mb-1 flex"><i class="uil uil-check-circle text-secondary text-xl me-2"></i> And we make sure you never lose the trust of your
+                most important ally, The Community.
+              </li>
+
+            </ul>
+            <!-- <h3 class="font-bold text-xl text-slate-600 ">
+              Here is how:</h3> -->
+
+          </div>
+
+        </div>
+        <!--end grid-->
+      </div>
+      <!--end col-->
+
+      <div class="lg:col-span-6">
+        <div class="grid  grid-cols-1 gap-[30px]">
+          <!-- Money saved -->
+          <div class="p-6 rounded-lg grid grid-cols-1  gap-[10px] shadow dark:shadow-gray-800 bg-white dark:bg-slate-900">
+            <!-- Title -->
+            <div class="font-semibold h5 hover:text-secondary justify-center text- text-lg">
+              <span
+                    class="bg-emerald-100 text-secondary-dark text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">1</span>
+              <span class="ms-1 ">Saves money</span>
+            </div>
+
+            <!-- Information -->
+            <div class="grid grid-cols-2 gap-[30px]">
+              <!-- Numbers -->
+              <div
+                   class="w-full h-full bg-secondary/5 border-2 border-secondary/20 text-secondary rounded-lg text-2xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800">
+                $M+
+              </div>
+
+              <!-- Text -->
+              <div class="content">
+                <p class="text-slate-400 text-left">
+                  Say goodbye to bankruptcy-inducing lawsuits and regulatory compliance fines. Now, you can generate social ESG reports, and track
+                  your community
+                  perception, thanks to Mundaly.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Research Savings -->
+          <div class="p-6 rounded-lg grid grid-cols-1  gap-[10px] shadow dark:shadow-gray-800 bg-white dark:bg-slate-900">
+            <!-- Title -->
+            <div class="font-semibold h5 hover:text-secondary justify-center text- text-lg">
+              <span
+                    class="bg-emerald-100 text-secondary-dark text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">2</span>
+              <span class="ms-1 ">Minimize research cost</span>
+            </div>
+
+            <!-- Information -->
+            <div class="grid grid-cols-2 gap-[30px]">
+              <!-- Numbers -->
+              <div
+                   class="w-full h-full bg-secondary/5 border-2 border-secondary/20 text-secondary rounded-lg text-2xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800">
+                $140,000
+              </div>
+
+              <!-- Text -->
+              <div class="content">
+                <p class="text-slate-400 text-left">
+                  Mundaly saves you an average of 70% when predicting and verifying field impact. See the most impactful social issues, and effective
+                  partners so you
+                  can further spend efficiently..
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Make money -->
+          <div class="p-6 rounded-lg grid grid-cols-1  gap-[10px] shadow dark:shadow-gray-800 bg-white dark:bg-slate-900">
+            <!-- Title -->
+            <div class="font-semibold h5 hover:text-secondary justify-center text- text-lg">
+              <span
+                    class="bg-emerald-100 text-secondary-dark text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span>
+              <span class="ms-1 ">Make money</span>
+            </div>
+
+            <!-- Information -->
+            <div class="grid grid-cols-2 gap-[30px]">
+              <!-- Numbers -->
+              <div
+                   class="w-full h-full bg-secondary/5 border-2 border-secondary/20 text-secondary rounded-lg text-2xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800">
+                85%
+              </div>
+
+              <!-- Text -->
+              <div class="content">
+                <p class="text-slate-400 text-left">
+                  85% of investors and customers consider sustainability in their investment and purchasing decisions. CSR/ESG increases your brand
+                  reputation, market value, and employee retention
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Save time -->
+          <div class="p-6 rounded-lg grid grid-cols-1  gap-[10px] shadow dark:shadow-gray-800 bg-white dark:bg-slate-900">
+            <!-- Title -->
+            <div class="font-semibold h5 hover:text-secondary justify-center text- text-lg">
+              <span
+                    class="bg-emerald-100 text-secondary-dark text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">4</span>
+              <span class="ms-1 ">Save time</span>
+            </div>
+
+            <!-- Information -->
+            <div class="grid grid-cols-2 gap-[30px]">
+              <!-- Numbers -->
+              <div
+                   class="w-full h-full bg-secondary/5 border-2 border-secondary/20 text-secondary rounded-lg text-2xl flex align-middle flex-col justify-center items-center shadow-sm dark:shadow-gray-800">
+                12000+ hours
+              </div>
+
+              <!-- Text -->
+              <div class="content">
+                <p class="text-slate-400 text-left">
+                  12000+ hours Redeemed: Verifying product or social impact takes 6+ months of field research. Mundaly does that in 3 hours. Still
+                  sifting through
+                  hundreds of PDF impact reports? Mundaly generates automated digital reports for you in seconds.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Peace of mind -->
+          <div class="p-6 rounded-lg grid grid-cols-1  gap-[10px] shadow dark:shadow-gray-800 bg-white dark:bg-slate-900">
+            <!-- Title -->
+            <div class="font-semibold h5 hover:text-secondary justify-center text- text-lg">
+              <span
+                    class="bg-emerald-100 text-secondary-dark text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">5</span>
+              <span class="ms-1 ">Peace of mind</span>
+            </div>
+
+            <!-- Information -->
+            <div class="grid grid-cols-2 gap-[30px]">
+              <!-- Numbers -->
+              <div
+                   class="w-full h-full bg-secondary/5 border-2 border-secondary/20 text-secondary rounded-lg text-2xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800">
+                100%
+              </div>
+
+              <!-- Text -->
+              <div class="content">
+                <p class="text-slate-400 text-left">
+                  100% Peace of Mind: No one likes to wake up to negative company press. Mundaly enables you to proactively track your engagement with
+                  communities, and
+                  minimize your potential for reputation damage.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Connect with your community -->
+          <div class="p-6 rounded-lg grid grid-cols-1  gap-[10px] shadow dark:shadow-gray-800 bg-white dark:bg-slate-900">
+            <!-- Title -->
+            <div class="font-semibold h5 hover:text-secondary justify-center text- text-lg">
+              <span
+                    class="bg-emerald-100 text-secondary-dark text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">6</span>
+              <span class="ms-1 ">Connect with your community</span>
+            </div>
+
+            <!-- Information -->
+            <div class="grid grid-cols-2 gap-[30px]">
+              <!-- Numbers -->
+              <div
+                   class="w-full h-full bg-secondary/5 border-2 border-secondary/20 text-secondary rounded-lg text-4xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800">
+                <span class="mdi mdi-handshake"></span>
+              </div>
+
+              <!-- Text -->
+              <div class="content">
+                <p class="text-slate-400 text-left">
+                  Connect Wwth your community: Mundaly gives you a direct community feedback channel, fostering transparency, and real-time
+                  engagement.
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+
+        <!--end grid-->
+      </div>
+      <!--end col-->
+    </div>
+    <!--end grid-->
+  </div>
+</section>
+
+
+<section class="relative md:py-24 bg-slate-50  py-16">
+
+  <div class="container relative ">
+    <div class="grid grid-cols-1 pb-8 text-center">
+      <h3 class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">What people say about us</h3>
+    </div><!--end grid-->
+
+    <div class="grid grid-cols-1 mt-8">
+
+      <div class="grid grid-cols-2 gap-[30px]">
+
+
+        <div class="cursor-e-resize">
+          <div
+               class="content relative rounded shadow dark:shadow-gray-800 m-2 p-6 bg-white dark:bg-slate-900 before:content-[''] before:absolute before:start-1/2 before:-bottom-[4px] before:box-border before:border-8 before:rotate-[45deg] before:border-t-transparent before:border-e-white dark:before:border-e-slate-900 before:border-b-white dark:before:border-b-slate-900 before:border-s-transparent before:shadow-testi dark:before:shadow-gray-700 before:origin-top-left">
+            <i class="mdi mdi-format-quote-open mdi-48px text-secondary"></i>
+            <p class="text-slate-400">" I love having the “verify” section focused on community stakeholders validating the real world impact. As a
+              funder, seeing that sort of first-hand
+              feedback provided by community members is a great addition to our vetting process. "</p>
+            <ul class="list-none mb-0 text-secondary mt-3">
+              <li class="inline"><i class="mdi mdi-star"></i></li>
+              <li class="inline"><i class="mdi mdi-star"></i></li>
+              <li class="inline"><i class="mdi mdi-star"></i></li>
+              <li class="inline"><i class="mdi mdi-star"></i></li>
+              <li class="inline"><i class="mdi mdi-star"></i></li>
+            </ul>
+          </div>
+
+          <div class="text-center mt-5">
+            <img src="assets/images/client/02.jpg" class="h-14 w-14 rounded-full shadow-md mx-auto" alt="">
+            <h6 class="mt-2 font-semibold">A.Je</h6>
+            <span class="text-slate-400 text-sm">CSR at Adobe</span>
+          </div>
+        </div>
+
+        <div class="cursor-e-resize">
+          <div
+               class="content relative rounded shadow dark:shadow-gray-800 m-2 p-6 bg-white dark:bg-slate-900 before:content-[''] before:absolute before:start-1/2 before:-bottom-[4px] before:box-border before:border-8 before:rotate-[45deg] before:border-t-transparent before:border-e-white dark:before:border-e-slate-900 before:border-b-white dark:before:border-b-slate-900 before:border-s-transparent before:shadow-testi dark:before:shadow-gray-700 before:origin-top-left">
+            <i class="mdi mdi-format-quote-open mdi-48px text-secondary"></i>
+            <p class="text-slate-400">" Mundaly addresses a clear need. Gleaning the sentiment of key community members is totally valuable
+              "<br><br><br>
+            </p>
+            <ul class="list-none mb-0 text-secondary mt-3">
+              <li class="inline"><i class="mdi mdi-star"></i></li>
+              <li class="inline"><i class="mdi mdi-star"></i></li>
+              <li class="inline"><i class="mdi mdi-star"></i></li>
+              <li class="inline"><i class="mdi mdi-star"></i></li>
+              <li class="inline"><i class="mdi mdi-star"></i></li>
+            </ul>
+          </div>
+
+          <div class="text-center mt-5">
+            <img src="assets/images/client/03.jpg" class="h-14 w-14 rounded-full shadow-md mx-auto" alt="">
+            <h6 class="mt-2 font-semibold">O.A</h6>
+            <span class="text-slate-400 text-sm">ESG at CocaCola</span>
+          </div>
+        </div>
+
+
+
+
+      </div>
+
+    </div><!--end grid-->
+  </div><!--end container-->
+
+
+</section>
+
+<section class="section">
+  <div class="container relative md:py-24 py-16 ">
+    <div class="grid grid-cols-1 text-center">
+      <h3 class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">Ready, Set, Go!
+      </h3>
+      <p class="text-slate-400 max-w-xl mx-auto">Ready to experience the benefits of Mundaly? Request a demo now, and our
+        team will guide you through the tool's capabilities. </p>
+      <div class="mt-6"><a [routerLink]="['/book-demo']"
+           class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-secondary hover:bg-indigo-700 border-impabg-impact-fidelity hover:border-indigo-700 text-white rounded-full"><i
+             class="uil uil-phone align-middle me-2"></i> Request a demo</a></div>
+    </div>
+  </div>
+</section>

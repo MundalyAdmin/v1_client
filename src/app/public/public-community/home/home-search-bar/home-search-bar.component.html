@@ -1,0 +1,60 @@
+<div class="grid lg:grid-cols-12 grid-cols-1" id="reserve-form">
+  <div class="lg:col-span-10 mt-8">
+    <div class="bg-white dark:bg-slate-900 border-0 shadow rounded p-3">
+      <form [formGroup]="form" (submit)="search()">
+        <div class="registration-form relative items-center text-dark text-start">
+          <div
+               class="grid lg:grid-cols-3 md:grid-cols-3grid-cols-1 lg:gap-0 gap-6 lg:divide-x-[1px] lg:divide-gray-200 lg:dark:divide-gray-700">
+
+            <!-- Keyword -->
+            <div class="filter-search-form relative">
+              <!-- Heading Icon -->
+              <i
+                 class="uil uil-briefcase-alt absolute top-[48%] -translate-y-1/2 start-3 z-1 text-primary text-[20px]"></i>
+
+              <!-- Keyword -->
+              <div
+                   class="form-input lg:rounded-t-sm lg:rounded-e-none lg:rounded-b-none lg:rounded-s-sm lg:outline-0 w-full filter-input-box bg-gray-50 dark:bg-slate-800 border-0 focus:ring-0">
+                <!-- Autocompletion -->
+                <ng-autocomplete
+                                 [data]="companyNames"
+                                 [isLoading]="loading"
+                                 [searchKeyword]="'name'"
+                                 formControlName="keyword"
+                                 placeholder="Company"
+                                 (inputChanged)="getCompanyNames($event)"
+                                 historyIdentifier="company"
+                                 [itemTemplate]="itemTemplate"
+                                 [notFoundTemplate]="notFoundTemplate">
+                </ng-autocomplete>
+
+
+                <ng-template #itemTemplate let-item>
+                  <a [innerHTML]="item.name"></a>
+                </ng-template>
+
+                <ng-template #notFoundTemplate let-notFound>
+                  <a routerLink="/company-suggestion" class="text-secondary font-medium">Didn't find the company you want? Click Here</a>
+                </ng-template>
+              </div>
+            </div>
+
+            <!-- Country -->
+            <div class="filter-search-form relative">
+              <i
+                 class="uil uil-map-marker absolute top-[48%] -translate-y-1/2 start-3 z-1 text-primary text-[20px]"></i>
+              <select2 [data]="countries" (update)="onCountrySelected($event)" [placeholder]="'Country'"
+                       [displaySearchStatus]="'always'">
+              </select2>
+
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" id="search" name="search" style="height: 60px;"
+                    class="lightbox py-1.5 ps-5 pe-2 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-primary hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-full">Search</button>
+          </div><!--end grid-->
+        </div><!--end container-->
+      </form>
+    </div>
+  </div><!--ed col-->
+</div>

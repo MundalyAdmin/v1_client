@@ -1,0 +1,29 @@
+<div class="container relative bg-gray-50 py-16 ">
+  <div class="grid grid-cols-1 text-center">
+    <!-- Title -->
+    <h3 class="mb-4  text-xl  font-bold">See what communities are saying about your business:</h3>
+
+    <!-- Form -->
+    <div class="subcribe-form flex justify-center mt-6 mb-3">
+      <form class="relative w-1/2" [formGroup]="form" (submit)="submit()">
+        <!-- Input url -->
+        <input type="email"
+               id="subcribe"
+               formControlName="websiteUrl"
+               name="text"
+               placeholder="Website URL "
+               class="py-4 pe-40 ps-6 w-full h-[50px] outline-none text-black dark:text-white rounded-full bg-white dark:bg-slate-900 shadow dark:shadow-gray-800">
+
+        <!-- Submit button -->
+        <button type="submit"
+                class="py-2 px-5 inline-block font-semibold tracking-wide align-middle duration-500 text-base text-center absolute top-[2px] end-[3px] h-[46px] bg-primary hover:bg-indigo-700 border border-primary hover:border-indigo-700 text-white rounded-full">
+          Check <i class="uil uil-arrow-right"></i>
+        </button>
+      </form>
+    </div>
+
+    <!-- Example url -->
+    <p><span class="text-slate-400 font-medium">Ex: www.mundaly.com</span></p>
+
+  </div>
+</div>

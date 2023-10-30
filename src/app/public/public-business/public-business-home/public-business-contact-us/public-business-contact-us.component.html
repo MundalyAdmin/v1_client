@@ -1,0 +1,21 @@
+<div class="container relative py-24 bg-gradient-to-br from-slate-200 via-secondary/30 to-primary/40">
+  <div class="grid grid-cols-1 text-center">
+    <h6 class="text-primary text-sm font-bold mb-2">Ready to make data-driven stakeholder engagement possible?</h6>
+    <h3 class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">Let's talk.</h3>
+
+    <p class="text-slate-400 max-w-xl mx-auto">Start working with Mundaly. <br> The globally trusted community driven
+      platform</p>
+
+    <div class="subcribe-form flex justify-center mt-6 mb-3">
+      <form class="relative w-2/3" [formGroup]="form" (submit)="create()">
+        <input type="email" id="subcribe" name="email"
+               formControlName="email"
+               class="py-4 pe-40 ps-6 w-full h-[50px] outline-none text-black dark:text-white rounded-full bg-white dark:bg-slate-900 shadow dark:shadow-gray-800"
+               placeholder="Your Email Address :">
+        <button type="submit"
+                class="py-2 px-5 inline-block font-semibold tracking-wide align-middle duration-500 text-base text-center absolute top-[2px] end-[3px] h-[46px] bg-primary hover:bg-indigo-700 border border-primary hover:border-indigo-700 text-white rounded-full">Join
+          our waitlist <i class="uil uil-arrow-right"></i></button>
+      </form><!--end form-->
+    </div>
+  </div><!--end grid-->
+</div>

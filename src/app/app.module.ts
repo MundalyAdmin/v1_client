@@ -1,34 +1,20 @@
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PublicComponent } from './public/public.component';
-import { HomeComponent } from './public/home/home.component';
-import { HomeHeroSectionComponent } from './public/home/home-hero-section/home-hero-section.component';
-import { HomeNavbarComponent } from './public/home/home-navbar/home-navbar.component';
-import { HomeCategoryListComponent } from './public/home/home-category-list/home-category-list.component';
-import { HomeCompanyListComponent } from './public/home/home-company-list/home-company-list.component';
-import { HomeAboutUsComponent } from './public/home/home-about-us/home-about-us.component';
-import { HomeFooterComponent } from './public/home/home-footer/home-footer.component';
+
+import { AppInjector } from './shared/services';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PublicComponent,
-    HomeComponent,
-    HomeHeroSectionComponent,
-    HomeNavbarComponent,
-    HomeCategoryListComponent,
-    HomeCompanyListComponent,
-    HomeAboutUsComponent,
-    HomeFooterComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, SharedModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+  constructor(injector: Injector) {
+    AppInjector.injector = injector;
+  }
+}

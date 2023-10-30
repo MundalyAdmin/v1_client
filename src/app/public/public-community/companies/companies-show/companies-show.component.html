@@ -1,0 +1,55 @@
+<section class="relative md:pb-24 pb-16 " *ngIf="single && !loading">
+  <!-- Hero -->
+  <app-companies-show-hero></app-companies-show-hero>
+
+  <!-- Content -->
+  <div class=" relative mt-16 container">
+    <div class="grid  grid-cols-1 gap-[30px]">
+      <!-- Main content -->
+      <div
+           class="group col-span-2 relative overflow-hidden bg-white dark:bg-slate-900 rounded-md shadow dark:shadow-gray-800 hover:shadow-lg dark:hover:shadow-gray-800 duration-500 ease-in-out">
+
+        <!-- Tab list -->
+        <div class="border-b border-gray-200 dark:border-gray-700">
+          <ul
+              class="text-md font-bold text-center text-gray-500 divide-x divide-gray-200 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
+            <!-- Overview -->
+            <li class="w-full">
+              <a [routerLink]="['overview']"
+                 [routerLinkActive]="['text-secondary', 'border-b-2', 'border-secondary' ]"
+                 class="inline-block w-full p-4 bg-white  rounded-l-lg hover:text-secondary focus:outline-none dark:bg-gray-700 dark:text-white"
+                 aria-current="page">
+                <i class="mdi mdi-information-outline mr-1"></i> Overview
+              </a>
+            </li>
+
+            <!-- About -->
+            <li class="w-full">
+              <a [routerLink]="['about']"
+                 [routerLinkActive]="['text-secondary', 'border-b-2', 'border-secondary' ]"
+                 class="inline-block w-full p-4 bg-white hover:text-secondary hover:bg-gray-50 focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"><i
+                   class="mdi mdi-domain mr-1"></i> About</a>
+            </li>
+
+          </ul>
+        </div>
+
+
+        <!-- Tab content -->
+        <div id="StarterContent" class="p-8">
+          <!-- Overview -->
+          <div class="" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+            <router-outlet></router-outlet>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Rating information (right sidebar)-->
+
+    </div>
+  </div>
+</section>
+
+
+<app-page-loading [height]="600" *ngIf="loading"></app-page-loading>
