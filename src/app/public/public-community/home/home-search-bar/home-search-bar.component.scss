@@ -5,14 +5,14 @@
   .input-container input {
     background-color: inherit !important;
     padding: 0 !important;
-    // font-size: 16px !important;
+    font-size: 24px !important;
   }
 
   .select2-container {
     @apply form-input h-full   items-center lg:rounded-t-sm lg:rounded-e-none lg:rounded-b-none lg:rounded-s-sm lg:outline-0 w-full  bg-gray-50 dark:bg-slate-800 border-0 focus:ring-0;
 
     display: flex !important;
-    font-size: 14px !important;
+    font-size: 24px !important;
   }
 
   .selection {

@@ -17,6 +17,7 @@ module.exports = {
       "2xl": "1536px",
     },
     fontFamily: {
+      figtree: ['"Figtree", sans-serif'],
       nunito: ['"Nunito", sans-serif'],
       "cursive-alex": ['"Alex Brush", cursive'],
       "cursive-kaushan": ['"Kaushan Script", cursive'],
@@ -42,10 +43,13 @@ module.exports = {
           DEFAULT: "#2C2A80",
           light: "#4f46e5",
           dark: "#2C2A80",
+          lighter: "#DCE5FE",
         },
         secondary: {
           DEFAULT: "#22CDB8",
           dark: "#1daf9e",
+          light: "#21CEB9",
+          lighter: "#D2F7FF",
         },
         "impact-fidelity": "#2A804C",
         "product-service-fidelity": "#8E8DD4",
