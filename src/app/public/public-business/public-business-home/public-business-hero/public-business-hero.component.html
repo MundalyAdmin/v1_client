@@ -1,16 +1,22 @@
 <!-- Hero -->
-<section class="relative table w-full py-36 overflow-hidden bg-gradient-to-br from-slate-200 via-secondary/30 to-primary/40 dark:from-primary/40">
+<section class="relative table w-full py-36 overflow-hidden " style="height: 100vh;">
   <div class="container relative">
-    <div class="relative grid md:grid-cols-12 grid-cols-1 items-center mt-10 gap-[30px]">
+    <div class="relative grid md:grid-cols-12 grid-cols-1 items-center mt-16 gap-[30px]">
       <div class="md:col-span-6">
         <div class="md:me-8">
-          <h4 class="font-bold lg:leading-normal leading-normal text-4xl lg:text-5xl mb-5 text-black dark:text-white relative">Proactively verify
-            <span class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-secondary relative inline-block"><span
+          <h4 class="font-bold lg:leading-normal leading-normal text-[58px] mb-5 text-primary dark:text-white relative">Proactively verify
+            <span class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-[#A6EBE3] relative inline-block"><span
                     class="relative text-white"> your impact</span></span>
           </h4>
-          <p class="text-slate-400 text-lg max-w-xl">Predict and Verify the impact of your products, services and sustainability programs.</p>
+          <p class="text-primary text-[28px] max-w-2xl mb-6">Predict and Verify the impact of your products, services and sustainability programs.
+          </p>
 
-          <div class="subcribe-form mt-6 mb-3">
+          <div class=" mt-6 mb-3">
+            <a [routerLink]="['for-business']"
+               class="lightbox py-5 px-7  inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-[#A6EBE3] border-primary text-[20px] text-primary rounded-full">Book
+              a demo</a>
+          </div>
+          <!-- <div class="subcribe-form mt-6 mb-3">
             <form class="relative max-w-xl" [formGroup]="form" (submit)="create()">
               <input type="email" id="subcribe" name="email"
                      formControlName="email"
@@ -19,53 +25,62 @@
               <button type="submit"
                       class="py-2 px-5 inline-block font-semibold tracking-wide align-middle duration-500 text-base text-center absolute top-[2px] end-[3px] h-[46px] bg-primary hover:bg-indigo-700 border border-primary hover:border-indigo-700 text-white rounded-full">Join
                 waitlist <i class="uil uil-arrow-right"></i></button>
-            </form><!--end form-->
-          </div>
+            </form>
+          </div> -->
           <!-- <span class="text-slate-400 font-medium">Looking for help? <a href="" class="text-primary">Get in touch with us</a></span> -->
         </div>
 
       </div><!--end col-->
 
-      <div class="md:col-span-6">
-        <div class="relative">
-          <div class="relative rounded-xl">
-            <div class="w-full py-48 bg-cover bg-no-repeat bg-top jarallax"
-                 style="background-image: url('assets/images/business/dashboard.png');"
-                 data-jarallax data-speed="0.5"></div>
-          </div>
 
-          <!-- <div
-               class="absolute flex justify-between items-center md:bottom-10 bottom-5 md:-start-16 p-4 rounded-lg shadow-md dark:shadow-gray-800 bg-white dark:bg-slate-900 w-60 m-3">
-            <div class="flex items-center">
-              <div
-                   class="flex items-center justify-center h-[65px] min-w-[65px] bg-primary/5 text-primary text-center rounded-full me-3">
-                <i class="h-6 w-6 uil uil-trees"></i>
-              </div>
-              <div class="flex-1">
-                <h6 class="text-slate-400">Headline risk </h6>
-                <p class="text-xl font-bold"><span class="counter-value" data-target="4.7">1</span></p>
-              </div>
-            </div>
-
-            <span class="text-emerald-600 mt-2"><i class="uil uil-chart-line"></i> 95%</span>
-          </div> -->
-
-          <!-- <div
-               class="absolute xl:top-20 top-40 xl:-end-20 lg:-end-10 -end-1 p-4 rounded-lg shadow-md dark:shadow-gray-800 bg-white dark:bg-slate-900 w-60 m-3">
-            <h5 class="text-xl font-semibold mb-3">Assess your community perception</h5>
-            <div class="flex justify-between mt-3 mb-2">
-              <span class="text-slate-400"> Perception index</span>
-              <span class="text-slate-400">84%</span>
-            </div>
-            <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-[6px]">
-              <div class="bg-primary h-[6px] rounded-full" style="width: 84%"></div>
-            </div>
-          </div> -->
-        </div>
-      </div><!--end col-->
     </div><!--end grid-->
+
+
+  </div>
+
+  <div class="w-[316px] h-[1151px] opacity-80 mix-blend-color-burn bg-teal-400 rounded-full blur-[400px] absolute top-[-333px] left-[-58px]"></div>
+  <div class="w-[337px] h-[1151px] opacity-80 mix-blend-color-burn bg-violet-950 rounded-full blur-[400px] absolute right-[-10.5rem] top-[10rem]">
+  </div>
+  <div style="width: 38rem;
+    height: 28rem; " class="absolute top-[140px] right-[120px] z-[-2]">
+    <img src="assets/images/business/dashboard.png" alt="">
   </div>
 
 
+  <!-- Problem -->
+  <div class="mt-40 mb-44 flex flex-col container items-center">
+    <h2 class="text-4xl text-center text-primary font-bold">
+      What we can solve for your business
+    </h2>
+    <h4 class="text-center text-2xl text-primary mt-5 font-medium">See what businesses we have supported</h4>
+
+
+    <div
+         class="w-full  mt-10 pt-8 pb-7  bg-gradient-to-r from-primary to-slate-900 rounded-3xl shadow border flex-col justify-center items-center gap-2.5 inline-flex">
+      <div class="w-full px-20 justify-between items-start inline-flex">
+        <div class="w-64  py-5 flex-col justify-center items-center gap-4 inline-flex">
+          <div class="self-stretch text-center text-slate-50 text-5xl mb-2 font-extrabold ">100+</div>
+          <div class="self-stretch opacity-80 text-center text-slate-50 text-[16px] font-normal ">Billions of investment lost due to
+            subjective & biased data</div>
+        </div>
+        <div class="w-64 py-5 flex-col justify-center items-center gap-4 inline-flex">
+          <div class="self-stretch text-center text-slate-50 text-5xl mb-2 font-extrabold ">10+</div>
+          <div class="self-stretch opacity-80 text-center text-slate-50 text-[16px] font-normal ">Hours of sorting and reviewing pdf
+            reports
+            from grantees</div>
+        </div>
+        <div class="w-64 py-5 flex-col justify-center items-center gap-4 inline-flex">
+          <div class="self-stretch text-center text-slate-50 text-5xl mb-2 font-extrabold ">200K+</div>
+          <div class="self-stretch opacity-80 text-center text-slate-50 text-[16px] font-normal ">Paid by corporates to 3rd party
+            research
+            agencies to verify grantee reported income</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- See what communities think about your business -->
+  <app-public-business-check-community-reviews></app-public-business-check-community-reviews>
 
 </section>
