@@ -1,79 +1,117 @@
 <ng-container *ngIf="single">
-  <!-- Scale rating -->
-  <div class="grid grid-cols-1">
-    <div class="grid grid-cols-1 gap-2">
-      <div class="px-16 py-8 rounded-xl bg-primary text-white">
-        <!-- Title -->
-        <h5 class="text-xl font-medium">Impact Score:</h5>
+  <!-- Overview -->
+  <div class="overview mb-4">
+    <!-- Title -->
+    <h2 class="text-primary text-2xl font-semibold mb-5">Overview</h2>
 
-        <!-- Rating -->
-        <div class="flex justify-between items-center mt-4">
-          <span class="text-2xl font-medium">
-            4.58
+    <!-- Overview -->
+    <p class="text-primary  text-md leading-relaxed">
+      {{ single.name }} rating of <span class="font-bold text-primary">{{ single.scale?.rating | number: '1.1-2' }}</span>
+      stars from <span class="font-bold text-primary"> 500 reviews</span>, indicating that the Community they serve. For seven years, they’ve
+      piloted,
+      researched and used technology to pioneer the award-winning farm-for-impact model to prove that this is possible.
+    </p>
+  </div>
 
-            <!-- Number of starts -->
-            <i class="mdi text-secondary mdi-star-circle ms-2"></i>
-            <i class="mdi mdi-star-circle text-secondary"></i>
-            <i class="mdi mdi-star-circle text-secondary"></i>
-            <i class="mdi mdi-star-circle text-secondary"></i>
-            <i class="mdi mdi-star-circle text-secondary"></i>
-          </span>
 
-          <!-- Appreciation (grade) -->
-          <span class="bg-emerald-400 text-white text-md p-2 rounded">Recommended</span>
+  <!-- Impact stories -->
+  <div class="impact-stories">
+    <!-- Title -->
+    <h2 class="text-primary text-2xl font-semibold mt-10 ">Impact to the communities</h2>
+
+    <!-- Number of communites impacted -->
+    <p class="text-slate-400">2 communities impacted</p>
+
+
+    <!-- stories -->
+    <div class="grid grid-cols-2 gap-5 mt-3">
+      <!-- Story -->
+      <div class="max-w-sm bg-transparent border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <!-- Image header -->
+        <div class="h-[278px] rounded-t-lg bg-[url('assets/images/hero1.png')] bg-cover flex items-end px-2 pb-5">
+          <h2 class="text-white text-2xl font-bold">Tarkwa Breman Center of Excellence</h2>
         </div>
 
-        <!-- Feedback informations -->
-        <ul class="list-none mt-4">
+        <!-- Impact information  -->
+        <div class="px-5 py-3">
+          <!-- Link and number of impacted -->
+          <div class="flex flex-col gap-1 py-2 border-b">
+            <!-- Impact Link -->
+            <div class="flex">
+              <span class="font-semibold text-primary me-4">Impact link:</span>
+              <span class="text-secondary-dark">https://www.link.com</span>
+            </div>
 
-          <!-- Number of feedbacks -->
-          <li class="flex justify-between items-center">
-            <span class="text-slate-400 text-md">Number of survey respondents</span>
-            <span class="font-medium text-md">500</span>
-          </li>
+            <!-- Number of impacted -->
+            <div class="flex">
+              <span class="font-semibold text-primary me-4">Impact within community:</span>
+              <span class="text-secondary-dark">900 people</span>
+            </div>
+          </div>
 
-          <!-- Question answered -->
-          <li class="flex justify-between items-center mt-2">
-            <span class="text-slate-400 text-md">Questions answered</span>
-            <span class="font-medium text-md">72%</span>
-          </li>
+          <!-- The impact Provided -->
+          <div class="mt-4">
+            <!-- Title -->
+            <h2 class=" text-primary font-bold">The impact they provided: </h2>
 
-          <!-- Profile status -->
-          <li class="flex justify-between items-center mt-2">
-            <span class="text-slate-400 text-md">Profile status</span>
-            <span class="font-medium text-md">Unclaimed</span>
-          </li>
-        </ul>
+            <!-- Description -->
+            <p class="text-primary text-md">To date, the organization has established the Tarkwa Breman Center of Excellence – a campus that includes
+              a
+              girls’
+              school, medical clinic, and cocoa
+              farm – as a model to guide partner communities when investing cocoa revenue in education and healthcare improvements. </p>
+          </div>
+        </div>
       </div>
 
-      <div class="col-span-1">
-        <p class="text-slate-500 my-4 text-md leading-relaxed">
-          {{ single.name }} rating of <span class="font-bold text-primary">{{ single.scale?.rating | number: '1.1-2' }}</span>
-          stars from <span class="font-bold text-primary"> 500 reviews</span>, indicating that the Community they serve. For seven years, they’ve
-          piloted,
-          researched and used technology to pioneer the award-winning farm-for-impact model to prove that this is possible.
-        </p>
+      <!-- Story -->
+      <div class="max-w-sm bg-transparent border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <!-- Image header -->
+        <div class="h-[278px] rounded-t-lg bg-[url('assets/images/hero1.png')] bg-cover flex items-end px-2 pb-5">
+          <h2 class="text-white text-2xl font-bold">Tarkwa Breman Center of Excellence</h2>
+        </div>
 
+        <!-- Impact information  -->
+        <div class="px-5 py-3">
+          <!-- Link and number of impacted -->
+          <div class="flex flex-col gap-1 py-2 border-b">
+            <!-- Impact Link -->
+            <div class="flex">
+              <span class="font-semibold text-primary me-4">Impact link:</span>
+              <span class="text-secondary-dark">https://www.link.com</span>
+            </div>
 
-        <button data-modal-target="static-modal" data-modal-toggle="static-modal"
-                class="text-primary font-medium underline my-4 text-md leading-relaxed">
-          <i class="mdi mdi-account-voice me-1"></i> See impact stories
-        </button>
+            <!-- Number of impacted -->
+            <div class="flex">
+              <span class="font-semibold text-primary me-4">Impact within community:</span>
+              <span class="text-secondary-dark">900 people</span>
+            </div>
+          </div>
+
+          <!-- The impact Provided -->
+          <div class="mt-4">
+            <!-- Title -->
+            <h2 class=" text-primary font-bold">The impact they provided: </h2>
+
+            <!-- Description -->
+            <p class="text-primary text-md">To date, the organization has established the Tarkwa Breman Center of Excellence – a campus that includes
+              a
+              girls’
+              school, medical clinic, and cocoa
+              farm – as a model to guide partner communities when investing cocoa revenue in education and healthcare improvements. </p>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 
-  <!-- Overview Review -->
-  <!-- <div class="grid grid-cols-1 mt-5">
-    <p class="text-slate-500 mb-4 leading-relaxed">
-      {{ single.name }} rating of <span class="font-bold text-primary">{{ single.scale?.rating | number: '1.1-2' }}</span>
-      stars from <span class="font-bold text-primary"> 500 reviews</span>, indicating that the Community they serve. For seven years, they’ve piloted,
-      researched and used technology to pioneer the award-winning farm-for-impact model to prove that this is possible.
-    </p>
-  </div> -->
+  <!-- <button data-modal-target="static-modal" data-modal-toggle="static-modal"
+          class="text-primary font-medium underline my-4 text-md leading-relaxed">
+    <i class="mdi mdi-account-voice me-1"></i> See impact stories
+  </button> -->
 
-  <!-- Similar organizations  -->
-  <app-companies-show-overview-other-organizations></app-companies-show-overview-other-organizations>
+
 
 </ng-container>
 
