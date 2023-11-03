@@ -5,14 +5,14 @@
       <div class="max-w-[500px] w-full m-auto p-6 bg-white dark:bg-slate-900 shadow-md dark:shadow-gray-800 rounded-md">
         <!-- Title -->
         <div class="my-6  text-center " *ngIf="!company">
-          <h5 class="text-2xl font-bold"><span class="text-primary">Let Your Voice</span>
-            <span class="text-secondary"> Heard</span>
+          <h5 class="text-2xl font-bold"><span class="text-primary">Add your</span>
+            <span class="text-secondary"> Voice</span>
           </h5>
           <p class="text-slate-500 text-sm">Do the companies really do what they claim?</p>
         </div>
 
         <div class="my-6  text-center " *ngIf="company">
-          <h5 class="text-2xl font-bold"><span class="text-primary">Let Your Voice</span>
+          <h5 class="text-2xl font-bold"><span class="text-primary">Let your voice be</span>
             <span class="text-secondary"> Heard</span>
           </h5>
           <p class="text-slate-500 text-sm">Enter your email<br>
@@ -54,7 +54,7 @@
           <div class="mb-4">
             <button type="submit"
                     class="py-2 px-5 inline-block tracking-wide border align-middle duration-500 text-base text-center bg-primary hover:bg-indigo-700 border-primary hover:border-indigo-700 text-white rounded-md w-full"
-                    [disabled]="form.invalid">Done
+                    [disabled]="form.invalid">Submit
               <i class="uil uil-arrow-right" *ngIf="!loading"></i>
               <app-loading class="ms-1" *ngIf="loading"></app-loading>
             </button>
