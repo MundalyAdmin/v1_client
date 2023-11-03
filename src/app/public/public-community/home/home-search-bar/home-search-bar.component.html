@@ -1,18 +1,18 @@
-<div class="grid  grid-cols-1 shadow-md   rounded-lg p-0" id="reserve-form">
+<div class="grid  grid-cols-1 shadow-lg border h-full w-full  rounded-lg p-0" id="reserve-form">
   <form [formGroup]="form" (submit)="search()">
     <div class="registration-form relative items-center rounded text-dark text-start">
       <div
-           class="grid grid-cols-3 lg:gap-0 h-[76px]  divide-x-[2px] divide-primary lg:dark:divide-gray-700">
+           class="grid grid-cols-3 lg:gap-0 h-fit  divide-x-[2px] divide-primary lg:dark:divide-gray-700">
 
         <!-- Keyword -->
-        <div class="filter-search-form relative   px-8 py-2.5 bg-gray-50">
+        <div class="filter-search-form relative rounded-l-lg   px-8 py-2.5 bg-gray-50">
           <!-- Heading Icon -->
           <i
-             class="mdi mdi-briefcase-variant text-2xl absolute top-[48%] -translate-y-1/2 start-3 z-1 text-primary "></i>
+             class="mdi mdi-briefcase-variant text-xl absolute top-[50%] -translate-y-1/2 start-3 z-1 text-primary "></i>
 
           <!-- Keyword -->
           <div
-               class="h-full flex items-center px-5 ">
+               class="h-full flex items-center px-3 ">
             <!-- Autocompletion -->
             <ng-autocomplete
                              [data]="companyNames"
@@ -41,7 +41,7 @@
         <!-- Country -->
         <div class="filter-search-form relative">
           <i
-             class="mdi mdi-map-marker text-2xl absolute top-[48%] -translate-y-1/2 start-3 z-1 text-primary"></i>
+             class="mdi mdi-map-marker text-xl absolute top-[50%] -translate-y-1/2 start-3 z-1 text-primary"></i>
           <select2 [data]="countries" (update)="onCountrySelected($event)" [placeholder]="'Country'"
                    [displaySearchStatus]="'always'">
           </select2>
@@ -50,8 +50,8 @@
 
         <!-- Submit -->
         <button type="submit" id="search" name="search"
-                class="lightbox py-1.5 ps-5 text-xl  pe-2 inline-block  tracking-wide rounded-md align-middle duration-500 font-semi text-center bg-secondary hover:bg-secondary-lighter hover:border-secondary-lighter text-primary h-full w-full">
-          <i class="uil uil-search me-2 text-xl"></i> Search</button>
+                class="lightbox py-1.5 ps-5 text-base  pe-2 inline-block  tracking-wide rounded-md align-middle duration-500 font-semi text-center bg-secondary hover:bg-secondary-lighter hover:border-secondary-lighter text-primary h-full w-full">
+          <i class="uil uil-search me-2 text-lg"></i> Search</button>
       </div><!--end grid-->
     </div><!--end container-->
   </form>
