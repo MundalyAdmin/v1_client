@@ -1,31 +1,38 @@
 <section
-         class="relative table w-full  pt-36  overflow-hidden  dark:from-indigo-600/20  dark:to-yellow-500/20">
-  <div class="container relative mb-15">
-    <div class="grid grid-cols-1 ">
+         class="relative table w-full  pt-36 md:pt-44  overflow-hidden  dark:from-indigo-600/20  dark:to-yellow-500/20">
+  <div class="container relative ">
+    <div class="grid grid-cols-1 md:grid-cols-2 ">
 
-      <h4 class=" text-primary  leading-normal text-5xl  mb-4 font-medium"> Find <span class="font-extrabold">Impactful</span>
-        <br>
-        <span
-              class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-secondary relative inline-block">
-          <span class="typewrite text-white relative">
-            <app-typewriter [textList]="['Organizations', 'NGOs', 'Hospitals', 'Startups', 'Businesses']"></app-typewriter></span>
-        </span>
-        <br>
+      <div class="mb-12 max-w-2xl text-center md:text-start items-center">
+        <h4 class=" text-primary  md:text-5xl text-4xl md:leading-normal  leading-normal   mb-4 font-medium"> Find <span
+                class="font-extrabold">Impactful</span>
+          <br>
+          <span
+                class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-secondary relative inline-block">
+            <span class="typewrite text-white relative">
+              <app-typewriter [textList]="['Organizations', 'NGOs', 'Hospitals', 'Startups', 'Businesses']"></app-typewriter></span>
+          </span>
+          <br>
 
-      </h4>
+        </h4>
 
-      <p class="text-primary text-xl max-w-2xl mb-24">Rated by communities, not third party evaluators.<br>
-        Read reviews, write reviews and earn rewards.</p>
+        <p class="text-primary text-start text-lg md:text-xl mt-1 ">Rated by communities, not third party evaluators.<br>
+          Read reviews, write reviews and earn rewards.</p>
+      </div>
 
-
+      <div class=" md:h-[19rem] md:w-[28rem] w-full rounded-[12px] overflow-hidden justify-self-end md:mr-7">
+        <img src="assets/images/hero1.png" alt="" class="h-full w-full">
+      </div>
 
     </div>
 
-    <div class="mb-3 mt-24">
+    <div class=" mt-16 mb-4">
       <app-home-search-bar></app-home-search-bar>
     </div>
 
-    <div class="flex justify-between items-center  pt-14 pb-[26px] ">
+
+    <!-- Companies list -->
+    <div class=" justify-between items-center grid md:grid-cols-6 grid-cols-3 gap-y-3 pt-10 pb-[26px] ">
       <img class="h-9  " src="assets/images/partners/aterian.png" />
       <img class="h-17 " src="assets/images/partners/clinton.png" />
       <img class="h-17" src="assets/images/partners/victoria.png" />
@@ -47,9 +54,7 @@
   <div class="w-[337px] h-[1151px] opacity-80 mix-blend-color-burn bg-violet-950 rounded-full blur-[400px] absolute right-[-10.5rem] top-[10rem]">
   </div>
 
-  <div style="width: 28rem; height: 19rem; border-radius: 12px; overflow: hidden " class="absolute top-[165px] right-[250px]  ">
-    <img src="assets/images/hero1.png" alt="" class="h-full w-full">
-  </div>
+
 
 
   <!-- <div style="width: 25rem; height: 50rem; "

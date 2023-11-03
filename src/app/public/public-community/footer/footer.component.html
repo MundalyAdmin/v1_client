@@ -1,32 +1,34 @@
-<div class="w-full p-12 relative overflow-hidden">
+<div class="w-full md:p-12 relative overflow-hidden">
   <div
-       class=" w-full bg-gradient-to-r from-primary to-slate-900 rounded-[50px] shadow border py-20">
-    <div class="grid grid-cols-2  px-36">
+       class=" w-full bg-gradient-to-r from-primary to-slate-900 md:rounded-[50px] shadow border py-10 md:py-20">
+    <div class="grid  grid-cols-1 md:grid-cols-2 px-10 md:px-36">
       <div class="col-span-1 flex-col justify-start items-start gap-10 inline-flex">
-        <div class=" flex-col justify-center items-center  flex w-2/3">
-          <div class=" text-teal-100 text-3xl leading-[2.75rem] mb-7 font-bold ">Integrate, Align & Optimize your social value with us!</div>
-          <div class=" text-neutral-100 text-xl font-normal ">With Mundaly’s science-backed platform, You can now
+        <div class=" flex-col justify-center items-center  flex md:w-2/3">
+          <div class=" text-teal-100 md:text-3xl  text-2xl leading-[2.75rem] md:mb-7 mb-4 font-bold ">Integrate, Align & Optimize your social value
+            with us!
+          </div>
+          <div class=" text-neutral-100 md:text-xl text-lg font-normal ">With Mundaly’s science-backed platform, You can now
           </div>
         </div>
-        <div class="justify-start items-start gap-8 inline-flex">
-          <button class=" py-3 px-6 bg-teal-200 rounded-full text-primary text-lg font-normal  border border-primary">
+        <div class="justify-start items-start gap-8 md:inline-flex  hidden ">
+          <button class=" py-3 md:w-auto w-full px-6 bg-teal-200 rounded-full text-primary text-lg font-normal  border border-primary">
             Request for demo
           </button>
         </div>
       </div>
 
-      <div class="col-span-1 justify-between flex flex-col">
+      <div class="col-span-1 justify-between mt-10 md:mt-0 flex flex-col">
         <div class="grid grid-cols-2 mb-14 ">
-          <div class=" px-6 flex-col justify-center items-start gap-4 inline-flex">
-            <div class="text-center text-teal-100 text-xl font-bold ">For Businesses</div>
+          <div class=" md:px-6 flex-col justify-center items-start gap-4 inline-flex">
+            <div class="text-center text-teal-100 text-lg font-bold ">For Businesses</div>
             <div class="flex-col justify-start items-start gap-4 flex">
               <div class="text-center text-neutral-100 text-md font-light ">About Us</div>
               <div class="text-center text-neutral-100 text-md font-light ">Services</div>
               <div class="text-center text-neutral-100 text-md font-light ">Teams</div>
             </div>
           </div>
-          <div class=" px-6 flex-col justify-center justify-self-end  items-start gap-4 inline-flex ">
-            <div class="text-center text-teal-100 text-xl font-bold ">For Communities</div>
+          <div class=" md:px-6 flex-col justify-center md:justify-self-end  items-start gap-4 inline-flex ">
+            <div class=" text-teal-100 text-lg font-bold ">For Communities</div>
             <div class="flex-col justify-start items-start gap-4 flex">
               <div class="text-center text-neutral-100 text-md font-light ">Terms of Services</div>
               <div class="text-center text-neutral-100 text-md font-light ">Privacy Policy</div>
@@ -35,17 +37,17 @@
           </div>
         </div>
 
-        <div class="  flex-col justify-end items-end gap-4 inline-flex">
-          <div class="text-center text-teal-100 text-lg font-bold ">Join Our Newsletter</div>
-          <div class="flex-col justify-start items-start gap-4 flex">
-            <div class="text-center text-neutral-100 text-md font-light ">Sign up and receive product updates and our blogs.</div>
+        <div class="  grid grid-cols-1 content-end items-end gap-4 ">
+          <div class="md:text-end text-teal-100 text-normal md:text-lg font-bold ">Join Our Newsletter</div>
+          <div class="flex-col justify-start items-end gap-4 md:flex hidden">
+            <div class="md:text-end text-neutral-100 text-md font-light ">Sign up and receive product updates and our blogs.</div>
           </div>
-          <form class="relative w-[627px] "><input
+          <form class="relative md:w-[627px]w-full "><input
                    type="email" id="subcribe" formcontrolname="websiteUrl" name="text" placeholder="Email address "
-                   class="py-4 px-5 text-lg w-full border-0 outline-none text-black dark:text-white rounded-full bg-white dark:bg-slate-900 shadow-lg dark:shadow-gray-800 outline-primary">
+                   class="md:py-4 md:px-5 md:text-lg text-md w-full border-0 outline-none text-black dark:text-white rounded-full bg-white dark:bg-slate-900 shadow-lg dark:shadow-gray-800 outline-primary">
             <button
                     type="submit"
-                    class="py-2 px-5 w-1/2 inline-block font-semibold tracking-wide align-middle duration-500 text-lg text-center absolute top-[0px] end-[0px] h-full bg-primary text-white rounded-r-full">
+                    class="py-2 md:px-5 md:w-1/2 w-1/3 inline-block font-semibold tracking-wide align-middle duration-500 text-sm md:text-lg text-center absolute top-[0px] end-[0px] h-full bg-primary text-white rounded-r-full">
               Join Waitlist
             </button>
           </form>
