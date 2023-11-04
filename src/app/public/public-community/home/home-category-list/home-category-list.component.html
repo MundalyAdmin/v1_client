@@ -17,7 +17,7 @@
       <!-- All categories -->
       <div class="lg:col-span-4 md:col-span-6 md:text-end hidden md:block">
         <div
-          class="py-3 px-5 bg-teal-200 hover:bg-teal-300 cursor-pointer rounded-[50px] shadow-inner border justify-center items-center gap-2.5 inline-flex"
+          class="py-3 px-5 bg-teal-200 hover:bg-teal-30 cursor-pointer rounded-[50px] shadow-inner border justify-center items-center gap-2.5 inline-flex"
         >
           <a
             [href]="['/categories']"
@@ -36,20 +36,22 @@
         *ngFor="let category of categoryService.data.slice(0, 5)"
         class="px-3 py-10 rounded-2xl shadow-lg dark:shadow-gray-800 group text-center bg-white dark:bg-slate-900 hover:bg-indigo-600/5 dark:hover:bg-indigo-600/5 duration-500 m-2"
       >
-        <div class="content mt-6">
-          <a
-            [routerLink]="['categories', category.id]"
-            class="title h5 text-lg font-medium hover:text-primary"
+        <a [routerLink]="['categories', category.id]" class="card-link">
+          <div
+            class="w-[84px] h-[84px] bg-indigo-600/5 group-hover:bg-indigo-600 border border-primary text-primary group-hover:text-white rounded-full text-4xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 duration-500 mx-auto"
           >
-            <div
-              class="w-[84px] h-[84px] bg-indigo-600/5 group-hover:bg-indigo-600 border border-primary text-primary group-hover:text-white rounded-full text-4xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 duration-500 mx-auto"
-            >
-              <i [ngClass]="category.icon"></i>
-              {{ category.name }}
-            </div>
-          </a>
-          <!-- <p class="text-slate-400 mt-3">{{ category.companies?.length }}</p> -->
-        </div>
+            <i [ngClass]="category.icon"></i>
+          </div>
+
+          <div class="content mt-6">
+            <a
+              [routerLink]="['categories', category.id]"
+              class="title h5 text-lg font-medium hover:text-primary"
+              >{{ category.name }}
+            </a>
+            <!-- <p class="text-slate-400 mt-3">{{ category.companies?.length }}</p> -->
+          </div>
+        </a>
       </div>
     </div>
   </div>
