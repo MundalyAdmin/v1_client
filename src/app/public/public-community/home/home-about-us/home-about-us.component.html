@@ -24,13 +24,12 @@
             third-party registries.
           </p>
 
-          <!-- Button -->
-          <a
-            [routerLink]="['/book-demo']"
-            class="z-20 px-7 py-3 w-full cursor-pointer hover:bg-secondary-dark md:w-auto bg-secondary rounded-full font-semibold border text-primary border-violet-950 justify-center gap-2.5 text-xl"
-          >
-            Learn more
-          </a>
+          <!-- Book a demo button -->
+          <div class="mt-6 mb-3 hidden md:block">
+            <a [routerLink]="['/book-demo']"
+              class="lightbox w-full cursor-pointer hover:bg-secondary-dark py-3 px-7 w-auto inline-block font-semibold tracking-wide border align-middle duration-500 text-center bg-secondary hover:bg-secondary-dark border-primary text-lg text-primary rounded-full">Learn
+              more</a>
+          </div>
         </div>
 
         <div
@@ -70,11 +69,12 @@
         Ready to experience the benefits of Mundaly? Request a demo now, and our
         team will guide you through the tool's capabilities.
       </p>
-      <div class="mt-6">
-        <a [routerLink]="['/book-demo']"
-          class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-primary hover:bg-indigo-700 border-impabg-impact-fidelity hover:border-indigo-700 text-white rounded-full"><i
-            class="uil uil-phone align-middle me-2"></i> Request a demo</a>
-      </div>
+    <!-- Book a demo button -->
+    <div class="mt-6">
+      <a [routerLink]="['/book-demo']"
+        class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-primary hover:bg-indigo-700 border-impabg-impact-fidelity hover:border-indigo-700 text-white rounded-full"><i
+          class="uil uil-phone align-middle me-2"></i> Request a demo</a>
+    </div>
     </div>
     </div>
   </div>
