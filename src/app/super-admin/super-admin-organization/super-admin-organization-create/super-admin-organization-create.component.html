@@ -47,6 +47,14 @@
       </select2>
     </div>
 
+    <!-- tags -->
+    <div class="mb-6 ">
+      <label for="tags" class="block mb-2 text-sm font-semibold text-primary dark:text-white">Tags <app-loading
+                     *ngIf="isLoading.tagOrganizations"></app-loading></label>
+      <select2 id="tags" [data]="tagOrganizations" (update)="onSelectItem($event, 'tags', true)" [placeholder]="'Select tags'"
+               [displaySearchStatus]="'always'" [multiple]="true">
+      </select2>
+    </div>
 
     <!-- Email -->
     <div class="mb-6">
@@ -56,22 +64,8 @@
              placeholder="email@organization.com" required>
     </div>
 
-    <!-- Phone number -->
-    <div class="mb-6">
-      <label for="phone" class="block mb-2 text-sm font-semibold text-primary dark:text-white">Phone number</label>
-      <input type="tel" id="phone" formControlName="phone_number"
-             class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-             placeholder="+233555555555" required>
-    </div>
 
-    <!-- tags -->
-    <div class="mb-6 col-span-2">
-      <label for="tags" class="block mb-2 text-sm font-semibold text-primary dark:text-white">Tags <app-loading
-                     *ngIf="isLoading.tagOrganizations"></app-loading></label>
-      <select2 id="tags" [data]="tagOrganizations" (update)="onSelectItem($event, 'tags', true)" [placeholder]="'Select tags'"
-               [displaySearchStatus]="'always'" [multiple]="true">
-      </select2>
-    </div>
+
 
     <!-- Country -->
     <div class="mb-6">

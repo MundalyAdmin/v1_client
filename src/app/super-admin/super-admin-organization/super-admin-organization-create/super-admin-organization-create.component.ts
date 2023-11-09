@@ -64,7 +64,6 @@ export class SuperAdminOrganizationCreateComponent
       sector_organization_id: [null, Validators.required],
       tags: [[], Validators.required],
       email: [null, Validators.required],
-      phone_number: [null, Validators.required],
       website: [null, Validators.required],
       location: [null, Validators.required],
       creator_id: [this.authService.user.id, Validators.required],
