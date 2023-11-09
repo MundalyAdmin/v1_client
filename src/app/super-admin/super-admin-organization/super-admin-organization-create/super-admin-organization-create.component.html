@@ -1,0 +1,121 @@
+<form [formGroup]="form" (submit)="create()">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    <!-- Name -->
+    <div class="mb-6">
+      <label for="name" class="block mb-2 text-sm font-semibold text-primary dark:text-white">Name</label>
+      <input type="text" id="name" formControlName="name"
+             class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark :border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+             placeholder="Organization LTD" required>
+    </div>
+
+    <!-- Website -->
+    <div class="mb-6">
+      <label for="website" class="block mb-2 text-sm font-semibold text-primary dark:text-white">Website</label>
+      <input type="url" id="website" formControlName="website"
+             class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+             placeholder="https://organization.com"
+             required>
+    </div>
+
+    <!-- Logo -->
+    <div class="mb-6 col-span-2">
+      <label for="website" class="block mb-2 text-sm font-semibold text-primary dark:text-white">Logo</label>
+      <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+             accept="image/*"
+             (change)="onFileChanged($event, 'logo')"
+             aria-describedby="user_avatar_help" id="user_avatar" type="file">
+      <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">The logo should not exceed 2MB</div>
+
+    </div>
+
+    <!-- Type -->
+    <div class="mb-6">
+      <label for="type" class="block mb-2 text-sm font-semibold text-primary dark:text-white">Type <app-loading
+                     *ngIf="isLoading.typeOrganizations"></app-loading></label>
+      <select2 id="type" [data]="typeOrganizations" (update)="onSelectItem($event, 'type_organization_id')" [placeholder]="'Select type'"
+               [displaySearchStatus]="'always'">
+      </select2>
+    </div>
+
+
+    <!-- Sector -->
+    <div class="mb-6">
+      <label for="sector" class="block mb-2 text-sm font-semibold text-primary dark:text-white">Sector <app-loading
+                     *ngIf="isLoading.sectorOrganizations"></app-loading></label>
+      <select2 id="sector" [data]="sectorOrganizations" (update)="onSelectItem($event, 'sector_organization_id')" [placeholder]="'Select sector'"
+               [displaySearchStatus]="'always'">
+      </select2>
+    </div>
+
+
+    <!-- Email -->
+    <div class="mb-6">
+      <label for="email" class="block mb-2 text-sm font-semibold text-primary dark:text-white">Email </label>
+      <input type="email" id="email" formControlName="email"
+             class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+             placeholder="email@organization.com" required>
+    </div>
+
+    <!-- Phone number -->
+    <div class="mb-6">
+      <label for="phone" class="block mb-2 text-sm font-semibold text-primary dark:text-white">Phone number</label>
+      <input type="tel" id="phone" formControlName="phone_number"
+             class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+             placeholder="+233555555555" required>
+    </div>
+
+    <!-- tags -->
+    <div class="mb-6 col-span-2">
+      <label for="tags" class="block mb-2 text-sm font-semibold text-primary dark:text-white">Tags <app-loading
+                     *ngIf="isLoading.tagOrganizations"></app-loading></label>
+      <select2 id="tags" [data]="tagOrganizations" (update)="onSelectItem($event, 'tags', true)" [placeholder]="'Select tags'"
+               [displaySearchStatus]="'always'" [multiple]="true">
+      </select2>
+    </div>
+
+    <!-- Country -->
+    <div class="mb-6">
+      <label for="country" class="block mb-2 text-sm font-semibold text-primary dark:text-white">Country <app-loading
+                     *ngIf="isLoading.countries"></app-loading></label>
+      <select2 id="country" [data]="countries" (update)="onSelectItem($event, 'country_id')" [placeholder]="'Select country'"
+               [displaySearchStatus]="'always'">
+      </select2>
+    </div>
+
+    <!-- location -->
+    <div class="mb-6">
+      <label for="location" class="block mb-2 text-sm font-semibold text-primary dark:text-white">Location</label>
+      <input type="text" id="location" formControlName="location"
+             class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+             placeholder="East Legon, Accra" required>
+    </div>
+
+    <!-- About -->
+    <div class="mb-6 col-span-2">
+      <label for="about" class="block mb-2 text-sm font-semibold text-primary dark:text-white">About</label>
+      <textarea id="about" rows="4"
+                formControlName="about"
+                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Leave a comment..."></textarea>
+
+    </div>
+
+
+
+    <!-- <div class="flex items-start mb-6 col-span-2">
+      <div class="flex items-center h-5">
+        <input id="remember" type="checkbox" value=""
+               class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+               required>
+      </div>
+      <label for="remember" class="ml-2 text-sm font-semibold text-primary dark:text-gray-300">Remember me</label>
+    </div> -->
+  </div>
+
+  <div class="flex justify-end">
+    <button type="submit"
+            [disabled]="form.invalid || loading"
+            class="text-white disabled:cursor-not-allowed disabled:bg-primary-light disabled:text-gray-100 bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-primary dark:focus:ring-blue-800">Submit
+      <app-loading *ngIf="loading"></app-loading> </button>
+  </div>
+</form>
