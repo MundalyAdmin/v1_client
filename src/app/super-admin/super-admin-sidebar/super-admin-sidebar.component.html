@@ -1,0 +1,37 @@
+<aside id="logo-sidebar"
+       class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-primary text-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+       aria-label="Sidebar">
+  <div class="h-full px-3 pb-4 overflow-y-auto bg-primary text-white dark:bg-gray-800">
+    <ul class="space-y-2 font-medium">
+      <li>
+        <a [routerLink]="['organizations']"
+           class="flex items-center p-2 text-lg text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+          <span><i class="mdi mdi-domain"></i></span>
+          <span class="ml-3">Organization</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['waitlist']"
+           class="flex items-center p-2 text-lg text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+          <span><i class="mdi mdi-list-box-outline"></i></span>
+          <span class="ml-3">Waitlist</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['team']"
+           class="flex items-center p-2 text-lg text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+          <span><i class="mdi mdi-account-group-outline"></i></span>
+          <span class="ml-3">Team</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['settings']"
+           class="flex items-center p-2 text-lg text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+          <span><i class="mdi mdi-cog"></i></span>
+          <span class="ml-3">Settings</span>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</aside>
