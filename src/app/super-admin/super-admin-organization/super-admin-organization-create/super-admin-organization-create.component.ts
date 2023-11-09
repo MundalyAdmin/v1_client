@@ -156,7 +156,13 @@ export class SuperAdminOrganizationCreateComponent
     this.organizationService.store(this.formData).subscribe({
       next: () => {
         this.loading = false;
+
+        // Alert Success
         this.helper.notification.alertSuccess();
+
+        // Reset forms
+        this.form.reset();
+        this.formData = new FormData();
       },
       error: () => {
         this.loading = false;
