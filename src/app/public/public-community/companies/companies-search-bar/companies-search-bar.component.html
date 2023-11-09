@@ -10,20 +10,18 @@
 
                 <!-- By keywords -->
                 <div class="filter-search-form relative border">
-                  <i
-                     class="uil uil-briefcase-alt absolute top-[48%] -translate-y-1/2 start-3 z-1 text-primary text-[20px]"></i>
-                  <div
-                       class="form-input lg:rounded-t-sm lg:rounded-e-none lg:rounded-b-none lg:rounded-s-sm lg:outline-0 w-full filter-input-box bg-gray-50 dark:bg-slate-800 border-0 focus:ring-0">
+                  <i class="uil uil-briefcase-alt absolute top-[48%] -translate-y-1/2 start-3 z-1 text-primary text-[20px]"></i>
+                  <div class="pl-[52px] form-input rounded-t-sm outline-0 filter-input-box bg-gray-50 dark:bg-slate-800 border-0 focus:ring-0">
                     <ng-autocomplete
-                                     [data]="companyNames"
-                                     [isLoading]="loading"
-                                     [searchKeyword]="'name'"
-                                     formControlName="keyword"
-                                     placeholder="Company"
-                                     (inputChanged)="getCompanyNames($event)"
-                                     historyIdentifier="company"
-                                     [itemTemplate]="itemTemplate"
-                                     [notFoundTemplate]="notFoundTemplate">
+                                      [data]="companyNames"
+                                      [isLoading]="loading"
+                                      [searchKeyword]="'name'"
+                                      formControlName="keyword"
+                                      placeholder="Company"
+                                      (inputChanged)="getCompanyNames($event)"
+                                      historyIdentifier="company"
+                                      [itemTemplate]="itemTemplate"
+                                      [notFoundTemplate]="notFoundTemplate">
                     </ng-autocomplete>
 
                     <ng-template #itemTemplate let-item>
@@ -38,8 +36,7 @@
 
                 <!-- By Country -->
                 <div class="filter-search-form relative border">
-                  <i
-                     class="uil uil-map-marker absolute top-[48%] -translate-y-1/2 start-3 z-1 text-primary text-[20px]"></i>
+                  <i class="uil uil-map-marker absolute top-[48%] -translate-y-1/2 start-3 z-1 text-primary text-[20px]"></i>
                   <select2 [data]="countries" [value]="selectedCountry" (update)="onCountrySelected($event)" [placeholder]="'Country'"
                            [displaySearchStatus]="'always'">
                   </select2>
