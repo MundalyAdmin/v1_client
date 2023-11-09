@@ -2,10 +2,9 @@
   position: fixed !important;
   top: 9% !important;
   width: 100vw !important;
-  padding-left: 200px !important;
 
   li {
-    &:hover > * {
+    &:hover > *, &:active > * {
       @apply text-indigo-600 scale-105;
     }
   }
