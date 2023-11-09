@@ -48,7 +48,7 @@ export class BusinessWaitlistComponent extends BaseCreateComponent<BusinessWaitl
   initForm() {
     this.form = this.fb.group({
       professional_email: ['', Validators.required],
-      company_name: ['', Validators.required],
+      organization_name: ['', Validators.required],
       name: ['', Validators.required],
       country_id: ['', Validators.required],
       job_title: ['', Validators.required],

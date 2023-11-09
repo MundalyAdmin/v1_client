@@ -1,0 +1,58 @@
+<section class="relative md:py-24 py-14 overflow-hidden">
+  <!-- Header -->
+  <div class="container relative">
+    <div class="grid md:grid-cols-12 grid-cols-1 pb-8 items-center">
+      <div class="lg:col-span-8 md:col-span-6 md:text-start text-center">
+        <!-- Title -->
+
+        <h3
+            class="mb-2 md:text-3xl text-2xl leading-normal text-primary font-semibold">
+          Explore All Categories
+        </h3>
+        <!-- Subtitles -->
+        <p class="text-slate-400 text-lg">Select a category</p>
+      </div>
+
+      <!-- All categories -->
+      <div class="lg:col-span-4 md:col-span-6 md:text-end hidden md:block">
+        <div
+             class="py-3 px-5 bg-teal-200 hover:bg-teal-300 cursor-pointer rounded-[50px] shadow-inner border justify-center items-center gap-2.5 inline-flex">
+          <a
+             [href]="['/categories']"
+             class="text-violet-950 text-lg font-normal font-['Roboto']">All Categories</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Category list -->
+  <div class="container relative">
+    <div class="grid md:grid-cols-5 grid-cols-2">
+      <div
+           *ngFor="let category of organizationService.data.slice(0, 5)"
+           class="rounded-2xl shadow-lg dark:shadow-gray-800 group text-center bg-white dark:bg-slate-900 hover:bg-indigo-600/5 dark:hover:bg-indigo-600/5 duration-500 m-2">
+        <a
+           [routerLink]="['categories', category.id]"
+           class="block w-full h-full px-3 py-10">
+          <div
+               class="w-[84px] h-[84px] bg-indigo-600/5 group-hover:bg-indigo-600 border border-primary text-primary group-hover:text-white rounded-full text-4xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 duration-500 mx-auto">
+            <i [ngClass]="category.icon"></i>
+          </div>
+
+          <div class="content mt-6">
+            <a
+               [routerLink]="['categories', category.id]"
+               class="title h5 text-lg font-medium hover:text-primary">{{ category.name }}
+            </a>
+            <!-- <p class="text-slate-400 mt-3">{{ category.companies?.length }}</p> -->
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!--
+  <div class="w-[316px] h-[1151px] opacity-80 mix-blend-color-burn bg-teal-400 rounded-full blur-[400px] absolute top-[-33px] left-[-58px]"></div>
+  <div class="w-[337px] h-[1151px] opacity-80 mix-blend-color-burn bg-violet-950 rounded-full blur-[400px] absolute right-[-10.5rem] top-[10rem]"> -->
+  <!-- </div> -->
+</section>

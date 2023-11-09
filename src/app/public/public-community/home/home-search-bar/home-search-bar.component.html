@@ -15,13 +15,13 @@
                class="h-full flex items-center px-3 ">
             <!-- Autocompletion -->
             <ng-autocomplete
-                             [data]="companyNames"
+                             [data]="organizationNames"
                              [isLoading]="loading"
                              [searchKeyword]="'name'"
                              formControlName="keyword"
-                             placeholder="Company"
-                             (inputChanged)="getCompanyNames($event)"
-                             historyIdentifier="company"
+                             placeholder="Organization"
+                             (inputChanged)="getOrganizationNames($event)"
+                             historyIdentifier="organization"
                              [itemTemplate]="itemTemplate"
                              [notFoundTemplate]="notFoundTemplate">
             </ng-autocomplete>
@@ -32,7 +32,7 @@
             </ng-template>
 
             <ng-template #notFoundTemplate let-notFound>
-              <a routerLink="/community-voice" class="text-primary text-lg   font-normal">Didn't find the company
+              <a routerLink="/community-voice" class="text-primary text-lg   font-normal">Didn't find the organization
                 you want? <span class="underline decoration-primary">Click Here</span> </a>
             </ng-template>
           </div>
