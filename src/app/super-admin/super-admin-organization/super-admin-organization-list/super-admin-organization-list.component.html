@@ -71,11 +71,33 @@
             </td>
 
             <!-- Actions -->
-            <td class="text-end border-t border-gray-100 dark:border-gray-800 p-4">
+            <td class=" border-t border-gray-100 dark:border-gray-800 p-4">
+              <!-- Details button -->
               <a href="invoice.html"
                  class="py-1 px-4 inline-block font-semibold tracking-wide border align-middle duration-500 text-sm  text-center bg-primary hover:bg-primary-dark border-secondary  text-white rounded-md">Details</a>
-              <a href="#"
-                 class="py-1 px-4 inline-block font-semibold tracking-wide border align-middle duration-500 text-sm text-center bg-secondary hover:bg-secondary-dark border-primary hover:border-primary-light text-primary  rounded-md ms-2">More</a>
+
+
+              <!-- More button -->
+              <button data-dropdown-toggle="dropdown"
+                      class="py-1 px-4 inline-block font-semibold tracking-wide border align-middle duration-500 text-sm text-center bg-secondary hover:bg-secondary-dark border-primary hover:border-primary-light text-primary  rounded-md ms-2">More</button>
+
+
+              <!-- Dropdown menu -->
+              <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                <ul class="py-2 text-sm text-primary dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                  <li>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                      <span><i class="me-1 mdi mdi-pencil-box-outline"></i></span> Update
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                      <span><i class="me-1 mdi mdi-delete-outline"></i></span> Delete
+                    </a>
+                  </li>
+
+                </ul>
+              </div>
             </td>
           </tr>
 
@@ -85,7 +107,7 @@
 
 
     <!-- Pagination -->
-    <div class="mt-5 flex items-center justify-between">
+    <!-- <div class="mt-5 flex items-center justify-between">
       <div>
         <a href="#"
            class="h-8 w-8 inline-flex items-center justify-center font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-800 border-gray-100 dark:border-gray-700 text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-full"><i
@@ -96,7 +118,7 @@
       </div>
 
       <span class="text-slate-400">Showing 1 - 8 out of 45</span>
-    </div>
+    </div> -->
   </ng-container>
 
 
