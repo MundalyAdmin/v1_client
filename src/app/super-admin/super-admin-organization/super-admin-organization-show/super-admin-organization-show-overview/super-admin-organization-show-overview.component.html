@@ -1,0 +1,112 @@
+<div class="grid grid-cols-1 gap-4" *ngIf="single">
+  <!-- About -->
+  <div class="p-6 relative rounded-md shadow dark:shadow-gray-700 bg-white dark:bg-slate-900">
+    <h5 class="text-xl font-semibold">{{ single.name }}</h5>
+
+    <p class="text-slate-400 mt-3" [innerHTML]="single.about"></p>
+  </div>
+
+
+  <!-- Basic informations and stories -->
+  <div class="grid lg:grid-cols-2 grid-cols-1 gap-6">
+    <!-- Basic informations -->
+    <div class="p-6 relative rounded-md shadow dark:shadow-gray-700 bg-white dark:bg-slate-900 h-fit">
+      <h5 class="text-xl font-semibold">Basic informations :</h5>
+      <div class="mt-6">
+        <!-- Type -->
+        <div class="flex items-center">
+          <span>
+            <i class="mdi mdi-shape-plus-outline text-slate-400 me-3 text-2xl"></i>
+          </span>
+          <div class="flex-1">
+            <h6 class="text-primary dark:text-white font-medium mb-0 text-md">Type :</h6>
+            <span class="text-slate-400 text-sm">{{ single.type_organization?.name }}</span>
+          </div>
+        </div>
+
+        <!-- Sector -->
+        <div class="flex items-center mt-3">
+          <span>
+            <i class="mdi mdi-factory text-slate-400 me-3 text-2xl"></i>
+          </span>
+          <div class="flex-1">
+            <h6 class="text-primary dark:text-white font-medium mb-0 text-md">Sector :</h6>
+            <span class="text-slate-400 text-sm">{{ single.sector_organization?.name }}</span>
+          </div>
+        </div>
+
+        <!-- Website -->
+        <div class="flex items-center mt-3">
+          <span>
+            <i class="mdi mdi-laptop text-slate-400 me-3 text-2xl"></i>
+          </span>
+          <div class="flex-1">
+            <h6 class="text-primary dark:text-white font-medium mb-0 text-md">Website :</h6>
+            <span class="text-slate-400 text-sm">{{ single.website }}</span>
+          </div>
+        </div>
+
+        <!-- Tags -->
+        <div class="flex items-center mt-3">
+          <span>
+            <i class="mdi mdi-tag-multiple text-slate-400 me-3 text-2xl"></i>
+          </span>
+          <div class="flex-1">
+            <h6 class="text-primary dark:text-white font-medium mb-0 text-md">Tags :</h6>
+            <span class="text-slate-400 text-sm">{{ single.tag_organizations![0].name }}</span>
+            <ng-container *ngFor="let tag of single.tag_organizations?.slice(0, 1)">, <span class="text-slate-400 text-sm">{{ tag.name
+                }}</span></ng-container>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="flex items-center mt-3">
+          <span>
+            <i class="mdi mdi-email-outline text-slate-400 me-3 text-2xl"></i>
+          </span>
+          <div class="flex-1">
+            <h6 class="text-primary dark:text-white font-medium mb-0 text-md">Email :</h6>
+            <p class="text-slate-400 mb-0 text-sm">{{ single.email }}</p>
+          </div>
+        </div>
+
+
+        <!-- Country -->
+        <div class="flex items-center mt-3">
+          <span>
+            <i class="mdi mdi-earth text-slate-400 me-3 text-2xl"></i>
+          </span>
+          <div class="flex-1">
+            <h6 class="text-primary dark:text-white font-medium mb-0 text-md">Country :</h6>
+            <span class="text-slate-400 text-sm">{{ single.country?.name }}</span>
+          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="flex items-center mt-3">
+          <span>
+            <i class="mdi mdi-map-marker-outline text-slate-400 me-3 text-2xl"></i>
+          </span>
+          <div class="flex-1">
+            <h6 class="text-primary dark:text-white font-medium mb-0 text-md">Location :</h6>
+            <span class="text-slate-400 text-sm">{{single.location }}</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Stories -->
+    <div class="p-6 relative rounded-md shadow dark:shadow-gray-700 bg-white dark:bg-slate-900 h-fit">
+      <app-super-admin-impact-story></app-super-admin-impact-story>
+    </div>
+  </div>
+
+</div>
+
+
+<!--
+<span class="text-slate-400 text-sm">html</a>, <span class="text-slate-400 text-sm">css</a>, <a href=""
+   class="text-slate-400 text-sm">js</a>,
+<a
+   href="" class="text-slate-400 text-sm">mysql</a> -->

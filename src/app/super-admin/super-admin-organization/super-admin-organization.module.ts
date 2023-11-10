@@ -8,6 +8,13 @@ import { SuperAdminOrganizationCreateComponent } from './super-admin-organizatio
 
 const routes: Routes = [
   {
+    path: ':id',
+    loadChildren: () =>
+      import(
+        './super-admin-organization-show/super-admin-organization-show.module'
+      ).then((module) => module.SuperAdminOrganizationShowModule),
+  },
+  {
     path: '',
     component: SuperAdminOrganizationComponent,
   },
