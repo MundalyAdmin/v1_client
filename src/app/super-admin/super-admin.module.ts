@@ -17,10 +17,19 @@ const routes: Routes = [
             './super-admin-organization/super-admin-organization.module'
           ).then((module) => module.SuperAdminOrganizationModule),
       },
-      // {
-      //   path: '',
-      //   redirectTo: './organizations',
-      // },
+      {
+        path: 'settings',
+        loadChildren: () =>
+          import('./super-admin-settings/super-admin-settings.module').then(
+            (module) => module.SuperAdminSettingsModule
+          ),
+      },
+
+      {
+        path: '',
+        redirectTo: 'organizations',
+        pathMatch: 'full',
+      },
     ],
   },
 ];

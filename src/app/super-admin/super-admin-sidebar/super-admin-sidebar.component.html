@@ -5,28 +5,32 @@
     <ul class="space-y-2 font-medium">
       <li>
         <a [routerLink]="['organizations']"
-           class="flex items-center p-2 text-lg text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+           [routerLinkActive]="'!text-primary bg-secondary'"
+           class="flex items-center p-2 text-lg text-white rounded-lg  hover:bg-secondary   group">
           <span><i class="mdi mdi-domain"></i></span>
           <span class="ml-3">Organization</span>
         </a>
       </li>
       <li>
         <a [routerLink]="['waitlist']"
-           class="flex items-center p-2 text-lg text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+           [routerLinkActive]="'!text-primary bg-secondary'"
+           class="flex items-center p-2 text-lg text-white rounded-lg  hover:bg-secondary hover:text-primary group">
           <span><i class="mdi mdi-list-box-outline"></i></span>
           <span class="ml-3">Waitlist</span>
         </a>
       </li>
       <li>
         <a [routerLink]="['team']"
-           class="flex items-center p-2 text-lg text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+           [routerLinkActive]="'!text-primary bg-secondary'"
+           class="flex items-center p-2 text-lg text-white rounded-lg  hover:bg-secondary hover:text-primary group">
           <span><i class="mdi mdi-account-group-outline"></i></span>
           <span class="ml-3">Team</span>
         </a>
       </li>
       <li>
         <a [routerLink]="['settings']"
-           class="flex items-center p-2 text-lg text-white rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+           [routerLinkActive]="'!text-primary bg-secondary'"
+           class="flex items-center p-2 text-lg text-white rounded-lg  hover:bg-secondary hover:text-primary group">
           <span><i class="mdi mdi-cog"></i></span>
           <span class="ml-3">Settings</span>
         </a>
