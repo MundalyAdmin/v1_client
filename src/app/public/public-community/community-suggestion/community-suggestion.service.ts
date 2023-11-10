@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from '../../../shared/services';
 import { CommunitySuggestion } from './community-suggestion.model';
-import { Company } from '../../../companies/companies.model';
+import { Organization } from '../../../organization/organization.model';
 import { ReplaySubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CommunitySuggestionService extends BaseService<CommunitySuggestion> {
-  private _company: Company | null = null;
-  company$ = new ReplaySubject<Company>(1);
+  private _organization: Organization | null = null;
+  organization$ = new ReplaySubject<Organization>(1);
 
-  get company() {
-    return this._company;
+  get organization() {
+    return this._organization;
   }
 
-  set company(company: Company | null) {
-    this._company = company;
-    if (this._company) this.company$.next(this._company);
+  set organization(organization: Organization | null) {
+    this._organization = organization;
+    if (this._organization) this.organization$.next(this._organization);
   }
   constructor() {
     super('community-suggestions');

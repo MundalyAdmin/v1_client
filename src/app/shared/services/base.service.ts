@@ -165,11 +165,11 @@ export abstract class BaseService<T = any> {
     return this.factory.put(`${this.endPoint}/${id}`, data).pipe(
       tap({
         next: (response) => {
-          this.updateItemInData(id, response);
-          this.lastItemEdited$.next(response);
+          this.updateItemInData(id, response.data);
+          this.lastItemEdited$.next(response.data);
 
           if (this._singleData) {
-            this.singleData = response;
+            this.singleData = response.data;
           }
         },
         error: (error) => this.errorResponseHandler(error),

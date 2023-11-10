@@ -1,0 +1,130 @@
+<div class="grid grid-cols-1 mt-6">
+  <!-- Liste of organization -->
+  <ng-container *ngIf="!loading && organizationService.data">
+
+    <div class="relative overflow-x-auto block w-full bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-md">
+      <table class="w-full text-start">
+        <!-- Table header -->
+        <thead class="text-base">
+          <tr>
+            <th class="text-start p-4 min-w-[128px]">Type</th>
+            <th class="text-start p-4 min-w-[192px]">Name</th>
+            <th class="text-center p-4 min-w-[200px]">Sector</th>
+            <th class="text-center p-4">Country</th>
+            <th class="text-center p-4 min-w-[150px]">Tags</th>
+            <th class="text-center p-4">Status</th>
+            <th class="text-end p-4 min-w-[200px]"></th>
+          </tr>
+        </thead>
+
+        <!-- Table body -->
+        <tbody>
+          <tr *ngFor="let organization of organizationService.data">
+            <!-- Type -->
+            <td class="text-start border-t border-gray-100 dark:border-gray-800 p-4">
+              {{ organization.type_organization?.name }}
+            </td>
+
+            <!-- Name -->
+            <td class="text-start border-t border-gray-100 dark:border-gray-800 p-4">
+              <a [routerLink]="[organization.id]" class="hover:text-secondary-dark">
+                <div class="flex items-center">
+                  <!-- Logo -->
+                  <img [src]="organization.logo_thumb" *ngIf="organization.logo_thumb" class="h-10 w-10 rounded-full shadow dark:shadow-gray-700"
+                       alt="">
+                  <img [src]="organization.logo" *ngIf="!organization.logo_thumb && organization.logo"
+                       class="h-10 w-10 rounded-full shadow dark:shadow-gray-700"
+                       alt="">
+                  <img src="https://placehold.co/200x200" *ngIf="!organization.logo_thumb && !organization.logo"
+                       class="h-10 w-10 rounded-full shadow dark:shadow-gray-700"
+                       alt="">
+                  <span class="ms-2 font-medium">{{ organization.name }}</span>
+                </div>
+              </a>
+            </td>
+
+            <!-- Sector -->
+            <td class="text-center border-t border-gray-100 dark:border-gray-800 p-4">
+              <span class="text-slate-400">{{ organization.sector_organization?.name }}</span>
+            </td>
+
+            <!-- Country -->
+            <td class="text-center border-t border-gray-100 dark:border-gray-800 p-4">
+              <span class="text-slate-400">{{ organization.country?.name }}</span>
+            </td>
+
+
+            <!-- Tags -->
+            <td class="text-center border-t border-gray-100 dark:border-gray-800 p-4">
+              <span class="bg-secondary text-primary text-sm me-1 font-semibold px-2.5 py-0.5 rounded"
+                    *ngFor="let tag of organization.tag_organizations?.slice(0, 2)">{{ tag.name
+                }}</span>
+            </td>
+
+            <!-- Status -->
+            <td class="text-center border-t border-gray-100 dark:border-gray-800 p-4">
+              <span class="bg-red-600/10 dark:bg-red-600/20 text-red-600 text-[12px] font-bold px-2.5 py-0.5 rounded h-5 ms-1"
+                    *ngIf="organization.profile_status_organization_id=== 1">Unclaimed</span>
+              <span class="bg-green-600/10 dark:bg-green-600/20 text-green-600 text-[12px] font-bold px-2.5 py-0.5 rounded h-5 ms-1"
+                    *ngIf="organization.profile_status_organization_id=== 2">Claimed</span>
+            </td>
+
+            <!-- Actions -->
+            <td class=" border-t border-gray-100 dark:border-gray-800 p-4">
+              <!-- Details button -->
+              <a [routerLink]="[organization.id]"
+                 class="py-1 px-4 inline-block font-semibold tracking-wide border align-middle duration-500 text-sm  text-center bg-primary hover:bg-primary-dark border-secondary  text-white rounded-md">Details</a>
+
+
+              <!-- More button -->
+              <button data-dropdown-toggle="dropdown"
+                      class="py-1 px-4 inline-block font-semibold tracking-wide border align-middle duration-500 text-sm text-center bg-secondary hover:bg-secondary-dark border-primary hover:border-primary-light text-primary  rounded-md ms-2">More</button>
+
+
+              <!-- Dropdown menu -->
+              <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                <ul class="py-2 text-sm text-primary dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                  <li>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                      <span><i class="me-1 mdi mdi-pencil-box-outline"></i></span> Update
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                      <span><i class="me-1 mdi mdi-delete-outline"></i></span> Delete
+                    </a>
+                  </li>
+
+                </ul>
+              </div>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+
+    <!-- Pagination -->
+    <!-- <div class="mt-5 flex items-center justify-between">
+      <div>
+        <a href="#"
+           class="h-8 w-8 inline-flex items-center justify-center font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-800 border-gray-100 dark:border-gray-700 text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-full"><i
+             class="mdi mdi-arrow-left"></i></a>
+        <a href="#"
+           class="h-8 w-8 inline-flex items-center justify-center font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-800 border-gray-100 dark:border-gray-700 text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-full"><i
+             class="mdi mdi-arrow-right"></i></a>
+      </div>
+
+      <span class="text-slate-400">Showing 1 - 8 out of 45</span>
+    </div> -->
+  </ng-container>
+
+
+  <!-- Loading -->
+  <app-page-loading *ngIf="loading"></app-page-loading>
+
+
+  <!-- Missing data template -->
+  <app-missing-data *ngIf="!loading && !organizationService.data"></app-missing-data>
+</div>

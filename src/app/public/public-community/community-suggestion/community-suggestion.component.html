@@ -4,14 +4,14 @@
     <div class="flex justify-center">
       <div class="max-w-[500px] w-full m-auto p-6 bg-white dark:bg-slate-900 shadow-md dark:shadow-gray-800 rounded-md">
         <!-- Title -->
-        <div class="my-6  text-center " *ngIf="!company">
+        <div class="my-6  text-center " *ngIf="!organization">
           <h5 class="text-2xl font-bold"><span class="text-primary">Add your</span>
             <span class="text-secondary"> Voice</span>
           </h5>
           <p class="text-slate-500 text-sm">Do the companies really do what they claim?</p>
         </div>
 
-        <div class="my-6  text-center " *ngIf="company">
+        <div class="my-6  text-center " *ngIf="organization">
           <h5 class="text-2xl font-bold"><span class="text-primary">Let your voice be</span>
             <span class="text-secondary"> Heard</span>
           </h5>
@@ -32,23 +32,23 @@
                    placeholder="johndoe@email.com">
           </div>
 
-          <!-- Company Name -->
-          <div class="mb-7" *ngIf="!company">
-            <label class="font-semibold" for="RegisterName"><i class="mdi mdi-office-building-outline me-1"></i>Company name:</label>
+          <!-- Organization Name -->
+          <div class="mb-7" *ngIf="!organization">
+            <label class="font-semibold" for="RegisterName"><i class="mdi mdi-office-building-outline me-1"></i>Organization name:</label>
             <input id="RegisterName" type="text"
-                   formControlName="company_name"
+                   formControlName="organization_name"
                    class="form-input mt-3 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-200 focus:border-primary dark:border-gray-800 dark:focus:border-primary focus:ring-0"
-                   placeholder="Company Ltd">
+                   placeholder="Organization Ltd">
           </div>
 
 
           <!-- Comapny Website -->
-          <div class="mb-7" *ngIf="!company">
-            <label class="font-semibold" for="RegisterName"><i class="mdi mdi-web me-1"></i>Company website:</label>
+          <div class="mb-7" *ngIf="!organization">
+            <label class="font-semibold" for="RegisterName"><i class="mdi mdi-web me-1"></i>Organization website:</label>
             <input id="RegisterName" type="url"
-                   formControlName="company_website"
+                   formControlName="organization_website"
                    class="form-input mt-3 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-200 focus:border-primary dark:border-gray-800 dark:focus:border-primary focus:ring-0"
-                   placeholder="www.company.com">
+                   placeholder="www.organization.com">
           </div>
 
           <div class="mb-4">
