@@ -1,0 +1,26 @@
+<ng-container *ngIf="impactStoryOrganizationService.data.length && !loading">
+  <div
+       class="flex duration-500 hover:scale-105 shadow dark:shadow-gray-700 hover:shadow-md dark:hover:shadow-gray-700 ease-in-out items-center p-4 rounded-md bg-white dark:bg-slate-900 mt-6 "
+       *ngFor="let story of impactStoryOrganizationService.data">
+
+    <!-- Image -->
+    <img [src]="story.image"
+         class="h-16 w-16 object-cover dark:bg-slate-800 shadow dark:shadow-gray-700 rounded-md" alt="">
+
+
+    <div class="w-auto  ms-4">
+      <h4 class=" text-md text-primary font-semibold">{{ story.title }}</h4>
+      <p class="text-slate-400 mb-0 text-sm"><span class="text-indigo-600">{{ story.link }}</span></p>
+      <p class="text-slate-400 mb-0 text-sm mt-3">
+        <a class="me-6  ">Edit <i class="mdi mdi-pencil-box-outline text-md text-primary "></i></a>
+        <a class="">Delete <i class="me-1 mdi mdi-delete-outline text-md text-red-800"></i></a>
+      </p>
+    </div>
+  </div>
+
+</ng-container>
+
+
+<app-page-loading *ngIf="loading"></app-page-loading>
+
+<app-missing-data *ngIf="!impactStoryOrganizationService.data.length && !loading"></app-missing-data>
