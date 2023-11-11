@@ -7,15 +7,15 @@
          class="rounded-full absolute shadow-md h-20 w-20 mx-auto block" style="    left: 7%; top: -20%;
     height: 6rem !important;
     width: 6rem !important;" [alt]="organization.name">
-    <!-- Name and category -->
+    <!-- Name and sector-organization -->
     <div class="mt-8 mb-4">
 
       <!-- Name -->
-      <a [routerLink]="['/companies', organization.id]" class="text-xl font-bold text-slate-600 hover:text-primary duration-500 block">{{
+      <a [routerLink]="['/organizations', organization.id]" class="text-xl font-bold text-slate-600 hover:text-primary duration-500 block">{{
         organization.name
         }}</a>
 
-      <!-- Category -->
+      <!-- Sector organization -->
       <span class="block text-lg text-slate-600">{{ organization.sector_organization?.name }} </span>
       <span class="block text-slate-400 text-sm">{{ organization.location }}, {{ organization.country?.name }}</span>
       <span class="block text-slate-600 text-sm"><i class="mdi mdi-star text-emerald-600 me-1"></i> 4.5
@@ -39,7 +39,7 @@
 
   <!-- CTA -->
   <div class="mt-4">
-    <a [routerLink]="['/companies', organization.id]"
+    <a [routerLink]="['/organizations', organization.id]"
        class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-primary hover:text-white rounded-md w-full">View
       details</a>
   </div>

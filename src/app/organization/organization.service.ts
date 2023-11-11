@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from '../shared/services';
 import { Organization } from './organization.model';
-import { map, tap } from 'rxjs';
+import { debounceTime, map, tap } from 'rxjs';
 import { ApiResponse } from '../shared/models/ApiResponse';
 import { OrganizationSearchData } from '../public/public-community/organization/organization-search-data.model';
 
@@ -10,12 +10,12 @@ import { OrganizationSearchData } from '../public/public-community/organization/
 })
 export class OrganizationService extends BaseService<Organization> {
   constructor() {
-    super('organization');
+    super('organizations');
   }
 
-  getBySectorOrganization(categoryId: number) {
+  getBySectorOrganization(sectorOrganizationId: number) {
     return this.factory
-      .get(`${this.endPoint}/sector-organization/${categoryId}`)
+      .get(`${this.endPoint}/sector-organizations/${sectorOrganizationId}`)
       .pipe(
         tap((response: ApiResponse<Organization>) => {
           this.data = response.data as Organization[];
@@ -31,7 +31,7 @@ export class OrganizationService extends BaseService<Organization> {
   }
 
   getSimilar(organizationId: number) {
-    return this.factory.get(`${this.endPoint}/similar/${organizationId}`).pipe(
+    return this.factory.get(`${this.endPoint}/random/${organizationId}`).pipe(
       tap((response: ApiResponse<Organization>) => {
         this.data = response.data as Organization[];
       }),

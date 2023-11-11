@@ -10,6 +10,7 @@ import {
 } from 'ng-select2-component';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-home-search-bar',
@@ -45,6 +46,14 @@ export class HomeSearchBarComponent
       keyword: ['', Validators.required],
       country_id: [null],
     });
+
+    // Debounce the search name request to avoid overloading the server
+    this.form.controls['keyword'].valueChanges
+      .pipe(debounceTime(500))
+      .subscribe((keyword) => {
+        keyword = keyword || '';
+        this.getOrganizationNames(keyword);
+      });
   }
 
   // Triggered when the user types a keyword
@@ -89,7 +98,7 @@ export class HomeSearchBarComponent
           : (this.form.controls['keyword'].value as { name: string }).name,
       country_id: this.form.controls['country_id'].value,
     };
-    this.router.navigate(['/organization/search'], {
+    this.router.navigate(['/organizations/search'], {
       queryParams: data,
     });
   }

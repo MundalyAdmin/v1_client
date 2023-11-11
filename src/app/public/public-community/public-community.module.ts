@@ -25,7 +25,7 @@ import { OrganizationSearchBarComponent } from './organization/organization-sear
 import { CommunitySuggestionComponent } from './community-suggestion/community-suggestion.component';
 import { CommunitySuggestionThanksComponent } from './community-suggestion/community-suggestion-thanks/community-suggestion-thanks.component';
 import { OrganizationShowOverviewOtherOrganizationsComponent } from './organization/organization-show/organization-show-overview/companies-show-overview-other-organization/organization-show-overview-other-organizations.component';
-import { HomeSectorOrganizationListComponent } from './home/home-category-list/home-sector-organization-list.component';
+import { HomeSectorOrganizationListComponent } from './home/home-sector-organization-list/home-sector-organization-list.component';
 
 const routes: Routes = [
   {
@@ -46,19 +46,19 @@ const routes: Routes = [
         component: CommunitySuggestionThanksComponent,
       },
       {
-        path: 'sector-organization',
+        path: 'sector-organizations',
         component: PublicCommunitiesCategorieListComponent,
       },
       {
-        path: 'sector-organization/:id',
+        path: 'sector-organizations/:id',
         component: OrganizationComponent,
       },
       {
-        path: 'organization/search',
+        path: 'organizations/search',
         component: OrganizationContainerComponent,
       },
       {
-        path: 'organization/:id',
+        path: 'organizations/:id',
         component: OrganizationShowComponent,
         children: [
           {

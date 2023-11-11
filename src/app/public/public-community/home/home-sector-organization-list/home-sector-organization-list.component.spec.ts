@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeSectorOrganizationListComponent } from './home-category-list.component';
+import { HomeSectorOrganizationListComponent } from './home-sector-organization-list.component';
 
 describe('HomeSectorOrganizationListComponent', () => {
   let component: HomeSectorOrganizationListComponent;

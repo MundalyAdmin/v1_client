@@ -24,10 +24,10 @@ export class OrganizationListComponent extends BaseListComponent<Organization> {
     });
   }
 
-  getBySectorOrganization(categoryId: number) {
+  getBySectorOrganization(sectorOrganizationId: number) {
     this.loading = true;
     this.organizationService
-      .getBySectorOrganization(categoryId)
+      .getBySectorOrganization(sectorOrganizationId)
       .subscribe(() => {
         this.loading = false;
       });
