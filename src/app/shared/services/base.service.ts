@@ -8,6 +8,7 @@ import { PaginationInfo } from '../interfaces/pagination-info.interface';
 import { AppInjector } from './app-injector.service';
 import { Factory } from '../helpers/factory/factory';
 import { Helper } from '../helpers/helper/helper';
+import { CustomHttpErrorResponse } from '../models/custom-http-error-response';
 
 @Injectable({
   providedIn: 'root',
@@ -226,12 +227,21 @@ export abstract class BaseService<T = any> {
     }
   }
 
-  errorResponseHandler(error: HttpErrorResponse) {
+  errorResponseHandler(error: CustomHttpErrorResponse) {
+    console.log(error);
     const errorMessage = error?.error?.message;
 
-    if (error.status == 403) {
+    if (error.status == 404) {
       this.helper.navigation.navigate(['not-found']);
     }
+
+    if (error.status === 400) {
+      (error.error.message as string[]).forEach((element) => {
+        this.helper.notification.toastDanger(element, true);
+      });
+      return;
+    }
+
     this.helper.notification.toastDanger(errorMessage, true);
     // this.data = [];
   }
