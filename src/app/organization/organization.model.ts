@@ -3,7 +3,7 @@ import { BaseModel } from '../shared/models/BaseModel';
 import { ProfileStatusOrganization } from './profile-status-organization/profile-status-organization.model';
 import { Scale } from './scale/scale.model';
 import { SectorOrganization } from './sector-organization/sector-organization.model';
-import { Tags } from './tags/tags.model';
+import { TagOrganization } from './tag-organization/tag-organization.model';
 import { TypeOrganization } from './type-organization/type-organization.model';
 
 export interface Organization extends BaseModel {
@@ -39,5 +39,5 @@ export interface Organization extends BaseModel {
 
   scale?: Scale;
 
-  tag_organizations?: Tags[];
+  tag_organizations?: TagOrganization[];
 }

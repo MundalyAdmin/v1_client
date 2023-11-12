@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from '../../shared/services';
-import { Tags } from './tags.model';
+import { TagOrganization } from './tag-organization.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class TagOrganizationService extends BaseService<Tags> {
+export class TagOrganizationService extends BaseService<TagOrganization> {
   constructor() {
     super('tag-organizations');
   }
