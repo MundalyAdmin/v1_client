@@ -17,6 +17,13 @@ const routes: Routes = [
           ).then((module) => module.SettingsTypeOrganizationModule),
       },
       {
+        path: 'sector-organizations',
+        loadChildren: () =>
+          import(
+            './settings-sector-organization/settings-sector-organization.module'
+          ).then((module) => module.SettingsSectorOrganizationModule),
+      },
+      {
         path: '**',
         redirectTo: 'type-organizations',
         pathMatch: 'full',
