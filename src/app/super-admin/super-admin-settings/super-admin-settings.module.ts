@@ -24,6 +24,13 @@ const routes: Routes = [
           ).then((module) => module.SettingsSectorOrganizationModule),
       },
       {
+        path: 'tag-organizations',
+        loadChildren: () =>
+          import(
+            './settings-tag-organization/settings-tag-organization.module'
+          ).then((module) => module.SettingsTagOrganizationModule),
+      },
+      {
         path: '**',
         redirectTo: 'type-organizations',
         pathMatch: 'full',
