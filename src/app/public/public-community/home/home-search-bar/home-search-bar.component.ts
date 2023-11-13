@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CompaniesService } from '../../../../companies/companies.service';
+import { OrganizationService } from '../../../../organization/organization.service';
 import { BaseComponent } from '../../../../shared/base-component';
 import { Country } from '../../../../country/country.model';
 import { CountryService } from '../../../../country/country.service';
@@ -10,6 +10,7 @@ import {
 } from 'ng-select2-component';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-home-search-bar',
@@ -24,18 +25,18 @@ export class HomeSearchBarComponent
   // Object schema required by Select2
   countries: Select2Data = [];
 
-  // List of companies
-  companyNames: { name: string }[] = [];
+  // List of organization
+  organizationNames: { name: string }[] = [];
 
   form!: FormGroup;
 
   constructor(
-    public companyService: CompaniesService,
+    public organizationService: OrganizationService,
     public countryService: CountryService,
     public router: Router,
     public fb: FormBuilder
   ) {
-    super(companyService);
+    super(organizationService);
   }
 
   ngOnInit(): void {
@@ -45,15 +46,23 @@ export class HomeSearchBarComponent
       keyword: ['', Validators.required],
       country_id: [null],
     });
+
+    // Debounce the search name request to avoid overloading the server
+    this.form.controls['keyword'].valueChanges
+      .pipe(debounceTime(500))
+      .subscribe((keyword) => {
+        keyword = keyword || '';
+        this.getOrganizationNames(keyword);
+      });
   }
 
   // Triggered when the user types a keyword
-  // Search Companies names into the database to
+  // Search Organization names into the database to
   // to populate the Autocomplete component
-  getCompanyNames(keyword: string) {
+  getOrganizationNames(keyword: string) {
     this.loading = true;
-    this.companyService.searchNames(keyword).subscribe((data) => {
-      this.companyNames = data;
+    this.organizationService.searchNames(keyword).subscribe((data) => {
+      this.organizationNames = data;
       this.loading = false;
     });
   }
@@ -89,7 +98,7 @@ export class HomeSearchBarComponent
           : (this.form.controls['keyword'].value as { name: string }).name,
       country_id: this.form.controls['country_id'].value,
     };
-    this.router.navigate(['/companies/search'], {
+    this.router.navigate(['/organizations/search'], {
       queryParams: data,
     });
   }

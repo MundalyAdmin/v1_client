@@ -5,7 +5,7 @@ export interface BusinessWaitlist extends BaseModel {
   name: string;
   country_id: string;
   country: Country;
-  company_name: string;
+  organization_name: string;
   professional_email: string;
   job_title: string;
   website: string;

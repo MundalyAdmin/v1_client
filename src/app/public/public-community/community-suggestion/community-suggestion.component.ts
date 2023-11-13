@@ -4,7 +4,7 @@ import { CommunitySuggestionService } from './community-suggestion.service';
 import { CommunitySuggestion } from './community-suggestion.model';
 import { Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Company } from '../../../companies/companies.model';
+import { Organization } from '../../../organization/organization.model';
 
 @Component({
   selector: 'app-community-suggestion',
@@ -12,7 +12,7 @@ import { Company } from '../../../companies/companies.model';
   styleUrls: ['./community-suggestion.component.scss'],
 })
 export class CommunitySuggestionComponent extends BaseCreateComponent<CommunitySuggestion> {
-  company: Company | null = null;
+  organization: Organization | null = null;
   constructor(
     public communitySuggestionService: CommunitySuggestionService,
     public route: ActivatedRoute
@@ -22,23 +22,28 @@ export class CommunitySuggestionComponent extends BaseCreateComponent<CommunityS
 
   ngOnInit(): void {
     this.initForm();
-    if (this.communitySuggestionService.company) {
-      this.subscriptions['company'] =
-        this.communitySuggestionService.company$.subscribe((company) => {
-          if (company) {
-            this.company = company;
-            this.formValuePatcher('company_name', company.name!);
-            this.formValuePatcher('company_website', company.website!);
+    if (this.communitySuggestionService.organization) {
+      this.subscriptions['organization'] =
+        this.communitySuggestionService.organization$.subscribe(
+          (organization) => {
+            if (organization) {
+              this.organization = organization;
+              this.formValuePatcher('organization_name', organization.name!);
+              this.formValuePatcher(
+                'organization_website',
+                organization.website!
+              );
+            }
           }
-        });
+        );
     }
   }
 
   initForm() {
     this.form = this.fb.group({
       community_member_email: ['', Validators.required],
-      company_name: ['', Validators.required],
-      company_website: ['', Validators.required],
+      organization_name: ['', Validators.required],
+      organization_website: ['', Validators.required],
     });
   }
 
@@ -48,7 +53,7 @@ export class CommunitySuggestionComponent extends BaseCreateComponent<CommunityS
       next: () => {
         this.loading = false;
         this.helper.notification.alertSuccess(
-          'Company suggestion successfully registered'
+          'Organization suggestion successfully registered'
         );
         this.router.navigate(['thank-you'], { relativeTo: this.route });
         this.initForm();

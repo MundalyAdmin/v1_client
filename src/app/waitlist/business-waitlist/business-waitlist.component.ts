@@ -5,6 +5,7 @@ import { Country } from '../../country/country.model';
 import { WaitlistService } from '../waitlist.service';
 import { CountryService } from '../../country/country.service';
 import { Validators } from '@angular/forms';
+import { CustomHttpErrorResponse } from '../../shared/models/custom-http-error-response';
 
 @Component({
   selector: 'app-business-waitlist',
@@ -48,7 +49,7 @@ export class BusinessWaitlistComponent extends BaseCreateComponent<BusinessWaitl
   initForm() {
     this.form = this.fb.group({
       professional_email: ['', Validators.required],
-      company_name: ['', Validators.required],
+      organization_name: ['', Validators.required],
       name: ['', Validators.required],
       country_id: ['', Validators.required],
       job_title: ['', Validators.required],
@@ -67,7 +68,6 @@ export class BusinessWaitlistComponent extends BaseCreateComponent<BusinessWaitl
       },
       error: () => {
         this.loading = false;
-        this.helper.notification.alertDanger();
       },
     });
   }

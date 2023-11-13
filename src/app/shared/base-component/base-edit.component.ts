@@ -8,21 +8,11 @@ import { BaseService } from '../services/base.service';
   template: '',
   styles: [],
 })
-export class BaseEditComponent<T>
-  extends BaseCreateComponent<T>
-  implements OnInit
-{
+export class BaseEditComponent<T> extends BaseCreateComponent<T> {
   single: any;
 
   constructor(public override service: BaseService<T>) {
     super(service);
-  }
-
-  ngOnInit() {
-    // super.ngOnInit();
-    // this.subscriptions['_single'] = this.service.item$.subscribe(
-    //   (single) => (this.single = single)
-    // );
   }
 
   initFormWithData(

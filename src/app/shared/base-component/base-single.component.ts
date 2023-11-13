@@ -30,13 +30,11 @@ export class BaseSingleComponent<T>
       this.show(this.route!);
     }
 
-    if (this.enableSubscribeToSingleData) {
-      this.subscriptions['single'] = this.service.singleData$.subscribe(
-        (single) => {
-          this.single = single;
-        }
-      );
-    }
+    this.subscriptions['single'] = this.service.singleData$.subscribe(
+      (single) => {
+        this.single = single;
+      }
+    );
   }
 
   show(route: ActivatedRoute) {
