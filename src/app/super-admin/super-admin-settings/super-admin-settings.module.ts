@@ -17,6 +17,27 @@ const routes: Routes = [
           ).then((module) => module.SettingsTypeOrganizationModule),
       },
       {
+        path: 'sector-organizations',
+        loadChildren: () =>
+          import(
+            './settings-sector-organization/settings-sector-organization.module'
+          ).then((module) => module.SettingsSectorOrganizationModule),
+      },
+      {
+        path: 'tag-organizations',
+        loadChildren: () =>
+          import(
+            './settings-tag-organization/settings-tag-organization.module'
+          ).then((module) => module.SettingsTagOrganizationModule),
+      },
+      {
+        path: 'countries',
+        loadChildren: () =>
+          import('./settings-country/settings-country.module').then(
+            (module) => module.SettingsCountryModule
+          ),
+      },
+      {
         path: '**',
         redirectTo: 'type-organizations',
         pathMatch: 'full',

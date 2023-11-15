@@ -1,0 +1,93 @@
+<div class="grid grid-cols-1 mt-6">
+  <!-- Liste of registration -->
+  <ng-container *ngIf="!loading && organizationWaitlistService.data.length">
+
+    <div class="relative overflow-x-auto block w-full bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-md">
+      <table class="w-full text-start">
+        <!-- Table header -->
+        <thead class="text-base">
+          <tr>
+            <th class="text-start p-4 ">User name</th>
+            <th class="text-start p-4 ">Professional Email</th>
+            <th class="text-start p-4 ">Job Title</th>
+            <th class="text-center p-4 ">Organization Name</th>
+            <th class="text-center p-4">Organization website</th>
+            <th class="text-center p-4 ]">Country</th>
+            <th class="text-end p-4 min-w-[200px]"></th>
+          </tr>
+        </thead>
+
+        <!-- Table body -->
+        <tbody>
+          <tr *ngFor="let registration of organizationWaitlistService.data">
+
+            <!-- Name -->
+            <td class="text-center border-t border-gray-100 dark:border-gray-800 p-4">
+              <span class="text-slate-400">{{ registration.name }}</span>
+            </td>
+
+            <!-- Email -->
+            <td class="text-center border-t border-gray-100 dark:border-gray-800 p-4">
+              <span class="text-slate-400">{{ registration.professional_email }}</span>
+            </td>
+
+            <!-- Job Title -->
+            <td class="text-center border-t border-gray-100 dark:border-gray-800 p-4">
+              <span class="text-slate-400">{{ registration.job_title }}</span>
+            </td>
+
+            <!-- Organozation name -->
+            <td class="text-center border-t border-gray-100 dark:border-gray-800 p-4">
+              <span class="text-slate-400">{{ registration.organization_name }}</span>
+            </td>
+
+            <!-- Organization website -->
+            <td class="text-center border-t border-gray-100 dark:border-gray-800 p-4">
+              <span class="text-slate-400">{{ registration.website }}</span>
+            </td>
+
+
+            <!-- Country -->
+            <td class="text-center border-t border-gray-100 dark:border-gray-800 p-4">
+              <span class="text-slate-400">{{ registration.country.name }}</span>
+            </td>
+
+
+            <!-- Actions -->
+            <td class=" border-t border-gray-100 dark:border-gray-800 p-4">
+              <!-- Details button -->
+              <button [disabled]="true"
+                      class="py-1 px-4 inline-block font-semibold tracking-wide border align-middle duration-500 text-sm  text-center bg-primary hover:bg-primary-dark border-secondary  text-white rounded-md">Action</button>
+
+
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+
+    <!-- Pagination -->
+    <!-- <div class="mt-5 flex items-center justify-between">
+      <div>
+        <a href="#"
+           class="h-8 w-8 inline-flex items-center justify-center font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-800 border-gray-100 dark:border-gray-700 text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-full"><i
+             class="mdi mdi-arrow-left"></i></a>
+        <a href="#"
+           class="h-8 w-8 inline-flex items-center justify-center font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-800 border-gray-100 dark:border-gray-700 text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-full"><i
+             class="mdi mdi-arrow-right"></i></a>
+      </div>
+
+      <span class="text-slate-400">Showing 1 - 8 out of 45</span>
+    </div> -->
+  </ng-container>
+
+
+  <!-- Loading -->
+  <app-page-loading *ngIf="loading"></app-page-loading>
+
+
+  <!-- Missing data template -->
+  <app-missing-data *ngIf="!loading && !organizationWaitlistService.data.length"></app-missing-data>
+</div>

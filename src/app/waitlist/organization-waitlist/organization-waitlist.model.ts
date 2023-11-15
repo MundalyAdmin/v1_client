@@ -1,7 +1,7 @@
 import { Country } from '../../country/country.model';
 import { BaseModel } from '../../shared/models/BaseModel';
 
-export interface BusinessWaitlist extends BaseModel {
+export interface OrganizationWaitlist extends BaseModel {
   name: string;
   country_id: string;
   country: Country;

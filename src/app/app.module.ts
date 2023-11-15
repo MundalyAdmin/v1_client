@@ -6,10 +6,16 @@ import { AppComponent } from './app.component';
 
 import { AppInjector } from './shared/services';
 import { SharedModule } from './shared/shared.module';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, SharedModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    SharedModule,
+    NgMultiSelectDropDownModule.forRoot(),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SuperAdminOrganizationListComponent } from './super-admin-organization-list/super-admin-organization-list.component';
 import { SharedModule } from '../../shared/shared.module';
 import { SuperAdminOrganizationCreateComponent } from './super-admin-organization-create/super-admin-organization-create.component';
+import { SuperAdminOrganizationSharedModule } from './super-admin-organization-shared.module';
 
 const routes: Routes = [
   {
@@ -26,6 +27,11 @@ const routes: Routes = [
     SuperAdminOrganizationListComponent,
     SuperAdminOrganizationCreateComponent,
   ],
-  imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    SharedModule,
+    RouterModule.forChild(routes),
+    SuperAdminOrganizationSharedModule,
+  ],
 })
 export class SuperAdminOrganizationModule {}

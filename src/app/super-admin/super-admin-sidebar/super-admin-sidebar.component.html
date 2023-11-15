@@ -6,23 +6,31 @@
       <li>
         <a [routerLink]="['organizations']"
            [routerLinkActive]="'!text-primary bg-secondary'"
-           class="flex items-center p-2 text-lg text-white rounded-lg  hover:bg-secondary   group">
+           class="flex items-center p-2 text-base text-white rounded-lg  hover:bg-secondary   group">
           <span><i class="mdi mdi-domain"></i></span>
           <span class="ml-3">Organization</span>
         </a>
       </li>
       <li>
-        <a [routerLink]="['waitlist']"
+        <a [routerLink]="['organization-waitlist']"
            [routerLinkActive]="'!text-primary bg-secondary'"
-           class="flex items-center p-2 text-lg text-white rounded-lg  hover:bg-secondary hover:text-primary group">
+           class="flex items-center p-2 text-base text-white rounded-lg  hover:bg-secondary hover:text-primary group">
           <span><i class="mdi mdi-list-box-outline"></i></span>
-          <span class="ml-3">Waitlist</span>
+          <span class="ml-3">Organization waitlist</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['community-suggestion']"
+           [routerLinkActive]="'!text-primary bg-secondary'"
+           class="flex items-center p-2 text-base text-white rounded-lg  hover:bg-secondary hover:text-primary group">
+          <span><i class="mdi mdi-lightbulb-group"></i></span>
+          <span class="ml-3">Community suggestion</span>
         </a>
       </li>
       <li>
         <a [routerLink]="['team']"
            [routerLinkActive]="'!text-primary bg-secondary'"
-           class="flex items-center p-2 text-lg text-white rounded-lg  hover:bg-secondary hover:text-primary group">
+           class="flex items-center p-2 text-base text-white rounded-lg  hover:bg-secondary hover:text-primary group">
           <span><i class="mdi mdi-account-group-outline"></i></span>
           <span class="ml-3">Team</span>
         </a>
@@ -30,7 +38,7 @@
       <li>
         <a [routerLink]="['settings']"
            [routerLinkActive]="'!text-primary bg-secondary'"
-           class="flex items-center p-2 text-lg text-white rounded-lg  hover:bg-secondary hover:text-primary group">
+           class="flex items-center p-2 text-base text-white rounded-lg  hover:bg-secondary hover:text-primary group">
           <span><i class="mdi mdi-cog"></i></span>
           <span class="ml-3">Settings</span>
         </a>
