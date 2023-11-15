@@ -1,6 +1,6 @@
 <div class="grid grid-cols-1 mt-6">
   <!-- Liste of tag -->
-  <ng-container *ngIf="!loading && tagOrganizationService.data">
+  <ng-container *ngIf="!loading && tagOrganizationService.data.length">
 
     <div class="relative overflow-x-auto block w-full bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-md">
       <table class="w-full text-start">
@@ -66,7 +66,7 @@
 
 
   <!-- Missing data template -->
-  <app-missing-data *ngIf="!loading && !tagOrganizationService.data"></app-missing-data>
+  <app-missing-data *ngIf="!loading && !tagOrganizationService.data.length"></app-missing-data>
 </div>
 
 
