@@ -15,6 +15,7 @@ import { ComingSoonComponent } from './components/coming-soon/coming-soon.compon
 import { ThankYouPageComponent } from './components/thank-you-page/thank-you-page.component';
 import { Select2Module } from 'ng-select2-component';
 import { TypewriterComponent } from '../typewriter/typewriter.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { TypewriterComponent } from '../typewriter/typewriter.component';
     ModalModule,
     LoadingModule,
     Select2Module,
+    NgMultiSelectDropDownModule,
   ],
   exports: [
     HttpClientModule,
@@ -61,6 +63,7 @@ import { TypewriterComponent } from '../typewriter/typewriter.component';
     ThankYouPageComponent,
     Select2Module,
     TypewriterComponent,
+    NgMultiSelectDropDownModule,
   ],
 })
 export class SharedModule {}

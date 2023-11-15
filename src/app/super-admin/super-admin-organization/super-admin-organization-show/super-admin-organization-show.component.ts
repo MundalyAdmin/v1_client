@@ -16,7 +16,7 @@ export class SuperAdminOrganizationShowComponent extends BaseSingleComponent<Org
     public router: Router
   ) {
     super(organizationService, route);
-    this.enableFetchDataFromURL = true;
+    // this.enableFetchDataFromURL = true;
   }
 
   override ngOnInit(): void {

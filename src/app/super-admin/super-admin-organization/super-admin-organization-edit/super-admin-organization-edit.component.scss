@@ -1,0 +1,28 @@
+::ng-deep {
+  .multiselect-dropdown .dropdown-btn .selected-item-container .selected-item {
+    color: #282668 !important;
+    border: none !important;
+    margin-right: 4px;
+    background: none !important;
+    padding: 0 5px;
+    // color: #fff;
+    border-radius: 2px;
+    float: left;
+    max-width: none !important;
+  }
+
+  .multi
+    .multiselect-dropdown
+    .dropdown-btn
+    .selected-item-container
+    .selected-item {
+    border: 1px solid #282668 !important;
+    margin-right: 4px;
+    background: #282668 !important;
+    padding: 0 5px;
+    color: #fff !important;
+    border-radius: 2px;
+    float: left;
+    max-width: none !important;
+  }
+}

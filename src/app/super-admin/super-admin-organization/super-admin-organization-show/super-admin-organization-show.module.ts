@@ -7,6 +7,7 @@ import { SuperAdminOrganizationShowOverviewComponent } from './super-admin-organ
 import { SuperAdminImpactStoryComponent } from './super-admin-impact-story/super-admin-impact-story.component';
 import { SuperAdminImpactStoryListComponent } from './super-admin-impact-story/super-admin-impact-story-list/super-admin-impact-story-list.component';
 import { SuperAdminImpactStoryCreateComponent } from './super-admin-impact-story/super-admin-impact-story-create/super-admin-impact-story-create.component';
+import { SuperAdminOrganizationSharedModule } from '../super-admin-organization-shared.module';
 
 const routes: Routes = [
   {
@@ -34,6 +35,11 @@ const routes: Routes = [
     SuperAdminImpactStoryListComponent,
     SuperAdminImpactStoryCreateComponent,
   ],
-  imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    SharedModule,
+    RouterModule.forChild(routes),
+    SuperAdminOrganizationSharedModule,
+  ],
 })
 export class SuperAdminOrganizationShowModule {}

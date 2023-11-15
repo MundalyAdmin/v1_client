@@ -40,4 +40,6 @@ export interface Organization extends BaseModel {
   scale?: Scale;
 
   tag_organizations?: TagOrganization[];
+
+  creator_id?: number;
 }
