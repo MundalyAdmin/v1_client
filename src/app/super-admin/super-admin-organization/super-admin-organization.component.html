@@ -7,11 +7,13 @@
 
 
         <ul class="tracking-[0.5px] inline-block sm:mt-0 mt-3">
-          <li class="inline-block capitalize text-primary font-bold duration-500 dark:text-white/70 hover:text-secondary dark:hover:text-white"><a
-               href="index.html">Admin</a></li>
+          <li class="inline-block capitalize text-primary font-bold duration-500 dark:text-white/70 hover:text-secondary dark:hover:text-white">
+            <a [routerLink]="['/super-admin']">Admin</a>
+          </li>
           <li class="inline-block text-base text-primary dark:text-white/70 mx-0.5 ltr:rotate-0 rtl:rotate-180"><i class="uil uil-angle-right-b"></i>
           </li>
-          <li class="inline-block capitalize  font-bold text-secondary-dark dark:text-white" aria-current="page">Organization</li>
+          <li class="inline-block capitalize  font-bold text-secondary-dark dark:text-white" aria-current="page"><a
+               [routerLink]="['/super-admin/organizations']">Organization</a></li>
         </ul>
 
 
