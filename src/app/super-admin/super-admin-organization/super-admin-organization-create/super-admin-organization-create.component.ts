@@ -23,11 +23,13 @@ export class SuperAdminOrganizationCreateComponent
   extends BaseCreateComponent<Organization>
   implements OnInit
 {
-  countries: Select2Data = [];
-  typeOrganizations: Select2Data = [];
-  sectorOrganizations: Select2Data = [];
-  tagOrganizations: Select2Data = [];
+  // List of dependancies
+  countries: Country[] = [];
+  typeOrganizations: TypeOrganization[] = [];
+  sectorOrganizations: SectorOrganization[] = [];
+  tagOrganizations: TagOrganization[] = [];
 
+  // Loading of dependancies
   isLoading = {
     countries: false,
     typeOrganizations: false,
@@ -55,41 +57,46 @@ export class SuperAdminOrganizationCreateComponent
     this.getTagOrganizations();
   }
 
-  initForm() {
-    this.form = this.fb.group({
-      name: ['', Validators.required],
-      about: ['', Validators.required],
-      country_id: [null, Validators.required],
-      type_organization_id: [null, Validators.required],
-      sector_organization_id: [null, Validators.required],
-      tags: [[], Validators.required],
-      email: [null, Validators.required],
-      website: [null, Validators.required],
-      location: [null, Validators.required],
-      creator_id: [this.authService.user.id, Validators.required],
-    });
-  }
+  initForm(organization?: Organization) {
+    const name = organization?.name || '';
+    const about = organization?.about || '';
+    const country = organization?.country || [];
+    const type_organization = organization?.type_organization || [];
+    const sector_organization = organization?.sector_organization || [];
+    const tag_organizations = organization?.tag_organizations || [];
+    const email = organization?.email || '';
+    const website = organization?.website || '';
+    const location = organization?.location || '';
+    const creator_id = organization?.creator_id || this.authService.user.id;
 
-  onSelectItem(item: Select2UpdateEvent, fieldName: string, multiple = false) {
-    this.form.controls[fieldName].setValue(item.value);
+    this.form = this.fb.group({
+      name: [name, Validators.required],
+      about: [about, Validators.required],
+      country: [country, Validators.required],
+      type_organization: [type_organization, Validators.required],
+      sector_organization: [sector_organization, Validators.required],
+      tag_organizations: [tag_organizations, Validators.required],
+      email: [email, Validators.required],
+      website: [website, Validators.required],
+      location: [location, Validators.required],
+      creator_id: [creator_id, Validators.required],
+    });
+
+    // Allow us to reload the form by creating or destroying the form with ngIf="isFormOk"
+    this.isFormOk = true;
   }
 
   getCountries() {
     this.isLoading.countries = true;
     this.countryService.get().subscribe({
       next: (response) => {
-        response.map((country: Country) => {
-          this.countries.push({
-            value: country.id!,
-            label: country.name!,
-            data: country,
-          });
-        });
-
+        this.countries = response;
         this.isLoading.countries = false;
       },
 
-      error: () => {},
+      error: () => {
+        this.isLoading.countries = false;
+      },
     });
   }
 
@@ -97,18 +104,13 @@ export class SuperAdminOrganizationCreateComponent
     this.isLoading.typeOrganizations = true;
     this.typeOrganizationService.get().subscribe({
       next: (response) => {
-        response.map((typeOrganization: TypeOrganization) => {
-          this.typeOrganizations.push({
-            value: typeOrganization.id!,
-            label: typeOrganization.name!,
-            data: typeOrganization,
-          });
-        });
-
+        this.typeOrganizations = response;
         this.isLoading.typeOrganizations = false;
       },
 
-      error: () => {},
+      error: () => {
+        this.isLoading.typeOrganizations = false;
+      },
     });
   }
 
@@ -116,18 +118,13 @@ export class SuperAdminOrganizationCreateComponent
     this.isLoading.sectorOrganizations = true;
     this.sectorOrganizationService.get().subscribe({
       next: (response) => {
-        response.map((sectorOrganization: SectorOrganization) => {
-          this.sectorOrganizations.push({
-            value: sectorOrganization.id!,
-            label: sectorOrganization.name!,
-            data: sectorOrganization,
-          });
-        });
-
+        this.sectorOrganizations = response;
         this.isLoading.sectorOrganizations = false;
       },
 
-      error: () => {},
+      error: () => {
+        this.isLoading.sectorOrganizations = false;
+      },
     });
   }
 
@@ -135,24 +132,50 @@ export class SuperAdminOrganizationCreateComponent
     this.isLoading.tagOrganizations = true;
     this.tagService.get().subscribe({
       next: (response) => {
-        response.map((tagOrganization: Organization) => {
-          this.tagOrganizations.push({
-            value: tagOrganization.name!,
-            label: tagOrganization.name!,
-            data: tagOrganization,
-          });
-        });
-
+        this.tagOrganizations = response;
         this.isLoading.tagOrganizations = false;
       },
 
-      error: () => {},
+      error: () => {
+        this.isLoading.tagOrganizations = false;
+      },
     });
   }
 
-  override create(callback?: Function | undefined): void {
+  reloadForm() {
+    this.isFormOk = false;
+    setTimeout(() => {
+      this.initForm();
+    }, 1);
+  }
+
+  override create(): void {
+    if (this.form.invalid) {
+      this.helper.notification.alertDanger('Form Invalid');
+      return;
+    }
+
     this.loading = true;
-    this.fillFormData(this.form.value);
+
+    const {
+      type_organization,
+      sector_organization,
+      country,
+      tag_organizations,
+      ...formData
+    } = this.form.value;
+
+    const data = {
+      ...formData,
+      type_organization_id: type_organization[0].id,
+      sector_organization_id: sector_organization[0].id,
+      country_id: country[0].id,
+      tag_organizations: tag_organizations.map(
+        (tag: TagOrganization) => tag.name
+      ),
+    };
+
+    this.fillFormData(data);
     this.organizationService.store(this.formData).subscribe({
       next: () => {
         this.loading = false;
@@ -161,7 +184,8 @@ export class SuperAdminOrganizationCreateComponent
         this.helper.notification.alertSuccess();
 
         // Reset forms
-        this.form.reset();
+        this.reloadForm();
+
         this.formData = new FormData();
       },
       error: () => {
