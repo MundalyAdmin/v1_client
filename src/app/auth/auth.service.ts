@@ -78,6 +78,6 @@ export class AuthService extends BaseService<any> {
   }
   public logout() {
     this.storage.clear();
-    this.router.navigate(['/authentication/login']);
+    this.router.navigate(['/auth/login']);
   }
 }
