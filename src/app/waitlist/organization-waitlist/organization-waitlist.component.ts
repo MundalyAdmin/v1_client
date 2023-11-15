@@ -1,26 +1,27 @@
 import { Component } from '@angular/core';
 import { BaseCreateComponent } from '../../shared/base-component';
-import { BusinessWaitlist } from './business-waitlist.model';
+import { OrganizationWaitlist } from './organization-waitlist.model';
 import { Country } from '../../country/country.model';
 import { WaitlistService } from '../waitlist.service';
 import { CountryService } from '../../country/country.service';
 import { Validators } from '@angular/forms';
 import { CustomHttpErrorResponse } from '../../shared/models/custom-http-error-response';
+import { OrganizationWaitlistService } from './organization-waitlist.service';
 
 @Component({
-  selector: 'app-business-waitlist',
-  templateUrl: './business-waitlist.component.html',
-  styleUrls: ['./business-waitlist.component.scss'],
+  selector: 'app-organization-waitlist',
+  templateUrl: './organization-waitlist.component.html',
+  styleUrls: ['./organization-waitlist.component.scss'],
 })
-export class BusinessWaitlistComponent extends BaseCreateComponent<BusinessWaitlist> {
+export class OrganizationWaitlistComponent extends BaseCreateComponent<OrganizationWaitlist> {
   countryLoading: boolean = false;
   countries: Country[] = [];
 
   constructor(
-    public waitListService: WaitlistService,
+    public organizationWaitlistService: OrganizationWaitlistService,
     public countryService: CountryService
   ) {
-    super(waitListService);
+    super(organizationWaitlistService);
   }
 
   ngOnInit(): void {
@@ -28,7 +29,7 @@ export class BusinessWaitlistComponent extends BaseCreateComponent<BusinessWaitl
     this.initForm();
 
     this.subscriptions['businessEmail'] =
-      this.waitListService.businessEmail$.subscribe((email) => {
+      this.organizationWaitlistService.businessEmail$.subscribe((email) => {
         this.form.controls['professional_email'].setValue(email);
       });
   }
@@ -59,11 +60,11 @@ export class BusinessWaitlistComponent extends BaseCreateComponent<BusinessWaitl
 
   override create() {
     this.loading = true;
-    this.waitListService.addBusinessWaitlist(this.form.value).subscribe({
+    this.organizationWaitlistService.store(this.form.value).subscribe({
       next: () => {
         this.loading = false;
         this.helper.notification.alertSuccess('Successfully registered');
-        this.router.navigate(['/for-business/thank-you']);
+        this.router.navigate(['/for-organization/thank-you']);
         this.initForm();
       },
       error: () => {
