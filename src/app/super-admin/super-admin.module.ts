@@ -24,6 +24,20 @@ const routes: Routes = [
             (module) => module.SuperAdminSettingsModule
           ),
       },
+      {
+        path: 'organization-waitlist',
+        loadChildren: () =>
+          import(
+            './super-admin-organization-waitlist/super-admin-organization-waitlist.module'
+          ).then((module) => module.SuperAdminOrganizationWaitlistModule),
+      },
+      {
+        path: 'community-suggestion',
+        loadChildren: () =>
+          import(
+            './super-admin-community-suggestion/super-admin-community-suggestion.module'
+          ).then((module) => module.SuperAdminCommunitySuggestionModule),
+      },
 
       {
         path: '',

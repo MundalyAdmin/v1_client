@@ -15,15 +15,15 @@ import { PublicBusinessHeroComponent } from './public-business-home/public-busin
 import { PublicBusinessProductServiceFidelityComponent } from './public-business-product-service-fidelity/public-business-product-service-fidelity.component';
 import { PublicBusinessImpactFidelityComponent } from './public-business-impact-fidelity/public-business-impact-fidelity.component';
 import { PublicBusinessCommunityPerceptionComponent } from './public-business-community-perception/public-business-community-perception.component';
-import { BusinessWaitlistComponent } from '../../waitlist/business-waitlist/business-waitlist.component';
 import { WaitlistModule } from '../../waitlist/waitlist.module';
-import { ThankYouForJoiningBusinessComponent } from '../../waitlist/business-waitlist/thank-you-for-joining-business/thank-you-for-join-business.component';
 import { ProductMeasureComponent } from './product-measure/product-measure.component';
 import { ProductTrackComponent } from './product-track/product-track.component';
 import { ProductReportComponent } from './product-report/product-report.component';
 import { ProductActComponent } from './product-act/product-act.component';
 import { ProductOvervirwComponent } from './product-overvirw/product-overvirw.component';
 import { PublicBusinessCheckCommunityReviewsComponent } from './public-business-home/public-business-check-community-reviews/public-business-check-community-reviews.component';
+import { ThankYouForJoiningOrganizationComponent } from '../../waitlist/organization-waitlist/thank-you-for-joining-organization/thank-you-for-join-organization.component';
+import { OrganizationWaitlistComponent } from '../../waitlist/organization-waitlist/organization-waitlist.component';
 
 const routes: Routes = [
   {
@@ -40,7 +40,7 @@ const routes: Routes = [
       },
       {
         path: 'thank-you',
-        component: ThankYouForJoiningBusinessComponent,
+        component: ThankYouForJoiningOrganizationComponent,
       },
       {
         path: 'product/overview',
@@ -88,7 +88,7 @@ const routes: Routes = [
       },
       {
         path: 'book-demo',
-        component: BusinessWaitlistComponent,
+        component: OrganizationWaitlistComponent,
       },
     ],
   },
