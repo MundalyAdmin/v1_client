@@ -8,98 +8,14 @@
     <p class="text-primary  text-md leading-relaxed">
       {{ single.name }} rating of <span class="font-bold text-primary">{{ single.scale?.rating | number: '1.1-2' }}</span>
       stars from <span class="font-bold text-primary"> 500 reviews</span>, from the community they serve for more than 8 years.
-       They’ve piloted, researched and used technology to pioneer the award-winning farm-for-impact model to prove that this is possible
-       and sustainable.
+      They’ve piloted, researched and used technology to pioneer the award-winning farm-for-impact model to prove that this is possible
+      and sustainable.
     </p>
   </div>
 
 
   <!-- Impact stories -->
-  <div class="impact-stories">
-    <!-- Title -->
-    <h2 class="text-primary text-2xl font-semibold mt-10 ">Impact to the communities</h2>
-
-    <!-- Number of communites impacted -->
-    <!-- <p class="text-slate-400">2 social initiatives highlighted</p> -->
-
-
-    <!-- stories -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-3">
-      <!-- Story -->
-      <div class="max-w-sm bg-transparent border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <!-- Image header -->
-        <div class="h-[278px] rounded-t-lg bg-[url('assets/images/cocoaimpact1.jpeg')] bg-cover flex items-end px-2 pb-5">
-          <!-- <h2 class="text-white text-2xl font-bold">Tarkwa Breman Center of Excellence</h2> -->
-        </div>
-
-        <!-- Impact information  -->
-        <div class="px-5 py-3">
-          <!-- Link and number of impacted -->
-          <div class="flex flex-col gap-1 py-2 border-b">
-            <!-- Impact Link -->
-            <div class="flex">
-              <span class="font-semibold text-primary me-4">Read more:</span>
-              <!-- <span class="text-secondary-dark">https://www.facebook.com/profile/100066434862204/search/?q=community%20engagement&_rdc=1&_rdr</span> -->
-            </div>
-
-            <!-- Number of impacted -->
-            <div class="flex">
-              <!-- <span class="font-semibold text-primary me-4">Impact within community:</span> -->
-              <span class="text-secondary-dark"><a href="https://www.facebook.com/profile/100066434862204/search/?q=community%20engagement&_rdc=1&_rdr">Meeting the Leaders of Tarkwa Breman</a> </span>
-            </div>
-          </div>
-
-          <!-- The impact Provided -->
-          <div class="mt-4">
-            <!-- Title -->
-            <h2 class=" text-primary font-bold">About </h2>
-
-            <!-- Description -->
-            <p class="text-primary text-md">As we reflect on our journey of impact, we're grateful for the unwavering support of the elders and chiefs of Tarkwa
-            Breman. With their continued support, we're inspired to make an even greater impact in the years to come. </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Story -->
-      <div class="max-w-sm bg-transparent border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <!-- Image header -->
-        <div class="h-[278px] rounded-t-lg bg-[url('assets/images/cocoaimpact2.jpeg')] bg-cover flex items-end px-2 pb-5">
-          <!-- <h2 class="text-white text-2xl font-bold">Cocoa 360</h2> -->
-        </div>
-
-        <!-- Impact information  -->
-        <div class="px-5 py-3">
-          <!-- Link and number of impacted -->
-          <div class="flex flex-col gap-1 py-2 border-b">
-            <!-- Impact Link -->
-            <div class="flex">
-              <span class="font-semibold text-primary me-4">Read more:</span>
-              <!-- <span class="text-secondary-dark">https://www.facebook.com/profile/100066434862204/search/?q=community%20engagement&_rdc=1&_rdr</span> -->
-            </div>
-
-            <!-- Number of impacted -->
-            <div class="flex">
-              <span class="text-secondary-dark"><a href="https://www.facebook.com/profile/100066434862204/search/?q=community%20engagement&_rdc=1&_rdr"> Cocoa Farm Volunteers</a> </span>
-              <!-- <span class="text-secondary-dark">900 people</span> -->
-            </div>
-          </div>
-
-          <!-- The impact Provided -->
-          <div class="mt-4">
-            <!-- Title -->
-            <h2 class=" text-primary font-bold">About </h2>
-
-            <!-- Description -->
-            <p class="text-primary text-md">Hardworking cocoa farmers volunteer their time on a community farm to provide tuition-free education for their girls and
-            healthcare for their families. Their motivation to work hard on the community farms is founded on the belief that it is their hard work that holds the
-            key to educating their girls - at TBGS - for a brighter future. </p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
+  <app-organization-show-impact-stories></app-organization-show-impact-stories>
 
   <!-- <button data-modal-target="static-modal" data-modal-toggle="static-modal"
           class="text-primary font-medium underline my-4 text-md leading-relaxed">
@@ -109,24 +25,3 @@
 
 
 </ng-container>
-
-<div id="static-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
-     class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-  <div class="relative w-full max-w-3xl max-h-full">
-    <!-- Modal content -->
-    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-
-      <!-- Modal body -->
-      <div class="space-y-6">
-        <div style="padding:56.25% 0 0 0;position:relative;">
-          <iframe
-                  src="https://player.vimeo.com/video/869052534?h=dccc2e43c6&title=0&byline=0&portrait=0"
-                  style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"
-                  allowfullscreen></iframe>
-        </div>
-        <script src="https://player.vimeo.com/api/player.js"></script>
-      </div>
-
-    </div>
-  </div>
-</div>

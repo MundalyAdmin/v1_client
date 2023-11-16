@@ -4,12 +4,13 @@ import { Component, Input, OnChanges } from '@angular/core';
   selector: 'read-more',
   template: `
     <div [innerHTML]="currentText"></div>
-    <a
+    <button
       *ngIf="!hideToggle"
-      class="clickable text-orange text-xs d-inline-block font-weight-bold"
+      class=" text-primary text-xs d-inline-block font-bold"
       (click)="toggleView()"
-      >See more</a
     >
+      See more
+    </button>
   `,
   styles: [
     `
