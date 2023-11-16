@@ -8,9 +8,9 @@
          class="h-16 w-16 object-cover  shadow rounded-md" alt="">
 
 
-    <div class="w-fit  ms-4">
+    <div class="ms-4 overflow-hidden">
       <h4 class=" text-md text-primary font-semibold">{{ story.title }}</h4>
-      <p class="text-slate-400 mb-0 text-sm"><span class="text-indigo-600">{{ story.link }}</span></p>
+      <a [href]="story.link" target="_blank" class="text-slate-400 mb-0 hover:text-primary text-sm ">{{ story.link }}</a>
       <p class="text-slate-400 mb-0 text-sm mt-3">
         <!-- Edit button -->
         <button class="me-6  " (click)="edit(story)" data-modal-target="impact-story-edit" data-modal-toggle="impact-story-edit">Edit <i
