@@ -1,33 +1,29 @@
-<section class="relative py-14 overflow-hidden">
-  <div class="container relative">
+<section class="relative overflow-hidden">
+  <div class="md:container relative">
     <div class="flex-col justify-start items-center inline-flex">
-      <div class="grid grid-col-1 md:grid-cols-2 items-center gap-12">
+      <div class="grid grid-col-1 md:grid-cols-2 items-center">
         <!-- Text -->
-        <div class="flex-col justify-start items-start gap-6 inline-flex">
+        <div class="flex-col md:justify-start justify-center md:items-start items-center gap-6 inline-flex py-12">
           <div class="py-2.5 flex-col justify-center items-start gap-2.5 flex">
             <!-- Title -->
             <div
-              class="text-primary md:text-start text-center text-3xl md:text-4xl font-bold"
+              class="text-black md:text-start text-center text-3xl md:text-4xl font-bold"
             >
-              Finding great business for your communities
+            <span class="text-violet-950 text-4xl font-bold">Receiving Impact?</span><br/>
+            Write a review.
             </div>
             <!-- <div class=" text-primary text-2xl font-normal ">How we provide for our communities</div> -->
           </div>
 
-          <p class="text-primary text-lg font-normal">
-            Mundaly blends 8+ years of rigorous scientific research from Yale
-            and Cambridge Universities.<br /><br />Our real-time,
-            research-backed community surveys enable you to validate the impact
-            of your initiatives, gauge your reputation, and proactively mitigate
-            headline risks.<br /><br />Communities verify impact,
-            distinguishing us from traditional third-party registries.
+          <p class="text-primary text-lg font-normal md:pr-20 text-center">
+            Share your views on your community's impact initiatives. Earn rewards and help donors and investors on Mundaly decide which organizations they should fund to serve you.
           </p>
 
           <!-- Book a demo button -->
           <div class="mt-6 mb-3 hidden md:block">
             <a [routerLink]="['/for-business/book-demo']"
-              class="lightbox w-full cursor-pointer hover:bg-secondary-dark py-3 px-7 w-auto inline-block font-semibold tracking-wide border align-middle duration-500 text-center bg-secondary hover:bg-secondary-dark border-primary text-lg text-primary rounded-full">Learn
-              more</a>
+              class="lightbox cursor-pointer py-3 px-7 w-auto inline-block font-semibold tracking-wide border align-middle duration-500 text-center bg-secondary hover:bg-secondary-dark border-primary text-lg text-primary rounded-full">
+              Write a Review</a>
           </div>
         </div>
 
@@ -35,8 +31,8 @@
           class="justify-start items-start flex relative order-first md:order-last"
         >
           <img
-            class="w-[530px] h-[530px] z-10 rounded-[105px] border-4 border-while"
-            src="assets/images/about-us.svg"
+            class="w-[720px] z-10 md:!max-w-none !max-w-full"
+            src="assets/images/Frame 8966.png"
           />
         </div>
       </div>
@@ -44,10 +40,10 @@
   </div>
 
   <div
-    class="w-[316px] h-[1151px] opacity-80 mix-blend-color-burn bg-teal-400 rounded-full blur-[400px] absolute bottom-[-333px] left-[-58px]"
+    class="w-[316px] h-[1151px] opacity-80 -z-10 mix-blend-color-burn bg-teal-400 rounded-full blur-[400px] absolute bottom-[-333px] left-[-58px]"
   ></div>
   <div
-    class="w-[337px] h-[1151px] opacity-80 mix-blend-color-burn bg-teal-400 md:bg-violet-950 rounded-full blur-[400px] absolute right-[-10.5rem] top-[10rem]"
+    class="w-[337px] h-[1151px] opacity-80 -z-10 mix-blend-color-burn bg-teal-400 md:bg-violet-950 rounded-full blur-[400px] absolute right-[-10.5rem] top-[10rem]"
   ></div>
 </section>
 
