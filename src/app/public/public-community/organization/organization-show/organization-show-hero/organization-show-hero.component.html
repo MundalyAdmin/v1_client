@@ -10,7 +10,7 @@
 
             <!-- Image element -->
             <img [src]="single.logo"
-                 class="rounded-full" id="profile-image" [alt]="single.name">
+                 class="rounded-full h-full w-full object-cover" id="profile-image" [alt]="single.name">
 
             <div class="absolute inset-0 group-hover:bg-slate-900/10 duration-500"></div>
             <label class="absolute inset-0 cursor-pointer" for="pro-img"></label>
@@ -58,7 +58,7 @@
             </a>
 
 
-            <a [routerLink]="['/book-demo/book-demo']"
+            <a [routerLink]="['/for-business/book-demo']"
 
                class="py-3 px-8 inline-block  shadow-lg tracking-wide border align-middle duration-500 text-base text-center rounded-full bg-primary me-2 hover:bg-primary-light  border-primary hover:border-primary-dark text-secondary">
               See full report

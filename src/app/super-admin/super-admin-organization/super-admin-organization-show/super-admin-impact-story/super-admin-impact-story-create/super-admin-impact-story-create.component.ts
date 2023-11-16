@@ -25,6 +25,19 @@ export class SuperAdminImpactStoryCreateComponent
 
   ngOnInit() {
     this.initForm();
+  }
+
+  initForm(impactStory?: ImpactStoryOrganization) {
+    const title = impactStory?.title || '';
+    const about = impactStory?.about || '';
+    const link = impactStory?.link || '';
+
+    this.form = this.fb.group({
+      title: [title, Validators.required],
+      about: [about, Validators.required],
+      link: [link, Validators.required],
+      organization_id: [null, Validators.required],
+    });
 
     this.subscriptions['organization'] =
       this.organizationService.singleData$.subscribe((organization) => {
@@ -35,16 +48,12 @@ export class SuperAdminImpactStoryCreateComponent
       });
   }
 
-  initForm() {
-    this.form = this.fb.group({
-      title: ['', Validators.required],
-      about: ['', Validators.required],
-      link: ['', Validators.required],
-      organization_id: [null, Validators.required],
-    });
-  }
+  override create(): void {
+    if (!this.form.valid) {
+      this.helper.notification.alertDanger('Form invalid');
+      return;
+    }
 
-  override create(callback?: Function | undefined): void {
     this.loading = true;
     this.fillFormData(this.form.value);
     this.impactStoryOrganizationService.store(this.formData).subscribe({

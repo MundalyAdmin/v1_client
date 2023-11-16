@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Flowbite } from '../../../../shared/decorators/flowbite.decorator';
-import { BaseComponent } from '../../../../shared/base-component';
-import { ImpactStoryOrganization } from '../../../../organization/impact-story-organization/impact-story-organization.model';
-import { ImpactStoryOrganizationService } from '../../../../organization/impact-story-organization/impact-story-organization.service';
-import { OrganizationService } from '../../../../organization/organization.service';
+import { ImpactStoryOrganization } from '../../../../../../organization/impact-story-organization/impact-story-organization.model';
+import { ImpactStoryOrganizationService } from '../../../../../../organization/impact-story-organization/impact-story-organization.service';
+import { OrganizationService } from '../../../../../../organization/organization.service';
 import { Router } from '@angular/router';
+import { BaseComponent } from '../../../../../../shared/base-component';
 
 @Component({
-  selector: 'app-super-admin-impact-story',
-  templateUrl: './super-admin-impact-story.component.html',
-  styleUrls: ['./super-admin-impact-story.component.scss'],
+  selector: 'app-organization-show-impact-stories',
+  templateUrl: './organization-show-impact-stories.component.html',
+  styleUrls: ['./organization-show-impact-stories.component.scss'],
 })
-@Flowbite()
-export class SuperAdminImpactStoryComponent
+export class OrganizationShowImpactStoriesComponent
   extends BaseComponent<ImpactStoryOrganization>
   implements OnInit
 {

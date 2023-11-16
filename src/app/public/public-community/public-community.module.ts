@@ -24,8 +24,9 @@ import { OrganizationContainerComponent } from './organization/organization-cont
 import { OrganizationSearchBarComponent } from './organization/organization-search-bar/organization-search-bar.component';
 import { CommunitySuggestionComponent } from './community-suggestion/community-suggestion.component';
 import { CommunitySuggestionThanksComponent } from './community-suggestion/community-suggestion-thanks/community-suggestion-thanks.component';
-import { OrganizationShowOverviewOtherOrganizationsComponent } from './organization/organization-show/organization-show-overview/companies-show-overview-other-organization/organization-show-overview-other-organizations.component';
+import { OrganizationShowOverviewOtherOrganizationsComponent } from './organization/organization-show/organization-show-overview/organization-show-overview-other-organization/organization-show-overview-other-organizations.component';
 import { HomeSectorOrganizationListComponent } from './home/home-sector-organization-list/home-sector-organization-list.component';
+import { OrganizationShowImpactStoriesComponent } from './organization/organization-show/organization-show-overview/organization-show-impact-stories/organization-show-impact-stories.component';
 
 const routes: Routes = [
   {
@@ -101,6 +102,7 @@ const routes: Routes = [
     CommunitySuggestionComponent,
     CommunitySuggestionThanksComponent,
     OrganizationShowOverviewOtherOrganizationsComponent,
+    OrganizationShowImpactStoriesComponent,
   ],
   imports: [
     CommonModule,

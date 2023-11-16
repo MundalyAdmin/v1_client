@@ -3,12 +3,14 @@ import { BaseSingleComponent } from '../../../shared/base-component';
 import { Organization } from '../../../organization/organization.model';
 import { OrganizationService } from '../../../organization/organization.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Flowbite } from '../../../shared/decorators/flowbite.decorator';
 
 @Component({
   selector: 'app-super-admin-organization-show',
   templateUrl: './super-admin-organization-show.component.html',
   styleUrls: ['./super-admin-organization-show.component.scss'],
 })
+@Flowbite()
 export class SuperAdminOrganizationShowComponent extends BaseSingleComponent<Organization> {
   constructor(
     public organizationService: OrganizationService,
