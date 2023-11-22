@@ -73,11 +73,13 @@
       <!-- User profile -->
       <div class=" flex items-center justify-self-end ">
         <span>
-          <img src="assets/images/client/01.jpg" alt="" class="h-12 w-12 rounded-full border-2 border-slate-50">
+          <img src="https://media.istockphoto.com/id/942153448/de/vektor/avatar.jpg?s=612x612&w=0&k=20&c=dYzovkqwc-ADwIYjH7fd6MdgaJi0UslcMC3ycK9dmSg="
+               alt="" class="h-12 w-12 rounded-full border-2 border-slate-50">
         </span>
         <div class="p-2 flex align-center flex-col">
-          <div class="text-slate-50 font-semibold flex items-center">John Doe <span><i class="mdi mdi-menu-down text-2xl"></i></span></div>
-          <p class="text-slate-300 text-sm">Company X</p>
+          <div class="text-slate-50 font-semibold flex items-center">{{ authService.user.name }} <span><i
+                 class="mdi mdi-menu-down text-2xl"></i></span></div>
+          <p class="text-slate-300 text-sm">{{ authService.organization.name }}</p>
         </div>
       </div>
 
