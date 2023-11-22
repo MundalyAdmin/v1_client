@@ -28,6 +28,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'dashboard',
+        loadChildren: () =>
+          import(
+            './organization/dashboard-organization/dashboard-organization.module'
+          ).then((m) => m.DashboardOrganizationModule),
+      },
+      {
         path: 'coming-soon',
         component: ComingSoonComponent,
       },

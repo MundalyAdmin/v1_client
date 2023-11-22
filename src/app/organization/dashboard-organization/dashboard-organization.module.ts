@@ -11,11 +11,35 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardOrganizationComponent,
+    children: [
+      {
+        path: 'community',
+        component: DashboardOrganizationCommunityComponent,
+      },
+      {
+        path: 'impact',
+        component: DashboardOrganizationImpactComponent,
+      },
+      {
+        path: 'benchmark',
+        component: DashboardOrganizationBenchmarkComponent,
+      },
+      {
+        path: '',
+        redirectTo: 'community',
+        pathMatch: 'full',
+      },
+    ],
   },
 ];
 
 @NgModule({
-  declarations: [DashboardOrganizationComponent, DashboardOrganizationCommunityComponent, DashboardOrganizationImpactComponent, DashboardOrganizationBenchmarkComponent],
+  declarations: [
+    DashboardOrganizationComponent,
+    DashboardOrganizationCommunityComponent,
+    DashboardOrganizationImpactComponent,
+    DashboardOrganizationBenchmarkComponent,
+  ],
   imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
 })
 export class DashboardOrganizationModule {}
