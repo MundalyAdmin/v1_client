@@ -25,8 +25,8 @@ export class OrganizationWaitlistComponent extends BaseCreateComponent<Organizat
   }
 
   ngOnInit(): void {
-    this.getCountries();
     this.initForm();
+    this.getCountries();
 
     this.subscriptions['businessEmail'] =
       this.organizationWaitlistService.businessEmail$.subscribe((email) => {
@@ -39,6 +39,7 @@ export class OrganizationWaitlistComponent extends BaseCreateComponent<Organizat
     this.countryService.get().subscribe({
       next: (response) => {
         this.countries = response;
+        this.form.controls['country_id'].setValue(this.countries[0].id);
         this.countryLoading = false;
       },
       error: () => {

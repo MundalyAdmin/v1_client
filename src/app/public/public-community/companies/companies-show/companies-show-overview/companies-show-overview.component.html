@@ -1,0 +1,377 @@
+<ng-container *ngIf="single">
+  <!-- Overview -->
+  <div class="overview mb-4">
+    <!-- Title -->
+    <h2 class="text-primary text-2xl font-semibold mb-5">Overview</h2>
+
+    <!-- Overview -->
+    <p class="text-primary  text-md leading-relaxed">
+      {{ single.name }} rating of <span class="font-bold text-primary">{{ single.scale?.rating | number: '1.1-2' }}</span>
+      stars from <span class="font-bold text-primary"> 500 reviews</span>, from the community they serve for more than 8 years.
+      They’ve piloted, researched and used technology to pioneer the award-winning farm-for-impact model to prove that this is possible
+      and sustainable.
+    </p>
+  </div>
+
+
+  <!-- Impact stories -->
+  <div class="impact-stories">
+    <!-- Title -->
+    <h2 class="text-primary text-2xl font-semibold mt-10 ">Impact to the communities</h2>
+
+    <!-- Number of communites impacted -->
+    <!-- <p class="text-slate-400">2 social initiatives highlighted</p> -->
+
+
+    <!-- stories -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3">
+      <!-- Story -->
+      <div class="max-w-sm bg-transparent border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 relative">
+        <!-- Video icon overlay -->
+        <div class="absolute top-[65px] left-[60px] opacity-70">
+          <button class="mdi mdi-play-circle-outline cursor-pointer text-white text-[150px]" data-modal-toggle="static-modal"></button>
+        </div>
+
+        <!-- Image header -->
+        <div class="h-[150px] rounded-t-lg bg-[url('assets/images/cocoaimpact1.jpeg')] bg-cover flex items-end px-2 pb-5">
+          <!-- <h2 class="text-white text-2xl font-bold">Tarkwa Breman Center of Excellence</h2> -->
+        </div>
+
+        <!-- Impact information  -->
+        <div class="px-5 py-3">
+          <!-- Link and number of impacted -->
+          <div class="flex flex-col py-2">
+            <!-- Impact Link -->
+            <div class="flex flex-col">
+              <div class="font-bold text-primary  text-sm">Babacar Kane</div>
+              <div class="font-medium text-md ">"Impact story wonderful grand title"</div>
+              <!-- <span class="text-secondary-dark">https://www.facebook.com/profile/100066434862204/search/?q=community%20engagement&_rdc=1&_rdr</span> -->
+            </div>
+
+            <!-- Number of impacted -->
+            <div class="flex">
+              <span class="mdi mdi-star text-yellow-300 text-xl"></span>
+              <span class="mdi mdi-star text-yellow-300 text-xl"></span>
+              <span class="mdi mdi-star text-yellow-300 text-xl"></span>
+              <span class="mdi mdi-star text-yellow-300 text-xl"></span>
+              <span class="mdi mdi-star-half-full text-yellow-300 text-xl"></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Story -->
+      <div class="max-w-sm bg-transparent border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 relative">
+        <!-- Video icon overlay -->
+        <div class="absolute top-[65px] left-[60px] opacity-70">
+          <button class="mdi mdi-play-circle-outline cursor-pointer text-white text-[150px]" data-modal-toggle="static-modal"></button>
+        </div>
+
+        <!-- Image header -->
+        <div class="h-[150px] rounded-t-lg bg-[url('assets/images/cocoaimpact1.jpeg')] bg-cover flex items-end px-2 pb-5">
+          <!-- <h2 class="text-white text-2xl font-bold">Tarkwa Breman Center of Excellence</h2> -->
+        </div>
+
+        <!-- Impact information  -->
+        <div class="px-5 py-3">
+          <!-- Link and number of impacted -->
+          <div class="flex flex-col py-2">
+            <!-- Impact Link -->
+            <div class="flex flex-col">
+              <div class="font-bold text-primary  text-sm">Babacar Kane</div>
+              <div class="font-medium text-md ">"Impact story wonderful grand title"</div>
+              <!-- <span class="text-secondary-dark">https://www.facebook.com/profile/100066434862204/search/?q=community%20engagement&_rdc=1&_rdr</span> -->
+            </div>
+
+            <!-- Number of impacted -->
+            <div class="flex">
+              <span class="mdi mdi-star text-yellow-300 text-xl"></span>
+              <span class="mdi mdi-star text-yellow-300 text-xl"></span>
+              <span class="mdi mdi-star text-yellow-300 text-xl"></span>
+              <span class="mdi mdi-star text-yellow-300 text-xl"></span>
+              <span class="mdi mdi-star-half-full text-yellow-300 text-xl"></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Story -->
+      <div class="max-w-sm bg-transparent border border-gray-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700 relative">
+        <!-- Video icon overlay -->
+        <div class="absolute top-[65px] left-[60px] opacity-70">
+          <button class="mdi mdi-play-circle-outline cursor-pointer text-white text-[150px]" data-modal-toggle="static-modal"></button>
+        </div>
+
+        <!-- Image header -->
+        <div class="h-[150px] rounded-t-lg bg-[url('assets/images/cocoaimpact1.jpeg')] bg-cover flex items-end px-2 pb-5">
+          <!-- <h2 class="text-white text-2xl font-bold">Tarkwa Breman Center of Excellence</h2> -->
+        </div>
+
+        <!-- Impact information  -->
+        <div class="px-5 py-3">
+          <!-- Link and number of impacted -->
+          <div class="flex flex-col py-2">
+            <!-- Impact Link -->
+            <div class="flex flex-col">
+              <div class="font-bold text-primary  text-sm">Babacar Kane</div>
+              <div class="font-medium text-md ">"Impact story wonderful grand title"</div>
+              <!-- <span class="text-secondary-dark">https://www.facebook.com/profile/100066434862204/search/?q=community%20engagement&_rdc=1&_rdr</span> -->
+            </div>
+
+            <!-- Number of impacted -->
+            <div class="flex">
+              <span class="mdi mdi-star text-yellow-300 text-xl"></span>
+              <span class="mdi mdi-star text-yellow-300 text-xl"></span>
+              <span class="mdi mdi-star text-yellow-300 text-xl"></span>
+              <span class="mdi mdi-star text-yellow-300 text-xl"></span>
+              <span class="mdi mdi-star-half-full text-yellow-300 text-xl"></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+
+    <!-- Comment list -->
+    <div class="mt-12">
+      <div id="default-carousel" class="relative w-full" data-carousel="slide">
+        <!-- Carousel wrapper -->
+        <div class="relative overflow-hidden rounded-lg h-64">
+          <!-- Item 1 -->
+          <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <div class="mt-8">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <img src="assets/images/client/01.jpg" class="h-11 w-11 rounded-full shadow" alt="">
+
+                  <div class="ms-3 flex-1">
+                    <a href="" class="text-lg font-semibold hover:text-indigo-600 duration-500">Calvin Carlo</a>
+                    <p class="text-sm text-slate-400">6th May 2022 at 01:25 pm</p>
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="p-4 bg-gray-50 dark:bg-slate-800 rounded-md shadow dark:shadow-gray-800 mt-6">
+                <p class="text-slate-400 italic">" There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                  alteration
+                  in
+                  some form, by injected humour "</p>
+              </div>
+            </div>
+          </div>
+          <!-- Item 2 -->
+          <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <div class="mt-8">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <img src="assets/images/client/01.jpg" class="h-11 w-11 rounded-full shadow" alt="">
+
+                  <div class="ms-3 flex-1">
+                    <a href="" class="text-lg font-semibold hover:text-indigo-600 duration-500">Calvin Carlo</a>
+                    <p class="text-sm text-slate-400">6th May 2022 at 01:25 pm</p>
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="p-4 bg-gray-50 dark:bg-slate-800 rounded-md shadow dark:shadow-gray-800 mt-6">
+                <p class="text-slate-400 italic">" There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                  alteration
+                  in
+                  some form, by injected humour "</p>
+              </div>
+            </div>
+          </div>
+          <!-- Item 3 -->
+          <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <div class="mt-8">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <img src="assets/images/client/01.jpg" class="h-11 w-11 rounded-full shadow" alt="">
+
+                  <div class="ms-3 flex-1">
+                    <a href="" class="text-lg font-semibold hover:text-indigo-600 duration-500">Calvin Carlo</a>
+                    <p class="text-sm text-slate-400">6th May 2022 at 01:25 pm</p>
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="p-4 bg-gray-50 dark:bg-slate-800 rounded-md shadow dark:shadow-gray-800 mt-6">
+                <p class="text-slate-400 italic">" There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                  alteration
+                  in
+                  some form, by injected humour "</p>
+              </div>
+            </div>
+          </div>
+          <!-- Item 4 -->
+          <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <div class="mt-8">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <img src="assets/images/client/01.jpg" class="h-11 w-11 rounded-full shadow" alt="">
+
+                  <div class="ms-3 flex-1">
+                    <a href="" class="text-lg font-semibold hover:text-indigo-600 duration-500">Calvin Carlo</a>
+                    <p class="text-sm text-slate-400">6th May 2022 at 01:25 pm</p>
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="p-4 bg-gray-50 dark:bg-slate-800 rounded-md shadow dark:shadow-gray-800 mt-6">
+                <p class="text-slate-400 italic">" There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                  alteration
+                  in
+                  some form, by injected humour "</p>
+              </div>
+            </div>
+          </div>
+          <!-- Item 5 -->
+          <div class="hidden duration-700 ease-in-out" data-carousel-item>
+            <div class="mt-8">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <img src="assets/images/client/01.jpg" class="h-11 w-11 rounded-full shadow" alt="">
+
+                  <div class="ms-3 flex-1">
+                    <a href="" class="text-lg font-semibold hover:text-indigo-600 duration-500">Calvin Carlo</a>
+                    <p class="text-sm text-slate-400">6th May 2022 at 01:25 pm</p>
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="p-4 bg-gray-50 dark:bg-slate-800 rounded-md shadow dark:shadow-gray-800 mt-6">
+                <p class="text-slate-400 italic">" There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                  alteration
+                  in
+                  some form, by injected humour "</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Slider indicators -->
+
+        <!-- Slider controls -->
+        <button type="button"
+                class="absolute top-3 left-[-70px] z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                data-carousel-prev>
+          <span
+                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <span><i class="mdi  font-bold text-2xl mdi-chevron-left text-white"></i></span>
+            <span class="sr-only">Previous</span>
+          </span>
+        </button>
+        <button type="button"
+                class="absolute top-3 right-[-70px] z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                data-carousel-next>
+          <span
+                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <span><i class="mdi  font-bold text-2xl mdi-chevron-right text-white"></i></span>
+            <span class="sr-only">Next</span>
+          </span>
+        </button>
+      </div>
+
+      <!-- <div class="mt-8">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <img src="assets/images/client/01.jpg" class="h-11 w-11 rounded-full shadow" alt="">
+
+            <div class="ms-3 flex-1">
+              <a href="" class="text-lg font-semibold hover:text-indigo-600 duration-500">Calvin Carlo</a>
+              <p class="text-sm text-slate-400">6th May 2022 at 01:25 pm</p>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="p-4 bg-gray-50 dark:bg-slate-800 rounded-md shadow dark:shadow-gray-800 mt-6">
+          <p class="text-slate-400 italic">" There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+            in
+            some form, by injected humour "</p>
+        </div>
+      </div>
+      <div class="mt-8">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <img src="assets/images/client/01.jpg" class="h-11 w-11 rounded-full shadow" alt="">
+
+            <div class="ms-3 flex-1">
+              <a href="" class="text-lg font-semibold hover:text-indigo-600 duration-500">Calvin Carlo</a>
+              <p class="text-sm text-slate-400">6th May 2022 at 01:25 pm</p>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="p-4 bg-gray-50 dark:bg-slate-800 rounded-md shadow dark:shadow-gray-800 mt-6">
+          <p class="text-slate-400 italic">" There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+            in
+            some form, by injected humour "</p>
+        </div>
+      </div>
+      <div class="mt-8">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <img src="assets/images/client/01.jpg" class="h-11 w-11 rounded-full shadow" alt="">
+
+            <div class="ms-3 flex-1">
+              <a href="" class="text-lg font-semibold hover:text-indigo-600 duration-500">Calvin Carlo</a>
+              <p class="text-sm text-slate-400">6th May 2022 at 01:25 pm</p>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="p-4 bg-gray-50 dark:bg-slate-800 rounded-md shadow dark:shadow-gray-800 mt-6">
+          <p class="text-slate-400 italic">" There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+            in
+            some form, by injected humour "</p>
+        </div>
+      </div> -->
+    </div>
+  </div>
+
+  <!-- <button data-modal-target="static-modal" data-modal-toggle="static-modal"
+          class="text-primary font-medium underline my-4 text-md leading-relaxed">
+    <i class="mdi mdi-account-voice me-1"></i> See impact stories
+  </button> -->
+
+
+
+</ng-container>
+
+<div id="static-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
+     class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+  <div class="relative w-full max-w-3xl max-h-full">
+    <!-- Modal content -->
+    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+
+      <!-- Modal body -->
+      <div class="space-y-6 relative">
+        <button type="button"
+                class="text-gray-400 text-xl z-50 bg-transparent absolute top-[-15px] right-[-15px] hover:bg-gray-200 hover:text-gray-900 rounded-lg  w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                data-modal-hide="static-modal">
+
+          <span><i class="mdi mdi-close-circle"></i></span>
+        </button>
+        <div style="padding:56.25% 0 0 0;position:relative;">
+          <iframe
+                  src="https://player.vimeo.com/video/869052534?h=dccc2e43c6&title=0&byline=0&portrait=0"
+                  style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"
+                  allowfullscreen></iframe>
+        </div>
+        <script src="https://player.vimeo.com/api/player.js"></script>
+      </div>
+
+    </div>
+  </div>
+</div>
