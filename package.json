@@ -22,6 +22,7 @@
     "@mdi/font": "^7.3.67",
     "@sweetalert2/ngx-sweetalert2": "^12.2.0",
     "angular-ng-autocomplete": "^2.0.12",
+    "animate.css": "^4.1.1",
     "feather-icons": "^4.29.1",
     "flowbite": "^1.8.1",
     "ng-multiselect-dropdown": "^1.0.0",

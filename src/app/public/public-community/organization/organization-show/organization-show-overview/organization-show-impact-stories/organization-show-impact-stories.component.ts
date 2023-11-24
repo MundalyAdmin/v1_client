@@ -5,6 +5,7 @@ import { OrganizationService } from '../../../../../../organization/organization
 import { Router } from '@angular/router';
 import { BaseComponent } from '../../../../../../shared/base-component';
 import { Flowbite } from '../../../../../../shared/decorators/flowbite.decorator';
+import { initCarousels, initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-organization-show-impact-stories',
@@ -38,6 +39,8 @@ export class OrganizationShowImpactStoriesComponent
       .subscribe({
         next: (response) => {
           this.loading = false;
+          console.log(response);
+          initCarousels();
         },
         error: () => {
           this.loading = false;
