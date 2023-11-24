@@ -29,6 +29,7 @@
               "node_modules/@mdi/font/css/materialdesignicons.min.css",
               "node_modules/@iconscout/unicons/css/line.css",
               "src/assets/css/tailwind.css",
+              "node_modules/animate.css/animate.min.css",
               "src/styles.scss"
             ],
             "scripts": [
