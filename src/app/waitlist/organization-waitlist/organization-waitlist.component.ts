@@ -1,0 +1,76 @@
+import { Component } from '@angular/core';
+import { BaseCreateComponent } from '../../shared/base-component';
+import { OrganizationWaitlist } from './organization-waitlist.model';
+import { Country } from '../../country/country.model';
+import { WaitlistService } from '../waitlist.service';
+import { CountryService } from '../../country/country.service';
+import { Validators } from '@angular/forms';
+import { CustomHttpErrorResponse } from '../../shared/models/custom-http-error-response';
+import { OrganizationWaitlistService } from './organization-waitlist.service';
+
+@Component({
+  selector: 'app-organization-waitlist',
+  templateUrl: './organization-waitlist.component.html',
+  styleUrls: ['./organization-waitlist.component.scss'],
+})
+export class OrganizationWaitlistComponent extends BaseCreateComponent<OrganizationWaitlist> {
+  countryLoading: boolean = false;
+  countries: Country[] = [];
+
+  constructor(
+    public organizationWaitlistService: OrganizationWaitlistService,
+    public countryService: CountryService
+  ) {
+    super(organizationWaitlistService);
+  }
+
+  ngOnInit(): void {
+    this.initForm();
+    this.getCountries();
+
+    this.subscriptions['businessEmail'] =
+      this.organizationWaitlistService.businessEmail$.subscribe((email) => {
+        this.form.controls['professional_email'].setValue(email);
+      });
+  }
+
+  getCountries() {
+    this.countryLoading = true;
+    this.countryService.get().subscribe({
+      next: (response) => {
+        this.countries = response;
+        this.form.controls['country_id'].setValue(this.countries[0].id);
+        this.countryLoading = false;
+      },
+      error: () => {
+        this.countryLoading = false;
+      },
+    });
+  }
+
+  initForm() {
+    this.form = this.fb.group({
+      professional_email: ['', Validators.required],
+      organization_name: ['', Validators.required],
+      name: ['', Validators.required],
+      country_id: ['', Validators.required],
+      job_title: ['', Validators.required],
+      website: ['', Validators.required],
+    });
+  }
+
+  override create() {
+    this.loading = true;
+    this.organizationWaitlistService.store(this.form.value).subscribe({
+      next: () => {
+        this.loading = false;
+        this.helper.notification.alertSuccess('Successfully registered');
+        this.router.navigate(['/for-organization/thank-you']);
+        this.initForm();
+      },
+      error: () => {
+        this.loading = false;
+      },
+    });
+  }
+}

@@ -1,0 +1,65 @@
+<form [formGroup]="form" (submit)="create()">
+  <div class="grid grid-cols-1 gap-5">
+    <!-- Name -->
+    <div class="mb-6">
+      <label for="name" class="block mb-2 text-sm font-semibold text-primary dark:text-white">Name</label>
+      <input type="text" id="name" formControlName="name"
+             class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark :border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+             placeholder="Agriculture" required>
+    </div>
+
+    <!-- Icon -->
+    <div class="mb-6">
+      <div class="flex justify-between">
+        <label for="icon" class="block mb-2 text-sm font-semibold text-primary dark:text-white">Icon</label>
+        <i [class]="'mdi mdi-' + form.get('icon')?.value"></i>
+      </div>
+
+      <div class="flex">
+        <span
+              class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+          mdi-
+        </span>
+        <input type="text" id="icon" formControlName="icon"
+               class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-tr-lg rounded-br-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               placeholder="pencil"
+               required>
+      </div>
+      <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">Icon can be found <a class="text-secondary-dark"
+           href="https://pictogrammers.com/library/mdi" target="_blank">here</a>. Kindly paste the icon name</div>
+    </div>
+
+
+  </div>
+
+
+
+
+  <!-- About -->
+  <div class="mb-6">
+    <label for="about" class="block mb-2 text-sm font-semibold text-primary dark:text-white">About</label>
+    <textarea id="about" rows="4"
+              formControlName="about"
+              class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Leave a description..."></textarea>
+
+  </div>
+
+
+
+  <!-- <div class="flex items-start mb-6 col-span-2">
+      <div class="flex items-center h-5">
+        <input id="remember" type="checkbox" value=""
+               class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+               required>
+      </div>
+      <label for="remember" class="ml-2 text-sm font-semibold text-primary dark:text-gray-300">Remember me</label>
+    </div> -->
+
+  <div class="flex justify-end">
+    <button type="submit"
+            [disabled]="form.invalid || loading"
+            class="text-white disabled:cursor-not-allowed disabled:bg-primary-light disabled:text-gray-100 bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-primary dark:focus:ring-blue-800">Submit
+      <app-loading *ngIf="loading"></app-loading> </button>
+  </div>
+</form>

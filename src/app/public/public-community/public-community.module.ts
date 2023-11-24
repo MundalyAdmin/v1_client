@@ -3,17 +3,16 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { HomeHeroSectionComponent } from './home/home-hero-section/home-hero-section.component';
-import { HomeCategoryListComponent } from './home/home-category-list/home-category-list.component';
-import { HomeCompanyListComponent } from './home/home-company-list/home-company-list.component';
+import { HomeOrganizationListComponent } from './home/home-organization-list/home-organization-list.component';
 import { HomeAboutUsComponent } from './home/home-about-us/home-about-us.component';
-import { CompaniesComponent } from './companies/companies.component';
+import { OrganizationComponent } from './organization/organization.component';
 import { HeaderComponent } from './header/header.component';
-import { CompaniesListComponent } from './companies/companies-list/companies-list.component';
-import { CompaniesShowComponent } from './companies/companies-show/companies-show.component';
-import { CompaniesShowHeroComponent } from './companies/companies-show/companies-show-hero/companies-show-hero.component';
-import { CompaniesShowOverviewComponent } from './companies/companies-show/companies-show-overview/companies-show-overview.component';
-import { CompaniesShowAboutComponent } from './companies/companies-show/companies-show-about/companies-show-about.component';
-import { CompaniesShowRatingInformationsComponent } from './companies/companies-show/companies-show-rating-informations/companies-show-rating-informations.component';
+import { OrganizationListComponent } from './organization/organization-list/organization-list.component';
+import { OrganizationShowComponent } from './organization/organization-show/organization-show.component';
+import { OrganizationShowHeroComponent } from './organization/organization-show/organization-show-hero/organization-show-hero.component';
+import { OrganizationShowOverviewComponent } from './organization/organization-show/organization-show-overview/organization-show-overview.component';
+import { OrganizationShowAboutComponent } from './organization/organization-show/organization-show-about/organization-show-about.component';
+import { OrganizationShowRatingInformationsComponent } from './organization/organization-show/organization-show-rating-informations/organization-show-rating-informations.component';
 import { PublicCommunityComponent } from './public-community.component';
 import { SharedModule } from '../../shared/shared.module';
 import { SharedPublicModule } from '../shared-public/shared-public.module';
@@ -21,11 +20,13 @@ import { PublicCommunitiesCategorieListComponent } from '../public-communities/p
 import { WaitlistModule } from '../../waitlist/waitlist.module';
 import { HomeSearchBarComponent } from './home/home-search-bar/home-search-bar.component';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
-import { CompaniesContainerComponent } from './companies/companies-container/companies-container.component';
-import { CompaniesSearchBarComponent } from './companies/companies-search-bar/companies-search-bar.component';
+import { OrganizationContainerComponent } from './organization/organization-container/organization-container.component';
+import { OrganizationSearchBarComponent } from './organization/organization-search-bar/organization-search-bar.component';
 import { CommunitySuggestionComponent } from './community-suggestion/community-suggestion.component';
 import { CommunitySuggestionThanksComponent } from './community-suggestion/community-suggestion-thanks/community-suggestion-thanks.component';
-import { CompaniesShowOverviewOtherOrganizationsComponent } from './companies/companies-show/companies-show-overview/companies-show-overview-other-organization/companies-show-overview-other-organizations.component';
+import { OrganizationShowOverviewOtherOrganizationsComponent } from './organization/organization-show/organization-show-overview/organization-show-overview-other-organization/organization-show-overview-other-organizations.component';
+import { HomeSectorOrganizationListComponent } from './home/home-sector-organization-list/home-sector-organization-list.component';
+import { OrganizationShowImpactStoriesComponent } from './organization/organization-show/organization-show-overview/organization-show-impact-stories/organization-show-impact-stories.component';
 
 const routes: Routes = [
   {
@@ -46,28 +47,28 @@ const routes: Routes = [
         component: CommunitySuggestionThanksComponent,
       },
       {
-        path: 'categories',
+        path: 'sector-organizations',
         component: PublicCommunitiesCategorieListComponent,
       },
       {
-        path: 'categories/:id',
-        component: CompaniesComponent,
+        path: 'sector-organizations/:id',
+        component: OrganizationComponent,
       },
       {
-        path: 'companies/search',
-        component: CompaniesContainerComponent,
+        path: 'organizations/search',
+        component: OrganizationContainerComponent,
       },
       {
-        path: 'companies/:id',
-        component: CompaniesShowComponent,
+        path: 'organizations/:id',
+        component: OrganizationShowComponent,
         children: [
           {
             path: 'about',
-            component: CompaniesShowAboutComponent,
+            component: OrganizationShowAboutComponent,
           },
           {
             path: 'overview',
-            component: CompaniesShowOverviewComponent,
+            component: OrganizationShowOverviewComponent,
           },
           {
             path: '**',
@@ -83,24 +84,25 @@ const routes: Routes = [
   declarations: [
     HomeComponent,
     HomeHeroSectionComponent,
-    HomeCategoryListComponent,
-    HomeCompanyListComponent,
+    HomeSectorOrganizationListComponent,
+    HomeOrganizationListComponent,
     HomeAboutUsComponent,
-    CompaniesComponent,
+    OrganizationComponent,
     HeaderComponent,
-    CompaniesListComponent,
-    CompaniesShowComponent,
-    CompaniesShowHeroComponent,
-    CompaniesShowOverviewComponent,
-    CompaniesShowAboutComponent,
-    CompaniesShowRatingInformationsComponent,
+    OrganizationListComponent,
+    OrganizationShowComponent,
+    OrganizationShowHeroComponent,
+    OrganizationShowOverviewComponent,
+    OrganizationShowAboutComponent,
+    OrganizationShowRatingInformationsComponent,
     PublicCommunityComponent,
     HomeSearchBarComponent,
-    CompaniesContainerComponent,
-    CompaniesSearchBarComponent,
+    OrganizationContainerComponent,
+    OrganizationSearchBarComponent,
     CommunitySuggestionComponent,
     CommunitySuggestionThanksComponent,
-    CompaniesShowOverviewOtherOrganizationsComponent,
+    OrganizationShowOverviewOtherOrganizationsComponent,
+    OrganizationShowImpactStoriesComponent,
   ],
   imports: [
     CommonModule,

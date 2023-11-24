@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Company } from '../../../../companies/companies.model';
+import { Organization } from '../../../../organization/organization.model';
 import { BaseComponent } from '../../../../shared/base-component';
-import { CompaniesService } from '../../../../companies/companies.service';
+import { OrganizationService } from '../../../../organization/organization.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -11,12 +11,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./public-business-check-community-reviews.component.scss'],
 })
 export class PublicBusinessCheckCommunityReviewsComponent
-  extends BaseComponent<Partial<Company>>
+  extends BaseComponent<Partial<Organization>>
   implements OnInit
 {
   form!: FormGroup;
   constructor(
-    public companiesService: CompaniesService,
+    public organizationService: OrganizationService,
     public router: Router,
     public fb: FormBuilder
   ) {
@@ -39,22 +39,22 @@ export class PublicBusinessCheckCommunityReviewsComponent
 
   submit() {
     if (this.form.valid) {
-      this.checkIfCompanyExists(this.form.controls['websiteUrl'].value);
+      this.checkIfOrganizationExists(this.form.controls['websiteUrl'].value);
     } else {
       this.helper.notification.alertDanger('Please enter a valid website url');
     }
   }
 
-  checkIfCompanyExists(companyUrl: string) {
+  checkIfOrganizationExists(organizationUrl: string) {
     this.loading = true;
-    this.companiesService
-      .getIdByWebsiteUrl(companyUrl)
+    this.organizationService
+      .getIdByWebsiteUrl(organizationUrl)
       .subscribe((response) => {
         if (response) {
-          this.router.navigate(['/companies', response.id]);
+          this.router.navigate(['/organization', response.id]);
         } else {
           this.helper.notification.toastSuccess(
-            'The company is not registered yet, kindly join our waitlist if you are the owner.',
+            'The organization is not registered yet, kindly join our waitlist if you are the owner.',
             5000
           );
           this.router.navigate(['/for-business/book-demo']);

@@ -1,0 +1,27 @@
+<ng-container *ngIf="single">
+  <!-- Overview -->
+  <div class="overview mb-4">
+    <!-- Title -->
+    <h2 class="text-primary text-2xl font-semibold mb-5">Overview</h2>
+
+    <!-- Overview -->
+    <p class="text-primary  text-md leading-relaxed">
+      {{ single.name }} rating of <span class="font-bold text-primary">{{ single.scale?.rating | number: '1.1-2' }}</span>
+      stars from <span class="font-bold text-primary"> 500 reviews</span>, from the community they serve for more than 8 years.
+      They’ve piloted, researched and used technology to pioneer the award-winning farm-for-impact model to prove that this is possible
+      and sustainable.
+    </p>
+  </div>
+
+
+  <!-- Impact stories -->
+  <app-organization-show-impact-stories></app-organization-show-impact-stories>
+
+  <!-- <button data-modal-target="static-modal" data-modal-toggle="static-modal"
+          class="text-primary font-medium underline my-4 text-md leading-relaxed">
+    <i class="mdi mdi-account-voice me-1"></i> See impact stories
+  </button> -->
+
+
+
+</ng-container>

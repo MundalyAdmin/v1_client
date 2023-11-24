@@ -1,0 +1,72 @@
+<div class="container-fluid" *ngIf="single">
+  <!-- Organization informations -->
+  <div class="md:flex justify-center">
+    <div class="md:w-full">
+      <div class="relative mt-[170px] flex justify-center items-center gap-14">
+        <!-- Organization profile logo -->
+        <div class="group profile-pic ">
+          <div
+               class="relative h-200 w-200 mx-auto rounded-full shadow dark:shadow-gray-800 ring-4 ring-slate-50 dark:ring-slate-800 overflow-hidden">
+
+            <!-- Image element -->
+            <img [src]="single.logo"
+                 class="rounded-full h-full w-full object-cover" id="profile-image" [alt]="single.name">
+
+            <div class="absolute inset-0 group-hover:bg-slate-900/10 duration-500"></div>
+            <label class="absolute inset-0 cursor-pointer" for="pro-img"></label>
+          </div>
+        </div>
+
+
+        <!-- companies information -->
+        <div>
+          <!-- Organization basic information -->
+          <div class="mt-4">
+            <!-- Name -->
+            <div class="flex items-center mb-6">
+              <h3 class="text-4xl font-bold text-primary ">
+                {{single.name}}
+
+              </h3>
+
+              <h5 *ngIf="single.profile_status_organization?.id == 2" class="text-xl text-primary  ms-7 font-medium">Claimed
+                <i class="mdi mdi-check-decagram text-primary align-middle text-2xl"></i>
+              </h5>
+            </div>
+
+            <!-- Additional information -->
+            <div class="flex flex-col gap-2 text-lg text-primary items-start">
+              <!-- Location -->
+              <span class="text-slate-600 font-medium mr-12">
+                <i class="uil uil-map-marker text-primary me-1"></i>{{ single.location }}, {{ single.country?.name }}</span>
+
+              <!-- Country -->
+              <span class="text-slate-600 font-medium mr-12"><i class="uil uil-globe text-primary me-1"></i><a
+                   [href]="single.website" target="_blank" class="text-primary underline">Visit website</a></span>
+
+            </div>
+
+
+          </div>
+
+          <!-- Provide Feedback button -->
+          <div class="mt-4">
+            <a href="javascript:void(0)"
+               (click)="takeSurvey()"
+               class="py-3 px-8 inline-block font-medium shadow-lg tracking-wide border align-middle duration-500 text-base text-center rounded-full bg-secondary me-2 hover:bg-secondary-dark hover:text-primary-dark border-primary hover:border-primary-dark text-primary">
+              Take survey
+            </a>
+
+
+            <a [routerLink]="['/for-business/book-demo']"
+
+               class="py-3 px-8 inline-block  shadow-lg tracking-wide border align-middle duration-500 text-base text-center rounded-full bg-primary me-2 hover:bg-primary-light  border-primary hover:border-primary-dark text-secondary">
+              See full report
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

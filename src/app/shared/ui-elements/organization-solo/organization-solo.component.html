@@ -1,0 +1,53 @@
+<div *ngIf="organization"
+     class="group relative py-7 px-8 mt-16 rounded-md shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 bg-white dark:bg-slate-900 duration-500 ">
+  <div class="">
+
+    <!-- Image -->
+    <img [src]="organization.logo"
+         class="rounded-full absolute shadow-md h-20 w-20 mx-auto block" style="    left: 7%; top: -20%;
+    height: 6rem !important;
+    width: 6rem !important;" [alt]="organization.name">
+    <!-- Name and sector-organization -->
+    <div class="mt-8 mb-4">
+
+      <!-- Name -->
+      <a [routerLink]="['/organizations', organization.id]" class="text-xl font-bold text-slate-600 hover:text-primary duration-500 block">{{
+        organization.name
+        }}</a>
+
+      <!-- Sector organization -->
+      <span class="block text-lg text-slate-600">{{ organization.sector_organization?.name }} </span>
+      <span class="block text-slate-400 text-sm">{{ organization.location }}, {{ organization.country?.name }}</span>
+      <span class="block text-slate-600 text-sm"><i class="mdi mdi-star text-emerald-600 me-1"></i> 4.5
+        <span class="ms-1"><span class=" text-slate-400">(120
+            reviews)</span></span> </span>
+    </div>
+  </div>
+
+  <!-- Location and country -->
+  <!-- <div class="flex items-center justify-around my-4"> -->
+  <!-- Location -->
+  <!-- <span class="text-slate-400"><i class="uil uil-map-marker text-primary me-1"></i>{{ organization.location }}</span> -->
+
+  <!-- Country -->
+  <!-- <span class="text-slate-400"><i class="uil uil-globe text-primary me-1"></i>{{ organization.country?.name }}</span> -->
+  <!-- </div> -->
+
+  <!-- Tags -->
+  <a href="" *ngFor="let tag of organization.tag_organizations"
+     class="bg-gray-100 dark:bg-gray-800 text-slate-400 text-xs font-medium px-3 py-1 rounded-lg h-[24px] inline-block m-1">{{ tag.name }}</a>
+
+  <!-- CTA -->
+  <div class="mt-4">
+    <a [routerLink]="['/organizations', organization.id]"
+       class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-primary hover:text-white rounded-md w-full">View
+      details</a>
+  </div>
+
+  <!-- Profiles status -->
+  <div class="absolute top-6 end-6">
+    <span class="bg-indigo-600/5 text-primary text-sm font-medium px-4 py-1 rounded-full h-[28px]">{{ organization.profile_status_organization?.name
+      }}</span>
+  </div>
+
+</div>

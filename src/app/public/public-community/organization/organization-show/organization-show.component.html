@@ -1,0 +1,159 @@
+<section class="relative md:pb-24 pb-16 overflow-hidden" *ngIf="single && !loading">
+  <!-- Hero -->
+  <app-organization-show-hero></app-organization-show-hero>
+
+  <!-- Content -->
+  <div class="grid  md:grid-cols-3 grid-cols-1 gap-0 md:gap-[30px]  mt-32 mx-0 md:mx-32 ">
+    <!-- Main content -->
+    <div
+         class="group col-span-2 relative    duration-500 ease-in-out">
+
+      <!-- Tab list -->
+      <ul
+          class="text-xl font-semibold text-center text-primary px-12 flex">
+        <!-- Overview -->
+        <li class="w-full">
+          <a [routerLink]="['overview']"
+             [routerLinkActive]="['text-primary', 'border-b-[3px]', 'border-primary' ]"
+             class="inline-block w-full p-4    hover:text-primary-light focus:outline-none dark:bg-gray-700 dark:text-white"
+             aria-current="page">
+            Overview
+          </a>
+        </li>
+
+        <!-- About -->
+        <li class="w-full">
+          <a [routerLink]="['about']"
+             [routerLinkActive]="['text-primary', 'border-b-[3px]', 'border-primary' ]"
+             class="inline-block w-full p-4  hover:text-primary-light focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">
+            About</a>
+        </li>
+
+      </ul>
+
+
+      <!-- Tab content -->
+      <div id="StarterContent" class="p-8">
+        <!-- Overview -->
+        <div class="" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+          <router-outlet></router-outlet>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Rating information (right sidebar)-->
+    <div class="grid grid-cols-1 col-span-1 h-fit sticky top-0">
+      <div class="p-8 rounded-xl bg-primary text-white">
+        <!-- Title -->
+        <h5 class="text-2xl text-center mb-2 font-semibold">Impact Fidelity Score</h5>
+
+        <p class="text-slate-200 mb-5 text-center">Overall organization rating:</p>
+
+        <!-- Rating -->
+        <div class="flex justify-between text-cnter flex-col items-center  mb-9 ">
+          <div class="text-2xl font-medium">
+            <!-- Number of starts -->
+            <i class="mdi text-yellow-200 mdi-star ms-2"></i>
+            <i class="mdi mdi-star text-yellow-200"></i>
+            <i class="mdi mdi-star text-yellow-200"></i>
+            <i class="mdi mdi-star text-yellow-200"></i>
+            <i class="mdi mdi-star text-yellow-200"></i>
+          </div>
+
+
+          <div class="text-2xl font-bold mb-3">{{ single.scale?.impact_fidelity || '4.50'}}</div>
+
+          <!-- Appreciation (grade) -->
+          <div class=" text-slate-300 text-center">Recommended</div>
+        </div>
+
+        <!-- Feedback informations -->
+        <ul class="list-none mt-4 gap-3 grid grid-cols-1">
+
+          <!-- Number of feedbacks -->
+          <li class="flex justify-between items-center">
+            <span class="text-slate-100 text-md">Number of survey respondents</span>
+            <span class="font-medium text-md">500</span>
+          </li>
+
+          <!-- Question answered -->
+          <li class="flex justify-between items-center ">
+            <span class="text-slate-100 text-md">Questions answered</span>
+            <span class="font-medium text-md">92%</span>
+          </li>
+
+          <!-- Profile status -->
+          <li class="flex justify-between items-center ">
+            <span class="text-slate-100 text-md">Profile status</span>
+            <span class="bg-slate-50 px-5 rounded-full py-1 text-center text-primary" *ngIf="single.profile_status_organization?.id == 2">
+              Claimed
+              <i class="mdi mdi-check-decagram   ms-2"></i>
+            </span>
+            <span class="bg-slate-50 px-5 rounded-full py-1 text-center text-primary" *ngIf="single.profile_status_organization?.id == 1">
+              Unclaimed
+
+            </span>
+          </li>
+
+          <!-- Take a survey -->
+          <li class="flex justify-between items-center mt-5 ">
+            <button
+                    class="py-3 rounded-full bg-secondary hover:bg-primary-lighter text-lg font-semibold  border-primary w-full text-center text-primary">
+              Take a survey
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Similar organizations -->
+  <app-organization-show-overview-other-organizations></app-organization-show-overview-other-organizations>
+
+
+  <!-- Testimonials -->
+  <section class=" relative py-24 bg-[url(assets/images/map.png)] bg-cover bg-center ">
+    <div class="mx-1 md:mx-32">
+      <!-- Header & subheader -->
+      <div class="grid grid-cols-1 pb-8 text-center">
+        <h3 class="mb-3 text-primary text-4xl md:leading-normal leading-normal font-semibold">What you can do with us</h3>
+        <p class="text-primary max-w-xl text-lg mx-auto">With Mundaly’s science-backed platform, You can now</p>
+      </div>
+
+      <!-- Testimonial lists -->
+      <div class="flex justify-center align-center mt-12">
+        <div class="bg-slate-100 w-[90%] md:w-1/2 rounded-2xl relative flex flex-col items-center shadow-lg  text-primary p-8 md:p-12">
+          <div class="absolute top-[-70px] rounded-full border-2 border-primary overflow-hidden h-32 w-32">
+            <img src="assets/images/client/07.jpg" class="w-full h-full" alt="">
+          </div>
+
+
+          <h2 class="mt-10 text-2xl text-primary font-semibold">Jose Guillarmo</h2>
+          <p class=" text-primary text-md ">
+            Head of Sustainability at <span class="text-secondary-dark font-semibold">Cardeo</span>
+          </p>
+          <p class="mt-3 text-lg italic">
+            <i class=" text-xl mdi mdi-format-quote-open"></i> Love having the “verify” section focused on community stakeholders validating the real
+            world impact. As an investor, seeing that sort of first-hand feedback provided by community members is a great addition to our
+            vetting process." <i class=" text-xl mdi mdi-format-quote-close"></i>
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+
+
+  </section>
+
+  <div
+       class="w-[316px] h-[1151px] opacity-80 mix-blend-color-burn bg-teal-100 -z-10 rounded-full blur-[400px] absolute top-[-333px] left-[-58px]">
+  </div>
+  <div
+       class="w-[337px] h-[1151px] opacity-80 mix-blend-color-burn bg-violet-950 -z-10 rounded-full blur-[400px] absolute right-[-10.5rem] top-[10rem]">
+  </div>
+</section>
+
+
+<app-page-loading [height]="600" *ngIf="loading"></app-page-loading>
