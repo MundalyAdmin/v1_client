@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ImpactStoryOrganization } from '../../../organization/impact-story-organization/impact-story-organization.model';
-import { interval } from 'rxjs';
+import { interval, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-custom-carousel',
@@ -11,6 +11,7 @@ export class CustomCarouselComponent {
   @Input() impactStories: ImpactStoryOrganization[] = [];
   currentSlide = 0;
   intervalId: any;
+  pauseSlide$: Subject<boolean> = new Subject();
 
   // Add your carousel items here
   // items = [
@@ -33,7 +34,7 @@ export class CustomCarouselComponent {
 
   startSlideShow() {
     // Set up an interval to change slides every 3 seconds (adjust as needed)
-    this.intervalId = interval(4000).subscribe(() => {
+    this.intervalId = interval(3000).subscribe(() => {
       this.nextSlide();
     });
   }

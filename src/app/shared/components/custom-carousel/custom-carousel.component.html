@@ -1,5 +1,5 @@
 <!-- carousel.component.html -->
-<div class="relative">
+<div class="relative" (mouseover)="stopSlideShow()" (mouseout)="startSlideShow()">
   <div class="carousel  overflow-hidden rounded-lg" style="height: 600px; overflow-y: auto;">
     <!-- <div class="slide" *ngFor="let item of items; let i = index" [class.active]="i === currentSlide">
       {{ item.content }}
