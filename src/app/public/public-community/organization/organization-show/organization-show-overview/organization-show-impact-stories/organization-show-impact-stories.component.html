@@ -54,62 +54,62 @@
 
   <!-- Comment list -->
   <div class="mt-12">
-    <div id="default-carousel" class="relative w-full" data-carousel="slide">
-      <!-- Carousel wrapper -->
-      <div class="relative overflow-hidden rounded-lg" style="height: 600px; overflow-y: auto;">
-        <!-- Item 1 -->
-        <div class="hidden duration-700 ease-in-out border bg-slate-50/50 p-4 rounded-md" data-carousel-item
-             *ngFor="let story of impactStoryOrganizationService.data">
-          <div class="mt-8">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center">
-                <img src="https://media.istockphoto.com/id/942153448/de/vektor/avatar.jpg?s=612x612&w=0&k=20&c=dYzovkqwc-ADwIYjH7fd6MdgaJi0UslcMC3ycK9dmSg="
-                     class="h-11 w-11 rounded-full shadow" alt="">
+    <!-- <div id="default-carousel" class="relative w-full" data-carousel="slide"> -->
+    <!-- Carousel wrapper -->
+    <!-- <div class="relative overflow-hidden rounded-lg" style="height: 600px; overflow-y: auto;"> -->
 
-                <div class="ms-3 flex-1">
-                  <a href="" class="text-lg font-semibold hover:text-indigo-600 duration-500">{{ story.username }}</a>
-                  <p class="text-sm text-slate-400">{{ story.created_at | date }}</p>
+    <!-- Item 1 -->
+    <div class=" duration-700 ease-in-out border bg-slate-50/50 p-4 rounded-md" data-carousel-item>
+      <div class="mt-8">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <img src="https://media.istockphoto.com/id/942153448/de/vektor/avatar.jpg?s=612x612&w=0&k=20&c=dYzovkqwc-ADwIYjH7fd6MdgaJi0UslcMC3ycK9dmSg="
+                 class="h-11 w-11 rounded-full shadow" alt="">
 
-                  <div class="flex">
-                    <span class="mdi mdi-star text-yellow-300 text-xl"></span>
-                    <span class="mdi mdi-star text-yellow-300 text-xl"></span>
-                    <span class="mdi mdi-star text-yellow-300 text-xl"></span>
-                    <span class="mdi mdi-star text-yellow-300 text-xl"></span>
-                    <span class="mdi mdi-star-half-full text-yellow-300 text-xl"></span>
-                  </div>
-                </div>
+            <div class="ms-3 flex-1">
+              <a href="" class="text-lg font-semibold hover:text-indigo-600 duration-500">{{ impactStoryOrganizationService.data[1].username }}</a>
+              <p class="text-sm text-slate-400">{{ impactStoryOrganizationService.data[1].created_at | date }}</p>
 
-              </div>
-
-
-            </div>
-            <div class="p-4  dark:bg-slate-800  dark:shadow-gray-800 mt-6">
-              <div class="mb-3">
-                <h5 class="text-lg font-semibold text-primary">What's your role?</h5>
-                <p class="text-slate-400">{{ story.what_role }}</p>
-              </div>
-              <div class="mb-3">
-                <h5 class="text-lg font-semibold text-primary">What do you like best about {{ organizationService.singleData?.name }}?</h5>
-                <p class="text-slate-400">{{ story.what_like }}</p>
-              </div>
-              <div class="mb-3">
-                <h5 class="text-lg font-semibold text-primary">Do what they say they do in the media match what's happening on the ground?</h5>
-                <p class="text-slate-400">{{ story.what_happened }}</p>
-              </div>
-              <div class="mb-3">
-                <h5 class="text-lg font-semibold text-primary">Is there anything you would want them to improve?</h5>
-                <p class="text-slate-400">{{ story.what_improve }}</p>
+              <div class="flex">
+                <span class="mdi mdi-star text-yellow-300 text-xl"></span>
+                <span class="mdi mdi-star text-yellow-300 text-xl"></span>
+                <span class="mdi mdi-star text-yellow-300 text-xl"></span>
+                <span class="mdi mdi-star text-yellow-300 text-xl"></span>
+                <span class="mdi mdi-star-half-full text-yellow-300 text-xl"></span>
               </div>
             </div>
+
+          </div>
+
+
+        </div>
+        <div class="p-4  dark:bg-slate-800  dark:shadow-gray-800 mt-6">
+          <div class="mb-3">
+            <h5 class="text-lg font-semibold text-primary">What's your role?</h5>
+            <p class="text-slate-400">{{ impactStoryOrganizationService.data[1].what_role }}</p>
+          </div>
+          <div class="mb-3">
+            <h5 class="text-lg font-semibold text-primary">What do you like best about {{ organizationService.singleData?.name }}?</h5>
+            <p class="text-slate-400">{{ impactStoryOrganizationService.data[1].what_like }}</p>
+          </div>
+          <div class="mb-3">
+            <h5 class="text-lg font-semibold text-primary">Do what they say they do in the media match what's happening on the ground?</h5>
+            <p class="text-slate-400">{{ impactStoryOrganizationService.data[1].what_happened }}</p>
+          </div>
+          <div class="mb-3">
+            <h5 class="text-lg font-semibold text-primary">Is there anything you would want them to improve?</h5>
+            <p class="text-slate-400">{{ impactStoryOrganizationService.data[1].what_improve }}</p>
           </div>
         </div>
-
-
       </div>
-      <!-- Slider indicators -->
+    </div>
 
-      <!-- Slider controls -->
-      <button type="button"
+
+    <!-- </div> -->
+    <!-- Slider indicators -->
+
+    <!-- Slider controls -->
+    <!-- <button type="button"
               class="absolute top-3 left-[-70px] z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
               data-carousel-prev>
         <span
@@ -126,8 +126,8 @@
           <span><i class="mdi  font-bold text-2xl mdi-chevron-right text-white"></i></span>
           <span class="sr-only">Next</span>
         </span>
-      </button>
-    </div>
+      </button> -->
+    <!-- </div> -->
 
     <!-- <div class="mt-8">
             <div class="flex items-center justify-between">
