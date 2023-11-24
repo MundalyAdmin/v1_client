@@ -4,12 +4,14 @@ import { ImpactStoryOrganizationService } from '../../../../../../organization/i
 import { OrganizationService } from '../../../../../../organization/organization.service';
 import { Router } from '@angular/router';
 import { BaseComponent } from '../../../../../../shared/base-component';
+import { Flowbite } from '../../../../../../shared/decorators/flowbite.decorator';
 
 @Component({
   selector: 'app-organization-show-impact-stories',
   templateUrl: './organization-show-impact-stories.component.html',
   styleUrls: ['./organization-show-impact-stories.component.scss'],
 })
+@Flowbite()
 export class OrganizationShowImpactStoriesComponent
   extends BaseComponent<ImpactStoryOrganization>
   implements OnInit
@@ -41,5 +43,15 @@ export class OrganizationShowImpactStoriesComponent
           this.loading = false;
         },
       });
+  }
+
+  randomDate() {
+    const start = new Date('2023-06-01');
+    const end = new Date();
+    return Object.freeze(
+      new Date(
+        start.getTime() + Math.random() * (end.getTime() - start.getTime())
+      )
+    );
   }
 }

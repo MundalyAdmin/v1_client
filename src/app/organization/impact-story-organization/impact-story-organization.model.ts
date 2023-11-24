@@ -3,11 +3,21 @@ import { BaseModel } from '../../shared/models/BaseModel';
 export interface ImpactStoryOrganization extends BaseModel {
   title?: string;
 
-  image?: string;
+  description?: string;
 
-  about?: string;
+  video?: string;
 
-  link?: string;
+  username?: string;
+
+  what_role?: string;
+
+  what_like?: string;
+
+  what_happened?: string;
+
+  what_improve?: string;
 
   organization_id?: number;
+
+  rating?: number;
 }

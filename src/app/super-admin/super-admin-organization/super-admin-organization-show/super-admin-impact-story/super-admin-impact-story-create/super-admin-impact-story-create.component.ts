@@ -28,24 +28,22 @@ export class SuperAdminImpactStoryCreateComponent
   }
 
   initForm(impactStory?: ImpactStoryOrganization) {
-    const title = impactStory?.title || '';
-    const about = impactStory?.about || '';
-    const link = impactStory?.link || '';
-
-    this.form = this.fb.group({
-      title: [title, Validators.required],
-      about: [about, Validators.required],
-      link: [link, Validators.required],
-      organization_id: [null, Validators.required],
-    });
-
-    this.subscriptions['organization'] =
-      this.organizationService.singleData$.subscribe((organization) => {
-        if (organization) {
-          this.formValuePatcher('organization_id', organization.id);
-          this.organization = organization;
-        }
-      });
+    // const title = impactStory?.title || '';
+    // const about = impactStory?.about || '';
+    // const link = impactStory?.link || '';
+    // this.form = this.fb.group({
+    //   title: [title, Validators.required],
+    //   about: [about, Validators.required],
+    //   link: [link, Validators.required],
+    //   organization_id: [null, Validators.required],
+    // });
+    // this.subscriptions['organization'] =
+    //   this.organizationService.singleData$.subscribe((organization) => {
+    //     if (organization) {
+    //       this.formValuePatcher('organization_id', organization.id);
+    //       this.organization = organization;
+    //     }
+    //   });
   }
 
   override create(): void {
