@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { SuperAdminImpactStoryCreateComponent } from '../super-admin-impact-story-create/super-admin-impact-story-create.component';
-import { ImpactStoryOrganizationService } from '../../../../../organization/impact-story-organization/impact-story-organization.service';
+import { ImpactStoryService } from '../../../../../scale/impact-story/impact-story.service';
 import { OrganizationService } from '../../../../../organization/organization.service';
-import { ImpactStoryOrganization } from '../../../../../organization/impact-story-organization/impact-story-organization.model';
+import { ImpactStory } from '../../../../../scale/impact-story/impact-story.model';
 
 @Component({
   selector: 'app-super-admin-impact-story-edit',
@@ -10,9 +10,9 @@ import { ImpactStoryOrganization } from '../../../../../organization/impact-stor
   styleUrls: ['./super-admin-impact-story-edit.component.scss'],
 })
 export class SuperAdminImpactStoryEditComponent extends SuperAdminImpactStoryCreateComponent {
-  impactStory: ImpactStoryOrganization | null = null;
+  impactStory: ImpactStory | null = null;
   constructor(
-    public override impactStoryOrganizationService: ImpactStoryOrganizationService,
+    public override impactStoryOrganizationService: ImpactStoryService,
     public override organizationService: OrganizationService
   ) {
     super(impactStoryOrganizationService, organizationService);

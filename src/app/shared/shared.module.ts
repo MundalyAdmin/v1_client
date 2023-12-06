@@ -16,6 +16,8 @@ import { ThankYouPageComponent } from './components/thank-you-page/thank-you-pag
 import { Select2Module } from 'ng-select2-component';
 import { TypewriterComponent } from '../typewriter/typewriter.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { CustomCarouselComponent } from './components/custom-carousel/custom-carousel.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     ComingSoonComponent,
     ThankYouPageComponent,
     TypewriterComponent,
+    CustomCarouselComponent,
   ],
   providers: [
     {
@@ -48,6 +51,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     LoadingModule,
     Select2Module,
     NgMultiSelectDropDownModule,
+    NgApexchartsModule,
   ],
   exports: [
     HttpClientModule,
@@ -64,6 +68,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     Select2Module,
     TypewriterComponent,
     NgMultiSelectDropDownModule,
+    CustomCarouselComponent,
+    NgApexchartsModule,
   ],
 })
 export class SharedModule {}
