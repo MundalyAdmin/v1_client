@@ -3,6 +3,8 @@ import { BaseModel } from '../../shared/models/BaseModel';
 import { ImpactStoryReply } from './impact-story-reply/impact-story-reply.model';
 
 export interface ImpactStory extends BaseModel {
+  username?: string;
+
   title?: string;
 
   about?: string;
