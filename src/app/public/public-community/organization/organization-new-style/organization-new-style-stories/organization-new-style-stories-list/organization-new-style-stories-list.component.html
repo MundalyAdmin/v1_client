@@ -1,0 +1,106 @@
+<div class="my-5">
+  <img src="assets/images/new-style/rating-graph.png" class="w-2/3">
+</div>
+
+<div class=" transition duration-700 ease-in-out   bg-slate-50/50 p-4 rounded-md animate__animated   "
+     style=" --animate-duration: 300ms;"
+     data-carousel-item>
+  <div class="mt-8 border-b" *ngFor="let story of impactStoryOrganizationService.data">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center">
+        <img src="https://media.istockphoto.com/id/942153448/de/vektor/avatar.jpg?s=612x612&w=0&k=20&c=dYzovkqwc-ADwIYjH7fd6MdgaJi0UslcMC3ycK9dmSg="
+             class="h-11 w-11 rounded-full shadow" alt="">
+
+        <div class="ms-3 flex-1">
+          <a href="" class="text-lg font-semibold hover:text-indigo-600 duration-500">{{ story.username }}</a>
+          <span class="ml-5"><i class="mdi mdi-map-marker "></i> Ghana</span>
+
+          <div class="flex items-center">
+            <span class="mdi mdi-star text-yellow-300 text-xl"></span>
+            <span class="mdi mdi-star text-yellow-300 text-xl"></span>
+            <span class="mdi mdi-star text-yellow-300 text-xl"></span>
+            <span class="mdi mdi-star text-yellow-300 text-xl"></span>
+            <span class="mdi mdi-star-half-full text-yellow-300 text-xl"></span>
+
+            <span class="text-yellow-300 ml-3">4.5</span>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+    <!-- <div class="p-4  dark:bg-slate-800  dark:shadow-gray-800 mt-6">
+      <div class="mb-3">
+        <h5 class="text-lg font-semibold text-primary">Very engaging and inclusive</h5>
+        <p class="text-slate-400">Cocoa360 frequently meets with us and the community leaders to understand what our main challenges were. I like that
+          they value and respect our
+          opinions and take action to show that. To improve, they should speak with us so we can schedule farm attendance better </p>
+      </div>
+
+    </div> -->
+    <div class=" dark:bg-slate-800  dark:shadow-gray-800 ">
+      <div class="mb-7">
+        <h5 class="font-semibold text-primary my-5">{{ story.title }}</h5>
+        <p class="font-semibold">{{ story.about }} </p>
+      </div>
+      <div class="mb-3" *ngIf="story.reply">
+        <h6 class=" text-slate-400 text-sm font-bold mb-2">1 reply from {{ organization?.name }}</h6>
+        <p class=" text-slate-400 ">{{ story.reply.reply }}</p>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+<!-- <div class=" transition duration-700 ease-in-out border bg-slate-50/50 p-4 rounded-md animate__animated   "
+     style=" --animate-duration: 300ms;"
+     data-carousel-item>
+  <div class="mt-8">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center">
+        <img src="https://media.istockphoto.com/id/942153448/de/vektor/avatar.jpg?s=612x612&w=0&k=20&c=dYzovkqwc-ADwIYjH7fd6MdgaJi0UslcMC3ycK9dmSg="
+             class="h-6 w-6 rounded-full shadow" alt="">
+
+        <div class="ms-3 flex-1">
+          <a href="" class=" font-semibold hover:text-indigo-600 duration-500">Verified carpenter</a>
+          <span class="ml-10"><i class="mdi mdi-map-marker me-2"></i> Ghana</span>
+
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+    <div class="flex">
+      <span class="mdi mdi-star text-yellow-300 text-base me-1"></span>
+      <span class="mdi mdi-star text-yellow-300 text-base me-1"></span>
+      <span class="mdi mdi-star text-yellow-300 text-base me-1"></span>
+      <span class="mdi mdi-star text-yellow-300 text-base me-1"></span>
+      <span class="mdi mdi-star-half-full text-yellow-300 text-base me-1"></span>
+
+      <span class="text-sm text-yellow-300">4.5</span>
+    </div>
+
+    <div class=" dark:bg-slate-800  dark:shadow-gray-800 ">
+      <div class="mb-7">
+        <h5 class="font-semibold text-slate-500 my-7">Very engaging and inclusive</h5>
+        <p class="font-semibold">Cocoa360 frequently meets with us and the community leaders to understand what our main challenges were. I like that
+          they value and respect our
+          opinions and take action to show that. To improve, they should speak with us so we can schedule farm attendance better </p>
+      </div>
+      <div class="mb-3">
+        <h6 class=" text-slate-500 mb-2">1 reply from Cocoa360</h6>
+        <p class=" text-slate-500">Cocoa360 frequently meets with us and the community leaders to understand what our main challenges
+          were. I like that
+          they value and respect our
+          opinions and take action to show that. To improve, they should speak with us so we can schedule farm attendance better </p>
+      </div>
+
+    </div>
+  </div>
+</div> -->

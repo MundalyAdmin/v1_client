@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ImpactStoryOrganization } from '../../../organization/impact-story-organization/impact-story-organization.model';
+import { ImpactStory } from '../../../scale/impact-story/impact-story.model';
 import { interval, Subject } from 'rxjs';
 
 @Component({
@@ -8,7 +8,7 @@ import { interval, Subject } from 'rxjs';
   styleUrls: ['./custom-carousel.component.scss'],
 })
 export class CustomCarouselComponent {
-  @Input() impactStories: ImpactStoryOrganization[] = [];
+  @Input() impactStories: ImpactStory[] = [];
   currentSlide = 0;
   intervalId: any;
   pauseSlide$: Subject<boolean> = new Subject();

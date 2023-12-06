@@ -1,0 +1,200 @@
+<div class="relative px-[120px] py-44 overflow-hidden" *ngIf="single">
+  <!-- Header -->
+  <div class="grid grid-col-1 bg-white border  rounded-xl overflow-hidden ">
+    <!-- Video background -->
+    <div class="h-[210px] w-full relative">
+      <img [src]="single.cover" *ngIf="single.cover" class="w-full h-full object-cover object-center" alt="Video background">
+      <img src="https://res.cloudinary.com/mundaly/image/upload/v1701871815/organization/bg-placeholder.jpg" *ngIf="!single.cover"
+           class="w-full h-full object-cover object-center" alt="Video background">
+
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <span><i class="mdi mdi-play-circle text-4xl"></i></span>
+      </div>
+    </div>
+
+    <!-- Organization information -->
+    <div class="flex gap-10 px-8 pt-4 pb-8 relative">
+      <div class="w-52 shrink-0 h-52 mt-[-100px] z-99 bg-white rounded-full overflow-hidden border-2 border-black border-opacity-10">
+        <img [src]="single.logo" class="w-full h-full object-cover"
+             alt="">
+      </div>
+
+      <!--  -->
+      <div class="flex-col gap-2  inline-flex">
+        <!-- Basic information -->
+        <div class="justify-between items-center  inline-flex">
+          <div class=" items-center gap-5 flex">
+            <!-- Title -->
+            <div class="text-violet-950 text-4xl font-bold ">{{ single.name }}</div>
+
+            <!-- Claiming badge -->
+            <div class="text-violet-950 text-lg ">Claimed <span><i class="mdi mdi-check-decagram"></i></span></div>
+
+          </div>
+
+          <a [href]="single.website" type="button"
+             class="px-7 py-3 font-semibold border border-primary  rounded-full text-center text-primary bg-secondary  hover:bg-secondary-dark focus:ring-4 focus:outline-none focus:ring-primary-dark">Visit
+            website</a>
+        </div>
+
+        <!-- Location and badges -->
+        <div class="justify-start items-center gap-6 inline-flex">
+          <!-- Location -->
+          <div class="  text-slate-500 text-base font-normal">
+            <span class="me-2"><i class="mdi mdi-map-marker"></i></span> {{ single.location }}, {{ single.country?.name }}
+          </div>
+
+          <div
+               class="bg-white text-slate-700 border text-base font-medium me-2 px-1 rounded  border-green-400">Facilitator <span class="ms-2"><i
+                 class="mdi mdi-check"></i></span></div>
+
+          <div
+               class="bg-white text-slate-700 border text-base font-medium me-2 px-1 rounded  border-red-400"> Funder <span class="ms-2"><i
+                 class="mdi mdi-close"></i></span></div>
+
+        </div>
+
+        <div class=" text-slate-600 text-base w-3/4 font-normal " [innerHTML]="single.about"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="grid  md:grid-cols-3 grid-cols-1 gap-0 md:gap-[30px]  mt-24 mx-0">
+    <!-- Main content -->
+    <div
+         class="group col-span-2 relative    duration-500 ease-in-out">
+
+      <!-- Tab list -->
+      <ul
+          class="text-xl font-semibold text-start text-slate-500 px-8 flex">
+        <!-- Overview -->
+        <li class=" pr-8">
+          <a [routerLink]="['rating-overview']"
+             [routerLinkActive]="['text-primary', 'border-b-[3px]', 'border-primary' ]"
+             class="inline-block w-full py-4     hover:text-primary-light focus:outline-none dark:bg-gray-700 dark:text-white"
+             aria-current="page">
+            Rating overview
+          </a>
+        </li>
+
+        <!-- Stories -->
+        <li class=" pr-8">
+          <a [routerLink]="['stories']"
+             [routerLinkActive]="['text-primary', 'border-b-[3px]', 'border-primary' ]"
+             class="inline-block w-full py-4   hover:text-primary-light focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">
+            Stories</a>
+        </li>
+
+        <!-- Rating report -->
+        <li class=" pr-8">
+          <a [routerLink]="['rating-report']"
+             [routerLinkActive]="['text-primary', 'border-b-[3px]', 'border-primary' ]"
+             class="inline-block w-full py-4   hover:text-primary-light focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">
+            Rating report</a>
+        </li>
+
+      </ul>
+
+
+      <!-- Tab content -->
+      <div id="StarterContent" class="p-8">
+        <!-- Overview -->
+        <div class="" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+          <router-outlet></router-outlet>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Rating information (right sidebar)-->
+    <div class="grid grid-cols-1 col-span-1 h-fit sticky top-0">
+      <div class="p-8 rounded-xl bg-primary text-white">
+        <!-- Title -->
+        <h5 class="text-2xl text-center mb-2 font-semibold">Community Trust Score</h5>
+
+        <p class="text-slate-200 mb-5 text-center">Overall organization rating:</p>
+
+        <!-- Rating -->
+        <div class="flex justify-between text-cnter flex-col items-center  mb-9 ">
+          <div class="text-2xl font-medium">
+            <!-- Number of starts -->
+            <i class="mdi text-yellow-200 mdi-star ms-2"></i>
+            <i class="mdi mdi-star text-yellow-200"></i>
+            <i class="mdi mdi-star text-yellow-200"></i>
+            <i class="mdi mdi-star text-yellow-200"></i>
+            <i class="mdi mdi-star text-yellow-200"></i>
+          </div>
+
+
+          <div class="text-2xl font-bold ">91%</div>
+
+        </div>
+
+        <!-- Feedback informations -->
+        <ul class="list-none mt-2 gap-5 grid grid-cols-1">
+
+          <!-- Social Impact fidelity -->
+          <li class=" ">
+            <div class="text-slate-100 text-md mb-1">Social Impact Fidelity</div>
+            <div class="w-full bg-primary-light rounded-full h-4 ">
+              <div class="bg-green-600 h-4 rounded-full" style="width: 91%"></div>
+            </div>
+          </li>
+
+          <!-- Community Perception -->
+          <li class=" ">
+            <div class="text-slate-100 text-md mb-1">Community Perception</div>
+            <div class="w-full bg-primary-light rounded-full h-4 ">
+              <div class="bg-green-600 h-4 rounded-full" style="width: 91%"></div>
+            </div>
+          </li>
+
+
+          <!-- Facilitation Strategy -->
+          <li class=" ">
+            <div class="text-slate-100 text-md mb-1">Facilitation Strategy</div>
+            <div class="w-full bg-primary-light rounded-full h-4 ">
+              <div class="bg-green-600 h-4 rounded-full" style="width: 91%"></div>
+            </div>
+          </li>
+
+
+          <!-- Profile status -->
+          <li class="flex justify-between items-center ">
+            <span class="text-slate-100 text-md">Profile status</span>
+            <span class="bg-slate-50 px-5 rounded-full py-1 text-center text-primary">
+              Claimed
+              <i class="mdi mdi-check-decagram   ms-2"></i>
+            </span>
+            <!-- <span class="bg-slate-50 px-5 rounded-full py-1 text-center text-primary" *ngIf="single.profile_status_organization?.id == 1">
+              Unclaimed
+
+            </span> -->
+          </li>
+
+          <!-- Take a survey -->
+          <li class="flex justify-between items-center mt-5 ">
+            <button
+                    class="py-3 rounded-full bg-secondary hover:bg-primary-lighter text-lg font-semibold  border-primary w-full text-center text-primary">
+              Take a survey
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <div
+       class="w-[316px] h-[1151px] opacity-80 mix-blend-color-burn bg-teal-100 -z-10 rounded-full blur-[400px] absolute top-[-333px] left-[-58px]">
+  </div>
+  <div
+       class="w-[337px] h-[1151px] opacity-80 mix-blend-color-burn bg-violet-950 -z-10 rounded-full blur-[400px] absolute right-[-10.5rem] top-[10rem]">
+  </div>
+
+</div>
