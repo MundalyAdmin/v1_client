@@ -27,6 +27,13 @@ import { CommunitySuggestionThanksComponent } from './community-suggestion/commu
 import { OrganizationShowOverviewOtherOrganizationsComponent } from './organization/organization-show/organization-show-overview/organization-show-overview-other-organization/organization-show-overview-other-organizations.component';
 import { HomeSectorOrganizationListComponent } from './home/home-sector-organization-list/home-sector-organization-list.component';
 import { OrganizationShowImpactStoriesComponent } from './organization/organization-show/organization-show-overview/organization-show-impact-stories/organization-show-impact-stories.component';
+import { OrganizationNewStyleComponent } from './organization/organization-new-style/organization-new-style.component';
+import { OrganizationNewStyleStoriesComponent } from './organization/organization-new-style/organization-new-style-stories/organization-new-style-stories.component';
+import { OrganizationNewStyleRatingReportComponent } from './organization/organization-new-style/organization-new-style-rating-report/organization-new-style-rating-report.component';
+import { OrganizationNewStyleCompanyReportedComponent } from './organization/organization-new-style/organization-new-style-company-reported/organization-new-style-company-reported.component';
+import { OrganizationNewStyleCommunityVerifiedComponent } from './organization/organization-new-style/organization-new-style-community-verified/organization-new-style-community-verified.component';
+import { OrganizationNewStyleRatingOverviewComponent } from './organization/organization-new-style/organization-new-style-rating-overview/organization-new-style-rating-overview.component';
+import { OrganizationNewStyleStoriesListComponent } from './organization/organization-new-style/organization-new-style-stories/organization-new-style-stories-list/organization-new-style-stories-list.component';
 
 const routes: Routes = [
   {
@@ -60,22 +67,60 @@ const routes: Routes = [
       },
       {
         path: 'organizations/:id',
-        component: OrganizationShowComponent,
+        component: OrganizationNewStyleComponent,
         children: [
           {
-            path: 'about',
-            component: OrganizationShowAboutComponent,
+            path: 'rating-overview',
+            component: OrganizationNewStyleRatingOverviewComponent,
+            children: [
+              {
+                path: 'company-reported',
+                component: OrganizationNewStyleCompanyReportedComponent,
+              },
+              {
+                path: 'community-verified',
+                component: OrganizationNewStyleCommunityVerifiedComponent,
+              },
+              {
+                path: '**',
+                redirectTo: 'company-reported',
+                pathMatch: 'full',
+              },
+            ],
           },
           {
-            path: 'overview',
-            component: OrganizationShowOverviewComponent,
+            path: 'stories',
+            component: OrganizationNewStyleStoriesComponent,
+          },
+          {
+            path: 'rating-report',
+            component: OrganizationNewStyleRatingReportComponent,
           },
           {
             path: '**',
-            redirectTo: 'overview',
+            redirectTo: 'rating-overview',
+            pathMatch: 'full',
           },
         ],
       },
+      // {
+      //   path: 'organizations/:id',
+      //   component: OrganizationShowComponent,
+      //   children: [
+      //     {
+      //       path: 'about',
+      //       component: OrganizationShowAboutComponent,
+      //     },
+      //     {
+      //       path: 'overview',
+      //       component: OrganizationShowOverviewComponent,
+      //     },
+      //     {
+      //       path: '**',
+      //       redirectTo: 'overview',
+      //     },
+      //   ],
+      // },
     ],
   },
 ];
@@ -103,6 +148,13 @@ const routes: Routes = [
     CommunitySuggestionThanksComponent,
     OrganizationShowOverviewOtherOrganizationsComponent,
     OrganizationShowImpactStoriesComponent,
+    OrganizationNewStyleComponent,
+    OrganizationNewStyleStoriesComponent,
+    OrganizationNewStyleRatingReportComponent,
+    OrganizationNewStyleCompanyReportedComponent,
+    OrganizationNewStyleCommunityVerifiedComponent,
+    OrganizationNewStyleRatingOverviewComponent,
+    OrganizationNewStyleStoriesListComponent,
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../../../../shared/base-component';
-import { ImpactStoryOrganization } from '../../../../../organization/impact-story-organization/impact-story-organization.model';
-import { ImpactStoryOrganizationService } from '../../../../../organization/impact-story-organization/impact-story-organization.service';
+import { ImpactStory } from '../../../../../scale/impact-story/impact-story.model';
+import { ImpactStoryService } from '../../../../../scale/impact-story/impact-story.service';
 import { OrganizationService } from '../../../../../organization/organization.service';
 import { Flowbite } from '../../../../../shared/decorators/flowbite.decorator';
 import { Router } from '@angular/router';
@@ -13,11 +13,11 @@ import { Router } from '@angular/router';
 })
 @Flowbite()
 export class SuperAdminImpactStoryListComponent
-  extends BaseComponent<ImpactStoryOrganization>
+  extends BaseComponent<ImpactStory>
   implements OnInit
 {
   constructor(
-    public impactStoryOrganizationService: ImpactStoryOrganizationService,
+    public impactStoryOrganizationService: ImpactStoryService,
     public organizationService: OrganizationService,
     public router: Router
   ) {
@@ -45,12 +45,12 @@ export class SuperAdminImpactStoryListComponent
       });
   }
 
-  edit(story: ImpactStoryOrganization) {
+  edit(story: ImpactStory) {
     console.log(story);
     this.impactStoryOrganizationService.singleData = story;
   }
 
-  delete(story: ImpactStoryOrganization) {
+  delete(story: ImpactStory) {
     this.helper.notification.confirm(
       `Delete  ${story.title}`,
       'Are you sure you want to delete this impact story?',
