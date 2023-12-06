@@ -13,6 +13,8 @@ export interface Organization extends BaseModel {
 
   logo?: string;
 
+  cover?: string;
+
   website?: string;
 
   email?: string;
