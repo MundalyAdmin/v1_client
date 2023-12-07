@@ -1,4 +1,4 @@
-<div class="relative px-[120px] py-44 overflow-hidden" *ngIf="single">
+<div class="relative px-[120px] py-44 overflow-hidden" *ngIf="single && !loading">
   <!-- Header -->
   <div class="grid grid-col-1 bg-white border  rounded-xl overflow-hidden ">
     <!-- Video background -->
@@ -129,3 +129,5 @@
   </div>
 
 </div>
+
+<app-page-loading *ngIf="loading"></app-page-loading>
