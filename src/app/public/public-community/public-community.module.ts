@@ -34,6 +34,7 @@ import { OrganizationNewStyleCompanyReportedComponent } from './organization/org
 import { OrganizationNewStyleCommunityVerifiedComponent } from './organization/organization-new-style/organization-new-style-community-verified/organization-new-style-community-verified.component';
 import { OrganizationNewStyleRatingOverviewComponent } from './organization/organization-new-style/organization-new-style-rating-overview/organization-new-style-rating-overview.component';
 import { OrganizationNewStyleStoriesListComponent } from './organization/organization-new-style/organization-new-style-stories/organization-new-style-stories-list/organization-new-style-stories-list.component';
+import { RatingInformationComponent } from './organization/organization-new-style/rating-information/rating-information.component';
 
 const routes: Routes = [
   {
@@ -155,6 +156,7 @@ const routes: Routes = [
     OrganizationNewStyleCommunityVerifiedComponent,
     OrganizationNewStyleRatingOverviewComponent,
     OrganizationNewStyleStoriesListComponent,
+    RatingInformationComponent,
   ],
   imports: [
     CommonModule,

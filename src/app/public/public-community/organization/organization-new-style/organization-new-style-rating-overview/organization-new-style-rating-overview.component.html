@@ -1,32 +1,40 @@
 <ng-container *ngIf="single">
   <!-- Recommendation -->
-  <div>
-    <h3 class="text-3xl text-primary font-bold mb-3">Recommendation</h3>
-    <div class="rounded-lg p-5 bg-primary opacity-90 w-3/4 grid grid-cols-1 gap-4">
-      <div class="text-xl font-medium">
-        <!-- Number of starts -->
-        <i class="mdi text-secondary ml-3 mdi-star ms-2"></i>
-        <i class="mdi mdi-star text-secondary ml-3"></i>
-        <i class="mdi mdi-star text-secondary ml-3"></i>
-        <i class="mdi mdi-star text-secondary ml-3"></i>
-        <i class="mdi mdi-star text-secondary ml-3"></i>
+  <div class="grid grid-cols-3">
+    <div class="col-span-2">
+      <h3 class="text-3xl text-primary font-bold mb-3">Recommendation</h3>
+      <div class="rounded-lg p-5 bg-primary opacity-90 w-3/4 grid grid-cols-1 gap-4">
+        <div class="text-xl font-medium">
+          <!-- Number of starts -->
+          <i class="mdi text-secondary ml-3 mdi-star ms-2"></i>
+          <i class="mdi mdi-star text-secondary ml-3"></i>
+          <i class="mdi mdi-star text-secondary ml-3"></i>
+          <i class="mdi mdi-star text-secondary ml-3"></i>
+          <i class="mdi mdi-star text-secondary ml-3"></i>
+        </div>
+        <h6 class="text-base text-secondary"> <span class="font-semibold">Recommendation:</span> Fund</h6>
+        <p class="text-slate-200">
+          {{ single.name }} has a Community Trust Score of 91% from 210* survey responses and a 4.5-star rating from 500 reviews. If you believe in
+          their
+          mission,
+          you
+          can support them with confidence.</p>
+
+        <a [routerLink]="['./']" class="text-secondary">Learn more about our methodology. See how we combat fake reviews and survey responses.</a>
+
+        <p class="text-slate-200">We deem 100 or more responses as statistically significant.</p>
+
       </div>
-      <h6 class="text-base text-secondary"> <span class="font-semibold">Recommendation:</span> Fund</h6>
-      <p class="text-slate-200">
-        {{ single.name }} has a Community Trust Score of 91% from 210* survey responses and a 4.5-star rating from 500 reviews. If you believe in
-        their
-        mission,
-        you
-        can support them with confidence.</p>
+    </div>
 
-      <a [routerLink]="['./']" class="text-secondary">Learn more about our methodology. See how we combat fake reviews and survey responses.</a>
-
-      <p class="text-slate-200">We deem 100 or more responses as statistically significant.</p>
-
+    <!-- Rating information (right sidebar)-->
+    <div class="col-span-1">
+      <app-rating-information></app-rating-information>
     </div>
   </div>
 
-  <!-- Recommendation -->
+
+  <!-- Scoring component -->
   <div class="mt-12">
     <h3 class="text-3xl text-primary font-bold mb-3">Scoring Components</h3>
     <img src="assets/images/new-style/scoring-components.png" class="w-full" alt="">
