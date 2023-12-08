@@ -9,6 +9,8 @@ import {
 import { OrganizationService } from '../../../../../organization/organization.service';
 import { BaseSingleComponent } from '../../../../../shared/base-component';
 import { Organization } from '../../../../../organization/organization.model';
+import { ScaleService } from '../../../../../scale/scale.service';
+import { CommunityTrustScore } from './../../../../../scale/community-trust-score.model';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -22,36 +24,42 @@ export type ChartOptions = {
   styleUrls: ['./organization-new-style-rating-overview.component.scss'],
 })
 export class OrganizationNewStyleRatingOverviewComponent extends BaseSingleComponent<Organization> {
-  constructor(public organizationService: OrganizationService) {
+  communityTrustScore: CommunityTrustScore | null = null;
+  constructor(
+    public organizationService: OrganizationService,
+    public scaleService: ScaleService
+  ) {
     super(organizationService);
   }
 
-  public chartOptions: ChartOptions = {
-    series: [
-      {
-        name: 'My-series',
-        data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
-      },
-    ],
-    chart: {
-      height: 350,
-      type: 'bar',
-    },
-    title: {
-      text: 'My First Angular Chart',
-    },
-    xaxis: {
-      categories: [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-      ],
-    },
-  };
+  override ngOnInit(): void {
+    super.ngOnInit();
+
+    this.subscriptions['communityTrstScore'] =
+      this.scaleService.communityTrustScore$.subscribe((score) => {
+        this.communityTrustScore = score;
+      });
+  }
+
+  getRecommendation() {
+    if (this.communityTrustScore) {
+      if (this.communityTrustScore.scale_score <= 2) {
+        return 'Bad, Do Not Fund';
+      }
+      if (
+        this.communityTrustScore.scale_score > 2 &&
+        this.communityTrustScore.scale_score <= 3.5
+      ) {
+        return 'Need more Information';
+      }
+      if (
+        this.communityTrustScore.scale_score > 3.5 &&
+        this.communityTrustScore.scale_score <= 4
+      ) {
+        return 'Good, Fund.';
+      }
+      return 'Excellent, Fund.';
+    }
+    return '';
+  }
 }
