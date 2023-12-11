@@ -10,7 +10,7 @@ import { OrganizationService } from '../../../../../organization/organization.se
 import { BaseSingleComponent } from '../../../../../shared/base-component';
 import { Organization } from '../../../../../organization/organization.model';
 import { ScaleService } from '../../../../../scale/scale.service';
-import { CommunityTrustScore } from './../../../../../scale/community-trust-score.model';
+import { CommunityTrustScore } from '../../../../../scale/models/community-trust-score.model';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -43,18 +43,18 @@ export class OrganizationNewStyleRatingOverviewComponent extends BaseSingleCompo
 
   getRecommendation() {
     if (this.communityTrustScore) {
-      if (this.communityTrustScore.scale_score <= 2) {
+      if (this.communityTrustScore.rating <= 2) {
         return 'Bad, Do Not Fund';
       }
       if (
-        this.communityTrustScore.scale_score > 2 &&
-        this.communityTrustScore.scale_score <= 3.5
+        this.communityTrustScore.rating > 2 &&
+        this.communityTrustScore.rating <= 3.5
       ) {
         return 'Need more Information';
       }
       if (
-        this.communityTrustScore.scale_score > 3.5 &&
-        this.communityTrustScore.scale_score <= 4
+        this.communityTrustScore.rating > 3.5 &&
+        this.communityTrustScore.rating <= 4
       ) {
         return 'Good, Fund.';
       }

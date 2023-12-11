@@ -4,22 +4,21 @@
     <div class="col-span-2" *ngIf="communityTrustScore">
       <h3 class="text-3xl text-primary font-bold mb-3">Recommendation</h3>
       <div class="rounded-lg p-5 bg-primary opacity-90 w-3/4 grid grid-cols-1 gap-4">
-        <div class="text-xl font-medium">
+        <div class="text-xl  font-medium">
           <!-- Number of starts -->
-          <i class="mdi text-secondary ml-3 mdi-star ms-2"></i>
-          <i class="mdi mdi-star text-secondary ml-3"></i>
-          <i class="mdi mdi-star text-secondary ml-3"></i>
-          <i class="mdi mdi-star text-secondary ml-3"></i>
-          <i class="mdi mdi-star text-secondary ml-3"></i>
+          <i class="mdi text-secondary mr-3 mdi-star"
+             *ngFor="let i of [].constructor(scaleService.getNumberOfStars(communityTrustScore?.rating!).numberOfStars)"></i>
+          <i class="mdi mdi-star-half-full text-secondary mr-3"
+             *ngFor="let i of [].constructor(scaleService.getNumberOfStars(communityTrustScore?.rating!).numberOfHalfStars)"></i>
+          <i class="mdi mdi-star text-slate-300/20 mr-3"
+             *ngFor="let i of [].constructor(scaleService.getNumberOfStars(communityTrustScore?.rating!).numberOfEmptyStars)"></i>
+
         </div>
         <h6 class="text-base text-secondary"> <span class="font-semibold">Recommendation:</span> {{ getRecommendation() }}</h6>
         <p class="text-slate-200">
-          {{ single.name }} has a Community Trust Score of {{ communityTrustScore.community_trust_score }} % from 210* survey responses and a {{
-          communityTrustScore.scale_score }}-star rating from 500 reviews. If you believe in
-          their
-          mission,
-          you
-          can support them with confidence.</p>
+          {{ single.name }} has a Community Trust Score of {{ communityTrustScore.community_trust_score }} % from {{
+          communityTrustScore.total_survey_respondant }} survey responses and a {{ communityTrustScore.rating }}-star rating from {{
+          communityTrustScore.total_reviews }} reviews. If you believe in their mission, you can support them with confidence.</p>
 
         <a [routerLink]="['./']" class="text-secondary">Learn more about our methodology. See how we combat fake reviews and survey responses.</a>
 

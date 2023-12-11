@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../../../../shared/base-component';
-import { CommunityTrustScore } from '../../../../../scale/community-trust-score.model';
 import { ScaleService } from '../../../../../scale/scale.service';
 import { OrganizationService } from '../../../../../organization/organization.service';
+import { CommunityTrustScore } from '../../../../../scale/models/community-trust-score.model';
 
 @Component({
   selector: 'app-rating-information',
@@ -31,6 +31,8 @@ export class RatingInformationComponent
               organization.id
           ) {
             this.getCommunityTrustScore(organization.id!);
+          } else {
+            this.communityTrustScore = this.scaleService.communityTrustScore;
           }
         }
       });
@@ -44,21 +46,5 @@ export class RatingInformationComponent
         this.loading = false;
         this.communityTrustScore = this.scaleService.communityTrustScore;
       });
-  }
-
-  getProgressBarWidth(scaleElementScore: number) {
-    const width = (scaleElementScore * 100) / 5 + '%';
-    return width;
-  }
-
-  getNumberOfStars(scaleElementScore: number) {
-    const numberOfStars = Math.floor(scaleElementScore);
-    const numberOfHalfStars = scaleElementScore - numberOfStars >= 0.5 ? 1 : 0;
-    const numberOfEmptyStars = 5 - numberOfHalfStars - numberOfStars;
-    return {
-      numberOfStars,
-      numberOfHalfStars,
-      numberOfEmptyStars,
-    };
   }
 }
