@@ -35,6 +35,10 @@ import { OrganizationNewStyleCommunityVerifiedComponent } from './organization/o
 import { OrganizationNewStyleRatingOverviewComponent } from './organization/organization-new-style/organization-new-style-rating-overview/organization-new-style-rating-overview.component';
 import { OrganizationNewStyleStoriesListComponent } from './organization/organization-new-style/organization-new-style-stories/organization-new-style-stories-list/organization-new-style-stories-list.component';
 import { RatingInformationComponent } from './organization/organization-new-style/rating-information/rating-information.component';
+import { WhoIsForComponent } from './who-is-for/who-is-for.component';
+import { WhoIsForImpactFacilitatorsComponent } from './who-is-for/who-is-for-impact-facilitators/who-is-for-impact-facilitators.component';
+import { WhoIsForImpactFundersComponent } from './who-is-for/who-is-for-impact-funders/who-is-for-impact-funders.component';
+import { WhoIsForImpactedCommunitiesComponent } from './who-is-for/who-is-for-impacted-communities/who-is-for-impacted-communities.component';
 
 const routes: Routes = [
   {
@@ -48,6 +52,29 @@ const routes: Routes = [
       {
         path: 'community-voice',
         component: CommunitySuggestionComponent,
+      },
+      {
+        path: 'who-is-for',
+        component: WhoIsForComponent,
+        children: [
+          {
+            path: 'impact-facilitators',
+            component: WhoIsForImpactFacilitatorsComponent,
+          },
+          {
+            path: 'impact-funders',
+            component: WhoIsForImpactFundersComponent,
+          },
+          {
+            path: 'impacted-communities',
+            component: WhoIsForImpactedCommunitiesComponent,
+          },
+          {
+            path: '**',
+            redirectTo: 'impact-facilitators',
+            pathMatch: 'full',
+          },
+        ],
       },
 
       {
@@ -157,6 +184,10 @@ const routes: Routes = [
     OrganizationNewStyleRatingOverviewComponent,
     OrganizationNewStyleStoriesListComponent,
     RatingInformationComponent,
+    WhoIsForComponent,
+    WhoIsForImpactFacilitatorsComponent,
+    WhoIsForImpactFundersComponent,
+    WhoIsForImpactedCommunitiesComponent,
   ],
   imports: [
     CommonModule,

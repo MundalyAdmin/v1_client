@@ -6,3 +6,12 @@
     color: #4dc0b5 !important;
   }
 }
+
+.submenu {
+  li {
+    &:hover > *,
+    &:active > * {
+      @apply text-secondary-dark scale-105;
+    }
+  }
+}
