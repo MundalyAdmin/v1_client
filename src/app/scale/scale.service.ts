@@ -36,7 +36,7 @@ export class ScaleService extends BaseService<any> {
 
   getNumberOfStars(scaleElementScore: number) {
     const numberOfStars = Math.floor(scaleElementScore);
-    const numberOfHalfStars = scaleElementScore - numberOfStars >= 0.5 ? 1 : 0;
+    const numberOfHalfStars = scaleElementScore - numberOfStars >= 0.1 ? 1 : 0;
     const numberOfEmptyStars = 5 - numberOfHalfStars - numberOfStars;
     return {
       numberOfStars,

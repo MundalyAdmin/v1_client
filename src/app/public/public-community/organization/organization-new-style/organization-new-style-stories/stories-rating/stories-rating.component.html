@@ -2,14 +2,28 @@
   <!-- Title rating -->
   <h3 class="text-xl font-semibold">{{ ratingBreakdown?.total_respondant }} {{ organization.name }} reviews</h3>
   <!-- Star rating -->
-  <div class="text-3xl flex font-semibold items-center gap-3">
-    <span><i class="mdi mdi-star"></i></span>
-    <span><i class="mdi mdi-star"></i></span>
-    <span><i class="mdi mdi-star"></i></span>
-    <span><i class="mdi mdi-star"></i></span>
+  <div class="flex justify-between">
+    <!-- Rating -->
+    <div class="text-3xl flex font-semibold items-center gap-3">
+      <i class="mdi mdi-star "
+         *ngFor="let i of [].constructor(scaleService.getNumberOfStars(ratingBreakdown?.rating!).numberOfStars)"></i>
 
-    {{ ratingBreakdown?.rating }}
+      <!-- half stars -->
+      <i class="mdi mdi-star-half-full "
+         *ngFor="let i of [].constructor(scaleService.getNumberOfStars(ratingBreakdown?.rating!).numberOfHalfStars)"></i>
 
+      <!-- Empty stars -->
+      <i class="mdi mdi-star text-slate-300 "
+         *ngFor="let i of [].constructor(scaleService.getNumberOfStars(ratingBreakdown?.rating!).numberOfEmptyStars)"></i>
+
+      {{ ratingBreakdown?.rating }}
+
+    </div>
+
+    <!-- Button add review -->
+    <button type="button"
+            class=" bg-secondary border border-primary hover:text-white  font-semibold text-primary hover:bg-secondary-dark focus:outline-none focus:ring-4 focus:ring-blue-300  rounded-full text-lg px-6 py-2.5 text-center me-2 mb-2 "><span
+            class="me-1"><i class="mdi mdi-plus"></i> Add a review</span></button>
   </div>
 
 
