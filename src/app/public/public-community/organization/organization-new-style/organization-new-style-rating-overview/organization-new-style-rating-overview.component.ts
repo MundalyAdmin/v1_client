@@ -44,7 +44,7 @@ export class OrganizationNewStyleRatingOverviewComponent extends BaseSingleCompo
   getRecommendation() {
     if (this.communityTrustScore) {
       if (this.communityTrustScore.rating <= 2) {
-        return 'Bad, Do Not Fund';
+        return 'Bad, Do Not Support';
       }
       if (
         this.communityTrustScore.rating > 2 &&
@@ -56,9 +56,9 @@ export class OrganizationNewStyleRatingOverviewComponent extends BaseSingleCompo
         this.communityTrustScore.rating > 3.5 &&
         this.communityTrustScore.rating <= 4
       ) {
-        return 'Good, Fund.';
+        return 'Good, Support.';
       }
-      return 'Excellent, Fund.';
+      return 'Excellent, Support.';
     }
     return '';
   }
