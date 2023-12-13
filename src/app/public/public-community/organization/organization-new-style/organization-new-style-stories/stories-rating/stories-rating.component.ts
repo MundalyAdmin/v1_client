@@ -5,12 +5,14 @@ import { Organization } from '../../../../../../organization/organization.model'
 import { ImpactStoryService } from '../../../../../../scale/impact-story/impact-story.service';
 import { ImpactStoryRatingBreakdown } from '../../../../../../scale/impact-story/impact-story-rating-breakdown.model';
 import { ScaleService } from '../../../../../../scale/scale.service';
+import { Flowbite } from '../../../../../../shared/decorators/flowbite.decorator';
 
 @Component({
   selector: 'app-stories-rating',
   templateUrl: './stories-rating.component.html',
   styleUrls: ['./stories-rating.component.scss'],
 })
+@Flowbite()
 export class StoriesRatingComponent
   extends BaseComponent<any>
   implements OnInit
@@ -33,6 +35,10 @@ export class StoriesRatingComponent
           this.getRatingBreakdown(organization.id!);
         }
       });
+  }
+
+  getStarPercentage(rating: number) {
+    return Math.round((rating * 100) / this.ratingBreakdown?.total_respondant!);
   }
 
   getRatingBreakdown(organizationId: number) {

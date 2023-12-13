@@ -38,7 +38,8 @@
     <div class=" dark:bg-slate-800  dark:shadow-gray-800 ">
       <div class="mb-7">
         <h5 class="font-semibold text-primary my-5">{{ story.title }}</h5>
-        <p class="font-semibold">{{ story.about }} </p>
+        <read-more [text]="story.about!" [maxLength]="330" [customClass]="'font-semibold'"></read-more>
+        <!-- <p class="font-semibold" [innerHTML]="story.about"></p> -->
       </div>
       <div class="mb-3" *ngIf="story.reply">
         <h6 class=" text-slate-400 text-sm font-bold mb-2">1 reply from {{ organization?.name }}</h6>

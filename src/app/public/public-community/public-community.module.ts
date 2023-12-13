@@ -36,6 +36,7 @@ import { OrganizationNewStyleRatingOverviewComponent } from './organization/orga
 import { OrganizationNewStyleStoriesListComponent } from './organization/organization-new-style/organization-new-style-stories/organization-new-style-stories-list/organization-new-style-stories-list.component';
 import { RatingInformationComponent } from './organization/organization-new-style/rating-information/rating-information.component';
 import { StoriesRatingComponent } from './organization/organization-new-style/organization-new-style-stories/stories-rating/stories-rating.component';
+import { OrganizationNewStyleStoriesCreateComponent } from './organization/organization-new-style/organization-new-style-stories/organization-new-style-stories-create/organization-new-style-stories-create.component';
 
 const routes: Routes = [
   {
@@ -159,6 +160,7 @@ const routes: Routes = [
     OrganizationNewStyleStoriesListComponent,
     RatingInformationComponent,
     StoriesRatingComponent,
+    OrganizationNewStyleStoriesCreateComponent,
   ],
   imports: [
     CommonModule,
