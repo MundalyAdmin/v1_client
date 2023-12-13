@@ -3,10 +3,10 @@ import { Component, Input, OnChanges } from '@angular/core';
 @Component({
   selector: 'read-more',
   template: `
-    <div [innerHTML]="currentText"></div>
+    <div [innerHTML]="currentText" [class]="customClass"></div>
     <button
       *ngIf="!hideToggle"
-      class=" text-primary text-xs d-inline-block font-bold"
+      class=" text-slate-700 text-xs d-inline-block font-bold"
       (click)="toggleView()"
     >
       See more
@@ -23,6 +23,7 @@ import { Component, Input, OnChanges } from '@angular/core';
 export class ReadMoreComponent implements OnChanges {
   @Input() text!: string;
   @Input() maxLength: number = 100;
+  @Input() customClass: string = '';
   currentText!: string;
   hideToggle: boolean = true;
 
