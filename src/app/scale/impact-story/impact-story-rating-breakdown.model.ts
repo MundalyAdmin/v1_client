@@ -1,9 +1,10 @@
 export interface ImpactStoryRatingBreakdown {
   total_respondant: number;
   rating: number;
-  fiveStarsRatingCount: number;
-  fourStarsRatingCount: number;
-  threeStarsRatingCount: number;
-  twoStarsRatingCount: number;
-  oneStarRatingCount: number;
+  five_stars_rating_count: number;
+  four_stars_rating_count: number;
+  three_stars_rating_count: number;
+  two_stars_rating_count: number;
+  one_star_rating_count: number;
+  has_user_reviewed: boolean;
 }

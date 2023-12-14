@@ -48,6 +48,7 @@ export class OrganizationNewStyleStoriesCreateComponent
       console.log('yay');
       setTimeout(() => {
         this.edited.emit();
+        this.storage.delete('review');
       }, 200);
     }
   }
