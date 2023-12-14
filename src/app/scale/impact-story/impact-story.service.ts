@@ -12,7 +12,7 @@ import { ReplaySubject } from 'rxjs';
 })
 export class ImpactStoryService extends BaseService<ImpactStory> {
   private _ratingBreakdown: null | ImpactStoryRatingBreakdown = null;
-  public ratingBreakDown$ =
+  public ratingBreakdown$ =
     new ReplaySubject<ImpactStoryRatingBreakdown | null>(1);
 
   get ratingBreakdown(): ImpactStoryRatingBreakdown | null {
@@ -21,11 +21,35 @@ export class ImpactStoryService extends BaseService<ImpactStory> {
 
   set ratingBreakdown(ratingBreakdown: ImpactStoryRatingBreakdown | null) {
     this._ratingBreakdown = ratingBreakdown;
-    this.ratingBreakDown$.next(ratingBreakdown);
+    this.ratingBreakdown$.next(ratingBreakdown);
   }
 
   constructor() {
     super('impact-storys');
+  }
+
+  override store(elements: FormData) {
+    return this.factory.post(this.endPoint, elements).pipe(
+      tap({
+        next: (
+          response: ApiResponse<{
+            newStory: ImpactStory;
+            ratingBreakdown: ImpactStoryRatingBreakdown;
+          }>
+        ) => {
+          const responseData = response.data as {
+            newStory: ImpactStory;
+            ratingBreakdown: ImpactStoryRatingBreakdown;
+          };
+          this.lastItemCreated = responseData.newStory;
+          this.unshiftItemInData(responseData.newStory);
+          this.ratingBreakdown = responseData.ratingBreakdown;
+        },
+        error: (error) => {
+          this.errorResponseHandler(error);
+        },
+      })
+    );
   }
 
   getByOrganizationId(organizationId: number, params?: Params) {

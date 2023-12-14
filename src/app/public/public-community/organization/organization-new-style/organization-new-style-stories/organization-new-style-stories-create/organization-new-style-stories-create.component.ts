@@ -57,7 +57,7 @@ export class OrganizationNewStyleStoriesCreateComponent
     const title = impactStory?.title || '';
     const about = impactStory?.about || '';
     const rating = impactStory?.rating || '';
-    const user_id = 1;
+    const user_id = this.authService.user.id;
     this.form = this.fb.group({
       title: [title, Validators.required],
       about: [about, Validators.required],

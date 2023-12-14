@@ -35,6 +35,15 @@ export class StoriesRatingComponent
           this.getRatingBreakdown(organization.id!);
         }
       });
+
+    this.subscriptions['ratingBreakdown'] =
+      this.impactStoriesService.ratingBreakdown$.subscribe(
+        (ratingBreakdown: ImpactStoryRatingBreakdown | null) => {
+          if (ratingBreakdown) {
+            this.ratingBreakdown = ratingBreakdown;
+          }
+        }
+      );
   }
 
   getStarPercentage(rating: number) {
@@ -45,8 +54,7 @@ export class StoriesRatingComponent
     this.loading = true;
     this.impactStoriesService
       .getOrganizationRatingBreadown(organizationId)
-      .subscribe((response) => {
-        this.ratingBreakdown = response;
+      .subscribe(() => {
         this.loading = false;
       });
   }
