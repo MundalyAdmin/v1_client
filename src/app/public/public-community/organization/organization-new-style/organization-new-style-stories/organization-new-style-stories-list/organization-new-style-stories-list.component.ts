@@ -7,6 +7,7 @@ import { ImpactStory } from '../../../../../../scale/impact-story/impact-story.m
 import { OrganizationService } from '../../../../../../organization/organization.service';
 import { ImpactStoryService } from '../../../../../../scale/impact-story/impact-story.service';
 import { Organization } from '../../../../../../organization/organization.model';
+import { ScaleService } from '../../../../../../scale/scale.service';
 
 @Component({
   selector: 'app-organization-new-style-stories-list',
@@ -20,7 +21,8 @@ export class OrganizationNewStyleStoriesListComponent
   organization: Organization | null = null;
   constructor(
     public impactStoryOrganizationService: ImpactStoryService,
-    public organizationService: OrganizationService
+    public organizationService: OrganizationService,
+    public scaleService: ScaleService
   ) {
     super(impactStoryOrganizationService);
   }

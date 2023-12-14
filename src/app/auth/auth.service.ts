@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { Storage } from '../shared/helpers/storage/storage';
 import { User } from '../user/user.model';
 import { TypeUserEnum } from '../user/type-user.enum';
+import { environment } from '../../environments/environment';
 
 interface LoginInformation {
   user: User;
@@ -67,8 +68,31 @@ export class AuthService extends BaseService<any> {
     );
   }
 
+  public me(accessToken: string) {
+    return this.factory
+      .get(`auth/me`, { headers: { Authorization: `Bearer ${accessToken}` } })
+      .pipe(
+        tap({
+          next: (response: ApiResponse<LoginInformation>) => {
+            this.storeLoginInformation(response.data as LoginInformation);
+          },
+          error: (error: HttpErrorResponse) => this.errorResponseHandler(error),
+        })
+      );
+  }
+
+  continueWithGoogle() {
+    window.location.href = `${environment.apiUrl}/auth/google-oauth`;
+  }
+
+  clearLoginInformation() {
+    this.storage.delete('user');
+    this.storage.delete('typeUser');
+    this.storage.delete('accessToken');
+  }
+
   private storeLoginInformation(data: LoginInformation) {
-    this.storage.clear();
+    this.clearLoginInformation();
     this.storage.set('accessToken', data.accessToken);
     this.user = data.user;
     this.typeUser = data.user.type_user_id;
@@ -77,7 +101,7 @@ export class AuthService extends BaseService<any> {
     return this.storage.getAccessToken() && this.storage.getUser();
   }
   public logout() {
-    this.storage.clear();
+    this.clearLoginInformation();
     this.router.navigate(['/auth/login']);
   }
 }

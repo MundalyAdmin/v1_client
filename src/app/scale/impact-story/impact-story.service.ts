@@ -47,6 +47,10 @@ export class ImpactStoryService extends BaseService<ImpactStory> {
       );
   }
 
+  getAuth() {
+    return this.factory.get(`auth/google-oauth`);
+  }
+
   getOrganizationRatingBreadown(organizationId: number) {
     return this.factory
       .get(`${this.endPoint}/${organizationId}/rating-breakdown`)

@@ -1,10 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+} from '@angular/core';
 import { BaseCreateComponent } from '../../../../../../shared/base-component';
 import { ImpactStory } from '../../../../../../scale/impact-story/impact-story.model';
 import { Organization } from '../../../../../../organization/organization.model';
 import { ImpactStoryService } from '../../../../../../scale/impact-story/impact-story.service';
 import { OrganizationService } from '../../../../../../organization/organization.service';
 import { Validators } from '@angular/forms';
+import { AuthService } from '../../../../../../auth/auth.service';
+import { Storage } from '../../../../../../shared/helpers/storage/storage';
 
 @Component({
   selector: 'app-organization-new-style-stories-create',
@@ -13,19 +21,35 @@ import { Validators } from '@angular/forms';
 })
 export class OrganizationNewStyleStoriesCreateComponent
   extends BaseCreateComponent<ImpactStory>
-  implements OnInit
+  implements OnInit, AfterViewInit
 {
   organization: Organization | null = null;
   tempRating = 0;
   constructor(
     public impactStoryOrganizationService: ImpactStoryService,
-    public organizationService: OrganizationService
+    public organizationService: OrganizationService,
+    public authService: AuthService,
+    public storage: Storage
   ) {
     super(impactStoryOrganizationService);
   }
 
   ngOnInit() {
-    this.initForm();
+    const storageSaved = this.storage.get('review') as ImpactStory;
+    if (storageSaved) {
+      this.initForm(storageSaved);
+    } else {
+      this.initForm();
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.storage.get('review')) {
+      console.log('yay');
+      setTimeout(() => {
+        this.edited.emit();
+      }, 200);
+    }
   }
 
   initForm(impactStory?: ImpactStory) {
@@ -49,6 +73,16 @@ export class OrganizationNewStyleStoriesCreateComponent
       });
   }
 
+  continueWithGoogle(): void {
+    this.storage.set(
+      'redirect',
+      `/organizations/${this.organization!.id}/stories`
+    );
+    this.storage.set('review', { ...this.form.value });
+
+    this.authService.continueWithGoogle();
+  }
+
   override create(): void {
     if (!this.form.valid) {
       this.helper.notification.alertDanger('Form invalid');
@@ -63,6 +97,7 @@ export class OrganizationNewStyleStoriesCreateComponent
         this.helper.notification.alertSuccess();
         this.form.reset();
         this.formValuePatcher('organization_id', this.organization?.id);
+        this.storage.delete('review');
         this.created.emit();
       },
       error: () => {

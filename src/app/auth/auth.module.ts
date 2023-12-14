@@ -4,11 +4,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
+import { LoginRedirectionComponent } from './login-redirection/login-redirection.component';
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'login-redirection',
+    component: LoginRedirectionComponent,
   },
   {
     path: '',
@@ -18,7 +23,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, LoginRedirectionComponent],
   imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
   providers: [AuthService],
 })
