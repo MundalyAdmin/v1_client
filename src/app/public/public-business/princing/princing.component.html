@@ -10,7 +10,7 @@
 <!--price cards Section-->
 <section class="container relative max-w-[100vw] w-fit pt-16 pb-40 flex flex-col gap-6 box-border  dark:from-indigo-600/20  dark:to-yellow-500/20">
   <!--radio btns-->
-  <div class="flex flex-row flex-nowrap items-center justify-start gap-4">
+  <!-- <div class="flex flex-row flex-nowrap items-center justify-start gap-4">
 
     <label class="flex items-center cursor-pointer gap-2 text-black text-2xl font-normal font-['Figtree']">
       <input type="radio" name="choice" value="HTML" class="h-6 w-6 leading-none cursor-pointer text-black border-black  outline-black" />
@@ -21,7 +21,7 @@
       <span class="block h-full align-middle leading-none">Billed annually</span>
     </label>
 
-  </div>
+  </div> -->
 
   <!--price cards-->
   <div class="flex flex-row flex-wrap gap-4 justify-center sm:justify-start">
@@ -32,18 +32,18 @@
       <div class="flex flex-col gap-2 items-center justify-center pt-6">
         <div class="flex flex-row flex-nowrap gap-2 items-center justify-center">
           <img src="assets/images/pricing/person.png" alt="" class="h-[24px] w-[24px]">
-          <p class="text-violet-950 text-3xl font-semibold font-['Figtree']">Freemium</p>
+          <p class="text-violet-950 text-3xl font-semibold font-['Figtree']">Basic</p>
         </div>
-        <p class=" text-transparent select-none text-base font-medium">...</p>      
+        <p class=" text-transparent select-none text-base font-medium">...</p>
       </div>
 
-      <div class="flex flex-col gap-2 items-center justify-center pt-16">
+      <div class="flex flex-col gap-2 items-center justify-center pt-0">
         <p class="text-black text-7xl font-semibold font-['Figtree']">$0</p>
         <p class="text-zinc-900 text-xl font-medium font-['Figtree']">/month</p>
 
         <div class="w-full h-14 bg-zinc-700 rounded-lg overflow-hidden mt-4">
           <a
-        [routerLink]="['']"
+           [routerLink]="['/community-voice']"
            class="text-white py-4 text-xl font-semibold font-['Figtree'] w-full h-full text-center block leading-5 hover:bg-zinc-500">
            Current Plan</a>
         </div>
@@ -51,8 +51,10 @@
 
       <div class="w-full max-w-full pt-12 pl-4">
         <ul class=" w-full max-w-full list-outside list-disc flex flex-col gap-5 text-black text-base font-normal ">
-          <li class="">See limited impact stories</li>
-          <li>1 user</li>
+          <li class=""> Complete your profile</li>
+          <li>Respond to community reviews </li>
+          <li> Get a Community Trust badge</li>
+          <li> 10 verified community reviews for the first 3 months </li>
         </ul>
       </div>
 
@@ -60,22 +62,22 @@
 
     <!--price card 2-->
     <div class=" bg-white rounded-2xl border-2 border-violet-950 w-[300px] h-[738px] px-8">
-      
+
       <div class="flex flex-col gap-2 items-center justify-center pt-6">
         <div class="flex flex-row flex-nowrap gap-2 items-center justify-center">
           <img src="assets/images/pricing/person.png" alt="" class="h-[24px] w-[24px]">
           <p class="text-violet-950 text-3xl font-semibold font-['Figtree']">Plus</p>
         </div>
-        <p class="text-zinc-500 text-base font-medium">(Ideal for individual founders)</p>
+        <p class="text-zinc-500 text-base font-medium"><i>(Ideal for individual donors)</i></p>
       </div>
 
-      <div class="flex flex-col gap-2 items-center justify-center pt-16">
-        <p class="text-black text-7xl font-semibold font-['Figtree']">$480</p>
-        <p class="text-zinc-900 text-xl font-medium font-['Figtree']">/year</p>
+      <div class="flex flex-col gap-2 items-center justify-center pt-0">
+        <!-- <p class="text-black text-7xl font-semibold font-['Figtree']">$480</p>
+        <p class="text-zinc-900 text-xl font-medium font-['Figtree']">/year</p> -->
 
         <div class="w-full h-14 bg-violet-950 rounded-lg overflow-hidden mt-4">
           <a
-        [routerLink]="['']"
+           [routerLink]="['/for-business/book-demo']"
            class="text-white py-4 text-xl font-semibold font-['Figtree'] w-full h-full text-center block leading-5 hover:bg-violet-700">
            Upgrade</a>
         </div>
@@ -83,9 +85,9 @@
 
       <div class="w-full max-w-full pt-12 pl-4">
         <ul class=" w-full max-w-full list-outside list-disc flex flex-col gap-5 text-black text-base font-normal ">
-          <li>See limited impact stories</li>
-          <li>1 user</li>
-          <li>See commnity trust score</li>
+          <li>Access to everything in Basic </li>
+          <li>See Community Trust Score breakdown</li>
+          <li>50 verified community reviews per month</li>
         </ul>
       </div>
 
@@ -93,22 +95,22 @@
 
     <!--price card 3-->
     <div class=" bg-white rounded-2xl border-2 border-violet-950 w-[300px] h-[738px] px-8">
-      
+
       <div class="flex flex-col gap-2 items-center justify-center pt-6">
         <div class="flex flex-row flex-nowrap gap-2 items-center justify-center">
           <img src="assets/images/pricing/person.png" alt="" class="h-[24px] w-[24px]">
           <p class="text-violet-950 text-3xl font-semibold font-['Figtree']">Pro</p>
         </div>
-        <p class="text-zinc-500 text-base font-medium">(Ideal for small teams)</p>      
+        <p class="text-zinc-500 text-base font-medium"><i>(for <20 employees) <sup>1</sup> </i> </p>
       </div>
 
-      <div class="flex flex-col gap-2 items-center justify-center pt-16">
-        <p class="text-black text-7xl font-semibold font-['Figtree']">$600</p>
-        <p class="text-zinc-900 text-xl font-medium font-['Figtree']">/user/year</p>
+      <div class="flex flex-col gap-2 items-center justify-center pt-0">
+        <!-- <p class="text-black text-7xl font-semibold font-['Figtree']">$600</p>
+        <p class="text-zinc-900 text-xl font-medium font-['Figtree']">/user/year</p> -->
 
         <div class="w-full h-14 bg-violet-950 rounded-lg overflow-hidden mt-4">
           <a
-        [routerLink]="['']"
+           [routerLink]="['/for-business/book-demo']"
            class="text-white py-4 text-xl font-semibold font-['Figtree'] w-full h-full text-center block leading-5 hover:bg-violet-700">
            Upgrade</a>
         </div>
@@ -116,13 +118,13 @@
 
       <div class="w-full max-w-full pt-12 pl-4 ">
         <ul class=" w-full max-w-full list-outside list-disc flex flex-col gap-5 text-black text-base font-normal ">
-          <li>See unlimited impact stories</li>
-          <li>3+ user</li>
-          <li>See commnity trust score</li>
-          <li>Get community trust rating badge</li>
-          <li>Personalize your profile</li>
-          <li>Access Dashboard</li>
-          <li>Generate customized reports & analytics</li>
+          <li>Access to everything in Plus</li>
+          <li>150 verified community reviews per month</li>
+          <li>5 website widgets to display your star rating and review count</li>
+          <li>Personalize your profile with videos and images</li>
+          <li>Generate customized reports and analytics</li>
+          <li>Benchmark Impact</li>
+          <li>+ Options on demand</li>
         </ul>
       </div>
 
@@ -130,22 +132,22 @@
 
     <!--price card 4-->
     <div class=" bg-white rounded-2xl border-2 border-violet-950 w-[300px] h-[738px] px-8">
-      
+
       <div class="flex flex-col gap-2 items-center justify-center pt-6">
         <div class="flex flex-row flex-nowrap gap-2 items-center justify-center">
           <img src="assets/images/pricing/person.png" alt="" class="h-[24px] w-[24px]">
           <p class="text-violet-950 text-3xl font-semibold font-['Figtree']">Premium</p>
         </div>
-        <p class="text-zinc-500 text-base font-medium">(Ideal for large teams)</p>      
+        <p class="text-zinc-500 text-base font-medium"> <i> (for 25-100 employees) <sup>2</sup></i></p>
       </div>
 
-      <div class="flex flex-col gap-2 items-center justify-center pt-16">
-        <p class="text-black text-7xl font-semibold font-['Figtree']">$720</p>
-        <p class="text-zinc-900 text-xl font-medium font-['Figtree']">/user/year</p>
+      <div class="flex flex-col gap-2 items-center justify-center pt-0">
+        <!-- <p class="text-black text-7xl font-semibold font-['Figtree']">$720</p>
+        <p class="text-zinc-900 text-xl font-medium font-['Figtree']">/user/year</p> -->
 
         <div class="w-full h-14 bg-violet-950 rounded-lg overflow-hidden mt-4">
           <a
-        [routerLink]="['']"
+           [routerLink]="['/for-business/book-demo']"
            class="text-white py-4 text-xl font-semibold font-['Figtree'] w-full h-full text-center block leading-5 hover:bg-violet-700">
            Upgrade</a>
         </div>
@@ -153,9 +155,15 @@
 
       <div class="w-full max-w-full pt-12 pl-4">
         <ul class=" w-full max-w-full list-outside list-disc flex flex-col gap-5 text-black text-base font-normal ">
-          <li>Everything off Pro</li>
-          <li>Benchmark impact</li>
+          <li>Access to everything in Pro</li>
+          <li>Unlimited verified community reviews per month</li>
+          <li>12 website widgets to display your star rating and review count</li>
+          <li>Community Trust trajectory and targets</li>
+          <li>Action plans to achieve community Trust</li>
           <li>Priority account support</li>
+          <li>Action plans to achieve community Trust</li>
+          <li>+ Options on demand</li>
+
         </ul>
       </div>
 
@@ -166,8 +174,8 @@
   <!-- Notes -->
   <div class="w-full max-w-full ">
     <ul class=" w-full max-w-full list-inside list-disc flex flex-col gap-2 text-zinc-700 text-base font-medium ">
-      <li>To verify your account, you must submit proof of your entity’s registration</li>
-      <li>for your communication and marketing goals</li>
+      <li><i><sup>1</sup> Pro, Premium and Enterprise pricing are indicative for a three-year minimum commitment. </i></li>
+      <li><i><sup>2</sup> For your communication and marketing goals. </i></li>
     </ul>
   </div>
 
@@ -179,7 +187,7 @@
 
     <div class="w-60 h-14 mt-6 rounded-lg border-2 border-violet-950 overflow-hidden ">
       <a
-    [routerLink]="['']"
+       [routerLink]="['/for-business/book-demo']"
        class="text-violet-950 text-xl font-semibold font-['Figtree'] py-4 w-full h-full text-center block leading-5 hover:bg-violet-100">
        Contact us</a>
     </div>
