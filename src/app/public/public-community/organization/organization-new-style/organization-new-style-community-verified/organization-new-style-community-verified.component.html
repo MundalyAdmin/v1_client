@@ -90,8 +90,9 @@
           </td>
         </tr>
 
+        <!-- <ng-container class="blur-md"> -->
         <!-- Quality of delivery -->
-        <tr class="bg-white border-b dark:bg-gray-800 font-semibold dark:border-gray-700">
+        <tr class="bg-white border-b dark:bg-gray-800 font-semibold dark:border-gray-700 blur-md">
           <!-- Number -->
           <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
             04
@@ -114,7 +115,7 @@
         </tr>
 
         <!-- Plan comprehensiveness -->
-        <tr class="bg-white border-b dark:bg-gray-800 font-semibold dark:border-gray-700">
+        <tr class="bg-white border-b dark:bg-gray-800 font-semibold dark:border-gray-700 blur-md">
           <!-- Number -->
           <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
             05
@@ -135,9 +136,16 @@
             {{ impactFidelityService.score.comprehensiveness * 100 / 5}}
           </td>
         </tr>
+        <!-- </ng-container> -->
 
       </tbody>
     </table>
+
+    <!-- See full report -->
+    <a [routerLink]="['/', 'for-business', 'book-demo']"
+       class="absolute bottom-[10%] right-[50%]  translate-x-[50%] border border-primary text-primary bg-secondary hover:bg-secondary-dark focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-base px-5 py-2.5 me-2 mb-2 ">
+      See full report
+    </a>
   </div>
 
   <img src="assets/images/new-style/community-verified-plus.png" class="w-2/3" alt="">
