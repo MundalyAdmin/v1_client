@@ -65,10 +65,20 @@ export class OrganizationNewStyleCommunityVerifiedComponent
     communityReportedScore: number,
     companyReportedScore: number
   ) {
-    if (communityReportedScore - companyReportedScore <= 1) {
-      return 'aligned';
+    if (communityReportedScore - companyReportedScore < 0) {
+      return 'is even more impactful than';
+    } else if (
+      communityReportedScore - companyReportedScore >= 0 &&
+      communityReportedScore - companyReportedScore <= 0.5
+    ) {
+      return 'aligns with';
+    } else if (
+      communityReportedScore - companyReportedScore <= 1 &&
+      communityReportedScore - companyReportedScore > 0.5
+    ) {
+      return 'partially aligns with';
     } else {
-      return 'not aligned';
+      return "doens't align with";
     }
   }
 }
