@@ -94,6 +94,17 @@ const routes: Routes = [
           {
             path: 'stories',
             component: OrganizationNewStyleStoriesComponent,
+            children: [
+              {
+                path: ':id',
+                component: OrganizationNewStyleStoriesListComponent,
+              },
+              {
+                path: '**',
+                redirectTo: 'unverified',
+                pathMatch: 'full',
+              },
+            ],
           },
           {
             path: 'rating-report',

@@ -54,7 +54,12 @@ export class ImpactStoryService extends BaseService<ImpactStory> {
 
   getByOrganizationId(organizationId: number, params?: Params) {
     return this.factory
-      .get(`${this.endPoint}/organizations/${organizationId}`, { params })
+      .get(
+        `${this.endPoint}/organizations/${organizationId}/${
+          params?.['verified'] ? 'verified' : 'unverified'
+        }`,
+        { params }
+      )
       .pipe(
         tap((response: ApiResponse<ImpactStory>) => {
           this.data = response.data as ImpactStory[];
@@ -69,6 +74,20 @@ export class ImpactStoryService extends BaseService<ImpactStory> {
           (response: ApiResponse<ImpactStory>) => response.data as ImpactStory[]
         )
       );
+  }
+
+  getVerifiedByOrganizationId(organizationId: number, params?: Params) {
+    return this.getByOrganizationId(organizationId, {
+      ...params,
+      verified: true,
+    });
+  }
+
+  getUnverifiedByOrganizationId(organizationId: number, params?: Params) {
+    return this.getByOrganizationId(organizationId, {
+      ...params,
+      verified: false,
+    });
   }
 
   getAuth() {
