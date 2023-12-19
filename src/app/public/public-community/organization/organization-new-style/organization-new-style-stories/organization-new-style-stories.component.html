@@ -13,4 +13,30 @@
     <app-rating-information></app-rating-information>
   </div>
 </div>
-<app-organization-new-style-stories-list></app-organization-new-style-stories-list>
+
+<div class="my-5" id="rating">
+  <app-stories-rating></app-stories-rating>
+</div>
+
+<div class="border-b border-gray-200 dark:border-gray-700">
+  <ul class="flex flex-wrap -mb-px text-lg font-medium text-center text-gray-500 dark:text-gray-400">
+    <li class="me-2">
+      <a [routerLink]="['unverified']"
+         [routerLinkActive]="['text-primary', 'border-primary']"
+         class="inline-flex items-center justify-center p-4 border-b-2   rounded-t-lg hover:text-gray-600 hover:border-gray-300group">
+        <i class="mdi mdi-comment-edit-outline me-2"></i> Unverified
+      </a>
+    </li>
+    <li class="me-2">
+      <a [routerLink]="['verified']"
+         [routerLinkActive]="['text-primary', 'border-primary']"
+         class="inline-flex items-center justify-center p-4  border-b-2  rounded-t-lg active dark:text-blue-500 dark:border-blue-500 group"
+         aria-current="page">
+        <i class="mdi mdi-check-decagram me-2"></i>Verified
+      </a>
+    </li>
+
+  </ul>
+</div>
+
+<router-outlet></router-outlet>

@@ -1,5 +1,6 @@
 import { Organization } from '../../organization/organization.model';
 import { BaseModel } from '../../shared/models/BaseModel';
+import { User } from '../../user/user.model';
 import { ImpactStoryReply } from './impact-story-reply/impact-story-reply.model';
 
 export interface ImpactStory extends BaseModel {
@@ -8,6 +9,8 @@ export interface ImpactStory extends BaseModel {
   title?: string;
 
   about?: string;
+
+  rating?: number;
 
   media?: string;
 
@@ -18,4 +21,8 @@ export interface ImpactStory extends BaseModel {
   organization?: Organization;
 
   reply?: ImpactStoryReply;
+
+  user_id?: number;
+
+  user: User;
 }

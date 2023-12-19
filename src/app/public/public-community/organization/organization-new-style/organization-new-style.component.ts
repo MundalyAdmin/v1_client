@@ -18,6 +18,8 @@ export class OrganizationNewStyleComponent extends BaseSingleComponent<Organizat
   }
 
   override ngOnInit(): void {
+    window.scrollTo(0, 0);
+
     this.route.params.subscribe((params) => {
       this.loading = true;
       this.organizationService.show(+params['id']).subscribe((organization) => {

@@ -35,6 +35,8 @@ import { OrganizationNewStyleCommunityVerifiedComponent } from './organization/o
 import { OrganizationNewStyleRatingOverviewComponent } from './organization/organization-new-style/organization-new-style-rating-overview/organization-new-style-rating-overview.component';
 import { OrganizationNewStyleStoriesListComponent } from './organization/organization-new-style/organization-new-style-stories/organization-new-style-stories-list/organization-new-style-stories-list.component';
 import { RatingInformationComponent } from './organization/organization-new-style/rating-information/rating-information.component';
+import { StoriesRatingComponent } from './organization/organization-new-style/organization-new-style-stories/stories-rating/stories-rating.component';
+import { OrganizationNewStyleStoriesCreateComponent } from './organization/organization-new-style/organization-new-style-stories/organization-new-style-stories-create/organization-new-style-stories-create.component';
 
 const routes: Routes = [
   {
@@ -92,6 +94,17 @@ const routes: Routes = [
           {
             path: 'stories',
             component: OrganizationNewStyleStoriesComponent,
+            children: [
+              {
+                path: ':id',
+                component: OrganizationNewStyleStoriesListComponent,
+              },
+              {
+                path: '**',
+                redirectTo: 'unverified',
+                pathMatch: 'full',
+              },
+            ],
           },
           {
             path: 'rating-report',
@@ -157,6 +170,8 @@ const routes: Routes = [
     OrganizationNewStyleRatingOverviewComponent,
     OrganizationNewStyleStoriesListComponent,
     RatingInformationComponent,
+    StoriesRatingComponent,
+    OrganizationNewStyleStoriesCreateComponent,
   ],
   imports: [
     CommonModule,

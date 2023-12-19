@@ -1,4 +1,4 @@
-<div class="grid grid-cols-1 col-span-1 h-fit sticky top-0">
+<div class="grid grid-cols-1 col-span-1 h-fit sticky top-0" *ngIf="scaleService.communityTrustScore">
   <div class="p-8 rounded-xl bg-primary text-white">
     <!-- Title -->
     <h5 class="text-xl text-center mb-2 font-semibold">Community Trust Score</h5>
@@ -7,17 +7,25 @@
 
     <!-- Rating -->
     <div class="flex justify-between text-cnter flex-col items-center  mb-6 ">
-      <div class="text-2xl font-medium">
+      <div class="text-2xl font-medium ms-2">
         <!-- Number of starts -->
-        <i class="mdi text-yellow-200 mdi-star ms-2"></i>
-        <i class="mdi mdi-star text-yellow-200"></i>
-        <i class="mdi mdi-star text-yellow-200"></i>
-        <i class="mdi mdi-star text-yellow-200"></i>
-        <i class="mdi mdi-star text-yellow-200"></i>
+        <!-- Full stars -->
+        <i class="mdi mdi-star text-yellow-200"
+           *ngFor="let i of [].constructor(scaleService.getNumberOfStars(communityTrustScore?.rating!).numberOfStars)"></i>
+
+        <!-- half stars -->
+        <i class="mdi mdi-star-half-full text-yellow-200"
+           *ngFor="let i of [].constructor(scaleService.getNumberOfStars(communityTrustScore?.rating!).numberOfHalfStars)"></i>
+
+        <!-- Empty stars -->
+        <i class="mdi mdi-star text-slate-300/20 "
+           *ngFor="let i of [].constructor(scaleService.getNumberOfStars(communityTrustScore?.rating!).numberOfEmptyStars)"></i>
+
       </div>
 
 
-      <div class="text-xl font-bold ">91%</div>
+
+      <div class="text-xl font-bold ">{{ scaleService.communityTrustScore.community_trust_score }}%</div>
 
     </div>
 
@@ -28,7 +36,9 @@
       <li class=" ">
         <div class="text-slate-100 text-md mb-1">Social Impact Fidelity</div>
         <div class="w-full bg-slate-300/20 rounded-full h-3 ">
-          <div class="bg-green-600 h-3 rounded-full" style="width: 91%"></div>
+          <div class="bg-green-600 h-3 rounded-full"
+               [style]="{width: scaleService.getProgressBarWidth(scaleService.communityTrustScore.impact_fidelity_score)}">
+          </div>
         </div>
       </li>
 
@@ -36,7 +46,8 @@
       <li class=" ">
         <div class="text-slate-100 text-md mb-1">Community Perception</div>
         <div class="w-full bg-slate-300/20 rounded-full h-3 ">
-          <div class="bg-green-600 h-3 rounded-full" style="width: 91%"></div>
+          <div class="bg-green-600 h-3 rounded-full"
+               [style]="{width: scaleService.getProgressBarWidth(scaleService.communityTrustScore.community_perception_score)}"></div>
         </div>
       </li>
 
@@ -45,7 +56,8 @@
       <li class=" ">
         <div class="text-slate-100 text-md mb-1">Facilitation Strategy</div>
         <div class="w-full bg-slate-300/20 rounded-full h-3 ">
-          <div class="bg-green-600 h-3 rounded-full" style="width: 91%"></div>
+          <div class="bg-green-600 h-3 rounded-full"
+               [style]="{width: scaleService.getProgressBarWidth(scaleService.communityTrustScore.facilitation_strategy_score)}"></div>
         </div>
       </li>
 
@@ -53,22 +65,28 @@
       <!-- Profile status -->
       <li class="flex justify-between items-center ">
         <span class="text-slate-100 text-md">Profile status</span>
-        <span class="bg-slate-50 px-5 rounded-full py-1 text-center text-primary">
+
+        <!-- Claimed badge -->
+        <span class="bg-slate-50 px-5 rounded-full py-1 text-center text-primary"
+              *ngIf="organizationService.singleData?.profile_status_organization_id === 2">
           Claimed
           <i class="mdi mdi-check-decagram   ms-2"></i>
         </span>
-        <!-- <span class="bg-slate-50 px-5 rounded-full py-1 text-center text-primary" *ngIf="single.profile_status_organization?.id == 1">
-              Unclaimed
 
-            </span> -->
+        <!-- Unclaimed badge -->
+        <span class="bg-slate-50 px-5 rounded-full py-1 text-center text-primary"
+              *ngIf="organizationService.singleData?.profile_status_organization_id === 1">
+          Unclaimed
+
+        </span>
       </li>
 
       <!-- Take a survey -->
       <li class="flex justify-between items-center mt-5 ">
-        <button
-                class="py-3 rounded-full bg-secondary hover:bg-primary-lighter text-lg font-semibold  border-primary w-full text-center text-primary">
+        <a [routerLink]="['/community-voic']"
+           class="py-3 rounded-full bg-secondary hover:bg-primary-lighter text-lg font-semibold  border-primary w-full text-center text-primary">
           Take a survey
-        </button>
+        </a>
       </li>
     </ul>
   </div>

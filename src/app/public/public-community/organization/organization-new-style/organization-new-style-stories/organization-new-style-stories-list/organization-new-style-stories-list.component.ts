@@ -7,6 +7,8 @@ import { ImpactStory } from '../../../../../../scale/impact-story/impact-story.m
 import { OrganizationService } from '../../../../../../organization/organization.service';
 import { ImpactStoryService } from '../../../../../../scale/impact-story/impact-story.service';
 import { Organization } from '../../../../../../organization/organization.model';
+import { ScaleService } from '../../../../../../scale/scale.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-organization-new-style-stories-list',
@@ -18,9 +20,13 @@ export class OrganizationNewStyleStoriesListComponent
   implements OnInit
 {
   organization: Organization | null = null;
+  verified = false;
   constructor(
     public impactStoryOrganizationService: ImpactStoryService,
-    public organizationService: OrganizationService
+    public organizationService: OrganizationService,
+    public scaleService: ScaleService,
+    public route: ActivatedRoute,
+    public router: Router
   ) {
     super(impactStoryOrganizationService);
   }
@@ -36,14 +42,35 @@ export class OrganizationNewStyleStoriesListComponent
   }
 
   getDataByOrganization(organizationId: number) {
+    this.route.params.subscribe((params) => {
+      if (params['id'] === 'verified') {
+        this.verified = true;
+      } else if (params['id'] === 'unverified') {
+        this.getUnverifiedByOrganization(organizationId);
+        this.verified = false;
+      } else {
+        this.router.navigate(['..', 'unverified'], { relativeTo: this.route });
+      }
+    });
+  }
+
+  getVerifiedByOrganization(organizationId: number) {
     this.loading = true;
     this.impactStoryOrganizationService
-      .getByOrganizationId(organizationId)
+      .getVerifiedByOrganizationId(organizationId)
       .subscribe({
-        next: (response) => {
+        complete: () => {
           this.loading = false;
         },
-        error: () => {
+      });
+  }
+
+  getUnverifiedByOrganization(organizationId: number) {
+    this.loading = true;
+    this.impactStoryOrganizationService
+      .getUnverifiedByOrganizationId(organizationId)
+      .subscribe({
+        complete: () => {
           this.loading = false;
         },
       });
