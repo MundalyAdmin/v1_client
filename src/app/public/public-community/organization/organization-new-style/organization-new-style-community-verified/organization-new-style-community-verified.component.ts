@@ -46,4 +46,29 @@ export class OrganizationNewStyleCommunityVerifiedComponent
       return 'Low';
     }
   }
+
+  getImpactStrengthKey(score: number) {
+    if (score >= 5) {
+      return 'Highly Impactful';
+    } else if (score >= 4) {
+      return 'More Impactful';
+    } else if (score >= 3) {
+      return 'Neutral Impact';
+    } else if (score >= 2) {
+      return 'Less Impactful';
+    } else {
+      return 'Not Impactful';
+    }
+  }
+
+  getScoresAlignmentKey(
+    communityReportedScore: number,
+    companyReportedScore: number
+  ) {
+    if (communityReportedScore - companyReportedScore <= 1) {
+      return 'aligned';
+    } else {
+      return 'not aligned';
+    }
+  }
 }

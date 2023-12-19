@@ -37,11 +37,4 @@ export class OrganizationNewStyleCompanyReportedComponent extends BaseComponent<
       },
     });
   }
-
-  getRandomBgColor() {
-    const color =
-      'bg-[#' + ((Math.random() * 0xffffff) << 0).toString(16) + ']';
-    console.log(color);
-    return color;
-  }
 }
