@@ -14,4 +14,6 @@ export interface User extends BaseModel {
   type_user_id: TypeUserEnum;
 
   typeUser: TypeUser | null;
+
+  auth_method: 'local' | 'google' | 'linkedin';
 }

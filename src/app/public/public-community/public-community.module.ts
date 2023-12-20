@@ -39,6 +39,8 @@ import { WhoIsForComponent } from './who-is-for/who-is-for.component';
 import { WhoIsForImpactFacilitatorsComponent } from './who-is-for/who-is-for-impact-facilitators/who-is-for-impact-facilitators.component';
 import { WhoIsForImpactFundersComponent } from './who-is-for/who-is-for-impact-funders/who-is-for-impact-funders.component';
 import { WhoIsForImpactedCommunitiesComponent } from './who-is-for/who-is-for-impacted-communities/who-is-for-impacted-communities.component';
+import { StoriesRatingComponent } from './organization/organization-new-style/organization-new-style-stories/stories-rating/stories-rating.component';
+import { OrganizationNewStyleStoriesCreateComponent } from './organization/organization-new-style/organization-new-style-stories/organization-new-style-stories-create/organization-new-style-stories-create.component';
 
 const routes: Routes = [
   {
@@ -119,6 +121,17 @@ const routes: Routes = [
           {
             path: 'stories',
             component: OrganizationNewStyleStoriesComponent,
+            children: [
+              {
+                path: ':id',
+                component: OrganizationNewStyleStoriesListComponent,
+              },
+              {
+                path: '**',
+                redirectTo: 'unverified',
+                pathMatch: 'full',
+              },
+            ],
           },
           {
             path: 'rating-report',
@@ -188,6 +201,8 @@ const routes: Routes = [
     WhoIsForImpactFacilitatorsComponent,
     WhoIsForImpactFundersComponent,
     WhoIsForImpactedCommunitiesComponent,
+    StoriesRatingComponent,
+    OrganizationNewStyleStoriesCreateComponent,
   ],
   imports: [
     CommonModule,

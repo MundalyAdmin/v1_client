@@ -1,0 +1,117 @@
+<form [formGroup]="form" (submit)="create()" *ngIf="organization">
+  <div class="grid grid-cols-1 gap-5 ">
+    <!-- Rating -->
+    <div class="mb-6">
+      <label for="title" class="block mb-3 text-lg font-semibold text-primary dark:text-white">Rate your experience</label>
+      <div class="flex align-center text-slate-800 text-[3.5rem]">
+        <span>
+          <i class="mdi mdi-star-box hover:text-secondary-dark m-[-5px] animate__animated transition-all ease-in-out animate__backInUp"
+             [ngClass]="{ 'text-secondary-dark': tempRating >= 1 || formValue('rating') >= 1 }"
+             (mouseenter)="tempRating = 1" (mouseleave)="tempRating = 0" (click)="formValuePatcher('rating', 1)">
+          </i>
+        </span>
+
+
+        <span>
+          <i class="mdi mdi-star-box hover:text-secondary-dark m-[-5px] animate__animated transition-all ease-in-out animate__backInUp"
+             [ngClass]="{ 'text-secondary-dark': tempRating >= 2 || formValue('rating') >= 2 }"
+             (mouseenter)="tempRating = 2" (mouseleave)="tempRating = 0" (click)="formValuePatcher('rating', 2)">
+          </i>
+        </span>
+
+
+        <span>
+          <i class="mdi mdi-star-box hover:text-secondary-dark m-[-5px] animate__animated transition-all ease-in-out animate__backInUp"
+             [ngClass]="{ 'text-secondary-dark': tempRating >= 3 || formValue('rating') >= 3 }"
+             (mouseenter)="tempRating = 3" (mouseleave)="tempRating = 0" (click)="formValuePatcher('rating', 3)">
+          </i>
+        </span>
+
+
+        <span>
+          <i class="mdi mdi-star-box hover:text-secondary-dark m-[-5px] animate__animated transition-all ease-in-out animate__backInUp"
+             [ngClass]="{ 'text-secondary-dark': tempRating >= 4 || formValue('rating') >= 4 }"
+             (mouseenter)="tempRating = 4" (mouseleave)="tempRating = 0" (click)="formValuePatcher('rating', 4)">
+          </i>
+        </span>
+
+
+        <span>
+          <i class="mdi mdi-star-box hover:text-secondary-dark m-[-5px] animate__animated transition-all ease-in-out animate__backInUp"
+             [ngClass]="{ 'text-secondary-dark': tempRating >= 5 || formValue('rating') >= 5 }"
+             (mouseenter)="tempRating = 5" (mouseleave)="tempRating = 0" (click)="formValuePatcher('rating', 5)">
+          </i>
+        </span>
+      </div>
+    </div>
+
+
+    <ng-container *ngIf="formValue('rating') > 0">
+
+      <!-- About -->
+      <div class="mb-6">
+        <label for="about" class="block mb-2 text-lg font-semibold text-primary dark:text-white">Can you tell us, in your own word you experience with
+          {{ organization.name }}</label>
+        <textarea id="about" rows="6"
+                  (focus)="true"
+                  formControlName="about"
+                  class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="your experience..."></textarea>
+
+      </div>
+
+      <!-- Title -->
+      <div class="mb-6">
+        <label for="title" class="block mb-2 text-lg font-semibold text-primary dark:text-white">Can you give a title to your experience</label>
+        <input type="text" id="title" formControlName="title"
+               class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark :border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               placeholder="A wonderful title" required>
+      </div>
+
+
+      <!-- Image -->
+      <div class="mb-6 ">
+        <label for="website" class="block mb-2 text-lg font-semibold text-primary dark:text-white">Do you have any image/video you want to share about
+          your experience</label>
+        <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+               accept="image/*"
+               (change)="onFileChanged($event, 'file')"
+               aria-describedby="user_avatar_help" id="user_avatar" type="file">
+        <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">Media should not exceed 10MB</div>
+
+      </div>
+
+
+
+
+
+
+
+      <div class="">
+        <!-- Sumbit button -->
+        <button type="submit"
+                *ngIf="authService.isLoggedIn()"
+                [disabled]="form.invalid || loading"
+                class=" block  text-white disabled:cursor-not-allowed disabled:bg-primary/50 disabled:text-gray-100 bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm w-full  px-5 py-2.5 text-center ">Submit
+          <app-loading *ngIf="loading"></app-loading>
+        </button>
+
+
+        <!-- Continue with google button -->
+        <button type="button" (click)="continueWithGoogle()"
+                *ngIf="!authService.isLoggedIn()"
+                class=" d-block w-full text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg justify-center  px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 me-2 mb-2">
+          <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 19">
+            <path fill-rule="evenodd"
+                  d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z"
+                  clip-rule="evenodd" />
+          </svg>
+          Continue with Google
+        </button>
+      </div>
+
+    </ng-container>
+  </div>
+
+
+</form>

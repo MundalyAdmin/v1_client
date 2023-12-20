@@ -1,7 +1,7 @@
 import { Country } from '../country/country.model';
 import { BaseModel } from '../shared/models/BaseModel';
 import { ProfileStatusOrganization } from './profile-status-organization/profile-status-organization.model';
-import { Scale } from '../scale/scale.model';
+import { Scale } from '../scale/models/scale.model';
 import { SectorOrganization } from './sector-organization/sector-organization.model';
 import { TagOrganization } from './tag-organization/tag-organization.model';
 import { TypeOrganization } from './type-organization/type-organization.model';

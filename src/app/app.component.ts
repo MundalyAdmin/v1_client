@@ -24,13 +24,6 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     initFlowbite();
-
-    this.router.events.subscribe((event) => {
-      if (!(event instanceof NavigationEnd)) {
-        return;
-      }
-      window.scrollTo(0, 0);
-    });
   }
 
   ngAfterViewInit(): void {
