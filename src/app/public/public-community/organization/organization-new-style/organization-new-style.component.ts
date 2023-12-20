@@ -3,12 +3,14 @@ import { BaseSingleComponent } from '../../../../shared/base-component';
 import { Organization } from '../../../../organization/organization.model';
 import { OrganizationService } from '../../../../organization/organization.service';
 import { ActivatedRoute } from '@angular/router';
+import { Flowbite } from '../../../../shared/decorators/flowbite.decorator';
 
 @Component({
   selector: 'app-organization-new-style',
   templateUrl: './organization-new-style.component.html',
   styleUrls: ['./organization-new-style.component.scss'],
 })
+@Flowbite()
 export class OrganizationNewStyleComponent extends BaseSingleComponent<Organization> {
   constructor(
     public organizationService: OrganizationService,
