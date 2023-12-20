@@ -1,26 +1,26 @@
-<div class="w-2/3 grid gap-4 grid-cols-1" *ngIf="ratingBreakdown && !loading">
+<div class="w-2/3 grid gap-4 grid-cols-1" *ngIf="impactStoriesService.ratingBreakdown && !loading">
   <!-- Title rating -->
-  <h3 class="text-xl font-semibold">{{ ratingBreakdown.total_respondant }} {{ organization?.name }} reviews</h3>
+  <h3 class="text-xl font-semibold">{{ impactStoriesService.ratingBreakdown.total_respondant }} {{ organization?.name }} reviews</h3>
   <!-- Star rating -->
   <div class="flex justify-between">
     <!-- Rating -->
     <div class="text-3xl flex font-semibold items-center gap-3">
       <i class="mdi mdi-star "
-         *ngFor="let i of [].constructor(scaleService.getNumberOfStars(ratingBreakdown.rating!).numberOfStars)"></i>
+         *ngFor="let i of [].constructor(scaleService.getNumberOfStars(impactStoriesService.ratingBreakdown.rating!).numberOfStars)"></i>
 
       <!-- half stars -->
       <i class="mdi mdi-star-half-full "
-         *ngFor="let i of [].constructor(scaleService.getNumberOfStars(ratingBreakdown.rating!).numberOfHalfStars)"></i>
+         *ngFor="let i of [].constructor(scaleService.getNumberOfStars(impactStoriesService.ratingBreakdown.rating!).numberOfHalfStars)"></i>
 
       <!-- Empty stars -->
       <i class="mdi mdi-star text-slate-300 "
-         *ngFor="let i of [].constructor(scaleService.getNumberOfStars(ratingBreakdown.rating!).numberOfEmptyStars)"></i>
+         *ngFor="let i of [].constructor(scaleService.getNumberOfStars(impactStoriesService.ratingBreakdown.rating!).numberOfEmptyStars)"></i>
 
-      {{ ratingBreakdown.rating }}
+      {{ impactStoriesService.ratingBreakdown.rating }}
 
     </div>
 
-    <!-- <ng-container *ngIf="!ratingBreakdown.has_user_reviewed"> -->
+    <!-- <ng-container *ngIf="!impactStoriesService.ratingBreakdown.has_user_reviewed"> -->
     <!-- Button add review -->
     <button #modalBtn type="button" data-modal-target="impact-story-create" data-modal-toggle="impact-story-create"
             class=" bg-secondary border border-primary hover:text-white  font-semibold text-primary hover:bg-secondary-dark focus:outline-none focus:ring-4 focus:ring-blue-300  rounded-full text-lg px-6 py-2.5 text-center me-2 mb-2 "><span
@@ -40,49 +40,50 @@
       <div class="shrink-0">5 stars</div>
       <div class="w-full h-5  bg-gray-200 rounded-full dark:bg-gray-700">
         <div class="h-5 bg-secondary rounded-full "
-             [ngStyle]="{width: scaleService.getProgressBarWidth(ratingBreakdown.five_stars_rating_count!,  ratingBreakdown.total_respondant!)}">
+             [ngStyle]="{width: scaleService.getProgressBarWidth(impactStoriesService.ratingBreakdown.five_stars_rating_count!,  impactStoriesService.ratingBreakdown.total_respondant!)}">
         </div>
       </div>
-      <div class="shrink-0">{{ getStarPercentage(ratingBreakdown.five_stars_rating_count!) }}%</div>
+      <div class="shrink-0">{{ getStarPercentage(impactStoriesService.ratingBreakdown.five_stars_rating_count!) }}%</div>
     </div>
     <!-- 4 stars -->
     <div class="flex text-xl items-center gap-4 font-semibold">
       <div class="shrink-0">4 stars</div>
       <div class="w-full h-5  bg-gray-200 rounded-full dark:bg-gray-700">
         <div class="h-5 bg-secondary rounded-full "
-             [ngStyle]="{width: scaleService.getProgressBarWidth(ratingBreakdown.four_stars_rating_count!, ratingBreakdown.total_respondant!)}">
+             [ngStyle]="{width: scaleService.getProgressBarWidth(impactStoriesService.ratingBreakdown.four_stars_rating_count!, impactStoriesService.ratingBreakdown.total_respondant!)}">
         </div>
       </div>
-      <div class="shrink-0">{{ getStarPercentage(ratingBreakdown.four_stars_rating_count!) }}%</div>
+      <div class="shrink-0">{{ getStarPercentage(impactStoriesService.ratingBreakdown.four_stars_rating_count!) }}%</div>
     </div>
     <!-- 3 stars -->
     <div class="flex text-xl items-center gap-4 font-semibold">
       <div class="shrink-0">3 stars</div>
       <div class="w-full h-5  bg-gray-200 rounded-full dark:bg-gray-700">
         <div class="h-5 bg-secondary rounded-full "
-             [ngStyle]="{width: scaleService.getProgressBarWidth(ratingBreakdown.three_stars_rating_count!, ratingBreakdown.total_respondant!)}">
+             [ngStyle]="{width: scaleService.getProgressBarWidth(impactStoriesService.ratingBreakdown.three_stars_rating_count!, impactStoriesService.ratingBreakdown.total_respondant!)}">
         </div>
       </div>
-      <div class="shrink-0">{{ getStarPercentage(ratingBreakdown.three_stars_rating_count!) }}%</div>
+      <div class="shrink-0">{{ getStarPercentage(impactStoriesService.ratingBreakdown.three_stars_rating_count!) }}%</div>
     </div>
     <!-- 2 stars -->
     <div class="flex text-xl items-center gap-4 font-semibold">
       <div class="shrink-0">2 stars</div>
       <div class="w-full h-5  bg-gray-200 rounded-full dark:bg-gray-700">
         <div class="h-5 bg-secondary rounded-full "
-             [ngStyle]="{width: scaleService.getProgressBarWidth(ratingBreakdown.two_stars_rating_count!, ratingBreakdown.total_respondant!)}">
+             [ngStyle]="{width: scaleService.getProgressBarWidth(impactStoriesService.ratingBreakdown.two_stars_rating_count!, impactStoriesService.ratingBreakdown.total_respondant!)}">
         </div>
       </div>
-      <div class="shrink-0">{{ getStarPercentage(ratingBreakdown.two_stars_rating_count!) }}%</div>
+      <div class="shrink-0">{{ getStarPercentage(impactStoriesService.ratingBreakdown.two_stars_rating_count!) }}%</div>
     </div>
     <!-- 1 stars -->
     <div class="flex text-xl items-center gap-4 font-semibold">
       <div class="shrink-0">1 stars</div>
       <div class="w-full h-5  bg-gray-200 rounded-full dark:bg-gray-700">
         <div class="h-5 bg-secondary rounded-full "
-             [ngStyle]="{width: scaleService.getProgressBarWidth(ratingBreakdown.one_star_rating_count!, ratingBreakdown.total_respondant!)}"></div>
+             [ngStyle]="{width: scaleService.getProgressBarWidth(impactStoriesService.ratingBreakdown.one_star_rating_count!, impactStoriesService.ratingBreakdown.total_respondant!)}">
+        </div>
       </div>
-      <div class="shrink-0">{{ getStarPercentage(ratingBreakdown.one_star_rating_count!) }}%</div>
+      <div class="shrink-0">{{ getStarPercentage(impactStoriesService.ratingBreakdown.one_star_rating_count!) }}%</div>
     </div>
   </div>
 
