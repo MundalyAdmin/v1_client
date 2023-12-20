@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { BaseComponent } from '../../../../../../shared/base-component';
 import { OrganizationService } from '../../../../../../organization/organization.service';
 import { Organization } from '../../../../../../organization/organization.model';
@@ -6,6 +6,7 @@ import { ImpactStoryService } from '../../../../../../scale/impact-story/impact-
 import { ImpactStoryRatingBreakdown } from '../../../../../../scale/impact-story/impact-story-rating-breakdown.model';
 import { ScaleService } from '../../../../../../scale/scale.service';
 import { Flowbite } from '../../../../../../shared/decorators/flowbite.decorator';
+import { Storage } from '../../../../../../shared/helpers/storage/storage';
 
 @Component({
   selector: 'app-stories-rating',
@@ -17,12 +18,14 @@ export class StoriesRatingComponent
   extends BaseComponent<any>
   implements OnInit
 {
+  @ViewChild('modalBtn', { static: false }) modalBtn!: ElementRef;
   organization: Organization | null = null;
   ratingBreakdown: ImpactStoryRatingBreakdown | null = null;
   constructor(
     public organizationService: OrganizationService,
     public impactStoriesService: ImpactStoryService,
-    public scaleService: ScaleService
+    public scaleService: ScaleService,
+    public storage: Storage
   ) {
     super();
   }
@@ -44,6 +47,12 @@ export class StoriesRatingComponent
           }
         }
       );
+
+    if (this.storage.get('review')) {
+      setTimeout(() => {
+        this.modalBtn.nativeElement.click();
+      }, 100);
+    }
   }
 
   getStarPercentage(rating: number) {
