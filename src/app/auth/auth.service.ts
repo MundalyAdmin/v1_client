@@ -102,6 +102,5 @@ export class AuthService extends BaseService<any> {
   }
   public logout() {
     this.clearLoginInformation();
-    this.router.navigate(['/auth/login']);
   }
 }
