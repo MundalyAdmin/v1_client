@@ -37,11 +37,14 @@
               <div class="text-violet-950 text-4xl font-bold ">{{ single.name }}</div>
 
               <!-- Claiming badge -->
-              <div class="text-violet-950 text-lg ">Claimed <span><i class="mdi mdi-check-decagram"></i></span></div>
+              <div class="text-violet-950 text-lg " *ngIf="single.profile_status_organization_id == 2">Claimed <span><i
+                     class="mdi mdi-check-decagram"></i></span></div>
+              <div class="text-violet-950 text-lg " *ngIf="single.profile_status_organization_id == 1">Unclaimed <span><i
+                     class="mdi mdi-close-box"></i></span></div>
 
             </div>
 
-            <a [href]="single.website" type="button"
+            <a [href]="single.website" target="_blank" type="button"
                class="px-7 py-3 font-semibold border border-primary  rounded-full text-center text-primary bg-secondary  hover:bg-secondary-dark focus:ring-4 focus:outline-none focus:ring-primary-dark">Visit
               website</a>
           </div>
