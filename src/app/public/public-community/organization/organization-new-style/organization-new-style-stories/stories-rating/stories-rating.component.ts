@@ -51,6 +51,7 @@ export class StoriesRatingComponent
     if (this.storage.get('review')) {
       setTimeout(() => {
         this.modalBtn.nativeElement.click();
+        this.storage.delete('review');
       }, 100);
     }
   }
