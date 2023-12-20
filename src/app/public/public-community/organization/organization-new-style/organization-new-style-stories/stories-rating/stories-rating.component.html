@@ -22,7 +22,9 @@
 
     <!-- <ng-container *ngIf="!ratingBreakdown.has_user_reviewed"> -->
     <!-- Button add review -->
-
+    <button #modalBtn type="button" data-modal-target="impact-story-create" data-modal-toggle="impact-story-create"
+            class=" bg-secondary border border-primary hover:text-white  font-semibold text-primary hover:bg-secondary-dark focus:outline-none focus:ring-4 focus:ring-blue-300  rounded-full text-lg px-6 py-2.5 text-center me-2 mb-2 "><span
+            class="me-1"><i class="mdi mdi-plus"></i> Add a review</span></button>
 
     <!-- Modal -->
 
@@ -93,9 +95,7 @@
 
 <app-page-loading *ngIf="loading"></app-page-loading>
 
-<button #modalBtn type="button" data-modal-target="impact-story-create" data-modal-toggle="impact-story-create"
-        class=" bg-secondary border border-primary hover:text-white  font-semibold text-primary hover:bg-secondary-dark focus:outline-none focus:ring-4 focus:ring-blue-300  rounded-full text-lg px-6 py-2.5 text-center me-2 mb-2 "><span
-        class="me-1"><i class="mdi mdi-plus"></i> Add a review</span></button>
+
 
 <div id="impact-story-create" tabindex="-1" aria-labelledby="impact-story-create" aria-hidden="true"
      backdrop="static"
