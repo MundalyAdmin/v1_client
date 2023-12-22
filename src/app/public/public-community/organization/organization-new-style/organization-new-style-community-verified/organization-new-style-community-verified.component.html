@@ -1,8 +1,8 @@
 <ng-container *ngIf="impactFidelityService.score && !loading">
   <div class="relative overflow-x-auto">
-    <table class="w-full text-left rtl:text-right text-gray-500 ">
+    <table class="w-full md:text-lg text-sm text-left rtl:text-right text-gray-500 ">
       <!-- Table header -->
-      <thead class="text-lg text-gray-400 !font-medium bg-slate-100">
+      <thead class=" text-gray-400 !font-medium bg-slate-100">
         <tr>
           <th scope="col" class="px-6 py-4">
             #
@@ -148,7 +148,7 @@
     </a>
   </div>
 
-  <div class="text-primary text-lg bg-primary/5 p-2">
+  <div class="text-primary md:text-lg text-sm bg-primary/5 p-2">
     <span class="me-2"><i class="mdi mdi-lightbulb-on me-"></i> Insight:</span> <span class="font-bold">Community Beneficiaries confirm {{
       getImpactStrengthKey(impactFidelityService.score.score_rating) }}
       which {{ getScoresAlignmentKey(impactFidelityService.score.score_rating, impactFidelityService.score.company_reported_impact_strength) }}
