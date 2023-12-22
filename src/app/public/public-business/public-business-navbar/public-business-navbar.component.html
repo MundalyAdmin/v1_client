@@ -37,40 +37,48 @@
 
         <!-- products -->
         <li class="has-submenu parent-parent-menu-item">
-          <a href="javascript:void(0)">Platform</a><span class="menu-arrow"></span>
-          <ul class="submenu p-0 md:pl-[200px]  bg-slate-50">
-            <li>
-              <a [routerLink]="['product/overview']" class="sub-menu-item flex p-0  text-base ">
-                <span class="block w-1/4 border py-5 text-secondary-dark px-8 "> <span
-                        class="mdi mr-2 mdi-text"></span> Overview</span>
-                <span class=" block w-3/4 border p-5 border-l-2 text-slate-600 ">The Community Impact Intelligence Platform</span></a>
-            </li>
-            <li>
-              <a [routerLink]="['product/measure']" class="sub-menu-item flex p-0  text-base ">
-                <span class="block w-1/4 border py-5 text-secondary-dark px-8 "> <span
-                        class="mdi mr-2 mdi-chart-areaspline"></span> Measure</span>
-                <span class=" block w-3/4 border p-5 border-l-2 text-slate-600 ">Predict and Verify Impact of your ESG Funding</span></a>
-            </li>
-            <li class="">
-              <a [routerLink]="['product/track']" class="sub-menu-item flex p-0  text-base ">
-                <span class="block w-1/4 border py-5 text-secondary-dark px-7"><span class="mdi mr-2 mdi-chart-bar-stacked"></span>Track</span>
-                <span class=" block w-3/4 border p-5 border-l-2 text-slate-600 ">See Progress & Metrics from your Portfolio</span></a>
-            </li>
-            <li class="">
-              <a [routerLink]="['product/report']" class="sub-menu-item flex p-0  text-base ">
-                <span class="block w-1/4 border py-5 text-secondary-dark px-7"><span class="mdi mr-2 mdi-chart-box-outline"></span>Report</span>
-                <span class=" block w-3/4 border p-5 border-l-2 text-slate-600 ">ESG Disclosures, Compliance & Benchmarking</span></a>
-            </li>
-            <li class="">
-              <a [routerLink]="['product/act']" class="sub-menu-item flex p-0  text-base ">
-                <span class="block w-1/4 border py-5 text-secondary-dark px-7"><span class="mdi mr-2 mdi-gesture-tap-button"></span>Act</span>
-                <span class=" block w-3/4 border p-5 border-l-2 text-slate-600 ">View Location-Specific Social Issues & Plan</span></a>
-            </li>
+          <a id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" data-dropdown-trigger="hover" class="uppercase">Platform <span
+                  class="menu-arrow"></span></a>
+          <div id="dropdownNavbar"
+               class="z-10 hidden w-72 md:mt-[-20px] md:ml-[-900px] ml-[-52px]  font-normal  bg-white divide-y divide-gray-100 rounded-lg shadow  dark:bg-gray-700 dark:divide-gray-600">
+            <ul class="custom-submenu p-0 md:pl-[200px] font-semibold bg-slate-50">
+              <li>
+                <a [routerLink]="['product/overview']" class="sub-menu-item flex p-0  text-base ">
+                  <span class="block md:w-1/4 w-full border py-5 text-secondary-dark px-8 "> <span
+                          class="mdi mr-2 mdi-text"></span> Overview</span>
+                  <span class="hidden md:block w-3/4 border p-5 border-l-2 text-slate-600 ">The Community Impact Intelligence Platform</span></a>
+              </li>
+              <li>
+                <a [routerLink]="['product/measure']" class="sub-menu-item flex p-0  text-base ">
+                  <span class="block md:w-1/4 w-full border py-5 text-secondary-dark px-8 "> <span
+                          class="mdi mr-2 mdi-chart-areaspline"></span> Measure</span>
+                  <span class="hidden md:block w-3/4 border p-5 border-l-2 text-slate-600 ">Predict and Verify Impact of your ESG Funding</span></a>
+              </li>
+              <li class="">
+                <a [routerLink]="['product/track']" class="sub-menu-item flex p-0  text-base ">
+                  <span class="block md:w-1/4 w-full border py-5 text-secondary-dark px-7"><span
+                          class="mdi mr-2 mdi-chart-bar-stacked"></span>Track</span>
+                  <span class="hidden md:block w-3/4 border p-5 border-l-2 text-slate-600 ">See Progress & Metrics from your Portfolio</span></a>
+              </li>
+              <li class="">
+                <a [routerLink]="['product/report']" class="sub-menu-item flex p-0  text-base ">
+                  <span class="block md:w-1/4 w-full border py-5 text-secondary-dark px-7"><span
+                          class="mdi mr-2 mdi-chart-box-outline"></span>Report</span>
+                  <span class="hidden md:block w-3/4 border p-5 border-l-2 text-slate-600 ">ESG Disclosures, Compliance & Benchmarking</span></a>
+              </li>
+              <li class="">
+                <a [routerLink]="['product/act']" class="sub-menu-item flex p-0  text-base ">
+                  <span class="block md:w-1/4 w-full border py-5 text-secondary-dark px-7"><span
+                          class="mdi mr-2 mdi-gesture-tap-button"></span>Act</span>
+                  <span class="hidden md:block w-3/4 border p-5 border-l-2 text-slate-600 ">View Location-Specific Social Issues & Plan</span></a>
+              </li>
 
 
 
 
-          </ul>
+            </ul>
+          </div>
+
 
         </li>
 
