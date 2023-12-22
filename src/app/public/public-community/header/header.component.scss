@@ -7,11 +7,13 @@
   }
 }
 
-.submenu {
+.custom-submenu {
   li {
     &:hover > *,
     &:active > * {
       @apply text-secondary-dark scale-105;
     }
   }
+
+  position: fixed !important;
 }
