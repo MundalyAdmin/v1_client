@@ -43,8 +43,8 @@ export class HomeSearchBarComponent
     this.getCountries();
 
     this.form = this.fb.group({
-      keyword: ['', Validators.required],
-      country_id: [null],
+      keyword: [null, Validators.required],
+      location: [null],
     });
 
     // Debounce the search name request to avoid overloading the server
@@ -60,26 +60,28 @@ export class HomeSearchBarComponent
   // Search Organization names into the database to
   // to populate the Autocomplete component
   getOrganizationNames(keyword: string) {
-    this.loading = true;
-    this.organizationService.searchNames(keyword).subscribe((data) => {
-      this.organizationNames = data;
-      this.loading = false;
-    });
+    if (keyword) {
+      this.loading = true;
+      this.organizationService.searchNames(keyword).subscribe((data) => {
+        this.organizationNames = data;
+        this.loading = false;
+      });
+    }
   }
 
   // Get the list of all countries and parse it into Select2Data
+  // TODO: update country
   getCountries() {
     this.countryService.get().subscribe({
       next: (response) => {
         response.map((country: Country) => {
           this.countries.push({
-            value: country.id!,
+            value: country.name!,
             label: country.name!,
             data: country,
           });
         });
       },
-
       error: () => {},
     });
   }
@@ -87,17 +89,20 @@ export class HomeSearchBarComponent
   // Triggered when the user selects a country
   // Update the form with the selected country
   onCountrySelected(item: Select2UpdateEvent) {
-    this.form.controls['country_id'].setValue(item.value);
+    this.form.controls['location'].setValue(item.value);
   }
 
   search() {
-    const data = {
+    let data = {
       keyword:
         typeof this.form.controls['keyword'].value === 'string'
           ? this.form.controls['keyword'].value
           : (this.form.controls['keyword'].value as { name: string }).name,
-      country_id: this.form.controls['country_id'].value,
+      location: this.form.controls['location'].value,
     };
+
+    data = this.helper.object.removeBlankValues(data);
+
     this.router.navigate(['/organizations/search'], {
       queryParams: data,
     });

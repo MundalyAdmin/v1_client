@@ -28,20 +28,18 @@ export class OrganizationSearchBarComponent extends HomeSearchBarComponent {
     super.ngOnInit();
 
     this.route.queryParams.subscribe((params) => {
-      this.form.controls['keyword'].setValue(params['keyword']);
-      params['country_id'] &&
-        this.form.controls['country_id'].setValue(+params['country_id']);
+      this.form.controls['keyword'].setValue(params['keyword'] || null);
+      params['location'] &&
+        this.form.controls['location'].setValue(params['location']);
     });
   }
 
   override getCountries() {
     this.countryService.get().subscribe({
       next: (response) => {
-        console.log(this.form.value);
-
         response.map((country: Country) => {
           this.countries.push({
-            value: country.id!,
+            value: country.name!,
             label: country.name!,
             data: country,
           });
