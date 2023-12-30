@@ -1,60 +1,73 @@
 <div class=" transition duration-700 ease-in-out   bg-slate-50/50 p-4 rounded-md animate__animated   "
      style=" --animate-duration: 300ms;"
      data-carousel-item *ngIf="!verified">
-  <div class="mt-8 border-b" *ngFor="let story of impactStoryOrganizationService.data">
-    <div class="flex items-center justify-between">
-      <div class="flex items-center">
-        <img src="https://media.istockphoto.com/id/942153448/de/vektor/avatar.jpg?s=612x612&w=0&k=20&c=dYzovkqwc-ADwIYjH7fd6MdgaJi0UslcMC3ycK9dmSg="
-             class="h-11 w-11 rounded-full shadow" alt="">
 
-        <div class="ms-3 flex-1">
-          <a href="" class="text-lg font-semibold hover:text-indigo-600 duration-500">{{ story.username }}</a>
-          <span class="ml-5"><i class="mdi mdi-map-marker "></i> Ghana</span>
+  <app-loading *ngIf="loading"></app-loading>
 
-          <div class="flex items-center text-lg">
-            <!-- Number of starts -->
-            <!-- Full stars -->
-            <i class="mdi mdi-star text-yellow-300"
-               *ngFor="let i of [].constructor(scaleService.getNumberOfStars(story.rating!).numberOfStars)"></i>
+  <ng-container *ngIf="!loading && impactStoryOrganizationService.data.length">
+    <div class="mt-8 border-b" *ngFor="let story of impactStoryOrganizationService.data">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <img src="https://media.istockphoto.com/id/942153448/de/vektor/avatar.jpg?s=612x612&w=0&k=20&c=dYzovkqwc-ADwIYjH7fd6MdgaJi0UslcMC3ycK9dmSg="
+               class="h-11 w-11 rounded-full shadow" alt="">
 
-            <!-- half stars -->
-            <i class="mdi mdi-star-half-full text-yellow-300"
-               *ngFor="let i of [].constructor(scaleService.getNumberOfStars(story.rating!).numberOfHalfStars)"></i>
+          <div class="ms-3 flex-1">
+            <a href="" class="text-lg font-semibold hover:text-indigo-600 duration-500">{{ story.username }}</a>
+            <span class="ml-5"><i class="mdi mdi-map-marker "></i> Ghana</span>
 
-            <!-- Empty stars -->
-            <i class="mdi mdi-star text-slate-300 "
-               *ngFor="let i of [].constructor(scaleService.getNumberOfStars(story.rating!).numberOfEmptyStars)"></i>
+            <div class="flex items-center text-lg">
+              <!-- Number of starts -->
+              <!-- Full stars -->
+              <i class="mdi mdi-star text-yellow-300"
+                 *ngFor="let i of [].constructor(scaleService.getNumberOfStars(story.rating!).numberOfStars)"></i>
 
-            <!-- <span class="text-yellow-300 ml-3">{{ story.rating! }}</span> -->
+              <!-- half stars -->
+              <i class="mdi mdi-star-half-full text-yellow-300"
+                 *ngFor="let i of [].constructor(scaleService.getNumberOfStars(story.rating!).numberOfHalfStars)"></i>
+
+              <!-- Empty stars -->
+              <i class="mdi mdi-star text-slate-300 "
+                 *ngFor="let i of [].constructor(scaleService.getNumberOfStars(story.rating!).numberOfEmptyStars)"></i>
+
+              <!-- <span class="text-yellow-300 ml-3">{{ story.rating! }}</span> -->
+            </div>
           </div>
+
+        </div>
+
+
+      </div>
+      <!-- <div class="p-4  dark:bg-slate-800  dark:shadow-gray-800 mt-6">
+          <div class="mb-3">
+            <h5 class="text-lg font-semibold text-primary">Very engaging and inclusive</h5>
+            <p class="text-slate-400">Cocoa360 frequently meets with us and the community leaders to understand what our main challenges were. I like that
+              they value and respect our
+              opinions and take action to show that. To improve, they should speak with us so we can schedule farm attendance better </p>
+          </div>
+
+        </div> -->
+      <div class=" dark:bg-slate-800  dark:shadow-gray-800 ">
+        <div class="mb-7">
+          <h5 class="font-semibold text-primary my-5">{{ story.title }}</h5>
+          <read-more [text]="story.about!" [maxLength]="330" [customClass]="'font-semibold'"></read-more>
+          <!-- <p class="font-semibold" [innerHTML]="story.about"></p> -->
+        </div>
+        <div class="mb-3" *ngIf="story.reply">
+          <h6 class=" text-slate-400 text-sm font-bold mb-2">1 reply from {{ organization?.name }}</h6>
+          <p class=" text-slate-400 ">{{ story.reply.reply }}</p>
         </div>
 
       </div>
-
-
     </div>
-    <!-- <div class="p-4  dark:bg-slate-800  dark:shadow-gray-800 mt-6">
-      <div class="mb-3">
-        <h5 class="text-lg font-semibold text-primary">Very engaging and inclusive</h5>
-        <p class="text-slate-400">Cocoa360 frequently meets with us and the community leaders to understand what our main challenges were. I like that
-          they value and respect our
-          opinions and take action to show that. To improve, they should speak with us so we can schedule farm attendance better </p>
-      </div>
+  </ng-container>
 
-    </div> -->
-    <div class=" dark:bg-slate-800  dark:shadow-gray-800 ">
-      <div class="mb-7">
-        <h5 class="font-semibold text-primary my-5">{{ story.title }}</h5>
-        <read-more [text]="story.about!" [maxLength]="330" [customClass]="'font-semibold'"></read-more>
-        <!-- <p class="font-semibold" [innerHTML]="story.about"></p> -->
-      </div>
-      <div class="mb-3" *ngIf="story.reply">
-        <h6 class=" text-slate-400 text-sm font-bold mb-2">1 reply from {{ organization?.name }}</h6>
-        <p class=" text-slate-400 ">{{ story.reply.reply }}</p>
-      </div>
 
-    </div>
+
+  <div class="w-1/2" *ngIf="!loading && !impactStoryOrganizationService.data.length">
+    <app-missing-data></app-missing-data>
   </div>
+
+
 
 </div>
 

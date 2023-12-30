@@ -57,6 +57,7 @@ export class StoriesRatingComponent
   }
 
   getStarPercentage(rating: number) {
+    if (!this.ratingBreakdown?.total_respondant) return 0;
     return Math.round((rating * 100) / this.ratingBreakdown?.total_respondant!);
   }
 

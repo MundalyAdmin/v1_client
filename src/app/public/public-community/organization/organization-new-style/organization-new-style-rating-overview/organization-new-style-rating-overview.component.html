@@ -14,7 +14,8 @@
              *ngFor="let i of [].constructor(scaleService.getNumberOfStars(communityTrustScore?.rating!).numberOfEmptyStars)"></i>
 
         </div>
-        <h6 class="text-base text-secondary"> <span class="font-semibold">Recommendation:</span> {{ getRecommendation() }}</h6>
+        <h6 class="text-base text-secondary" *ngIf="communityTrustScore.community_trust_score > 0"> <span
+                class="font-semibold">Recommendation:</span> {{ getRecommendation() }}</h6>
         <p class="text-slate-200">
           {{ single.name }} has a Community Trust Score of {{ communityTrustScore.community_trust_score }} % from {{
           communityTrustScore.total_survey_respondant }} survey responses and a {{ communityTrustScore.rating }}-star rating from {{

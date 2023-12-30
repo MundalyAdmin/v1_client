@@ -103,9 +103,6 @@
     <div class="mb-6">
       <label for="country" class="block mb-2 text-sm font-semibold text-primary dark:text-white">Country <app-loading
                      *ngIf="isLoading.countries"></app-loading></label>
-      <!-- <select2 id="country" [data]="countries" (update)="onSelectItem($event, 'country_id')" [placeholder]="'Select country'"
-                 [displaySearchStatus]="'always'">
-        </select2> -->
       <ng-multiselect-dropdown
 
                                [placeholder]="'Select countries'"

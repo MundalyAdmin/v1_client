@@ -4,8 +4,6 @@ import { Organization } from '../../organization/organization.model';
 export interface ImpactInitiative {
   name: string;
 
-  country_id: number;
-
   location: string;
 
   progress: number;
@@ -17,6 +15,4 @@ export interface ImpactInitiative {
   date: Date;
 
   organization: Organization;
-
-  country: Country;
 }

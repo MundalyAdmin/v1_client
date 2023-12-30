@@ -82,3 +82,7 @@
   </svg>
 
 </div>
+
+<div class="w-1/2" *ngIf="!loading && !impactInitiativeService.data.length">
+  <app-missing-data [message]="'No company reported data yet!'"></app-missing-data>
+</div>
