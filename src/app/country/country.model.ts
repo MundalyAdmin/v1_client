@@ -1,7 +1,7 @@
 import { BaseModel } from '../shared/models/BaseModel';
 
-export interface Country extends BaseModel {
-  id?: number;
+export interface Country {
   name?: string;
-  code?: string;
+  iso2?: string;
+  flag?: string;
 }
