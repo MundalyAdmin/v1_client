@@ -31,8 +31,6 @@ export interface Organization extends BaseModel {
 
   country?: Country;
 
-  address?: string;
-
   city?: string;
 
   sector_organization?: SectorOrganization;
