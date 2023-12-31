@@ -67,13 +67,13 @@ export class SuperAdminOrganizationCreateComponent
   initForm(organization?: Organization) {
     const name = organization?.name || '';
     const about = organization?.about || '';
-    const country = organization?.country || [];
-    const type_organization = organization?.type_organization || [];
-    const sector_organization = organization?.sector_organization || [];
+    const country = [{ name: organization?.location?.split(',')[1] }] || [];
+    const type_organization = [organization?.type_organization] || [];
+    const sector_organization = [organization?.sector_organization] || [];
     const tag_organizations = organization?.tag_organizations || [];
     const email = organization?.email || '';
     const website = organization?.website || '';
-    const city = organization?.city || '';
+    const city = [organization?.location?.split(',')[0]] || '';
     const address = organization?.address || '';
     const creator_id = organization?.creator_id || this.authService.user.id;
 
@@ -200,7 +200,7 @@ export class SuperAdminOrganizationCreateComponent
       type_organization_id: type_organization[0].id,
       sector_organization_id: sector_organization[0].id,
       country: country[0].name,
-      city: city[0].name,
+      city: city[0],
       tag_organizations: tag_organizations.map(
         (tag: TagOrganization) => tag.name
       ),

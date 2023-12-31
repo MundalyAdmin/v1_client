@@ -15,12 +15,9 @@ import { TagOrganization } from '../../../organization/tag-organization/tag-orga
   templateUrl: './super-admin-organization-edit.component.html',
   styleUrls: ['./super-admin-organization-edit.component.scss'],
 })
-export class SuperAdminOrganizationEditComponent
-  extends SuperAdminOrganizationCreateComponent
-  implements AfterViewInit
-{
+export class SuperAdminOrganizationEditComponent extends SuperAdminOrganizationCreateComponent {
   organization: Organization | null = null;
-  selectedTypeOrganization: Select2UpdateValue = 'Test';
+
   constructor(
     public override organizationService: OrganizationService,
     public override typeOrganizationService: TypeOrganizationService,
@@ -57,10 +54,6 @@ export class SuperAdminOrganizationEditComponent
       });
   }
 
-  ngAfterViewInit(): void {
-    this.selectedTypeOrganization = 'Retest';
-  }
-
   edit() {
     if (this.form.invalid) {
       this.helper.notification.alertDanger('Form Invalid');
@@ -73,6 +66,7 @@ export class SuperAdminOrganizationEditComponent
       type_organization,
       sector_organization,
       country,
+      city,
       tag_organizations,
       ...formData
     } = this.form.value;
@@ -81,7 +75,8 @@ export class SuperAdminOrganizationEditComponent
       ...formData,
       type_organization_id: type_organization[0].id,
       sector_organization_id: sector_organization[0].id,
-      country_id: country[0].id,
+      country: country[0].name,
+      city: city[0],
       tag_organizations: tag_organizations.map(
         (tag: TagOrganization) => tag.name
       ),
