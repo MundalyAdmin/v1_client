@@ -5,19 +5,19 @@
       <div class="max-w-[500px] w-full m-auto p-6 bg-white dark:bg-slate-900 shadow-md dark:shadow-gray-800 rounded-md">
         <!-- Title -->
         <h5 class="my-6 text-2xl text-center font-bold">
-          <span class="text-primary">Join our </span>
-          <span class="text-secondary"> Waitlist</span>
+          <span class="text-primary">Contact </span>
+          <span class="text-secondary"> Us</span>
         </h5>
 
         <!-- FOrm -->
-        <form action="auth-signup-success.html" class="text-start" [formGroup]="form" (submit)="create()">
+        <form class="text-start" [formGroup]="form" (submit)="create()">
           <div class="grid grid-cols-1">
 
             <!-- Name -->
             <div class="mb-7">
               <label class="font-semibold" for="RegisterName"><i class="mdi mdi-account-outline me-1"></i>Your Name:</label>
               <input id="RegisterName" type="text"
-                     formControlName="name"
+                     formControlName="user_name"
                      class="form-input mt-3 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-200 focus:border-primary dark:border-gray-800 dark:focus:border-primary focus:ring-0"
                      placeholder="John Doe">
             </div>
@@ -52,13 +52,33 @@
 
             <!-- Country -->
             <div class="mb-7">
-              <label class="font-semibold" for="LoginPassword">
-                <i class="mdi mdi-earth me-1"></i>Country:
+              <!-- Label -->
+              <label class="font-semibold" for="country">
+                <i class="mdi mdi-earth me-1"></i> Country:
                 <app-loading *ngIf="countryLoading" class="ms-1"></app-loading>
               </label>
-              <select (change)="selectFormHandler( 'country_id', $event.target)"
+
+              <!-- Form control -->
+              <select (change)="selectFormHandler( 'country', $event.target)"
                       class="form-select form-input mt-2 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-200 focus:border-indigo-600 dark:border-gray-800 dark:focus:border-indigo-600 focus:ring-0">
-                <option [value]="country.id" *ngFor="let country of countries">{{ country.name }}</option>
+                <option [value]="country.name" *ngFor="let country of countries" [selected]="country.name === formValue('country')">{{ country.name }}
+                </option>
+              </select>
+            </div>
+
+            <!-- City -->
+            <div class="mb-7">
+              <!-- Label -->
+              <label class="font-semibold" for="City">
+                <i class="mdi mdi-earth me-1"></i> City:
+                <app-loading *ngIf="cityLoading" class="ms-1"></app-loading>
+              </label>
+
+              <!-- Form control -->
+              <select (change)="selectFormHandler( 'city', $event.target)"
+
+                      class="form-select form-input mt-2 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-200 focus:border-indigo-600 dark:border-gray-800 dark:focus:border-indigo-600 focus:ring-0">
+                <option [value]="city" *ngFor="let city of cities">{{ city }}</option>
 
               </select>
             </div>
@@ -66,7 +86,7 @@
             <!-- Website -->
             <div class="mb-7">
               <label class="font-semibold" for="RegisterName"><i class="mdi mdi-web me-1"></i>Website:</label>
-              <input id="RegisterName" type="text"
+              <input id="RegisterName" type="url"
                      formControlName="website"
                      class="form-input mt-3 w-full py-2 px-3 h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-200 focus:border-primary dark:border-gray-800 dark:focus:border-primary focus:ring-0"
                      placeholder="www.organization.com">
@@ -84,7 +104,8 @@
 
             <div class="mb-4">
               <button type="submit"
-                      class="py-2 px-5 inline-block tracking-wide border align-middle duration-500 text-base text-center bg-primary hover:bg-indigo-700 border-primary hover:border-indigo-700 text-white rounded-md w-full cursor-not-allowed"
+                      class="py-2 px-5 inline-block tracking-wide border align-middle duration-500 text-base text-center bg-primary hover:bg-indigo-700 border-primary hover:border-indigo-700 text-white rounded-md w-full "
+                      [ngClass]="{'cursor-not-allowed': form.invalid}"
                       [disabled]="form.invalid">Join
                 <i class="uil uil-arrow-right" *ngIf="!loading"></i>
                 <app-loading class="ms-1" *ngIf="loading"></app-loading>

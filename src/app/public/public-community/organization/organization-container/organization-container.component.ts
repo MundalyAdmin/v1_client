@@ -21,8 +21,8 @@ export class OrganizationContainerComponent extends BaseListComponent<Organizati
   override ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       const searchData = {
-        keyword: params['keyword'],
-        country_id: params['country_id'],
+        keyword: params['keyword'] || null,
+        location: params['location'],
       };
 
       this.getData(this.helper.object.removeBlankValues(searchData));

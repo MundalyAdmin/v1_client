@@ -21,6 +21,8 @@ export class CommunitySuggestionComponent extends BaseCreateComponent<CommunityS
   }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
+
     this.initForm();
     if (this.communitySuggestionService.organization) {
       this.subscriptions['organization'] =

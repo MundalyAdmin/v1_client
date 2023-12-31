@@ -1,11 +1,12 @@
-.submenu {
+.custom-submenu {
   position: fixed !important;
   top: 9% !important;
   width: 100vw !important;
 
   li {
-    &:hover > *, &:active > * {
-      @apply text-indigo-600 scale-105;
+    &:hover > *,
+    &:active > * {
+      @apply text-indigo-600 scale-105 transition duration-300 ease-in-out;
     }
   }
 }

@@ -51,11 +51,13 @@ export class StoriesRatingComponent
     if (this.storage.get('review')) {
       setTimeout(() => {
         this.modalBtn.nativeElement.click();
+        this.storage.delete('review');
       }, 100);
     }
   }
 
   getStarPercentage(rating: number) {
+    if (!this.ratingBreakdown?.total_respondant) return 0;
     return Math.round((rating * 100) / this.ratingBreakdown?.total_respondant!);
   }
 

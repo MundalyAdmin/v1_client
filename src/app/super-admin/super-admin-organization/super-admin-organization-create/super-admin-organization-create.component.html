@@ -22,9 +22,20 @@
       <label for="website" class="block mb-2 text-sm font-semibold text-primary dark:text-white">Logo</label>
       <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
              accept="image/*"
-             (change)="onFileChanged($event, 'logo')"
+             (change)="onFileChanged($event, 'file_logo')"
              aria-describedby="user_avatar_help" id="user_avatar" type="file">
       <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">The logo should not exceed 2MB</div>
+
+    </div>
+
+    <!-- Cover -->
+    <div class="mb-6 col-span-2">
+      <label for="website" class="block mb-2 text-sm font-semibold text-primary dark:text-white">Cover</label>
+      <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+             accept="image/*"
+             (change)="onFileChanged($event, 'file_cover')"
+             aria-describedby="user_avatar_help" id="user_avatar" type="file">
+      <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">The cover should not exceed 2MB</div>
 
     </div>
 
@@ -92,22 +103,35 @@
     <div class="mb-6">
       <label for="country" class="block mb-2 text-sm font-semibold text-primary dark:text-white">Country <app-loading
                      *ngIf="isLoading.countries"></app-loading></label>
-      <!-- <select2 id="country" [data]="countries" (update)="onSelectItem($event, 'country_id')" [placeholder]="'Select country'"
-                 [displaySearchStatus]="'always'">
-        </select2> -->
       <ng-multiselect-dropdown
 
                                [placeholder]="'Select countries'"
-                               [settings]="helper.dropdownSettings.single"
+                               [settings]="ngMultiselectDropdownSettings"
                                [data]="countries"
                                formControlName="country">
       </ng-multiselect-dropdown>
     </div>
 
-    <!-- location -->
+    <!-- City -->
     <div class="mb-6">
-      <label for="location" class="block mb-2 text-sm font-semibold text-primary dark:text-white">Location</label>
-      <input type="text" id="location" formControlName="location"
+      <label for="city" class="block mb-2 text-sm font-semibold text-primary dark:text-white">City <app-loading
+                     *ngIf="isLoading.countries"></app-loading></label>
+      <!-- <select2 id="city" [data]="countries" (update)="onSelectItem($event, 'city_id')" [placeholder]="'Select city'"
+                     [displaySearchStatus]="'always'">
+            </select2> -->
+      <ng-multiselect-dropdown
+
+                               [placeholder]="'Select city'"
+                               [settings]="helper.dropdownSettings.single"
+                               [data]="cities"
+                               formControlName="city">
+      </ng-multiselect-dropdown>
+    </div>
+
+    <!-- address -->
+    <div class="mb-6">
+      <label for="address" class="block mb-2 text-sm font-semibold text-primary dark:text-white">Address</label>
+      <input type="text" id="address" formControlName="address"
              class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
              placeholder="East Legon, Accra" required>
     </div>
