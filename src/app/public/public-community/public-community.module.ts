@@ -139,7 +139,7 @@ const routes: Routes = [
           },
           {
             path: '**',
-            redirectTo: 'rating-overview',
+            redirectTo: 'stories',
             pathMatch: 'full',
           },
         ],
