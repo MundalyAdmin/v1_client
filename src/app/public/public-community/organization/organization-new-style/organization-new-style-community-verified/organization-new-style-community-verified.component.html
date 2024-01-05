@@ -35,7 +35,7 @@
 
           <!-- Key -->
           <td class="px-6 py-4">
-            {{ getScoreKey(impactFidelityService.score.acceptability) }}
+            {{ scaleService.getScoreKey(impactFidelityService.score.acceptability) }}
           </td>
 
           <!-- Score -->
@@ -58,7 +58,7 @@
 
           <!-- Key -->
           <td class="px-6 py-4">
-            {{ getScoreKey(impactFidelityService.score.appropriateness) }}
+            {{ scaleService.getScoreKey(impactFidelityService.score.appropriateness) }}
           </td>
 
           <!-- Score -->
@@ -81,7 +81,7 @@
 
           <!-- Key -->
           <td class="px-6 py-4">
-            {{ getScoreKey(impactFidelityService.score.feasibility) }}
+            {{ scaleService.getScoreKey(impactFidelityService.score.feasibility) }}
           </td>
 
           <!-- Score -->
@@ -105,7 +105,7 @@
 
           <!-- Key -->
           <td class="px-6 py-4">
-            {{ getScoreKey(impactFidelityService.score.quality_of_delivery) }}
+            {{ scaleService.getScoreKey(impactFidelityService.score.quality_of_delivery) }}
           </td>
 
           <!-- Score -->
@@ -128,7 +128,7 @@
 
           <!-- Key -->
           <td class="px-6 py-4">
-            {{ getScoreKey(impactFidelityService.score.comprehensiveness) }}
+            {{ scaleService.getScoreKey(impactFidelityService.score.comprehensiveness) }}
           </td>
 
           <!-- Score -->
@@ -150,8 +150,9 @@
 
   <div class="text-primary md:text-lg text-sm bg-primary/5 p-2">
     <span class="me-2"><i class="mdi mdi-lightbulb-on me-"></i> Insight:</span> <span class="font-bold">Community Beneficiaries confirm {{
-      getImpactStrengthKey(impactFidelityService.score.score_rating) }}
-      which {{ getScoresAlignmentKey(impactFidelityService.score.score_rating, impactFidelityService.score.company_reported_impact_strength) }}
+      scaleService.getImpactStrengthKey(impactFidelityService.score.score_rating) }}
+      which {{ scaleService.getScoresAlignmentKey(impactFidelityService.score.score_rating,
+      impactFidelityService.score.company_reported_impact_strength) }}
       what {{ organizationService.singleData?.name }} reported</span>
   </div>
 </ng-container>
