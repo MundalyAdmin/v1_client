@@ -90,6 +90,15 @@
         <!-- Tab list -->
         <ul
             class="md:text-xl text-lg font-semibold text-start text-slate-500 md:px-8 px-2 flex">
+          <!-- Stories -->
+          <li class=" md:pr-8 pr-6">
+            <a [routerLink]="['stories']"
+               [routerLinkActive]="['text-primary', 'border-b-[3px]', 'border-primary' ]"
+               class="inline-block w-full py-4   hover:text-primary-light focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">
+              Community Stories</a>
+          </li>
+
+
           <!-- Overview -->
           <li class=" md:pr-8 pr-6">
             <a [routerLink]="['rating-overview']"
@@ -100,13 +109,7 @@
             </a>
           </li>
 
-          <!-- Stories -->
-          <li class=" md:pr-8 pr-6">
-            <a [routerLink]="['stories']"
-               [routerLinkActive]="['text-primary', 'border-b-[3px]', 'border-primary' ]"
-               class="inline-block w-full py-4   hover:text-primary-light focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">
-              Stories</a>
-          </li>
+
 
           <!-- Rating report -->
           <li class=" md:pr-8 pr-6">

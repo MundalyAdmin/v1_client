@@ -7,4 +7,5 @@ export interface CommunityTrustScore {
   community_trust_score: number;
   total_survey_respondant: number;
   total_reviews: number;
+  organization_reported_impact_strength: number;
 }
