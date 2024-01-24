@@ -1,10 +1,10 @@
 <div *ngIf="organization"
-     class="group relative py-7 px-8 mt-16 rounded-md shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 bg-white dark:bg-slate-900 duration-500 ">
+     class="group relative  py-7 px-8 mt-16 rounded-md shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 bg-white dark:bg-slate-900 duration-500 ">
   <div class="">
 
     <!-- Image -->
     <img [src]="organization.logo"
-         class="rounded-full absolute shadow-md h-20 w-20 mx-auto block" style="    left: 7%; top: -20%;
+         class="rounded-full absolute shadow-md bg-white h-20 w-20 mx-auto block" style="    left: 7%; top: -20%;
     height: 6rem !important;
     width: 6rem !important;" [alt]="organization.name">
     <!-- Name and sector-organization -->
@@ -17,7 +17,7 @@
 
       <!-- Sector organization -->
       <span class="block text-lg text-slate-600">{{ organization.sector_organization?.name }} </span>
-      <span class="block text-slate-400 text-sm">{{ organization.location }}, {{ organization.country?.name }}</span>
+      <span class="block text-slate-400 text-sm">{{ organization.city }}, {{ organization.country }}</span>
       <span class="block text-slate-600 text-sm"><i class="mdi mdi-star text-emerald-600 me-1"></i> 4.5
         <span class="ms-1"><span class=" text-slate-400">(120
             reviews)</span></span> </span>

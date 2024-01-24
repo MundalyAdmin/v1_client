@@ -78,7 +78,6 @@ export class ScaleService extends BaseService<any> {
     communityReportedScore: number,
     companyReportedScore: number
   ) {
-    console.log(communityReportedScore, companyReportedScore);
     if (communityReportedScore - companyReportedScore < 0) {
       return 'is even more impactful than';
     } else if (
