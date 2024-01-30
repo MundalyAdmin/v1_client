@@ -5,6 +5,7 @@ import { ImpactInitiativeService } from '../../../../../scale/impact-initiative/
 import { ActivatedRoute } from '@angular/router';
 import { OrganizationService } from '../../../../../organization/organization.service';
 import { ScaleService } from '../../../../../scale/scale.service';
+import { Organization } from '../../../../../organization/organization.model';
 
 @Component({
   selector: 'app-organization-new-style-company-reported',
@@ -14,6 +15,8 @@ import { ScaleService } from '../../../../../scale/scale.service';
 export class OrganizationNewStyleCompanyReportedComponent extends BaseComponent<ImpactInitiative> {
   facilitationStrategyScore: number = 0;
   organizationReportedImpactStrength = 0;
+  organization: Organization | null = null;
+
   constructor(
     public impactInitiativeService: ImpactInitiativeService,
     public organizationService: OrganizationService,
@@ -26,6 +29,7 @@ export class OrganizationNewStyleCompanyReportedComponent extends BaseComponent<
     this.subscriptions['organization'] =
       this.organizationService.singleData$.subscribe((organization) => {
         if (organization) {
+          this.organization = organization;
           this.getByOrganizationId(organization.id!);
         }
       });

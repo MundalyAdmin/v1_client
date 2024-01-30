@@ -1,7 +1,16 @@
 <!-- <img src="assets/images/new-style/company-reported.png" class="w-full" alt=""> -->
 
 
-<app-loading *ngIf="loading"></app-loading>
+<app-page-loading *ngIf="loading"></app-page-loading>
+
+
+<!-- No data handling -->
+<div class="w-3/4" *ngIf="!loading && !impactInitiativeService.data.length">
+  <app-missing-data
+                    [message]="'No inititive reported by \<b>' + organization!.name + '\</b>' + ' yet!'"></app-missing-data>
+</div>
+
+
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-28" *ngIf="!loading && impactInitiativeService.data.length">
   <div class="grid grid-cols-1 gap-6 text-base">

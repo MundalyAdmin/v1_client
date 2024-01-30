@@ -148,12 +148,30 @@
     </a>
   </div>
 
+
+  <!-- Insight -->
   <div class="text-primary md:text-lg text-sm bg-primary/5 p-2">
-    <span class="me-2"><i class="mdi mdi-lightbulb-on me-"></i> Insight:</span> <span class="font-bold">Community Beneficiaries confirm {{
-      scaleService.getImpactStrengthKey(impactFidelityService.score.score_rating) }}
-      which {{ scaleService.getScoresAlignmentKey(impactFidelityService.score.score_rating,
-      impactFidelityService.score.company_reported_impact_strength) }}
-      what {{ organizationService.singleData?.name }} reported</span>
+    <span class="me-2">
+      <i class="mdi mdi-lightbulb-on"></i>
+      Insight:
+    </span>
+
+    <!-- If the community has more than 10 respondents -->
+    <span class="font-bold" *ngIf="total_respondant >= 10">
+      Community Beneficiaries confirm
+      {{ scaleService.getImpactStrengthKey(company_score_rating!) }}
+      which
+      {{ scaleService.getScoresAlignmentKey(company_score_rating!, company_reported_impact_strength!) }}
+      what
+      {{ organization?.name }}
+      reported
+    </span>
+
+
+    <!-- If the community has less than 10 respondents -->
+    <span class="font-bold italic" *ngIf="total_respondant < 10">
+      Insufficient data for insights
+    </span>
   </div>
 </ng-container>
 

@@ -15,10 +15,14 @@
 
         </div>
         <h6 class="text-base text-secondary"> <span class="font-semibold">Recommendation:</span> {{ getRecommendation() }}</h6>
-        <p class="text-slate-200">
-          {{ single.name }} has a Community Trust Score of {{ communityTrustScore.community_trust_score }} % from {{
-          communityTrustScore.total_survey_respondant }} survey responses and a {{ communityTrustScore.rating }}-star rating from {{
-          communityTrustScore.total_reviews }} reviews. If you believe in their mission, you can support them with confidence.</p>
+
+        <ng-container *ngIf="communityTrustScore.total_survey_respondant >= 10">
+          <p class="text-slate-200">
+            {{ single.name }} has a Community Trust Score of {{ communityTrustScore.community_trust_score }} % from {{
+            communityTrustScore.total_survey_respondant }} survey responses and a {{ communityTrustScore.rating }}-star rating from {{
+            communityTrustScore.total_reviews }} reviews. If you believe in their mission, you can support them with confidence.
+          </p>
+        </ng-container>
 
         <a [routerLink]="['./']" class="text-secondary">Learn more about our methodology. See how we combat fake reviews and survey responses.</a>
 
