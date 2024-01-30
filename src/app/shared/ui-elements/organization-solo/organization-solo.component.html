@@ -1,5 +1,5 @@
 <div *ngIf="organization"
-     class="group relative  py-7 px-8 mt-16 rounded-md shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 bg-white dark:bg-slate-900 duration-500 ">
+     class="group relative   py-7 px-8 mt-16 rounded-md shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 bg-white dark:bg-slate-900 duration-500 ">
   <div class="">
 
     <!-- Image -->
@@ -34,8 +34,10 @@
   <!-- </div> -->
 
   <!-- Tags -->
-  <a href="" *ngFor="let tag of organization.tag_organizations"
-     class="bg-gray-100 dark:bg-gray-800 text-slate-400 text-xs font-medium px-3 py-1 rounded-lg h-[24px] inline-block m-1">{{ tag.name }}</a>
+  <div class="h-[70px] overflow-hidden">
+    <a href="" *ngFor="let tag of organization.tag_organizations"
+       class="bg-gray-100 dark:bg-gray-800 text-slate-400 text-xs font-medium px-3 py-1 rounded-lg  inline-block m-1">{{ tag.name }}</a>
+  </div>
 
   <!-- CTA -->
   <div class="mt-4">
