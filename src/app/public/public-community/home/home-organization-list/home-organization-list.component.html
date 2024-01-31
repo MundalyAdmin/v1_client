@@ -11,7 +11,7 @@
     <div class="grid md:grid-cols-3  sm:grid-cols-2 grid-cols-1 gap-[30px]">
 
       <!-- Start Candidate Content -->
-      <app-organization-solo *ngFor="let organization of organizationService.data.slice(0, 3)" [organization]="organization"></app-organization-solo>
+      <app-organization-solo *ngFor="let organization of organizationService.data" [organization]="organization"></app-organization-solo>
       <!-- End Candidate Content -->
 
 

@@ -79,4 +79,22 @@ export class OrganizationService extends BaseService<Organization> {
         )
       );
   }
+
+  getTopRated() {
+    return this.factory
+      .get(`${this.endPoint}/top-rated`)
+
+      .pipe(
+        tap((response: ApiResponse<Organization>) => {
+          this.data = response.data as Organization[];
+
+          this.paginationInfo = {
+            total: response.total,
+            itemsPerPage: response.per_page,
+            currentPage: response.current_page,
+          };
+        }),
+        map((response: ApiResponse<Organization>) => response.data)
+      );
+  }
 }

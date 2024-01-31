@@ -13,9 +13,13 @@ export class HomeOrganizationListComponent extends BaseListComponent<Organizatio
     super(organizationService);
   }
 
+  override ngOnInit(): void {
+    this.getAll();
+  }
+
   getAll() {
     this.loading = true;
-    this.organizationService.all().subscribe(() => {
+    this.organizationService.getTopRated().subscribe(() => {
       this.loading = false;
     });
   }
