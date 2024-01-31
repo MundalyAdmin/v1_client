@@ -94,9 +94,7 @@
 
 
 <div class="text-primary md:text-lg text-sm bg-primary/5 p-2" *ngIf="facilitationStrategyScore">
-  <span class="me-2"><i class="mdi mdi-lightbulb-on me-"></i> Insight:</span> <span class="font-bold">Impact Facilitators confirm {{
+  <span class="me-2"><i class="mdi mdi-lightbulb-on me-"></i> Summary:</span> <span class="font-bold">Facilitators confirm {{
     scaleService.getImpactStrengthKey(facilitationStrategyScore) }}
-    which {{ scaleService.getScoresAlignmentKey(facilitationStrategyScore,
-    organizationReportedImpactStrength) }}
-    what {{ organizationService.singleData?.name }} reported</span>
+    according to their internal assessment.</span>
 </div>
