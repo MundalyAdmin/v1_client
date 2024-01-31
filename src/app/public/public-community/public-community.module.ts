@@ -41,6 +41,8 @@ import { WhoIsForImpactFundersComponent } from './who-is-for/who-is-for-impact-f
 import { WhoIsForImpactedCommunitiesComponent } from './who-is-for/who-is-for-impacted-communities/who-is-for-impacted-communities.component';
 import { StoriesRatingComponent } from './organization/organization-new-style/organization-new-style-stories/stories-rating/stories-rating.component';
 import { OrganizationNewStyleStoriesCreateComponent } from './organization/organization-new-style/organization-new-style-stories/organization-new-style-stories-create/organization-new-style-stories-create.component';
+import { OrganizationFunderComponent } from './organization/organization-funder/organization-funder.component';
+import { OrganizationFunderPortfolioComponent } from './organization/organization-funder/organization-funder-portfolio/organization-funder-portfolio.component';
 
 const routes: Routes = [
   {
@@ -94,6 +96,37 @@ const routes: Routes = [
       {
         path: 'organizations/search',
         component: OrganizationContainerComponent,
+      },
+      {
+        path: 'organizations/funder',
+        component: OrganizationFunderComponent,
+        children: [
+          {
+            path: 'portfolio',
+            component: OrganizationFunderPortfolioComponent,
+          },
+          {
+            path: 'stories',
+            component: OrganizationNewStyleStoriesComponent,
+            children: [
+              {
+                path: ':id',
+                component: OrganizationNewStyleStoriesListComponent,
+              },
+              {
+                path: '**',
+                redirectTo: 'unverified',
+                pathMatch: 'full',
+              },
+            ],
+          },
+
+          {
+            path: '**',
+            redirectTo: 'stories',
+            pathMatch: 'full',
+          },
+        ],
       },
       {
         path: 'organizations/:id',
@@ -203,6 +236,8 @@ const routes: Routes = [
     WhoIsForImpactedCommunitiesComponent,
     StoriesRatingComponent,
     OrganizationNewStyleStoriesCreateComponent,
+    OrganizationFunderComponent,
+    OrganizationFunderPortfolioComponent,
   ],
   imports: [
     CommonModule,

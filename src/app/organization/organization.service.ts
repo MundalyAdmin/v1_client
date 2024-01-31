@@ -97,4 +97,22 @@ export class OrganizationService extends BaseService<Organization> {
         map((response: ApiResponse<Organization>) => response.data)
       );
   }
+
+  getPortfolio() {
+    return this.factory
+      .get(`${this.endPoint}/portfolio`)
+
+      .pipe(
+        tap((response: ApiResponse<Organization>) => {
+          this.data = response.data as Organization[];
+
+          this.paginationInfo = {
+            total: response.total,
+            itemsPerPage: response.per_page,
+            currentPage: response.current_page,
+          };
+        }),
+        map((response: ApiResponse<Organization>) => response.data)
+      );
+  }
 }
