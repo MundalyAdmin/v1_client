@@ -73,7 +73,7 @@ export class HomeSearchBarComponent
       next: (response) => {
         response.map((country: Country) => {
           this.countries.push({
-            value: country.id!,
+            value: country.name!,
             label: country.name!,
             data: country,
           });

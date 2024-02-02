@@ -1,0 +1,28 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { CartComponent } from './cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { SharedModule } from '../shared/shared.module';
+import { RouterModule, Routes } from '@angular/router';
+import { TempDashboardComponent } from './temp-dashboard/temp-dashboard.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: CartComponent,
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+  },
+  {
+    path: 'dashboard',
+    component: TempDashboardComponent,
+  },
+];
+
+@NgModule({
+  declarations: [CartComponent, CheckoutComponent, TempDashboardComponent],
+  imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
+})
+export class CartModule {}

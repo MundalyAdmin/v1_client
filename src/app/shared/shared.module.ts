@@ -49,7 +49,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     RouterModule,
     ModalModule,
     LoadingModule,
-    Select2Module,
+    Select2Module, // TODO: delete this module
     NgMultiSelectDropDownModule,
     NgApexchartsModule,
   ],
