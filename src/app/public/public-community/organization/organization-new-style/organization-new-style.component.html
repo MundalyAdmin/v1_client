@@ -97,18 +97,7 @@
           <!-- Report 1 -->
           <div class="rounded-2 bg-white p-5 relative border" *ngFor="let report of reports; let i = index">
 
-            <!-- Price -->
-            <div *ngIf="report.price > 0"
-                 class="absolute right-[18px] top-[18px] p-2 border rounded-full text-primary font-bold bg-secondary flex items-center justify-center">
-              ${{ report.price }}
-            </div>
 
-            <!-- Contact Sales -->
-            <div
-                 *ngIf="report.price == 0"
-                 class="absolute right-[18px] top-[18px] p-2 border rounded-full text-primary font-bold bg-secondary flex items-center justify-center">
-              Contact Sales
-            </div>
 
 
 
@@ -118,7 +107,7 @@
 
                 <!-- Image decrivant le rapport -->
                 <div class="border bg-slate-50 mb-4 w-auto rounded">
-                  <img src="assets/images/report.png" alt="">
+                  <img [src]="report.image" alt="">
                 </div>
 
                 <!--  tags -->
@@ -157,8 +146,26 @@
 
 
                 </div>
+
+
+                <div class="mt-5 w-fit">
+                  <!-- Price -->
+                  <div *ngIf="report.price > 0"
+                       class="a p-2 px-8 border border-primary rounded-full text-primary font-extrabold bg-secondary flex items-center justify-center">
+                    ${{ report.price }}
+                  </div>
+
+                  <!-- Contact Sales -->
+                  <div
+                       *ngIf="report.price == 0"
+                       class="a p-2 px-8  border border-primary rounded-full text-primary font-extrabold bg-secondary flex items-center justify-center">
+                    Contact Sales
+                  </div>
+                </div>
+
+
                 <!-- CTAS -->
-                <div class="row mt-3">
+                <div class="row mt-[3rem]">
 
                   <div class="grid gap-7  w-full grid-cols-1  flex-col items-end">
                     <!-- <a [routerLink]="['./']" (click)="downloadSample()"

@@ -38,6 +38,8 @@ export class OrganizationNewStyleComponent extends BaseSingleComponent<Organizat
             price: '640',
             availability: 'In 3 hours',
             organization: organization.name,
+            image:
+              'https://res.cloudinary.com/mundaly/image/upload/v1706906913/Blue_Red_Geometric_Annual_Report_Document_A4_qdgttm.png',
             community: 'Bridgeport',
             generatedBy: 'auto-generated',
             state: 'on-demand',
@@ -47,6 +49,8 @@ export class OrganizationNewStyleComponent extends BaseSingleComponent<Organizat
             price: '590',
             availability: 'In 3 hours',
             organization: organization.name,
+            image:
+              'https://res.cloudinary.com/mundaly/image/upload/v1706906151/New_Haven_Promise_Report.pdf_2_rya0bb.png',
             community: 'Bridgeport',
             generatedBy: 'auto-generated',
             state: 'on-demand',
@@ -54,8 +58,10 @@ export class OrganizationNewStyleComponent extends BaseSingleComponent<Organizat
           {
             title: 'Communities Urgent Issues Report',
             price: '500',
-            availability: 'In 6 hours',
+            availability: 'In 30 minutes',
             organization: organization.name,
+            image:
+              'https://res.cloudinary.com/mundaly/image/upload/v1706906913/Blue_Red_Geometric_Annual_Report_Document_A4_qdgttm.png',
             community: 'Bridgeport',
             generatedBy: 'auto-generated',
             state: 'coming-soon',
@@ -63,11 +69,13 @@ export class OrganizationNewStyleComponent extends BaseSingleComponent<Organizat
           {
             title: 'Complete Verified Community Report',
             price: '0',
-            availability: 'In 3 hours',
+            availability: 'On demand',
             organization: organization.name,
+            image:
+              'https://res.cloudinary.com/mundaly/image/upload/v1706906151/New_Haven_Promise_Report.pdf_2_rya0bb.png',
             community: 'Bridgeport',
             generatedBy: 'auto-generated',
-            state: 'coming-soon',
+            state: 'on-demand',
           },
         ];
       });
