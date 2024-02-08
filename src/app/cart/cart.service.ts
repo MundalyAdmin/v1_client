@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CartItem } from './cart.model';
 import { BaseService } from '../shared/services';
+import { ReportDemographic } from './report-demographic/report-demographic.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,6 @@ export class CartService extends BaseService<CartItem> {
 
   override get data() {
     this._data = JSON.parse(localStorage.getItem('cart') || '[]') as CartItem[];
-    console.log(this._data);
     return this._data;
   }
 
@@ -70,5 +70,11 @@ export class CartService extends BaseService<CartItem> {
     );
 
     console.log(this.data);
+  }
+
+  updateDemographic(item: CartItem, demographic: ReportDemographic) {
+    item.demographic = demographic;
+    this.updateItem(item);
+    console.log(item);
   }
 }

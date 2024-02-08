@@ -1,13 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CartService } from './cart.service';
 import { CartItem } from './cart.model';
+import { Flowbite } from '../shared/decorators/flowbite.decorator';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss'],
 })
+@Flowbite()
 export class CartComponent implements OnInit {
+  @ViewChild('screenParticipantModalButton', { static: false })
+  screenParticipantModalButton!: ElementRef;
+
   totalPrice: number = 0;
   taxPrice: number = 0;
   totalPlusTax = 0;
@@ -31,6 +36,10 @@ export class CartComponent implements OnInit {
     }
   }
 
+  getNumberOfDemographicCriterias(item: CartItem) {
+    return Object.keys(item.demographic || {}).length;
+  }
+
   updatePriceUp(item: CartItem) {
     this.cartService.updateItem({
       ...item,
@@ -49,5 +58,10 @@ export class CartComponent implements OnInit {
       generatedBy: 'auto-generated',
       price: +item.price - +item.price * 0.6,
     });
+  }
+
+  screenParticipant(cartItem: CartItem) {
+    this.cartService.singleData = cartItem;
+    this.screenParticipantModalButton.nativeElement.click();
   }
 }

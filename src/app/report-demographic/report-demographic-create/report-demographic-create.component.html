@@ -1,0 +1,164 @@
+<ng-container *ngIf="cartService.singleData">
+  <h2 class="text-center mt-3 my-7 text-primary font-bold text-2xl"><span>{{ cartService.singleData.organization! }} - {{
+      cartService.singleData.title! }}</span></h2>
+  <form (submit)="submit()">
+    <div class="grid grid-cols-1 justify-around gap-5">
+
+      <!-- Age Range -->
+      <div class="mb-7">
+        <h3 class="font-semibold text-xl mb-4 ">Age range</h3>
+
+        <div class="grid grid-cols-4 justify-items-end align-center gap-y-3 ">
+          <!-- All -->
+          <div class="flex items-center w-full mb-0">
+            <input
+                   (change)="onChange($event, 'ageRange')"
+                   class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2"
+                   type="checkbox"
+                   [checked]="selectedOptions['ageRange'].length === 0 || selectedOptions['ageRange'].length === options['ageRange'].length"
+                   [value]="-1"
+                   [id]="'AgeRangeAll'">
+            <label class="form-check-label text-slate-400" [for]="'AgeRangeAll'">All</label>
+          </div>
+
+          <!-- Other options -->
+          <div
+               class="flex items-center w-full mb-0"
+               *ngFor="let ageRange of options['ageRange']"
+               (click)="onChange($event, 'ageRange')">
+
+            <input
+                   class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2"
+                   type="checkbox"
+                   [checked]="isSelected(ageRange.value, 'ageRange')"
+                   [value]="ageRange.value"
+                   [id]="ageRange.label">
+            <label class="form-check-label text-slate-400" [for]="ageRange.label">{{ ageRange.label }}</label>
+          </div>
+
+
+        </div>
+      </div>
+
+      <!-- Ethnicity -->
+      <div class="mb-7">
+        <h3 class="font-semibold text-xl mb-4 ">Ethnicity</h3>
+
+        <div class="grid grid-cols-4 align-center gap-y-3 ">
+          <!-- All -->
+          <div class="flex items-center w-full mb-0">
+            <input
+                   (change)="onChange($event, 'ethnicity')"
+                   class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2"
+                   type="checkbox"
+                   [checked]="selectedOptions['ethnicity'].length === 0 || selectedOptions['ethnicity'].length === options['ethnicity'].length"
+                   [value]="-1"
+                   [id]="'ethnicityOptionsAll'">
+            <label class="form-check-label text-slate-400" [for]="'ethnicityOptionsAll'">All</label>
+          </div>
+
+          <!-- Other options -->
+          <div
+               class="flex items-center w-full mb-0"
+               *ngFor="let ethnicity of options['ethnicity']"
+               (click)="onChange($event, 'ethnicity')">
+
+            <input
+                   class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2"
+                   type="checkbox"
+                   [checked]="isSelected(ethnicity.value, 'ethnicity')"
+                   [value]="ethnicity.value"
+                   [id]="ethnicity.label">
+            <label class="form-check-label text-slate-400" [for]="ethnicity.label">{{ ethnicity.label }}</label>
+          </div>
+
+
+        </div>
+      </div>
+
+
+      <!-- Sex -->
+      <div class="mb-7">
+        <h3 class="font-semibold text-xl mb-4 ">Sex</h3>
+
+        <div class="grid grid-cols-4 align-center gap-y-3 ">
+          <!-- All -->
+          <div class="flex items-center w-full mb-0">
+            <input
+                   (change)="onChange($event, 'sex')"
+                   class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2"
+                   type="checkbox"
+                   [checked]="selectedOptions['sex'].length === 0 || selectedOptions['sex'].length === options['sex'].length"
+                   [value]="-1"
+                   [id]="'sexOptionsAll'">
+            <label class="form-check-label text-slate-400" [for]="'sexOptionsAll'">All</label>
+          </div>
+
+          <!-- Other options -->
+          <div
+               class="flex items-center w-full mb-0"
+               *ngFor="let sex of options['sex']"
+               (click)="onChange($event, 'sex')">
+
+            <input
+                   class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2"
+                   type="checkbox"
+                   [checked]="isSelected(sex.value, 'sex')"
+                   [value]="sex.value"
+                   [id]="sex.label">
+            <label class="form-check-label text-slate-400" [for]="sex.label">{{ sex.label }}</label>
+          </div>
+
+
+        </div>
+      </div>
+
+
+      <!-- Relationship status -->
+      <div class="mb-7">
+        <h3 class="font-semibold text-xl mb-4 "> Relationship Status
+        </h3>
+
+        <div class="grid grid-cols-4 align-center gap-y-3 ">
+          <!-- All -->
+          <div class="flex items-center w-full mb-0">
+            <input
+                   (change)="onChange($event, 'relationshipStatus')"
+                   class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2"
+                   type="checkbox"
+                   [checked]="selectedOptions['relationshipStatus'].length === 0 || selectedOptions['relationshipStatus'].length === options['relationshipStatus'].length"
+                   [value]="-1"
+                   [id]="'relationshipStatusOptionsAll'">
+            <label class="form-check-label text-slate-400" [for]="'relationshipStatusOptionsAll'">All</label>
+          </div>
+
+          <!-- Other options -->
+          <div
+               class="flex items-center w-full mb-0"
+               *ngFor="let relationshipStatus of options['relationshipStatus']"
+               (click)="onChange($event, 'relationshipStatus')">
+
+            <input
+                   class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2"
+                   type="checkbox"
+                   [checked]="isSelected(relationshipStatus.value, 'relationshipStatus')"
+                   [value]="relationshipStatus.value"
+                   [id]="relationshipStatus.label">
+            <label class="form-check-label text-slate-400" [for]="relationshipStatus.label">{{ relationshipStatus.label }}</label>
+          </div>
+
+
+        </div>
+      </div>
+
+
+      <!-- Sumbit button -->
+      <div class="mb-7 text-center">
+        <button type="submit"
+                class="text-white bg-primary hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-primary focus:outline-none dark:focus:ring-blue-800">Apply
+        </button>
+      </div>
+
+    </div>
+  </form>
+</ng-container>
