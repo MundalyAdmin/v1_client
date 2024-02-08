@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
 import { TempDashboardComponent } from './temp-dashboard/temp-dashboard.component';
 import { ReportDemographicCreateComponent } from '../report-demographic/report-demographic-create/report-demographic-create.component';
+import { SelectResearchPartnersComponent } from './select-research-partners/select-research-partners.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,7 @@ const routes: Routes = [
     CheckoutComponent,
     TempDashboardComponent,
     ReportDemographicCreateComponent,
+    SelectResearchPartnersComponent,
   ],
   imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
 })

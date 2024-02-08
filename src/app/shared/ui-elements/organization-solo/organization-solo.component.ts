@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Organization } from '../../../organization/organization.model';
 
 @Component({
@@ -6,8 +6,13 @@ import { Organization } from '../../../organization/organization.model';
   templateUrl: './organization-solo.component.html',
   styleUrls: ['./organization-solo.component.scss'],
 })
-export class OrganizationSoloComponent {
+export class OrganizationSoloComponent implements OnInit {
   // required input
 
   @Input() organization: Organization | null = null;
+
+  ngOnInit(): void {
+    console.log('hello');
+    console.log(this.organization);
+  }
 }

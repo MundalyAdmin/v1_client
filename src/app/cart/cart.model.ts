@@ -1,3 +1,4 @@
+import { Organization } from '../organization/organization.model';
 import { ReportDemographic } from './report-demographic/report-demographic.model';
 
 export interface CartItem {
@@ -9,4 +10,5 @@ export interface CartItem {
   community?: string;
   generatedBy?: string;
   demographic?: ReportDemographic;
+  research_partners: Organization[];
 }

@@ -2,17 +2,23 @@ import { Injectable } from '@angular/core';
 import { CartItem } from './cart.model';
 import { BaseService } from '../shared/services';
 import { ReportDemographic } from './report-demographic/report-demographic.model';
+import { Organization } from '../organization/organization.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService extends BaseService<CartItem> {
+  totalPrice = 0;
   constructor() {
     super('');
   }
 
   override get data() {
     this._data = JSON.parse(localStorage.getItem('cart') || '[]') as CartItem[];
+    this.totalPrice = this._data
+      .map((item) => +item.price)
+      .reduce((prev, curr) => prev + curr, 0);
     return this._data;
   }
 
@@ -24,12 +30,6 @@ export class CartService extends BaseService<CartItem> {
 
   get itemCount() {
     return this.data.length;
-  }
-
-  get totalPrice() {
-    return this.data
-      .map((item) => +item.price)
-      .reduce((prev, curr) => prev + curr, 0);
   }
 
   get taxPrice() {
@@ -74,6 +74,12 @@ export class CartService extends BaseService<CartItem> {
 
   updateDemographic(item: CartItem, demographic: ReportDemographic) {
     item.demographic = demographic;
+    this.updateItem(item);
+    console.log(item);
+  }
+
+  updateResearchPartners(item: CartItem, researchPartners: Organization[]) {
+    item.research_partners = researchPartners;
     this.updateItem(item);
     console.log(item);
   }

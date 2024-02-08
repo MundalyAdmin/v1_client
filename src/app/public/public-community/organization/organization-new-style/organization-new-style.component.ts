@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Flowbite } from '../../../../shared/decorators/flowbite.decorator';
 import { CartService } from '../../../../cart/cart.service';
 import { CartItem } from '../../../../cart/cart.model';
+import { ReportService } from '../../../../report/report.service';
 
 @Component({
   selector: 'app-organization-new-style',
@@ -18,6 +19,7 @@ export class OrganizationNewStyleComponent extends BaseSingleComponent<Organizat
   constructor(
     public organizationService: OrganizationService,
     public cartService: CartService,
+    public reportService: ReportService,
     public override route: ActivatedRoute
   ) {
     super(organizationService, route);
@@ -32,52 +34,7 @@ export class OrganizationNewStyleComponent extends BaseSingleComponent<Organizat
         this.single = organization;
         this.loading = false;
 
-        this.reports = [
-          {
-            title: 'Community Health Needs Assessment Report ',
-            price: '640',
-            availability: 'In 3 hours',
-            organization: organization.name,
-            image:
-              'https://res.cloudinary.com/mundaly/image/upload/v1706906913/Blue_Red_Geometric_Annual_Report_Document_A4_qdgttm.png',
-            community: 'Bridgeport',
-            generatedBy: 'auto-generated',
-            state: 'on-demand',
-          },
-          {
-            title: 'Community Health Improvement Plans (CHIP)',
-            price: '590',
-            availability: 'In 3 hours',
-            organization: organization.name,
-            image:
-              'https://res.cloudinary.com/mundaly/image/upload/v1706906151/New_Haven_Promise_Report.pdf_2_rya0bb.png',
-            community: 'Bridgeport',
-            generatedBy: 'auto-generated',
-            state: 'on-demand',
-          },
-          {
-            title: 'Communities Urgent Issues Report',
-            price: '500',
-            availability: 'In 30 minutes',
-            organization: organization.name,
-            image:
-              'https://res.cloudinary.com/mundaly/image/upload/v1706906913/Blue_Red_Geometric_Annual_Report_Document_A4_qdgttm.png',
-            community: 'Bridgeport',
-            generatedBy: 'auto-generated',
-            state: 'coming-soon',
-          },
-          {
-            title: 'Complete Verified Community Report',
-            price: '0',
-            availability: 'On demand',
-            organization: organization.name,
-            image:
-              'https://res.cloudinary.com/mundaly/image/upload/v1706906151/New_Haven_Promise_Report.pdf_2_rya0bb.png',
-            community: 'Bridgeport',
-            generatedBy: 'auto-generated',
-            state: 'on-demand',
-          },
-        ];
+        this.reports = this.reportService.data;
       });
     });
   }

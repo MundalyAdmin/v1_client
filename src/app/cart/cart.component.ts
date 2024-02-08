@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CartService } from './cart.service';
 import { CartItem } from './cart.model';
 import { Flowbite } from '../shared/decorators/flowbite.decorator';
+import { ReportService } from '../report/report.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,18 +14,19 @@ export class CartComponent implements OnInit {
   @ViewChild('screenParticipantModalButton', { static: false })
   screenParticipantModalButton!: ElementRef;
 
+  @ViewChild('selectResearchParticipantModalButton', { static: false })
+  selectResearchParticipantModalButton!: ElementRef;
+
   totalPrice: number = 0;
   taxPrice: number = 0;
   totalPlusTax = 0;
-  constructor(public cartService: CartService) {}
+  constructor(
+    public cartService: CartService,
+    public reportService: ReportService
+  ) {}
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
-    console.log(this.cartService.data);
-
-    this.totalPrice = this.cartService.totalPrice;
-    this.taxPrice = Math.round(this.cartService.totalPrice * 0.18);
-    this.totalPlusTax = this.cartService.totalPrice + this.taxPrice;
   }
 
   updatePrice(item: CartItem, event: any) {
@@ -40,15 +42,21 @@ export class CartComponent implements OnInit {
     return Object.keys(item.demographic || {}).length;
   }
 
+  getNumberOfResearchPartners(item: CartItem) {
+    return Object.keys(item.research_partners || {}).length;
+  }
+
+  removeItem(item: CartItem) {
+    this.cartService.deleteItem(item);
+  }
+
   updatePriceUp(item: CartItem) {
     this.cartService.updateItem({
       ...item,
       availability: 'In 4 days',
       generatedBy: 'partner-generated',
-      price: +item.price + +item.price * 0.6,
+      price: Math.round(+item.price + +item.price * 0.6),
     });
-
-    console.log(this.cartService.data);
   }
 
   updatePriceDown(item: CartItem) {
@@ -56,12 +64,17 @@ export class CartComponent implements OnInit {
       ...item,
       availability: 'In 3 hours',
       generatedBy: 'auto-generated',
-      price: +item.price - +item.price * 0.6,
+      price: this.reportService.data.find((i) => i.title == item.title)!.price,
     });
   }
 
   screenParticipant(cartItem: CartItem) {
     this.cartService.singleData = cartItem;
     this.screenParticipantModalButton.nativeElement.click();
+  }
+
+  selectResearchPartners(cartItem: CartItem) {
+    this.cartService.singleData = cartItem;
+    this.selectResearchParticipantModalButton.nativeElement.click();
   }
 }
