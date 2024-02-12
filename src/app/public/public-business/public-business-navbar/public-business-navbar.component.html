@@ -1,7 +1,7 @@
 <nav id="topnav" class="defaultscroll is-sticky max-w-[100vw]">
   <div class="container mt-3 relative">
     <!-- Logo container-->
-    <a class="logo" [routerLink]="['./']">
+    <a class="logo" [routerLink]="['/']">
       <img src="assets/images/logo.svg" style="height: 70px;"
            class="inline-block dark:hidden" alt="">
       <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/static-content/community/home/mundaly-logo" style="height: 28px;"
@@ -28,7 +28,7 @@
     <div id="navigation">
       <!-- Navigation Menu-->
       <ul class="navigation-menu justify-end">
-        <li><a href="" class="sub-menu-item"> <i class="uil uil-arrow-left"></i> For communities</a></li>
+        <li><a [routerLink]="['/community']" class="sub-menu-item"> <i class="uil uil-arrow-left"></i> Community Page</a></li>
 
         <li><a [routerLink]="['case-studies']" routerLinkActive="text-primary font-bold"
              class="sub-menu-item">Case Studies</a></li>
