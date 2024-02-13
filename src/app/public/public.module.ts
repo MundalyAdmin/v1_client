@@ -8,6 +8,7 @@ import { PublicCommunitiesCategorieListComponent } from './public-communities/pu
 import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { SharedPublicModule } from './shared-public/shared-public.module';
 
 const routes: Routes = [
   {
@@ -52,6 +53,11 @@ const routes: Routes = [
     PrivacyPolicyComponent,
     LandingPageComponent,
   ],
-  imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    SharedModule,
+    SharedPublicModule,
+    RouterModule.forChild(routes),
+  ],
 })
 export class PublicModule {}
