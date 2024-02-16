@@ -11,8 +11,5 @@ export class OrganizationSoloComponent implements OnInit {
 
   @Input() organization: Organization | null = null;
 
-  ngOnInit(): void {
-    console.log('hello');
-    console.log(this.organization);
-  }
+  ngOnInit(): void {}
 }

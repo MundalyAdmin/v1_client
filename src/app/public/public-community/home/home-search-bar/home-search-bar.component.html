@@ -2,55 +2,57 @@
   <form [formGroup]="form" (submit)="search()">
     <div class="registration-form relative items-center md:rounded text-dark text-start">
       <div
-           class="grid md:grid-cols-3 grid-cols-1 lg:gap-0 h-fit  md:divide-x-[2px] divide-primary lg:dark:divide-gray-700">
+           class="grid md:grid-cols-5 grid-cols-1 lg:gap-0 h-fit  md:divide-x-[2px] divide-primary lg:dark:divide-gray-700">
 
         <!-- Keyword -->
-        <div class="filter-search-form text-2xl relative rounded-l-lg   px-8 py-2.5 bg-gray-50">
+        <div class="filter-search-form relative rounded-l-lg col-span-2   px-8 py-2.5 bg-gray-50">
           <!-- Heading Icon -->
           <i
-             class="mdi mdi-magnify text-xl absolute top-[50%] -translate-y-1/2 start-3 z-1 text-primary "></i>
+             class="mdi mdi-map-marker text-xl absolute top-[50%] -translate-y-1/2 start-3 z-1 text-primary "></i>
 
           <!-- Keyword -->
           <div
                class="h-full flex items-center px-3 ">
             <!-- Autocompletion -->
             <ng-autocomplete
-                             [data]="organizationNames"
+                             [data]="cityNames"
                              [isLoading]="loading"
                              [searchKeyword]="'name'"
-                             formControlName="keyword"
-                             placeholder="Search"
-                             historyIdentifier="Search"
+                             formControlName="city_name"
+                             placeholder="Enter a city"
+                             (selected)='onCitySelected($event)'
+                             historyIdentifier="organization"
                              [itemTemplate]="itemTemplate"
                              [notFoundTemplate]="notFoundTemplate">
             </ng-autocomplete>
 
 
             <ng-template #itemTemplate let-item>
-              <a [innerHTML]="item.name"></a>
+              <a [innerHTML]="item.name + ', ' + item.stateName + ', ' + item.countryCode"></a>
             </ng-template>
 
             <ng-template #notFoundTemplate let-notFound>
-              <a routerLink="/community-voice" class="text-primary text-lg   font-normal">Didn't find the organization
-                you want? <span class="underline decoration-primary">Click Here</span> </a>
+              <a routerLink="/community-voice" class="text-primary text-lg   font-normal">City not found </a>
             </ng-template>
           </div>
         </div>
 
         <!-- Country -->
-        <div class="filter-search-form relative">
+        <div class="filter-search-form relative col-span-2">
           <i
-             class="mdi mdi-map-marker text-xl absolute top-[50%] -translate-y-1/2 start-3 z-1 text-primary"></i>
-          <select2 [data]="countries" (update)="onCountrySelected($event)" [placeholder]="'Country'"
-                   [displaySearchStatus]="'always'">
-          </select2>
+             class="mdi mdi-earth text-xl absolute top-[50%] -translate-y-1/2 start-3 z-1 text-primary"></i>
+          <select (change)="selectFormHandler('country_name', $event.target)" class="country-search">
+            <option [selected]="!formValue('country_name')">Select Country</option>
+            <option [selected]="formValue('country_name') == country.name" *ngFor="let country of countries" [value]="country.name">{{country.name}}
+            </option>
+          </select>
 
         </div>
 
         <!-- Submit -->
         <button type="submit" id="search" name="search"
                 class="lightbox py-1.5 ps-5 text-base  pe-2 inline-block  tracking-wide rounded-md align-middle duration-500 font-semi text-center bg-secondary hover:bg-secondary-lighter hover:border-secondary-lighter text-primary h-full w-full">
-          <i class="uil uil-search me-2 text-lg"></i> Search for organization</button>
+          <i class="uil uil-search me-2 text-lg"></i> Search</button>
       </div><!--end grid-->
     </div><!--end container-->
   </form>

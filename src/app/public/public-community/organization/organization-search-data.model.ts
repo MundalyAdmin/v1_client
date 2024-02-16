@@ -1,4 +1,4 @@
 export interface OrganizationSearchData {
-  keyword: string;
-  country_id?: number;
+  city_name: string;
+  country_name?: number;
 }
