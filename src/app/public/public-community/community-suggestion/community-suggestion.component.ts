@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BaseCreateComponent } from '../../../shared/base-component';
 import { CommunitySuggestionService } from './community-suggestion.service';
 import { CommunitySuggestion } from './community-suggestion.model';
@@ -12,7 +12,9 @@ import { Organization } from '../../../organization/organization.model';
   styleUrls: ['./community-suggestion.component.scss'],
 })
 export class CommunitySuggestionComponent extends BaseCreateComponent<CommunitySuggestion> {
+  @Input() minified = false
   organization: Organization | null = null;
+
   constructor(
     public communitySuggestionService: CommunitySuggestionService,
     public route: ActivatedRoute

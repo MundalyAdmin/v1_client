@@ -81,7 +81,7 @@
 
           </div>
           <!-- Plan Comprehensiveness -->
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-3 blur-md">
             <h3 class=" text-base md:text-lg shrink-0">Plan Comprehensiveness</h3>
             <div class="w-full h-5 bg-gray-200 rounded-full dark:bg-gray-700">
               <div class="h-5 bg-secondary rounded-full"
@@ -91,7 +91,7 @@
 
           </div>
           <!-- Quality of delivery -->
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-3 blur-md">
             <h3 class=" text-base md:text-lg shrink-0">Quality of delivery</h3>
             <div class="w-full h-5 bg-gray-200 rounded-full dark:bg-gray-700">
               <div class="h-5 bg-secondary rounded-full"
@@ -101,6 +101,12 @@
 
           </div>
           <!-- <img src="assets/images/new-style/rating-report-sif.png" class=" " alt="impact-fidelity"> -->
+
+          <!-- See full report -->
+          <a [routerLink]="['/', 'for-business', 'book-demo']"
+             class="absolute bottom-[5%] right-[50%]  translate-x-[50%] border border-primary text-primary bg-secondary hover:bg-secondary-dark focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-base px-5 py-2.5 me-2 mb-2 ">
+            See full report
+          </a>
 
         </div>
       </ng-container>

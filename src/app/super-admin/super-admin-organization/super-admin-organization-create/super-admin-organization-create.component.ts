@@ -67,13 +67,13 @@ export class SuperAdminOrganizationCreateComponent
   initForm(organization?: Organization) {
     const name = organization?.name || '';
     const about = organization?.about || '';
-    const country = [{ name: organization?.location?.split(',')[1] }] || [];
+    const country = [{ name: organization?.country }] || [];
     const type_organization = [organization?.type_organization] || [];
     const sector_organization = [organization?.sector_organization] || [];
     const tag_organizations = organization?.tag_organizations || [];
     const email = organization?.email || '';
     const website = organization?.website || '';
-    const city = [organization?.location?.split(',')[0]] || '';
+    const city = organization?.city || '';
     const creator_id = organization?.creator_id || this.authService.user.id;
 
     this.form = this.fb.group({
@@ -115,9 +115,9 @@ export class SuperAdminOrganizationCreateComponent
 
   getCitiesByCountry(countryName: string) {
     this.isLoading.cities = true;
-    this.countryService.getCitiesByCountry(countryName).subscribe({
+    this.countryService.searchCitiesByName(countryName).subscribe({
       next: (response) => {
-        this.cities = response;
+        this.cities = response.map((city) => city.name!);
         this.isLoading.cities = false;
       },
 

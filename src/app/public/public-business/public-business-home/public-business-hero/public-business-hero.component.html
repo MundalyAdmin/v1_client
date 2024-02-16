@@ -3,12 +3,13 @@
   <!-- Title and subtitle -->
   <div class="container">
     <div
-         class="relative grid md:grid-cols-2 grid-cols-1 items-center gap-[30px]">
-      <div class="">
+         class="relative grid md:grid-cols-3 grid-cols-1 items-center gap-[30px] md:gap-0">
+      <div class=" md:col-span-2 ">
         <!-- Title -->
         <h4
-            class="font-bold lg:leading-normal md:leading-normal md:text-4xl leading-normal md:text-start text-center text-4xl mb-4 text-primary">
-          The intelligent approach to your community trust journey.
+            class=" capitalize font-bold lg:leading-normal md:leading-normal md:text-4xl leading-normal md:text-start text-center text-4xl mb-4 text-primary">
+          Your entire community-specific impact 
+          reporting journey in one place. 
           <!-- <span class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-secondary relative inline-block">
             <span class="relative text-white"> your impact</span>
           </span> -->
@@ -16,25 +17,31 @@
 
         <!-- Subtitle -->
         <p
-           class="text-primary md:text-xl text-center md:text-start text-lg max-w-2xl mb-6">
-          Measure, report, achieve and track community impact and trust with
-          science-based insights.
+           class="text-primary text-center md:text-start text-lg max-w-2xl mb-6">
+          No two communities are the same. Access detailed insights, tracking dashboards, benchmarks, and stories of your community programs in text,
+          photos and videos.
+        </p>
+
+        <p
+           class="text-black text-center md:text-start text-lg max-w-2xl mb-6 font-semibold">
+          Powered by real-time insights from humans in communities. No AI. No bots. 
         </p>
 
         <!-- Book a demo button -->
         <div class="mt-6 mb-3 hidden md:block">
           <a
              [routerLink]="['book-demo']"
-             class="lightbox py-3 px-7 w-auto inline-block font-semibold tracking-wide border align-middle duration-500 text-center bg-secondary hover:bg-secondary-dark border-primary text-lg text-primary rounded-full">Request
-            a demo</a>
+             class="lightbox py-3 px-7 w-auto inline-block font-semibold tracking-wide border align-middle duration-500 text-center bg-secondary hover:bg-secondary-dark border-primary text-lg text-primary rounded-full">
+            Book a demo
+          </a>
         </div>
       </div>
 
       <div class="md:flex md:justify-end md:-mt-4">
-        <div class="md:w-[30rem]">
+        <div class="md:min-w-[444px]">
           <img
                src="assets/images/business/dashboard.png"
-               class="w-full h-full"
+               class="w-full h-full ms-16"
                alt="" />
         </div>
       </div>
@@ -49,14 +56,6 @@
     </div>
   </div>
 
-  <!-- Linear gradient -->
-  <div
-       class="w-[316px] h-[1151px] opacity-80 mix-blend-color-burn -z-10 bg-teal-400 rounded-full blur-[400px] absolute top-[-333px] left-[-58px]">
-  </div>
-  <div
-       class="w-[337px] h-[1151px] opacity-80 mix-blend-color-burn -z-10 bg-violet-950 rounded-full blur-[400px] absolute right-[-10.5rem] top-[10rem]">
-  </div>
-
   <!-- Hero section image -->
   <!-- <div style="width: 30rem;
     height: 20rem; " class="absolute top-[140px] right-[230px] z-[-2]">
@@ -66,7 +65,7 @@
   <!-- Problem -->
 
   <!--               The Community License Scale               -->
-  <div
+  <!--<div
        class="md:mt-28 mt-16 md:mb-28 mb-24 flex flex-col container items-center">
     <h3 class="md:text-3xl text-2xl text-center text-primary font-bold">
       The Community License Scale
@@ -77,10 +76,10 @@
     </h4>
     <img src="assets/images/for-business/hero/licence-scale.svg" />
 
-  </div>
+  </div>-->
 
   <!--               Impact intelligence today              -->
-  <div class="md:mt-28 mt-16 md:mb-28 mb-24 flex flex-col items-center">
+  <!--<div class="md:mt-28 mt-16 md:mb-28 mb-24 flex flex-col items-center">
     <h3 class="md:text-3xl text-2xl text-center text-primary font-bold">
       Impact intelligence today:
     </h3>
@@ -132,12 +131,12 @@
 
     </div>
 
-  </div>
+  </div>-->
 
 
 
   <!--               Impact intelligence on Mundaly              -->
-  <div class="md:mt-28 mt-16 md:mb-28 mb-24 flex flex-col items-center">
+  <!--<div class="md:mt-28 mt-16 md:mb-28 mb-24 flex flex-col items-center">
     <h3 class="md:text-3xl text-2xl text-center text-primary font-bold">
       Impact intelligence on Mundaly:
     </h3>
@@ -182,7 +181,7 @@
       </div>
     </div>
 
-  </div>
+  </div> -->
 
   <!-- See what communities think about your business -->
   <app-public-business-check-community-reviews></app-public-business-check-community-reviews>

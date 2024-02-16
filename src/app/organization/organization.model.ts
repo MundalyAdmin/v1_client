@@ -25,11 +25,9 @@ export interface Organization extends BaseModel {
 
   type_organization_id?: number;
 
-  location?: string;
-
   profile_status_organization_id?: number;
 
-  country?: Country;
+  country?: string;
 
   city?: string;
 

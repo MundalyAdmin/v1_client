@@ -1,16 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { OrganizationService } from '../../../../organization/organization.service';
-import { BaseComponent } from '../../../../shared/base-component';
+import { Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { debounceTime } from 'rxjs';
+import { CitySearchResult } from '../../../../country/city-search-result.model';
 import { Country } from '../../../../country/country.model';
 import { CountryService } from '../../../../country/country.service';
-import {
-  Select2Data,
-  Select2UpdateEvent,
-  Select2Value,
-} from 'ng-select2-component';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { debounceTime } from 'rxjs';
+import { OrganizationService } from '../../../../organization/organization.service';
+import { BaseCreateComponent } from '../../../../shared/base-component';
 
 @Component({
   selector: 'app-home-search-bar',
@@ -18,23 +14,20 @@ import { debounceTime } from 'rxjs';
   styleUrls: ['./home-search-bar.component.scss'],
 })
 export class HomeSearchBarComponent
-  extends BaseComponent<any>
+  extends BaseCreateComponent<any>
   implements OnInit
 {
   // List of countries
   // Object schema required by Select2
-  countries: Select2Data = [];
+  countries: Country[] = [];
 
   // List of organization
-  organizationNames: { name: string }[] = [];
-
-  form!: FormGroup;
+  cityNames: CitySearchResult[] = [];
 
   constructor(
     public organizationService: OrganizationService,
     public countryService: CountryService,
-    public router: Router,
-    public fb: FormBuilder
+    public route?: ActivatedRoute
   ) {
     super(organizationService);
   }
@@ -43,30 +36,32 @@ export class HomeSearchBarComponent
     this.getCountries();
 
     this.form = this.fb.group({
-      keyword: [null, Validators.required],
-      location: [null],
+      city_name: ['', Validators.required],
+      country_name: [null],
     });
 
+    // Triggered when the user types in the input
     // Debounce the search name request to avoid overloading the server
-    this.form.controls['keyword'].valueChanges
-      .pipe(debounceTime(500))
-      .subscribe((keyword) => {
-        keyword = keyword || '';
-        this.getOrganizationNames(keyword);
+    this.form.controls['city_name'].valueChanges
+      .pipe(debounceTime(800))
+      .subscribe((city_name) => {
+        // Ignore empty values
+        if (!city_name) {
+          this.cityNames = [];
+          return;
+        }
+
+        // the value of the input should be a string to trigger the search
+        if (typeof city_name === 'string') this.getCitiesByName(city_name);
       });
   }
 
-  // Triggered when the user types a keyword
-  // Search Organization names into the database to
-  // to populate the Autocomplete component
-  getOrganizationNames(keyword: string) {
-    if (keyword) {
-      this.loading = true;
-      this.organizationService.searchNames(keyword).subscribe((data) => {
-        this.organizationNames = data;
-        this.loading = false;
-      });
-    }
+  getCitiesByName(name: string) {
+    this.loading = true;
+    this.countryService.searchCitiesByName(name).subscribe((data) => {
+      this.cityNames = data;
+      this.loading = false;
+    });
   }
 
   // Get the list of all countries and parse it into Select2Data
@@ -74,37 +69,26 @@ export class HomeSearchBarComponent
   getCountries() {
     this.countryService.get().subscribe({
       next: (response) => {
-        response.map((country: Country) => {
-          this.countries.push({
-            value: country.name!,
-            label: country.name!,
-            data: country,
-          });
-        });
+        this.countries = response;
       },
       error: () => {},
     });
   }
 
-  // Triggered when the user selects a country
-  // Update the form with the selected country
-  onCountrySelected(item: Select2UpdateEvent) {
-    this.form.controls['location'].setValue(item.value);
+  // Update the country name automatically when a user selects a city
+  onCitySelected(item: CitySearchResult) {
+    this.formValuePatcher('country_name', item.countryName);
   }
 
   search() {
-    let data = {
-      keyword:
-        typeof this.form.controls['keyword'].value === 'string'
-          ? this.form.controls['keyword'].value
-          : (this.form.controls['keyword'].value as { name: string }).name,
-      location: this.form.controls['location'].value,
+    const data = {
+      city_name: this.form.controls['city_name'].value.name,
+      country_name: this.form.controls['country_name'].value,
     };
 
-    data = this.helper.object.removeBlankValues(data);
-
-    this.router.navigate(['/organizations/search'], {
+    this.router.navigate(['organizations/search'], {
       queryParams: data,
+      relativeTo: this.route,
     });
   }
 }

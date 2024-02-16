@@ -57,8 +57,11 @@ export class StoriesRatingComponent
   }
 
   getStarPercentage(rating: number) {
-    if (!this.ratingBreakdown?.total_respondant) return 0;
-    return Math.round((rating * 100) / this.ratingBreakdown?.total_respondant!);
+    const totalRespondant = this.ratingBreakdown?.total_respondant || 0;
+
+    return totalRespondant === 0
+      ? 0
+      : Math.round((rating * 100) / totalRespondant);
   }
 
   getRatingBreakdown(organizationId: number) {

@@ -42,6 +42,10 @@ export class OrganizationNewStyleRatingOverviewComponent extends BaseSingleCompo
   }
 
   getRecommendation() {
+    if (this.communityTrustScore?.total_survey_respondant! < 10) {
+      return 'Insufficient data for a recommendation';
+    }
+
     if (this.communityTrustScore) {
       if (this.communityTrustScore.rating <= 2) {
         return 'Bad, Do Not Support';

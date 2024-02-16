@@ -3,8 +3,6 @@ import { HomeSearchBarComponent } from '../../home/home-search-bar/home-search-b
 import { OrganizationService } from '../../../../organization/organization.service';
 import { CountryService } from '../../../../country/country.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Country } from '../../../../country/country.model';
-import { FormBuilder } from '@angular/forms';
 import { Select2Value } from 'ng-select2-component';
 
 @Component({
@@ -18,35 +16,31 @@ export class OrganizationSearchBarComponent extends HomeSearchBarComponent {
     public override organizationService: OrganizationService,
     public override router: Router,
     public override countryService: CountryService,
-    public route: ActivatedRoute,
-    public override fb: FormBuilder
+    public override route: ActivatedRoute
   ) {
-    super(organizationService, countryService, router, fb);
+    super(organizationService, countryService);
   }
 
   override ngOnInit(): void {
     super.ngOnInit();
 
+    // Get the query params and set the form values
     this.route.queryParams.subscribe((params) => {
-      this.form.controls['keyword'].setValue(params['keyword'] || null);
-      params['location'] &&
-        this.form.controls['location'].setValue(params['location']);
+      this.formValuePatcher('city_name', params['city_name']);
+      params['country_name'] &&
+        this.formValuePatcher('country_name', params['country_name']);
     });
   }
 
-  override getCountries() {
-    this.countryService.get().subscribe({
-      next: (response) => {
-        response.map((country: Country) => {
-          this.countries.push({
-            value: country.name!,
-            label: country.name!,
-            data: country,
-          });
-        });
-      },
+  override search() {
+    const data = {
+      city_name: this.form.controls['city_name'].value.name,
+      country_name: this.form.controls['country_name'].value,
+    };
 
-      error: () => {},
+    this.router.navigate(['./'], {
+      queryParams: data,
+      relativeTo: this.route,
     });
   }
 }

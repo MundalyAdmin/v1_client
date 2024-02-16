@@ -53,9 +53,9 @@ export class OrganizationWaitlistComponent extends BaseCreateComponent<Organizat
 
   getCitiesByCountry(countryName: string) {
     this.cityLoading = true;
-    this.countryService.getCitiesByCountry(countryName).subscribe({
+    this.countryService.searchCitiesByName(countryName).subscribe({
       next: (response) => {
-        this.cities = response;
+        this.cities = response.map((city) => city.name!);
         this.cityLoading = false;
         this.formValuePatcher('city', this.cities[0]);
       },

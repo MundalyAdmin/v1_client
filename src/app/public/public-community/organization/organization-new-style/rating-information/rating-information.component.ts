@@ -3,6 +3,7 @@ import { BaseComponent } from '../../../../../shared/base-component';
 import { ScaleService } from '../../../../../scale/scale.service';
 import { OrganizationService } from '../../../../../organization/organization.service';
 import { CommunityTrustScore } from '../../../../../scale/models/community-trust-score.model';
+import { Organization } from '../../../../../organization/organization.model';
 
 @Component({
   selector: 'app-rating-information',
@@ -13,6 +14,7 @@ export class RatingInformationComponent
   extends BaseComponent<CommunityTrustScore>
   implements OnInit
 {
+  organization: Organization | undefined;
   communityTrustScore: CommunityTrustScore | null = null;
   constructor(
     public scaleService: ScaleService,
@@ -25,6 +27,7 @@ export class RatingInformationComponent
     this.subscriptions['organization'] =
       this.organizationService.singleData$.subscribe((organization) => {
         if (organization) {
+          this.organization = organization;
           if (
             !this.scaleService.communityTrustScore ||
             this.scaleService.communityTrustScore.organization_id !==
