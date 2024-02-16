@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TempDashboardComponent } from './temp-dashboard/temp-dashboard.component';
 import { ReportDemographicCreateComponent } from '../report-demographic/report-demographic-create/report-demographic-create.component';
 import { SelectResearchPartnersComponent } from './select-research-partners/select-research-partners.component';
+import { DropdownModule } from 'primeng/dropdown';
 
 const routes: Routes = [
   {
@@ -31,6 +32,11 @@ const routes: Routes = [
     ReportDemographicCreateComponent,
     SelectResearchPartnersComponent,
   ],
-  imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    SharedModule,
+    RouterModule.forChild(routes),
+    DropdownModule,
+  ],
 })
 export class CartModule {}

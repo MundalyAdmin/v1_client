@@ -54,21 +54,23 @@
 
 
                   <!-- Screen participant button -->
-                  <div class=" text-sm  flex gap-5 mt-2">
-                    <button class="font-semibold underline flex items-center" (click)="screenParticipant(cartItem)">
+                  <div class=" text-sm  flex gap-3 mt-2">
+                    <button class="text-secondary-lighter flex bg-primary hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-1.5 me-1 mb-2 "
+                            (click)="screenParticipant(cartItem)">
                       Screen Participants
                       <!-- Number of elements -->
                       <span *ngIf="getNumberOfDemographicCriterias(cartItem)"
-                            class=" block ms-1 items-center  rounded-full bg-red-50 px-1 text-[8px] font-medium text-red-700 ring-1 ring-inset ring-red-600/10 ">{{getNumberOfDemographicCriterias(cartItem)}}
+                            class=" block ms-1 items-center  rounded-full bg-emerald-50 px-1 text-[8px] font-medium text-emerald-800 ring-1 ring-inset ring-emerald-600/10 ">{{getNumberOfDemographicCriterias(cartItem)}}
                       </span>
                     </button>
 
-                    <button class="font-semibold underline flex items-center" (click)="selectResearchPartners(cartItem)"
+                    <button class="text-primary flex bg-secondary hover:bg-secondary-dark focus:ring-4 focus:ring-emerald-300 font-medium rounded-lg text-sm px-4 py-1.5 me-2 mb-2"
+                            (click)="selectResearchPartners(cartItem)"
                             *ngIf="cartItem.generatedBy === 'partner-generated'">
                       Select Research Partners
                       <!-- Number of elements -->
                       <span *ngIf="getNumberOfResearchPartners(cartItem)"
-                            class=" block ms-1 items-center  rounded-full bg-red-50 px-1 text-[8px] font-medium text-red-700 ring-1 ring-inset ring-red-600/10 ">{{getNumberOfResearchPartners(cartItem)}}
+                            class=" block ms-1 items-center font-bold  rounded-full bg-primary-lighter px-1 text-[8px]  text-primary-dark border-primary ring-1 ring-inset ring-indigo-600/10 ">{{getNumberOfResearchPartners(cartItem)}}
                       </span>
                     </button>
                   </div>
@@ -80,6 +82,7 @@
 
                 <!-- Genereated by -->
                 <td class="p-2 text-center">
+
                   <select (change)="updatePrice(cartItem, $event)" [name]="cartItem.title"
                           class="form-select form-input w-full  h-10 bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-200 focus:border-indigo-600 dark:border-gray-800 dark:focus:border-indigo-600 focus:ring-0">
                     <option value="down" [selected]="cartItem.generatedBy == 'auto-generated'">Mundaly Generated</option>

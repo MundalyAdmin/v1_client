@@ -3,6 +3,7 @@ import { CartService } from './cart.service';
 import { CartItem } from './cart.model';
 import { Flowbite } from '../shared/decorators/flowbite.decorator';
 import { ReportService } from '../report/report.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-cart',
@@ -13,6 +14,17 @@ import { ReportService } from '../report/report.service';
 export class CartComponent implements OnInit {
   @ViewChild('screenParticipantModalButton', { static: false })
   screenParticipantModalButton!: ElementRef;
+  form!: FormGroup;
+  generationTypes = [
+    {
+      name: 'Mundaly generated',
+      value: 'mundaly-generated',
+    },
+    {
+      name: 'Partner generated',
+      value: 'partner-generated',
+    },
+  ];
 
   @ViewChild('selectResearchParticipantModalButton', { static: false })
   selectResearchParticipantModalButton!: ElementRef;
@@ -22,11 +34,14 @@ export class CartComponent implements OnInit {
   totalPlusTax = 0;
   constructor(
     public cartService: CartService,
-    public reportService: ReportService
+    public reportService: ReportService,
+    public fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
+
+    this.form = this.fb.group({ generatedBy: null });
   }
 
   updatePrice(item: CartItem, event: any) {
