@@ -1,0 +1,88 @@
+<div>
+    <form class="max-w-md mx-auto py-2" [formGroup]="createInitiativeGoalForm"
+        (ngSubmit)="submitCreateInitiativeGoal()">
+
+        <div class="relative  w-full mb-5">
+            <input type="name" name="initiative_name" id="initiative_name" placeholder=" " value="{{intiativeName}}" disabled required
+             class="block p-4 w-full text-sm text-gray-900 bg-gray-100 rounded-lg border-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " disabled />
+            <label for="initiative_name" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-gray-100 dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1">Initiative</label>
+        </div>
+<!-- 
+        <div class="relative z-0 w-full mb-5 group">
+            <input type="name" name="initiative_name" id="initiative_name"
+                class="block py-4 px-2 w-full text-sm text-gray-900  bg-gray-100 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" " value="{{intiativeName}}" disabled required />
+
+            
+            <label for="initiative_name"
+                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                Initiative</label>
+        </div> -->
+
+        <div class="mb-12">
+            <label for="goal_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What will be a
+                marker for success towards this initative? This will be your goal</label>
+            <input type="text" id="goal_name" formControlName="goal_name" required
+                class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        </div>
+
+        <div class="mb-7">
+            <label for="goal_metric_type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What is
+                your
+                target output for this goal?</label>
+            <select id="goal_metric_type" formControlName="goal_metric_type"
+                class="bg-gray-50 border p-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+                <option class="py-4" value="Total">Total</option>
+                <option value="Average">Average</option>
+            </select>
+        </div>
+
+        <div class="mb-7 flex justify-between gap-3 items-center">
+            <div class="w-[60%]">
+                <input type="text" #goal_metric formControlName="goal_metric"
+                    class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <p class="text-xs text-gray-500">What are you measuring?</p>
+            </div>
+            <p>to</p>
+            <div class="w-[35%]">
+                <input type="number" id="goal_target" formControlName="goal_target"
+                    class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <p class="text-xs text-gray-500">Where you aim to be?</p>
+            </div>
+        </div>
+
+
+        <div class="flex items-center mb-5">
+            <input id="default-checkbox" type="checkbox" value=""
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+            <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I am
+                tracking goals accross different dimension.</label>
+        </div>
+        <div class="flex items-center mb-5">
+            <input checked id="checked-checkbox" type="checkbox" value=""
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+            <label for="checked-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I have
+                starting value each dimension</label>
+        </div>
+
+        <p class="text-sm font-bold mt-10">DIMENSION</p>
+
+        <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+
+        <div class="mb-5">
+            <input type="text" #goal_dimension disabled value="{{createInitiativeGoalForm.value.goal_metric}}"
+                class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        </div>
+
+        <div class="mb-5 flex justify-end">
+            <button type="button" (click)="cancelCreateGoal()"
+                class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Cancel</button>
+            <button type="button" type="submit"
+                class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Save
+                Goal</button>
+        </div>
+
+
+    </form>
+</div>
