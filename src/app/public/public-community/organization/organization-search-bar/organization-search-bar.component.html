@@ -10,39 +10,49 @@
 
                 <!-- By keywords -->
                 <div class="filter-search-form relative border">
-                  <i class="uil uil-briefcase-alt absolute top-[48%] -translate-y-1/2 start-3 z-1 text-primary text-[20px]"></i>
+                  <i class="mdi mdi-map-marker absolute top-[48%] -translate-y-1/2 start-3 z-1 text-primary text-[20px]"></i>
                   <div class="pl-[52px] form-input rounded-t-sm outline-0 filter-input-box bg-gray-50 dark:bg-slate-800 border-0 focus:ring-0">
+
+
                     <ng-autocomplete
-                                     [data]="organizationNames"
+                                     [data]="cityNames"
                                      [isLoading]="loading"
                                      [searchKeyword]="'name'"
-                                     formControlName="keyword"
-                                     placeholder="Organization"
-                                     (inputChanged)="getOrganizationNames($event)"
+                                     formControlName="city_name"
+                                     placeholder="Enter a city"
+                                     (selected)='onCitySelected($event)'
                                      historyIdentifier="organization"
                                      [itemTemplate]="itemTemplate"
                                      [notFoundTemplate]="notFoundTemplate">
                     </ng-autocomplete>
 
+
                     <ng-template #itemTemplate let-item>
-                      <a [innerHTML]="item.name"></a>
+                      <a [innerHTML]="item.name + ', ' + item.stateName + ', ' + item.countryCode"></a>
                     </ng-template>
 
                     <ng-template #notFoundTemplate let-notFound>
-                      <div [innerHTML]="notFound"></div>
+                      <a routerLink="/community-voice" class="text-primary text-lg   font-normal">City not found </a>
                     </ng-template>
                   </div>
                 </div>
 
                 <!-- By Country -->
-                <div class="filter-search-form relative border">
-                  <i class="uil uil-map-marker absolute top-[48%] -translate-y-1/2 start-3 z-1 text-primary text-[20px]"></i>
-                  <select2 [data]="countries" [value]="selectedCountry" (update)="onCountrySelected($event)" [placeholder]="'Country'"
-                           [displaySearchStatus]="'always'">
-                  </select2>
-                </div>
-                <!-- Sort -->
+                <div class="filter-search-form relative ">
+                  <i
+                     class="mdi mdi-earth text-xl absolute top-[50%] -translate-y-1/2 start-3 z-1 text-primary"></i>
+                  <select (change)="selectFormHandler('country_name', $event.target)" class="country-search bg-gray-50 ">
+                    <option [selected]="!formValue('country_name')">Select Country</option>
+                    <option [selected]="formValue('country_name') == country.name" *ngFor="let country of countries" [value]="country.name">
+                      {{country.name}}
+                    </option>
+                  </select>
 
+                </div>
+
+
+
+                <!-- Sort -->
                 <div class="filter-search-form relative border">
                   <i
                      class="uil uil-filter absolute top-[48%] -translate-y-1/2 start-3 z-1 text-primary text-[20px]"></i>

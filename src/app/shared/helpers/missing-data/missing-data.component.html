@@ -19,7 +19,7 @@
     <circle cx="433.63626" cy="105.17383" r="12.18187" fill="#fff" />
   </svg>
   <div class=" mt-4">
-    <h3 class="text-2xl text-center">{{ message || 'No data found!' }}</h3> <br>
+    <h3 class="text-2xl text-center" [innerHTML]="message || 'No data found!' "></h3> <br>
   </div>
 </div>
 

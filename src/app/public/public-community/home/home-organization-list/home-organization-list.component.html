@@ -3,13 +3,12 @@
     <!-- Header & subheader -->
     <div class="grid grid-cols-1 pb-8 text-center">
       <!-- <h6 class="text-primary text-base mb-2">Communities' Most Trusted</h6> -->
-      <h3 class="mb-6 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold">Community Verified</h3>
+      <h3 class="mb-6 md:text-3xl text-2xl md:leading-normal leading-normal font-semibold">Top-rated companies that put communities first</h3>
 
-      <p class="text-slate-400 max-w-xl mx-auto">Top rated companies communities trust.</p>
     </div>
 
     <!-- List of companies -->
-    <div class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-[30px]">
+    <div class="grid md:grid-cols-3  sm:grid-cols-2 grid-cols-1 gap-[30px]">
 
       <!-- Start Candidate Content -->
       <app-organization-solo *ngFor="let organization of organizationService.data.slice(0, 3)" [organization]="organization"></app-organization-solo>

@@ -24,6 +24,8 @@ import { ProductOvervirwComponent } from './product-overvirw/product-overvirw.co
 import { PublicBusinessCheckCommunityReviewsComponent } from './public-business-home/public-business-check-community-reviews/public-business-check-community-reviews.component';
 import { ThankYouForJoiningOrganizationComponent } from '../../waitlist/organization-waitlist/thank-you-for-joining-organization/thank-you-for-join-organization.component';
 import { OrganizationWaitlistComponent } from '../../waitlist/organization-waitlist/organization-waitlist.component';
+import { CaseStudiesComponent } from './case-studies/case-studies.component';
+import { PrincingComponent } from './princing/princing.component';
 
 const routes: Routes = [
   {
@@ -36,7 +38,7 @@ const routes: Routes = [
       },
       {
         path: 'pricing',
-        component: ComingSoonComponent,
+        component: PrincingComponent,
       },
       {
         path: 'thank-you',
@@ -79,6 +81,10 @@ const routes: Routes = [
         component: PublicBusinessCommunityPerceptionComponent,
       },
       {
+        path: 'case-studies',
+        component: CaseStudiesComponent,
+      },
+      {
         path: 'blog',
         component: ComingSoonComponent,
       },
@@ -113,6 +119,8 @@ const routes: Routes = [
     ProductActComponent,
     ProductOvervirwComponent,
     PublicBusinessCheckCommunityReviewsComponent,
+    CaseStudiesComponent,
+    PrincingComponent,
   ],
   imports: [
     CommonModule,

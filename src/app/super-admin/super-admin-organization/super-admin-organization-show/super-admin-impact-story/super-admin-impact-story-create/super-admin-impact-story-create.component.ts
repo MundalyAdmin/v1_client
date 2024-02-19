@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseCreateComponent } from '../../../../../shared/base-component';
-import { ImpactStoryOrganization } from '../../../../../organization/impact-story-organization/impact-story-organization.model';
-import { ImpactStoryOrganizationService } from '../../../../../organization/impact-story-organization/impact-story-organization.service';
+import { ImpactStory } from '../../../../../scale/impact-story/impact-story.model';
+import { ImpactStoryService } from '../../../../../scale/impact-story/impact-story.service';
 import { OrganizationService } from '../../../../../organization/organization.service';
 import { Validators } from '@angular/forms';
 import { Organization } from '../../../../../organization/organization.model';
@@ -12,12 +12,12 @@ import { Organization } from '../../../../../organization/organization.model';
   styleUrls: ['./super-admin-impact-story-create.component.scss'],
 })
 export class SuperAdminImpactStoryCreateComponent
-  extends BaseCreateComponent<ImpactStoryOrganization>
+  extends BaseCreateComponent<ImpactStory>
   implements OnInit
 {
   organization: Organization | null = null;
   constructor(
-    public impactStoryOrganizationService: ImpactStoryOrganizationService,
+    public impactStoryOrganizationService: ImpactStoryService,
     public organizationService: OrganizationService
   ) {
     super(impactStoryOrganizationService);
@@ -27,25 +27,23 @@ export class SuperAdminImpactStoryCreateComponent
     this.initForm();
   }
 
-  initForm(impactStory?: ImpactStoryOrganization) {
-    const title = impactStory?.title || '';
-    const about = impactStory?.about || '';
-    const link = impactStory?.link || '';
-
-    this.form = this.fb.group({
-      title: [title, Validators.required],
-      about: [about, Validators.required],
-      link: [link, Validators.required],
-      organization_id: [null, Validators.required],
-    });
-
-    this.subscriptions['organization'] =
-      this.organizationService.singleData$.subscribe((organization) => {
-        if (organization) {
-          this.formValuePatcher('organization_id', organization.id);
-          this.organization = organization;
-        }
-      });
+  initForm(impactStory?: ImpactStory) {
+    // const title = impactStory?.title || '';
+    // const about = impactStory?.about || '';
+    // const link = impactStory?.link || '';
+    // this.form = this.fb.group({
+    //   title: [title, Validators.required],
+    //   about: [about, Validators.required],
+    //   link: [link, Validators.required],
+    //   organization_id: [null, Validators.required],
+    // });
+    // this.subscriptions['organization'] =
+    //   this.organizationService.singleData$.subscribe((organization) => {
+    //     if (organization) {
+    //       this.formValuePatcher('organization_id', organization.id);
+    //       this.organization = organization;
+    //     }
+    //   });
   }
 
   override create(): void {

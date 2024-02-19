@@ -1,0 +1,18 @@
+<div class="grid md:grid-cols-3 grid-cols-1">
+  <div class="md:col-span-2 col-span-1 pr-5">
+    <!-- List of companies -->
+    <div class="grid md:grid-cols-2  sm:grid-cols-2 grid-cols-1 gap-[30px]">
+
+      <!-- Start Candidate Content -->
+      <app-organization-solo *ngFor="let organization of organizationService.data" [organization]="organization"></app-organization-solo>
+      <!-- End Candidate Content -->
+
+
+
+    </div> <!-- end grid  -->
+  </div>
+
+  <div class=" md:col-span-1  md:block hidden">
+    <app-rating-information></app-rating-information>
+  </div>
+</div>

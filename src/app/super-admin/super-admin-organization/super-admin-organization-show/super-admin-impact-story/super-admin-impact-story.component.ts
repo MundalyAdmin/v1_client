@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Flowbite } from '../../../../shared/decorators/flowbite.decorator';
 import { BaseComponent } from '../../../../shared/base-component';
-import { ImpactStoryOrganization } from '../../../../organization/impact-story-organization/impact-story-organization.model';
-import { ImpactStoryOrganizationService } from '../../../../organization/impact-story-organization/impact-story-organization.service';
+import { ImpactStory } from '../../../../scale/impact-story/impact-story.model';
+import { ImpactStoryService } from '../../../../scale/impact-story/impact-story.service';
 import { OrganizationService } from '../../../../organization/organization.service';
 import { Router } from '@angular/router';
 
@@ -13,11 +13,11 @@ import { Router } from '@angular/router';
 })
 @Flowbite()
 export class SuperAdminImpactStoryComponent
-  extends BaseComponent<ImpactStoryOrganization>
+  extends BaseComponent<ImpactStory>
   implements OnInit
 {
   constructor(
-    public impactStoryOrganizationService: ImpactStoryOrganizationService,
+    public impactStoryOrganizationService: ImpactStoryService,
     public organizationService: OrganizationService,
     public router: Router
   ) {

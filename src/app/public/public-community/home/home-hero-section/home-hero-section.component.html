@@ -1,28 +1,30 @@
-<section class="relative max-w-[100vw]  pt-36 box-border  dark:from-indigo-600/20  dark:to-yellow-500/20">
+<section class="relative max-w-[100vw]  pt-36 md:pt-44 box-border  dark:from-indigo-600/20  dark:to-yellow-500/20">
   <div class="container relative ">
-    <div class="grid grid-cols-1 md:grid-cols-2 ">
-      <div class="mb-12 max-w-2xl text-center md:text-start items-center">
+    <div class="grid grid-cols-1 md:grid-cols-3 items-center ">
+      <div class="mb-12 col-span-2 max-w-2xl text-center md:text-start items-center">
         <h4
-          class="text-primary text-3xl  leading-normal mb-4 font-semibold break-words">
-          Know with confidence the most</h4>
-        <h4 class=" font-bold lg:leading-normal md:leading-normal md:text-5xl leading-normal md:text-start text-center text-4xl mb-4 text-primary">
+            class="text-primary text-4xl  leading-normal font-semibold break-words">
+          Confidently find the most</h4>
+        <h4 class=" font-bold lg:leading-normal md:leading-normal leading-normal md:text-start text-center text-[2.16rem] mb-4 text-primary">
           <span class="font-extrabold">Impactful </span>
           <span class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-primary relative inline-block">
             <span class="typewrite text-white relative">
-              <app-typewriter [textList]="['Organizations', 'NGOs', 'Hospitals', 'Startups', 'Businesses']"></app-typewriter>
+              <app-typewriter
+                              [textList]="['Organizations', 'Startups', 'Insurance Firms', 'Pharmaceuticals', 'Institutions']"></app-typewriter>
+              <!-- domain, account-child, hand-heart, lightbuld-on, pill, scool -->
             </span>
           </span>
           <br />
         </h4>
         <br>
-        <p class="md:text-2xl mt-1 lg:leading-normal md:leading-normal leading-normal md:text-start mb-3 text-primary ">
-          Rated by communities, not just 3rd party evaluators.<br>
-          Read reviews, write reviews and earn rewards.
+        <p class="md:text-xl  lg:leading-normal md:leading-normal leading-normal md:text-start mb-3 text-primary ">
+          <span class="font-bold">Powered and verified by community voices.</span>
         </p>
       </div>
 
-      <div class=" md:h-[19rem] md:w-[24rem] w-full rounded-[12px] overflow-hidden justify-self-center md:mr-7">
-        <img src="assets/images/hero1.png" alt="" class="h-full w-full">
+      <div class=" md:h-[19rem] col-span-1 md:w-[24rem] w-full rounded-[12px] overflow-hidden justify-self-center md:mr-20">
+        <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/static-content/community/home/hero" alt=""
+             class="h-full object-cover w-full">
       </div>
 
     </div>
@@ -34,12 +36,14 @@
 
     <!-- Organization list -->
     <div class="flex justify-evenly md:justify-center items-center pt-10 gap-0 gap-y-4 md:gap-24 flex-wrap">
-      <img class="h-5 md:h-7  " src="assets/images/partners/aterian.png" />
-      <img class="h-7 md:h-9 " src="assets/images/partners/cocoa.png" />
-      <img class="h-9 md:h-11" src="assets/images/partners/victoria.png" />
-      <img class="h-7 md:h-9" src="assets/images/partners/yale.png" />
-      <img class="h-10 md:h-12" src="assets/images/partners/penn.png" />
-      <img class="h-14 md:h-16" src="assets/images/partners/clinton.png" />
+      <img class="h-5 md:h-7  "
+           src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/static-content/community/home/partners/aterian" />
+      <img class="h-7 md:h-9 " src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/static-content/community/home/partners/cocoa" />
+      <img class="h-9 md:h-11" src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/static-content/community/home/partners/queen" />
+      <img class="h-7 md:h-9" src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/static-content/community/home/partners/yale" />
+      <img class="h-10 md:h-12" src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/static-content/community/home/partners/penn" />
+      <img class="h-14 md:h-16"
+           src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/static-content/community/home/partners/clinton" />
       <!-- <img class="h-full" src="assets/images/partners/hero.png" /> -->
 
     </div>

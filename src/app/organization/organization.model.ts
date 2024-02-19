@@ -1,7 +1,7 @@
 import { Country } from '../country/country.model';
 import { BaseModel } from '../shared/models/BaseModel';
 import { ProfileStatusOrganization } from './profile-status-organization/profile-status-organization.model';
-import { Scale } from './scale/scale.model';
+import { Scale } from '../scale/models/scale.model';
 import { SectorOrganization } from './sector-organization/sector-organization.model';
 import { TagOrganization } from './tag-organization/tag-organization.model';
 import { TypeOrganization } from './type-organization/type-organization.model';
@@ -13,6 +13,8 @@ export interface Organization extends BaseModel {
 
   logo?: string;
 
+  cover?: string;
+
   website?: string;
 
   email?: string;
@@ -23,13 +25,11 @@ export interface Organization extends BaseModel {
 
   type_organization_id?: number;
 
-  country_id?: number;
-
-  location?: string;
-
   profile_status_organization_id?: number;
 
-  country?: Country;
+  country?: string;
+
+  city?: string;
 
   sector_organization?: SectorOrganization;
 

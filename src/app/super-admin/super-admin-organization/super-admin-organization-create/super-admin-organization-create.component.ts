@@ -66,7 +66,7 @@ export class SuperAdminOrganizationCreateComponent
     const tag_organizations = organization?.tag_organizations || [];
     const email = organization?.email || '';
     const website = organization?.website || '';
-    const location = organization?.location || '';
+    const city = organization?.city || '';
     const creator_id = organization?.creator_id || this.authService.user.id;
 
     this.form = this.fb.group({
@@ -78,7 +78,7 @@ export class SuperAdminOrganizationCreateComponent
       tag_organizations: [tag_organizations, Validators.required],
       email: [email, Validators.required],
       website: [website, Validators.required],
-      location: [location, Validators.required],
+      city: [city, Validators.required],
       creator_id: [creator_id, Validators.required],
     });
 

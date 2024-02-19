@@ -1,0 +1,179 @@
+<ng-container *ngIf="impactFidelityService.score && !loading">
+  <div class="relative overflow-x-auto">
+    <table class="w-full md:text-lg text-sm text-left rtl:text-right text-gray-500 ">
+      <!-- Table header -->
+      <thead class=" text-gray-400 !font-medium bg-slate-100">
+        <tr>
+          <th scope="col" class="px-6 py-4">
+            #
+          </th>
+          <th scope="col" class="px-6 py-4">
+            Category
+          </th>
+          <th scope="col" class="px-6 py-4">
+            Key
+          </th>
+          <th scope="col" class="px-6 py-4">
+            Score(%)
+          </th>
+        </tr>
+      </thead>
+
+      <!-- Table body -->
+      <tbody>
+        <!-- Acceptabilty -->
+        <tr class="bg-white border-b dark:bg-gray-800 font-semibold dark:border-gray-700">
+          <!-- Number -->
+          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            01
+          </th>
+
+          <!-- Category -->
+          <td class="px-6 py-4">
+            Acceptabilty
+          </td>
+
+          <!-- Key -->
+          <td class="px-6 py-4">
+            {{ scaleService.getScoreKey(impactFidelityService.score.acceptability) }}
+          </td>
+
+          <!-- Score -->
+          <td class="px-6 py-4">
+            {{ impactFidelityService.score.acceptability * 100 /5 }}
+          </td>
+        </tr>
+
+        <!-- Appropriateness -->
+        <tr class="bg-white border-b dark:bg-gray-800 font-semibold dark:border-gray-700">
+          <!-- Number -->
+          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            02
+          </th>
+
+          <!-- Category -->
+          <td class="px-6 py-4">
+            Appropriateness
+          </td>
+
+          <!-- Key -->
+          <td class="px-6 py-4">
+            {{ scaleService.getScoreKey(impactFidelityService.score.appropriateness) }}
+          </td>
+
+          <!-- Score -->
+          <td class="px-6 py-4">
+            {{ impactFidelityService.score.appropriateness * 100 /5 }}
+          </td>
+        </tr>
+
+        <!-- Feasibility -->
+        <tr class="bg-white border-b dark:bg-gray-800 font-semibold dark:border-gray-700">
+          <!-- Number -->
+          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            03
+          </th>
+
+          <!-- Category -->
+          <td class="px-6 py-4">
+            Feasibility
+          </td>
+
+          <!-- Key -->
+          <td class="px-6 py-4">
+            {{ scaleService.getScoreKey(impactFidelityService.score.feasibility) }}
+          </td>
+
+          <!-- Score -->
+          <td class="px-6 py-4">
+            {{ impactFidelityService.score.feasibility * 100 / 5}}
+          </td>
+        </tr>
+
+        <!-- <ng-container class="blur-md"> -->
+        <!-- Quality of delivery -->
+        <tr class="bg-white border-b dark:bg-gray-800 font-semibold dark:border-gray-700 blur-md">
+          <!-- Number -->
+          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            04
+          </th>
+
+          <!-- Category -->
+          <td class="px-6 py-4">
+            Quality of delivery
+          </td>
+
+          <!-- Key -->
+          <td class="px-6 py-4">
+            {{ scaleService.getScoreKey(impactFidelityService.score.quality_of_delivery) }}
+          </td>
+
+          <!-- Score -->
+          <td class="px-6 py-4">
+            {{ impactFidelityService.score.quality_of_delivery * 100 / 5}}
+          </td>
+        </tr>
+
+        <!-- Plan comprehensiveness -->
+        <tr class="bg-white border-b dark:bg-gray-800 font-semibold dark:border-gray-700 blur-md">
+          <!-- Number -->
+          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            05
+          </th>
+
+          <!-- Category -->
+          <td class="px-6 py-4">
+            Plan comprehensiveness
+          </td>
+
+          <!-- Key -->
+          <td class="px-6 py-4">
+            {{ scaleService.getScoreKey(impactFidelityService.score.comprehensiveness) }}
+          </td>
+
+          <!-- Score -->
+          <td class="px-6 py-4">
+            {{ impactFidelityService.score.comprehensiveness * 100 / 5}}
+          </td>
+        </tr>
+        <!-- </ng-container> -->
+
+      </tbody>
+    </table>
+
+    <!-- See full report -->
+    <a [routerLink]="['/', 'for-business', 'book-demo']"
+       class="absolute bottom-[10%] right-[50%]  translate-x-[50%] border border-primary text-primary bg-secondary hover:bg-secondary-dark focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-base px-5 py-2.5 me-2 mb-2 ">
+      See full report
+    </a>
+  </div>
+
+
+  <!-- Insight -->
+  <div class="text-primary md:text-lg text-sm bg-primary/5 p-2">
+    <span class="me-2">
+      <i class="mdi mdi-lightbulb-on"></i>
+      Insight:
+    </span>
+
+    <!-- If the community has more than 10 respondents -->
+    <span class="font-bold" *ngIf="total_respondant >= 5">
+      Community members report
+      {{ scaleService.getImpactStrengthKey(company_score_rating!) }}
+      which
+      {{ scaleService.getScoresAlignmentKey(company_score_rating!, company_reported_impact_strength!) }}
+      what
+      {{ organization?.name }}
+      reported
+    </span>
+
+
+    <!-- If the community has less than 10 respondents -->
+    <span class="font-bold italic" *ngIf="total_respondant < 5">
+      Insufficient data for insights
+    </span>
+  </div>
+</ng-container>
+
+
+<app-page-loading *ngIf="loading"></app-page-loading>

@@ -1,0 +1,185 @@
+<div class="grid grid-cols-1 md:grid-cols-3">
+
+  <div class=" col-span-1 md:col-span-2">
+    <!-- Urgent community needs -->
+    <div class="mb-14">
+      <div class="md:w-2/3">
+        <div class="bg-slate-200 text-primary text-lg font-semibold me-2 px-3 py-1 rounded-full mb-5 inline-block">Urgent community needs</div>
+
+
+        <div class="relative">
+          <img src="assets/images/new-style/rating-report-ucn.png" alt="urgent-community-need">
+          <a [routerLink]="['/', 'for-business', 'book-demo']"
+             class="absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] border border-primary text-primary bg-secondary hover:bg-secondary-dark focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-base px-5 py-2.5 me-2 mb-2 ">
+            See full report
+          </a>
+        </div>
+      </div>
+
+
+    </div>
+
+    <h2 class="md:text-3xl text-xl font-bold text-primary mb-5">Trust score breakdown</h2>
+    <!-- Social impact fidelity-->
+    <div class="mb-24">
+      <!-- Title -->
+      <div class="bg-slate-200 text-primary text-lg font-semibold me-2 px-3 py-1 rounded-full mb-4 inline-block">Social Impact Fidelity</div>
+
+      <ng-container *ngIf="socialImpactFidelityService.score && !isLoading.socialImpactFidelity">
+        <!-- Header and score -->
+        <div class="md:w-3/4 mb-7">
+
+
+
+          <!-- Score -->
+          <div class="mb-7">
+            <h5 class="font-semibold text-base">Score</h5>
+            <h3 class="text-[2.50rem] font-bold">{{ socialImpactFidelityService.score.score }}</h3>
+            <div class="w-1/2 h-5 bg-gray-200 rounded-full dark:bg-gray-700">
+              <div class="h-5 bg-green-400 rounded-full" [ngStyle]="{width: socialImpactFidelityService.score.score + '%'}"></div>
+            </div>
+          </div>
+          <p class="text-slate-700 text-[16px] mb-3 ">
+            This component evaluates the fidelity of the social impact that the organization has self-reported. In other words, “Does it match the
+            reality on the
+            ground?”.
+          </p>
+          <p>Respondents: Members of communities where organizations deliver impact</p>
+        </div>
+
+        <!-- Metrics -->
+        <div class="md:text-lg text-base text-primary italic">Key Impact Metrics</div>
+        <div class="relative flex flex-col gap-4 md:w-3/4 mt-5">
+          <!-- Acceptability -->
+          <div class="flex items-center gap-3">
+            <h3 class=" text-base md:text-lg shrink-0">Acceptability</h3>
+            <div class="w-full h-5 bg-gray-200 rounded-full dark:bg-gray-700">
+              <div class="h-5 bg-secondary rounded-full"
+                   [ngStyle]="{width: scaleService.getProgressBarWidth(socialImpactFidelityService.score.acceptability)}"></div>
+            </div>
+            <div class=" text-base md:text-lg">{{ socialImpactFidelityService.score.acceptability * 100 /5 }}%</div>
+
+          </div>
+          <!-- Appropriateness -->
+          <div class="flex items-center gap-3">
+            <h3 class=" text-base md:text-lg shrink-0">Appropriateness</h3>
+            <div class="w-full h-5 bg-gray-200 rounded-full dark:bg-gray-700">
+              <div class="h-5 bg-secondary rounded-full"
+                   [ngStyle]="{width: scaleService.getProgressBarWidth(socialImpactFidelityService.score.appropriateness)}"></div>
+            </div>
+            <div class=" text-base md:text-lg">{{ socialImpactFidelityService.score.appropriateness * 100 /5 }}%</div>
+
+          </div>
+          <!-- Feasibility -->
+          <div class="flex items-center gap-3">
+            <h3 class=" text-base md:text-lg shrink-0">Feasibility</h3>
+            <div class="w-full h-5 bg-gray-200 rounded-full dark:bg-gray-700">
+              <div class="h-5 bg-secondary rounded-full"
+                   [ngStyle]="{width: scaleService.getProgressBarWidth(socialImpactFidelityService.score.feasibility)}"></div>
+            </div>
+            <div class=" text-base md:text-lg">{{ socialImpactFidelityService.score.feasibility * 100 /5 }}%</div>
+
+          </div>
+          <!-- Plan Comprehensiveness -->
+          <div class="flex items-center gap-3 blur-md">
+            <h3 class=" text-base md:text-lg shrink-0">Plan Comprehensiveness</h3>
+            <div class="w-full h-5 bg-gray-200 rounded-full dark:bg-gray-700">
+              <div class="h-5 bg-secondary rounded-full"
+                   [ngStyle]="{width: scaleService.getProgressBarWidth(socialImpactFidelityService.score.comprehensiveness)}"></div>
+            </div>
+            <div class=" text-base md:text-lg">{{ socialImpactFidelityService.score.comprehensiveness * 100 /5 }}%</div>
+
+          </div>
+          <!-- Quality of delivery -->
+          <div class="flex items-center gap-3 blur-md">
+            <h3 class=" text-base md:text-lg shrink-0">Quality of delivery</h3>
+            <div class="w-full h-5 bg-gray-200 rounded-full dark:bg-gray-700">
+              <div class="h-5 bg-secondary rounded-full"
+                   [ngStyle]="{width: scaleService.getProgressBarWidth(socialImpactFidelityService.score.quality_of_delivery)}"></div>
+            </div>
+            <div class=" text-base md:text-lg">{{ socialImpactFidelityService.score.quality_of_delivery * 100 /5 }}%</div>
+
+          </div>
+          <!-- <img src="assets/images/new-style/rating-report-sif.png" class=" " alt="impact-fidelity"> -->
+
+          <!-- See full report -->
+          <a [routerLink]="['/', 'for-business', 'book-demo']"
+             class="absolute bottom-[5%] right-[50%]  translate-x-[50%] border border-primary text-primary bg-secondary hover:bg-secondary-dark focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-base px-5 py-2.5 me-2 mb-2 ">
+            See full report
+          </a>
+
+        </div>
+      </ng-container>
+      <app-loading *ngIf="isLoading.socialImpactFidelity"></app-loading>
+
+
+    </div>
+
+
+    <!-- Community perception index -->
+    <div class="mb-24">
+      <div class="md:w-3/4 mb-7">
+        <div class="bg-slate-200 text-primary text-lg font-semibold me-2 px-3 py-1 rounded-full mb-4 inline-block">Community Perception Index</div>
+        <p class="text-slate-700 text-[16px] mb-3 ">
+          This component assesses how community stakeholders view companies whose operations and impact initiatives affect them. This score also
+          reflects reputation.
+        </p>
+        <p>Respondents: Members of communities where companies operate</p>
+      </div>
+
+      <div class="text-lg text-primary italic">Key Perception Metrics</div>
+      <div class="relative md:w-2/3 mt-7">
+        <img src="assets/images/new-style/rating-report-metrics.png" class=" " alt="impact-fidelity">
+        <a [routerLink]="['/', 'for-business', 'book-demo']"
+           class="absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] border border-primary text-primary bg-secondary hover:bg-secondary-dark focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-base px-5 py-2.5 me-2 mb-2 ">
+          See full report
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Facilitation Strategy -->
+    <div class="mb-24">
+      <div class="md:w-3/4 mb-7">
+        <div class="bg-slate-200 text-primary text-lg font-semibold me-2 px-3 py-1 rounded-full mb-4 inline-block">Facilitation Strategy</div>
+        <p class="text-slate-700 text-[16px] mb-3 ">
+          This component evaluates how well the facilitating organization treats its employees and equips them to deliver sustainable impact.
+        </p>
+        <p>Respondents: Employees of organization delivering impact.</p>
+      </div>
+
+      <div class="text-lg text-primary italic">Key Facilitation Metrics</div>
+      <div class="relative md:w-2/3 mt-7">
+        <img src="assets/images/new-style/rating-report-metrics.png" class=" " alt="impact-fidelity">
+        <a [routerLink]="['/', 'for-business', 'book-demo']"
+           class="absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] border border-primary text-primary bg-secondary hover:bg-secondary-dark focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-base px-5 py-2.5 me-2 mb-2 ">
+          See full report
+        </a>
+      </div>
+
+    </div>
+
+
+
+    <!-- <div class="mb-7">
+      <div class="w-2/3 mb-7">
+        <div class="bg-slate-200 text-primary text-lg font-semibold me-2 px-3 py-1 rounded-full mb-4 inline-block">Social Impact Fidelity</div>
+        <p class="text-slate-700 text-[16px] mb-3 ">
+          This component evaluates the fidelity of the social impact that the organization has self-reported. In other words, “Does it match the
+          reality
+          on the
+          ground?”.
+        </p>
+        <p>Respondents: Members of communities where organizations deliver impact</p>
+      </div>
+
+      <div class="text-lg text-primary italic">Key Impact Metric</div>
+      <img src="assets/images/new-style/rating-report-sif.png" class="w-2/3 mt-7 " alt="impact-fidelity">
+
+    </div> -->
+    <!-- <img src="assets/images/new-style/rating-report.png" class="w-2/3 mt-7 " alt="impact-fidelity"> -->
+  </div>
+  <div class="md:col-span-1  md:block hidden">
+    <app-rating-information></app-rating-information>
+  </div>
+</div>

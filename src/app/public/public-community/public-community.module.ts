@@ -27,6 +27,22 @@ import { CommunitySuggestionThanksComponent } from './community-suggestion/commu
 import { OrganizationShowOverviewOtherOrganizationsComponent } from './organization/organization-show/organization-show-overview/organization-show-overview-other-organization/organization-show-overview-other-organizations.component';
 import { HomeSectorOrganizationListComponent } from './home/home-sector-organization-list/home-sector-organization-list.component';
 import { OrganizationShowImpactStoriesComponent } from './organization/organization-show/organization-show-overview/organization-show-impact-stories/organization-show-impact-stories.component';
+import { OrganizationNewStyleComponent } from './organization/organization-new-style/organization-new-style.component';
+import { OrganizationNewStyleStoriesComponent } from './organization/organization-new-style/organization-new-style-stories/organization-new-style-stories.component';
+import { OrganizationNewStyleRatingReportComponent } from './organization/organization-new-style/organization-new-style-rating-report/organization-new-style-rating-report.component';
+import { OrganizationNewStyleCompanyReportedComponent } from './organization/organization-new-style/organization-new-style-company-reported/organization-new-style-company-reported.component';
+import { OrganizationNewStyleCommunityVerifiedComponent } from './organization/organization-new-style/organization-new-style-community-verified/organization-new-style-community-verified.component';
+import { OrganizationNewStyleRatingOverviewComponent } from './organization/organization-new-style/organization-new-style-rating-overview/organization-new-style-rating-overview.component';
+import { OrganizationNewStyleStoriesListComponent } from './organization/organization-new-style/organization-new-style-stories/organization-new-style-stories-list/organization-new-style-stories-list.component';
+import { RatingInformationComponent } from './organization/organization-new-style/rating-information/rating-information.component';
+import { WhoIsForComponent } from './who-is-for/who-is-for.component';
+import { WhoIsForImpactFacilitatorsComponent } from './who-is-for/who-is-for-impact-facilitators/who-is-for-impact-facilitators.component';
+import { WhoIsForImpactFundersComponent } from './who-is-for/who-is-for-impact-funders/who-is-for-impact-funders.component';
+import { WhoIsForImpactedCommunitiesComponent } from './who-is-for/who-is-for-impacted-communities/who-is-for-impacted-communities.component';
+import { StoriesRatingComponent } from './organization/organization-new-style/organization-new-style-stories/stories-rating/stories-rating.component';
+import { OrganizationNewStyleStoriesCreateComponent } from './organization/organization-new-style/organization-new-style-stories/organization-new-style-stories-create/organization-new-style-stories-create.component';
+import { OrganizationFunderComponent } from './organization/organization-funder/organization-funder.component';
+import { OrganizationFunderPortfolioComponent } from './organization/organization-funder/organization-funder-portfolio/organization-funder-portfolio.component';
 
 const routes: Routes = [
   {
@@ -40,6 +56,29 @@ const routes: Routes = [
       {
         path: 'community-voice',
         component: CommunitySuggestionComponent,
+      },
+      {
+        path: 'who-is-for',
+        component: WhoIsForComponent,
+        children: [
+          {
+            path: 'impact-facilitators',
+            component: WhoIsForImpactFacilitatorsComponent,
+          },
+          {
+            path: 'impact-funders',
+            component: WhoIsForImpactFundersComponent,
+          },
+          {
+            path: 'impacted-communities',
+            component: WhoIsForImpactedCommunitiesComponent,
+          },
+          {
+            path: '**',
+            redirectTo: 'impact-facilitators',
+            pathMatch: 'full',
+          },
+        ],
       },
 
       {
@@ -59,23 +98,103 @@ const routes: Routes = [
         component: OrganizationContainerComponent,
       },
       {
-        path: 'organizations/:id',
-        component: OrganizationShowComponent,
+        path: 'organizations/funder',
+        component: OrganizationFunderComponent,
         children: [
           {
-            path: 'about',
-            component: OrganizationShowAboutComponent,
+            path: 'portfolio',
+            component: OrganizationFunderPortfolioComponent,
           },
           {
-            path: 'overview',
-            component: OrganizationShowOverviewComponent,
+            path: 'stories',
+            component: OrganizationNewStyleStoriesComponent,
+            children: [
+              {
+                path: ':id',
+                component: OrganizationNewStyleStoriesListComponent,
+              },
+              {
+                path: '**',
+                redirectTo: 'unverified',
+                pathMatch: 'full',
+              },
+            ],
           },
+
           {
             path: '**',
-            redirectTo: 'overview',
+            redirectTo: 'stories',
+            pathMatch: 'full',
           },
         ],
       },
+      {
+        path: 'organizations/:id',
+        component: OrganizationNewStyleComponent,
+        children: [
+          {
+            path: 'rating-overview',
+            component: OrganizationNewStyleRatingOverviewComponent,
+            children: [
+              {
+                path: 'company-reported',
+                component: OrganizationNewStyleCompanyReportedComponent,
+              },
+              {
+                path: 'community-verified',
+                component: OrganizationNewStyleCommunityVerifiedComponent,
+              },
+              {
+                path: '**',
+                redirectTo: 'company-reported',
+                pathMatch: 'full',
+              },
+            ],
+          },
+          {
+            path: 'stories',
+            component: OrganizationNewStyleStoriesComponent,
+            children: [
+              {
+                path: ':id',
+                component: OrganizationNewStyleStoriesListComponent,
+              },
+              {
+                path: '**',
+                redirectTo: 'unverified',
+                pathMatch: 'full',
+              },
+            ],
+          },
+          {
+            path: 'rating-report',
+            component: OrganizationNewStyleRatingReportComponent,
+          },
+          {
+            path: '**',
+            redirectTo: 'stories',
+            pathMatch: 'full',
+          },
+        ],
+      },
+      // {
+      //   path: 'organizations/:id',
+      //   component: OrganizationShowComponent,
+      //   children: [
+      //     {
+      //       path: 'about',
+      //       component: OrganizationShowAboutComponent,
+      //     },
+      //     {
+      //       path: 'overview',
+      //       component: OrganizationShowOverviewComponent,
+      //     },
+      //     {
+      //       path: '**',
+      //       redirectTo: 'overview',
+      //     },
+      //   ],
+      // },
     ],
   },
 ];
@@ -103,6 +222,22 @@ const routes: Routes = [
     CommunitySuggestionThanksComponent,
     OrganizationShowOverviewOtherOrganizationsComponent,
     OrganizationShowImpactStoriesComponent,
+    OrganizationNewStyleComponent,
+    OrganizationNewStyleStoriesComponent,
+    OrganizationNewStyleRatingReportComponent,
+    OrganizationNewStyleCompanyReportedComponent,
+    OrganizationNewStyleCommunityVerifiedComponent,
+    OrganizationNewStyleRatingOverviewComponent,
+    OrganizationNewStyleStoriesListComponent,
+    RatingInformationComponent,
+    WhoIsForComponent,
+    WhoIsForImpactFacilitatorsComponent,
+    WhoIsForImpactFundersComponent,
+    WhoIsForImpactedCommunitiesComponent,
+    StoriesRatingComponent,
+    OrganizationNewStyleStoriesCreateComponent,
+    OrganizationFunderComponent,
+    OrganizationFunderPortfolioComponent,
   ],
   imports: [
     CommonModule,

@@ -29,10 +29,12 @@
               "node_modules/@mdi/font/css/materialdesignicons.min.css",
               "node_modules/@iconscout/unicons/css/line.css",
               "src/assets/css/tailwind.css",
+              "node_modules/animate.css/animate.min.css",
               "src/styles.scss"
             ],
             "scripts": [
               "node_modules/feather-icons/dist/feather.min.js",
+              "node_modules/apexcharts/dist/apexcharts.min.js",
               "src/assets/libs/choices.js/public/assets/scripts/choices.min.js",
               {
                 "input": "src/assets/js/plugins.init.js",

@@ -1,0 +1,94 @@
+<ng-container *ngIf="single">
+  <!-- Recommendation -->
+  <div class="grid grid-cols-1 md:grid-cols-3">
+    <div class="md:col-span-2 col-span-1" *ngIf="communityTrustScore">
+      <h3 class="md:text-3xl text-xl text-primary font-bold md:mb-3 mb-1">Recommendation</h3>
+      <div class="rounded-lg p-5 bg-primary opacity-90 md:w-3/4 w-full grid grid-cols-1 gap-4">
+        <div class="text-xl  font-medium">
+          <!-- Number of starts -->
+          <i class="mdi text-secondary mr-3 mdi-star"
+             *ngFor="let i of [].constructor(scaleService.getNumberOfStars(communityTrustScore?.rating!).numberOfStars)"></i>
+          <i class="mdi mdi-star-half-full text-secondary mr-3"
+             *ngFor="let i of [].constructor(scaleService.getNumberOfStars(communityTrustScore?.rating!).numberOfHalfStars)"></i>
+          <i class="mdi mdi-star text-slate-300/20 mr-3"
+             *ngFor="let i of [].constructor(scaleService.getNumberOfStars(communityTrustScore?.rating!).numberOfEmptyStars)"></i>
+
+        </div>
+        <h6 class="text-base text-secondary"> <span class="font-semibold">Recommendation:</span> {{ getRecommendation() }}</h6>
+
+
+        <!-- TODO: the multiplication by 10 of the number of respondants and the number of reviews is just for testing purpose. TO CORRECT -->
+        <ng-container *ngIf="communityTrustScore.total_survey_respondant >= 10">
+          <p class="text-slate-200">
+            {{ single.name }} has a Community Trust Score of {{ communityTrustScore.community_trust_score }} % from {{
+            communityTrustScore.total_survey_respondant * 10 }} survey responses and a {{ communityTrustScore.rating }}-star rating from {{
+            communityTrustScore.total_reviews * 10 }} reviews. If you believe in their mission, you can support them with confidence.
+          </p>
+        </ng-container>
+
+        <a [routerLink]="['./']" class="text-secondary">Learn more about our methodology. See how we combat fake reviews and survey responses.</a>
+
+        <p class="text-slate-200">We deem 100 or more responses as statistically significant.</p>
+
+      </div>
+    </div>
+
+    <!-- Rating information (right sidebar)-->
+    <div class="md:col-span-1  md:block hidden ">
+      <app-rating-information></app-rating-information>
+    </div>
+  </div>
+
+
+
+
+  <div class="mt-12">
+    <h3 class="md:text-3xl text-xl text-primary font-bold mb-3">Summary</h3>
+
+    <div
+         class="group col-span-2 relative    duration-500 ease-in-out">
+
+      <!-- Tab list -->
+      <ul
+          class="text-lg font-semibold text-start text-slate-500   flex">
+        <!-- Overview -->
+        <li class="pe-5">
+          <a [routerLink]="['company-reported']"
+             [routerLinkActive]="['text-primary', 'border-b-[3px]', 'border-primary' ]"
+             class="inline-block w-full py-4 text-sm md:text-base   hover:text-primary-light focus:outline-none dark:bg-gray-700 dark:text-white"
+             aria-current="page">
+            {{ single.name }} Reported
+          </a>
+        </li>
+
+        <!-- Stories -->
+        <li class="">
+          <a [routerLink]="['community-verified']"
+             [routerLinkActive]="['text-primary', 'border-b-[3px]', 'border-primary' ]"
+             class="inline-block w-full py-4 text-sm md:text-base   hover:text-primary-light focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">
+            Community Verified</a>
+        </li>
+
+
+
+      </ul>
+
+
+      <!-- Tab content -->
+      <div id="StarterContent" class="py-5">
+        <!-- Overview -->
+        <div class="" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+          <router-outlet></router-outlet>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+
+<!-- <apx-chart
+           [series]="chartOptions.series"
+           [chart]="chartOptions.chart"
+           [xaxis]="chartOptions.xaxis"
+           [title]="chartOptions.title"></apx-chart> -->

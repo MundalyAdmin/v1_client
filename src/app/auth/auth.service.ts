@@ -8,9 +8,17 @@ import { Router } from '@angular/router';
 import { Storage } from '../shared/helpers/storage/storage';
 import { User } from '../user/user.model';
 import { TypeUserEnum } from '../user/type-user.enum';
-import { AuthenticatedUser } from './authenticated-user.model';
+import { environment } from '../../environments/environment';
 import { TypeUser } from '../user/type-user.model';
 import { Organization } from '../organization/organization.model';
+import { AuthenticatedUser } from './authenticated-user.model';
+
+interface LoginInformation {
+  user: User;
+  accessToken: string;
+  organization: Organization | null;
+  type_user: TypeUser | null;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -76,8 +84,31 @@ export class AuthService extends BaseService<any> {
     );
   }
 
-  private storeLoginInformation(data: AuthenticatedUser) {
-    this.storage.clear();
+  public me(accessToken: string) {
+    return this.factory
+      .get(`auth/me`, { headers: { Authorization: `Bearer ${accessToken}` } })
+      .pipe(
+        tap({
+          next: (response: ApiResponse<LoginInformation>) => {
+            this.storeLoginInformation(response.data as LoginInformation);
+          },
+          error: (error: HttpErrorResponse) => this.errorResponseHandler(error),
+        })
+      );
+  }
+
+  continueWithGoogle() {
+    window.location.href = `${environment.apiUrl}/auth/google-oauth`;
+  }
+
+  clearLoginInformation() {
+    this.storage.delete('user');
+    this.storage.delete('typeUser');
+    this.storage.delete('accessToken');
+  }
+
+  private storeLoginInformation(data: LoginInformation) {
+    this.clearLoginInformation();
     this.storage.set('accessToken', data.accessToken);
     this.user = data.user;
     this.typeUser = data.type_user;
@@ -88,7 +119,6 @@ export class AuthService extends BaseService<any> {
     return this.storage.getAccessToken() && this.storage.getUser();
   }
   public logout() {
-    this.storage.clear();
-    this.router.navigate(['/auth/login']);
+    this.clearLoginInformation();
   }
 }
