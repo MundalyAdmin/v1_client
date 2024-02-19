@@ -39,6 +39,11 @@ const routes: Routes = [
         path: 'coming-soon',
         component: ComingSoonComponent,
       },
+      {
+        path: 'initiatives',
+        loadChildren: () =>
+          import('./initiatives/initiatives.module').then((m) => m.InitiativesModule),
+      }
     ],
   },
 ];
