@@ -22,7 +22,7 @@ export class LoginComponent extends BaseCreateComponent<any> {
 
   initForm() {
     this.form = this.fb.group({
-      email: [null, Validators.required],
+      username: [null, Validators.required],
       password: [null, Validators.required],
     });
   }
