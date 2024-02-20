@@ -6,6 +6,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { DashboardOrganizationCommunityComponent } from './dashboard-organization-community/dashboard-organization-community.component';
 import { DashboardOrganizationImpactComponent } from './dashboard-organization-impact/dashboard-organization-impact.component';
 import { DashboardOrganizationBenchmarkComponent } from './dashboard-organization-benchmark/dashboard-organization-benchmark.component';
+import { DashboardOrganizationSwotComponent } from './dashboard-organization-swot/dashboard-organization-swot.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,23 @@ const routes: Routes = [
       {
         path: 'benchmark',
         component: DashboardOrganizationBenchmarkComponent,
+        children: [
+          {
+            path: 'self-assessment',
+            loadChildren: () =>
+              import('../../initiatives/initiatives.module').then(
+                (m) => m.InitiativesModule
+              ),
+          },
+          {
+            path: 'swot-analysis',
+            component: DashboardOrganizationSwotComponent,
+          },
+          {
+            path: '**',
+            redirectTo: 'self-report',
+          },
+        ],
       },
       {
         path: '',
@@ -39,6 +57,7 @@ const routes: Routes = [
     DashboardOrganizationCommunityComponent,
     DashboardOrganizationImpactComponent,
     DashboardOrganizationBenchmarkComponent,
+    DashboardOrganizationSwotComponent,
   ],
   imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
 })
