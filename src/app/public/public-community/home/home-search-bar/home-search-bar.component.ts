@@ -1,20 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { OrganizationService } from '../../../../organization/organization.service';
-import {
-  BaseComponent,
-  BaseCreateComponent,
-} from '../../../../shared/base-component';
-import { Country } from '../../../../country/country.model';
-import { CountryService } from '../../../../country/country.service';
-import {
-  Select2Data,
-  Select2UpdateEvent,
-  Select2Value,
-} from 'ng-select2-component';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { debounceTime } from 'rxjs';
 import { CitySearchResult } from '../../../../country/city-search-result.model';
+import { Country } from '../../../../country/country.model';
+import { CountryService } from '../../../../country/country.service';
+import { OrganizationService } from '../../../../organization/organization.service';
+import { BaseCreateComponent } from '../../../../shared/base-component';
 
 @Component({
   selector: 'app-home-search-bar',

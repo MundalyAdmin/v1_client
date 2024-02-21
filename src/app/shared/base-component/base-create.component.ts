@@ -60,7 +60,7 @@ export class BaseCreateComponent<T>
   public router: Router;
 
   /* CONSTRUCTOR */
-  constructor(public override service: BaseService<T>) {
+  constructor(public override service?: BaseService<T>) {
     super(service);
     this.fb = AppInjector.injector.get(FormBuilder);
     this.router = AppInjector.injector.get(Router);
@@ -267,7 +267,7 @@ export class BaseCreateComponent<T>
   create(callback?: Function) {
     if (!this.form.valid) this.helper.notification.alertDanger('Form invalid');
     this.loading = true;
-    this.service.store(this.form.value).subscribe(() => {
+    this.service?.store(this.form.value).subscribe(() => {
       this.loading = false;
       this.form.reset();
       this.helper.navigation.deleteFragmentFromUrl();

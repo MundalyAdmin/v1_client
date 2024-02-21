@@ -47,9 +47,9 @@
 
             </div>
 
-            <a [href]="single.website" target="_blank" type="button"
+            <!-- <a [href]="single.website" target="_blank" type="button"
                class="px-7 py-3 font-semibold border border-primary  rounded-full text-center text-primary bg-secondary  hover:bg-secondary-dark focus:ring-4 focus:outline-none focus:ring-primary-dark">Visit
-              website</a>
+              website</a> -->
           </div>
 
           <!-- Location and badges -->
@@ -79,65 +79,131 @@
 
     <div class="grid   grid-cols-1 gap-0 md:gap-[30px]  md:mt-24 mx-0  mt-12 overflow-hidden">
       <!-- Rating information (appears only on mobile) -->
-      <div class="md:hidden mb-5">
-        <app-rating-information></app-rating-information>
+      <!-- Section Title -->
+      <div>
+        <div class="h3 text-primary font-bold text-center text-4xl">Reports</div>
+
       </div>
+
+
+
+
 
       <!-- Main content -->
       <div
-           class="group  relative    duration-500 ease-in-out">
+           class="group  relative shadow-md   duration-500 ease-in-out">
 
-        <!-- Tab list -->
-        <ul
-            class="md:text-xl text-lg font-semibold text-start text-slate-500 md:px-8 px-2 flex">
-          <!-- Stories -->
-          <li class=" md:pr-8 pr-6">
-            <a [routerLink]="['stories']"
-               [routerLinkActive]="['text-primary', 'border-b-[3px]', 'border-primary' ]"
-               class="inline-block w-full py-4   hover:text-primary-light focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">
-              Community Stories</a>
-          </li>
-
-
-          <!-- Overview -->
-          <li class=" md:pr-8 pr-6">
-            <a [routerLink]="['rating-overview']"
-               [routerLinkActive]="['text-primary', 'border-b-[3px]', 'border-primary' ]"
-               class="inline-block w-full py-4     hover:text-primary-light focus:outline-none dark:bg-gray-700 dark:text-white"
-               aria-current="page">
-              <div class="hidden md:inline">Rating</div> Overview
-            </a>
-          </li>
+        <div class="grid grid-cols-2 gap-10">
+          <!-- Report 1 -->
+          <div class="rounded-2 bg-white p-5 relative border" *ngFor="let report of reports; let i = index">
 
 
 
-          <!-- Rating report -->
-          <li class=" md:pr-8 pr-6">
-            <a [routerLink]="['rating-report']"
-               [routerLinkActive]="['text-primary', 'border-b-[3px]', 'border-primary' ]"
-               class="inline-block w-full py-4   hover:text-primary-light focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">
-              <div class="hidden md:inline">Rating</div> Report
-            </a>
-          </li>
-
-        </ul>
 
 
-        <!-- Tab content -->
-        <div id="StarterContent" class="md:p-8 py-4 p-1">
-          <!-- Overview -->
-          <div class="" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-            <router-outlet></router-outlet>
+            <!-- Main content -->
+            <div class="grid-cols-4 grid">
+              <div class="col-span-2 pr-10">
+
+                <!-- Image decrivant le rapport -->
+                <div class="border bg-slate-50 mb-4 w-auto rounded">
+                  <img [src]="report.image" alt="">
+                </div>
+
+                <!--  tags -->
+                <div>
+                  <div
+                       class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-slate-800 ring-1 ring-inset ring-yellow-600/20">
+                    #{{ report.state }}</div>
+
+                </div>
+              </div>
+              <div class="col-span-2">
+
+                <!-- Report title -->
+                <div class="row mb-3 w-4/5">
+                  <div class="font-light text-sm">Report Title</div>
+                  <div class="font-semibold">{{ report.title }}</div>
+                </div>
+
+
+                <!-- Availability -->
+                <div class="row mb-3">
+                  <div class="font-light text-sm">Availability</div>
+                  <div class="font-semibold">{{ report.availability }}</div>
+                </div>
+
+                <!-- Community -->
+                <div class="grid-cols-1 grid">
+                  <div class="font-light text-xs"> <span><i class="mdi mdi-account-group-outline"></i></span> Community</div>
+                  <select (change)="onChange($event, i)"
+                          class="form-select form-input mt-2 w-full py-2 text-sm px-3 h-10 font-semibold bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-primary-200 focus:border-indigo-600 dark:border-gray-800 dark:focus:border-indigo-600 focus:ring-0">
+                    <option value="New Haven">New Haven</option>
+                    <option value="Bridgeport">Bridgeport</option>
+                    <option value="Hartford">Hartford</option>
+                    <option value="Trumbull">Trumbull</option>
+                  </select>
+
+
+                </div>
+
+
+                <div class="mt-5 w-fit">
+                  <!-- Price -->
+                  <div *ngIf="report.price > 0"
+                       class="a p-2 px-8 border border-primary rounded-full text-primary font-extrabold bg-secondary flex items-center justify-center">
+                    ${{ report.price }}
+                  </div>
+
+                  <!-- Contact Sales -->
+                  <div
+                       *ngIf="report.price == 0"
+                       class="a p-2 px-8  border border-primary rounded-full text-primary font-extrabold bg-secondary flex items-center justify-center">
+                    Contact Sales
+                  </div>
+                </div>
+
+
+                <!-- CTAS -->
+                <div class="row mt-[3rem]">
+
+                  <div class="grid gap-7  w-full grid-cols-1  flex-col items-end">
+                    <!-- <a [routerLink]="['./']" (click)="downloadSample()"
+                       class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-secondary hover:bg-secondary  text-primary border-secondary hover:border-secondary  rounded-md">
+                      <span class="mdi mdi-file-arrow-up-down-outline"></span>
+                      See sample
+                    </a> -->
+
+
+                    <a [routerLink]="['./']"
+                       (click)="addToCart(report)"
+                       *ngIf="!cartService.isItemInCart(report)"
+                       class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-primary hover:bg-primary border-primary hover:border-primary text-white rounded-md">
+                      <span><i class="mdi mdi-cart"></i></span>
+                      Add
+                      to cart</a>
+
+
+                    <!-- Remove from cart state  -->
+                    <a [routerLink]="['./']"
+                       (click)="removeFromCart(report)"
+                       *ngIf="cartService.isItemInCart(report)"
+                       class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-red-400 hover:bg-red-400 border-red-400 hover:border-red-400 text-white rounded-md">
+                      <span><i class="mdi mdi-close"></i></span>
+                      Remove
+                      to cart</a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+
+
 
         </div>
       </div>
 
-
     </div>
-
-
-
 
 
 
