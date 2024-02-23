@@ -30,6 +30,14 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'dashboard',
+        canActivate: [AuthGuard],
+        loadChildren: () =>
+          import(
+            './organization/dashboard-organization/dashboard-organization.module'
+          ).then((m) => m.DashboardOrganizationModule),
+      },
+      {
         path: 'coming-soon',
         component: ComingSoonComponent,
       },

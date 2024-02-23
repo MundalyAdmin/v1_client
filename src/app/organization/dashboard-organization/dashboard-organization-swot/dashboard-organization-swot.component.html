@@ -1,0 +1,206 @@
+<div class="bg-gray-100 p-5 h-[100vh]">
+  <div class="md:flex">
+    <ul class="flex-column space-y space-y-4 text-sm font-medium text-gray-500 dark:text-gray-400 md:me-4 mb-4 md:mb-0">
+      <li>
+        <a [routerLink]="['./']" (click)="toggleTab('strength')"
+           class="inline-flex items-center px-4 py-3  rounded-lg hover:text-gray-900 bg-white hover:bg-gray-100  w-full "
+           [ngClass]="{ 'text-white !bg-blue-700 hover:bg-blue-700 hover:text-white dark:bg-blue-600 active': activeTabs['strength'] ===  true}"
+           aria-current="page">
+          <span class="me-2"><i class="mdi mdi-weight-lifter"></i></span>
+          Strengths
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['./']" (click)="toggleTab('weakness')"
+           [ngClass]="{ 'text-white !bg-blue-700 hover:bg-blue-700 hover:text-white dark:bg-blue-600 active': activeTabs['weakness'] ===  true}"
+           class="inline-flex items-center px-4 py-3 rounded-lg hover:text-gray-900 bg-white hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
+          <span class="me-2"><i class="mdi mdi-battery-10"></i></span>
+          Weaknesses
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['./']" (click)="toggleTab('opportunity')"
+           [ngClass]="{ 'text-white !bg-blue-700 hover:bg-blue-700 hover:text-white dark:bg-blue-600 active': activeTabs['opportunity'] ===  true}"
+           class="inline-flex items-center px-4 py-3 rounded-lg hover:text-gray-900 bg-white hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
+          <span class="me-2"><i class="mdi mdi-torch"></i></span>
+          Opportunities
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['./']" (click)="toggleTab('threat')"
+           [ngClass]="{ 'text-white !bg-blue-700 hover:bg-blue-700 hover:text-white dark:bg-blue-600 active': activeTabs['threat'] ===  true}"
+           class="inline-flex items-center px-4 py-3 rounded-lg hover:text-gray-900 bg-white hover:bg-gray-100 w-full dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
+          <span class="me-2"><i class="mdi mdi-alert"></i></span>
+          Threats
+        </a>
+      </li>
+
+    </ul>
+
+
+
+    <!-- Strength -->
+    <div class="p-6 bg-white text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800 rounded-lg w-full" *ngIf="activeTabs['strength']">
+      <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Strengths</h3>
+      <p class="mb-2">
+
+        1. Strong Community Engagement: Cocoa360 has demonstrated a deep commitment to engaging with local communities in a meaningful and impactful
+        way. By
+        involving community members in decision-making processes, program design, and implementation, Cocoa360 ensures that initiatives are culturally
+        sensitive, relevant, and sustainable. This approach fosters trust, ownership, and long-term support from the communities they serve.
+        <br><br>
+        2. Diversified Revenue Source: Cocoa360's innovative model of leveraging cocoa farm revenue to fund education and healthcare initiatives sets
+        them
+        apart. By utilizing a self-sustaining financial mechanism, Cocoa360 reduces dependency on external funding sources and creates a more stable
+        funding
+        base for their programs. This approach not only supports the organization's financial sustainability but also empowers local communities by
+        reinvesting profits back into community development.
+        <br><br>
+        3. Successful COVID-19 Response: The implementation of CoCoPoPP (Cocoa360's COVID-19 Preparedness and Outbreak Prevention Plan) during the
+        pandemic
+        showcased Cocoa360's agility, adaptability, and effectiveness in responding to crises. By proactively addressing the health and safety needs
+        of the
+        communities they work in, Cocoa360 demonstrated leadership and a commitment to the well-being of community members. The zero suspected cases
+        of
+        COVID-19 recorded in their communities reflect the organization's proactive and successful approach to public health interventions.
+        <br><br>
+        4. Strategic Partnerships: Cocoa360's collaborations with reputable organizations such as the Queen's Commonwealth Trust, the Clinton
+        Foundation, and
+        individual donors have been instrumental in supporting their initiatives. These partnerships provide access to funding, resources, expertise,
+        and
+        networks that enhance Cocoa360's capacity to deliver impactful programs and expand their reach. By leveraging these strategic partnerships,
+        Cocoa360
+        is able to amplify their impact, leverage best practices, and access additional support for their community development efforts.
+        <br><br>
+        These strengths collectively position Cocoa360 as a reputable and effective organization that is dedicated to empowering rural communities,
+        fostering
+        sustainable development, and making a positive impact on the lives of community members.
+      </p>
+
+    </div>
+
+
+    <!-- Weaknesses -->
+    <div class="p-6 bg-white text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800 rounded-lg w-full" *ngIf="activeTabs['weakness']">
+      <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Weaknesses</h3>
+      <p class="mb-2">
+
+        1. Strong Community Engagement: Cocoa360 has demonstrated a deep commitment to engaging with local communities in a meaningful and impactful
+        way. By
+        involving community members in decision-making processes, program design, and implementation, Cocoa360 ensures that initiatives are culturally
+        sensitive, relevant, and sustainable. This approach fosters trust, ownership, and long-term support from the communities they serve.
+        <br><br>
+        2. Diversified Revenue Source: Cocoa360's innovative model of leveraging cocoa farm revenue to fund education and healthcare initiatives sets
+        them
+        apart. By utilizing a self-sustaining financial mechanism, Cocoa360 reduces dependency on external funding sources and creates a more stable
+        funding
+        base for their programs. This approach not only supports the organization's financial sustainability but also empowers local communities by
+        reinvesting profits back into community development.
+        <br><br>
+        3. Successful COVID-19 Response: The implementation of CoCoPoPP (Cocoa360's COVID-19 Preparedness and Outbreak Prevention Plan) during the
+        pandemic
+        showcased Cocoa360's agility, adaptability, and effectiveness in responding to crises. By proactively addressing the health and safety needs
+        of the
+        communities they work in, Cocoa360 demonstrated leadership and a commitment to the well-being of community members. The zero suspected cases
+        of
+        COVID-19 recorded in their communities reflect the organization's proactive and successful approach to public health interventions.
+        <br><br>
+        4. Strategic Partnerships: Cocoa360's collaborations with reputable organizations such as the Queen's Commonwealth Trust, the Clinton
+        Foundation, and
+        individual donors have been instrumental in supporting their initiatives. These partnerships provide access to funding, resources, expertise,
+        and
+        networks that enhance Cocoa360's capacity to deliver impactful programs and expand their reach. By leveraging these strategic partnerships,
+        Cocoa360
+        is able to amplify their impact, leverage best practices, and access additional support for their community development efforts.
+        <br><br>
+        These strengths collectively position Cocoa360 as a reputable and effective organization that is dedicated to empowering rural communities,
+        fostering
+        sustainable development, and making a positive impact on the lives of community members.
+      </p>
+
+    </div>
+
+
+    <!-- Opportunities -->
+    <div class="p-6 bg-white text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800 rounded-lg w-full" *ngIf="activeTabs['opportunity']">
+      <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Opportunities</h3>
+      <p class="mb-2">
+
+        1. Strong Community Engagement: Cocoa360 has demonstrated a deep commitment to engaging with local communities in a meaningful and impactful
+        way. By
+        involving community members in decision-making processes, program design, and implementation, Cocoa360 ensures that initiatives are culturally
+        sensitive, relevant, and sustainable. This approach fosters trust, ownership, and long-term support from the communities they serve.
+        <br><br>
+        2. Diversified Revenue Source: Cocoa360's innovative model of leveraging cocoa farm revenue to fund education and healthcare initiatives sets
+        them
+        apart. By utilizing a self-sustaining financial mechanism, Cocoa360 reduces dependency on external funding sources and creates a more stable
+        funding
+        base for their programs. This approach not only supports the organization's financial sustainability but also empowers local communities by
+        reinvesting profits back into community development.
+        <br><br>
+        3. Successful COVID-19 Response: The implementation of CoCoPoPP (Cocoa360's COVID-19 Preparedness and Outbreak Prevention Plan) during the
+        pandemic
+        showcased Cocoa360's agility, adaptability, and effectiveness in responding to crises. By proactively addressing the health and safety needs
+        of the
+        communities they work in, Cocoa360 demonstrated leadership and a commitment to the well-being of community members. The zero suspected cases
+        of
+        COVID-19 recorded in their communities reflect the organization's proactive and successful approach to public health interventions.
+        <br><br>
+        4. Strategic Partnerships: Cocoa360's collaborations with reputable organizations such as the Queen's Commonwealth Trust, the Clinton
+        Foundation, and
+        individual donors have been instrumental in supporting their initiatives. These partnerships provide access to funding, resources, expertise,
+        and
+        networks that enhance Cocoa360's capacity to deliver impactful programs and expand their reach. By leveraging these strategic partnerships,
+        Cocoa360
+        is able to amplify their impact, leverage best practices, and access additional support for their community development efforts.
+        <br><br>
+        These strengths collectively position Cocoa360 as a reputable and effective organization that is dedicated to empowering rural communities,
+        fostering
+        sustainable development, and making a positive impact on the lives of community members.
+      </p>
+
+    </div>
+
+
+    <!-- Threats -->
+    <div class="p-6 bg-white text-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800 rounded-lg w-full" *ngIf="activeTabs['threat']">
+      <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Threats</h3>
+      <p class="mb-2">
+
+        1. Strong Community Engagement: Cocoa360 has demonstrated a deep commitment to engaging with local communities in a meaningful and impactful
+        way. By
+        involving community members in decision-making processes, program design, and implementation, Cocoa360 ensures that initiatives are culturally
+        sensitive, relevant, and sustainable. This approach fosters trust, ownership, and long-term support from the communities they serve.
+        <br><br>
+        2. Diversified Revenue Source: Cocoa360's innovative model of leveraging cocoa farm revenue to fund education and healthcare initiatives sets
+        them
+        apart. By utilizing a self-sustaining financial mechanism, Cocoa360 reduces dependency on external funding sources and creates a more stable
+        funding
+        base for their programs. This approach not only supports the organization's financial sustainability but also empowers local communities by
+        reinvesting profits back into community development.
+        <br><br>
+        3. Successful COVID-19 Response: The implementation of CoCoPoPP (Cocoa360's COVID-19 Preparedness and Outbreak Prevention Plan) during the
+        pandemic
+        showcased Cocoa360's agility, adaptability, and effectiveness in responding to crises. By proactively addressing the health and safety needs
+        of the
+        communities they work in, Cocoa360 demonstrated leadership and a commitment to the well-being of community members. The zero suspected cases
+        of
+        COVID-19 recorded in their communities reflect the organization's proactive and successful approach to public health interventions.
+        <br><br>
+        4. Strategic Partnerships: Cocoa360's collaborations with reputable organizations such as the Queen's Commonwealth Trust, the Clinton
+        Foundation, and
+        individual donors have been instrumental in supporting their initiatives. These partnerships provide access to funding, resources, expertise,
+        and
+        networks that enhance Cocoa360's capacity to deliver impactful programs and expand their reach. By leveraging these strategic partnerships,
+        Cocoa360
+        is able to amplify their impact, leverage best practices, and access additional support for their community development efforts.
+        <br><br>
+        These strengths collectively position Cocoa360 as a reputable and effective organization that is dedicated to empowering rural communities,
+        fostering
+        sustainable development, and making a positive impact on the lives of community members.
+      </p>
+
+    </div>
+  </div>
+
+</div>

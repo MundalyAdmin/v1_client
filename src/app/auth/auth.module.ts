@@ -5,6 +5,12 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
 import { LoginRedirectionComponent } from './login-redirection/login-redirection.component';
+import { OrganizationRegistrationComponent } from './organization-registration/organization-registration.component';
+import { DropdownModule } from 'primeng/dropdown';
+import { FileUploadModule } from 'primeng/fileupload';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { CalendarModule } from 'primeng/calendar';
+import { OrganizationRegistrationProcessingComponent } from './organization-registration/organization-registration-processing/organization-registration-processing.component';
 
 const routes: Routes = [
   {
@@ -12,19 +18,40 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
+    path: 'signup',
+    component: OrganizationRegistrationComponent,
+  },
+  {
+    path: 'registration-processing',
+    component: OrganizationRegistrationProcessingComponent,
+  },
+  {
     path: 'login-redirection',
     component: LoginRedirectionComponent,
   },
   {
     path: '',
-    redirectTo: 'signup',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
 ];
 
 @NgModule({
-  declarations: [LoginComponent, LoginRedirectionComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
+  declarations: [
+    LoginComponent,
+    LoginRedirectionComponent,
+    OrganizationRegistrationComponent,
+    OrganizationRegistrationProcessingComponent,
+  ],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    SharedModule,
+    DropdownModule,
+    InputTextareaModule,
+    FileUploadModule,
+    CalendarModule,
+  ],
   providers: [AuthService],
 })
 export class AuthModule {}

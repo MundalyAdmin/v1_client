@@ -214,7 +214,7 @@ const routes: Routes = [
     HomeOrganizationListComponent,
     HomeAboutUsComponent,
     OrganizationComponent,
-    HeaderComponent,
+
     OrganizationListComponent,
     OrganizationShowComponent,
     OrganizationShowHeroComponent,

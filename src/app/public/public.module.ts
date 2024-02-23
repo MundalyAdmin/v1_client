@@ -7,6 +7,8 @@ import { SharedModule } from '../shared/shared.module';
 import { PublicCommunitiesCategorieListComponent } from './public-communities/public-communities-categorie-list/public-communities-categorie-list.component';
 import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { SharedPublicModule } from './shared-public/shared-public.module';
 
 const routes: Routes = [
   {
@@ -22,17 +24,28 @@ const routes: Routes = [
         component: PrivacyPolicyComponent,
       },
       {
-        path: 'for-business',
+        path: '',
+        component: LandingPageComponent,
+      },
+      {
+        path: 'community',
+        loadChildren: () =>
+          import('./public-community/public-community.module').then(
+            (m) => m.PublicCommunityModule
+          ),
+      },
+      {
+        path: 'business',
         loadChildren: () =>
           import('./public-business/public-business.module').then(
             (m) => m.PublicBusinessModule
           ),
       },
       {
-        path: '',
+        path: 'funder',
         loadChildren: () =>
-          import('./public-community/public-community.module').then(
-            (m) => m.PublicCommunityModule
+          import('./public-funder/public-funder.module').then(
+            (m) => m.PublicFunderModule
           ),
       },
     ],
@@ -45,7 +58,13 @@ const routes: Routes = [
     PublicCommunitiesCategorieListComponent,
     TermsAndConditionsComponent,
     PrivacyPolicyComponent,
+    LandingPageComponent,
   ],
-  imports: [CommonModule, SharedModule, RouterModule.forChild(routes)],
+  imports: [
+    CommonModule,
+    SharedModule,
+    SharedPublicModule,
+    RouterModule.forChild(routes),
+  ],
 })
 export class PublicModule {}

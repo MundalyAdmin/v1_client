@@ -19,6 +19,8 @@ export class OrganizationContainerComponent extends BaseListComponent<Organizati
   }
 
   override ngOnInit(): void {
+    window.scrollTo(0, 0);
+
     this.route.queryParams.subscribe((params) => {
       const searchData = {
         city_name: params['city_name'],

@@ -26,6 +26,9 @@ import { ThankYouForJoiningOrganizationComponent } from '../../waitlist/organiza
 import { OrganizationWaitlistComponent } from '../../waitlist/organization-waitlist/organization-waitlist.component';
 import { CaseStudiesComponent } from './case-studies/case-studies.component';
 import { PrincingComponent } from './princing/princing.component';
+import { BusinessOrganizationSearchResultsComponent } from './business-organization-search-results/business-organization-search-results.component';
+import { PublicBusinessOrganizationSearchBarComponent } from './public-business-organization-search-bar/public-business-organization-search-bar.component';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 const routes: Routes = [
   {
@@ -96,6 +99,14 @@ const routes: Routes = [
         path: 'book-demo',
         component: OrganizationWaitlistComponent,
       },
+      {
+        path: 'organizations/search',
+        component: BusinessOrganizationSearchResultsComponent,
+      },
+      {
+        path: 'book-demo',
+        component: OrganizationWaitlistComponent,
+      },
     ],
   },
 ];
@@ -121,6 +132,8 @@ const routes: Routes = [
     PublicBusinessCheckCommunityReviewsComponent,
     CaseStudiesComponent,
     PrincingComponent,
+    BusinessOrganizationSearchResultsComponent,
+    PublicBusinessOrganizationSearchBarComponent,
   ],
   imports: [
     CommonModule,
@@ -128,6 +141,7 @@ const routes: Routes = [
     WaitlistModule,
     RouterModule.forChild(routes),
     SharedPublicModule,
+    AutocompleteLibModule,
   ],
 })
 export class PublicBusinessModule {}

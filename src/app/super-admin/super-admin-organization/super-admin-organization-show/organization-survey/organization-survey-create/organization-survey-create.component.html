@@ -1,0 +1,19 @@
+<form [formGroup]="form" (submit)="create()">
+  <div class="grid grid-cols-1 gap-5">
+    <!-- Title -->
+    <div class="mb-6">
+      <label for="title" class="block mb-2 text-sm font-semibold text-primary dark:text-white">Form title</label>
+      <input type="text" id="title" formControlName="title"
+             class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark :border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+             placeholder="IPMC FORM" required>
+    </div>
+
+  </div>
+
+  <div class="flex justify-end">
+    <button type="submit"
+            [disabled]="form.invalid || loading"
+            class="text-white disabled:cursor-not-allowed disabled:bg-primary-light disabled:text-gray-100 bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-primary dark:focus:ring-blue-800">Submit
+      <app-loading *ngIf="loading"></app-loading> </button>
+  </div>
+</form>

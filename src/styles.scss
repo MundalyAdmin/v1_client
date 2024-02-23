@@ -16,3 +16,27 @@
   border-bottom-right-radius: 10px;
   outline: none !important;
 }
+
+.p-dropdown {
+  width: 100% !important;
+  border: 1px solid #cdcdcd;
+
+  // line-height: 1.25rem !important;
+  --tw-bg-opacity: 1 !important;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity)) !important;
+  padding: 0;
+  .p-inputtext {
+    padding: 0.625rem !important;
+    font-size: 0.875rem !important;
+    font-family: "Figtree", sans-serif;
+  }
+}
+
+.p-calendar {
+  .p-inputtext {
+    background-color: rgb(249 250 251 / var(--tw-bg-opacity)) !important;
+    border: 1px solid #cdcdcd;
+    border-radius: 8px;
+    font-family: "Figtree", sans-serif;
+  }
+}
