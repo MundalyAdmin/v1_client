@@ -81,19 +81,19 @@
 
       <!-- Get credit -->
       <li>
-        <a [routerLink]="['community']"
+        <a [routerLink]="['credit']"
            class="flex items-center p-2 text-slate-50 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-          <span class=""><i class=" text-secondary-dark text-xl mdi mdi-credit-card"></i></span>
-          <span class="flex-1 ms-2 whitespace-nowrap">Get credit</span>
+          <span class=""><i class=" text-secondary-dark text-xl mdi mdi-file-chart"></i></span>
+          <span class="flex-1 ms-2 whitespace-nowrap">Reports</span>
         </a>
       </li>
 
       <!-- Engage -->
       <li>
-        <a [routerLink]="['community']"
+        <a [routerLink]="['history']"
            class="flex items-center p-2 text-slate-50 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
           <span class=""><i class=" text-secondary-dark text-xl mdi mdi-lightning-bolt"></i></span>
-          <span class="flex-1 ms-2 whitespace-nowrap">Engage</span>
+          <span class="flex-1 ms-2 whitespace-nowrap">History</span>
         </a>
       </li>
 
@@ -109,9 +109,9 @@
                alt="" class="h-12 w-12 rounded-full border-2 border-slate-50">
         </span>
         <div class="p-2 flex align-center flex-col">
-          <div class="text-slate-50 font-semibold flex items-center">{{ authService.user.name }} <span><i
+          <div class="text-slate-50 font-semibold flex items-center">{{ admin.name }} <span><i
                  class="mdi mdi-menu-down text-2xl"></i></span></div>
-          <p class="text-slate-300 text-sm">{{ 'Cocoa 360' }}</p>
+          <p class="text-slate-300 text-sm">{{ organization.name }}</p>
         </div>
       </div>
 

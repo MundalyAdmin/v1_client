@@ -28,6 +28,13 @@ const routes: Routes = [
         component: LandingPageComponent,
       },
       {
+        path: 'community',
+        loadChildren: () =>
+          import('./public-community/public-community.module').then(
+            (m) => m.PublicCommunityModule
+          ),
+      },
+      {
         path: 'business',
         loadChildren: () =>
           import('./public-business/public-business.module').then(
@@ -35,10 +42,10 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'community',
+        path: 'funder',
         loadChildren: () =>
-          import('./public-community/public-community.module').then(
-            (m) => m.PublicCommunityModule
+          import('./public-funder/public-funder.module').then(
+            (m) => m.PublicFunderModule
           ),
       },
     ],

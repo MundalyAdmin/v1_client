@@ -113,20 +113,28 @@
               <div>
                 <div class="w-full bg-white dark:bg-gray-800 p-4 md:p-6">
                   <div class="flex justify-between mb-5">
-                    <div class="grid gap-7 grid-cols-2">
-                      <div class="flex items-end gap-2">
-
-                        <p class="text-gray-900 dark:text-white text-2xl leading-none font-bold">{{latest(goal)}}</p>
+                    <div class="grid gap-10 grid-cols-3">
+                      <div class="flex flex-col justify-end items-center gap-2">
                         <h5 class="inline-flex items-center text-gray-500 dark:text-gray-400 leading-none font-normal">
-                          Latest
+                          Current
                         </h5>
-                      </div>
-                      <div class="flex items-end gap-2">
+                        <p class="text-gray-900 dark:text-white text-2xl leading-none font-bold">{{sum(goal)}} {{ goal.metric }}</p>
 
-                        <p class="text-gray-900 dark:text-white text-2xl leading-none font-bold">{{goal.target}}</p>
+                      </div>
+                      <div class="flex flex-col justify-end items-center gap-2">
                         <h5 class="inline-flex items-center text-gray-500 dark:text-gray-400 leading-none font-normal">
                           Target
                         </h5>
+                        <p class="text-gray-900 dark:text-white text-2xl leading-none font-bold">{{goal.target}} {{ goal.metric }}</p>
+
+                      </div>
+                      <div class="flex flex-col justify-end items-center gap-2">
+                        <h5 class="inline-flex items-center text-gray-500 dark:text-gray-400 leading-none font-normal">
+                          Progress
+                        </h5>
+                        <p class="text-gray-900 dark:text-white text-2xl leading-none font-bold">{{sum(goal)! / (goal.target || 0 ) * 100 |
+                          number:'1.2-2'}} % </p>
+
                       </div>
                     </div>
 

@@ -7,6 +7,10 @@ import { DashboardOrganizationCommunityComponent } from './dashboard-organizatio
 import { DashboardOrganizationImpactComponent } from './dashboard-organization-impact/dashboard-organization-impact.component';
 import { DashboardOrganizationBenchmarkComponent } from './dashboard-organization-benchmark/dashboard-organization-benchmark.component';
 import { DashboardOrganizationSwotComponent } from './dashboard-organization-swot/dashboard-organization-swot.component';
+import { DashboardOrganizationCreditComponent } from './dashboard-organization-credit/dashboard-organization-credit.component';
+import { DashboardOrganizationCreditReportsComponent } from './dashboard-organization-credit-reports/dashboard-organization-credit-reports.component';
+import { DashboardOrganizationCreditOrdersComponent } from './dashboard-organization-credit-orders/dashboard-organization-credit-orders.component';
+import { DashboardOrganizationHistoryComponent } from './dashboard-organization-history/dashboard-organization-history.component';
 
 const routes: Routes = [
   {
@@ -20,6 +24,29 @@ const routes: Routes = [
       {
         path: 'impact',
         component: DashboardOrganizationImpactComponent,
+      },
+      {
+        path: 'history',
+        component: DashboardOrganizationHistoryComponent,
+      },
+      {
+        path: 'credit',
+        component: DashboardOrganizationCreditComponent,
+        children: [
+          {
+            path: 'reports',
+            component: DashboardOrganizationCreditReportsComponent,
+          },
+          {
+            path: 'orders',
+            component: DashboardOrganizationCreditOrdersComponent,
+          },
+          {
+            path: '',
+            redirectTo: 'reports',
+            pathMatch: 'full',
+          },
+        ],
       },
       {
         path: 'benchmark',
@@ -38,7 +65,7 @@ const routes: Routes = [
           },
           {
             path: '**',
-            redirectTo: 'self-report',
+            redirectTo: 'self-assessment',
           },
         ],
       },
@@ -58,6 +85,10 @@ const routes: Routes = [
     DashboardOrganizationImpactComponent,
     DashboardOrganizationBenchmarkComponent,
     DashboardOrganizationSwotComponent,
+    DashboardOrganizationCreditComponent,
+    DashboardOrganizationCreditReportsComponent,
+    DashboardOrganizationCreditOrdersComponent,
+    DashboardOrganizationHistoryComponent,
   ],
   imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
 })

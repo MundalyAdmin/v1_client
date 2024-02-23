@@ -8,8 +8,12 @@ import { Organization } from '../../../organization/organization.model';
 })
 export class OrganizationSoloComponent implements OnInit {
   // required input
+  @Input() detailsLink: string | null = null;
 
   @Input() organization: Organization | null = null;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (!this.detailsLink && this.organization)
+      this.detailsLink = `organizations/${this.organization?.id}`;
+  }
 }
