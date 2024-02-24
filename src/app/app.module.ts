@@ -7,11 +7,15 @@ import { AppComponent } from './app.component';
 import { AppInjector } from './shared/services';
 import { SharedModule } from './shared/shared.module';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { GeneratingReportComponent } from './generating-report/generating-report.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, GeneratingReportComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+
     AppRoutingModule,
     SharedModule,
     NgMultiSelectDropDownModule.forRoot(),

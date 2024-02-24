@@ -18,6 +18,7 @@ import { TypewriterComponent } from '../typewriter/typewriter.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CustomCarouselComponent } from './components/custom-carousel/custom-carousel.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     RouterModule,
     ModalModule,
     LoadingModule,
-    Select2Module,
+    Select2Module, // TODO: delete this module
     NgMultiSelectDropDownModule,
     NgApexchartsModule,
   ],

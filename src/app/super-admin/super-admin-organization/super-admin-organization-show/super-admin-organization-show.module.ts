@@ -9,6 +9,8 @@ import { SuperAdminImpactStoryListComponent } from './super-admin-impact-story/s
 import { SuperAdminImpactStoryCreateComponent } from './super-admin-impact-story/super-admin-impact-story-create/super-admin-impact-story-create.component';
 import { SuperAdminOrganizationSharedModule } from '../super-admin-organization-shared.module';
 import { SuperAdminImpactStoryEditComponent } from './super-admin-impact-story/super-admin-impact-story-edit/super-admin-impact-story-edit.component';
+import { OrganizationSurveyComponent } from './organization-survey/organization-survey.component';
+import { OrganizationSurveyCreateComponent } from './organization-survey/organization-survey-create/organization-survey-create.component';
 
 const routes: Routes = [
   {
@@ -18,6 +20,10 @@ const routes: Routes = [
       {
         path: 'overview',
         component: SuperAdminOrganizationShowOverviewComponent,
+      },
+      {
+        path: 'surveys',
+        component: OrganizationSurveyComponent,
       },
       {
         path: '',
@@ -36,6 +42,8 @@ const routes: Routes = [
     SuperAdminImpactStoryListComponent,
     SuperAdminImpactStoryCreateComponent,
     SuperAdminImpactStoryEditComponent,
+    OrganizationSurveyComponent,
+    OrganizationSurveyCreateComponent,
   ],
   imports: [
     CommonModule,

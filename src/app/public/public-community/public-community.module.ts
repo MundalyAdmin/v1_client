@@ -43,6 +43,8 @@ import { StoriesRatingComponent } from './organization/organization-new-style/or
 import { OrganizationNewStyleStoriesCreateComponent } from './organization/organization-new-style/organization-new-style-stories/organization-new-style-stories-create/organization-new-style-stories-create.component';
 import { OrganizationFunderComponent } from './organization/organization-funder/organization-funder.component';
 import { OrganizationFunderPortfolioComponent } from './organization/organization-funder/organization-funder-portfolio/organization-funder-portfolio.component';
+import { CartComponent } from '../../cart/cart.component';
+import { CheckoutComponent } from '../../cart/checkout/checkout.component';
 
 const routes: Routes = [
   {
@@ -52,6 +54,11 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent,
+      },
+      {
+        path: 'cart',
+        loadChildren: () =>
+          import('../../cart/cart.module').then((m) => m.CartModule),
       },
       {
         path: 'community-voice',
@@ -207,7 +214,7 @@ const routes: Routes = [
     HomeOrganizationListComponent,
     HomeAboutUsComponent,
     OrganizationComponent,
-    HeaderComponent,
+
     OrganizationListComponent,
     OrganizationShowComponent,
     OrganizationShowHeroComponent,

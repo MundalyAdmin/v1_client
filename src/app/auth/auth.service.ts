@@ -9,10 +9,15 @@ import { Storage } from '../shared/helpers/storage/storage';
 import { User } from '../user/user.model';
 import { TypeUserEnum } from '../user/type-user.enum';
 import { environment } from '../../environments/environment';
+import { TypeUser } from '../user/type-user.model';
+import { Organization } from '../organization/organization.model';
+import { AuthenticatedUser } from './authenticated-user.model';
 
 interface LoginInformation {
   user: User;
   accessToken: string;
+  organization: Organization | null;
+  type_user: TypeUser | null;
 }
 
 @Injectable({
@@ -20,17 +25,28 @@ interface LoginInformation {
 })
 export class AuthService extends BaseService<any> {
   public user$ = new ReplaySubject<User>(1);
-  public typeUser$ = new ReplaySubject<TypeUserEnum | null>(1);
+  public typeUser$ = new ReplaySubject<TypeUser | null>(1);
+  public organization$ = new ReplaySubject<Organization | null>(1);
 
   get user(): User {
     return this.storage.get('user') as User;
   }
-  get typeUser(): TypeUserEnum {
-    return this.storage.get('typeUser') as TypeUserEnum;
+  get typeUser(): TypeUser {
+    return this.storage.get('typeUser') as TypeUser;
   }
-  set typeUser(typeUser: TypeUserEnum | null) {
+
+  get organization(): Organization {
+    return this.storage.get('organization') as TypeUser;
+  }
+
+  set typeUser(typeUser: TypeUser | null) {
     this.storage.set('typeUser', typeUser);
     this.typeUser$.next(typeUser);
+  }
+
+  set organization(organization: Organization | null) {
+    this.storage.set('organization', organization);
+    this.organization$.next(organization);
   }
 
   set user(user: User) {
@@ -59,12 +75,12 @@ export class AuthService extends BaseService<any> {
   public login(elements: Partial<User>) {
     return this.factory.post(`auth/login/`, elements).pipe(
       tap({
-        next: ({ data }: any) => {
-          this.storeLoginInformation(data);
+        next: ({ data }: ApiResponse<AuthenticatedUser>) => {
+          this.storeLoginInformation(data as AuthenticatedUser);
         },
         error: (error: HttpErrorResponse) => this.errorResponseHandler(error),
       }),
-      map((response: any) => response.user)
+      map((response: any) => response.data)
     );
   }
 
@@ -95,7 +111,9 @@ export class AuthService extends BaseService<any> {
     this.clearLoginInformation();
     this.storage.set('accessToken', data.accessToken);
     this.user = data.user;
-    this.typeUser = data.user.type_user_id;
+    this.typeUser = data.type_user;
+
+    if (data.organization) this.organization = data.organization;
   }
   isLoggedIn() {
     return this.storage.getAccessToken() && this.storage.getUser();

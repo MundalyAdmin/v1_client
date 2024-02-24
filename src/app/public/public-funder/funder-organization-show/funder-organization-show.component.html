@@ -1,0 +1,219 @@
+<div class="relative px-4 md:px-[120px] py-32 md:py-44 overflow-hidden">
+  <app-page-loading *ngIf="loading"></app-page-loading>
+
+  <ng-container *ngIf="single && !loading">
+    <!-- Header -->
+    <div class="grid grid-col-1 bg-white border  rounded-xl overflow-hidden ">
+      <!-- Video background -->
+      <div class="md:h-[220px] h-[160px] w-full relative">
+        <img [src]="single.cover" *ngIf="single.cover" class="w-full h-full object-cover object-center" alt="Video background">
+        <img src="https://res.cloudinary.com/mundaly/image/upload/v1701871815/organization/bg-placeholder.jpg" *ngIf="!single.cover"
+             class="w-full h-full object-cover object-center" alt="Video background">
+
+        <!-- <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <span><i class="mdi mdi-play-circle text-4xl"></i></span>
+        </div> -->
+      </div>
+
+      <!-- Organization information -->
+      <div class="flex flex-col md:flex-row md:gap-10 gap-2 px-8 pt-4 pb-8 relative">
+        <div class="relative flex justify-center md:flex-none">
+          <div
+               class=" w-36 h-36 md:w-56 shrink-0 md:h-56 md:mt-[-100px] mt-[-75px] z-99 bg-white rounded-full overflow-hidden border-2 border-black border-opacity-10 ">
+            <img [src]="single.logo" class="w-full h-full object-cover"
+                 alt="">
+
+          </div>
+          <!-- Seal -->
+          <img src="assets/images/new-style/certification.png"
+               class="md:w-[100px] md:h-[100px]  h-[70px] w-[70px] right-[-20px] top-[-100px] absolute object-cover"
+               alt="">
+        </div>
+
+
+        <!--  -->
+        <div class="flex-col gap-2  inline-flex ">
+          <!-- Basic information -->
+          <div class="justify-between items-center    flex flex-col md:flex-row  md:inline-flex">
+            <div class=" items-center md:gap-5 gap-2 flex">
+              <!-- Title -->
+              <div class="text-violet-950 md:text-4xl text-2xl font-bold ">{{ single.name }}</div>
+
+              <!-- Claiming badge -->
+              <div class="text-violet-950 text-lg " *ngIf="single.profile_status_organization_id == 2">Claimed <span><i
+                     class="mdi mdi-check-decagram"></i></span></div>
+              <div class="text-violet-950 text-lg " *ngIf="single.profile_status_organization_id == 1">Unclaimed <span><i
+                     class="mdi mdi-close-box"></i></span></div>
+
+            </div>
+
+            <!-- <a [href]="single.website" target="_blank" type="button"
+               class="px-7 py-3 font-semibold border border-primary  rounded-full text-center text-primary bg-secondary  hover:bg-secondary-dark focus:ring-4 focus:outline-none focus:ring-primary-dark">Visit
+              website</a> -->
+          </div>
+
+          <!-- Location and badges -->
+          <div class="justify-start items-center md:gap-6 gap-2 flex flex-col md:flex-row  md:inline-flex">
+            <!-- Location -->
+            <div class="  text-slate-500 text-base font-normal">
+              <span class="me-2"><i class="mdi mdi-map-marker"></i></span> {{ single.city }}, {{ single.country }}
+            </div>
+
+            <div class="flex gap-5 md">
+              <div
+                   class="bg-white text-slate-700 border text-base font-medium me-2 px-1 rounded  border-green-400">Facilitator <span class="ms-2"><i
+                     class="mdi mdi-check"></i></span></div>
+
+              <div
+                   class="bg-white text-slate-700 border text-base font-medium me-2 px-1 rounded  border-red-400"> Funder <span class="ms-2"><i
+                     class="mdi mdi-close"></i></span></div>
+            </div>
+
+          </div>
+
+          <div class=" text-slate-600 text-base md:w-3/4 font-normal  " [innerHTML]="single.about"></div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="grid   grid-cols-1 gap-0 md:gap-[30px]  md:mt-24 mx-0  mt-12 overflow-hidden">
+      <!-- Rating information (appears only on mobile) -->
+      <!-- Section Title -->
+      <div>
+        <div class="h3 text-primary font-bold text-center text-4xl">Reports</div>
+
+      </div>
+
+
+
+
+
+      <!-- Main content -->
+      <div
+           class="group  relative shadow-md   duration-500 ease-in-out">
+
+        <div class="grid grid-cols-2 gap-10">
+          <!-- Report 1 -->
+          <div class="rounded-2 bg-white p-5 relative border" *ngFor="let report of reports; let i = index">
+
+
+
+
+
+            <!-- Main content -->
+            <div class="grid-cols-4 grid">
+              <div class="col-span-2 pr-10">
+
+                <!-- Image decrivant le rapport -->
+                <div class="border bg-slate-50 mb-4 w-auto rounded">
+                  <img [src]="report.image" alt="">
+                </div>
+
+                <!--  tags -->
+                <div>
+                  <div
+                       class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-slate-800 ring-1 ring-inset ring-yellow-600/20">
+                    #{{ report.state }}</div>
+
+                </div>
+              </div>
+              <div class="col-span-2">
+
+                <!-- Report title -->
+                <div class="row mb-3 w-4/5">
+                  <div class="font-light text-sm">Report Title</div>
+                  <div class="font-semibold">{{ report.title }}</div>
+                </div>
+
+
+                <!-- Availability -->
+                <div class="row mb-3">
+                  <div class="font-light text-sm">Availability</div>
+                  <div class="font-semibold">{{ report.availability }}</div>
+                </div>
+
+                <!-- Community -->
+                <div class="grid-cols-1 grid">
+                  <div class="font-light text-xs"> <span><i class="mdi mdi-account-group-outline"></i></span> Community</div>
+                  <select (change)="onChange($event, i)"
+                          class="form-select form-input mt-2 w-full py-2 text-sm px-3 h-10 font-semibold bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-primary-200 focus:border-indigo-600 dark:border-gray-800 dark:focus:border-indigo-600 focus:ring-0">
+                    <option value="New Haven">New Haven</option>
+                    <option value="Bridgeport">Bridgeport</option>
+                    <option value="Hartford">Hartford</option>
+                    <option value="Trumbull">Trumbull</option>
+                  </select>
+
+
+                </div>
+
+
+                <div class="mt-5 w-fit">
+                  <!-- Price -->
+                  <div *ngIf="report.price > 0"
+                       class="a p-2 px-8 border border-primary rounded-full text-primary font-extrabold bg-secondary flex items-center justify-center">
+                    ${{ report.price }}
+                  </div>
+
+                  <!-- Contact Sales -->
+                  <div
+                       *ngIf="report.price == 0"
+                       class="a p-2 px-8  border border-primary rounded-full text-primary font-extrabold bg-secondary flex items-center justify-center">
+                    Contact Sales
+                  </div>
+                </div>
+
+
+                <!-- CTAS -->
+                <div class="row mt-[3rem]">
+
+                  <div class="grid gap-7  w-full grid-cols-1  flex-col items-end">
+                    <!-- <a [routerLink]="['./']" (click)="downloadSample()"
+                       class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-secondary hover:bg-secondary  text-primary border-secondary hover:border-secondary  rounded-md">
+                      <span class="mdi mdi-file-arrow-up-down-outline"></span>
+                      See sample
+                    </a> -->
+
+
+                    <a [routerLink]="['./']"
+                       (click)="addToCart(report)"
+                       *ngIf="!cartService.isItemInCart(report)"
+                       class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-primary hover:bg-primary border-primary hover:border-primary text-white rounded-md">
+                      <span><i class="mdi mdi-cart"></i></span>
+                      Add
+                      to cart</a>
+
+
+                    <!-- Remove from cart state  -->
+                    <a [routerLink]="['./']"
+                       (click)="removeFromCart(report)"
+                       *ngIf="cartService.isItemInCart(report)"
+                       class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-red-400 hover:bg-red-400 border-red-400 hover:border-red-400 text-white rounded-md">
+                      <span><i class="mdi mdi-close"></i></span>
+                      Remove
+                      to cart</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <div
+         class="w-[316px] h-[1151px] opacity-80 mix-blend-color-burn bg-teal-100 -z-10 rounded-full blur-[400px] absolute top-[-333px] left-[-58px]">
+    </div>
+    <div
+         class="w-[337px] h-[1151px] opacity-80 mix-blend-color-burn bg-violet-950 -z-10 rounded-full blur-[400px] absolute right-[-10.5rem] top-[10rem]">
+    </div>
+  </ng-container>
+
+
+</div>

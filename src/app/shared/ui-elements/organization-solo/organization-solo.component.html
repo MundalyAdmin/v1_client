@@ -48,12 +48,12 @@
 
   <!-- CTA -->
   <div class="mt-4">
-    <a [routerLink]="['/organizations', organization.id]" *ngIf="organization.id !== 24"
+    <a [routerLink]="[detailsLink]" *ngIf="organization.id !== 24"
        class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-primary hover:text-white rounded-md w-full">View
       details</a>
 
     <!-- TODO: TO REMOVE JUST for test -->
-    <a [routerLink]="['/organizations/funder']" *ngIf="organization.id === 24"
+    <a [routerLink]="['organizations/funder']" *ngIf="organization.id === 24"
        class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-primary hover:text-white rounded-md w-full">View
       details</a>
   </div>
