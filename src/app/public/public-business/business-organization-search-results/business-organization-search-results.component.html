@@ -29,7 +29,7 @@
     <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]" *ngIf="!loading && organizationService.data.length">
       <!-- Organization 1 -->
       <app-organization-solo *ngFor="let organization of organizationService.data" [organization]="organization"
-                             [detailsLink]="'../' + organization.id"></app-organization-solo>
+                             [detailsLink]="'/community/organizations/' + organization.id"></app-organization-solo>
     </div>
 
 

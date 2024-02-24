@@ -46,7 +46,7 @@ export class ReportService extends BaseService<any> {
             state: 'coming-soon',
           },
           {
-            title: 'Comunity Diligence Report',
+            title: 'Community Diligence Report',
             price: '0',
             availability: 'On demand',
             organization: organization.name,
