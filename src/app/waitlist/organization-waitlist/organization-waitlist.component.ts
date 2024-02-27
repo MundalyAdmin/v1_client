@@ -25,6 +25,7 @@ export class OrganizationWaitlistComponent extends BaseCreateComponent<Organizat
   }
 
   ngOnInit(): void {
+    window.scroll(0, 0);
     this.initForm();
     this.getCountries();
 
@@ -39,7 +40,7 @@ export class OrganizationWaitlistComponent extends BaseCreateComponent<Organizat
     this.countryService.get().subscribe({
       next: (response) => {
         this.countries = response;
-        this.form.controls['country_id'].setValue(this.countries[0].id);
+        this.form.controls['country'].setValue(this.countries[0].name);
         this.countryLoading = false;
       },
       error: () => {
@@ -52,8 +53,8 @@ export class OrganizationWaitlistComponent extends BaseCreateComponent<Organizat
     this.form = this.fb.group({
       professional_email: ['', Validators.required],
       organization_name: ['', Validators.required],
-      name: ['', Validators.required],
-      country_id: ['', Validators.required],
+      user_name: ['', Validators.required],
+      country: ['', Validators.required],
       job_title: ['', Validators.required],
       website: ['', Validators.required],
     });
@@ -65,7 +66,7 @@ export class OrganizationWaitlistComponent extends BaseCreateComponent<Organizat
       next: () => {
         this.loading = false;
         this.helper.notification.alertSuccess('Successfully registered');
-        this.router.navigate(['/for-organization/thank-you']);
+        this.router.navigate(['/business/thank-you']);
         this.initForm();
       },
       error: () => {

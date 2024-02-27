@@ -41,7 +41,7 @@
            *ngFor="let sector of organizationService.data"
            class="rounded-md shadow dark:shadow-gray-800 group text-center bg-white dark:bg-slate-900 hover:bg-indigo-600/5 dark:hover:bg-indigo-600/5 duration-500 m-2">
         <a
-           [routerLink]="['/sector-organizations', sector.id]"
+           [routerLink]="['/community/sector-organizations', sector.id]"
            class="block w-full h-full px-3 py-10">
           <div
                class="w-[84px] h-[84px] bg-indigo-600/5 group-hover:bg-indigo-600 text-primary group-hover:text-white rounded-full text-3xl flex align-middle justify-center items-center shadow-sm dark:shadow-gray-800 duration-500 mx-auto">
@@ -50,7 +50,7 @@
 
           <div class="content mt-6">
             <a
-               [routerLink]="['/sector-organizations', sector.id]"
+               [routerLink]="['/community/sector-organizations', sector.id]"
                class="title h5 text-lg font-medium hover:text-primary">{{ sector.name }} <br />
             </a>
           </div>

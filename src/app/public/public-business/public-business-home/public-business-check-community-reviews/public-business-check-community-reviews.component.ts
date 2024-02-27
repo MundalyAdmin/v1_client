@@ -63,7 +63,7 @@ export class PublicBusinessCheckCommunityReviewsComponent
   //           'The organization is not registered yet, kindly join our waitlist if you are the owner.',
   //           5000
   //         );
-  //         this.router.navigate(['/for-business/book-demo']);
+  //         this.router.navigate(['/business/book-demo']);
   //       }
   //       this.loading = false;
   //     });

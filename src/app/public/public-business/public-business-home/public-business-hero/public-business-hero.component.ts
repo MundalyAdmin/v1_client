@@ -32,7 +32,7 @@ export class PublicBusinessHeroComponent
     this.waitlistService.store(this.form.value).subscribe({
       next: () => {
         this.waitlistService.businessEmail = this.form.controls['email'].value;
-        this.router.navigate(['/for-business/book-demo']);
+        this.router.navigate(['/business/book-demo']);
         this.initForm();
       },
       error: () => {

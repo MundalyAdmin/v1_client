@@ -12,4 +12,9 @@ export class PublicCommunitiesCategorieListComponent extends BaseListComponent<S
   constructor(public organizationService: SectorOrganizationService) {
     super(organizationService);
   }
+
+  override ngOnInit(): void {
+    window.scrollTo(0, 0);
+    super.ngOnInit();
+  }
 }

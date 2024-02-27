@@ -20,6 +20,7 @@ export class HomeSectorOrganizationListComponent
   }
 
   override ngOnInit(): void {
+    window.scrollTo(0, 0);
     super.ngOnInit();
   }
 }
