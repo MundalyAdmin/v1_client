@@ -5,7 +5,7 @@
            class="grid md:grid-cols-5 grid-cols-1 lg:gap-0 h-fit  md:divide-x-[2px] divide-primary lg:dark:divide-gray-700">
 
         <!-- Keyword -->
-        <div class="filter-search-form relative rounded-l-lg col-span-2   px-8 py-2.5 bg-gray-50">
+        <div class="filter-search-form relative  rounded-none md:rounded-l-lg col-span-2   px-8 py-2.5 bg-gray-50">
           <!-- Heading Icon -->
           <i
              class="mdi mdi-map-marker text-xl absolute top-[50%] -translate-y-1/2 start-3 z-1 text-primary "></i>
@@ -41,7 +41,8 @@
         <div class="filter-search-form relative col-span-2">
           <i
              class="mdi mdi-earth text-xl absolute top-[50%] -translate-y-1/2 start-3 z-1 text-primary"></i>
-          <select (change)="selectFormHandler('country_name', $event.target)" class="country-search">
+          <select (change)="selectFormHandler('country_name', $event.target)"
+                  class="country-search py-5 rounded-none md:rounded-tr-lg md:rounded-br-lg">
             <option [selected]="!formValue('country_name')">Select Country</option>
             <option [selected]="formValue('country_name') == country.name" *ngFor="let country of countries" [value]="country.name">{{country.name}}
             </option>
@@ -51,7 +52,7 @@
 
         <!-- Submit -->
         <button type="submit" id="search" name="search"
-                class="lightbox py-1.5 ps-5 text-base  pe-2 inline-block  tracking-wide rounded-md align-middle duration-500 font-semi text-center bg-secondary hover:bg-secondary-lighter hover:border-secondary-lighter text-primary h-full w-full">
+                class="lightbox py-3 md:py-1.5 ps-5 text-base  pe-2 inline-block  tracking-wide md:rounded-md align-middle duration-500 font-semi text-center bg-secondary hover:bg-secondary-lighter hover:border-secondary-lighter text-primary h-full w-full">
           <i class="uil uil-search me-2 text-lg"></i> Search</button>
       </div><!--end grid-->
     </div><!--end container-->

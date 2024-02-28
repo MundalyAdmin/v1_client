@@ -7,3 +7,12 @@
   font-weight: 700;
   width: fit-content;
 }
+
+#dropdown {
+  top: -20px !important;
+}
+
+//mobile breakpoint
+#topnav .navigation-menu > li > a {
+  display: flex !important;
+}

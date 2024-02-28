@@ -1,22 +1,22 @@
 <!-- Check your business -->
-<div class="flex flex-col container items-center mt-20">
+<div class="flex flex-col container items-center md:mt-20  mt-16 ">
   <h2 class="md:text-3xl text-2xl text-center text-primary font-bold">
     Check Your Impact
   </h2>
   <h4 class="text-center md:text-xl text-lg text-primary md:mt-5 px-2 mt-3 font-medium">See what communities are saying about you</h4>
   <div class="subcribe-form flex justify-center w-full md:mt-10 mt-5 mb-3">
-    <form class="relative md:w-[627px] w-full " [formGroup]="form" (submit)="submit()">
+    <form class="relative flex gap-2 flex-col md:block md:w-[627px] w-full " [formGroup]="form" (submit)="submit()">
       <!-- Input url -->
       <input type="text"
              id="subcribe"
              formControlName="companyName"
              name="text"
              placeholder="Cocoa360 "
-             class="p-5 text-base w-full border-0 outline-none text-black dark:text-white rounded-full bg-white dark:bg-slate-900 shadow-lg dark:shadow-gray-800">
+             class="p-5 text-base w-full border-0 outline-none text-black dark:text-white rounded-full bg-white dark:bg-slate-900 md:shadow-lg dark:shadow-gray-800">
 
       <!-- Submit button -->
       <button type="submit"
-              class="py-2 px-5 w-1/3 inline-block font-semibold tracking-wide align-middle duration-500 md:text-lg text-base text-center absolute top-[0px] end-[0px] h-full bg-secondary hover:bg-secondary-dark border  hover:border-secondary-dark text-primary rounded-r-full">
+              class="md:py-2 py-3 rounded-full md:rounded-none w-full  px-5 md:w-1/3 inline-block font-semibold tracking-wide align-middle duration-500 md:text-lg text-base text-center md:absolute md:top-[0px] md:end-[0px] h-full bg-secondary hover:bg-secondary-dark border  hover:border-secondary-dark text-primary md:rounded-r-full">
         Check
       </button>
     </form>

@@ -30,13 +30,49 @@
       <ul class="navigation-menu justify-end">
         <li><a [routerLink]="['/community']" class="sub-menu-item"> <i class="uil uil-arrow-left"></i> Community Page</a></li>
 
+        <li class="submenu-item md:hidden">
+          <a id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
+             class=" text-sm px-5 py-2.5  "
+             type="button">
+            <div class="flex items-center"><span>Platform</span> <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
+                   xmlns="http://www.w3.org/2000/svg"
+                   fill="none"
+                   viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+              </svg></div>
+          </a>
+
+          <!-- Dropdown menu -->
+          <div id="dropdown" class="z-10 mt-[-45px] ml-[40px] hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+              <li>
+                <a [routerLink]="['product/overview']"
+                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Overview</a>
+              </li>
+              <li>
+                <a [routerLink]="['product/measure']"
+                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Measure</a>
+              </li>
+              <li>
+                <a [routerLink]="['product/track']" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Track</a>
+              </li>
+              <li>
+                <a [routerLink]="['product/report']" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
+              </li>
+              <li>
+                <a [routerLink]="['product/act']" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Act</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
         <li><a [routerLink]="['case-studies']" routerLinkActive="text-primary font-bold"
              class="sub-menu-item">Case Studies</a></li>
 
         <li><a [routerLink]="['pricing']" routerLinkActive="text-primary font-bold" class="sub-menu-item">Pricing</a></li>
 
         <!-- products -->
-        <li class="has-submenu parent-parent-menu-item">
+        <li class="has-submenu parent-parent-menu-item hidden md:block">
           <a id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" data-dropdown-trigger="hover" class="uppercase">Platform <span
                   class="menu-arrow"></span></a>
           <div id="dropdownNavbar"
@@ -81,6 +117,9 @@
 
 
         </li>
+
+
+
 
         <a [routerLink]="['book-demo']"
            class="lightbox w-full md:ms-4 md:w-auto py-2 my-3 ps-5 pe-2 inline-block font-semibold text-base tracking-wide border align-middle duration-500 text-center bg-primary hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-full">Book
