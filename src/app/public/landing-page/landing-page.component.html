@@ -26,14 +26,15 @@
             <li class="me-2">
               <a [routerLink]="['./']"
                  (click)="toggleTab('organization')"
-                 [ngClass]="{ '!text-primary !border-primary border-b-2  active hover:border-primary hover:text-primary': activeTabs['organization'] === true}"
-                 class="inline-block p-4  md:pl-0 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300">Organization</a>
+
+                 class="inline-block p-4  md:pl-0 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300"
+                 [ngClass]="{ '!text-primary !border-primary border-b-2  active hover:border-primary hover:text-primary': activeTabs['organization'] === true}">Organization</a>
             </li>
             <li class="me-2">
               <a [routerLink]="['./']"
                  (click)="toggleTab('communityMember')"
-                 [ngClass]="{ '!text-primary !border-primary border-b-2  active hover:border-primary hover:text-primary': activeTabs['communityMember'] === true }"
                  class="inline-block p-4 md:pl-0 border-transparent rounded-t-lg  hover:text-gray-600 hover:border-gray-30"
+                 [ngClass]="{ '!text-primary !border-primary border-b-2  active hover:border-primary hover:text-primary': activeTabs['communityMember'] === true }"
                  aria-current="page">Community Member</a>
             </li>
 
