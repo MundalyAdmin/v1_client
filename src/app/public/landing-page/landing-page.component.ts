@@ -1,15 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss'],
 })
-export class LandingPageComponent {
+export class LandingPageComponent implements OnInit {
   activeTabs: { [key: string]: boolean } = {
     communityMember: false,
     organization: true,
   };
+
+  ngOnInit(): void {
+    window.scrollTo(0, 0);
+  }
 
   constructor() {}
 
