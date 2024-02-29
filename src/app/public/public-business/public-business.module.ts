@@ -52,7 +52,7 @@ const routes: Routes = [
         component: ProductOvervirwComponent,
       },
       {
-        path: 'product/measure',
+        path: 'product/verify',
         component: ProductMeasureComponent,
       },
       {
@@ -60,7 +60,7 @@ const routes: Routes = [
         component: ProductTrackComponent,
       },
       {
-        path: 'product/report',
+        path: 'product/evaluate',
         component: ProductReportComponent,
       },
       {

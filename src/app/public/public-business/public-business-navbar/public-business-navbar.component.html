@@ -50,18 +50,21 @@
                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Overview</a>
               </li>
               <li>
-                <a [routerLink]="['product/measure']"
-                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Measure</a>
-              </li>
-              <li>
-                <a [routerLink]="['product/track']" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Track</a>
-              </li>
-              <li>
-                <a [routerLink]="['product/report']" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
+                <a [routerLink]="['product/verify']"
+                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Verify</a>
               </li>
               <li>
                 <a [routerLink]="['product/act']" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Act</a>
               </li>
+              <li>
+                <a [routerLink]="['product/evaluate']"
+                   class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Evaluate</a>
+              </li>
+              <li>
+                <a [routerLink]="['product/track']" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Track</a>
+              </li>
+
+
             </ul>
           </div>
         </li>
@@ -85,22 +88,11 @@
                   <span class="hidden md:block w-3/4 border p-5 border-l-2 text-slate-600 ">The Community Impact Intelligence Platform</span></a>
               </li>
               <li>
-                <a [routerLink]="['product/measure']" class="sub-menu-item flex p-0  text-base ">
+                <a [routerLink]="['product/verify']" class="sub-menu-item flex p-0  text-base ">
                   <span class="block md:w-1/4 w-full border py-5 text-secondary-dark px-8 "> <span
-                          class="mdi mr-2 mdi-chart-areaspline"></span> Measure</span>
-                  <span class="hidden md:block w-3/4 border p-5 border-l-2 text-slate-600 ">Predict and Verify Impact of your ESG Funding</span></a>
-              </li>
-              <li class="">
-                <a [routerLink]="['product/track']" class="sub-menu-item flex p-0  text-base ">
-                  <span class="block md:w-1/4 w-full border py-5 text-secondary-dark px-7"><span
-                          class="mdi mr-2 mdi-chart-bar-stacked"></span>Track</span>
-                  <span class="hidden md:block w-3/4 border p-5 border-l-2 text-slate-600 ">See Progress & Metrics from your Portfolio</span></a>
-              </li>
-              <li class="">
-                <a [routerLink]="['product/report']" class="sub-menu-item flex p-0  text-base ">
-                  <span class="block md:w-1/4 w-full border py-5 text-secondary-dark px-7"><span
-                          class="mdi mr-2 mdi-chart-box-outline"></span>Report</span>
-                  <span class="hidden md:block w-3/4 border p-5 border-l-2 text-slate-600 ">ESG Disclosures, Compliance & Benchmarking</span></a>
+                          class="mdi mr-2 mdi-chart-areaspline"></span> Verify</span>
+                  <span class="hidden md:block w-3/4 border p-5 border-l-2 text-slate-600 ">Predict and Verify Impact of your Impact
+                    Funding</span></a>
               </li>
               <li class="">
                 <a [routerLink]="['product/act']" class="sub-menu-item flex p-0  text-base ">
@@ -108,6 +100,20 @@
                           class="mdi mr-2 mdi-gesture-tap-button"></span>Act</span>
                   <span class="hidden md:block w-3/4 border p-5 border-l-2 text-slate-600 ">View Location-Specific Social Issues & Plan</span></a>
               </li>
+              <li class="">
+                <a [routerLink]="['product/evaluate']" class="sub-menu-item flex p-0  text-base ">
+                  <span class="block md:w-1/4 w-full border py-5 text-secondary-dark px-7"><span
+                          class="mdi mr-2 mdi-chart-box-outline"></span>Evaluate</span>
+                  <span class="hidden md:block w-3/4 border p-5 border-l-2 text-slate-600 ">Impact Disclosures, Compliance & Benchmarking</span></a>
+              </li>
+              <li class="">
+                <a [routerLink]="['product/track']" class="sub-menu-item flex p-0  text-base ">
+                  <span class="block md:w-1/4 w-full border py-5 text-secondary-dark px-7"><span
+                          class="mdi mr-2 mdi-chart-bar-stacked"></span>Track</span>
+                  <span class="hidden md:block w-3/4 border p-5 border-l-2 text-slate-600 ">See Progress & Metrics from your Portfolio</span></a>
+              </li>
+
+
 
 
 
