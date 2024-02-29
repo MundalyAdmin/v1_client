@@ -83,8 +83,8 @@
                     </a> -->
 
 
-              <a [routerLink]="['./']"
-                 (click)="addToCart(report)"
+              <a [routerLink]="[ report.price === 'Free' ? '/auth/login' : './']"
+                 (click)=" report.price === 'Free' &&  addToCart(report)"
                  *ngIf="!cartService.isItemInCart(report)"
                  class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-primary hover:bg-primary border-primary hover:border-primary text-white rounded-md">
                 <span><i class="mdi mdi-cart"></i></span>
