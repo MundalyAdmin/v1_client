@@ -38,25 +38,4 @@ export class OrganizationNewStyleComponent extends BaseSingleComponent<Organizat
       });
     });
   }
-
-  onChange(event: any, index: number) {
-    this.reports[index].community = event.target.value;
-  }
-
-  addToCart(item: CartItem) {
-    this.cartService.addItem(item);
-    this.helper.notification.alertSuccess('Added to cart');
-  }
-
-  removeFromCart(item: CartItem) {
-    this.cartService.deleteItem(item);
-    this.helper.notification.alertSuccess('Removed from cart');
-  }
-
-  downloadSample() {
-    window.open(
-      'https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/dijecrp6s7iwwhhwjtob',
-      '_blank'
-    );
-  }
 }

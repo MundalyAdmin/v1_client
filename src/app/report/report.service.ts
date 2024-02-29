@@ -1,63 +1,84 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from '../shared/services';
-import { OrganizationService } from '../organization/organization.service';
+import { Organization } from '../organization/organization.model';
+import { of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ReportService extends BaseService<any> {
-  constructor(public organizationService: OrganizationService) {
+  constructor() {
     super('');
+  }
 
-    this.organizationService.singleData$.subscribe((organization) => {
-      if (organization) {
-        this.data = [
-          {
-            title: 'Community Health Needs Assessment Report ',
-            price: '640',
-            availability: 'In 3 hours',
-            organization: organization.name,
-            image:
-              'https://res.cloudinary.com/mundaly/image/upload/v1706906913/Blue_Red_Geometric_Annual_Report_Document_A4_qdgttm.png',
-            community: 'Bridgeport',
-            generatedBy: 'auto-generated',
-            state: 'on-demand',
-          },
-          {
-            title: 'Community Health Improvement Plans (CHIP)',
-            price: '590',
-            availability: 'In 3 hours',
-            organization: organization.name,
-            image:
-              'https://res.cloudinary.com/mundaly/image/upload/v1706906151/New_Haven_Promise_Report.pdf_2_rya0bb.png',
-            community: 'Bridgeport',
-            generatedBy: 'auto-generated',
-            state: 'on-demand',
-          },
-          {
-            title: 'Communities Urgent Issues Report',
-            price: '500',
-            availability: 'In 30 minutes',
-            organization: organization.name,
-            image:
-              'https://res.cloudinary.com/mundaly/image/upload/v1706906913/Blue_Red_Geometric_Annual_Report_Document_A4_qdgttm.png',
-            community: 'Bridgeport',
-            generatedBy: 'auto-generated',
-            state: 'coming-soon',
-          },
-          {
-            title: 'Community Diligence Report',
-            price: '0',
-            availability: 'On demand',
-            organization: organization.name,
-            image:
-              'https://res.cloudinary.com/mundaly/image/upload/v1706906151/New_Haven_Promise_Report.pdf_2_rya0bb.png',
-            community: 'Bridgeport',
-            generatedBy: 'auto-generated',
-            state: 'on-demand',
-          },
-        ];
-      }
-    });
+  getByOrganization(organization: Organization) {
+    return of([
+      {
+        title: 'Funding Diligence Report Insights ',
+        price: '200',
+        availability: 'In 3 hours',
+        organization: organization.name,
+        image:
+          'https://res.cloudinary.com/mundaly/image/upload/v1706906913/Blue_Red_Geometric_Annual_Report_Document_A4_qdgttm.png',
+        community: 'Bridgeport',
+        generatedBy: 'auto-generated',
+        state: 'on-demand',
+      },
+      {
+        title: 'Community Needs Assessment',
+        price: '180',
+        availability: 'In 3 hours',
+        organization: organization.name,
+        image:
+          'https://res.cloudinary.com/mundaly/image/upload/v1706906151/New_Haven_Promise_Report.pdf_2_rya0bb.png',
+        community: 'Bridgeport',
+        generatedBy: 'auto-generated',
+        state: 'on-demand',
+      },
+      {
+        title: 'Impact evaluation Report',
+        price: '150',
+        availability: 'In 3 hours',
+        organization: organization.name,
+        image:
+          'https://res.cloudinary.com/mundaly/image/upload/v1706906913/Blue_Red_Geometric_Annual_Report_Document_A4_qdgttm.png',
+        community: 'Bridgeport',
+        generatedBy: 'auto-generated',
+        state: 'coming-soon',
+      },
+      {
+        title: 'Custom community insights',
+        price: '300',
+        availability: 'On demand',
+        organization: organization.name,
+        image:
+          'https://res.cloudinary.com/mundaly/image/upload/v1706906151/New_Haven_Promise_Report.pdf_2_rya0bb.png',
+        community: 'Bridgeport',
+        generatedBy: 'auto-generated',
+        state: 'on-demand',
+      },
+      {
+        title: 'Impact Prediction Intelligence',
+        price: '100',
+        availability: 'On demand',
+        organization: organization.name,
+        image:
+          'https://res.cloudinary.com/mundaly/image/upload/v1706906151/New_Haven_Promise_Report.pdf_2_rya0bb.png',
+        community: 'Bridgeport',
+        generatedBy: 'auto-generated',
+        state: 'on-demand',
+      },
+      {
+        title: 'Impact Analysis Report',
+        price: 'Free',
+        availability: 'In 24 hours',
+        organization: organization.name,
+        image:
+          'https://res.cloudinary.com/mundaly/image/upload/v1706906913/Blue_Red_Geometric_Annual_Report_Document_A4_qdgttm.png',
+        community: 'Bridgeport',
+        generatedBy: 'auto-generated',
+        state: 'on-demand',
+      },
+    ]).pipe(tap((data) => (this.data = data)));
   }
 }

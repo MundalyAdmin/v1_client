@@ -45,6 +45,7 @@ import { OrganizationFunderComponent } from './organization/organization-funder/
 import { OrganizationFunderPortfolioComponent } from './organization/organization-funder/organization-funder-portfolio/organization-funder-portfolio.component';
 import { CartComponent } from '../../cart/cart.component';
 import { CheckoutComponent } from '../../cart/checkout/checkout.component';
+import { OrganizationAvailableReportsComponent } from './organization/organization-new-style/organization-available-reports/organization-available-reports.component';
 
 const routes: Routes = [
   {
@@ -104,37 +105,37 @@ const routes: Routes = [
         path: 'organizations/search',
         component: OrganizationContainerComponent,
       },
-      {
-        path: 'organizations/funder',
-        component: OrganizationFunderComponent,
-        children: [
-          {
-            path: 'portfolio',
-            component: OrganizationFunderPortfolioComponent,
-          },
-          {
-            path: 'stories',
-            component: OrganizationNewStyleStoriesComponent,
-            children: [
-              {
-                path: ':id',
-                component: OrganizationNewStyleStoriesListComponent,
-              },
-              {
-                path: '**',
-                redirectTo: 'unverified',
-                pathMatch: 'full',
-              },
-            ],
-          },
+      // {
+      //   path: 'organizations/funder',
+      //   component: OrganizationFunderComponent,
+      //   children: [
+      //     {
+      //       path: 'portfolio',
+      //       component: OrganizationFunderPortfolioComponent,
+      //     },
+      //     {
+      //       path: 'stories',
+      //       component: OrganizationNewStyleStoriesComponent,
+      //       children: [
+      //         {
+      //           path: ':id',
+      //           component: OrganizationNewStyleStoriesListComponent,
+      //         },
+      //         {
+      //           path: '**',
+      //           redirectTo: 'unverified',
+      //           pathMatch: 'full',
+      //         },
+      //       ],
+      //     },
 
-          {
-            path: '**',
-            redirectTo: 'stories',
-            pathMatch: 'full',
-          },
-        ],
-      },
+      //     {
+      //       path: '**',
+      //       redirectTo: 'stories',
+      //       pathMatch: 'full',
+      //     },
+      //   ],
+      // },
       {
         path: 'organizations/:id',
         component: OrganizationNewStyleComponent,
@@ -158,6 +159,15 @@ const routes: Routes = [
               },
             ],
           },
+
+          {
+            path: 'rating-report',
+            component: OrganizationNewStyleRatingReportComponent,
+          },
+          {
+            path: 'available-reports',
+            component: OrganizationAvailableReportsComponent,
+          },
           {
             path: 'stories',
             component: OrganizationNewStyleStoriesComponent,
@@ -172,10 +182,6 @@ const routes: Routes = [
                 pathMatch: 'full',
               },
             ],
-          },
-          {
-            path: 'rating-report',
-            component: OrganizationNewStyleRatingReportComponent,
           },
           {
             path: '**',
@@ -245,6 +251,7 @@ const routes: Routes = [
     OrganizationNewStyleStoriesCreateComponent,
     OrganizationFunderComponent,
     OrganizationFunderPortfolioComponent,
+    OrganizationAvailableReportsComponent,
   ],
   imports: [
     CommonModule,

@@ -89,12 +89,12 @@
 
         <!-- Tab list -->
         <ul
-            class="md:text-xl text-lg font-semibold text-start text-slate-500 md:px-8 px-2 flex">
+            class=" text-lg font-semibold text-start text-slate-500 md:px-8 px-2 flex">
           <!-- Stories -->
           <li class=" md:pr-8 pr-6">
             <a [routerLink]="['stories']"
                [routerLinkActive]="['text-primary', 'border-b-[3px]', 'border-primary' ]"
-               class="inline-block w-full py-4   hover:text-primary-light focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">
+               class="inline-block w-full py-3   hover:text-primary-light focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">
               Community Stories</a>
           </li>
 
@@ -103,7 +103,7 @@
           <li class=" md:pr-8 pr-6">
             <a [routerLink]="['rating-overview']"
                [routerLinkActive]="['text-primary', 'border-b-[3px]', 'border-primary' ]"
-               class="inline-block w-full py-4     hover:text-primary-light focus:outline-none dark:bg-gray-700 dark:text-white"
+               class="inline-block w-full py-3     hover:text-primary-light focus:outline-none dark:bg-gray-700 dark:text-white"
                aria-current="page">
               <div class="hidden md:inline">Rating</div> Overview
             </a>
@@ -115,8 +115,18 @@
           <li class=" md:pr-8 pr-6">
             <a [routerLink]="['rating-report']"
                [routerLinkActive]="['text-primary', 'border-b-[3px]', 'border-primary' ]"
-               class="inline-block w-full py-4   hover:text-primary-light focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">
+               class="inline-block w-full py-3   hover:text-primary-light focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">
               <div class="hidden md:inline">Verified</div> Evaluation
+            </a>
+          </li>
+
+
+          <!-- Rating report -->
+          <li class=" md:pr-8 pr-6">
+            <a [routerLink]="['available-reports']"
+               [routerLinkActive]="['text-primary', 'border-b-[3px]', 'border-primary' ]"
+               class="inline-block w-full py-3   hover:text-primary-light focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">
+              <div class="hidden md:inline">Available</div> Reports
             </a>
           </li>
 
