@@ -97,7 +97,7 @@ export class OrganizationRegistrationComponent
         sector: [null, Validators.required],
       }),
       reportsUpload: this.fb.group({
-        reports: [[], Validators.required],
+        reports: [[]],
       }),
     });
 
