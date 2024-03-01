@@ -34,7 +34,7 @@
             <div class="font-semibold">{{ report.title }}</div>
             <span *ngIf="report.price == 'Free'"
                   class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Free for first
-              timer</span>
+              timers</span>
           </div>
 
 
@@ -84,16 +84,23 @@
                     </a> -->
 
 
-              <a [routerLink]="['./']"
-                 (click)="addToCart(report)"
-                 *ngIf="!cartService.isItemInCart(report)"
+              <a [routerLink]="['/auth/login']"
+                 *ngIf="report.title === 'Impact Analysis Report'"
                  class="py-2 px-5 flex-1 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-primary hover:bg-primary shadow border-primary hover:border-primary text-white rounded-md">
                 <span><i class="mdi mdi-lock-check"></i></span>
                 Verify
               </a>
 
+              <button
+                      [disabled]="true"
+                      *ngIf="report.title !== 'Impact Analysis Report'"
+                      class="py-2 px-5 flex-1 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-slate-600 shadow border-primary hover:border-primary text-white rounded-md">
+                <span><i class="mdi mdi-lock"></i></span>
+                Coming Soon...
+              </button>
+
               <a [routerLink]="['./']"
-                 (click)="addToCart(report)"
+                 (click)="downloadSample()"
 
                  class="py-2 px-5 flex-1 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-secondary hover:bg-secondary shadow border-primary hover:border-secondary text-primary rounded-md">
                 <span><i class="mdi mdi-download-circle"></i></span>
@@ -101,13 +108,13 @@
 
 
               <!-- Remove from cart state  -->
-              <a [routerLink]="['./']"
+              <!-- <a [routerLink]="['./']"
                  (click)="removeFromCart(report)"
                  *ngIf="cartService.isItemInCart(report)"
                  class="py-2 px-5 flex-1 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-red-400 hover:bg-red-400 border-red-400 hover:border-red-400 text-white rounded-md">
                 <span><i class="mdi mdi-close"></i></span>
                 Remove
-                from orders</a>
+                from orders</a> -->
             </div>
           </div>
         </div>

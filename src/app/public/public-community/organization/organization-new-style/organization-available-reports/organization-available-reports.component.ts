@@ -51,9 +51,21 @@ export class OrganizationAvailableReportsComponent extends BaseListComponent<Car
   }
 
   downloadSample() {
-    window.open(
-      'https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/dijecrp6s7iwwhhwjtob',
-      '_blank'
-    );
+    const url =
+      'https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/dijecrp6s7iwwhhwjtob';
+
+    // download file from url
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'url';
+    a.click();
+
+    // window.open(
+    //   'https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/dijecrp6s7iwwhhwjtob',
+    //   '_parent',
+    //   'download'
+    // );
+
+    // window.location.assign(url);
   }
 }
