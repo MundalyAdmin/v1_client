@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Organization } from '../../../../organization/organization.model';
 import { BaseComponent } from '../../../../shared/base-component';
 import { OrganizationService } from '../../../../organization/organization.service';
@@ -14,7 +14,7 @@ export class PublicBusinessCheckCommunityReviewsComponent
   extends BaseComponent<Partial<Organization>>
   implements OnInit
 {
-  resultsUrl: string = 'organizations/search';
+  @Input() resultsUrl: string = '/business/organizations/search';
 
   form!: FormGroup;
   constructor(
@@ -41,7 +41,6 @@ export class PublicBusinessCheckCommunityReviewsComponent
   submit() {
     if (this.form.valid) {
       this.router.navigate([this.resultsUrl], {
-        relativeTo: this.route,
         queryParams: { name: this.form.value.companyName },
       });
     } else {

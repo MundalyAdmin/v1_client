@@ -14,6 +14,17 @@ export class ReportService extends BaseService<any> {
   getByOrganization(organization: Organization) {
     return of([
       {
+        title: 'Impact Analysis Report',
+        price: 'Free',
+        availability: 'In 24 hours',
+        organization: organization.name,
+        image:
+          'https://res.cloudinary.com/mundaly/image/upload/v1706906913/Blue_Red_Geometric_Annual_Report_Document_A4_qdgttm.png',
+        community: 'Bridgeport',
+        generatedBy: 'auto-generated',
+        state: 'on-demand',
+      },
+      {
         title: 'Funding Diligence Report Insights ',
         price: '200',
         availability: 'In 3 hours',
@@ -64,17 +75,6 @@ export class ReportService extends BaseService<any> {
         organization: organization.name,
         image:
           'https://res.cloudinary.com/mundaly/image/upload/v1706906151/New_Haven_Promise_Report.pdf_2_rya0bb.png',
-        community: 'Bridgeport',
-        generatedBy: 'auto-generated',
-        state: 'on-demand',
-      },
-      {
-        title: 'Impact Analysis Report',
-        price: 'Free',
-        availability: 'In 24 hours',
-        organization: organization.name,
-        image:
-          'https://res.cloudinary.com/mundaly/image/upload/v1706906913/Blue_Red_Geometric_Annual_Report_Document_A4_qdgttm.png',
         community: 'Bridgeport',
         generatedBy: 'auto-generated',
         state: 'on-demand',

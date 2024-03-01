@@ -19,9 +19,9 @@
         <div class="justify-start items-start gap-2 md:inline-flex hidden">
           <!-- Book a demo button -->
           <div class="mt-6 mb-3 hidden md:block">
-            <a [routerLink]="['/business/book-demo']"
+            <!-- <a [routerLink]="['/business/book-demo']"
                class="lightbox py-3 px-7 w-auto inline-block font-semibold tracking-wide border align-middle duration-500 text-center bg-secondary hover:bg-secondary-dark border-primary text-lg text-primary rounded-full">Request
-              a demo</a>
+              a demo</a> -->
           </div>
         </div>
       </div>
@@ -47,29 +47,20 @@
         </div>
 
         <div class="grid grid-cols-1 content-end items-end gap-4">
-          <div
-               class="md:text-end text-neutral-100 text-normal md:text-lg font-bold">
-            Join Our Waitlist
-          </div>
           <div class="flex-col justify-start items-end gap-4 md:flex hidden">
-            <div class="md:text-end text-neutral-100 text-md font-light">
-              Sign up and receive product updates and our blogs.
+            <div class="md:text-center text-neutral-100 text-md font-light">
+              Start with a Free Report
             </div>
           </div>
-          <form class="relative md:w-[627px]w-full">
-            <input
-                   type="email"
-                   id="subcribe"
-                   formcontrolname="websiteUrl"
-                   name="text"
-                   placeholder="email address "
-                   class="md:py-4 md:px-5 md:text-lg text-md w-full border-0 outline-none text-black dark:text-white rounded-full bg-white dark:bg-slate-900 shadow-lg dark:shadow-gray-800 outline-primary" />
-            <button
-                    type="submit"
-                    class="py-3 px-7 w-auto inline-block font-semibold tracking-wide align-middle duration-500 text-sm md:text-lg text-center absolute top-[0px] end-[0px] h-full bg-primary hover:bg-primary-light text-white rounded-r-full">
-              Join waitlist
-            </button>
-          </form>
+          <div
+               class="md:text-end text-neutral-100 text-normal md:text-lg font-bold">
+            See what communities are saying about your organization
+          </div>
+
+          <div class="flex justify-end ">
+            <app-public-business-check-community-reviews class="w-[90%]"></app-public-business-check-community-reviews>
+          </div>
+
         </div>
       </div>
     </div>

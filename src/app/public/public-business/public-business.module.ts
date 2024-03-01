@@ -129,7 +129,7 @@ const routes: Routes = [
     ProductReportComponent,
     ProductActComponent,
     ProductOvervirwComponent,
-    PublicBusinessCheckCommunityReviewsComponent,
+
     CaseStudiesComponent,
     PrincingComponent,
     BusinessOrganizationSearchResultsComponent,
