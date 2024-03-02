@@ -10,7 +10,7 @@
         </h5>
 
         <!-- FOrm -->
-        <form action="auth-signup-success.html" class="text-start" [formGroup]="form" (submit)="create()">
+        <form class="text-start" [formGroup]="form" (submit)="create()">
           <div class="grid grid-cols-1">
 
             <!-- Name -->
@@ -52,8 +52,9 @@
 
             <!-- Country -->
             <div class="mb-7">
-              <label class="font-semibold" for="LoginPassword">
-                <i class="mdi mdi-earth me-1"></i>Country:
+              <!-- Label -->
+              <label class="font-semibold" for="country">
+                <i class="mdi mdi-earth me-1"></i> Country:
                 <app-loading *ngIf="countryLoading" class="ms-1"></app-loading>
               </label>
               <select (change)="selectFormHandler( 'country', $event.target)"

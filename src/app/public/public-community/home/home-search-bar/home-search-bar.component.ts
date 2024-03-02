@@ -65,12 +65,12 @@ export class HomeSearchBarComponent
   }
 
   // Get the list of all countries and parse it into Select2Data
+  // TODO: update country
   getCountries() {
     this.countryService.get().subscribe({
       next: (response) => {
         this.countries = response;
       },
-
       error: () => {},
     });
   }

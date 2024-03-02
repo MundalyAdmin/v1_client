@@ -25,13 +25,16 @@ export class SuperAdminOrganizationCreateComponent
 {
   // List of dependancies
   countries: Country[] = [];
+  cities: string[] = [];
   typeOrganizations: TypeOrganization[] = [];
   sectorOrganizations: SectorOrganization[] = [];
   tagOrganizations: TagOrganization[] = [];
+  ngMultiselectDropdownSettings: any;
 
   // Loading of dependancies
   isLoading = {
     countries: false,
+    cities: false,
     typeOrganizations: false,
     sectorOrganizations: false,
     tagOrganizations: false,
@@ -49,6 +52,10 @@ export class SuperAdminOrganizationCreateComponent
   }
 
   ngOnInit() {
+    this.ngMultiselectDropdownSettings = {
+      ...this.helper.dropdownSettings.single,
+      idField: 'name',
+    };
     this.initForm();
 
     this.getCountries();
@@ -60,9 +67,9 @@ export class SuperAdminOrganizationCreateComponent
   initForm(organization?: Organization) {
     const name = organization?.name || '';
     const about = organization?.about || '';
-    const country = organization?.country || [];
-    const type_organization = organization?.type_organization || [];
-    const sector_organization = organization?.sector_organization || [];
+    const country = [{ name: organization?.country }] || [];
+    const type_organization = [organization?.type_organization] || [];
+    const sector_organization = [organization?.sector_organization] || [];
     const tag_organizations = organization?.tag_organizations || [];
     const email = organization?.email || '';
     const website = organization?.website || '';
@@ -82,6 +89,12 @@ export class SuperAdminOrganizationCreateComponent
       creator_id: [creator_id, Validators.required],
     });
 
+    this.form.controls['country'].valueChanges.subscribe(
+      (country: Country[]) => {
+        this.getCitiesByCountry(country[0].name!);
+      }
+    );
+
     // Allow us to reload the form by creating or destroying the form with ngIf="isFormOk"
     this.isFormOk = true;
   }
@@ -96,6 +109,20 @@ export class SuperAdminOrganizationCreateComponent
 
       error: () => {
         this.isLoading.countries = false;
+      },
+    });
+  }
+
+  getCitiesByCountry(countryName: string) {
+    this.isLoading.cities = true;
+    this.countryService.searchCitiesByName(countryName).subscribe({
+      next: (response) => {
+        this.cities = response.map((city) => city.name!);
+        this.isLoading.cities = false;
+      },
+
+      error: () => {
+        this.isLoading.cities = false;
       },
     });
   }
@@ -161,6 +188,7 @@ export class SuperAdminOrganizationCreateComponent
       type_organization,
       sector_organization,
       country,
+      city,
       tag_organizations,
       ...formData
     } = this.form.value;
@@ -169,7 +197,8 @@ export class SuperAdminOrganizationCreateComponent
       ...formData,
       type_organization_id: type_organization[0].id,
       sector_organization_id: sector_organization[0].id,
-      country_id: country[0].id,
+      country: country[0].name,
+      city: city[0],
       tag_organizations: tag_organizations.map(
         (tag: TagOrganization) => tag.name
       ),

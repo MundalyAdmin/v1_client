@@ -46,6 +46,7 @@ export class ScaleService extends BaseService<any> {
   }
 
   getProgressBarWidth(scaleElementScore: number, total: number = 5) {
+    if (!scaleElementScore) return '0%';
     const width = (scaleElementScore * 100) / total + '%';
     return width;
   }

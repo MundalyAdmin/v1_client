@@ -30,13 +30,7 @@ const routes: Routes = [
             './settings-tag-organization/settings-tag-organization.module'
           ).then((module) => module.SettingsTagOrganizationModule),
       },
-      {
-        path: 'countries',
-        loadChildren: () =>
-          import('./settings-country/settings-country.module').then(
-            (module) => module.SettingsCountryModule
-          ),
-      },
+
       {
         path: '**',
         redirectTo: 'type-organizations',

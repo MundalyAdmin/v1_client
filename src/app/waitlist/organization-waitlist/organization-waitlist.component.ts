@@ -17,6 +17,9 @@ export class OrganizationWaitlistComponent extends BaseCreateComponent<Organizat
   countryLoading: boolean = false;
   countries: Country[] = [];
 
+  cityLoading: boolean = false;
+  cities: string[] = [];
+
   constructor(
     public organizationWaitlistService: OrganizationWaitlistService,
     public countryService: CountryService
@@ -42,9 +45,24 @@ export class OrganizationWaitlistComponent extends BaseCreateComponent<Organizat
         this.countries = response;
         this.form.controls['country'].setValue(this.countries[0].name);
         this.countryLoading = false;
+        this.formValuePatcher('country', this.countries[0].name!);
       },
       error: () => {
         this.countryLoading = false;
+      },
+    });
+  }
+
+  getCitiesByCountry(countryName: string) {
+    this.cityLoading = true;
+    this.countryService.searchCitiesByName(countryName).subscribe({
+      next: (response) => {
+        this.cities = response.map((city) => city.name!);
+        this.cityLoading = false;
+        this.formValuePatcher('city', this.cities[0]);
+      },
+      error: () => {
+        this.cityLoading = false;
       },
     });
   }
@@ -58,6 +76,14 @@ export class OrganizationWaitlistComponent extends BaseCreateComponent<Organizat
       job_title: ['', Validators.required],
       website: ['', Validators.required],
     });
+
+    this.form.controls['country'].valueChanges.subscribe((countryName) => {
+      this.getCitiesByCountry(countryName);
+    });
+
+    if (this.countries.length > 0) {
+      this.formValuePatcher('country', this.countries[0].name!);
+    }
   }
 
   override create() {
