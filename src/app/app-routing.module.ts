@@ -31,7 +31,6 @@ const routes: Routes = [
       },
       {
         path: 'dashboard',
-        canActivate: [AuthGuard],
         loadChildren: () =>
           import(
             './organization/dashboard-organization/dashboard-organization.module'
