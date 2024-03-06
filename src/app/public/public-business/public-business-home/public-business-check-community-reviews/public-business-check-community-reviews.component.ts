@@ -96,7 +96,6 @@ export class PublicBusinessCheckCommunityReviewsComponent
     this.loading = true;
     this.organizationService.searchNames(event.query).subscribe((response) => {
       this.organizationSearchResults = response;
-      console.log(response);
       this.loading = false;
     });
   }

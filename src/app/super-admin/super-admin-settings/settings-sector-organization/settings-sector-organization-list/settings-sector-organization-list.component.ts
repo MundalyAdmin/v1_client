@@ -16,7 +16,6 @@ export class SettingsSectorOrganizationListComponent extends BaseListComponent<S
   }
 
   edit(sectorOrganization: SectorOrganization) {
-    console.log(sectorOrganization);
     this.sectorOrganizationService.singleData = sectorOrganization;
   }
 

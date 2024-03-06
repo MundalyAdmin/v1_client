@@ -68,19 +68,15 @@ export class CartService extends BaseService<CartItem> {
       (_: CartItem) =>
         !!!(_.title == item.title && _.organization == item.organization)
     );
-
-    console.log(this.data);
   }
 
   updateDemographic(item: CartItem, demographic: ReportDemographic) {
     item.demographic = demographic;
     this.updateItem(item);
-    console.log(item);
   }
 
   updateResearchPartners(item: CartItem, researchPartners: Organization[]) {
     item.research_partners = researchPartners;
     this.updateItem(item);
-    console.log(item);
   }
 }

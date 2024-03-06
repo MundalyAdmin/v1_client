@@ -46,7 +46,6 @@ export class SuperAdminImpactStoryListComponent
   }
 
   edit(story: ImpactStory) {
-    console.log(story);
     this.impactStoryOrganizationService.singleData = story;
   }
 

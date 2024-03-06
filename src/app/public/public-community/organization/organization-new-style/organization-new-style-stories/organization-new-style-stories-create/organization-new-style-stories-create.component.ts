@@ -45,7 +45,6 @@ export class OrganizationNewStyleStoriesCreateComponent
 
   ngAfterViewInit() {
     if (this.storage.get('review')) {
-      console.log('yay');
       setTimeout(() => {
         this.edited.emit();
         this.storage.delete('review');

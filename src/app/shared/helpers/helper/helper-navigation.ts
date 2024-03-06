@@ -78,7 +78,6 @@ export class HelperNavigation {
   }
 
   jumpToSection(section: string | null) {
-    console.log(section);
     if (section) {
       const element = document.getElementById(section);
       const headerHeight = 100;

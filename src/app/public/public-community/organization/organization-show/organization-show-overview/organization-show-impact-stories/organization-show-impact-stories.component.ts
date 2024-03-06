@@ -39,7 +39,6 @@ export class OrganizationShowImpactStoriesComponent
       .subscribe({
         next: (response) => {
           this.loading = false;
-          console.log(response);
           initCarousels();
         },
         error: () => {

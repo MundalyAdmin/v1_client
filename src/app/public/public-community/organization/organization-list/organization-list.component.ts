@@ -19,7 +19,6 @@ export class OrganizationListComponent extends BaseListComponent<Organization> {
 
   override ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      console.log(params['id']);
       this.getBySectorOrganization(params['id']);
     });
   }

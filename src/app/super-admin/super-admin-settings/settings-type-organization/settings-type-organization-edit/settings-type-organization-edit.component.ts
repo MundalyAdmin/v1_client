@@ -28,7 +28,6 @@ export class SettingsTypeOrganizationEditComponent extends BaseEditComponent<Typ
     this.form = this.fb.group({
       name: [typeOrganization.name, Validators.required],
     });
-    console.log(this.form.value);
   }
 
   edit(): void {

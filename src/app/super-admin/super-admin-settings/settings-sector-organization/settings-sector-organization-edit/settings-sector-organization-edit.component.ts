@@ -32,7 +32,6 @@ export class SettingsSectorOrganizationEditComponent extends BaseEditComponent<S
       icon: [sectorOrganization.icon, Validators.required],
       about: [sectorOrganization.about, Validators.required],
     });
-    console.log(this.form.value);
   }
 
   edit(): void {

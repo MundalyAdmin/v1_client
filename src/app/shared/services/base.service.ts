@@ -228,7 +228,6 @@ export abstract class BaseService<T = any> {
   }
 
   errorResponseHandler(error: CustomHttpErrorResponse) {
-    console.log(error);
     const errorMessage = error?.error?.message;
 
     if (error.status == 404) {
