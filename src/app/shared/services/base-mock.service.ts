@@ -19,7 +19,7 @@ export class BaseMockService<T = any> extends BaseService<T> {
   }
 
   override store(elements: object) {
-    this.data.push(elements as T);
+    this.data.unshift(elements as T);
     return of(this.data);
   }
 
