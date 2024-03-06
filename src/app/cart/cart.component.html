@@ -118,7 +118,7 @@
 
       <div class="grid lg:grid-cols-12 md:grid-cols-2 grid-cols-1 mt-6 gap-6">
         <div class="lg:col-span-9 md:order-1 order-3">
-          <a [routerLink]="['/', 'cart', 'checkout']" *ngIf="cartService.data.length"
+          <a [routerLink]="[ 'checkout']" *ngIf="cartService.data.length"
              class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-md me-2 mt-2">
             <span><i class="mdi mdi-credit-card me-1"></i></span>
             Checkout

@@ -32,7 +32,7 @@
           <div class="row mb-3 w-4/5">
             <div class="font-light text-sm">Report Title</div>
             <div class="font-semibold">{{ report.title }}</div>
-            <span *ngIf="report.price == 'Free'"
+            <span *ngIf="report.price == '0'"
                   class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Free for first
               timers</span>
           </div>
@@ -57,18 +57,18 @@
 
           <div class="mt-5 w-fit">
             <!-- Price -->
-            <div *ngIf="report.price !== 0"
+            <div *ngIf="report.price != 0"
                  class="a p-2 px-8 border border-primary rounded-full text-primary font-extrabold bg-secondary flex items-center justify-center">
               <span *ngIf="report.price > 0">$</span> {{ report.price }}
             </div>
 
 
 
-            <!-- Contact Sales -->
+            <!-- Free -->
             <div
                  *ngIf="report.price == 0"
                  class="a p-2 px-8  border border-primary rounded-full text-primary font-extrabold bg-secondary flex items-center justify-center">
-              Contact Sales
+              Free
             </div>
           </div>
 
@@ -84,7 +84,8 @@
                     </a> -->
 
 
-              <a [routerLink]="['/auth/login']"
+              <a [routerLink]="['/auth/singup']"
+                 (click)="addToCart(report)"
                  *ngIf="report.title === 'Impact Analysis Report'"
                  class="py-2 px-5 flex-1 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-primary hover:bg-primary shadow border-primary hover:border-primary text-white rounded-md">
                 <span><i class="mdi mdi-lock-check"></i></span>
@@ -92,7 +93,7 @@
               </a>
 
               <button
-                      [disabled]="true"
+                      (click)="addToCart(report)"
                       *ngIf="report.title !== 'Impact Analysis Report'"
                       class="py-2 px-5 flex-1 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-slate-600 shadow border-primary hover:border-primary text-white rounded-md">
                 <span><i class="mdi mdi-lock"></i></span>

@@ -15,7 +15,7 @@ export class ReportService extends BaseService<any> {
     return of([
       {
         title: 'Impact Analysis Report',
-        price: 'Free',
+        price: '0',
         availability: 'In 24 hours',
         organization: organization.name,
         image:
