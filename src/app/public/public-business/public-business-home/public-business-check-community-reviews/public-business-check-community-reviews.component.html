@@ -32,11 +32,11 @@
 
       <!-- List item template -->
       <ng-template let-organization pTemplate="item">
-        <div class="flex align-items-center gap-2">
+        <a [routerLink]="'/community/organizations/' + organization.id" class="flex align-items-center gap-2">
           <img [src]="organization.logo" [class]="'w-8 h-8'"
                style="width: 18px" />
           <div>{{ organization.name }}</div>
-        </div>
+        </a>
       </ng-template>
 
       <!-- No data handling template -->

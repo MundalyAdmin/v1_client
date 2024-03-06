@@ -72,7 +72,11 @@ export class PublicBusinessCheckCommunityReviewsComponent
   submit() {
     if (this.form.valid) {
       this.router.navigate([this.resultsUrl], {
-        queryParams: { name: this.form.value.organizationName },
+        queryParams: {
+          name:
+            this.form.value.organizationName.name ||
+            this.form.value.organizationName,
+        },
       });
     } else {
       this.helper.notification.alertDanger(
