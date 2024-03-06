@@ -30,6 +30,8 @@ export class PublicBusinessCheckCommunityReviewsComponent
   @ViewChild('autoComplete', { static: false })
   autoCompleteTemplateElement: any;
 
+  @Input() disableJumpSection = false;
+
   showOverlay = false;
 
   organizationSearchResults: OrganizationSearchResult[] = [];
@@ -62,7 +64,7 @@ export class PublicBusinessCheckCommunityReviewsComponent
 
   ngAfterViewInit(): void {
     this.route.fragment.subscribe((fragment) => {
-      if (fragment) {
+      if (fragment && !this.disableJumpSection) {
         this.helper.navigation.jumpToSection(fragment);
         this.autoCompleteTemplateElement.inputEL.nativeElement.focus();
       }
