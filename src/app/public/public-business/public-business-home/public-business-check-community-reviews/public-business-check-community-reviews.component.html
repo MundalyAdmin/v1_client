@@ -1,14 +1,61 @@
 <!-- Check your business -->
-
+<div class="h-[100vh] w-[100vw] z-99 bg-white opacity-50 fixed top-0 left-0" *ngIf="showOverlay" (click)="showOverlay = false"></div>
 <div class="subcribe-form flex justify-center w-full ">
-  <form class="relative flex gap-2 flex-col md:block md:w-[627px] w-full " [formGroup]="form" (submit)="submit()">
+  <form class="relative flex gap-2 flex-col md:block md:w-[627px] w-full z-999 " [formGroup]="form" (submit)="submit()" id="searchOrganizationByName">
     <!-- Input url -->
-    <input type="text"
+    <!-- <input type="text"
            id="subcribe"
            formControlName="companyName"
            name="text"
            placeholder="Your organization's name "
-           class="p-5 text-base w-full border-0 outline-none text-black dark:text-white rounded-full bg-white dark:bg-slate-900 md:shadow-lg dark:shadow-gray-800">
+           class="p-5 text-base w-full border-0 outline-none text-black dark:text-white rounded-full bg-white dark:bg-slate-900 md:shadow-lg dark:shadow-gray-800"> -->
+    <label for="organizationSearchBox" #label class="hidden"></label>
+    <p-autoComplete
+                    (onShow)="showOverlay = true"
+                    id="organizationSearchBox"
+                    formControlName="organizationName"
+                    scrollHeight="1000px"
+                    (onSelect)="onSelect($event)"
+                    [completeOnFocus]="true"
+                    [suggestions]="organizationSearchResults"
+                    [placeholder]="'Your organization\'s name'"
+                    [showEmptyMessage]="true"
+                    [inputStyleClass]="'p-5 text-base outline-4 w-full outline border-0 outline-none text-black dark:text-white rounded-full bg-white dark:bg-slate-900 shadow-lg dark:shadow-gray-800'"
+                    (completeMethod)="searchOrganizationByName($event)"
+                    (onHide)="onSearchInputBlur()"
+                    styleClass="w-full h-full"
+                    #autoComplete
+                    panelStyleClass="w-full h-full overflow-visible"
+                    field="name">
+
+      <div class="h-[100vh] w-[100vw] z-99 bg-white opacity-75"></div>
+
+      <!-- List item template -->
+      <ng-template let-organization pTemplate="item">
+        <div class="flex align-items-center gap-2">
+          <img [src]="organization.logo" [class]="'w-8 h-8'"
+               style="width: 18px" />
+          <div>{{ organization.name }}</div>
+        </div>
+      </ng-template>
+
+      <!-- No data handling template -->
+      <ng-template let-organization pTemplate="empty">
+        <div class="text-center flex  flex-col items-center justify-center py-5 gap-5">
+          <div class="text-5xl "><span><i class="mdi mdi-magnify"></i></span></div>
+
+          <div class="text-xl">We couldn't find your organization</div>
+
+
+          <a routerLink="/auth/signup" class="text-slate-500 font-medium">
+            <div
+                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+              Add your organization's information here <br>
+            </div>
+          </a>
+        </div>
+      </ng-template>
+    </p-autoComplete>
 
     <!-- Submit button -->
     <button type="submit"

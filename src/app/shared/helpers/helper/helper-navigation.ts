@@ -77,6 +77,16 @@ export class HelperNavigation {
     return this.router.url.split('?')[0];
   }
 
+  jumpToSection(section: string | null) {
+    console.log(section);
+    if (section) {
+      const element = document.getElementById(section);
+      const headerHeight = 100;
+      if (element?.offsetTop)
+        window.scrollTo(0, element?.offsetTop - headerHeight);
+    }
+  }
+
   // convertObjectToQueryParamsUrl(object: any) {
   //   let queryParams: string = '';
   //   let index: number = 0;

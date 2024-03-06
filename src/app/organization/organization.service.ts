@@ -63,8 +63,8 @@ export class OrganizationService extends BaseService<Organization> {
       .get(`${this.endPoint}/search/names/${keyword}`)
       .pipe(
         map(
-          (response: ApiResponse<{ name: string }>) =>
-            response.data as { name: string }[]
+          (response: ApiResponse<{ name: string; logo: string }>) =>
+            response.data as { name: string; logo: string }[]
         )
       );
   }

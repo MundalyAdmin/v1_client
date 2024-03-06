@@ -190,7 +190,7 @@
   </div>
 
   <div class=" mb-[60px]">
-    <a [routerLink]="['/auth/signup']"
+    <a [routerLink]="['./']" fragment="searchOrganizationByName"
        class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-lg text-center bg-primary hover:bg-indigo-700 border-impabg-impact-fidelity hover:border-indigo-700 text-white rounded-full">Start
       with a Free Impact Report</a>
   </div>
@@ -418,10 +418,16 @@
   <div class="flex flex-col container items-center mt-24">
     <h4 class="text-center md:text-2xl text-lg text-primary md:mt-5 px-2 mt-3 font-semibold">See what communities are saying about your organization
     </h4>
-    <p
+    <!-- <p
        class="text-red-950 text-center md:text-start text-lg max-w-2xl mb-6 font-bold pt-5">
-      Start with a Free Report.</p>
-    <app-public-business-check-community-reviews></app-public-business-check-community-reviews>
+      Start with a Free Report.</p> -->
+    <!-- <app-public-business-check-community-reviews></app-public-business-check-community-reviews> -->
+
+    <div class=" my-5">
+      <a [routerLink]="['./']" fragment="searchOrganizationByName"
+         class="py-3 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-lg text-center bg-primary hover:bg-indigo-700 border-impabg-impact-fidelity hover:border-indigo-700 text-white rounded-full">Start
+        with a Free Impact Report</a>
+    </div>
   </div>
 </section>
 

@@ -21,7 +21,6 @@ import { ProductTrackComponent } from './product-track/product-track.component';
 import { ProductReportComponent } from './product-report/product-report.component';
 import { ProductActComponent } from './product-act/product-act.component';
 import { ProductOvervirwComponent } from './product-overvirw/product-overvirw.component';
-import { PublicBusinessCheckCommunityReviewsComponent } from './public-business-home/public-business-check-community-reviews/public-business-check-community-reviews.component';
 import { ThankYouForJoiningOrganizationComponent } from '../../waitlist/organization-waitlist/thank-you-for-joining-organization/thank-you-for-join-organization.component';
 import { OrganizationWaitlistComponent } from '../../waitlist/organization-waitlist/organization-waitlist.component';
 import { CaseStudiesComponent } from './case-studies/case-studies.component';
