@@ -11,6 +11,8 @@ import { DashboardOrganizationCreditComponent } from './dashboard-organization-c
 import { DashboardOrganizationCreditReportsComponent } from './dashboard-organization-credit-reports/dashboard-organization-credit-reports.component';
 import { DashboardOrganizationCreditOrdersComponent } from './dashboard-organization-credit-orders/dashboard-organization-credit-orders.component';
 import { DashboardOrganizationHistoryComponent } from './dashboard-organization-history/dashboard-organization-history.component';
+import { implementerAuthorizationGuard } from '../../auth/guards/implementer-authorization.guard';
+import { funderAuthorizationGuard } from '../../auth/guards/funder-authorization.guard';
 
 const routes: Routes = [
   {
@@ -19,10 +21,12 @@ const routes: Routes = [
     children: [
       {
         path: 'community',
+        canActivate: [funderAuthorizationGuard],
         component: DashboardOrganizationCommunityComponent,
       },
       {
         path: 'impact',
+        canActivate: [funderAuthorizationGuard],
         component: DashboardOrganizationImpactComponent,
       },
       {
@@ -51,6 +55,7 @@ const routes: Routes = [
       {
         path: 'benchmark',
         component: DashboardOrganizationBenchmarkComponent,
+        canActivate: [implementerAuthorizationGuard],
         children: [
           {
             path: 'self-assessment',
@@ -68,11 +73,6 @@ const routes: Routes = [
             redirectTo: 'self-assessment',
           },
         ],
-      },
-      {
-        path: '',
-        redirectTo: 'community',
-        pathMatch: 'full',
       },
     ],
   },

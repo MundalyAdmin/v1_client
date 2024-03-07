@@ -19,7 +19,7 @@
 
     <!-- Sidebar -->
     <ul class="space-y-2 relative font-medium">
-      <ng-container *ngIf="type_organization?.id === 1">
+      <ng-container *ngIf="typeOrganization?.id === 1">
         <!-- Community -->
         <li>
           <a [routerLink]="['community']"
@@ -101,7 +101,7 @@
         </ul>
       </li> -->
 
-      <ng-container *ngIf="type_organization?.id === 2">
+      <ng-container *ngIf="typeOrganization?.id === 2">
         <!-- Benchmark & De-Risk -->
         <li>
           <a [routerLink]="['benchmark']"
