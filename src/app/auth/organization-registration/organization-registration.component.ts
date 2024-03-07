@@ -107,6 +107,7 @@ export class OrganizationRegistrationComponent
       reportsUpload: this.fb.group({
         reports: [[]],
       }),
+      terms_and_conditions: [false, Validators.requiredTrue],
     });
 
     this.adminInfoForm = this.form.get('adminInfo') as FormGroup;
@@ -141,6 +142,10 @@ export class OrganizationRegistrationComponent
 
       this.selectedReportFile = null;
     }
+  }
+
+  onTermsChange(event: any) {
+    console.log(event);
   }
 
   getTypeOrganizations() {

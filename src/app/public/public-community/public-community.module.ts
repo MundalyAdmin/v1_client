@@ -220,7 +220,6 @@ const routes: Routes = [
     HomeOrganizationListComponent,
     HomeAboutUsComponent,
     OrganizationComponent,
-
     OrganizationListComponent,
     OrganizationShowComponent,
     OrganizationShowHeroComponent,

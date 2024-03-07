@@ -268,7 +268,7 @@
               </label>
             </div>
 
-            <!-- Name -->
+            <!-- Name and year -->
             <div class="flex gap-3">
               <div class="flex-1">
                 <!-- <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name of the report</label> -->
@@ -280,17 +280,7 @@
 
               <!-- Year -->
               <div>
-                <!-- <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year</label> -->
-                <!-- <input type="date" name="email" id="email"
-                       formControlName="year"
-                       min="1900" max="2100"
-                       class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       placeholder="Year" required=""> -->
-
                 <p-calendar formControlName="year" view="year" dateFormat="yy" inputId="yearpicker"></p-calendar>
-
-                <!-- <input type="number" id="yearInput" name="year" min="1900" max="2100"> -->
-
               </div>
 
 
@@ -306,42 +296,45 @@
 
 
             <hr>
+          </form>
 
-            <div class="relative overflow-x-auto shadow dark:shadow-gray-800 rounded-md" *ngIf="reports.length">
-              <table class="w-full text-start">
-                <thead class="text-sm uppercase bg-slate-50 dark:bg-slate-800">
-                  <tr>
-                    <th scope="col" class="p-4 w-4"></th>
-                    <th scope="col" class="text-start p-4 min-w-[220px]">Name</th>
-                    <th scope="col" class="p-4 w-24 min-w-[220px]">Year</th>
-                    <!-- <th scope="col" class="p-4 w-56 min-w-[100px]">File</th> -->
-                  </tr>
-                </thead>
-                <tbody>
 
-                  <!-- List of items -->
-                  <ng-container>
-                    <tr class="bg-white dark:bg-slate-900 border-t border-gray-100 dark:border-gray-800 "
-                        *ngFor="let report of reports">
-                      <!-- Remove from cart -->
-                      <td class="p-4"><button><i class="mdi mdi-window-close text-red-600"></i></button></td>
+          <!-- List of reports -->
+          <div class="relative overflow-x-auto shadow dark:shadow-gray-800 rounded-md" *ngIf="reports.length">
+            <table class="w-full text-start">
+              <thead class="text-sm uppercase bg-slate-50 dark:bg-slate-800">
+                <tr>
+                  <th scope="col" class="p-4 w-4"></th>
+                  <th scope="col" class="text-start p-4 min-w-[220px]">Name</th>
+                  <th scope="col" class="p-4 w-24 min-w-[220px]">Year</th>
+                  <!-- <th scope="col" class="p-4 w-56 min-w-[100px]">File</th> -->
+                </tr>
+              </thead>
+              <tbody>
 
-                      <!-- Report description -->
-                      <td class="p-4">
-                        <span class="flex items-center">
-                          <span class="mt-2">
-                            <span class="block font-semibold text-slate-700">
-                              {{ report.name }}
-                            </span>
+                <!-- List of items -->
+                <ng-container>
+                  <tr class="bg-white dark:bg-slate-900 border-t border-gray-100 dark:border-gray-800 "
+                      *ngFor="let report of reports">
+                    <!-- Remove from cart -->
+                    <td class="p-4"><button><i class="mdi mdi-window-close text-red-600"></i></button></td>
+
+                    <!-- Report description -->
+                    <td class="p-4">
+                      <span class="flex items-center">
+                        <span class="mt-2">
+                          <span class="block font-semibold text-slate-700">
+                            {{ report.name }}
                           </span>
                         </span>
-                      </td>
+                      </span>
+                    </td>
 
-                      <!-- Year -->
-                      <td class="p-4 text-center font-bold">{{ report.year | date: 'yyyy'}}</td>
+                    <!-- Year -->
+                    <td class="p-4 text-center font-bold">{{ report.year | date: 'yyyy'}}</td>
 
-                      <!-- Genereated by -->
-                      <!-- <td class="p-2 text-center">
+                    <!-- Genereated by -->
+                    <!-- <td class="p-2 text-center">
 
                         {{ report.file.name }}
                       </td> -->
@@ -350,64 +343,51 @@
 
 
 
-                    </tr>
-                  </ng-container>
-                </tbody>
-              </table>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
 
-            </div>
+          </div>
 
 
 
-            <!-- <div class="flex items-center justify-between">
-                                    <div class="flex items-start">
-                                      <div class="flex items-center h-5">
-                                        <input id="remember" aria-describedby="remember" type="checkbox"
-                                               class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                                               required="">
-                                      </div>
-                                      <div class="ml-3 text-sm">
-                                        <label for="remember" class="text-gray-500 dark:text-gray-300">Remember me</label>
-                                      </div>
-                                    </div>
-                                    <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
-                                  </div> -->
 
-            <div class="flex items-center justify-between">
-              <div class="flex items-start">
-                <div class="flex items-center h-5">
-                  <input id="remember" aria-describedby="remember" type="checkbox"
-                         class=" appearance-none "
-                         required="">
-                </div>
-                <div class="ml-3 text-sm">
-                  <label for="remember" class="text-gray-500 dark:text-gray-300">I agree on the terms and conditions</label>
-                </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-start">
+              <div class="flex items-center h-5">
+                <input id="terms" aria-describedby="terms" type="checkbox"
+                       formControlName="terms_and_conditions"
+                       class=" appearance-none "
+                       required="">
+              </div>
+              <div class="ml-3 text-sm">
+                <label for="remember" class="text-gray-500 dark:text-gray-300">I agree on the terms and conditions</label>
               </div>
             </div>
+          </div>
 
-            <!-- Submit -->
-            <div class="flex gap-4">
-              <!-- Previous -->
-              <button type="button"
-                      (click)="showStep('organizationInfo')"
-                      class="w-full text-white border-white border bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Previous</button>
-
-
-
-              <!-- Next -->
-              <button type="submit"
-                      (click)="submit()"
-                      [disabled]="form.invalid || loading"
-                      [ngClass]="{'cursor-not-allowed bg-slate-400': form.invalid || loading}"
-                      class="w-full text-primary border-primary border bg-secondary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Submit</button>
-            </div>
+          <!-- Submit -->
+          <div class="flex gap-4">
+            <!-- Previous -->
+            <button type="button"
+                    (click)="showStep('organizationInfo')"
+                    class="w-full text-white border-white border bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Previous</button>
 
 
-            <!-- <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+
+            <!-- Next -->
+            <button type="submit"
+                    (click)="submit()"
+                    [disabled]="form.invalid || loading"
+                    [ngClass]="{'cursor-not-allowed bg-slate-400': form.invalid || loading}"
+                    class="w-full text-primary border-primary border bg-secondary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Submit</button>
+          </div>
+
+
+          <!-- <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                                     Don’t have an account yet? <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
                                   </p> -->
-          </form>
         </ng-container>
 
 
