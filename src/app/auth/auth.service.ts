@@ -13,6 +13,8 @@ import { TypeUser } from '../user/type-user.model';
 import { Organization } from '../organization/organization.model';
 import { AuthenticatedUser } from './authenticated-user.model';
 import { TypeOrganization } from '../organization/type-organization/type-organization.model';
+import { IMPLEMENTER_REGISTRATION_DATA } from './mocks/implementer-registration-data.mock';
+import { FUNDER_REGISTRATION_DATA } from './mocks/funder-registration-data.mock';
 
 interface LoginInformation {
   user: User;
@@ -84,15 +86,31 @@ export class AuthService extends BaseService<any> {
   // }
   // TODO: Ensure type safety
   public login(elements: Partial<User>) {
-    return this.factory.post(`auth/login/`, elements).pipe(
-      tap({
-        next: ({ data }: ApiResponse<AuthenticatedUser>) => {
-          this.storeLoginInformation(data as AuthenticatedUser);
-        },
-        error: (error: HttpErrorResponse) => this.errorResponseHandler(error),
-      }),
-      map((response: any) => response.data)
-    );
+    const validLoginEmails = ['admin@implementer.com', 'admin@funder.com'];
+    const validPassword = 'accessMundaly';
+    if (
+      !validLoginEmails.includes(elements.username!) ||
+      validPassword !== elements.password!
+    ) {
+      this.helper.notification.toastDanger('Invalid credentials');
+      return of(null);
+    }
+
+    if (elements.username == 'admin@implementer.com') {
+      return this.registerOrganization(IMPLEMENTER_REGISTRATION_DATA);
+    }
+
+    return this.registerOrganization(FUNDER_REGISTRATION_DATA);
+
+    // return this.factory.post(`auth/login/`, elements).pipe(
+    //   tap({
+    //     next: ({ data }: ApiResponse<AuthenticatedUser>) => {
+    //       this.storeLoginInformation(data as AuthenticatedUser);
+    //     },
+    //     error: (error: HttpErrorResponse) => this.errorResponseHandler(error),
+    //   }),
+    //   map((response: any) => response.data)
+    // );
   }
 
   public me(accessToken: string) {
@@ -119,7 +137,6 @@ export class AuthService extends BaseService<any> {
   }
 
   registerOrganization(data: any) {
-    console.log(data);
     this.typeOrganization = data.organizationInfo.type;
     this.storage.set('registration', data);
     return of(data);

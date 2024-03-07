@@ -5,6 +5,8 @@ import { TypeUser } from './type-user.model';
 export interface User extends BaseModel {
   name: string | null;
 
+  username: string | null;
+
   email: string | null;
 
   password: string | null;
