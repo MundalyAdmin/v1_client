@@ -10,6 +10,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FileUploadModule } from 'primeng/fileupload';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CalendarModule } from 'primeng/calendar';
+import { MultiSelectModule } from 'primeng/multiselect';
 import { OrganizationRegistrationProcessingComponent } from './organization-registration/organization-registration-processing/organization-registration-processing.component';
 
 const routes: Routes = [
@@ -51,6 +52,7 @@ const routes: Routes = [
     InputTextareaModule,
     FileUploadModule,
     CalendarModule,
+    MultiSelectModule,
   ],
   providers: [AuthService],
 })

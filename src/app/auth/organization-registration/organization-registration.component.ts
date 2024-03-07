@@ -80,10 +80,16 @@ export class OrganizationRegistrationComponent
   }
 
   initform() {
+    const workEmailValidationRegex =
+      /\b[A-Za-z0-9._%+-]+@(?!gmail|yahoo|outlook)(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}\b/;
+
     this.form = this.fb.group({
       adminInfo: this.fb.group({
         name: [null, Validators.required],
-        email: [null, Validators.required],
+        email: [
+          null,
+          [Validators.required, Validators.pattern(workEmailValidationRegex)],
+        ],
         phone_number: [null, Validators.required],
         password: [null, Validators.required],
         password_confirmation: [null, Validators.required],
