@@ -11,13 +11,13 @@
     <div class="mt-8 mb-4">
 
       <!-- Name -->
-      <a [routerLink]="['/organizations', organization.id]" *ngIf="organization.id !== 24"
+      <a [routerLink]="['/organizations', organization.id]" *ngIf="organization.type_organization_id == 2"
          class="text-xl font-bold text-slate-600 hover:text-primary duration-500 block">{{
         organization.name
         }}</a>
 
       <!-- TODO: TO REMOVE JUST for test -->
-      <a [routerLink]="['/organizations/funder', organization.id]" *ngIf="organization.id === 24"
+      <a [routerLink]="['/organizations/funder', organization.id]" *ngIf="organization.type_organization_id == 1"
          class="text-xl font-bold text-slate-600 hover:text-primary duration-500 block">{{
         organization.name
         }}</a>

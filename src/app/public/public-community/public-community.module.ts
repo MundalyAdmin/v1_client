@@ -105,37 +105,37 @@ const routes: Routes = [
         path: 'organizations/search',
         component: OrganizationContainerComponent,
       },
-      // {
-      //   path: 'organizations/funder',
-      //   component: OrganizationFunderComponent,
-      //   children: [
-      //     {
-      //       path: 'portfolio',
-      //       component: OrganizationFunderPortfolioComponent,
-      //     },
-      //     {
-      //       path: 'stories',
-      //       component: OrganizationNewStyleStoriesComponent,
-      //       children: [
-      //         {
-      //           path: ':id',
-      //           component: OrganizationNewStyleStoriesListComponent,
-      //         },
-      //         {
-      //           path: '**',
-      //           redirectTo: 'unverified',
-      //           pathMatch: 'full',
-      //         },
-      //       ],
-      //     },
+      {
+        path: 'organizations/funder',
+        component: OrganizationFunderComponent,
+        children: [
+          {
+            path: 'portfolio',
+            component: OrganizationFunderPortfolioComponent,
+          },
+          {
+            path: 'stories',
+            component: OrganizationNewStyleStoriesComponent,
+            children: [
+              {
+                path: ':id',
+                component: OrganizationNewStyleStoriesListComponent,
+              },
+              {
+                path: '**',
+                redirectTo: 'unverified',
+                pathMatch: 'full',
+              },
+            ],
+          },
 
-      //     {
-      //       path: '**',
-      //       redirectTo: 'stories',
-      //       pathMatch: 'full',
-      //     },
-      //   ],
-      // },
+          {
+            path: '**',
+            redirectTo: 'stories',
+            pathMatch: 'full',
+          },
+        ],
+      },
       {
         path: 'organizations/:id',
         component: OrganizationNewStyleComponent,
