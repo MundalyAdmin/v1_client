@@ -25,7 +25,7 @@ export class ReportService extends BaseService<any> {
         state: 'on-demand',
       },
       {
-        title: 'Funding Diligence Report Insights ',
+        title: 'Funding Diligence Report Insights',
         price: '200',
         availability: 'In 3 hours',
         organization: organization.name,

@@ -85,16 +85,43 @@
 
 
               <a [routerLink]="['/auth/singup']"
-                 (click)="addToCart(report)"
+
                  *ngIf="report.title === 'Impact Analysis Report'"
                  class="py-2 px-5 flex-1 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-primary hover:bg-primary shadow border-primary hover:border-primary text-white rounded-md">
                 <span><i class="mdi mdi-lock-check"></i></span>
                 Verify
               </a>
 
+              <ng-container *ngIf="report.title === 'Funding Diligence Report Insights'">
+                <a [routerLink]="['./']"
+                   (click)="addToCart(report)"
+                   *ngIf="!cartService.isItemInCart(report)"
+                   class="py-2 px-5 flex-1 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-primary hover:bg-primary shadow border-primary hover:border-primary text-white rounded-md">
+                  <span><i class="mdi mdi-cart"></i></span>
+                  Add to cart
+                </a>
+
+                <a [routerLink]="['./']"
+                   (click)="removeFromCart(report)"
+                   *ngIf="cartService.isItemInCart(report)"
+                   class="py-2 px-5 flex-1 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-red-400 hover:bg-red-400 border-red-400 hover:border-red-400 text-white rounded-md">
+                  <span><i class="mdi mdi-close"></i></span>
+                  Remove
+                  from orders</a>
+              </ng-container>
+
+
+              <!-- <a [routerLink]="['./']"
+                               (click)="removeFromCart(report)"
+                               *ngIf="cartService.isItemInCart(report)"
+                               class="py-2 px-5 flex-1 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-red-400 hover:bg-red-400 border-red-400 hover:border-red-400 text-white rounded-md">
+                              <span><i class="mdi mdi-close"></i></span>
+                              Remove
+                              from orders</a> -->
+
               <button
-                      (click)="addToCart(report)"
-                      *ngIf="report.title !== 'Impact Analysis Report'"
+                      [disabled]="" true
+                      *ngIf="report.title !== 'Impact Analysis Report' && report.title !== 'Funding Diligence Report Insights'"
                       class="py-2 px-5 flex-1 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-slate-600 shadow border-primary hover:border-primary text-white rounded-md">
                 <span><i class="mdi mdi-lock"></i></span>
                 Coming Soon...
