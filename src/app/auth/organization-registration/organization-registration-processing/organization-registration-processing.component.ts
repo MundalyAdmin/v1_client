@@ -19,7 +19,7 @@ export class OrganizationRegistrationProcessingComponent
   ngOnInit(): void {
     const admin = this.storage.get<any>('registration')?.adminInfo;
     setTimeout(() => {
-      this.router.navigate(['/dashboard/benchmark']);
+      this.router.navigate(['/dashboard']);
       this.helper.notification.toastSuccess(`Welcome ${admin?.name}!`);
     }, 5000);
   }
