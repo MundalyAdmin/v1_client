@@ -146,7 +146,7 @@
 
             <!-- Name -->
             <div>
-              <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Organization'name</label>
+              <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Organization name</label>
               <input type="text" name="name" id="name"
                      formControlName="name"
                      class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -156,7 +156,7 @@
 
             <!-- Organization Email -->
             <div>
-              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Organization's email</label>
+              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Organization email</label>
               <input type="email" name="email" id="email"
                      formControlName="email"
                      class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -165,7 +165,7 @@
 
             <!-- website -->
             <div>
-              <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Website</label>
+              <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Organization Website</label>
               <input type="url" name="website" id="website"
                      formControlName="website"
                      class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -362,7 +362,10 @@
                        required="">
               </div>
               <div class="ml-3 text-sm">
-                <label for="remember" class="text-gray-500 dark:text-gray-300">I agree on the terms and conditions</label>
+                <label for="remember" class="text-gray-500 dark:text-gray-300">
+                  I agree to the <a [routerLink]="['/terms-of-services']" target="_blank" class="text-primary hover:underline"> terms and
+                    conditions </a>
+                </label>
               </div>
             </div>
           </div>
