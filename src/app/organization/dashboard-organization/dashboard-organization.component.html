@@ -23,8 +23,9 @@
         <!-- Community -->
         <li>
           <a [routerLink]="['community']"
-             class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group">
-            <span class=""><i class=" text-secondary-dark text-xl mdi mdi-account-supervisor"></i></span>
+             class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
+             routerLinkActive="bg-secondary-dark">
+            <span class=""><i class=" text-secondary-dark text-xl mdi mdi-account-supervisor" routerLinkActive="text-white"></i></span>
             <span class="ms-2">Community</span>
           </a>
         </li>
@@ -32,8 +33,9 @@
         <!-- Impact -->
         <li>
           <a [routerLink]="['impact']"
-             class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group">
-            <span class=""><i class=" text-secondary-dark text-xl mdi mdi-artboard"></i></span>
+             class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
+             routerLinkActive="bg-secondary-dark">
+            <span class=""><i class=" text-secondary-dark text-xl mdi mdi-artboard" routerLinkActive="text-white"></i></span>
             <span class="flex-1 ms-2 whitespace-nowrap">Impact</span>
           </a>
         </li>
@@ -42,8 +44,9 @@
         <!-- Benchmark and derisk -->
         <li>
           <a [routerLink]="['./']"
-             class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group">
-            <span class=""><i class=" text-secondary-dark text-xl mdi mdi-podium-gold"></i></span>
+             class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
+             routerLinkActive="bg-secondary-dark">
+            <span class=""><i class=" text-secondary-dark text-xl mdi mdi-podium-gold" routerLinkActive="text-white"></i></span>
             <span class="flex-1 ms-2 whitespace-nowrap">Benchmark and Derisk</span>
           </a>
         </li>
@@ -52,8 +55,9 @@
         <!-- Get Credit -->
         <li>
           <a [routerLink]="['impact']"
-             class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group">
-            <span class=""><i class=" text-secondary-dark text-xl mdi mdi-credit-card"></i></span>
+             class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
+             routerLinkActive="bg-secondary-dark">
+            <span class=""><i class=" text-secondary-dark text-xl mdi mdi-credit-card" routerLinkActive="text-white"></i></span>
             <span class="flex-1 ms-2 whitespace-nowrap">Get Credit</span>
           </a>
         </li>
@@ -61,8 +65,9 @@
         <!-- History -->
         <li>
           <a [routerLink]="['impact']"
-             class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group">
-            <span class=""><i class=" text-secondary-dark text-xl mdi mdi-clock-time-nine"></i></span>
+             class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
+             routerLinkActive="bg-secondary-dark">
+            <span class=""><i class=" text-secondary-dark text-xl mdi mdi-clock-time-nine" routerLinkActive="text-white"></i></span>
             <span class="flex-1 ms-2 whitespace-nowrap">History</span>
           </a>
         </li>
@@ -102,21 +107,27 @@
       </li> -->
 
       <ng-container *ngIf="typeOrganization?.id === 2">
-        <!-- Benchmark & De-Risk -->
+        <!-- Report Outcomes -->
         <li>
           <a [routerLink]="['report-outcomes']"
+             routerLinkActive="bg-secondary-dark"
              class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group">
-            <span class=""><i class=" text-secondary-dark text-xl mdi mdi-chart-line"></i></span>
+            <span class="">
+              <i class=" text-secondary-dark text-xl mdi mdi-chart-line" routerLinkActive="text-white"></i>
+            </span>
             <span class="flex-1 ms-2 whitespace-nowrap">Report outcomes</span>
 
           </a>
         </li>
 
-        <!-- Get credit -->
+        <!-- Documents -->
         <li>
           <a [routerLink]="['documents']"
+             routerLinkActive="bg-secondary-dark"
              class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group">
-            <span class=""><i class=" text-secondary-dark text-xl mdi mdi-file-chart"></i></span>
+            <span class="">
+              <i class=" text-secondary-dark text-xl mdi mdi-file-chart" routerLinkActive="text-white"></i>
+            </span>
             <span class="flex-1 ms-2 whitespace-nowrap">Documents</span>
           </a>
         </li>
@@ -124,8 +135,12 @@
         <!-- Engage -->
         <li>
           <a [routerLink]="['history']"
+             routerLinkActive="bg-secondary-dark"
              class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group">
-            <span class=""><i class=" text-secondary-dark text-xl mdi mdi-clock-time-nine"></i></span>
+            <span class="">
+              <i class=" text-secondary-dark text-xl mdi mdi-clock-time-nine" routerLinkActive="text-white">
+
+              </i></span>
             <span class="flex-1 ms-2 whitespace-nowrap">History</span>
           </a>
         </li>
