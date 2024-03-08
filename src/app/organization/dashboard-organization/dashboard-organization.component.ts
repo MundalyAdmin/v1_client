@@ -28,13 +28,18 @@ export class DashboardOrganizationComponent implements OnInit {
     this.organization = registration['organizationInfo'];
     this.typeOrganization = this.authService.typeOrganization;
 
-    if (this.typeOrganization.id === 1) {
-      console.log('community');
-      this.router.navigate(['community'], { relativeTo: this.route });
-    } else if (this.typeOrganization.id === 2) {
-      console.log('benchmark');
+    this.menuRedirection();
+  }
 
-      this.router.navigate(['benchmark'], { relativeTo: this.route });
+  /**
+   * Menu redirection based on the organization type.
+   */
+  menuRedirection() {
+    const currentRoute = this.router.url.split('/').pop();
+    if (currentRoute === 'dashboard') {
+      const redirectRoute =
+        this.typeOrganization?.id === 1 ? 'community' : 'report-outcomes';
+      this.router.navigate([redirectRoute], { relativeTo: this.route });
     }
   }
 }

@@ -13,6 +13,7 @@ import { DashboardOrganizationCreditOrdersComponent } from './dashboard-organiza
 import { DashboardOrganizationHistoryComponent } from './dashboard-organization-history/dashboard-organization-history.component';
 import { implementerAuthorizationGuard } from '../../auth/guards/implementer-authorization.guard';
 import { funderAuthorizationGuard } from '../../auth/guards/funder-authorization.guard';
+import { SharedPublicModule } from '../../public/shared-public/shared-public.module';
 
 const routes: Routes = [
   {
@@ -34,7 +35,7 @@ const routes: Routes = [
         component: DashboardOrganizationHistoryComponent,
       },
       {
-        path: 'credit',
+        path: 'documents',
         component: DashboardOrganizationCreditComponent,
         children: [
           {
@@ -53,7 +54,7 @@ const routes: Routes = [
         ],
       },
       {
-        path: 'benchmark',
+        path: 'report-outcomes',
         component: DashboardOrganizationBenchmarkComponent,
         canActivate: [implementerAuthorizationGuard],
         children: [
@@ -90,6 +91,11 @@ const routes: Routes = [
     DashboardOrganizationCreditOrdersComponent,
     DashboardOrganizationHistoryComponent,
   ],
-  imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    SharedModule,
+    SharedPublicModule,
+  ],
 })
 export class DashboardOrganizationModule {}

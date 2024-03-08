@@ -25,8 +25,12 @@ export class DashboardOrganizationCreditReportsComponent extends OrganizationAva
   }
 
   override ngOnInit(): void {
-    window.scrollTo(0, 0);
-    this.organizationService.singleData = this.storage.get<any>('registration')!
-      .organizationInfo as Organization;
+    super.ngOnInit();
+    this.organizationService.singleData = {
+      ...this.storage.get<any>('registration')!.organizationInfo,
+      id: 1,
+    } as Organization;
+
+    // console.log(this.organizationService.singleData);
   }
 }

@@ -12,11 +12,11 @@
 
   <!-- Main content -->
   <div
-       class="group  relative shadow-md   duration-500 ease-in-out">
+       class="group  relative   duration-500 ease-in-out">
 
     <div class="grid grid-cols-2 gap-10">
       <!-- Report 1 -->
-      <div class="rounded-2 bg-white p-5 relative border" *ngFor="let report of reportService.data; let i = index">
+      <div class="rounded-2 bg-white p-5 relative border" *ngFor="let report of reportService.data.slice(1); let i = index">
 
 
 
@@ -45,6 +45,9 @@
             <div class="row mb-3 w-4/5">
               <div class="font-light text-sm">Report Title</div>
               <div class="font-semibold">{{ report.title }}</div>
+              <span *ngIf="report.price == '0'"
+                    class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Free for first
+                timers</span>
             </div>
 
 
@@ -67,16 +70,18 @@
 
             <div class="mt-5 w-fit">
               <!-- Price -->
-              <div *ngIf="report.price > 0"
+              <div *ngIf="report.price != 0"
                    class="a p-2 px-8 border border-primary rounded-full text-primary font-extrabold bg-secondary flex items-center justify-center">
-                ${{ report.price }}
+                <span *ngIf="report.price > 0">$</span> {{ report.price }}
               </div>
 
-              <!-- Contact Sales -->
+
+
+              <!-- Free -->
               <div
                    *ngIf="report.price == 0"
                    class="a p-2 px-8  border border-primary rounded-full text-primary font-extrabold bg-secondary flex items-center justify-center">
-                Contact Sales
+                Free
               </div>
             </div>
 
@@ -84,24 +89,59 @@
             <!-- CTAS -->
             <div class="row mt-[3rem]">
 
-              <div class=" gap-2  w-full flex   items-end">
+              <div class="grid gap-7  w-full grid-cols-1  flex-col items-end">
                 <!-- <a [routerLink]="['./']" (click)="downloadSample()"
-                       class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-secondary hover:bg-secondary  text-primary border-secondary hover:border-secondary  rounded-md">
-                      <span class="mdi mdi-file-arrow-up-down-outline"></span>
-                      See sample
-                    </a> -->
+                         class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-secondary hover:bg-secondary  text-primary border-secondary hover:border-secondary  rounded-md">
+                        <span class="mdi mdi-file-arrow-up-down-outline"></span>
+                        See sample
+                      </a> -->
 
 
-                <a [routerLink]="['./']"
-                   (click)="addToCart(report)"
-                   *ngIf="!cartService.isItemInCart(report)"
+                <a [routerLink]="['/auth/singup']"
+
+                   *ngIf="report.title === 'Impact Analysis Report'"
                    class="py-2 px-5 flex-1 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-primary hover:bg-primary shadow border-primary hover:border-primary text-white rounded-md">
                   <span><i class="mdi mdi-lock-check"></i></span>
                   Verify
                 </a>
 
+                <ng-container *ngIf="report.title === 'Funding Diligence Report Insights'">
+                  <a [routerLink]="['./']"
+                     (click)="addToCart(report)"
+                     *ngIf="!cartService.isItemInCart(report)"
+                     class="py-2 px-5 flex-1 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-primary hover:bg-primary shadow border-primary hover:border-primary text-white rounded-md">
+                    <span><i class="mdi mdi-cart"></i></span>
+                    Add to cart
+                  </a>
+
+                  <a [routerLink]="['./']"
+                     (click)="removeFromCart(report)"
+                     *ngIf="cartService.isItemInCart(report)"
+                     class="py-2 px-5 flex-1 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-red-400 hover:bg-red-400 border-red-400 hover:border-red-400 text-white rounded-md">
+                    <span><i class="mdi mdi-close"></i></span>
+                    Remove
+                    from orders</a>
+                </ng-container>
+
+
+                <!-- <a [routerLink]="['./']"
+                                 (click)="removeFromCart(report)"
+                                 *ngIf="cartService.isItemInCart(report)"
+                                 class="py-2 px-5 flex-1 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-red-400 hover:bg-red-400 border-red-400 hover:border-red-400 text-white rounded-md">
+                                <span><i class="mdi mdi-close"></i></span>
+                                Remove
+                                from orders</a> -->
+
+                <button
+                        [disabled]="" true
+                        *ngIf="report.title !== 'Impact Analysis Report' && report.title !== 'Funding Diligence Report Insights'"
+                        class="py-2 px-5 flex-1 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-slate-600 shadow border-primary hover:border-primary text-white rounded-md">
+                  <span><i class="mdi mdi-lock"></i></span>
+                  Coming Soon...
+                </button>
+
                 <a [routerLink]="['./']"
-                   (click)="addToCart(report)"
+                   (click)="downloadSample()"
 
                    class="py-2 px-5 flex-1 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-secondary hover:bg-secondary shadow border-primary hover:border-secondary text-primary rounded-md">
                   <span><i class="mdi mdi-download-circle"></i></span>
@@ -109,13 +149,13 @@
 
 
                 <!-- Remove from cart state  -->
-                <a [routerLink]="['./']"
+                <!-- <a [routerLink]="['./']"
                    (click)="removeFromCart(report)"
                    *ngIf="cartService.isItemInCart(report)"
                    class="py-2 px-5 flex-1 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-red-400 hover:bg-red-400 border-red-400 hover:border-red-400 text-white rounded-md">
                   <span><i class="mdi mdi-close"></i></span>
                   Remove
-                  from orders</a>
+                  from orders</a> -->
               </div>
             </div>
           </div>
@@ -125,6 +165,17 @@
 
 
     </div>
+
+
+
+
+    <div
+         class="w-[316px] h-[1151px] opacity-80 mix-blend-color-burn -z-10 bg-teal-400 rounded-full blur-[400px] fixed top-[-333px] left-[-58px]">
+    </div>
+    <div
+         class="w-[337px] h-[1151px] opacity-80 mix-blend-color-burn -z-10 bg-teal-400 md:bg-violet-950 rounded-full blur-[400px] fixed right-[-10.5rem] top-[10rem]">
+    </div>
   </div>
+
 
 </div>

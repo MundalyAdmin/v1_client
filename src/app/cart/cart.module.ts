@@ -8,6 +8,7 @@ import { TempDashboardComponent } from './temp-dashboard/temp-dashboard.componen
 import { ReportDemographicCreateComponent } from '../report-demographic/report-demographic-create/report-demographic-create.component';
 import { SelectResearchPartnersComponent } from './select-research-partners/select-research-partners.component';
 import { DropdownModule } from 'primeng/dropdown';
+import { SharedPublicModule } from '../public/shared-public/shared-public.module';
 
 const routes: Routes = [
   {
@@ -25,18 +26,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    CartComponent,
-    CheckoutComponent,
-    TempDashboardComponent,
-    ReportDemographicCreateComponent,
-    SelectResearchPartnersComponent,
-  ],
+  declarations: [CartComponent, CheckoutComponent, TempDashboardComponent],
   imports: [
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes),
     DropdownModule,
+    SharedPublicModule,
   ],
 })
 export class CartModule {}
