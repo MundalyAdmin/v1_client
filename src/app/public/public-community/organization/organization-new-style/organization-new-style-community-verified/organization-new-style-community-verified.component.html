@@ -35,12 +35,12 @@
 
           <!-- Key -->
           <td class="px-6 py-4">
-            {{ scaleService.getScoreKey(impactFidelityService.score.acceptability) }}
+            {{ scaleService.getScoreKey(impactFidelityService.score.acceptability!) }}
           </td>
 
           <!-- Score -->
           <td class="px-6 py-4">
-            {{ impactFidelityService.score.acceptability * 100 /5 }}
+            {{ impactFidelityService.score.acceptability! * 100 /5 }}
           </td>
         </tr>
 
@@ -58,12 +58,12 @@
 
           <!-- Key -->
           <td class="px-6 py-4">
-            {{ scaleService.getScoreKey(impactFidelityService.score.appropriateness) }}
+            {{ scaleService.getScoreKey(impactFidelityService.score.appropriateness!) }}
           </td>
 
           <!-- Score -->
           <td class="px-6 py-4">
-            {{ impactFidelityService.score.appropriateness * 100 /5 }}
+            {{ impactFidelityService.score.appropriateness! * 100 /5 }}
           </td>
         </tr>
 
@@ -81,12 +81,12 @@
 
           <!-- Key -->
           <td class="px-6 py-4">
-            {{ scaleService.getScoreKey(impactFidelityService.score.feasibility) }}
+            {{ scaleService.getScoreKey(impactFidelityService.score.feasibility!) }}
           </td>
 
           <!-- Score -->
           <td class="px-6 py-4">
-            {{ impactFidelityService.score.feasibility * 100 / 5}}
+            {{ impactFidelityService.score.feasibility! * 100 / 5}}
           </td>
         </tr>
 
@@ -105,12 +105,12 @@
 
           <!-- Key -->
           <td class="px-6 py-4">
-            {{ scaleService.getScoreKey(impactFidelityService.score.quality_of_delivery) }}
+            {{ scaleService.getScoreKey(impactFidelityService.score.quality_of_delivery!) }}
           </td>
 
           <!-- Score -->
           <td class="px-6 py-4">
-            {{ impactFidelityService.score.quality_of_delivery * 100 / 5}}
+            {{ impactFidelityService.score.quality_of_delivery! * 100 / 5}}
           </td>
         </tr>
 
@@ -128,12 +128,12 @@
 
           <!-- Key -->
           <td class="px-6 py-4">
-            {{ scaleService.getScoreKey(impactFidelityService.score.comprehensiveness) }}
+            {{ scaleService.getScoreKey(impactFidelityService.score.comprehensiveness!) }}
           </td>
 
           <!-- Score -->
           <td class="px-6 py-4">
-            {{ impactFidelityService.score.comprehensiveness * 100 / 5}}
+            {{ impactFidelityService.score.comprehensiveness! * 100 / 5}}
           </td>
         </tr>
         <!-- </ng-container> -->
