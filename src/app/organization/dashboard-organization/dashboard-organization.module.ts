@@ -19,6 +19,9 @@ import { DashboardOrganizationSocialIssuesComponent } from './dashboard-organiza
 import { DashboardOrganizationImpactPartnersComponent } from './dashboard-organization-community/dashboard-organization-impact-partners/dashboard-organization-impact-partners.component';
 import { DashboardOrganizationComingSoonComponent } from './dashboard-organization-coming-soon/dashboard-organization-coming-soon.component';
 import { DashboardOrganizationRoiCalculatorComponent } from './dashboard-organization-community/dashboard-organization-roi-calculator/dashboard-organization-roi-calculator.component';
+import { DashboardOrganizationForecastComponent } from './dashboard-organization-impact/dashboard-organization-forecast/dashboard-organization-forecast.component';
+import { DashboardOrganizationAccessComponent } from './dashboard-organization-impact/dashboard-organization-access/dashboard-organization-access.component';
+import { DashboardOrganizationVerifyComponent } from './dashboard-organization-impact/dashboard-organization-verify/dashboard-organization-verify.component';
 
 const routes: Routes = [
   {
@@ -57,6 +60,25 @@ const routes: Routes = [
         path: 'impact',
         canActivate: [funderAuthorizationGuard],
         component: DashboardOrganizationImpactComponent,
+        children: [
+          {
+            path: 'forecast',
+            component: DashboardOrganizationForecastComponent,
+          },
+          {
+            path: 'access',
+            component: DashboardOrganizationAccessComponent,
+          },
+          {
+            path: 'verify',
+            component: DashboardOrganizationVerifyComponent,
+          },
+          {
+            path: '**',
+            redirectTo: 'forecast',
+            pathMatch: 'full',
+          },
+        ],
       },
       {
         path: 'history',
@@ -123,6 +145,9 @@ const routes: Routes = [
     DashboardOrganizationImpactPartnersComponent,
     DashboardOrganizationComingSoonComponent,
     DashboardOrganizationRoiCalculatorComponent,
+    DashboardOrganizationForecastComponent,
+    DashboardOrganizationAccessComponent,
+    DashboardOrganizationVerifyComponent,
   ],
   imports: [
     CommonModule,

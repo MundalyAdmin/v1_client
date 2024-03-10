@@ -1,0 +1,169 @@
+<div class="p-10">
+
+  <div class="w-full flex justify-between bg-white shadow dark:bg-gray-800 p-4 md:p-6">
+    <div class="text-lg font-bold">Verify Metrics</div>
+
+  </div>
+
+  <div class="relative overflow-x-auto shadow-md ">
+    <table class="w-full text-base text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <thead class=" text-gray-400 capitalize bg-slate-100  dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="px-6 py-6">
+            #
+          </th>
+          <th scope="col" class="px-6 py-6 ">
+            Category
+          </th>
+          <th scope="col" class="px-6 py-6">
+            Key
+          </th>
+          <th scope="col" class="px-6 py-6">
+            Score
+          </th>
+          <th scope="col" class="px-6 py-6">
+            Action
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Impact Fidelity -->
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
+
+          <!-- Number -->
+          <td class="p-6">
+            1
+          </td>
+
+          <!-- Name and Photo -->
+          <th scope="row p-6">
+            Impact Fidelity
+          </th>
+
+          <!-- Key -->
+          <td class="p-6">
+            {{ scaleService.getScoreKey(communityTrustScore?.impact_fidelity_score! / 5) }}
+          </td>
+
+          <!-- Score -->
+          <td class="p-6">
+            <div class="flex items-center font-semibold">
+              {{ communityTrustScore?.impact_fidelity_score}}
+            </div>
+          </td>
+
+
+
+          <td class="p-6">
+            <a href="#" class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
+                 class="mdi mdi-information"></i></a>
+
+          </td>
+        </tr>
+
+
+        <!-- COmmunity Perception -->
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
+
+          <!-- Number -->
+          <td class="p-6">
+            2
+          </td>
+
+          <!-- Name and Photo -->
+          <th scope="row p-6">
+            Community Perception
+          </th>
+
+          <!-- Key -->
+          <td class="p-6">
+            {{ scaleService.getScoreKey(communityTrustScore?.community_perception_score! / 5) }}
+          </td>
+
+          <!-- Score -->
+          <td class="p-6">
+            <div class="flex items-center font-semibold">
+              {{ communityTrustScore?.community_perception_score}}
+            </div>
+          </td>
+
+
+
+          <td class="p-6">
+            <a href="#" class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
+                 class="mdi mdi-information"></i></a>
+
+          </td>
+        </tr>
+
+        <!-- Facilitation Strategy -->
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
+
+          <!-- Number -->
+          <td class="p-6">
+            3
+          </td>
+
+          <!-- Name and Photo -->
+          <th scope="row p-6">
+            Facilitation Strategy
+          </th>
+
+          <!-- Key -->
+          <td class="p-6">
+            {{ scaleService.getScoreKey(communityTrustScore?.facilitation_strategy_score! / 5) }}
+          </td>
+
+          <!-- Score -->
+          <td class="p-6">
+            <div class="flex items-center font-semibold">
+              {{ communityTrustScore?.facilitation_strategy_score}}
+            </div>
+          </td>
+
+
+
+          <td class="p-6">
+            <a href="#" class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
+                 class="mdi mdi-information"></i></a>
+
+          </td>
+        </tr>
+
+        <!-- Community Trust Score -->
+        <tr class="bg-primary/60 text-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
+
+          <!-- Number -->
+          <td class="p-6">
+
+          </td>
+
+          <!-- Name and Photo -->
+          <th scope="row p-6">
+            Community Trust Score
+          </th>
+
+          <!-- Key -->
+          <td class="p-6">
+            {{ scaleService.getScoreKey(communityTrustScore?.community_trust_score! / 5) }}
+          </td>
+
+          <!-- Score -->
+          <td class="p-6">
+            <div class="flex items-center font-semibold">
+              {{ communityTrustScore?.community_perception_score}}
+            </div>
+          </td>
+
+
+
+          <td class="p-6">
+            <a href="#" class="font-medium text-white text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
+                 class="mdi mdi-information"></i></a>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
