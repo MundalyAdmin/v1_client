@@ -42,4 +42,6 @@ export interface Organization extends BaseModel {
   tag_organizations?: null | TagOrganization[];
 
   creator_id?: null | number;
+
+  community_trust_score?: null | number;
 }

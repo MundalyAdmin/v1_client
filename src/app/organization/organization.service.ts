@@ -150,6 +150,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-tractor-variant',
           about: 'Agriculture',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [
           {
             id: 6,
@@ -170,58 +171,7 @@ export class OrganizationService extends BaseService<Organization> {
         logo_thumb:
           'http://res.cloudinary.com/mundaly/image/upload/c_fill,h_200,w_200/v1/default-organization/oxyoqno7h8dsudupxwbo',
       },
-      {
-        id: 2,
 
-        name: 'Aterian plc',
-        about:
-          'Aterian plc is listed on the London Stock Exchange (LSE:ATN) and is a critical and strategic metal focused exploration and development company. Our target metals are strategically essential to the economy, and any disrupted supply may have a significant impact on the production of critical and/or strategic end products.',
-        website: 'https://aterianplc.com/',
-        email: 'contact@aterianplc.com',
-        type_organization_id: 2,
-        sector_organization_id: 3,
-        country: 'United Kingdom',
-        city: 'London',
-        creator_id: 1,
-        profile_status_organization_id: 2,
-        logo: 'https://res.cloudinary.com/mundaly/image/upload/v1701819047/default-organization/iqcdwtiam51oxxknfxu4.png',
-
-        profile_status_organization: {
-          id: 2,
-
-          name: 'Claimed',
-        },
-        type_organization: {
-          id: 2,
-
-          name: 'Impact Implementer - Facilitator',
-        },
-        sector_organization: {
-          id: 3,
-          name: 'Mining',
-          icon: 'mdi mdi-pickaxe',
-          about: 'Mining',
-        },
-        tag_organizations: [
-          {
-            id: 22,
-
-            name: 'Youth',
-          },
-          {
-            id: 25,
-
-            name: 'Initiative',
-          },
-          {
-            id: 26,
-
-            name: 'Career',
-          },
-        ],
-        logo_thumb:
-          'http://res.cloudinary.com/mundaly/image/upload/c_fill,h_200,w_200/v1/default-organization/iqcdwtiam51oxxknfxu4',
-      },
       {
         id: 3,
 
@@ -255,6 +205,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-pill',
           about: 'Pharmaceutical',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [
           {
             id: 4,
@@ -308,6 +259,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-bottle-tonic-plus-outline',
           about: 'Health',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [
           {
             id: 17,
@@ -361,6 +313,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-bottle-tonic-plus-outline',
           about: 'Health',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [
           {
             id: 4,
@@ -414,6 +367,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-bottle-tonic-plus-outline',
           about: 'Health',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [
           {
             id: 4,
@@ -467,6 +421,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-bottle-tonic-plus-outline',
           about: 'Health',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [],
         logo_thumb:
           'http://res.cloudinary.com/mundaly/image/upload/c_fill,h_200,w_200/v1/default-organization/chestify-ai_e5qij8_c_pad_ar_1_1_vfudyt',
@@ -504,6 +459,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-bottle-tonic-plus-outline',
           about: 'Health',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [],
         logo_thumb:
           'http://res.cloudinary.com/mundaly/image/upload/c_fill,h_200,w_200/v1/default-organization/the-bank-hospital_ihpin0_tjvew0',
@@ -541,6 +497,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-tractor-variant',
           about: 'Agriculture',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [],
         logo_thumb:
           'http://res.cloudinary.com/mundaly/image/upload/c_fill,h_200,w_200/v1/default-organization/ugmclogo_vzd6oc_junzn2',
@@ -578,6 +535,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-bottle-tonic-plus-outline',
           about: 'Health',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [],
         logo_thumb:
           'http://res.cloudinary.com/mundaly/image/upload/c_fill,h_200,w_200/v1/default-organization/focos-logo_ebtwzi',
@@ -615,6 +573,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-bottle-tonic-plus-outline',
           about: 'Health',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [],
         logo_thumb:
           'http://res.cloudinary.com/mundaly/image/upload/c_fill,h_200,w_200/v1/default-organization/provita-logo_mdsz2a_wyfpt5',
@@ -652,6 +611,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-bottle-tonic-plus-outline',
           about: 'Health',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [],
         logo_thumb:
           'http://res.cloudinary.com/mundaly/image/upload/c_fill,h_200,w_200/v1/default-organization/st-john-logo_n182vy_rsjb4n',
@@ -689,6 +649,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-pill',
           about: 'Pharmaceutical',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [],
         logo_thumb:
           'http://res.cloudinary.com/mundaly/image/upload/c_fill,h_200,w_200/v1/default-organization/tobinco-logo_wwneoc_pzusdl',
@@ -726,6 +687,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-pill',
           about: 'Pharmaceutical',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [],
         logo_thumb:
           'http://res.cloudinary.com/mundaly/image/upload/c_fill,h_200,w_200/v1/default-organization/mpharma-logo_y0hrol_t2t5m8',
@@ -763,6 +725,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-bottle-tonic-plus-outline',
           about: 'Health',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [],
         logo_thumb:
           'http://res.cloudinary.com/mundaly/image/upload/c_fill,h_200,w_200/v1/default-organization/saint-john-of-god-logo_ozi4ac_rrufiy',
@@ -800,6 +763,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-pill',
           about: 'Pharmaceutical',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [],
         logo_thumb:
           'http://res.cloudinary.com/mundaly/image/upload/c_fill,h_200,w_200/v1/default-organization/origin-chemist-logo_morru4_d3qjzq',
@@ -838,6 +802,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-tractor-variant',
           about: 'Agriculture',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [],
         logo_thumb:
           'http://res.cloudinary.com/mundaly/image/upload/c_fill,h_200,w_200/v1/default-organization/ide-logo_kvoath_br0ees',
@@ -875,6 +840,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-account-tie',
           about: 'Consulting',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [],
         logo_thumb:
           'http://res.cloudinary.com/mundaly/image/upload/c_fill,h_200,w_200/v1/default-organization/constromart-logo_bnpbpr_sazpcg',
@@ -912,6 +878,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-food-outline',
           about: 'Food and beverages',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [],
         logo_thumb:
           'http://res.cloudinary.com/mundaly/image/upload/c_fill,h_200,w_200/v1/default-organization/kasapreko-logo_x2oeqc_ggplwx',
@@ -949,6 +916,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-cash-multiple',
           about: 'Finance',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [],
         logo_thumb:
           'http://res.cloudinary.com/mundaly/image/upload/c_fill,h_200,w_200/v1/default-organization/m-kopa-logo_iiwafd_m3r8je',
@@ -986,6 +954,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-account-tie',
           about: 'Consulting',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [],
         logo_thumb:
           'http://res.cloudinary.com/mundaly/image/upload/c_fill,h_200,w_200/v1/default-organization/petra-online-logo_wly7mh_f7cbam',
@@ -1023,6 +992,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-cards-diamond',
           about: 'Fashion and Luxury',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [],
         logo_thumb:
           'http://res.cloudinary.com/mundaly/image/upload/c_fill,h_200,w_200/v1/default-organization/caveman-logo_bgk4iu_xbfmg1',
@@ -1060,6 +1030,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-bottle-tonic-plus-outline',
           about: 'Health',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [],
         logo_thumb:
           'http://res.cloudinary.com/mundaly/image/upload/c_fill,h_200,w_200/v1/default-organization/yale-new-haven_iut3dr',
@@ -1097,6 +1068,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-hand-heart-outline',
           about: 'Non-profit',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [],
         logo_thumb:
           'http://res.cloudinary.com/mundaly/image/upload/c_fill,h_200,w_200/v1/default-organization/new-haven-promise-logo_fznlpr',
@@ -1134,6 +1106,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-gavel',
           about: 'Laws and regulations',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [],
         logo_thumb:
           'http://res.cloudinary.com/mundaly/image/upload/c_fill,h_200,w_200/v1/default-organization/gdaeexjssnitt607nr6d',
@@ -1171,6 +1144,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-school',
           about: 'Education',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [],
         logo_thumb:
           'http://res.cloudinary.com/mundaly/image/upload/c_fill,h_200,w_200/v1/default-organization/n0jsjex5idl5qyfjednd',
@@ -1208,6 +1182,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-bottle-tonic-plus-outline',
           about: 'Health',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [],
         logo_thumb:
           'http://res.cloudinary.com/mundaly/image/upload/c_fill,h_200,w_200/v1/default-organization/icf7kce6vvrc5ekntxfg',
@@ -1245,6 +1220,7 @@ export class OrganizationService extends BaseService<Organization> {
           icon: 'mdi mdi-bottle-tonic-plus-outline',
           about: 'Health',
         },
+        community_trust_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
         tag_organizations: [],
         logo_thumb:
           'http://res.cloudinary.com/mundaly/image/upload/c_fill,h_200,w_200/v1/default-organization/lc4gdnolrdbsvue4e2pg',

@@ -17,6 +17,8 @@ import { SharedPublicModule } from '../../public/shared-public/shared-public.mod
 import { DashboardOrganizationDemographicsComponent } from './dashboard-organization-community/dashboard-organization-demographics/dashboard-organization-demographics.component';
 import { DashboardOrganizationSocialIssuesComponent } from './dashboard-organization-community/dashboard-organization-social-issues/dashboard-organization-social-issues.component';
 import { DashboardOrganizationImpactPartnersComponent } from './dashboard-organization-community/dashboard-organization-impact-partners/dashboard-organization-impact-partners.component';
+import { DashboardOrganizationComingSoonComponent } from './dashboard-organization-coming-soon/dashboard-organization-coming-soon.component';
+import { DashboardOrganizationRoiCalculatorComponent } from './dashboard-organization-community/dashboard-organization-roi-calculator/dashboard-organization-roi-calculator.component';
 
 const routes: Routes = [
   {
@@ -39,6 +41,10 @@ const routes: Routes = [
           {
             path: 'impact-partners',
             component: DashboardOrganizationImpactPartnersComponent,
+          },
+          {
+            path: 'roi-calculator',
+            component: DashboardOrganizationRoiCalculatorComponent,
           },
           {
             path: '**',
@@ -115,6 +121,8 @@ const routes: Routes = [
     DashboardOrganizationDemographicsComponent,
     DashboardOrganizationSocialIssuesComponent,
     DashboardOrganizationImpactPartnersComponent,
+    DashboardOrganizationComingSoonComponent,
+    DashboardOrganizationRoiCalculatorComponent,
   ],
   imports: [
     CommonModule,
