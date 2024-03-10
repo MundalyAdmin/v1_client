@@ -1,1 +1,61 @@
-<p>dashboard-organization-access works!</p>
+<div class="p-10">
+
+  <div class="grid grid-cols-2">
+    <div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+      <div class="flex justify-between pb-4 mb-4 border-b border-gray-200 dark:border-gray-700">
+        <div class="text-lg font-bold">Access Metrics</div>
+
+        <form class="">
+          <select id="countries" (change)="onLocationChange($event)"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 px-7">
+            <option [value]="1" selected>New Haven</option>
+            <option [value]="2">Bridgeport</option>
+            <option [value]="3">HartFord</option>
+
+          </select>
+        </form>
+      </div>
+
+
+
+
+
+
+
+
+      <div class="grid grid-cols-1  gap-10 ">
+        <div class="grid grid-cols-1 gap-4" *ngFor="let impactIniative of data; let i = index">
+          <!-- Name and progress -->
+          <div class="flex justify-between text-slate-500 text-sm md:text-base font-semibold">
+            <div class="w-4/5">{{ impactIniative.name }}</div>
+            <div>{{ impactIniative.progress! * 100 / 5 }}%</div>
+
+          </div>
+
+          <!-- Progress bar -->
+          <div class=" h-2.5 mb-4 bg-gray-200 rounded-full dark:bg-gray-700 w-4/5">
+            <div class="h-2.5 rounded-full bg-primary"
+                 [ngStyle]="{ width: scaleService.getProgressBarWidth(impactIniative.progress!, 5)}">
+            </div>
+          </div>
+
+
+
+        </div>
+
+
+
+      </div>
+
+
+      <!-- <div class="text-primary md:text-lg text-sm bg-primary/5 p-2" *ngIf="facilitationStrategyScore">
+        <span class="me-2"><i class="mdi mdi-lightbulb-on me-"></i> Summary:</span>
+        <span class="font-bold">Facilitators confirm {{
+          scaleService.getImpactStrengthKey(facilitationStrategyScore) }}
+          according to their internal assessment.</span>
+
+      </div> -->
+    </div>
+  </div>
+
+</div>

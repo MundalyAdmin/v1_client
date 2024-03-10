@@ -18,7 +18,7 @@
       <!-- Name and progress -->
       <div class="flex justify-between text-slate-500 text-sm md:text-base font-semibold">
         <div class="w-3/4">{{ impactIniative.name }}</div>
-        <div>{{ impactIniative.progress * 100 / 5 }}%</div>
+        <div>{{ impactIniative.progress! * 100 / 5 }}%</div>
 
       </div>
 
@@ -26,7 +26,7 @@
       <div class=" h-2.5 mb-4 bg-gray-200 rounded-full dark:bg-gray-700 w-2/3">
         <div class="h-2.5 rounded-full "
              [ngClass]="{ 'bg-blue-500': i === 0, 'bg-green-500': i === 1, 'bg-red-500': i === 2, 'bg-yellow-400': i === 3, 'bg-purple-400': i === 4 }"
-             [ngStyle]="{ width: scaleService.getProgressBarWidth(impactIniative.progress, 5)}">
+             [ngStyle]="{ width: scaleService.getProgressBarWidth(impactIniative.progress!, 5)}">
         </div>
       </div>
 

@@ -2,17 +2,17 @@ import { Country } from '../../country/country.model';
 import { Organization } from '../../organization/organization.model';
 
 export interface ImpactInitiative {
-  name: string;
+  name?: string;
 
-  location: string;
+  location?: string;
 
-  progress: number;
+  progress?: number;
 
-  impact_strength: number;
+  impact_strength?: number;
 
-  organization_id: number;
+  organization_id?: number;
 
-  date: Date;
+  date?: Date;
 
-  organization: Organization;
+  organization?: Organization;
 }
