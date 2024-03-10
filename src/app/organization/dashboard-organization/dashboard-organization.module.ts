@@ -14,6 +14,9 @@ import { DashboardOrganizationHistoryComponent } from './dashboard-organization-
 import { implementerAuthorizationGuard } from '../../auth/guards/implementer-authorization.guard';
 import { funderAuthorizationGuard } from '../../auth/guards/funder-authorization.guard';
 import { SharedPublicModule } from '../../public/shared-public/shared-public.module';
+import { DashboardOrganizationDemographicsComponent } from './dashboard-organization-community/dashboard-organization-demographics/dashboard-organization-demographics.component';
+import { DashboardOrganizationSocialIssuesComponent } from './dashboard-organization-community/dashboard-organization-social-issues/dashboard-organization-social-issues.component';
+import { DashboardOrganizationImpactPartnersComponent } from './dashboard-organization-community/dashboard-organization-impact-partners/dashboard-organization-impact-partners.component';
 
 const routes: Routes = [
   {
@@ -24,6 +27,25 @@ const routes: Routes = [
         path: 'community',
         canActivate: [funderAuthorizationGuard],
         component: DashboardOrganizationCommunityComponent,
+        children: [
+          {
+            path: 'demographics',
+            component: DashboardOrganizationDemographicsComponent,
+          },
+          {
+            path: 'social-issues',
+            component: DashboardOrganizationSocialIssuesComponent,
+          },
+          {
+            path: 'impact-partners',
+            component: DashboardOrganizationImpactPartnersComponent,
+          },
+          {
+            path: '**',
+            redirectTo: 'demographics',
+            pathMatch: 'full',
+          },
+        ],
       },
       {
         path: 'impact',
@@ -90,6 +112,9 @@ const routes: Routes = [
     DashboardOrganizationCreditReportsComponent,
     DashboardOrganizationCreditOrdersComponent,
     DashboardOrganizationHistoryComponent,
+    DashboardOrganizationDemographicsComponent,
+    DashboardOrganizationSocialIssuesComponent,
+    DashboardOrganizationImpactPartnersComponent,
   ],
   imports: [
     CommonModule,

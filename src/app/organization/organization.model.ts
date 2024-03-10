@@ -7,39 +7,39 @@ import { TagOrganization } from './tag-organization/tag-organization.model';
 import { TypeOrganization } from './type-organization/type-organization.model';
 
 export interface Organization extends BaseModel {
-  name?: string;
+  name?: null | string;
 
-  about?: string;
+  about?: null | string;
 
-  logo?: string;
+  logo?: null | string;
 
-  cover?: string;
+  cover?: null | string;
 
-  website?: string;
+  website?: null | string;
 
-  email?: string;
+  email?: null | string;
 
-  logo_thumb?: string;
+  logo_thumb?: null | string;
 
-  sector_organization_id?: number;
+  sector_organization_id?: null | number;
 
-  type_organization_id?: number;
+  type_organization_id?: null | number;
 
-  profile_status_organization_id?: number;
+  profile_status_organization_id?: null | number;
 
-  country?: string;
+  country?: null | string;
 
-  city?: string;
+  city?: null | string;
 
-  sector_organization?: SectorOrganization;
+  sector_organization?: null | SectorOrganization;
 
-  type_organization?: TypeOrganization;
+  type_organization?: null | TypeOrganization;
 
-  profile_status_organization?: ProfileStatusOrganization;
+  profile_status_organization?: null | ProfileStatusOrganization;
 
-  scale?: Scale;
+  scale?: null | Scale;
 
-  tag_organizations?: TagOrganization[];
+  tag_organizations?: null | TagOrganization[];
 
-  creator_id?: number;
+  creator_id?: null | number;
 }
