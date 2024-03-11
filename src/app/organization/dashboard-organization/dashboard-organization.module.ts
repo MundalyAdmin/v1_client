@@ -22,6 +22,9 @@ import { DashboardOrganizationRoiCalculatorComponent } from './dashboard-organiz
 import { DashboardOrganizationForecastComponent } from './dashboard-organization-impact/dashboard-organization-forecast/dashboard-organization-forecast.component';
 import { DashboardOrganizationAccessComponent } from './dashboard-organization-impact/dashboard-organization-access/dashboard-organization-access.component';
 import { DashboardOrganizationVerifyComponent } from './dashboard-organization-impact/dashboard-organization-verify/dashboard-organization-verify.component';
+import { DashboardOrganizationBenchmarkAndDeriskComponent } from './dashboard-organization-benchmark-and-derisk/dashboard-organization-benchmark-and-derisk.component';
+import { DashboardOrganizationLeaderboardComponent } from './dashboard-organization-leaderboard/dashboard-organization-leaderboard.component';
+import { DashboardOrganizationCommunityPerceptionComponent } from './dashboard-organization-community-perception/dashboard-organization-community-perception.component';
 
 const routes: Routes = [
   {
@@ -76,6 +79,25 @@ const routes: Routes = [
           {
             path: '**',
             redirectTo: 'forecast',
+            pathMatch: 'full',
+          },
+        ],
+      },
+      {
+        path: 'benchmark',
+        component: DashboardOrganizationBenchmarkAndDeriskComponent,
+        children: [
+          {
+            path: 'leaderboard',
+            component: DashboardOrganizationLeaderboardComponent,
+          },
+          {
+            path: 'community-perception',
+            component: DashboardOrganizationLeaderboardComponent,
+          },
+          {
+            path: '**',
+            redirectTo: 'leaderboard',
             pathMatch: 'full',
           },
         ],
@@ -148,6 +170,9 @@ const routes: Routes = [
     DashboardOrganizationForecastComponent,
     DashboardOrganizationAccessComponent,
     DashboardOrganizationVerifyComponent,
+    DashboardOrganizationBenchmarkAndDeriskComponent,
+    DashboardOrganizationLeaderboardComponent,
+    DashboardOrganizationCommunityPerceptionComponent,
   ],
   imports: [
     CommonModule,
