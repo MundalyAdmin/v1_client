@@ -79,6 +79,10 @@ export class ReportService extends BaseService<any> {
         generatedBy: 'auto-generated',
         state: 'on-demand',
       },
-    ]).pipe(tap((data) => (this.data = data)));
+    ]).pipe(
+      tap((data) => {
+        this.data = data;
+      })
+    );
   }
 }

@@ -14,17 +14,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class CartComponent implements OnInit {
   @ViewChild('screenParticipantModalButton', { static: false })
   screenParticipantModalButton!: ElementRef;
-  form!: FormGroup;
-  generationTypes = [
-    {
-      name: 'Mundaly generated',
-      value: 'mundaly-generated',
-    },
-    {
-      name: 'Partner generated',
-      value: 'partner-generated',
-    },
-  ];
 
   @ViewChild('selectResearchParticipantModalButton', { static: false })
   selectResearchParticipantModalButton!: ElementRef;
@@ -40,8 +29,6 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
-
-    this.form = this.fb.group({ generatedBy: null });
   }
 
   updatePrice(item: CartItem, event: any) {
@@ -66,20 +53,23 @@ export class CartComponent implements OnInit {
   }
 
   updatePriceUp(item: CartItem) {
+    if (item.generatedBy === 'partner-generated') return;
+
     this.cartService.updateItem({
       ...item,
       availability: 'In 4 days',
       generatedBy: 'partner-generated',
-      price: Math.round(+item.price + +item.price * 0.6),
+      price: Math.round(+item.price + 300),
     });
   }
 
   updatePriceDown(item: CartItem) {
+    if (item.generatedBy === 'auto-generated') return;
     this.cartService.updateItem({
       ...item,
       availability: 'In 3 hours',
       generatedBy: 'auto-generated',
-      price: this.reportService.data.find((i) => i.title == item.title)!.price,
+      price: Math.round(+item.price - 300),
     });
   }
 
