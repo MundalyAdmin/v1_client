@@ -28,11 +28,16 @@ import { OrganizationComponent } from '../public/public-community/organization/o
 import { SharedPublicModule } from '../public/shared-public/shared-public.module';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { SharedModule } from '../shared/shared.module';
+import { ComingSoonComponent } from '../shared/components/coming-soon/coming-soon.component';
 
 const routes: Routes = [
   {
     path: 'search',
     component: OrganizationContainerComponent,
+  },
+  {
+    path: 'become-participant',
+    component: ComingSoonComponent,
   },
   {
     path: 'funder',
