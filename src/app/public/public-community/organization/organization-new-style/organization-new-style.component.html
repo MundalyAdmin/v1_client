@@ -53,7 +53,7 @@
         <li class="relative">
 
 
-          <a [routerLink]="['cart']" [routerLinkActive]="'text-primary'" class="sub-menu-item relative pt-0 mt-5 ">
+          <a [routerLink]="['/community', 'cart']" [routerLinkActive]="'text-primary'" class="sub-menu-item relative pt-0 mt-5 ">
             <span *ngIf="cartService.data.length"
                   class="absolute top-[-10px] end-[-10px] flex items-center justify-center bg-red-600 text-white text-[10px] font-bold rounded-full w-5 h-5 after:content-[''] after:absolute after:h-5 after:w-5 after:bg-red-600 after:top-0 after:end-0 after:rounded-full after:animate-ping">
               {{ cartService.data.length }}
@@ -257,7 +257,7 @@
             <a [routerLink]="['portfolio']"
                [routerLinkActive]="['text-primary', 'border-b-[3px]', 'border-primary' ]"
                class="inline-block w-full py-4   hover:text-primary-light focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">
-              Portfolio <div class="hidden md:inline">Organizations</div>
+              Portfolio
             </a>
           </li>
 
