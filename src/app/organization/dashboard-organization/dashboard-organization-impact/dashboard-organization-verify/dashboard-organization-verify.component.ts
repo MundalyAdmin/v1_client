@@ -68,7 +68,7 @@ export class DashboardOrganizationVerifyComponent
         rating: 4,
         verified: false,
         about:
-          'the security in the community has greatly improved with Cocoa360 presence',
+          'The security in the community has greatly improved with Cocoa360 presence',
         organization_id: 1,
         survey_submission_id: null,
         user_id: null,
@@ -81,7 +81,7 @@ export class DashboardOrganizationVerifyComponent
         title: 'Empowering Mind',
         rating: 4,
         verified: false,
-        about: 'the education support is great in the village.',
+        about: 'The education support is great in the village.',
         organization_id: 1,
         survey_submission_id: null,
         user_id: null,
