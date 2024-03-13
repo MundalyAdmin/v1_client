@@ -54,11 +54,24 @@
 
         <!-- Get Credit -->
         <li>
-          <a [routerLink]="['documents']"
+          <a [routerLink]="['regulators-and-investors']"
              class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
              routerLinkActive="bg-secondary-dark">
             <span class=""><i class=" text-secondary-dark text-xl mdi mdi-credit-card" routerLinkActive="text-white"></i></span>
-            <span class="flex-1 ms-2 whitespace-nowrap">Get Report</span>
+            <span class="flex-1 ms-2 whitespace-nowrap">Regulators and Investors</span>
+          </a>
+        </li>
+
+
+        <!-- Documents -->
+        <li>
+          <a [routerLink]="['documents']"
+             routerLinkActive="bg-secondary-dark"
+             class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group">
+            <span class="">
+              <i class=" text-secondary-dark text-xl mdi mdi-file-chart" routerLinkActive="text-white"></i>
+            </span>
+            <span class="flex-1 ms-2 whitespace-nowrap">Get Reports</span>
           </a>
         </li>
 
@@ -177,7 +190,7 @@
 
 
 <!-- Content -->
-<div class="py-4 sm:ml-64">
+<div class="pt-4 sm:ml-64">
   <router-outlet></router-outlet>
   <!-- <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
     <div class="grid grid-cols-3 gap-4 mb-4">

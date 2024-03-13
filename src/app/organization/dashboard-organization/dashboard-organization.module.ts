@@ -25,6 +25,9 @@ import { DashboardOrganizationVerifyComponent } from './dashboard-organization-i
 import { DashboardOrganizationBenchmarkAndDeriskComponent } from './dashboard-organization-benchmark-and-derisk/dashboard-organization-benchmark-and-derisk.component';
 import { DashboardOrganizationLeaderboardComponent } from './dashboard-organization-leaderboard/dashboard-organization-leaderboard.component';
 import { DashboardOrganizationCommunityPerceptionComponent } from './dashboard-organization-community-perception/dashboard-organization-community-perception.component';
+import { DashboardOrganizationRegulatorsAndInvestorsComponent } from './dashboard-organization-regulators-and-investors/dashboard-organization-regulators-and-investors.component';
+import { DashboardOrganizationRegulatorsComponent } from './dashboard-organization-regulators-and-investors/dashboard-organization-regulators/dashboard-organization-regulators.component';
+import { DashboardOrganizationInvestorsComponent } from './dashboard-organization-regulators-and-investors/dashboard-organization-investors/dashboard-organization-investors.component';
 
 const routes: Routes = [
   {
@@ -48,6 +51,7 @@ const routes: Routes = [
             path: 'impact-partners',
             component: DashboardOrganizationImpactPartnersComponent,
           },
+
           {
             path: 'roi-calculator',
             component: DashboardOrganizationRoiCalculatorComponent,
@@ -98,6 +102,25 @@ const routes: Routes = [
           {
             path: '**',
             redirectTo: 'leaderboard',
+            pathMatch: 'full',
+          },
+        ],
+      },
+      {
+        path: 'regulators-and-investors',
+        component: DashboardOrganizationRegulatorsAndInvestorsComponent,
+        children: [
+          {
+            path: 'esg-and-impact-reports',
+            component: DashboardOrganizationRegulatorsComponent,
+          },
+          {
+            path: 'investor-reports',
+            component: DashboardOrganizationInvestorsComponent,
+          },
+          {
+            path: '**',
+            redirectTo: 'esg-and-impact-reports',
             pathMatch: 'full',
           },
         ],
@@ -173,6 +196,9 @@ const routes: Routes = [
     DashboardOrganizationBenchmarkAndDeriskComponent,
     DashboardOrganizationLeaderboardComponent,
     DashboardOrganizationCommunityPerceptionComponent,
+    DashboardOrganizationRegulatorsAndInvestorsComponent,
+    DashboardOrganizationRegulatorsComponent,
+    DashboardOrganizationInvestorsComponent,
   ],
   imports: [
     CommonModule,
