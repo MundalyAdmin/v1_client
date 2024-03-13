@@ -244,5 +244,32 @@
         <div data-popper-arrow></div>
       </div>
     </h3>
+    <p-carousel [value]="stories" [numVisible]="2" [showNavigators]="false" [numScroll]="3" [circular]="true"
+                [autoplayInterval]="3000">
+      <ng-template let-story pTemplate="item">
+        <figure class="md:flex max-w-lg mx-10 bg-white rounded-xl p-8  dark:bg-slate-800">
+          <img class="w-14 h-14 md rounded-full mx-auto object-cover"
+               src="https://media.istockphoto.com/id/942153448/de/vektor/avatar.jpg?s=612x612&w=0&k=20&c=dYzovkqwc-ADwIYjH7fd6MdgaJi0UslcMC3ycK9dmSg="
+               alt="" width="384" height="512">
+          <div class=" md:px-5 text-center md:text-left space-y-4">
+            <blockquote>
+              <p class="tfont-medium dark:text-slate-100">
+                “{{ story.about }}”
+              </p>
+            </blockquote>
+            <figcaption class="font-medium">
+              <div class="text-primary text-sm dark:text-sky-400">
+                Verified Community Member
+              </div>
+              <div class="text-slate-700 text-sm dark:text-slate-400">
+                {{ story.location }}
+              </div>
+            </figcaption>
+          </div>
+        </figure>
+      </ng-template>
+    </p-carousel>
+
+
   </div>
 </div>

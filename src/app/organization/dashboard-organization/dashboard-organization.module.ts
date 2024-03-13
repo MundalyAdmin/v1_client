@@ -28,6 +28,7 @@ import { DashboardOrganizationCommunityPerceptionComponent } from './dashboard-o
 import { DashboardOrganizationRegulatorsAndInvestorsComponent } from './dashboard-organization-regulators-and-investors/dashboard-organization-regulators-and-investors.component';
 import { DashboardOrganizationRegulatorsComponent } from './dashboard-organization-regulators-and-investors/dashboard-organization-regulators/dashboard-organization-regulators.component';
 import { DashboardOrganizationInvestorsComponent } from './dashboard-organization-regulators-and-investors/dashboard-organization-investors/dashboard-organization-investors.component';
+import { CarouselModule } from 'primeng/carousel';
 
 const routes: Routes = [
   {
@@ -205,6 +206,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule,
     SharedPublicModule,
+    CarouselModule,
   ],
 })
 export class DashboardOrganizationModule {}

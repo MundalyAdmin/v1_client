@@ -14,6 +14,7 @@ export class DashboardOrganizationVerifyComponent
   extends BaseComponent<SocialImpactFidelity>
   implements OnInit
 {
+  stories: any[] = [];
   impactFidelityScoreBreakdown: ImpactFidelityScore | null = null;
 
   constructor(
@@ -39,5 +40,83 @@ export class DashboardOrganizationVerifyComponent
         this.impactFidelityScoreBreakdown['feasibility']! +
         this.impactFidelityScoreBreakdown['quality_of_delivery']!) /
       5;
+
+    this.stories = [
+      {
+        id: 30,
+        username: 'Adwoa',
+        title: 'Beyond the Classroom',
+        rating: 5,
+        verified: false,
+        about:
+          'The school offers great extracurricular activities for the children.',
+        organization_id: 1,
+        survey_submission_id: null,
+        user_id: null,
+        location: 'Accra, Ghana',
+        reply: {
+          id: 1,
+          impact_story_id: 30,
+          reply:
+            'Thank you for your feedback. We are grateful for the opportunity to partner with you and the entire community to improve healthcare',
+        },
+      },
+      {
+        id: 29,
+        username: 'Yaw',
+        title: 'Safeguarding Our Community',
+        rating: 4,
+        verified: false,
+        about:
+          'the security in the community has greatly improved with Cocoa360 presence',
+        organization_id: 1,
+        survey_submission_id: null,
+        user_id: null,
+        location: 'Kumasi, Ghana',
+        reply: null,
+      },
+      {
+        id: 28,
+        username: 'Kofi',
+        title: 'Empowering Mind',
+        rating: 4,
+        verified: false,
+        about: 'the education support is great in the village.',
+        organization_id: 1,
+        survey_submission_id: null,
+        user_id: null,
+        location: 'Accra, Ghana',
+        reply: null,
+      },
+      {
+        id: 27,
+        username: 'Mabel',
+        title: 'Empowering Lives',
+        rating: 5,
+        verified: false,
+        about:
+          'The health center is saving lives especially for expectant women',
+        organization_id: 1,
+        survey_submission_id: null,
+        user_id: null,
+        location: 'Accra, Ghana',
+
+        reply: null,
+      },
+      {
+        id: 26,
+        username: 'Kwesi',
+        title: 'A Beacon of Hope for the Future',
+        rating: 5,
+        verified: false,
+        about:
+          "Cocoa360's school has made a big difference. Hope they keep it up",
+        organization_id: 1,
+        survey_submission_id: null,
+        user_id: null,
+        location: 'Tarkwa, Ghana',
+        reply: null,
+      },
+    ];
   }
 }
