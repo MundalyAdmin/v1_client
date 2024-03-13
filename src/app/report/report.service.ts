@@ -25,7 +25,7 @@ export class ReportService extends BaseService<any> {
         state: 'on-demand',
       },
       {
-        title: 'Funding Diligence Report Insights',
+        title: 'Impact Evaluation Report',
         price: '200',
         availability: 'In 3 hours',
         organization: organization.name,
@@ -47,7 +47,7 @@ export class ReportService extends BaseService<any> {
         state: 'on-demand',
       },
       {
-        title: 'Impact evaluation Report',
+        title: 'Funding Diligence Report Insights',
         price: '150',
         availability: 'In 3 hours',
         organization: organization.name,
