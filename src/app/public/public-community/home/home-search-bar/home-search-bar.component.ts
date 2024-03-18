@@ -86,7 +86,7 @@ export class HomeSearchBarComponent
       country_name: this.form.controls['country_name'].value,
     };
 
-    this.router.navigate(['organizations/search'], {
+    this.router.navigate(['/organizations/search'], {
       queryParams: data,
       relativeTo: this.route,
     });

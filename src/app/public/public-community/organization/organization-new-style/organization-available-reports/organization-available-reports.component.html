@@ -84,7 +84,7 @@
                     </a> -->
 
 
-              <a [routerLink]="['/auth/singup']"
+              <a [routerLink]="['/auth/login']"
 
                  *ngIf="report.title === 'Impact Analysis Report'"
                  class="py-2 px-5 flex-1 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-primary hover:bg-primary shadow border-primary hover:border-primary text-white rounded-md">
@@ -92,7 +92,7 @@
                 Verify
               </a>
 
-              <ng-container *ngIf="report.title === 'Funding Diligence Report Insights'">
+              <ng-container *ngIf="report.title === 'Impact Evaluation Report'">
                 <a [routerLink]="['./']"
                    (click)="addToCart(report)"
                    *ngIf="!cartService.isItemInCart(report)"
@@ -121,7 +121,7 @@
 
               <button
                       [disabled]="" true
-                      *ngIf="report.title !== 'Impact Analysis Report' && report.title !== 'Funding Diligence Report Insights'"
+                      *ngIf="report.title !== 'Impact Analysis Report' && report.title !== 'Impact Evaluation Report'"
                       class="py-2 px-5 flex-1 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-slate-600 shadow border-primary hover:border-primary text-white rounded-md">
                 <span><i class="mdi mdi-lock"></i></span>
                 Coming Soon...

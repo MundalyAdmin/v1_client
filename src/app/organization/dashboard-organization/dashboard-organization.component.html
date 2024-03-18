@@ -13,30 +13,80 @@
 <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
   <div class="h-full px-3 py-4 overflow-y-auto bg-organization-dashboard pt-10 relative dark:bg-gray-800">
     <!-- Logo -->
-    <a href="https://mundaly.com/" class="flex items-center ps-2.5 mb-5">
+    <a [routerLink]="['/']" class="flex items-center ps-2.5 mb-5">
       <img src="assets/images/munlogo-white.png/" class="h-6 me-3 sm:h-7" alt="Mundaly logo" />
     </a>
 
     <!-- Sidebar -->
     <ul class="space-y-2 relative font-medium">
-      <!-- Community -->
-      <li>
-        <a [routerLink]="['community']"
-           class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group">
-          <span class=""><i class=" text-secondary-dark text-xl mdi mdi-account-supervisor"></i></span>
-          <span class="ms-2">Community</span>
-        </a>
-      </li>
+      <ng-container *ngIf="typeOrganization?.id === 1">
+        <!-- Community -->
+        <li>
+          <a [routerLink]="['community']"
+             class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
+             routerLinkActive="bg-secondary-dark">
+            <span class=""><i class=" text-secondary-dark text-xl mdi mdi-account-supervisor" routerLinkActive="text-white"></i></span>
+            <span class="ms-2">Community</span>
+          </a>
+        </li>
 
-      <!-- Impact -->
+        <!-- Impact -->
+        <li>
+          <a [routerLink]="['impact']"
+             class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
+             routerLinkActive="bg-secondary-dark">
+            <span class=""><i class=" text-secondary-dark text-xl mdi mdi-artboard" routerLinkActive="text-white"></i></span>
+            <span class="flex-1 ms-2 whitespace-nowrap">Impact</span>
+          </a>
+        </li>
+
+
+        <!-- Benchmark and derisk -->
+        <li>
+          <a [routerLink]="['benchmark']"
+             class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
+             routerLinkActive="bg-secondary-dark">
+            <span class=""><i class=" text-secondary-dark text-xl mdi mdi-podium-gold" routerLinkActive="text-white"></i></span>
+            <span class="flex-1 ms-2 whitespace-nowrap">Benchmark and Derisk</span>
+          </a>
+        </li>
+
+
+        <!-- Get Credit -->
+        <li>
+          <a [routerLink]="['regulators-and-investors']"
+             class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
+             routerLinkActive="bg-secondary-dark">
+            <span class=""><i class=" text-secondary-dark text-xl mdi mdi-credit-card" routerLinkActive="text-white"></i></span>
+            <span class="flex-1 ms-2 whitespace-nowrap">Regulators and Investors</span>
+          </a>
+        </li>
+
+
+        <!-- Documents -->
+        <li>
+          <a [routerLink]="['documents']"
+             routerLinkActive="bg-secondary-dark"
+             class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group">
+            <span class="">
+              <i class=" text-secondary-dark text-xl mdi mdi-file-chart" routerLinkActive="text-white"></i>
+            </span>
+            <span class="flex-1 ms-2 whitespace-nowrap">Get Reports</span>
+          </a>
+        </li>
+
+        <!-- History -->
+        <li>
+          <a [routerLink]="['history']"
+             class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
+             routerLinkActive="bg-secondary-dark">
+            <span class=""><i class=" text-secondary-dark text-xl mdi mdi-clock-time-nine" routerLinkActive="text-white"></i></span>
+            <span class="flex-1 ms-2 whitespace-nowrap">History</span>
+          </a>
+        </li>
+      </ng-container>
+
       <!-- <li>
-        <a [routerLink]="['impact']"
-           class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group">
-          <span class=""><i class=" text-secondary-dark text-xl mdi mdi-artboard"></i></span>
-          <span class="flex-1 ms-2 whitespace-nowrap">Impact</span>
-        </a>
-      </li> -->
-      <li>
         <button type="button"
                 class="flex items-center w-full hover:bg-secondary-dark justify-between text-slate-50  pr-3 transition duration-75 rounded-lg group  dark:text-white dark:hover:bg-gray-700"
                 aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
@@ -67,35 +117,47 @@
               Strategy</a>
           </li>
         </ul>
-      </li>
+      </li> -->
 
-      <!-- Benchmark & De-Risk -->
-      <li>
-        <a [routerLink]="['benchmark']"
-           class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group">
-          <span class=""><i class=" text-secondary-dark text-xl mdi mdi-podium-gold"></i></span>
-          <span class="flex-1 ms-2 whitespace-nowrap">Benchmark & De-Risk</span>
+      <ng-container *ngIf="typeOrganization?.id === 2">
+        <!-- Report Outcomes -->
+        <li>
+          <a [routerLink]="['report-outcomes']"
+             routerLinkActive="bg-secondary-dark"
+             class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group">
+            <span class="">
+              <i class=" text-secondary-dark text-xl mdi mdi-chart-line" routerLinkActive="text-white"></i>
+            </span>
+            <span class="flex-1 ms-2 whitespace-nowrap">Report outcomes</span>
 
-        </a>
-      </li>
+          </a>
+        </li>
 
-      <!-- Get credit -->
-      <li>
-        <a [routerLink]="['credit']"
-           class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group">
-          <span class=""><i class=" text-secondary-dark text-xl mdi mdi-file-chart"></i></span>
-          <span class="flex-1 ms-2 whitespace-nowrap">Reports</span>
-        </a>
-      </li>
+        <!-- Documents -->
+        <li>
+          <a [routerLink]="['documents']"
+             routerLinkActive="bg-secondary-dark"
+             class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group">
+            <span class="">
+              <i class=" text-secondary-dark text-xl mdi mdi-file-chart" routerLinkActive="text-white"></i>
+            </span>
+            <span class="flex-1 ms-2 whitespace-nowrap">Documents</span>
+          </a>
+        </li>
 
-      <!-- Engage -->
-      <li>
-        <a [routerLink]="['history']"
-           class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group">
-          <span class=""><i class=" text-secondary-dark text-xl mdi mdi-lightning-bolt"></i></span>
-          <span class="flex-1 ms-2 whitespace-nowrap">History</span>
-        </a>
-      </li>
+        <!-- Engage -->
+        <li>
+          <a [routerLink]="['history']"
+             routerLinkActive="bg-secondary-dark"
+             class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group">
+            <span class="">
+              <i class=" text-secondary-dark text-xl mdi mdi-clock-time-nine" routerLinkActive="text-white">
+
+              </i></span>
+            <span class="flex-1 ms-2 whitespace-nowrap">History</span>
+          </a>
+        </li>
+      </ng-container>
 
 
     </ul>
@@ -128,7 +190,7 @@
 
 
 <!-- Content -->
-<div class="py-4 sm:ml-64">
+<div class="pt-4 sm:ml-64">
   <router-outlet></router-outlet>
   <!-- <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
     <div class="grid grid-cols-3 gap-4 mb-4">

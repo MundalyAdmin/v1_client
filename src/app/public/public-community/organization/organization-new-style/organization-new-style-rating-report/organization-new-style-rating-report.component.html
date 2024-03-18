@@ -55,9 +55,9 @@
             <h3 class=" text-base md:text-lg shrink-0">Acceptability</h3>
             <div class="w-full h-5 bg-gray-200 rounded-full dark:bg-gray-700">
               <div class="h-5 bg-secondary rounded-full"
-                   [ngStyle]="{width: scaleService.getProgressBarWidth(socialImpactFidelityService.score.acceptability)}"></div>
+                   [ngStyle]="{width: scaleService.getProgressBarWidth(socialImpactFidelityService.score.acceptability!)}"></div>
             </div>
-            <div class=" text-base md:text-lg">{{ socialImpactFidelityService.score.acceptability * 100 /5 }}%</div>
+            <div class=" text-base md:text-lg">{{ socialImpactFidelityService.score.acceptability! * 100 /5 }}%</div>
 
           </div>
           <!-- Appropriateness -->
@@ -65,9 +65,9 @@
             <h3 class=" text-base md:text-lg shrink-0">Appropriateness</h3>
             <div class="w-full h-5 bg-gray-200 rounded-full dark:bg-gray-700">
               <div class="h-5 bg-secondary rounded-full"
-                   [ngStyle]="{width: scaleService.getProgressBarWidth(socialImpactFidelityService.score.appropriateness)}"></div>
+                   [ngStyle]="{width: scaleService.getProgressBarWidth(socialImpactFidelityService.score.appropriateness!)}"></div>
             </div>
-            <div class=" text-base md:text-lg">{{ socialImpactFidelityService.score.appropriateness * 100 /5 }}%</div>
+            <div class=" text-base md:text-lg">{{ socialImpactFidelityService.score.appropriateness! * 100 /5 }}%</div>
 
           </div>
           <!-- Feasibility -->
@@ -75,9 +75,9 @@
             <h3 class=" text-base md:text-lg shrink-0">Feasibility</h3>
             <div class="w-full h-5 bg-gray-200 rounded-full dark:bg-gray-700">
               <div class="h-5 bg-secondary rounded-full"
-                   [ngStyle]="{width: scaleService.getProgressBarWidth(socialImpactFidelityService.score.feasibility)}"></div>
+                   [ngStyle]="{width: scaleService.getProgressBarWidth(socialImpactFidelityService.score.feasibility!)}"></div>
             </div>
-            <div class=" text-base md:text-lg">{{ socialImpactFidelityService.score.feasibility * 100 /5 }}%</div>
+            <div class=" text-base md:text-lg">{{ socialImpactFidelityService.score.feasibility! * 100 /5 }}%</div>
 
           </div>
           <!-- Plan Comprehensiveness -->
@@ -85,9 +85,9 @@
             <h3 class=" text-base md:text-lg shrink-0">Plan Comprehensiveness</h3>
             <div class="w-full h-5 bg-gray-200 rounded-full dark:bg-gray-700">
               <div class="h-5 bg-secondary rounded-full"
-                   [ngStyle]="{width: scaleService.getProgressBarWidth(socialImpactFidelityService.score.comprehensiveness)}"></div>
+                   [ngStyle]="{width: scaleService.getProgressBarWidth(socialImpactFidelityService.score.comprehensiveness!)}"></div>
             </div>
-            <div class=" text-base md:text-lg">{{ socialImpactFidelityService.score.comprehensiveness * 100 /5 }}%</div>
+            <div class=" text-base md:text-lg">{{ socialImpactFidelityService.score.comprehensiveness! * 100 /5 }}%</div>
 
           </div>
           <!-- Quality of delivery -->
@@ -95,9 +95,9 @@
             <h3 class=" text-base md:text-lg shrink-0">Quality of delivery</h3>
             <div class="w-full h-5 bg-gray-200 rounded-full dark:bg-gray-700">
               <div class="h-5 bg-secondary rounded-full"
-                   [ngStyle]="{width: scaleService.getProgressBarWidth(socialImpactFidelityService.score.quality_of_delivery)}"></div>
+                   [ngStyle]="{width: scaleService.getProgressBarWidth(socialImpactFidelityService.score.quality_of_delivery!)}"></div>
             </div>
-            <div class=" text-base md:text-lg">{{ socialImpactFidelityService.score.quality_of_delivery * 100 /5 }}%</div>
+            <div class=" text-base md:text-lg">{{ socialImpactFidelityService.score.quality_of_delivery! * 100 /5 }}%</div>
 
           </div>
           <!-- <img src="assets/images/new-style/rating-report-sif.png" class=" " alt="impact-fidelity"> -->

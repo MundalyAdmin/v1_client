@@ -7,6 +7,7 @@ import { FormArray, FormGroup, Validators } from '@angular/forms';
 import { TypeOrganizationService } from '../../organization/type-organization/type-organization.service';
 import { SectorOrganizationService } from '../../organization/sector-organization/sector-organization.service';
 import { Storage } from '../../shared/helpers/storage/storage';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-organization-registration',
@@ -54,7 +55,8 @@ export class OrganizationRegistrationComponent
   constructor(
     public typeOrganizationService: TypeOrganizationService,
     public sectorOrganizationService: SectorOrganizationService,
-    public storage: Storage
+    public storage: Storage,
+    public authService: AuthService
   ) {
     super();
   }
@@ -80,10 +82,16 @@ export class OrganizationRegistrationComponent
   }
 
   initform() {
+    const workEmailValidationRegex =
+      /\b[A-Za-z0-9._%+-]+@(?!gmail|yahoo|outlook)(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}\b/;
+
     this.form = this.fb.group({
       adminInfo: this.fb.group({
         name: [null, Validators.required],
-        email: [null, Validators.required],
+        email: [
+          null,
+          [Validators.required, Validators.pattern(workEmailValidationRegex)],
+        ],
         phone_number: [null, Validators.required],
         password: [null, Validators.required],
         password_confirmation: [null, Validators.required],
@@ -99,6 +107,7 @@ export class OrganizationRegistrationComponent
       reportsUpload: this.fb.group({
         reports: [[]],
       }),
+      terms_and_conditions: [false, Validators.requiredTrue],
     });
 
     this.adminInfoForm = this.form.get('adminInfo') as FormGroup;
@@ -135,6 +144,10 @@ export class OrganizationRegistrationComponent
     }
   }
 
+  onTermsChange(event: any) {
+    console.log(event);
+  }
+
   getTypeOrganizations() {
     this.dependanciesLoading.typeOrganization = true;
     this.typeOrganizationService.get().subscribe((typeOrganizations) => {
@@ -153,9 +166,9 @@ export class OrganizationRegistrationComponent
 
   submit() {
     if (this.form.valid) {
-      this.storage.set('registration', this.form.value);
-      this.helper.notification.alertSuccess('Successfully registered');
-      this.router.navigate(['/auth/registration-processing']);
+      this.authService.registerOrganization(this.form.value).subscribe(() => {
+        this.router.navigate(['/auth/registration-processing']);
+      });
     }
   }
 }

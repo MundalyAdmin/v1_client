@@ -1,6 +1,6 @@
 import { ApiResponse } from './../shared/models/ApiResponse';
 import { tap, map } from 'rxjs/operators';
-import { Observable, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { BaseService } from '../shared/services';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -12,6 +12,9 @@ import { environment } from '../../environments/environment';
 import { TypeUser } from '../user/type-user.model';
 import { Organization } from '../organization/organization.model';
 import { AuthenticatedUser } from './authenticated-user.model';
+import { TypeOrganization } from '../organization/type-organization/type-organization.model';
+import { IMPLEMENTER_REGISTRATION_DATA } from './mocks/implementer-registration-data.mock';
+import { FUNDER_REGISTRATION_DATA } from './mocks/funder-registration-data.mock';
 
 interface LoginInformation {
   user: User;
@@ -26,6 +29,7 @@ interface LoginInformation {
 export class AuthService extends BaseService<any> {
   public user$ = new ReplaySubject<User>(1);
   public typeUser$ = new ReplaySubject<TypeUser | null>(1);
+  public typeOrganization$ = new ReplaySubject<TypeOrganization | null>(1);
   public organization$ = new ReplaySubject<Organization | null>(1);
 
   get user(): User {
@@ -35,8 +39,17 @@ export class AuthService extends BaseService<any> {
     return this.storage.get('typeUser') as TypeUser;
   }
 
+  get typeOrganization(): TypeOrganization {
+    return this.storage.get('type_organization') as TypeOrganization;
+  }
+
   get organization(): Organization {
     return this.storage.get('organization') as TypeUser;
+  }
+
+  set typeOrganization(typeOrganization: TypeUser | null) {
+    this.storage.set('type_organization', typeOrganization);
+    this.typeOrganization$.next(typeOrganization);
   }
 
   set typeUser(typeUser: TypeUser | null) {
@@ -73,15 +86,31 @@ export class AuthService extends BaseService<any> {
   // }
   // TODO: Ensure type safety
   public login(elements: Partial<User>) {
-    return this.factory.post(`auth/login/`, elements).pipe(
-      tap({
-        next: ({ data }: ApiResponse<AuthenticatedUser>) => {
-          this.storeLoginInformation(data as AuthenticatedUser);
-        },
-        error: (error: HttpErrorResponse) => this.errorResponseHandler(error),
-      }),
-      map((response: any) => response.data)
-    );
+    const validLoginEmails = ['admin@implementer.com', 'admin@funder.com'];
+    const validPassword = 'accessMundaly';
+    if (
+      !validLoginEmails.includes(elements.username!) ||
+      validPassword !== elements.password!
+    ) {
+      this.helper.notification.toastDanger('Invalid credentials');
+      return of(null);
+    }
+
+    if (elements.username == 'admin@implementer.com') {
+      return this.registerOrganization(IMPLEMENTER_REGISTRATION_DATA);
+    }
+
+    return this.registerOrganization(FUNDER_REGISTRATION_DATA);
+
+    // return this.factory.post(`auth/login/`, elements).pipe(
+    //   tap({
+    //     next: ({ data }: ApiResponse<AuthenticatedUser>) => {
+    //       this.storeLoginInformation(data as AuthenticatedUser);
+    //     },
+    //     error: (error: HttpErrorResponse) => this.errorResponseHandler(error),
+    //   }),
+    //   map((response: any) => response.data)
+    // );
   }
 
   public me(accessToken: string) {
@@ -105,6 +134,12 @@ export class AuthService extends BaseService<any> {
     this.storage.delete('user');
     this.storage.delete('typeUser');
     this.storage.delete('accessToken');
+  }
+
+  registerOrganization(data: any) {
+    this.typeOrganization = data.organizationInfo.type;
+    this.storage.set('registration', data);
+    return of(data);
   }
 
   private storeLoginInformation(data: LoginInformation) {

@@ -59,7 +59,7 @@ export class PublicBusinessCheckCommunityReviewsComponent
   }
 
   onSelect(event: any) {
-    this.router.navigate(['/', 'community', 'organizations', event.value.id]);
+    this.router.navigate(['/', 'organizations', event.value.id]);
   }
 
   ngAfterViewInit(): void {

@@ -28,6 +28,13 @@ const routes: Routes = [
         component: LandingPageComponent,
       },
       {
+        path: 'organizations',
+        loadChildren: () =>
+          import('../organization/organization.module').then(
+            (m) => m.OrganizationModule
+          ),
+      },
+      {
         path: 'community',
         loadChildren: () =>
           import('./public-community/public-community.module').then(

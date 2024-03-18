@@ -11,16 +11,11 @@
     <div class="mt-8 mb-4">
 
       <!-- Name -->
-      <a [routerLink]="['/community/organizations', organization.id]" *ngIf="organization.type_organization_id == 2"
+      <a [routerLink]="['/organizations', organization.id]"
          class="text-xl font-bold text-slate-600 hover:text-primary duration-500 block">{{
         organization.name
         }}</a>
 
-      <!-- TODO: TO REMOVE JUST for test -->
-      <a [routerLink]="['/community/organizations/funder', organization.id]" *ngIf="organization.type_organization_id == 1"
-         class="text-xl font-bold text-slate-600 hover:text-primary duration-500 block">{{
-        organization.name
-        }}</a>
 
       <!-- Sector organization -->
       <span class="block text-lg text-slate-600">{{ organization.sector_organization?.name }} </span>
@@ -48,14 +43,10 @@
 
   <!-- CTA -->
   <div class="mt-4">
-    <a [routerLink]="[detailsLink]" *ngIf="organization.id !== 24"
+    <a [routerLink]="['/', 'organizations', organization.id]"
        class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-primary hover:text-white rounded-md w-full">View
       details</a>
 
-    <!-- TODO: TO REMOVE JUST for test -->
-    <a [routerLink]="['/community/organizations/funder']" *ngIf="organization.id === 24"
-       class="py-2 px-5 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-indigo-600/5 hover:bg-indigo-600 border-indigo-600/10 hover:border-indigo-600 text-primary hover:text-white rounded-md w-full">View
-      details</a>
   </div>
 
   <!-- Profiles status -->

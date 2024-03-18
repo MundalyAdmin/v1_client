@@ -46,7 +46,7 @@ export class OrganizationNewStyleRatingOverviewComponent extends BaseSingleCompo
       return 'Insufficient data for a recommendation';
     }
 
-    if (this.communityTrustScore) {
+    if (this.communityTrustScore && this.communityTrustScore.rating) {
       if (this.communityTrustScore.rating <= 2) {
         return 'Bad, Do Not Support';
       }

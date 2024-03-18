@@ -18,11 +18,11 @@
 
 
         <!-- TODO: the multiplication by 10 of the number of respondants and the number of reviews is just for testing purpose. TO CORRECT -->
-        <ng-container *ngIf="communityTrustScore.total_survey_respondant >= 10">
+        <ng-container *ngIf="communityTrustScore.total_survey_respondant! >= 10">
           <p class="text-slate-200">
             {{ single.name }} has a Community Trust Score of {{ communityTrustScore.community_trust_score }} % from {{
-            communityTrustScore.total_survey_respondant * 10 }} survey responses and a {{ communityTrustScore.rating }}-star rating from {{
-            communityTrustScore.total_reviews * 10 }} reviews. If you believe in their mission, you can support them with confidence.
+            communityTrustScore.total_survey_respondant! * 10 }} survey responses and a {{ communityTrustScore.rating }}-star rating from {{
+            communityTrustScore.total_reviews! * 10 }} reviews. If you believe in their mission, you can support them with confidence.
           </p>
         </ng-container>
 

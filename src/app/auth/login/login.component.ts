@@ -31,13 +31,17 @@ export class LoginComponent extends BaseCreateComponent<any> {
     this.loading = true;
     this.authService.login(this.form.value).subscribe({
       next: (response: AuthenticatedUser) => {
-        if (response.type_user.id == TypeUserEnum.SUPER_ADMIN) {
-          this.router.navigate(['/super-admin']);
-        } else if (response.type_user.id == TypeUserEnum.ADMIN_ORGANIZATION) {
+        this.loading = false;
+        if (response) {
           this.router.navigate(['/dashboard']);
         }
-        this.helper.notification.alertSuccess();
-        this.loading = false;
+        // if (response.type_user.id == TypeUserEnum.SUPER_ADMIN) {
+        //   this.router.navigate(['/super-admin']);
+        // } else if (response.type_user.id == TypeUserEnum.ADMIN_ORGANIZATION) {
+        //   this.router.navigate(['/dashboard']);
+        // }
+        // this.helper.notification.alertSuccess();
+        // this.loading = false;
       },
       error: () => {
         this.loading = false;
