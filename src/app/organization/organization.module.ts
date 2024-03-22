@@ -35,10 +35,7 @@ const routes: Routes = [
     path: 'search',
     component: OrganizationContainerComponent,
   },
-  {
-    path: 'become-participant',
-    component: ComingSoonComponent,
-  },
+
   {
     path: 'funder',
     component: OrganizationFunderComponent,

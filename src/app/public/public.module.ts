@@ -9,6 +9,7 @@ import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-co
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SharedPublicModule } from './shared-public/shared-public.module';
+import { BecomeAParticipantComponent } from './become-a-participant/become-a-participant.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
       {
         path: 'privacy-policy',
         component: PrivacyPolicyComponent,
+      },
+      {
+        path: 'become-participant',
+        component: BecomeAParticipantComponent,
       },
       {
         path: '',
@@ -66,6 +71,7 @@ const routes: Routes = [
     TermsAndConditionsComponent,
     PrivacyPolicyComponent,
     LandingPageComponent,
+    BecomeAParticipantComponent,
   ],
   imports: [
     CommonModule,
