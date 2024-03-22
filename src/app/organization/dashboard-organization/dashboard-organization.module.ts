@@ -29,6 +29,7 @@ import { DashboardOrganizationRegulatorsAndInvestorsComponent } from './dashboar
 import { DashboardOrganizationRegulatorsComponent } from './dashboard-organization-regulators-and-investors/dashboard-organization-regulators/dashboard-organization-regulators.component';
 import { DashboardOrganizationInvestorsComponent } from './dashboard-organization-regulators-and-investors/dashboard-organization-investors/dashboard-organization-investors.component';
 import { CarouselModule } from 'primeng/carousel';
+import { DialogModule } from 'primeng/dialog';
 
 const routes: Routes = [
   {
@@ -207,6 +208,7 @@ const routes: Routes = [
     SharedModule,
     SharedPublicModule,
     CarouselModule,
+    DialogModule,
   ],
 })
 export class DashboardOrganizationModule {}

@@ -17,6 +17,7 @@ export class DashboardOrganizationComponent implements OnInit {
   user: User | null = null;
   organization: Organization | null = null;
   typeOrganizationId: number | null = null;
+  visible: boolean = false;
   constructor(
     public authService: AuthService,
     public storage: Storage,
