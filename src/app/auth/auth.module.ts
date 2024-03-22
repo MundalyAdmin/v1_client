@@ -12,6 +12,13 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CalendarModule } from 'primeng/calendar';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { OrganizationRegistrationProcessingComponent } from './organization-registration/organization-registration-processing/organization-registration-processing.component';
+import { OrganizationRegistrationAdminInfoComponent } from './organization-registration/organization-registration-admin-info/organization-registration-admin-info.component';
+import { OrganizationRegistrationOrganizationInfoComponent } from './organization-registration/organization-registration-organization-info/organization-registration-organization-info.component';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { SharedPublicModule } from '../public/shared-public/shared-public.module';
+import { PasswordModule } from 'primeng/password';
+import { AccountVerificationComponent } from './account-verification/account-verification.component';
+import { CountdownModule } from 'ngx-countdown';
 
 const routes: Routes = [
   {
@@ -21,6 +28,10 @@ const routes: Routes = [
   {
     path: 'signup',
     component: OrganizationRegistrationComponent,
+  },
+  {
+    path: 'account-verification',
+    component: AccountVerificationComponent,
   },
   {
     path: 'registration-processing',
@@ -43,6 +54,9 @@ const routes: Routes = [
     LoginRedirectionComponent,
     OrganizationRegistrationComponent,
     OrganizationRegistrationProcessingComponent,
+    OrganizationRegistrationAdminInfoComponent,
+    OrganizationRegistrationOrganizationInfoComponent,
+    AccountVerificationComponent,
   ],
   imports: [
     CommonModule,
@@ -53,6 +67,10 @@ const routes: Routes = [
     FileUploadModule,
     CalendarModule,
     MultiSelectModule,
+    ScrollPanelModule,
+    SharedPublicModule,
+    PasswordModule,
+    CountdownModule,
   ],
   providers: [AuthService],
 })

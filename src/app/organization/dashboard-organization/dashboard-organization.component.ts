@@ -4,6 +4,8 @@ import { Storage } from '../../shared/helpers/storage/storage';
 import { Flowbite } from '../../shared/decorators/flowbite.decorator';
 import { TypeOrganization } from '../type-organization/type-organization.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from '../../user/user.model';
+import { Organization } from '../organization.model';
 
 @Component({
   selector: 'app-dashboard-organization',
@@ -12,9 +14,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 @Flowbite()
 export class DashboardOrganizationComponent implements OnInit {
-  admin: any;
-  organization: any;
-  typeOrganization: TypeOrganization | undefined;
+  user: User | null = null;
+  organization: Organization | null = null;
+  typeOrganizationId: number | null = null;
   constructor(
     public authService: AuthService,
     public storage: Storage,
@@ -23,10 +25,9 @@ export class DashboardOrganizationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const registration = this.storage.get<any>('registration');
-    this.admin = registration['adminInfo'];
-    this.organization = registration['organizationInfo'];
-    this.typeOrganization = this.authService.typeOrganization;
+    this.user = this.authService.user;
+    this.organization = this.authService.organization;
+    this.typeOrganizationId = this.organization.type_organization_id || null;
 
     this.menuRedirection();
   }
@@ -38,7 +39,7 @@ export class DashboardOrganizationComponent implements OnInit {
     const currentRoute = this.router.url.split('/').pop();
     if (currentRoute === 'dashboard') {
       const redirectRoute =
-        this.typeOrganization?.id === 1 ? 'community' : 'report-outcomes';
+        this.typeOrganizationId === 1 ? 'community' : 'report-outcomes';
       this.router.navigate([redirectRoute], { relativeTo: this.route });
     }
   }

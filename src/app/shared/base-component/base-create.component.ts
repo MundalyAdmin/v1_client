@@ -244,9 +244,12 @@ export class BaseCreateComponent<T>
     return control?.touched && control.valid;
   }
 
-  fillFormData(object: any) {
+  fillFormData(object: any, prefix?: string) {
     Object.keys(object).forEach((key) => {
-      this.formData.append(key, object[key]);
+      this.formData.append(
+        prefix ? prefix + '[' + key + ']' : key,
+        object[key]
+      );
     });
   }
 

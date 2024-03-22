@@ -18,4 +18,6 @@ export interface User extends BaseModel {
   typeUser: TypeUser | null;
 
   auth_method: 'local' | 'google' | 'linkedin';
+
+  verified: boolean | null;
 }

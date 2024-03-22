@@ -137,16 +137,40 @@ export class AuthService extends BaseService<any> {
   }
 
   registerOrganization(data: any) {
-    this.typeOrganization = data.organizationInfo.type;
-    this.storage.set('registration', data);
-    return of(data);
+    return this.factory.post(`auth/signup/organization`, data).pipe(
+      tap({
+        next: (response: { data: any }) => {
+          this.storeLoginInformation(response.data);
+        },
+        error: (error: HttpErrorResponse) => this.errorResponseHandler(error),
+      })
+    );
+  }
+
+  verifyUser(data: { user_id: number; otp: number }) {
+    return this.factory.post(`auth/verify`, data).pipe(
+      tap({
+        next: (response: { data: any }) => {
+          this.storeLoginInformation(response.data);
+        },
+        error: (error: HttpErrorResponse) => this.errorResponseHandler(error),
+      })
+    );
+  }
+
+  resendOtp(data: { user_id: number }) {
+    return this.factory.post(`auth/resend-otp`, data).pipe(
+      tap({
+        next: (response: { data: any }) => {},
+        error: (error: HttpErrorResponse) => this.errorResponseHandler(error),
+      })
+    );
   }
 
   private storeLoginInformation(data: LoginInformation) {
     this.clearLoginInformation();
     this.storage.set('accessToken', data.accessToken);
     this.user = data.user;
-    this.typeUser = data.type_user;
 
     if (data.organization) this.organization = data.organization;
   }

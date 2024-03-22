@@ -5,6 +5,7 @@ import { ComingSoonComponent } from './shared/components/coming-soon/coming-soon
 import { AuthGuard } from './auth/auth.guard';
 import { TempDashboardComponent } from './cart/temp-dashboard/temp-dashboard.component';
 import { GeneratingReportComponent } from './generating-report/generating-report.component';
+import { verifiedUserGuard } from './auth/guards/verified-user.guard';
 
 const routes: Routes = [
   {
@@ -31,6 +32,7 @@ const routes: Routes = [
       },
       {
         path: 'dashboard',
+        canActivate: [AuthGuard, verifiedUserGuard],
         loadChildren: () =>
           import(
             './organization/dashboard-organization/dashboard-organization.module'
