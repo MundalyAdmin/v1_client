@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Router, RouterModule, Routes } from '@angular/router';
 import { PublicComponent } from './public/public.component';
 import { ComingSoonComponent } from './shared/components/coming-soon/coming-soon.component';
 import { AuthGuard } from './auth/auth.guard';
@@ -32,7 +32,7 @@ const routes: Routes = [
       },
       {
         path: 'dashboard',
-        canActivate: [AuthGuard, verifiedUserGuard],
+        canActivate: [AuthGuard],
         loadChildren: () =>
           import(
             './organization/dashboard-organization/dashboard-organization.module'

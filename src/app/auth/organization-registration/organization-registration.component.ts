@@ -220,7 +220,9 @@ export class OrganizationRegistrationComponent
             'Organization successfully registered'
           );
 
-          this.router.navigate(['/dashboard']);
+          setTimeout(() => {
+            this.router.navigate(['/auth/account-verification']);
+          }, 100);
         },
       });
     }

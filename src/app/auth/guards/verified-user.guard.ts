@@ -3,7 +3,7 @@ import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 export const verifiedUserGuard: CanActivateFn = (route, state) => {
-  const user = inject(AuthService).user;
+  const user = inject(AuthService).getUser();
   const router = inject(Router);
 
   if (!user) {

@@ -170,6 +170,7 @@ const routes: Routes = [
           {
             path: '**',
             redirectTo: 'self-assessment',
+            pathMatch: 'full',
           },
         ],
       },

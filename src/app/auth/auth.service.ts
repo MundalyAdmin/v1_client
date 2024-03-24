@@ -81,6 +81,10 @@ export class AuthService extends BaseService<any> {
     this.organization = organization;
   }
 
+  getUser() {
+    return this._user;
+  }
+
   override emitData() {
     this.user = this.storage.get('user') as User;
     this.typeUser = this.storage.get('typeUser') as TypeUser;
@@ -150,6 +154,7 @@ export class AuthService extends BaseService<any> {
     this.storage.delete('user');
     this.storage.delete('typeUser');
     this.storage.delete('accessToken');
+    this.storage.delete('organization');
     this.emitData();
   }
 
@@ -197,5 +202,6 @@ export class AuthService extends BaseService<any> {
   }
   public logout() {
     this.clearLoginInformation();
+    this.router.navigate(['/']);
   }
 }

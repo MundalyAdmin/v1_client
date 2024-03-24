@@ -179,9 +179,16 @@
 
 
       <!-- Setting button -->
-      <div class="flex text-slate-400 mt-7">
+      <div class="flex text-slate-400 mt-7 ursor-pointer hover:text-slate-500">
         <span class="me-2"><i class="mdi mdi-cog-outline"></i></span>
-        <p>Settings</p>
+        <span (click)="showSetupLogoAndCoverModal = true">Settings</span>
+      </div>
+
+
+      <!-- Logout button -->
+      <div class="flex text-slate-400 mt-7 cursor-pointer hover:text-slate-500" (click)="authService.logout()">
+        <span class="me-2"><i class="mdi mdi-logout"></i></span>
+        <span>Logout</span>
       </div>
     </div>
 
@@ -312,7 +319,8 @@
 </div>
 
 
-<p-dialog header="Complete Registration" [(visible)]="showSetupLogoAndCoverModal" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false"
+<p-dialog [header]="isRegistrationComplete() ? 'Edit Profile': 'Complete Registration'" [(visible)]="showSetupLogoAndCoverModal" [modal]="true"
+          [style]="{ width: '50vw' }" [draggable]="false"
           [resizable]="false">
   <app-dashboard-organization-complete-registration (created)="showSetupLogoAndCoverModal = false"></app-dashboard-organization-complete-registration>
 </p-dialog>

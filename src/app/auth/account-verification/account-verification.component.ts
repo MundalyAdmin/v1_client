@@ -72,13 +72,17 @@ export class AccountVerificationComponent
     this.authService.verifyUser(this.form.value).subscribe({
       next: (response: any) => {
         this.loading = false;
-        this.router.navigate(['/dashboard']);
 
         this.helper.notification.toastSuccess('Welcome to Mundaly');
         this.loading = false;
       },
       error: () => {
         this.loading = false;
+      },
+      complete: () => {
+        setTimeout(() => {
+          this.router.navigate(['/dashboard']);
+        }, 1000);
       },
     });
   }
