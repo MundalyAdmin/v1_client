@@ -4,7 +4,7 @@ import { AuthService } from '../auth.service';
 import { Helper } from '../../shared/helpers/helper/helper';
 
 export const funderAuthorizationGuard: CanActivateFn = (route, state) => {
-  if (inject(AuthService).typeOrganization.id !== 1) {
+  if (inject(AuthService).typeOrganization?.id !== 1) {
     inject(Helper).notification.toastDanger(
       'You are not authorized to visit that page'
     );

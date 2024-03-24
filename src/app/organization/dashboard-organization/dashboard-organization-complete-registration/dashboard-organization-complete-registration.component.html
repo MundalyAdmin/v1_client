@@ -1,0 +1,107 @@
+<div class="space-y-4 md:space-y-6  p-10 rounded-lg border">
+  <!-- Profile picture and cover -->
+  <form class="w-full  " [formGroup]="form" (submit)="submit()">
+
+    <div class="relative mb-20">
+      <!-- Cover image -->
+      <div class="h-[100px] rounded-xl overflow-hidden border-2 group cover-image relative bg-slate-100">
+
+        <!-- cover image display -->
+        <img [src]="coverLiveUrl" alt="" *ngIf="coverLiveUrl"
+             class="w-full  peer object-cover h-full">
+
+        <!-- Overlay menu -->
+        <span
+              class=" flex absolute pr-3 pb-3 top-0 left-0 pt-2 justify-end items-end h-full w-full " *ngIf="!coverLiveUrl">
+
+
+          <span class=" flex items-center text-sm justify-center cursor-pointer p-2 h-7 w-auto bg-secondary border-primary rounded-full"
+                (click)="coverPage.click()">
+            <i class="mdi mdi-camera  text-primary"></i>
+
+            <span class="ms-3">Edit your cover image</span>
+          </span>
+        </span>
+
+        <span
+              class=" group-hover:flex hidden absolute pr-3 pb-3 top-0 left-0 pt-2 justify-end items-end h-full w-full bg-slate-700/50 gap-4"
+              *ngIf="coverLiveUrl">
+
+          <span class=" flex items-center justify-center cursor-pointer p-2 h-7 w-7 bg-secondary rounded-full"
+                (click)="deleteImage('file_cover')">
+            <i class="mdi mdi-delete  text-primary"></i>
+          </span>
+
+
+        </span>
+
+
+
+
+        <!-- File Input -->
+        <input type="file" class="hidden" accept="image/*" (change)="onFileChanged($event, 'file_cover')" #coverPage>
+      </div>
+
+      <!-- Profile image -->
+      <div
+           class="rounded-full bg-slate-100  cursor-pointer  overflow-hidden group  border-4 h-[120px] w-[120px] left-[40%] absolute bottom-[-55px]"
+           [ngClass]="{ 'border-white': !logoLiveUrl, 'border-slate-300': logoLiveUrl }">
+        <!-- cover image display -->
+        <img [src]="logoLiveUrl" alt="" *ngIf="logoLiveUrl"
+             class="w-full  peer object-cover h-full">
+
+        <!-- Camera icon -->
+        <span
+              class=" flex    py-3 justify-center items-center h-full w-full " *ngIf="!logoLiveUrl">
+
+          <span class=" flex flex-col items-center justify-center cursor-pointer p-2  "
+                (click)="organizationLogo.click()">
+            <i class="mdi mdi-camera  text-primary"></i>
+            <span class="text-xs">Edit your logo</span>
+          </span>
+        </span>
+
+        <!-- Overlay menu -->
+        <span
+              class=" group-hover:flex absolute top-0 left-0 hidden py-3 justify-center items-center h-full w-full bg-slate-700/50 gap-4"
+              *ngIf="logoLiveUrl">
+
+          <span class=" flex items-center justify-center cursor-pointer p-2 h-7 w-7 bg-secondary rounded-full"
+                (click)="deleteImage('file_logo')">
+            <i class="mdi mdi-delete  text-primary"></i>
+          </span>
+
+
+
+        </span>
+
+
+
+
+        <!-- File Input -->
+        <input type="file" class="hidden" accept="image/*" (change)="onFileChanged($event, 'file_logo')" #organizationLogo>
+      </div>
+    </div>
+
+
+    <!-- Organization's name -->
+    <p class="text-xl font-bold text-center">
+      {{ organization?.name }}
+    </p>
+
+
+    <div class="flex mt-5 justify-end gap-4">
+
+      <!-- Next -->
+      <button type="submit"
+              [disabled]=" form!.invalid || loading"
+              [ngClass]="{ 'cursor-not-allowed bg-slate-400': form!.invalid }"
+              class=" text-primary border-primary border bg-secondary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+        Submit
+        <app-loading *ngIf="loading"></app-loading>
+      </button>
+    </div>
+  </form>
+
+
+</div>

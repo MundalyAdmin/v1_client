@@ -27,49 +27,65 @@ interface LoginInformation {
   providedIn: 'root',
 })
 export class AuthService extends BaseService<any> {
-  public user$ = new ReplaySubject<User>(1);
+  public user$ = new ReplaySubject<User | null>(1);
   public typeUser$ = new ReplaySubject<TypeUser | null>(1);
   public typeOrganization$ = new ReplaySubject<TypeOrganization | null>(1);
   public organization$ = new ReplaySubject<Organization | null>(1);
 
-  get user(): User {
-    return this.storage.get('user') as User;
+  private _user: User | null = null;
+  private _userType: TypeUser | null = null;
+  private _organization: Organization | null = null;
+  private _organizationType: TypeOrganization | null = null;
+
+  get user(): User | null {
+    return this._user;
   }
-  get typeUser(): TypeUser {
-    return this.storage.get('typeUser') as TypeUser;
+  get typeUser(): TypeUser | null {
+    return this._userType;
   }
 
-  get typeOrganization(): TypeOrganization {
-    return this.storage.get('type_organization') as TypeOrganization;
+  get typeOrganization(): TypeOrganization | null {
+    return this._organizationType;
   }
 
-  get organization(): Organization {
-    return this.storage.get('organization') as TypeUser;
+  get organization(): Organization | null {
+    return this._organization;
   }
 
   set typeOrganization(typeOrganization: TypeUser | null) {
-    this.storage.set('type_organization', typeOrganization);
-    this.typeOrganization$.next(typeOrganization);
+    this._organizationType = typeOrganization;
+    this.typeOrganization$.next(this._organizationType);
   }
 
   set typeUser(typeUser: TypeUser | null) {
-    this.storage.set('typeUser', typeUser);
-    this.typeUser$.next(typeUser);
+    this._userType = typeUser;
+    this.typeUser$.next(this._userType);
   }
 
   set organization(organization: Organization | null) {
-    this.storage.set('organization', organization);
-    this.organization$.next(organization);
+    this._organization = organization;
+    this.organization$.next(this._organization);
   }
 
-  set user(user: User) {
-    if (user) {
-      this.storage.set('user', user);
-      this.user$.next(user);
-    }
+  set user(user: User | null) {
+    this._user = user;
+    this.user$.next(this._user);
   }
   constructor(public storage: Storage, public router: Router) {
     super('auth');
+    this.emitData();
+  }
+
+  setOrganizationInLocalStorage(organization: Organization | null) {
+    this.storage.set('organization', organization);
+    this.organization = organization;
+  }
+
+  override emitData() {
+    this.user = this.storage.get('user') as User;
+    this.typeUser = this.storage.get('typeUser') as TypeUser;
+    this.typeOrganization = this.storage.get('type_organization') as TypeUser;
+    this.organization = this.storage.get('organization') as Organization;
   }
   // public signup(elements: User) {
   //   return this.factory.post(`auth/signup/`, elements).pipe(
@@ -134,6 +150,7 @@ export class AuthService extends BaseService<any> {
     this.storage.delete('user');
     this.storage.delete('typeUser');
     this.storage.delete('accessToken');
+    this.emitData();
   }
 
   registerOrganization(data: any) {
@@ -170,9 +187,10 @@ export class AuthService extends BaseService<any> {
   private storeLoginInformation(data: LoginInformation) {
     this.clearLoginInformation();
     this.storage.set('accessToken', data.accessToken);
-    this.user = data.user;
+    this.storage.set('user', data.user);
+    if (data.organization) this.storage.set('organization', data.organization);
 
-    if (data.organization) this.organization = data.organization;
+    this.emitData();
   }
   isLoggedIn() {
     return this.storage.getAccessToken() && this.storage.getUser();

@@ -4,12 +4,13 @@ import { Organization } from './organization.model';
 import { debounceTime, map, tap, of, Observable } from 'rxjs';
 import { ApiResponse } from '../shared/models/ApiResponse';
 import { OrganizationSearchData } from '../public/public-community/organization/organization-search-data.model';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrganizationService extends BaseService<Organization> {
-  constructor() {
+  constructor(public authService: AuthService) {
     super('organizations');
   }
 
@@ -111,6 +112,18 @@ export class OrganizationService extends BaseService<Organization> {
             itemsPerPage: response.per_page,
             currentPage: response.current_page,
           };
+        }),
+        map((response: ApiResponse<Organization>) => response.data)
+      );
+  }
+
+  setupLogoAndCover(formData: FormData) {
+    return this.factory
+      .post(`${this.endPoint}/setup-logo-and-cover`, formData)
+      .pipe(
+        tap((response: ApiResponse<Organization>) => {
+          const organization = response.data as Organization;
+          this.authService.setOrganizationInLocalStorage(organization);
         }),
         map((response: ApiResponse<Organization>) => response.data)
       );

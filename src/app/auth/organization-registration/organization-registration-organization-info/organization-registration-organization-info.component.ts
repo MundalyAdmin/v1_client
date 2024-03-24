@@ -18,12 +18,6 @@ export class OrganizationRegistrationOrganizationInfoComponent
   @Output() previous = new EventEmitter();
   @Output() submitted = new EventEmitter();
 
-  // Allow us to display the logo when the user uploads it
-  logoLiveUrl: string | null = null;
-
-  // Allow us to display the cover when the user uploads it
-  coverLiveUrl: string | null = null;
-
   dependanciesLoading = {
     typeOrganization: false,
     sectorOrganization: false,
@@ -73,39 +67,6 @@ export class OrganizationRegistrationOrganizationInfoComponent
       this.dependanciesLoading.typeOrganization = false;
     });
   }
-
-  // deleteImage(name: string) {
-  //   if (name === 'logo') {
-  //     this.logoLiveUrl = null;
-  //   } else if (name === 'cover') {
-  //     this.coverLiveUrl = null;
-  //   }
-
-  //   this.formData.delete(name);
-  // }
-
-  // override onFileChanged(event: any, name?: string) {
-  //   let image = event.target.files[0];
-  //   let reader = new FileReader();
-  //   reader.readAsDataURL(image);
-
-  //   let fieldName = '';
-
-  //   reader.onload = () => {
-  //     if (name === 'logo') {
-  //       this.logoLiveUrl = reader.result as string;
-  //       fieldName = 'logo';
-  //     } else if (name === 'cover') {
-  //       this.coverLiveUrl = reader.result as string;
-  //       fieldName = 'cover';
-  //     }
-
-  //     this.organizationRegistrationService.formData.set(
-  //       `organizationInfo[${fieldName}]`,
-  //       image
-  //     );
-  //   };
-  // }
 
   getSectorOrganizations() {
     this.dependanciesLoading.sectorOrganization = true;

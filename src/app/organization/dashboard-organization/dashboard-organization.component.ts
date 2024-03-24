@@ -17,7 +17,7 @@ export class DashboardOrganizationComponent implements OnInit {
   user: User | null = null;
   organization: Organization | null = null;
   typeOrganizationId: number | null = null;
-  visible: boolean = false;
+  showSetupLogoAndCoverModal: boolean = false;
   constructor(
     public authService: AuthService,
     public storage: Storage,
@@ -28,7 +28,7 @@ export class DashboardOrganizationComponent implements OnInit {
   ngOnInit(): void {
     this.user = this.authService.user;
     this.organization = this.authService.organization;
-    this.typeOrganizationId = this.organization.type_organization_id || null;
+    this.typeOrganizationId = this.organization?.type_organization_id || null;
 
     this.menuRedirection();
   }
@@ -43,5 +43,12 @@ export class DashboardOrganizationComponent implements OnInit {
         this.typeOrganizationId === 1 ? 'community' : 'report-outcomes';
       this.router.navigate([redirectRoute], { relativeTo: this.route });
     }
+  }
+
+  isRegistrationComplete() {
+    return (
+      this.authService.organization?.logo &&
+      this.authService.organization?.cover
+    );
   }
 }

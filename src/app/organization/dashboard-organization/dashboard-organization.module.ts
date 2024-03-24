@@ -30,6 +30,7 @@ import { DashboardOrganizationRegulatorsComponent } from './dashboard-organizati
 import { DashboardOrganizationInvestorsComponent } from './dashboard-organization-regulators-and-investors/dashboard-organization-investors/dashboard-organization-investors.component';
 import { CarouselModule } from 'primeng/carousel';
 import { DialogModule } from 'primeng/dialog';
+import { DashboardOrganizationCompleteRegistrationComponent } from './dashboard-organization-complete-registration/dashboard-organization-complete-registration.component';
 
 const routes: Routes = [
   {
@@ -201,6 +202,7 @@ const routes: Routes = [
     DashboardOrganizationRegulatorsAndInvestorsComponent,
     DashboardOrganizationRegulatorsComponent,
     DashboardOrganizationInvestorsComponent,
+    DashboardOrganizationCompleteRegistrationComponent,
   ],
   imports: [
     CommonModule,

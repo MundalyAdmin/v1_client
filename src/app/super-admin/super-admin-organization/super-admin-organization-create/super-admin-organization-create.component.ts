@@ -74,7 +74,7 @@ export class SuperAdminOrganizationCreateComponent
     const email = organization?.email || '';
     const website = organization?.website || '';
     const city = organization?.city || '';
-    const creator_id = organization?.creator_id || this.authService.user.id;
+    const creator_id = organization?.creator_id || this.authService.user?.id;
 
     this.form = this.fb.group({
       name: [name, Validators.required],
