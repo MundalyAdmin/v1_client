@@ -14,40 +14,40 @@ export class InitiativesService extends BaseMockService<InitiativeImpact> {
         name: 'Establishing the new Communities and Social Performance mode',
         startDate: new Date(),
         goals: [
-          {
-            name: 'Onboard Communities and Social Performance professionals',
-            metricType: 'Total',
-            metric: 'csps ',
-            startValue: 250,
-            target: 500,
-            data: [
-              {
-                date: new Date('2023-01-01'),
-                data: 88,
-                description: '',
-              },
-              {
-                date: new Date('2023-02-01'),
-                data: 64,
-                description: '',
-              },
-              {
-                date: new Date('2023-03-01'),
-                data: 122,
-                description: '',
-              },
-              {
-                date: new Date('2023-04-01'),
-                data: 88,
-                description: '',
-              },
-              {
-                date: new Date('2023-05-01'),
-                data: 128,
-                description: '',
-              },
-            ],
-          },
+          // {
+          //   name: 'Onboard Communities and Social Performance professionals',
+          //   metricType: 'Total',
+          //   metric: 'csps ',
+          //   startValue: 250,
+          //   target: 500,
+          //   data: [
+          //     {
+          //       date: new Date('2023-01-01'),
+          //       data: 88,
+          //       description: '',
+          //     },
+          //     {
+          //       date: new Date('2023-02-01'),
+          //       data: 64,
+          //       description: '',
+          //     },
+          //     {
+          //       date: new Date('2023-03-01'),
+          //       data: 122,
+          //       description: '',
+          //     },
+          //     {
+          //       date: new Date('2023-04-01'),
+          //       data: 88,
+          //       description: '',
+          //     },
+          //     {
+          //       date: new Date('2023-05-01'),
+          //       data: 128,
+          //       description: '',
+          //     },
+          //   ],
+          // },
           // {
           //   name: 'Secure Fertilizer from COCOBOD',
           //   metricType: 'Total',
@@ -83,40 +83,40 @@ export class InitiativesService extends BaseMockService<InitiativeImpact> {
         name: ' Reducing barriers and increasing Indigenous employment',
         startDate: new Date(),
         goals: [
-          {
-            name: 'Indigenous business development Investments',
-            metricType: 'Total',
-            metric: 'millions USD',
-            startValue: 0,
-            target: 50,
-            data: [
-              {
-                date: new Date('2023-03-01'),
-                data: 7,
-                description: '',
-              },
-              {
-                date: new Date('2023-04-01'),
-                data: 9,
-                description: '',
-              },
-              {
-                date: new Date('2023-05-01'),
-                data: 9,
-                description: '',
-              },
-              {
-                date: new Date('2023-06-01'),
-                data: 7,
-                description: '',
-              },
-              {
-                date: new Date('2023-07-01'),
-                data: 15,
-                description: '',
-              },
-            ],
-          },
+          // {
+          //   name: 'Indigenous business development Investments',
+          //   metricType: 'Total',
+          //   metric: 'millions USD',
+          //   startValue: 0,
+          //   target: 50,
+          //   data: [
+          //     // {
+          //     //   date: new Date('2023-03-01'),
+          //     //   data: 7,
+          //     //   description: '',
+          //     // },
+          //     // {
+          //     //   date: new Date('2023-04-01'),
+          //     //   data: 9,
+          //     //   description: '',
+          //     // },
+          //     // {
+          //     //   date: new Date('2023-05-01'),
+          //     //   data: 9,
+          //     //   description: '',
+          //     // },
+          //     // {
+          //     //   date: new Date('2023-06-01'),
+          //     //   data: 7,
+          //     //   description: '',
+          //     // },
+          //     // {
+          //     //   date: new Date('2023-07-01'),
+          //     //   data: 15,
+          //     //   description: '',
+          //     // },
+          //   ],
+          // },
         ],
       },
     ]);

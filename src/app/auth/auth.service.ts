@@ -106,31 +106,15 @@ export class AuthService extends BaseService<any> {
   // }
   // TODO: Ensure type safety
   public login(elements: Partial<User>) {
-    const validLoginEmails = ['admin@implementer.com', 'admin@funder.com'];
-    const validPassword = 'accessMundaly';
-    if (
-      !validLoginEmails.includes(elements.username!) ||
-      validPassword !== elements.password!
-    ) {
-      this.helper.notification.toastDanger('Invalid credentials');
-      return of(null);
-    }
-
-    if (elements.username == 'admin@implementer.com') {
-      return this.registerOrganization(IMPLEMENTER_REGISTRATION_DATA);
-    }
-
-    return this.registerOrganization(FUNDER_REGISTRATION_DATA);
-
-    // return this.factory.post(`auth/login/`, elements).pipe(
-    //   tap({
-    //     next: ({ data }: ApiResponse<AuthenticatedUser>) => {
-    //       this.storeLoginInformation(data as AuthenticatedUser);
-    //     },
-    //     error: (error: HttpErrorResponse) => this.errorResponseHandler(error),
-    //   }),
-    //   map((response: any) => response.data)
-    // );
+    return this.factory.post(`auth/login/email`, elements).pipe(
+      tap({
+        next: ({ data }: ApiResponse<AuthenticatedUser>) => {
+          this.storeLoginInformation(data as AuthenticatedUser);
+        },
+        error: (error: HttpErrorResponse) => this.errorResponseHandler(error),
+      }),
+      map((response: any) => response.data)
+    );
   }
 
   public me(accessToken: string) {

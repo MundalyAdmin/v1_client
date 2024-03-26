@@ -224,6 +224,9 @@ export class OrganizationRegistrationComponent
             this.router.navigate(['/auth/account-verification']);
           }, 100);
         },
+        error: () => {
+          this.loading = false;
+        },
       });
     }
   }

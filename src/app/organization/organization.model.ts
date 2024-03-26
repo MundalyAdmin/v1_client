@@ -44,4 +44,6 @@ export interface Organization extends BaseModel {
   creator_id?: null | number;
 
   community_trust_score?: null | number;
+
+  has_impact_analysis_report?: null | boolean;
 }

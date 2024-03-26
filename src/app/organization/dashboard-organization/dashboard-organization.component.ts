@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
-import { Storage } from '../../shared/helpers/storage/storage';
 import { Flowbite } from '../../shared/decorators/flowbite.decorator';
 import { TypeOrganization } from '../type-organization/type-organization.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../user/user.model';
 import { Organization } from '../organization.model';
+import { Storage } from './../../shared/helpers/storage/storage';
 
 @Component({
   selector: 'app-dashboard-organization',
@@ -20,9 +20,9 @@ export class DashboardOrganizationComponent implements OnInit {
   showSetupLogoAndCoverModal: boolean = false;
   constructor(
     public authService: AuthService,
-    public storage: Storage,
     public router: Router,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    public storage: Storage
   ) {}
 
   ngOnInit(): void {
