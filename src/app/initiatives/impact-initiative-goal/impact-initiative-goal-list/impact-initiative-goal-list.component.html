@@ -1,0 +1,109 @@
+<ng-container *ngIf="data?.length; else zeroState">
+  <div *ngFor="let goal of data; index as j;" class="pt-2">
+    <div class="flex justify-between items-center">
+      <p class="text-lg text-black font-semibold">{{goal.name}}</p>
+      <div class="flex gap-1 items-center">
+        <!-- Add data button -->
+        <button id="data-dropdown-button"
+                (click)="addData(goal)"
+                class="flex items-center gap-2 py-2.5 px-3.5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+          Add Data
+        </button>
+
+        <!-- Options button -->
+        <button [attr.data-dropdown-toggle]="'data-dropdown-'+1+j" aria-expanded="true" aria-haspopup="true"
+                class="gap-5 py-2.5 px-3.5 text-lg font-medium text-gray-900  focus:outline-none bg-white rounded-lg border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 f dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"
+               height="10px" width="10px" version="1.1" id="Capa_1" viewBox="0 0 32.055 32.055"
+               xml:space="preserve">
+            <g>
+              <path
+                    d="M3.968,12.061C1.775,12.061,0,13.835,0,16.027c0,2.192,1.773,3.967,3.968,3.967c2.189,0,3.966-1.772,3.966-3.967   C7.934,13.835,6.157,12.061,3.968,12.061z M16.233,12.061c-2.188,0-3.968,1.773-3.968,3.965c0,2.192,1.778,3.967,3.968,3.967   s3.97-1.772,3.97-3.967C20.201,13.835,18.423,12.061,16.233,12.061z M28.09,12.061c-2.192,0-3.969,1.774-3.969,3.967   c0,2.19,1.774,3.965,3.969,3.965c2.188,0,3.965-1.772,3.965-3.965S30.278,12.061,28.09,12.061z" />
+            </g>
+          </svg>
+        </button>
+        <div id="data-dropdown-{{1}}{{j}}" aria-hidden="true"
+             class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+          <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="data-dropdown-button">
+            <li>
+              <a href="#"
+                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer">Share
+                Progress</a>
+            </li>
+            <li>
+              <a
+                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer">Edit
+                Goal</a>
+            </li>
+            <li>
+              <a href="#"
+                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white cursor-pointer">Archived
+                Goal</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <div>
+      <div class="w-full bg-white dark:bg-gray-800 p-4 md:p-6">
+        <div class="flex justify-between mb-5">
+          <div class="grid gap-10 grid-cols-3">
+            <div class="flex flex-col justify-start items-center gap-2">
+              <h5 class="inline-flex items-center text-gray-500 dark:text-gray-400 leading-none font-normal">
+                Current
+              </h5>
+              <p class="text-gray-900 dark:text-white text-2xl leading-none font-bold">{{goal.total_progress}} {{ goal.metric_name }}</p>
+
+            </div>
+            <div class="flex flex-col justify-end items-center gap-2">
+              <h5 class="inline-flex items-center text-gray-500 dark:text-gray-400 leading-none font-normal">
+                Target
+              </h5>
+              <p class="text-gray-900 dark:text-white text-2xl leading-none font-bold">{{goal.metric_target}} {{ goal.metric_name }}</p>
+
+            </div>
+            <div class="flex flex-col justify-end items-center gap-2">
+              <h5 class="inline-flex items-center text-gray-500 dark:text-gray-400 leading-none font-normal">
+                Progress
+              </h5>
+              <p class="text-gray-900 dark:text-white text-2xl leading-none font-bold">{{ goal.total_progress_percentage }} % </p>
+
+            </div>
+          </div>
+
+        </div>
+
+
+
+        <!-- <div attr.id="initiative-chart-{{goal.impact_initiative_id}}{{goal.id}}" class="max-w-full border-none">
+        </div> -->
+
+        <app-impact-initiative-progress-data-show [impactInitiativeGoal]="goal"></app-impact-initiative-progress-data-show>
+
+
+
+      </div>
+    </div>
+
+  </div>
+</ng-container>
+
+<ng-template #zeroState>
+  <div>
+    Set your first goal to begin measuring impact.
+    <div class="p-2 flex justify-center">
+      <button
+              class="flex items-center gap-2 py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 f dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+        <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+             viewBox="0 0 18 18">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 1v16M1 9h16" />
+        </svg>
+        Create New Goal
+      </button>
+    </div>
+  </div>
+
+</ng-template>

@@ -1,0 +1,27 @@
+<!-- <div attr.id="initiative-chart-{{impactInitiativeGoal.impact_initiative_id}}{{impactInitiativeGoal.id}}" class="max-w-full border-none">
+</div> -->
+
+
+<div class="card" [ngClass]="{ 'hidden': !data.length && !loading, 'block': data.length  && !loading}">
+  <p-chart type="line" [data]="chartData" [options]="options"></p-chart>
+</div>
+
+<div class="mt-7 " *ngIf="!loading && !data.length">
+  <h3 class="  text-center">No data yet</h3>
+  <div class="p-2 flex justify-center">
+    <button
+            (click)="addData()"
+            class="flex items-center gap-2 py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 f dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+      <svg class="w-3.5 h-3.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+           viewBox="0 0 18 18">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 1v16M1 9h16" />
+      </svg>
+      Add data
+    </button>
+  </div>
+</div>
+
+<app-page-loading *ngIf="loading"></app-page-loading>
+
+<hr class="my-3">

@@ -24,6 +24,7 @@
     "angular-ng-autocomplete": "^2.0.12",
     "animate.css": "^4.1.1",
     "apexcharts": "^3.45.2",
+    "chart.js": "^4.4.2",
     "feather-icons": "^4.29.1",
     "flowbite": "^1.8.1",
     "ng-apexcharts": "^1.8.0",
