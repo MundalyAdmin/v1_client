@@ -5,6 +5,7 @@ import { ComingSoonComponent } from './shared/components/coming-soon/coming-soon
 import { AuthGuard } from './auth/auth.guard';
 import { TempDashboardComponent } from './cart/temp-dashboard/temp-dashboard.component';
 import { GeneratingReportComponent } from './generating-report/generating-report.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
           ).then((m) => m.DashboardOrganizationModule),
       },
       {
+        path: 'not-found',
+        component: PageNotFoundComponent,
+      },
+      {
         path: 'coming-soon',
         component: ComingSoonComponent,
       },
@@ -47,6 +52,11 @@ const routes: Routes = [
       {
         path: 'report-generating',
         component: GeneratingReportComponent,
+      },
+      {
+        path: '**',
+        redirectTo: 'not-found',
+        pathMatch: 'full',
       },
     ],
   },
