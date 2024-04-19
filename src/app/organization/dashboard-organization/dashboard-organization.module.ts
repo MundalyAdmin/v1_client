@@ -29,6 +29,8 @@ import { DashboardOrganizationRegulatorsAndInvestorsComponent } from './dashboar
 import { DashboardOrganizationRegulatorsComponent } from './dashboard-organization-regulators-and-investors/dashboard-organization-regulators/dashboard-organization-regulators.component';
 import { DashboardOrganizationInvestorsComponent } from './dashboard-organization-regulators-and-investors/dashboard-organization-investors/dashboard-organization-investors.component';
 import { CarouselModule } from 'primeng/carousel';
+import { DialogModule } from 'primeng/dialog';
+import { ImpactPartnerModule } from './impact-partner/impact-partner.module';
 
 const routes: Routes = [
   {
@@ -207,6 +209,8 @@ const routes: Routes = [
     SharedModule,
     SharedPublicModule,
     CarouselModule,
+    DialogModule,
+    ImpactPartnerModule,
   ],
 })
 export class DashboardOrganizationModule {}

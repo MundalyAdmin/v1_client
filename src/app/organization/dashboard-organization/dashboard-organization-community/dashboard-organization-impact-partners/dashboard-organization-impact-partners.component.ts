@@ -12,6 +12,8 @@ export class DashboardOrganizationImpactPartnersComponent
   extends BaseComponent<Organization>
   implements OnInit
 {
+  showAddOrganizationModal = false;
+
   constructor(public organizationService: OrganizationService) {
     super(organizationService);
   }
