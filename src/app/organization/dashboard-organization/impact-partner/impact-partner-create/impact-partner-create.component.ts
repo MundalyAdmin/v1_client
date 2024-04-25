@@ -47,7 +47,7 @@ export class ImpactPartnerCreateComponent
       implementer_website: [null],
       implementer_admin_email: [null],
       implementer_id: [null, Validators.required],
-      funder_id: [this.authService.organization.id!, Validators.required],
+      funder_id: [1, Validators.required],
     });
   }
 
