@@ -45,10 +45,9 @@
             <div class="font-light text-xs"> <span><i class="mdi mdi-account-group-outline"></i></span> Community</div>
             <select (change)="onChange($event, i)"
                     class="form-select form-input mt-2 w-full py-2 text-sm px-3 h-10 font-semibold bg-transparent dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-primary-200 focus:border-indigo-600 dark:border-gray-800 dark:focus:border-indigo-600 focus:ring-0">
-              <option value="New Haven">New Haven</option>
-              <option value="Bridgeport">Bridgeport</option>
-              <option value="Hartford">Hartford</option>
-              <option value="Trumbull">Trumbull</option>
+              <option value="Naperville">Naperville</option>
+              <option value="Aurora">Aurora</option>
+              <option value="Joliet">Joliet</option>
             </select>
 
 
@@ -92,7 +91,7 @@
                 Verify
               </a>
 
-              <ng-container *ngIf="report.title === 'Impact Evaluation Report'">
+              <ng-container *ngIf="report.title === 'Fundability Report'">
                 <a [routerLink]="['./']"
                    (click)="addToCart(report)"
                    *ngIf="!cartService.isItemInCart(report)"
@@ -121,7 +120,7 @@
 
               <button
                       [disabled]="" true
-                      *ngIf="report.title !== 'Impact Analysis Report' && report.title !== 'Impact Evaluation Report'"
+                      *ngIf="report.title !== 'Impact Analysis Report' && report.title !== 'Fundability Report'"
                       class="py-2 px-5 flex-1 inline-block font-semibold tracking-wide border align-middle duration-500 text-base text-center bg-slate-600 shadow border-primary hover:border-primary text-white rounded-md">
                 <span><i class="mdi mdi-lock"></i></span>
                 Coming Soon...
