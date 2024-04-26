@@ -17,7 +17,7 @@ export class ImpactPartnerListComponent
   }
 
   ngOnInit(): void {
-    this.getByFunderId(1);
+    this.getByFunderId(24);
   }
 
   getByFunderId(funderId: number) {
