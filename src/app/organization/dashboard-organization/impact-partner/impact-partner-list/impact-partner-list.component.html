@@ -29,11 +29,11 @@
           <!-- Logo , name and website -->
           <div class="flex items-center">
             <!-- Logo -->
-            <img class="w-10 h-10 rounded-full" [src]="partner.implementer?.logo_thumb" *ngIf="partner.implementer?.logo_thumb"
+            <img class="w-10 h-10 rounded-full" [src]="partner.implementer?.logo" *ngIf="partner.implementer?.logo"
                  [alt]="partner.implementer?.name">
 
             <!-- No logo placeholder -->
-            <div class="h-10 w-10 bg-slate-200 flex items-center justify-center rounded-full" *ngIf="!partner.implementer?.logo_thumb">
+            <div class="h-10 w-10 bg-slate-200 flex items-center justify-center rounded-full" *ngIf="!partner.implementer?.logo">
               <div>
                 <i class="mdi text-[16px] text-slate-800 font-semibold mdi-domain"></i>
               </div>
