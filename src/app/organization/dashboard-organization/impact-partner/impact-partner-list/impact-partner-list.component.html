@@ -20,7 +20,7 @@
   </thead>
   <tbody>
     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600"
-        *ngFor="let partner of impactPartnerService.data">
+        *ngFor="let partner of impactPartnerService.data.reverse()">
 
       <!-- Name and Photo -->
       <th scope="row">
