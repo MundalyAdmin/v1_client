@@ -1,0 +1,118 @@
+<form class="space-y-4 " [formGroup]="form" (submit)="create()" *ngIf="form">
+
+  <div class="min-h-[200px]" *ngIf="!showCreateForm">
+    <p-autoComplete
+
+                    id="organizationSearchBox"
+                    scrollHeight="1000px"
+                    (onSelect)="onSelect($event)"
+                    [completeOnFocus]="true"
+                    [suggestions]="organizationSearchResults"
+                    [placeholder]="'Your organization\'s name'"
+                    [showEmptyMessage]="true"
+                    [inputStyleClass]="'p-5 text-base outline-4 w-full outline border-2 outline-none text-black dark:text-white rounded-full bg-white dark:bg-slate-900 dark:shadow-gray-800'"
+                    (completeMethod)="searchOrganizationByName($event)"
+                    styleClass="w-full h-full "
+                    #autoComplete
+                    panelStyleClass="w-full h-full overflow-visible"
+                    field="name">
+
+      <div class="h-[100vh] w-[100vw] z-99 bg-white opacity-75"></div>
+
+      <!-- List item template -->
+      <ng-template let-organization pTemplate="item">
+        <div class="flex align-items-center gap-2">
+          <img [src]="organization.logo" [class]="'w-8 h-8'"
+               style="width: 18px" />
+          <div>{{ organization.name }}</div>
+        </div>
+      </ng-template>
+
+      <!-- No data handling template -->
+      <ng-template let-organization pTemplate="empty">
+        <div class="text-center flex  flex-col items-center justify-center py-5 gap-5">
+          <div class="text-5xl "><span><i class="mdi mdi-magnify"></i></span></div>
+
+          <!-- <div class="text-xl">We couldn't find your organization</div> -->
+
+
+          <div (click)="displayCreateForm()"
+               class="text-white bg-primary hover:bg-primary-dark focus:ring-4  focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-primary focus:outline-none dark:focus:ring-primary-dark">
+            Not found the organization you are looking for? <br>
+          </div>
+        </div>
+      </ng-template>
+    </p-autoComplete>
+
+
+    <div *ngIf="selectedImplementer"
+         class="group relative   py-7 px-8 mt-16 rounded-md shadow dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 bg-white dark:bg-slate-900 duration-500 ">
+      <div class="">
+
+        <!-- Image -->
+        <img [src]="selectedImplementer.logo"
+             class="rounded-full absolute shadow-md bg-white h-20 w-20 mx-auto block" style="left: 40%; top: -20%;
+        height: 6rem !important;
+        width: 6rem !important;" [alt]="selectedImplementer.name">
+        <!-- Name and sector-organization -->
+        <div class="mt-10 mb-4">
+
+          <!-- Name -->
+          <div
+               class="text-xl text-center font-bold text-slate-600 hover:text-primary duration-500 block">{{
+            selectedImplementer.name
+            }}</div>
+
+
+
+        </div>
+      </div>
+
+
+
+
+
+
+    </div>
+
+  </div>
+
+
+  <ng-container *ngIf="showCreateForm">
+    <!-- Name -->
+    <div>
+      <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+      <input type="text" name="initiative-name" id="initiative-name" formControlName="implementer_name"
+             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+             placeholder="" required>
+    </div>
+
+    <!-- Website -->
+    <div>
+      <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Organization Website</label>
+      <input type="url" name="initiative-name" id="initiative-name" formControlName="implementer_website"
+             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+             placeholder="" required>
+    </div>
+
+    <!-- Admin Email -->
+    <div>
+      <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email of the organization's admin</label>
+      <input type="email" name="initiative-name" id="initiative-name" formControlName="implementer_admin_email"
+             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+             placeholder="" required>
+    </div>
+
+  </ng-container>
+
+
+
+  <div class="mb-5 mt-10 flex justify-end">
+    <button type="button" (click)="created.emit()"
+            class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Cancel</button>
+    <button type="button" type="submit"
+            class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Save
+      <app-loading *ngIf="loading"></app-loading>
+    </button>
+  </div>
+</form>

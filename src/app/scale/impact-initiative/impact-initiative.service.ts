@@ -116,6 +116,33 @@ export class ImpactInitiativeService extends BaseService<ImpactInitiative> {
         impact_strength: 5,
         organization_id: 3,
       },
+      {
+        id: 6,
+
+        name: 'Increasing access to mental health services for young people',
+        location: 'Nairobi, Kenya',
+        progress: 5,
+        impact_strength: 5,
+        organization_id: 24,
+      },
+      {
+        id: 7,
+
+        name: 'Implementing education and prevention programs to address substance abuse',
+        location: 'Mombasa, Kenya',
+        progress: 3,
+        impact_strength: 3,
+        organization_id: 24,
+      },
+      {
+        id: 8,
+
+        name: 'Providing leadership development opportunities, life skills training, and mentorship programs to empower young people',
+        location: 'Mombasa, Kenya',
+        progress: 4,
+        impact_strength: 5,
+        organization_id: 24,
+      },
     ];
 
     return of([

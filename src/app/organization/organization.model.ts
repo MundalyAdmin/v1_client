@@ -31,7 +31,7 @@ export interface Organization extends BaseModel {
 
   city?: null | string;
 
-  sector_organization?: null | SectorOrganization;
+  sector_organizations?: null | SectorOrganization[];
 
   type_organization?: null | TypeOrganization;
 
