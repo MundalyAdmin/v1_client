@@ -3,7 +3,7 @@
 
   <div class="container mx-auto p-0 flex justify-start gap-6 ">
 
-    <div class="min-h-screen w-full " [ngClass]="{'w-[70%]': isDrawerOpen}">
+    <div class="min-h-screen " [ngClass]="{'w-[70%]': isDrawerOpen, 'w-full': !isDrawerOpen}">
       <div class="flex justify-between items-center py-4">
         <p class="text-2xl text-gray-400 font-semibold">Initiatives</p>
         <div class="flex gap-5 items-center">
@@ -22,8 +22,8 @@
       </div>
 
 
-      <div class="flex flex-col gap-8" *ngIf="initiatives.length && !loading">
-        <div *ngFor="let initiative of initiatives; index as i;" class="bg-white p-4 rounded-md pb-6">
+      <div class="flex flex-col gap-8" *ngIf="data.length && !loading">
+        <div *ngFor="let initiative of data; index as i;" class="bg-white p-4 rounded-md pb-6">
           <div class="flex justify-between items-center">
             <p class="text-xl text-black font-bold">{{initiative.name}}</p>
             <div class="flex gap-1 items-center">
@@ -86,7 +86,7 @@
 
       <app-loading *ngIf="loading"></app-loading>
 
-      <app-missing-data *ngIf="!initiatives.length && !loading"></app-missing-data>
+      <app-missing-data *ngIf="!data.length && !loading"></app-missing-data>
 
     </div>
 

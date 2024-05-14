@@ -28,10 +28,11 @@
   <!-- Country -->
   <div>
     <label for="country"
-           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Country</label>
-    <input type="text" name="country" id="country" formControlName="country"
-           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-           placeholder="" required>
+           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Country <app-loading *ngIf="countryLoading"></app-loading> </label>
+    <p-dropdown class="" [filter]="true" filterBy="name" [showClear]="true" placeholder="Select a country"
+                styleClass="bg-gray-50 flex border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                formControlName="country" [options]="countries" optionLabel="name"></p-dropdown>
+
   </div>
 
 
@@ -39,9 +40,20 @@
   <div>
     <label for="city"
            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">City</label>
-    <input type="text" name="city" id="city" formControlName="city"
+
+    <p-autoComplete formControlName="city" [suggestions]="cityNames" (completeMethod)="getCitiesByName($event)"
+                    (onSelect)="onCitySelected($event)"
+                    panelStyleClass="w-full h-full"
+                    styleClass="w-full h-full"
+                    inputStyleClass="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    field="name">
+      <ng-template let-city pTemplate="item">
+        <a [innerHTML]="city.name + ', ' + city.stateName + ', ' + city.countryCode"></a>
+      </ng-template>
+    </p-autoComplete>
+    <!-- <input type="text" name="city" id="city" formControlName="city"
            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-           placeholder="" required>
+           placeholder="" required> -->
   </div>
 
   <div>

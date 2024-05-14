@@ -30,7 +30,7 @@ export class InitiativesComponent
 
     this.subscriptions['initiatives'] =
       this.impactInitiativeService.data$.subscribe((data) => {
-        this.initiatives = data;
+        this.data = data;
       });
 
     this.subscriptions['drawer'] =
@@ -50,8 +50,6 @@ export class InitiativesComponent
       },
     });
   }
-
-  initiatives: ImpactInitiative[] = [];
 
   modal?: ModalInterface;
 

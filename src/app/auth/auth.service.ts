@@ -15,12 +15,14 @@ import { AuthenticatedUser } from './authenticated-user.model';
 import { TypeOrganization } from '../organization/type-organization/type-organization.model';
 import { IMPLEMENTER_REGISTRATION_DATA } from './mocks/implementer-registration-data.mock';
 import { FUNDER_REGISTRATION_DATA } from './mocks/funder-registration-data.mock';
+import { ReportOrganizationStatusEnum } from '../organization/report-organization/report-organization-status.enum';
 
 interface LoginInformation {
   user: User;
   accessToken: string;
   organization: Organization | null;
   type_user: TypeUser | null;
+  impact_analysis_report_status: ReportOrganizationStatusEnum | null;
 }
 
 @Injectable({
@@ -50,6 +52,10 @@ export class AuthService extends BaseService<any> {
 
   get organization(): Organization | null {
     return this._organization;
+  }
+
+  get freeImpactAnalysisReportStatus() {
+    return this.storage.get('impact_analysis_report_status');
   }
 
   set typeOrganization(typeOrganization: TypeUser | null) {
@@ -177,7 +183,13 @@ export class AuthService extends BaseService<any> {
     this.clearLoginInformation();
     this.storage.set('accessToken', data.accessToken);
     this.storage.set('user', data.user);
-    if (data.organization) this.storage.set('organization', data.organization);
+    if (data.organization) {
+      this.storage.set('organization', data.organization);
+      this.storage.set(
+        'impact_analysis_report_status',
+        data.impact_analysis_report_status
+      );
+    }
 
     this.emitData();
   }

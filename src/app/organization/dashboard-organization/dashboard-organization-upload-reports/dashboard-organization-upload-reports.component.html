@@ -89,9 +89,9 @@
         <!-- List of items -->
         <ng-container>
           <tr class="bg-white dark:bg-slate-900 border-t border-gray-100 dark:border-gray-800 "
-              *ngFor="let report of reports">
+              *ngFor="let report of reports; let i = index">
             <!-- Remove from cart -->
-            <td class="p-4"><button><i class="mdi mdi-window-close text-red-600"></i></button></td>
+            <td class="p-4"><button (click)="deleteReportFromList(i)"><i class="mdi mdi-window-close text-red-600"></i></button></td>
 
             <!-- Report description -->
             <td class="p-4">

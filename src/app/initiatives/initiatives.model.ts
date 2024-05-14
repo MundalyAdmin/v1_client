@@ -4,12 +4,13 @@ import { ImpactInitiativeGoal } from './impact-initiative-goal/impact-initiative
 export interface ImpactInitiative extends BaseModel {
   name: string;
   description?: string;
-  startDate: Date;
+  start: Date;
   endDate?: Date;
   country?: string;
   city?: string;
-  ethnicity?: string;
-  sex?: 'Male' | 'Female' | 'All';
-  ageRangeStart?: number;
-  ageRangeEnd?: number;
+
+  sexes: { id: number; name: string }[];
+  age_ranges?: { id: number; name: string }[];
+  ethnicities?: { id: number; name: string }[];
+  relationship_status?: { id: number; name: string }[];
 }

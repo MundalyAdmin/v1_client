@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Storage } from '../../../shared/helpers/storage/storage';
 import { Organization } from '../../organization.model';
 import { OrganizationAvailableReportsComponent } from '../../../public/public-community/organization/organization-new-style/organization-available-reports/organization-available-reports.component';
+import { AuthService } from '../../../auth/auth.service';
 
 @Component({
   selector: 'app-dashboard-organization-credit-reports',
@@ -19,18 +20,17 @@ export class DashboardOrganizationCreditReportsComponent extends OrganizationAva
     public override cartService: CartService,
     public override reportService: ReportService,
     public route: ActivatedRoute,
-    public storage: Storage
+    public storage: Storage,
+    public authService: AuthService
   ) {
     super(reportService, organizationService, cartService);
   }
 
   override ngOnInit(): void {
-    super.ngOnInit();
-    this.organizationService.singleData = {
-      ...this.storage.get<any>('registration')!.organizationInfo,
-      id: 1,
-    } as Organization;
+    window.scrollTo(0, 0);
 
-    // console.log(this.organizationService.singleData);
+    if (this.authService.organization) {
+      this.getByOrganization(this.authService.organization);
+    }
   }
 }

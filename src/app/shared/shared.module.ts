@@ -13,7 +13,6 @@ import { LoadingModule } from './helpers/loading/loading.module';
 import { OrganizationSoloComponent } from './ui-elements/organization-solo/organization-solo.component';
 import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
 import { ThankYouPageComponent } from './components/thank-you-page/thank-you-page.component';
-import { Select2Module } from 'ng-select2-component';
 import { TypewriterComponent } from '../typewriter/typewriter.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CustomCarouselComponent } from './components/custom-carousel/custom-carousel.component';
@@ -50,7 +49,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RouterModule,
     ModalModule,
     LoadingModule,
-    Select2Module, // TODO: delete this module
     NgMultiSelectDropDownModule,
     NgApexchartsModule,
   ],
@@ -66,7 +64,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MissingDataModule,
     OrganizationSoloComponent,
     ThankYouPageComponent,
-    Select2Module,
     TypewriterComponent,
     NgMultiSelectDropDownModule,
     CustomCarouselComponent,

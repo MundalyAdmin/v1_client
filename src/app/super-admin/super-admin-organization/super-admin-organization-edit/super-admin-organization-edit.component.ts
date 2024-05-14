@@ -7,7 +7,6 @@ import { TagOrganizationService } from '../../../organization/tag-organization/t
 import { CountryService } from '../../../country/country.service';
 import { AuthService } from '../../../auth/auth.service';
 import { Organization } from '../../../organization/organization.model';
-import { Select2UpdateValue } from 'ng-select2-component';
 import { TagOrganization } from '../../../organization/tag-organization/tag-organization.model';
 
 @Component({

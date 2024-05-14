@@ -3,6 +3,9 @@ import { BaseCreateComponent } from '../../../shared/base-component';
 import { FormGroup, Validators } from '@angular/forms';
 import { DashboardOrganizationUploadReport } from './dashboard-organization-upload-reports.model';
 import { Storage } from '../../../shared/helpers/storage/storage';
+import { DashboardOrganizationUploadReportsService } from './dashboard-organization-upload-reports.service';
+import { firstValueFrom } from 'rxjs';
+import { AuthService } from '../../../auth/auth.service';
 
 @Component({
   selector: 'app-dashboard-organization-upload-reports',
@@ -13,11 +16,23 @@ export class DashboardOrganizationUploadReportsComponent
   extends BaseCreateComponent<any>
   implements OnInit
 {
+  // Form to add report individually
   reportForm?: FormGroup;
+
+  // Allow to display the name of the selected report file
   selectedReportFile: File | null = null;
+
+  // Holds the list of reports to be able to display them in the list format
   reports: DashboardOrganizationUploadReport[] = [];
 
-  constructor(public storage: Storage) {
+  // Holds the list of reports to be able to upload them
+  reportFormData: FormData[] = [];
+
+  constructor(
+    public storage: Storage,
+    public uploadReportService: DashboardOrganizationUploadReportsService,
+    public authService: AuthService
+  ) {
     super();
   }
 
@@ -36,10 +51,21 @@ export class DashboardOrganizationUploadReportsComponent
       reports: [[]],
     });
 
+    this.initReportForm();
+  }
+
+  deleteReportFromList(index: number) {
+    this.reports = this.reports.filter((_, i) => i !== index);
+    this.reportFormData = this.reportFormData.filter((_, i) => i !== index);
+  }
+
+  initReportForm() {
     this.reportForm = this.fb.group({
       name: [null, Validators.required],
       year: [null, Validators.required],
       file: [null, Validators.required],
+      isLast: [false, Validators.required],
+      organization_id: [this.authService.organization?.id, Validators.required],
     });
   }
 
@@ -49,42 +75,45 @@ export class DashboardOrganizationUploadReportsComponent
         ...this.reportForm.value,
         file: this.selectedReportFile,
       };
-      const reportList = JSON.parse(
-        this.formData.get('reports')?.toString() || '[]'
-      );
 
-      const newReportList = [...reportList, { ...newReport }];
-      this.formData.set('reports', JSON.stringify(newReportList));
+      const newFormData = new FormData();
+      Object.keys(newReport).forEach((key) => {
+        newFormData.append(key, newReport[key]);
+      });
 
-      // const reportsControl = this.form?.get('reports');
-      // if (!reportsControl?.value.length) {
-      //   reportsControl?.patchValue([this.reportForm?.value]);
-      // } else {
-      //   reportsControl?.patchValue([
-      //     ...reportsControl?.value,
-      //     this.reportForm?.value,
-      //   ]);
-      // }
+      this.reportFormData.push(newFormData);
 
       this.reports.push(this.reportForm.value);
 
-      this.reportForm?.reset();
+      this.initReportForm();
 
       this.selectedReportFile = null;
     }
   }
 
-  submit() {
+  async uploadReports() {
+    return await Promise.all(
+      this.reportFormData.map(async (report: FormData, index: number) => {
+        if (index === this.reportFormData.length - 1)
+          report.set('isLast', 'true');
+
+        await firstValueFrom(this.uploadReportService.store(report));
+      })
+    );
+  }
+
+  async submit() {
     if (this.form.valid) {
+      this.loading = true;
+      await this.uploadReports().catch((error) =>
+        this.helper.notification.toastDanger(error)
+      );
+
       this.helper.notification.alertSuccess('Report uploaded');
 
-      this.storage.set('report_loading', 'true');
+      this.storage.set('impact_analysis_report_status', 'on-progress');
 
-      // show formdata
-      // @ts-expect-error
-      for (const [key, value] of this.formData.entries()) {
-        console.log(`${key}: ${value}`);
-      }
+      this.loading = false;
 
       this.created.emit();
     }

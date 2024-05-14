@@ -36,6 +36,7 @@ export class ImpactInitiativeProgressDataShowComponent
         (data) => {
           if (data.impact_initiative_goal_id === this.impactInitiativeGoal.id) {
             this.data.push(data);
+            this.data.sort((a, b) => (a.date! > b.date! ? 1 : -1));
             this.renderChart(this.data);
           }
         }

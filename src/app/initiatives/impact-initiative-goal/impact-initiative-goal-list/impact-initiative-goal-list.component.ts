@@ -1,20 +1,11 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  AfterViewInit,
-  EventEmitter,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BaseComponent } from '../../../shared/base-component';
-import {
-  ImpactInitiative,
-  // ImpactInitiativeGoalData,
-} from '../../initiatives.model';
+import { ImpactInitiativeProgressDataService } from '../../impact-initiative-progress-data/impact-initiative-progress-data.service';
+import { ImpactInitiative } from '../../initiatives.model';
+import { InitiativesService } from '../../initiatives.service';
 import { ImpactInitiativeGoal } from '../impact-initiative-goal.model';
 import { ImpactInitiativeGoalService } from '../impact-initiative-goal.service';
-import { ApexOptions } from 'apexcharts';
-import { ReplaySubject } from 'rxjs';
-import { InitiativesService } from '../../initiatives.service';
+import { ImpactInitiativeProgressData } from '../../impact-initiative-progress-data/impact-initiative-progress-data.model';
 
 @Component({
   selector: 'app-impact-initiative-goal-list',
@@ -29,7 +20,8 @@ export class ImpactInitiativeGoalListComponent
 
   constructor(
     public impactInitiativeGoalService: ImpactInitiativeGoalService,
-    public impactInitiativeService: InitiativesService
+    public impactInitiativeService: InitiativesService,
+    public impactInitiativeProgressDataService: ImpactInitiativeProgressDataService
   ) {
     super();
   }
@@ -53,6 +45,28 @@ export class ImpactInitiativeGoalListComponent
           }
         }
       );
+
+    this.subscriptions['newProgressData'] =
+      this.impactInitiativeProgressDataService.lastItemCreated$.subscribe(
+        (progressData) => {
+          this.updateProgressData(progressData);
+        }
+      );
+  }
+
+  updateProgressData(data: ImpactInitiativeProgressData) {
+    const indexGoal = this.data.findIndex(
+      (goal) => goal.id === data.impact_initiative_goal_id
+    );
+    if (indexGoal >= 0) {
+      const newProgress = this.data[indexGoal].total_progress + data.data!;
+      this.data[indexGoal] = {
+        ...this.data[indexGoal],
+        total_progress: newProgress,
+        total_progress_percentage:
+          (newProgress / this.data[indexGoal].metric_target) * 100,
+      };
+    }
   }
 
   getByImpactInitiative(impactInitiativeId: number) {

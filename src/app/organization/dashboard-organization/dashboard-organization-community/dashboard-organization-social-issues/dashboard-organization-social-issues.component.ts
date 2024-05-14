@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Flowbite } from '../../../../shared/decorators/flowbite.decorator';
+import * as ApexCharts from 'apexcharts';
 
 @Component({
   selector: 'app-dashboard-organization-social-issues',

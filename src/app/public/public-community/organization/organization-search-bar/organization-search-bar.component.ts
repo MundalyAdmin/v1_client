@@ -3,7 +3,6 @@ import { HomeSearchBarComponent } from '../../home/home-search-bar/home-search-b
 import { OrganizationService } from '../../../../organization/organization.service';
 import { CountryService } from '../../../../country/country.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Select2Value } from 'ng-select2-component';
 
 @Component({
   selector: 'app-organization-search-bar',
@@ -11,7 +10,7 @@ import { Select2Value } from 'ng-select2-component';
   styleUrls: ['./organization-search-bar.component.scss'],
 })
 export class OrganizationSearchBarComponent extends HomeSearchBarComponent {
-  selectedCountry!: Select2Value;
+  selectedCountry!: any;
   constructor(
     public override organizationService: OrganizationService,
     public override router: Router,

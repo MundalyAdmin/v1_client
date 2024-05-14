@@ -1,4 +1,4 @@
-<div class="bg-gray-100 p-5 h-[100vh]" *ngIf="organization?.has_impact_analysis_report">
+<div class="bg-gray-100 p-5 h-[100vh]" *ngIf="authService.freeImpactAnalysisReportStatus === 'done'">
   <div class="md:flex">
     <ul class="flex-column space-y space-y-4 text-sm font-medium text-gray-500 dark:text-gray-400 md:me-4 mb-4 md:mb-0">
       <li>
@@ -289,7 +289,7 @@
 
 
 <div class=" flex flex-col mt-16 items-center justify-center mb-10"
-     *ngIf="!organization?.has_impact_analysis_report">
+     *ngIf="authService.freeImpactAnalysisReportStatus !== 'done'">
 
   <svg class="animated" style="height: 30rem;" id="freepik_stories-data-report" xmlns="http://www.w3.org/2000/svg"
        xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -920,7 +920,7 @@
     </defs>
   </svg>
 
-  <div class="text-slate-500 font-medium" *ngIf="!storage.get('report_loading')">
+  <div class="text-slate-500 font-medium" *ngIf="authService.freeImpactAnalysisReportStatus === 'not-started'">
     <div (click)="visible = true"
          class="text-white bg-primary cursor-pointer hover:bg-primary-dark focus:ring-4  focus:ring-blue-300 font-medium rounded-full text-base px-5 py-2.5  mb-2 dark:bg-blue-600 dark:hover:bg-primary focus:outline-none dark:focus:ring-primary-dark">
       Upload your past years reports
@@ -929,7 +929,7 @@
     <p class="text-sm font-bold text-center">And get a free Impact Analysis Report</p>
   </div>
 
-  <div class="text-slate-500 font-medium " *ngIf="storage.get('report_loading')">
+  <div class="text-slate-500 font-medium " *ngIf="authService.freeImpactAnalysisReportStatus === 'on-progress'">
 
     <p class="text-xl font-light  text-center">Your report is being prepared <app-loading></app-loading></p>
     <p class="text-base font-bold text-center">You will be notified by email when it's ready.</p>
@@ -937,6 +937,10 @@
 </div>
 
 
+
+
+
+<!-- Modal: Report upload -->
 <p-dialog header="Upload your reports" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
   <app-dashboard-organization-upload-reports (created)="visible = false"></app-dashboard-organization-upload-reports>
 </p-dialog>

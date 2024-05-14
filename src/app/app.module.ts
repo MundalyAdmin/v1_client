@@ -9,6 +9,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { GeneratingReportComponent } from './generating-report/generating-report.component';
 import { AppInjector } from './shared/services';
 import { SharedModule } from './shared/shared.module';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [AppComponent, GeneratingReportComponent],
@@ -19,6 +20,7 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     SharedModule,
     NgMultiSelectDropDownModule.forRoot(),
+    DialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

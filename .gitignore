@@ -44,3 +44,18 @@ Thumbs.db
 
 .vscode
 todo.md
+.nx/cache/file-map.json
+.nx/cache/lockfile.hash
+.nx/cache/nx_files.nxt
+.nx/cache/parsed-lock-file.json
+.nx/cache/project-graph.json
+.nx/cache/cloud/verify.lock
+.nx/cache/cloud/2403.21.3.hotfix2/._lib
+.nx/cache/cloud/2403.21.3.hotfix2/index.js
+.nx/cache/cloud/2403.21.3.hotfix2/package.json
+.nx/cache/cloud/2403.21.3.hotfix2/lib/._daemon
+.nx/cache/cloud/2403.21.3.hotfix2/lib/._heartbeat
+.nx/cache/cloud/2403.21.3.hotfix2/lib/daemon/process-run-end.js
+.nx/cache/cloud/2403.21.3.hotfix2/lib/heartbeat/heartbeat-process.js
+.nx/cache/d/daemon.log
+.nx/cache/d/server-process.json
