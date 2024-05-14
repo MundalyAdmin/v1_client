@@ -38,10 +38,10 @@ const routes: Routes = [
         path: '',
         component: PublicBusinessHomeComponent,
       },
-      {
-        path: 'pricing',
-        component: PrincingComponent,
-      },
+      // {
+      //   path: 'pricing',
+      //   component: PrincingComponent,
+      // },
       {
         path: 'thank-you',
         component: ThankYouForJoiningOrganizationComponent,
@@ -82,10 +82,10 @@ const routes: Routes = [
         path: 'product/community-perception',
         component: PublicBusinessCommunityPerceptionComponent,
       },
-      {
-        path: 'case-studies',
-        component: CaseStudiesComponent,
-      },
+      // {
+      //   path: 'case-studies',
+      //   component: CaseStudiesComponent,
+      // },
       {
         path: 'blog',
         component: ComingSoonComponent,

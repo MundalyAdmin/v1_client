@@ -68,7 +68,7 @@ export class SuperAdminOrganizationCreateComponent
     const about = organization?.about || '';
     const country = [{ name: organization?.country }] || [];
     const type_organization = [organization?.type_organization] || [];
-    const sector_organization = [organization?.sector_organization] || [];
+    const sector_organization = [organization?.sector_organizations] || [];
     const tag_organizations = organization?.tag_organizations || [];
     const email = organization?.email || '';
     const website = organization?.website || '';

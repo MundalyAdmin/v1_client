@@ -10,9 +10,14 @@ import { GeneratingReportComponent } from './generating-report/generating-report
 import { AppInjector } from './shared/services';
 import { SharedModule } from './shared/shared.module';
 import { DialogModule } from 'primeng/dialog';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [AppComponent, GeneratingReportComponent],
+  declarations: [
+    AppComponent,
+    GeneratingReportComponent,
+    PageNotFoundComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

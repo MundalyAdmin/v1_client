@@ -25,6 +25,17 @@ export class ReportService extends BaseService<any> {
         state: 'on-demand',
       },
       {
+        title: 'Fundability Report',
+        price: '150',
+        availability: 'In 3 hours',
+        organization: organization.name,
+        image:
+          'https://res.cloudinary.com/mundaly/image/upload/v1706906913/Blue_Red_Geometric_Annual_Report_Document_A4_qdgttm.png',
+        community: 'Bridgeport',
+        generatedBy: 'auto-generated',
+        state: 'coming-soon',
+      },
+      {
         title: 'Impact Evaluation Report',
         price: '200',
         availability: 'In 3 hours',
@@ -46,17 +57,7 @@ export class ReportService extends BaseService<any> {
         generatedBy: 'auto-generated',
         state: 'on-demand',
       },
-      {
-        title: 'Funding Diligence Report Insights',
-        price: '150',
-        availability: 'In 3 hours',
-        organization: organization.name,
-        image:
-          'https://res.cloudinary.com/mundaly/image/upload/v1706906913/Blue_Red_Geometric_Annual_Report_Document_A4_qdgttm.png',
-        community: 'Bridgeport',
-        generatedBy: 'auto-generated',
-        state: 'coming-soon',
-      },
+
       {
         title: 'Custom community insights',
         price: '300',

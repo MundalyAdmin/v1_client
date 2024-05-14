@@ -33,6 +33,7 @@ import { DashboardOrganizationCompleteRegistrationComponent } from './dashboard-
 import { DashboardOrganizationImpactOutcomesComponent } from './dashboard-organization-impact-outcomes/dashboard-organization-impact-outcomes.component';
 import { DashboardOrganizationUploadReportsComponent } from './dashboard-organization-upload-reports/dashboard-organization-upload-reports.component';
 import { CalendarModule } from 'primeng/calendar';
+import { ImpactPartnerModule } from './impact-partner/impact-partner.module';
 
 const routes: Routes = [
   {
@@ -216,6 +217,7 @@ const routes: Routes = [
     CarouselModule,
     DialogModule,
     CalendarModule,
+    ImpactPartnerModule,
   ],
 })
 export class DashboardOrganizationModule {}

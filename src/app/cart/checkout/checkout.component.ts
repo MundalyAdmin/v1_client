@@ -19,7 +19,7 @@ export class CheckoutComponent implements OnInit {
     this.helperService.notification.alertSuccess();
 
     this.cartService.data = [];
-    this.router.navigate(['/dashboard/history']);
+    window.location.href = 'https://mundaly-demo.netlify.app/dashboard/history';
   }
 
   ngOnInit(): void {
