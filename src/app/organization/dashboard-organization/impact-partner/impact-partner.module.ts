@@ -4,6 +4,7 @@ import { ImpactPartnerCreateComponent } from './impact-partner-create/impact-par
 import { SharedModule } from '../../../shared/shared.module';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ImpactPartnerListComponent } from './impact-partner-list/impact-partner-list.component';
+import { Routes } from '@angular/router';
 
 @NgModule({
   declarations: [ImpactPartnerCreateComponent, ImpactPartnerListComponent],

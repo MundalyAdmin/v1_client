@@ -34,7 +34,7 @@ export class DashboardOrganizationComponent implements OnInit {
       this.router.navigate(['/auth/account-verification']);
     }
 
-    this.menuRedirection();
+    // this.menuRedirection();
   }
 
   /**

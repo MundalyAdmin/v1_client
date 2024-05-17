@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseCreateComponent } from '../../../../../shared/base-component';
-import { SurveyForm } from '../../../../../survey/survey-form/survey-form.model';
+import { SurveyForm } from '../../../../../organization/dashboard-organization/survey-form/survey-form.model';
 import { Validators } from '@angular/forms';
-import { SurveyFormService } from './../../../../../survey/survey-form/survey-form.service';
+import { SurveyFormService } from '../../../../../organization/dashboard-organization/survey-form/survey-form.service';
 import { OrganizationService } from '../../../../../organization/organization.service';
 import { Organization } from '../../../../../organization/organization.model';
 

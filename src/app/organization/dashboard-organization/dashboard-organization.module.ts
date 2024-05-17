@@ -34,6 +34,12 @@ import { DashboardOrganizationImpactOutcomesComponent } from './dashboard-organi
 import { DashboardOrganizationUploadReportsComponent } from './dashboard-organization-upload-reports/dashboard-organization-upload-reports.component';
 import { CalendarModule } from 'primeng/calendar';
 import { ImpactPartnerModule } from './impact-partner/impact-partner.module';
+import { DashboardOrganizationSidebarComponent } from './dashboard-organization-sidebar/dashboard-organization-sidebar.component';
+import { DashboardOrganizationHomeComponent } from './dashboard-organization-home/dashboard-organization-home.component';
+import { DashboardOrganizationDetailsComponent } from './dashboard-organization-details/dashboard-organization-details.component';
+import { SurveyFormListComponent } from './survey-form/survey-form-list/survey-form-list.component';
+import { SurveyFormModule } from './survey-form/survey-form.module';
+import { SurveyFormShowComponent } from './survey-form/survey-form-show/survey-form-show.component';
 
 const routes: Routes = [
   {
@@ -41,142 +47,179 @@ const routes: Routes = [
     component: DashboardOrganizationComponent,
     children: [
       {
-        path: 'community',
-        canActivate: [funderAuthorizationGuard],
-        component: DashboardOrganizationCommunityComponent,
+        path: '',
+        component: DashboardOrganizationHomeComponent,
         children: [
           {
-            path: 'demographics',
-            component: DashboardOrganizationDemographicsComponent,
+            path: '',
+            loadChildren: () =>
+              import('./impact-partner/impact-partner.module').then(
+                (m) => m.ImpactPartnerModule
+              ),
           },
+        ],
+      },
+      {
+        path: 'organizations/:id/surveys/:id',
+        component: SurveyFormShowComponent,
+      },
+      {
+        path: 'organizations/:id',
+        component: DashboardOrganizationDetailsComponent,
+        children: [
           {
-            path: 'social-issues',
-            component: DashboardOrganizationSocialIssuesComponent,
-          },
-          {
-            path: 'impact-partners',
-            component: DashboardOrganizationImpactPartnersComponent,
+            path: 'surveys',
+            component: SurveyFormListComponent,
           },
 
           {
-            path: 'roi-calculator',
-            component: DashboardOrganizationRoiCalculatorComponent,
-          },
-          {
             path: '**',
-            redirectTo: 'demographics',
-            pathMatch: 'full',
+            redirectTo: 'surveys',
           },
         ],
       },
+
       {
-        path: 'impact',
-        canActivate: [funderAuthorizationGuard],
-        component: DashboardOrganizationImpactComponent,
-        children: [
-          {
-            path: 'forecast',
-            component: DashboardOrganizationForecastComponent,
-          },
-          {
-            path: 'access',
-            component: DashboardOrganizationAccessComponent,
-          },
-          {
-            path: 'verify',
-            component: DashboardOrganizationVerifyComponent,
-          },
-          {
-            path: '**',
-            redirectTo: 'forecast',
-            pathMatch: 'full',
-          },
-        ],
+        path: '**',
+        redirectTo: '',
       },
-      {
-        path: 'benchmark',
-        component: DashboardOrganizationBenchmarkAndDeriskComponent,
-        children: [
-          {
-            path: 'leaderboard',
-            component: DashboardOrganizationLeaderboardComponent,
-          },
-          {
-            path: 'community-perception',
-            component: DashboardOrganizationLeaderboardComponent,
-          },
-          {
-            path: '**',
-            redirectTo: 'leaderboard',
-            pathMatch: 'full',
-          },
-        ],
-      },
-      {
-        path: 'regulators-and-investors',
-        component: DashboardOrganizationRegulatorsAndInvestorsComponent,
-        children: [
-          {
-            path: 'esg-and-impact-reports',
-            component: DashboardOrganizationRegulatorsComponent,
-          },
-          {
-            path: 'investor-reports',
-            component: DashboardOrganizationInvestorsComponent,
-          },
-          {
-            path: '**',
-            redirectTo: 'esg-and-impact-reports',
-            pathMatch: 'full',
-          },
-        ],
-      },
-      {
-        path: 'history',
-        component: DashboardOrganizationHistoryComponent,
-      },
-      {
-        path: 'documents',
-        component: DashboardOrganizationCreditComponent,
-        children: [
-          {
-            path: 'reports',
-            component: DashboardOrganizationCreditReportsComponent,
-          },
-          {
-            path: 'orders',
-            component: DashboardOrganizationCreditOrdersComponent,
-          },
-          {
-            path: '',
-            redirectTo: 'reports',
-            pathMatch: 'full',
-          },
-        ],
-      },
-      {
-        path: 'report-outcomes',
-        component: DashboardOrganizationBenchmarkComponent,
-        canActivate: [implementerAuthorizationGuard],
-        children: [
-          {
-            path: 'self-assessment',
-            loadChildren: () =>
-              import('../../initiatives/initiatives.module').then(
-                (m) => m.InitiativesModule
-              ),
-          },
-          {
-            path: 'impact-outcomes',
-            component: DashboardOrganizationImpactOutcomesComponent,
-          },
-          {
-            path: '**',
-            redirectTo: 'self-assessment',
-            pathMatch: 'full',
-          },
-        ],
-      },
+      // {
+      //   path: 'community',
+      //   canActivate: [funderAuthorizationGuard],
+      //   component: DashboardOrganizationCommunityComponent,
+      //   children: [
+      //     {
+      //       path: 'demographics',
+      //       component: DashboardOrganizationDemographicsComponent,
+      //     },
+      //     {
+      //       path: 'social-issues',
+      //       component: DashboardOrganizationSocialIssuesComponent,
+      //     },
+      //     {
+      //       path: 'impact-partners',
+      //       component: DashboardOrganizationImpactPartnersComponent,
+      //     },
+
+      //     {
+      //       path: 'roi-calculator',
+      //       component: DashboardOrganizationRoiCalculatorComponent,
+      //     },
+      //     {
+      //       path: '**',
+      //       redirectTo: 'demographics',
+      //       pathMatch: 'full',
+      //     },
+      //   ],
+      // },
+      // {
+      //   path: 'impact',
+      //   canActivate: [funderAuthorizationGuard],
+      //   component: DashboardOrganizationImpactComponent,
+      //   children: [
+      //     {
+      //       path: 'forecast',
+      //       component: DashboardOrganizationForecastComponent,
+      //     },
+      //     {
+      //       path: 'access',
+      //       component: DashboardOrganizationAccessComponent,
+      //     },
+      //     {
+      //       path: 'verify',
+      //       component: DashboardOrganizationVerifyComponent,
+      //     },
+      //     {
+      //       path: '**',
+      //       redirectTo: 'forecast',
+      //       pathMatch: 'full',
+      //     },
+      //   ],
+      // },
+      // {
+      //   path: 'benchmark',
+      //   component: DashboardOrganizationBenchmarkAndDeriskComponent,
+      //   children: [
+      //     {
+      //       path: 'leaderboard',
+      //       component: DashboardOrganizationLeaderboardComponent,
+      //     },
+      //     {
+      //       path: 'community-perception',
+      //       component: DashboardOrganizationLeaderboardComponent,
+      //     },
+      //     {
+      //       path: '**',
+      //       redirectTo: 'leaderboard',
+      //       pathMatch: 'full',
+      //     },
+      //   ],
+      // },
+      // {
+      //   path: 'regulators-and-investors',
+      //   component: DashboardOrganizationRegulatorsAndInvestorsComponent,
+      //   children: [
+      //     {
+      //       path: 'esg-and-impact-reports',
+      //       component: DashboardOrganizationRegulatorsComponent,
+      //     },
+      //     {
+      //       path: 'investor-reports',
+      //       component: DashboardOrganizationInvestorsComponent,
+      //     },
+      //     {
+      //       path: '**',
+      //       redirectTo: 'esg-and-impact-reports',
+      //       pathMatch: 'full',
+      //     },
+      //   ],
+      // },
+      // {
+      //   path: 'history',
+      //   component: DashboardOrganizationHistoryComponent,
+      // },
+      // {
+      //   path: 'documents',
+      //   component: DashboardOrganizationCreditComponent,
+      //   children: [
+      //     {
+      //       path: 'reports',
+      //       component: DashboardOrganizationCreditReportsComponent,
+      //     },
+      //     {
+      //       path: 'orders',
+      //       component: DashboardOrganizationCreditOrdersComponent,
+      //     },
+      //     {
+      //       path: '',
+      //       redirectTo: 'reports',
+      //       pathMatch: 'full',
+      //     },
+      //   ],
+      // },
+      // {
+      //   path: 'report-outcomes',
+      //   component: DashboardOrganizationBenchmarkComponent,
+      //   canActivate: [implementerAuthorizationGuard],
+      //   children: [
+      //     {
+      //       path: 'self-assessment',
+      //       loadChildren: () =>
+      //         import('../../initiatives/initiatives.module').then(
+      //           (m) => m.InitiativesModule
+      //         ),
+      //     },
+      //     {
+      //       path: 'impact-outcomes',
+      //       component: DashboardOrganizationImpactOutcomesComponent,
+      //     },
+      //     {
+      //       path: '**',
+      //       redirectTo: 'self-assessment',
+      //       pathMatch: 'full',
+      //     },
+      //   ],
+      // },
     ],
   },
 ];
@@ -208,6 +251,9 @@ const routes: Routes = [
     DashboardOrganizationInvestorsComponent,
     DashboardOrganizationCompleteRegistrationComponent,
     DashboardOrganizationUploadReportsComponent,
+    DashboardOrganizationSidebarComponent,
+    DashboardOrganizationHomeComponent,
+    DashboardOrganizationDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -218,6 +264,7 @@ const routes: Routes = [
     DialogModule,
     CalendarModule,
     ImpactPartnerModule,
+    SurveyFormModule,
   ],
 })
 export class DashboardOrganizationModule {}

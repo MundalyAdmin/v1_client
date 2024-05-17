@@ -13,9 +13,6 @@ export class BaseSingleComponent<T>
   implements OnInit, OnDestroy
 {
   single: T | null | undefined = null;
-  public enableSubscribeToSingleData: boolean = true;
-  public enableEmitLoading: boolean = false;
-  public enableSubscribeToLoading: boolean = false;
   public enableFetchDataFromURL: boolean = false;
 
   constructor(

@@ -1,6 +1,7 @@
+import { BaseModel } from '../../../shared/models/BaseModel';
 import { Organization } from '../../organization.model';
 
-export interface ImpactPartner {
+export interface ImpactPartner extends BaseModel {
   funder_id: number;
   implementer?: Organization;
   implementer_id?: number;
