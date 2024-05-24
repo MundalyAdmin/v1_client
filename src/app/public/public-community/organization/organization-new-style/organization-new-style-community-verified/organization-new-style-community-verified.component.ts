@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../../../../shared/base-component';
-import { ImpactFidelityScore } from '../../../../../scale/models/impact-fidelity-score.model';
+import { SocialImpactFidelityScore } from '../../../../../scale/social-impact-fidelity/social-impact-fidelity-score.model';
 import { ScaleService } from '../../../../../scale/scale.service';
 import { OrganizationService } from '../../../../../organization/organization.service';
 import { SocialImpactFidelityService } from '../../../../../scale/social-impact-fidelity/social-impact-fidelity.service';
@@ -12,7 +12,7 @@ import { Organization } from '../../../../../organization/organization.model';
   styleUrls: ['./organization-new-style-community-verified.component.scss'],
 })
 export class OrganizationNewStyleCommunityVerifiedComponent
-  extends BaseComponent<ImpactFidelityScore>
+  extends BaseComponent<SocialImpactFidelityScore>
   implements OnInit
 {
   organization: Organization | undefined;

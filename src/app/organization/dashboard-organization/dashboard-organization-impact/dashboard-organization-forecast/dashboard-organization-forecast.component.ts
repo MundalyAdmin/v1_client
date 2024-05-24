@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../../../shared/base-component';
 import { CommunityTrustScore } from '../../../../scale/models/community-trust-score.model';
 import { ScaleService } from '../../../../scale/scale.service';
+import { OrganizationService } from '../../../organization.service';
 
 @Component({
   selector: 'app-dashboard-organization-forecast',
@@ -13,23 +14,26 @@ export class DashboardOrganizationForecastComponent
   implements OnInit
 {
   communityTrustScore: CommunityTrustScore | null = null;
-  constructor(public scaleService: ScaleService) {
+  constructor(
+    public scaleService: ScaleService,
+    public organizationService: OrganizationService
+  ) {
     super();
   }
 
   ngOnInit(): void {
-    this.communityTrustScore = {
-      impact_fidelity_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
-      community_perception_score:
-        Math.floor(Math.random() * (100 - 60 + 1)) + 60,
-      facilitation_strategy_score:
-        Math.floor(Math.random() * (100 - 60 + 1)) + 60,
-    };
+    this.subscriptions['organization'] =
+      this.organizationService.singleData$.subscribe((organization) => {
+        if (organization) this.getCommunityTrustScore(organization.id!);
+      });
+  }
 
-    this.communityTrustScore.community_trust_score =
-      ((this.communityTrustScore['impact_fidelity_score'] || 0) +
-        (this.communityTrustScore['community_perception_score'] || 0) +
-        (this.communityTrustScore['facilitation_strategy_score'] || 0)) /
-      3;
+  getCommunityTrustScore(organizationId: number) {
+    this.loading = true;
+    this.scaleService
+      .getCommunityTrustScore(organizationId)
+      .subscribe((data) => {
+        this.loading = false;
+      });
   }
 }

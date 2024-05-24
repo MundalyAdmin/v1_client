@@ -1,0 +1,33 @@
+<ul class="flex flex-wrap -mb-px">
+  <li class="me-2">
+    <a [routerLink]="['impact-fidelity']"
+       routerLinkActive="text-primary border-primary font-semibold"
+       class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-base">
+      Impact Fidelity
+    </a>
+  </li>
+
+
+  <li class="me-2">
+    <a [routerLink]="['community-perception']"
+       routerLinkActive="text-primary border-primary font-semibold"
+       class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-base">
+      Community Perception
+    </a>
+  </li>
+
+
+  <li class="me-2">
+    <a [routerLink]="['facilitation-strategy']"
+       routerLinkActive="text-primary border-primary font-semibold"
+       class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-base">
+      Facilitation Strategy
+    </a>
+  </li>
+
+
+</ul>
+
+<div class="bg-slate-100">
+  <router-outlet></router-outlet>
+</div>

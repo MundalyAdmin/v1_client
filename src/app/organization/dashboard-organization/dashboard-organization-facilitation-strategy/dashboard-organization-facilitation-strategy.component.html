@@ -1,10 +1,10 @@
 <div class="p-5">
   <div class="w-full flex justify-between bg-white shadow dark:bg-gray-800 p-4 md:p-6">
-    <div class="text-lg font-bold">Verify Metrics</div>
+    <div class="text-lg font-bold">Safety and Ethics</div>
 
   </div>
 
-  <div class="relative overflow-x-auto shadow-md ">
+  <div class="relative overflow-x-auto shadow-md " *ngIf="!loading && facilitationStrategyService.score">
     <table class="w-full text-base text-left rtl:text-right text-gray-500 dark:text-gray-400">
       <thead class=" text-gray-400 capitalize bg-slate-100  dark:bg-gray-700 dark:text-gray-400">
         <tr>
@@ -26,7 +26,7 @@
         </tr>
       </thead>
       <tbody>
-        <!-- Communication -->
+        <!-- Leaves and Benefits -->
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
 
           <!-- Number -->
@@ -36,18 +36,18 @@
 
           <!-- Name and Photo -->
           <th scope="row p-6">
-            Communication
+            Leaves and Benefits
           </th>
 
           <!-- Key -->
           <td class="p-6">
-            {{ scaleService.getScoreKey(communityPerceptionService.score?.communication!) }}
+            {{ scaleService.getScoreKey(facilitationStrategyService.score.leaves_and_benefits!) }}
           </td>
 
           <!-- Score -->
           <td class="p-6">
             <div class="flex items-center font-semibold">
-              {{ communityPerceptionService.score?.communication}}
+              {{ facilitationStrategyService.score.leaves_and_benefits}}
             </div>
           </td>
 
@@ -61,7 +61,7 @@
         </tr>
 
 
-        <!-- Contribution and Impact -->
+        <!-- Diversity, Equity and Inclusion -->
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
 
           <!-- Number -->
@@ -71,18 +71,18 @@
 
           <!-- Name and Photo -->
           <th scope="row p-6">
-            Contribution and Impact
+            Diversity, Equity and Inclusion
           </th>
 
           <!-- Key -->
           <td class="p-6">
-            {{ scaleService.getScoreKey(communityPerceptionService.score?.contribution_and_impact!) }}
+            {{ scaleService.getScoreKey(facilitationStrategyService.score.diversity_equity_and_inclusion!) }}
           </td>
 
           <!-- Score -->
           <td class="p-6">
             <div class="flex items-center font-semibold">
-              {{ communityPerceptionService.score?.contribution_and_impact}}
+              {{ facilitationStrategyService.score.diversity_equity_and_inclusion}}
             </div>
           </td>
 
@@ -97,7 +97,7 @@
 
 
 
-        <!-- Consideration of context -->
+        <!-- Safety and Wellbeing -->
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
 
           <!-- Number -->
@@ -107,18 +107,18 @@
 
           <!-- Name and Photo -->
           <th scope="row p-6">
-            Consideration of Context
+            Safety and Wellbeing
           </th>
 
           <!-- Key -->
           <td class="p-6">
-            {{ scaleService.getScoreKey(communityPerceptionService.score?.consideration_of_context!) }}
+            {{ scaleService.getScoreKey(facilitationStrategyService.score.safety_and_wellbeing!) }}
           </td>
 
           <!-- Score -->
           <td class="p-6">
             <div class="flex items-center font-semibold">
-              {{ communityPerceptionService.score?.consideration_of_context}}
+              {{ facilitationStrategyService.score.safety_and_wellbeing | number: '1.0-0'}}
             </div>
           </td>
 
@@ -132,7 +132,7 @@
         </tr>
 
 
-        <!-- Vision alignment -->
+        <!-- Work-Life Balance -->
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
 
           <!-- Number -->
@@ -142,18 +142,18 @@
 
           <!-- Name and Photo -->
           <th scope="row p-6">
-            Vision Alignment
+            Work-Life Balance
           </th>
 
           <!-- Key -->
           <td class="p-6">
-            {{ scaleService.getScoreKey(communityPerceptionService.score?.vision_alignment!) }}
+            {{ scaleService.getScoreKey(facilitationStrategyService.score.work_life_balance!) }}
           </td>
 
           <!-- Score -->
           <td class="p-6">
             <div class="flex items-center font-semibold">
-              {{ communityPerceptionService.score?.vision_alignment}}
+              {{ facilitationStrategyService.score.work_life_balance}}
             </div>
           </td>
 
@@ -167,6 +167,74 @@
         </tr>
 
 
+        <!-- Support and Control -->
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
+
+          <!-- Number -->
+          <td class="p-6">
+            5
+          </td>
+
+          <!-- Name and Photo -->
+          <th scope="row p-6">
+            Support and Control
+          </th>
+
+          <!-- Key -->
+          <td class="p-6">
+            {{ scaleService.getScoreKey(facilitationStrategyService.score.support_and_control!) }}
+          </td>
+
+          <!-- Score -->
+          <td class="p-6">
+            <div class="flex items-center font-semibold">
+              {{ facilitationStrategyService.score.support_and_control}}
+            </div>
+          </td>
+
+
+
+          <td class="p-6">
+            <a href="#" class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
+                 class="mdi mdi-information"></i></a>
+
+          </td>
+        </tr>
+
+
+        <!-- Growth and Recongnition -->
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
+
+          <!-- Number -->
+          <td class="p-6">
+            6
+          </td>
+
+          <!-- Name and Photo -->
+          <th scope="row p-6">
+            Growth and Recongnition
+          </th>
+
+          <!-- Key -->
+          <td class="p-6">
+            {{ scaleService.getScoreKey(facilitationStrategyService.score.growth_and_recognition!) }}
+          </td>
+
+          <!-- Score -->
+          <td class="p-6">
+            <div class="flex items-center font-semibold">
+              {{ facilitationStrategyService.score.growth_and_recognition}}
+            </div>
+          </td>
+
+
+
+          <td class="p-6">
+            <a href="#" class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
+                 class="mdi mdi-information"></i></a>
+
+          </td>
+        </tr>
 
 
 
@@ -182,12 +250,14 @@
 
       <!-- If the community has more than 10 respondents -->
       <span class="font-bold">
-        Community members confirm that {{ organization?.name }} has {{ scaleService.getReputationKey(communityPerceptionService.score?.score_rating!)
-        }}. See Report for Actionable Insights.
+        Employees of New Haven Promise rated the company’s culture as conducive for implementing community impact.
       </span>
 
 
 
     </div>
   </div>
+
+  <app-page-loading *ngIf="loading"></app-page-loading>
+  <app-missing-data *ngIf="!loading && !facilitationStrategyService.score"></app-missing-data>
 </div>

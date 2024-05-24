@@ -1,26 +1,25 @@
 import { Component } from '@angular/core';
 import { DashboardOrganizationVerifyComponent } from '../dashboard-organization-impact/dashboard-organization-verify/dashboard-organization-verify.component';
 import { BaseSingleComponent } from '../../../shared/base-component';
-import { CommunityPerceptionIndexScore } from '../../../scale/community-perception-index/community-perception-index-score.model';
-import { CommunitySuggestionService } from '../../../public/public-community/community-suggestion/community-suggestion.service';
+import { FacilitationStrategyScore } from '../../../scale/facilitation-strategy/facilitation-strategy-score.model';
 import { Organization } from '../../organization.model';
+import { FacilitationStrategyService } from '../../../scale/facilitation-strategy/facilitation-strategy.service';
 import { ScaleService } from '../../../scale/scale.service';
 import { OrganizationService } from '../../organization.service';
-import { CommunityPerceptionIndexService } from '../../../scale/community-perception-index/community-perception-index.service';
 
 @Component({
-  selector: 'app-dashboard-organization-community-perception',
-  templateUrl: './dashboard-organization-community-perception.component.html',
-  styleUrls: ['./dashboard-organization-community-perception.component.scss'],
+  selector: 'app-dashboard-organization-facilitation-strategy',
+  templateUrl: './dashboard-organization-facilitation-strategy.component.html',
+  styleUrls: ['./dashboard-organization-facilitation-strategy.component.scss'],
 })
-export class DashboardOrganizationCommunityPerceptionComponent extends BaseSingleComponent<CommunityPerceptionIndexScore> {
+export class DashboardOrganizationFacilitationStrategyComponent extends BaseSingleComponent<FacilitationStrategyScore> {
   organization: Organization | null = null;
   constructor(
-    public communityPerceptionService: CommunityPerceptionIndexService,
+    public facilitationStrategyService: FacilitationStrategyService,
     public scaleService: ScaleService,
     public organizationService: OrganizationService
   ) {
-    super(communityPerceptionService);
+    super(facilitationStrategyService);
   }
 
   override ngOnInit(): void {
@@ -35,10 +34,11 @@ export class DashboardOrganizationCommunityPerceptionComponent extends BaseSingl
 
   getByOrganizationId(organizationId: number) {
     this.loading = true;
-    this.communityPerceptionService
+    this.facilitationStrategyService
       .getOrganizationScore(organizationId)
       .subscribe((score) => {
         this.loading = false;
+        console.log(this.facilitationStrategyService.score);
       });
   }
 }

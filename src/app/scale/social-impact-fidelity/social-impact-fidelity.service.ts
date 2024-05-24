@@ -3,20 +3,20 @@ import { BaseService } from '../../shared/services';
 import { SocialImpactFidelity } from './social-impact-fidelity.model';
 import { tap, ReplaySubject } from 'rxjs';
 import { ApiResponse } from '../../shared/models/ApiResponse';
-import { ImpactFidelityScore } from '../models/impact-fidelity-score.model';
+import { SocialImpactFidelityScore } from './social-impact-fidelity-score.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SocialImpactFidelityService extends BaseService<SocialImpactFidelity> {
-  private _score: ImpactFidelityScore | null = null;
-  public score$ = new ReplaySubject<ImpactFidelityScore | null>(1);
+export class SocialImpactFidelityService extends BaseService<SocialImpactFidelityScore> {
+  private _score: SocialImpactFidelityScore | null = null;
+  public score$ = new ReplaySubject<SocialImpactFidelityScore | null>(1);
 
-  get score(): ImpactFidelityScore | null {
+  get score(): SocialImpactFidelityScore | null {
     return this._score;
   }
 
-  set score(score: ImpactFidelityScore | null) {
+  set score(score: SocialImpactFidelityScore | null) {
     this._score = score;
     this.score$.next(score);
   }
@@ -27,8 +27,8 @@ export class SocialImpactFidelityService extends BaseService<SocialImpactFidelit
 
   getOrganizationScore(organizationId: number) {
     return this.factory.get(`${this.endPoint}/${organizationId}`).pipe(
-      tap((response: ApiResponse<ImpactFidelityScore>) => {
-        this.score = response.data as ImpactFidelityScore;
+      tap((response: ApiResponse<SocialImpactFidelityScore>) => {
+        this.score = response.data as SocialImpactFidelityScore;
       })
     );
   }

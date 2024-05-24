@@ -5,6 +5,7 @@ import { AuthService } from '../../../auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../../user/user.model';
 import { Storage } from '../../../shared/helpers/storage/storage';
+import { OrganizationService } from '../../organization.service';
 
 @Component({
   selector: 'app-dashboard-organization-sidebar',
@@ -13,6 +14,7 @@ import { Storage } from '../../../shared/helpers/storage/storage';
 })
 export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
   organization: Organization | null = null;
+  selectedImpactPartner: Organization | null = null;
   typeOrganizationId: number | null = null;
   user: User | null = null;
   @Output() showSetupLogoAndCoverModal$ = new EventEmitter();
@@ -21,7 +23,8 @@ export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
     public authService: AuthService,
     public router: Router,
     public route: ActivatedRoute,
-    public storage: Storage
+    public storage: Storage,
+    public organizationService: OrganizationService
   ) {
     super();
   }
@@ -30,5 +33,10 @@ export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
     this.user = this.authService.user;
     this.organization = this.authService.organization;
     this.typeOrganizationId = this.organization?.type_organization_id || null;
+
+    this.subscriptions['selectedImpactPartner'] =
+      this.organizationService.singleData$.subscribe((organization) => {
+        if (organization) this.selectedImpactPartner = organization;
+      });
   }
 }

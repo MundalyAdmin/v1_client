@@ -1,11 +1,11 @@
-<div class="p-10">
+<div class="p-5">
 
   <div class="w-full flex justify-between bg-white shadow dark:bg-gray-800 p-4 md:p-6">
-    <div class="text-lg font-bold">Verify Metrics</div>
+    <div class="text-lg font-bold">Forecast</div>
 
   </div>
 
-  <div class="relative overflow-x-auto shadow-md ">
+  <div class="relative overflow-x-auto shadow-md " *ngIf="!loading && scaleService.communityTrustScore">
     <table class="w-full text-base text-left rtl:text-right text-gray-500 dark:text-gray-400">
       <thead class=" text-gray-400 capitalize bg-slate-100  dark:bg-gray-700 dark:text-gray-400">
         <tr>
@@ -42,13 +42,13 @@
 
           <!-- Key -->
           <td class="p-6">
-            {{ scaleService.getScoreKey(communityTrustScore?.impact_fidelity_score! / 5) }}
+            {{ scaleService.getScoreKey(scaleService.communityTrustScore.impact_fidelity_score!) }}
           </td>
 
           <!-- Score -->
           <td class="p-6">
             <div class="flex items-center font-semibold">
-              {{ communityTrustScore?.impact_fidelity_score}}
+              {{ scaleService.communityTrustScore.impact_fidelity_score}}
             </div>
           </td>
 
@@ -77,13 +77,13 @@
 
           <!-- Key -->
           <td class="p-6">
-            {{ scaleService.getScoreKey(communityTrustScore?.community_perception_score! / 5) }}
+            {{ scaleService.getScoreKey(scaleService.communityTrustScore.community_perception_score!) }}
           </td>
 
           <!-- Score -->
           <td class="p-6">
             <div class="flex items-center font-semibold">
-              {{ communityTrustScore?.community_perception_score}}
+              {{ scaleService.communityTrustScore.community_perception_score}}
             </div>
           </td>
 
@@ -111,13 +111,13 @@
 
           <!-- Key -->
           <td class="p-6">
-            {{ scaleService.getScoreKey(communityTrustScore?.facilitation_strategy_score! / 5) }}
+            {{ scaleService.getScoreKey(scaleService.communityTrustScore.facilitation_strategy_score!) }}
           </td>
 
           <!-- Score -->
           <td class="p-6">
             <div class="flex items-center font-semibold">
-              {{ communityTrustScore?.facilitation_strategy_score}}
+              {{ scaleService.communityTrustScore.facilitation_strategy_score}}
             </div>
           </td>
 
@@ -131,7 +131,7 @@
         </tr>
 
         <!-- Community Trust Score -->
-        <tr class="bg-primary/60 text-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
+        <tr class="bg-primary/60 text-white border-b dark:bg-gray-800 dark:border-gray-700 pointer  dark:hover:bg-gray-600">
 
           <!-- Number -->
           <td class="p-6">
@@ -145,13 +145,14 @@
 
           <!-- Key -->
           <td class="p-6">
-            {{ scaleService.getScoreKey(communityTrustScore?.community_trust_score! / 5) }}
+            {{ scaleService.getScoreKey(scaleService.communityTrustScore.community_trust_score!) }}
+
           </td>
 
           <!-- Score -->
           <td class="p-6">
             <div class="flex items-center font-semibold">
-              {{ communityTrustScore?.community_perception_score}}
+              {{ scaleService.communityTrustScore.community_trust_score}}
             </div>
           </td>
 
@@ -173,11 +174,15 @@
 
       <!-- If the community has more than 10 respondents -->
       <span class="font-bold">
-        Fund
+        {{ scaleService.getFundabilityRecommendation(scaleService.communityTrustScore) }}
       </span>
 
 
 
     </div>
   </div>
+
+
+  <app-page-loading *ngIf="loading"></app-page-loading>
+  <app-missing-data *ngIf="!loading && !scaleService.communityTrustScore"></app-missing-data>
 </div>
