@@ -191,7 +191,11 @@ export class AuthService extends BaseService<any> {
       );
     }
 
-    this.emitData();
+    this.user = data.user as User;
+    this.typeUser = data.type_user as TypeUser;
+    this.typeOrganization = data.organization
+      ?.type_organization as TypeOrganization;
+    this.organization = data.organization as Organization;
   }
   isLoggedIn() {
     return this.storage.getAccessToken() && this.storage.getUser();
