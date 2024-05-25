@@ -43,6 +43,10 @@ import { SurveyFormListComponent } from './survey-form/survey-form-list/survey-f
 import { SurveyFormShowComponent } from './survey-form/survey-form-show/survey-form-show.component';
 import { SurveyFormModule } from './survey-form/survey-form.module';
 import { ChartModule } from 'primeng/chart';
+import { ImpactPartnerListComponent } from './impact-partner/impact-partner-list/impact-partner-list.component';
+import { DashboardOrganizationPortfolioComponent } from './dashboard-organization-portfolio/dashboard-organization-portfolio.component';
+import { DashboardOrganizationInsightsComponent } from './dashboard-organization-insights/dashboard-organization-insights.component';
+import { DashboardOrganizationReportsComponent } from './dashboard-organization-reports/dashboard-organization-reports.component';
 
 const routes: Routes = [
   {
@@ -50,15 +54,16 @@ const routes: Routes = [
     component: DashboardOrganizationComponent,
     children: [
       {
-        path: '',
+        path: 'home',
         component: DashboardOrganizationHomeComponent,
         children: [
           {
             path: '',
-            loadChildren: () =>
-              import('./impact-partner/impact-partner.module').then(
-                (m) => m.ImpactPartnerModule
-              ),
+            component: ImpactPartnerListComponent,
+          },
+          {
+            path: 'portfolio',
+            component: DashboardOrganizationPortfolioComponent,
           },
         ],
       },
@@ -114,6 +119,14 @@ const routes: Routes = [
             path: 'surveys',
             component: SurveyFormListComponent,
           },
+          {
+            path: 'insights',
+            component: DashboardOrganizationInsightsComponent,
+          },
+          {
+            path: 'reports',
+            component: DashboardOrganizationReportsComponent,
+          },
 
           {
             path: '**',
@@ -124,7 +137,7 @@ const routes: Routes = [
 
       {
         path: '**',
-        redirectTo: '',
+        redirectTo: 'home',
       },
       // {
       //   path: 'community',
@@ -301,6 +314,8 @@ const routes: Routes = [
     DashboardOrganizationBreakdownComponent,
     DashboardOrganizationImpactFidelityComponent,
     DashboardOrganizationFacilitationStrategyComponent,
+    DashboardOrganizationInsightsComponent,
+    DashboardOrganizationReportsComponent,
   ],
   imports: [
     CommonModule,

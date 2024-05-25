@@ -9,8 +9,8 @@
     <ul class="space-y-2 relative font-medium min-h-[200px]">
       <!-- Home -->
       <li>
-        <a [routerLink]="['./']"
-           [routerLinkActiveOptions]="{ exact: true }"
+        <a [routerLink]="['home']"
+           (click)="selectedImpactPartner = null"
            class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
            routerLinkActive="bg-secondary-dark">
           <span class=""><i class=" text-secondary-dark text-xl mdi mdi-home" routerLinkActive="text-white"></i></span>
@@ -84,7 +84,7 @@
       </li>
 
       <li>
-        <a [routerLink]="['impact']"
+        <a [routerLink]="['organizations', selectedImpactPartner.id,  'insights']"
            class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
            routerLinkActive="bg-secondary-dark">
           <span class=""><i class=" text-secondary-dark  mdi mdi-file-chart-outline" routerLinkActive="text-white"></i></span>
@@ -94,7 +94,7 @@
 
 
       <li>
-        <a [routerLink]="['impact']"
+        <a [routerLink]="['organizations', selectedImpactPartner.id,  'reports']"
            class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
            routerLinkActive="bg-secondary-dark">
           <span class=""><i class=" text-secondary-dark  mdi mdi-file-multiple-outline" routerLinkActive="text-white"></i></span>

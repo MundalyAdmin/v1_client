@@ -129,9 +129,18 @@
 
     <li class="me-2">
       <a [routerLink]="['./']"
+         [routerLinkActiveOptions]="{exact: true}"
          routerLinkActive="text-primary border-primary font-semibold"
          class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-lg">
         Impact Partners
+      </a>
+    </li>
+
+    <li class="me-2">
+      <a [routerLink]="['portfolio']"
+         routerLinkActive="text-primary border-primary font-semibold"
+         class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-lg">
+        Portfolio
       </a>
     </li>
 
@@ -143,5 +152,5 @@
 </div>
 
 <div class="bg-slate-100">
-  <app-impact-partner-list></app-impact-partner-list>
+  <router-outlet></router-outlet>
 </div>
