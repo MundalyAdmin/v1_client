@@ -24,9 +24,9 @@ export class ScaleService extends BaseService<any> {
     super('scale');
   }
 
-  getCommunityTrustScore(organizationId: number) {
+  getCommunityTrustScore(organizationId: number, options?: { params: any }) {
     return this.factory
-      .get(`${this.endPoint}/community-trust-score/${organizationId}`)
+      .get(`${this.endPoint}/community-trust-score/${organizationId}`, options)
       .pipe(
         tap((response: ApiResponse<CommunityTrustScore>) => {
           this.communityTrustScore = response.data as CommunityTrustScore;

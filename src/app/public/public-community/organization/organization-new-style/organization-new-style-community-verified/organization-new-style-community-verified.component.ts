@@ -49,7 +49,7 @@ export class OrganizationNewStyleCommunityVerifiedComponent
           this.impactFidelityService.score?.company_reported_impact_strength;
 
         this.total_respondant =
-          this.impactFidelityService.score?.total_respondant || 0;
+          this.impactFidelityService.score?.total_respondants || 0;
 
         this.loading = false;
       },

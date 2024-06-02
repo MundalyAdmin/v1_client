@@ -47,6 +47,13 @@ import { ImpactPartnerListComponent } from './impact-partner/impact-partner-list
 import { DashboardOrganizationPortfolioComponent } from './dashboard-organization-portfolio/dashboard-organization-portfolio.component';
 import { DashboardOrganizationInsightsComponent } from './dashboard-organization-insights/dashboard-organization-insights.component';
 import { DashboardOrganizationReportsComponent } from './dashboard-organization-reports/dashboard-organization-reports.component';
+import { DashboardOrganizationInsightsScalesTrendComponent } from './dashboard-organization-insights/dashboard-organization-insights-scales-trend/dashboard-organization-insights-scales-trend.component';
+import { DashboardOrganizationInsightsScaleScoreComponent } from './dashboard-organization-insights/dashboard-organization-insights-scale-score/dashboard-organization-insights-scale-score.component';
+import { DashboardOrganizationInsightsImpactFidelityTrendComponent } from './dashboard-organization-insights/dashboard-organization-insights-impact-fidelity-trend/dashboard-organization-insights-impact-fidelity-trend.component';
+import { DashboardOrganizationInsightsImpactFidelityTrendDataComponent } from './dashboard-organization-insights/dashboard-organization-insights-impact-fidelity-trend-data/dashboard-organization-insights-impact-fidelity-trend-data.component';
+import { DashboardOrganizationInsightsCommunityReputationTrendComponent } from './dashboard-organization-insights/dashboard-organization-insights-community-reputation-trend/dashboard-organization-insights-community-reputation-trend.component';
+import { DashboardOrganizationInsightsNetPromoterScoreComponent } from './dashboard-organization-insights/dashboard-organization-insights-net-promoter-score/dashboard-organization-insights-net-promoter-score.component';
+import { DashboardOrganizationInsightsScalesScoreComponent } from './dashboard-organization-insights/dashboard-organization-insights-scales-score/dashboard-organization-insights-scales-score.component';
 
 const routes: Routes = [
   {
@@ -316,6 +323,13 @@ const routes: Routes = [
     DashboardOrganizationFacilitationStrategyComponent,
     DashboardOrganizationInsightsComponent,
     DashboardOrganizationReportsComponent,
+    DashboardOrganizationInsightsScalesTrendComponent,
+    DashboardOrganizationInsightsScaleScoreComponent,
+    DashboardOrganizationInsightsImpactFidelityTrendComponent,
+    DashboardOrganizationInsightsImpactFidelityTrendDataComponent,
+    DashboardOrganizationInsightsCommunityReputationTrendComponent,
+    DashboardOrganizationInsightsNetPromoterScoreComponent,
+    DashboardOrganizationInsightsScalesScoreComponent,
   ],
   imports: [
     CommonModule,
@@ -328,6 +342,7 @@ const routes: Routes = [
     ImpactPartnerModule,
     SurveyFormModule,
     ChartModule,
+    CalendarModule,
   ],
 })
 export class DashboardOrganizationModule {}

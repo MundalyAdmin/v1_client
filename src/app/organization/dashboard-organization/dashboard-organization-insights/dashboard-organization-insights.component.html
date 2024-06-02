@@ -1,3 +1,68 @@
-<div class="px-5">
-  <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v6xwnkzpgs5sakmos6a1" alt="sdf" class="w-full">
+<!-- Community Trust And Fundability Analysis -->
+<div class="p-10">
+
+  <!-- Header and Net Promoter Score -->
+  <div class="w-full grid grid-cols-1 mb-5">
+    <!-- HEADER    -->
+    <div class="flex justify-between mb-10 ">
+      <h3 class="text-xl font-bold">Community Trust & Fundability Analysis</h3>
+      <form [formGroup]="dateForm" class="grid grid-cols-1 gap-1">
+        <div class="grid grid-cols-2 gap-10">
+          <p-calendar
+                      formControlName="startDate"
+                      [showIcon]="true" placeholder="Start Date"
+                      view="month"
+                      dateFormat="dd.mm.yy"
+                      [maxDate]="maxDate"
+                      inputId="icondisplay" />
+
+
+          <p-calendar
+                      formControlName="endDate"
+                      [showIcon]="true"
+                      placeholder="End Date"
+                      view="month"
+                      [minDate]="minDate"
+                      dateFormat="dd.mm.yy"
+                      inputId="icondisplay" />
+        </div>
+
+        <div class="text-primary text-xs text-left cursor-pointer underline mr-10"
+             *ngIf="dateForm.get('startDate')?.value || dateForm.get('endDate')?.value"
+             (click)="clearDates()">
+          <span><i class="mdi mdi-close-circle"></i></span> Clear all
+        </div>
+
+
+      </form>
+    </div>
+
+    <app-dashboard-organization-insights-net-promoter-score></app-dashboard-organization-insights-net-promoter-score>
+  </div>
+
+
+  <!-- Trend Analysis -->
+  <div class="grid grid-cols-4 gap-3">
+    <!-- Scales score -->
+    <app-dashboard-organization-insights-scales-score></app-dashboard-organization-insights-scales-score>
+
+    <div class="col-span-3">
+      <div class="grid grid-cols-2 gap-3 pb-3">
+
+        <!-- Impact Fidelity Trends -->
+        <app-dashboard-organization-insights-impact-fidelity-trend></app-dashboard-organization-insights-impact-fidelity-trend>
+
+
+        <!-- Community Reputation Trends -->
+        <app-dashboard-organization-insights-community-reputation-trend>
+        </app-dashboard-organization-insights-community-reputation-trend>
+      </div>
+
+      <!-- Scales Trends -->
+      <app-dashboard-organization-insights-scales-trend></app-dashboard-organization-insights-scales-trend>
+
+    </div>
+
+
+  </div>
 </div>

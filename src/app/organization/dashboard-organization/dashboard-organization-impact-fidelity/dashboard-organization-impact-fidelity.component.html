@@ -214,7 +214,7 @@
 
       <!-- If the community has more than 10 respondents -->
       <span class="font-bold"
-            *ngIf="impactFidelityService.score.total_respondant! >= 5 && impactFidelityService.score.company_reported_impact_strength">
+            *ngIf="impactFidelityService.score.total_respondants! >= 5 && impactFidelityService.score.company_reported_impact_strength">
         Community beneficiaries confirm
         {{ scaleService.getImpactStrengthKey(impactFidelityService.score.score_rating!) }}
         which
@@ -228,7 +228,7 @@
 
       <!-- If the community has less than 10 respondents -->
       <span class="font-bold italic"
-            *ngIf="impactFidelityService.score.total_respondant! < 5 || !impactFidelityService.score.company_reported_impact_strength">
+            *ngIf="impactFidelityService.score.total_respondants! < 5 || !impactFidelityService.score.company_reported_impact_strength">
         Insufficient data for insights
       </span>
     </div>

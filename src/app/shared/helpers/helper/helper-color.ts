@@ -32,4 +32,12 @@ export class HelperColor {
   getAllPredictableColor() {
     return PREDEFINED_COLOR;
   }
+
+  getPrimaryColor() {
+    return '#282668';
+  }
+
+  getSecondaryColor() {
+    return '#A6EBE3';
+  }
 }

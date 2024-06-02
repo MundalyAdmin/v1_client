@@ -1,5 +1,5 @@
 export interface SocialImpactFidelityScore {
-  total_respondant?: number;
+  total_respondants?: number;
 
   // Scaled from 0 to 5
   score_rating?: number;
