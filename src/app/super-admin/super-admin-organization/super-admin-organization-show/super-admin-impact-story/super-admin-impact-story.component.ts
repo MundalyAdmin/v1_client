@@ -24,7 +24,7 @@ export class SuperAdminImpactStoryComponent
     super(impactStoryOrganizationService);
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.subscriptions['organization'] =
       this.organizationService.singleData$.subscribe((organization) => {
         if (organization) this.getDataByOrganization(organization.id!);

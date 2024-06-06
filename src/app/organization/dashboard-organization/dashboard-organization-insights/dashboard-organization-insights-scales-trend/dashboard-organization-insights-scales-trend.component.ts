@@ -31,7 +31,7 @@ export class DashboardOrganizationInsightsScalesTrendComponent extends BaseCompo
     super();
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       const queryParams: { startDate?: string; endDate?: string } = {};
       if (params['startDate']) {

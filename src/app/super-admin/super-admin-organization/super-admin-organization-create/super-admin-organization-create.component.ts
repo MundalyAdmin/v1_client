@@ -50,7 +50,7 @@ export class SuperAdminOrganizationCreateComponent
     super(organizationService);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.ngMultiselectDropdownSettings = {
       ...this.helper.dropdownSettings.single,
       idField: 'name',

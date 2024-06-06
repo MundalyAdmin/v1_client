@@ -21,7 +21,7 @@ export class AccountVerificationComponent
     super(authService);
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.initForm();
   }
 

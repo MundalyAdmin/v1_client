@@ -18,7 +18,7 @@ export class DashboardOrganizationImpactPartnersComponent
     super(organizationService);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     // this.subscriptions['organizaion'] =
     //   this.organizationService.singleData$.subscribe((organization) => {
     //     if (organization) this.getImpactPartners(organization.id!);

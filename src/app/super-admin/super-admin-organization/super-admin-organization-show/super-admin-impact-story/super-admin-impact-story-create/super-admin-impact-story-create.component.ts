@@ -23,7 +23,7 @@ export class SuperAdminImpactStoryCreateComponent
     super(impactStoryOrganizationService);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.initForm();
   }
 

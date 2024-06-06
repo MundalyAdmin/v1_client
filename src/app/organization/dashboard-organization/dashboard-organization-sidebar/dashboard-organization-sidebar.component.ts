@@ -29,7 +29,7 @@ export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
     super();
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.user = this.authService.user;
     this.organization = this.authService.organization;
     this.typeOrganizationId = this.organization?.type_organization_id || null;

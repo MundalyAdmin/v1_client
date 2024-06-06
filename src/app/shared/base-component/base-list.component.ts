@@ -23,7 +23,7 @@ export abstract class BaseListComponent<T>
     this.router = AppInjector.injector.get(Router);
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.loading = true;
     this.service.get().subscribe(() => {
       this.loading = false;

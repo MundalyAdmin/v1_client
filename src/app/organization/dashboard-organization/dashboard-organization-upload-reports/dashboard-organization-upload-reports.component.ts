@@ -42,7 +42,7 @@ export class DashboardOrganizationUploadReportsComponent
     this.reportForm?.get('file')?.patchValue(this.selectedReportFile);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.initform();
   }
 

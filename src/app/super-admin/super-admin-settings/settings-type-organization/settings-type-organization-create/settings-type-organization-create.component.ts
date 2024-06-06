@@ -17,7 +17,7 @@ export class SettingsTypeOrganizationCreateComponent
     super(typeOrganizationService);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.initForm();
   }
 

@@ -24,7 +24,7 @@ export class DashboardOrganizationVerifyComponent
     super();
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.impactFidelityScoreBreakdown = {
       acceptability: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
       appropriateness: Math.floor(Math.random() * (100 - 60 + 1)) + 60,

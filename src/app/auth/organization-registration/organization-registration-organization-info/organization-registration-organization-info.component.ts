@@ -41,7 +41,7 @@ export class OrganizationRegistrationOrganizationInfoComponent
     super();
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.subscriptions['form'] =
       this.organizationRegistrationService.form$.subscribe((form) => {
         this.form = form.controls['organizationInfo'] as FormGroup;

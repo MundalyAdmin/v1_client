@@ -46,7 +46,7 @@ export class PublicBusinessCheckCommunityReviewsComponent
     super();
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.form = this.fb.group({
       organizationName: ['', [Validators.required]],
     });

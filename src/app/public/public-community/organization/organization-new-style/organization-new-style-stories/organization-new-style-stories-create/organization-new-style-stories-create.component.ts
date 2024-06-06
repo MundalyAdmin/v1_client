@@ -34,7 +34,7 @@ export class OrganizationNewStyleStoriesCreateComponent
     super(impactStoryOrganizationService);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     const storageSaved = this.storage.get('review') as ImpactStory;
     if (storageSaved) {
       this.initForm(storageSaved);

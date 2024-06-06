@@ -14,7 +14,7 @@ export class SettingsTagOrganizationEditComponent extends BaseEditComponent<TagO
     super(tagOrganizationService);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.subscriptions['tagOrganization'] =
       this.tagOrganizationService.singleData$.subscribe((tagOrganization) => {
         if (tagOrganization) {

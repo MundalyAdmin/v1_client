@@ -32,7 +32,7 @@ export class HomeSearchBarComponent
     super(organizationService);
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.getCountries();
 
     this.form = this.fb.group({

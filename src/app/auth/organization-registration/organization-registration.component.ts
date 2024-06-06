@@ -71,7 +71,7 @@ export class OrganizationRegistrationComponent
     super();
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.initform();
 
     this.getSectorOrganizations();

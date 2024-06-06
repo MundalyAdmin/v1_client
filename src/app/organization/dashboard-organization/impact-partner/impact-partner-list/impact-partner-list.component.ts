@@ -20,7 +20,7 @@ export class ImpactPartnerListComponent
     super();
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.getByFunderId(this.authService.organization?.id!);
   }
 

@@ -10,7 +10,7 @@ import { ApiResponse } from '../../shared/models/ApiResponse';
 })
 export class ImpactInitiativeService extends BaseService<ImpactInitiative> {
   constructor() {
-    super('impact-initiative');
+    super('impact-initiatives');
   }
 
   getByOrganizationId(organizationId: number, params?: Params) {

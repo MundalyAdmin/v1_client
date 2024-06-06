@@ -25,7 +25,7 @@ export class DashboardOrganizationInsightsImpactFidelityTrendComponent
     super();
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       const queryParams1: { startDate?: string; endDate?: string } = {};
       console.log(queryParams1);

@@ -21,7 +21,7 @@ export class SurveyQuestionComponent
     super();
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.subscriptions['surveyForm'] =
       this.surveyFormService.singleData$.subscribe((surveyForm) => {
         if (surveyForm?.id) this.getBySurveyFormId(surveyForm.id);

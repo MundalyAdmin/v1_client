@@ -25,7 +25,7 @@ export class OrganizationNewStyleCompanyReportedComponent extends BaseComponent<
     super();
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.subscriptions['organization'] =
       this.organizationService.singleData$.subscribe((organization) => {
         if (organization) {

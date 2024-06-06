@@ -1,6 +1,6 @@
-<div class="p-6 relative rounded-md shadow dark:shadow-gray-700 bg-white dark:bg-slate-900">
+<div class="p-6 relative bg-slate-50 rounded-md shadow dark:shadow-gray-700  dark:bg-slate-900" [ngClass]="{'p-6': !surveyFormService.singleData}">
 
-  <div class="flex justify-between">
+  <div class="flex justify-between" *ngIf="!surveyFormService.singleData">
     <h3 class="text-xl font-semibold text-primary  ">Surveys</h3>
 
     <button data-modal-target="survey-create" data-modal-toggle="survey-create" type="button"
@@ -8,6 +8,10 @@
       <span><i class="mdi mdi-plus"></i></span> Add new survey
     </button>
   </div>
+
+  <!-- component -->
+  <router-outlet></router-outlet>
+
 
 </div>
 

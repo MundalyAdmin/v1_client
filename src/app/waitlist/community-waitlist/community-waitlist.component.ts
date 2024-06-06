@@ -22,7 +22,7 @@ export class CommunityWaitlistComponent extends BaseCreateComponent<CommunityWai
     super(waitListService);
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.getCountries();
     this.initForm();
   }

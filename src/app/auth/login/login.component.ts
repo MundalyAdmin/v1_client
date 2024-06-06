@@ -16,7 +16,7 @@ export class LoginComponent extends BaseCreateComponent<any> {
     super(authService);
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.initForm();
   }
 

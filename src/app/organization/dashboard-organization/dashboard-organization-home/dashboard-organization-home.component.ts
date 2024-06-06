@@ -17,7 +17,7 @@ export class DashboardOrganizationHomeComponent
     super();
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.subscriptions['organization'] =
       this.authService.organization$.subscribe((organization) => {
         this.organization = organization;

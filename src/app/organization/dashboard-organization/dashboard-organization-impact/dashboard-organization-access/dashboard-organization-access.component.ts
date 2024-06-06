@@ -20,7 +20,7 @@ export class DashboardOrganizationAccessComponent
     super();
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.getByOrganization(24);
   }
 

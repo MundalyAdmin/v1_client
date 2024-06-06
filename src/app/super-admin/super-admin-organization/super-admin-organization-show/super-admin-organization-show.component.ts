@@ -4,6 +4,7 @@ import { Organization } from '../../../organization/organization.model';
 import { OrganizationService } from '../../../organization/organization.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Flowbite } from '../../../shared/decorators/flowbite.decorator';
+import { AuthService } from '../../../auth/auth.service';
 
 @Component({
   selector: 'app-super-admin-organization-show',
@@ -14,6 +15,7 @@ import { Flowbite } from '../../../shared/decorators/flowbite.decorator';
 export class SuperAdminOrganizationShowComponent extends BaseSingleComponent<Organization> {
   constructor(
     public organizationService: OrganizationService,
+    public authService: AuthService,
     public override route: ActivatedRoute,
     public router: Router
   ) {

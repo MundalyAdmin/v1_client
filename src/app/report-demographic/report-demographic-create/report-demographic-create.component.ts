@@ -132,7 +132,7 @@ export class ReportDemographicCreateComponent extends BaseCreateComponent<Report
     });
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.subscriptions['cartItem'] = this.cartService.singleData$.subscribe(
       (cartItem) => {
         if (cartItem) {

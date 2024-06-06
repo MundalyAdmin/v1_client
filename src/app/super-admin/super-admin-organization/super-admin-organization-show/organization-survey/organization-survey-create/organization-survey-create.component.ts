@@ -23,7 +23,7 @@ export class OrganizationSurveyCreateComponent
     super(surveyFormService);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.subscriptions['organization'] =
       this.organizationService.singleData$.subscribe((organization) => {
         if (organization) {

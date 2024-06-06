@@ -17,7 +17,7 @@ export class PublicBusinessHeroComponent
     super(waitlistService);
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.initForm();
   }
 

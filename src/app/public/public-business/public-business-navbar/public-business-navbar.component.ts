@@ -14,7 +14,7 @@ export class PublicBusinessNavbarComponent extends BaseComponent<any> {
     super();
   }
 
-  ngOnInit(): void {}
+  override ngOnInit(): void {}
 
   onButtonClicked() {
     this.helper.navigation.appendFragementToUrl('searchOrganizationByName');

@@ -24,7 +24,7 @@ export class OrganizationNewStyleRatingReportComponent
     super();
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.subscriptions['organization'] =
       this.organizationService.singleData$.subscribe((organization) => {
         if (organization) this.getSocialImpactFidelityScore(organization.id!);

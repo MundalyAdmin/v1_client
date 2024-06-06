@@ -29,7 +29,7 @@ export class DashboardOrganizationCompleteRegistrationComponent
     super();
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.subscriptions['authenticatedOrganization'] =
       this.authService.organization$.subscribe((organization) => {
         this.organization = organization;

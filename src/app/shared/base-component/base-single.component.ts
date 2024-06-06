@@ -22,7 +22,7 @@ export class BaseSingleComponent<T>
     super(service);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     if (this.enableFetchDataFromURL) {
       this.show(this.route!);
     }

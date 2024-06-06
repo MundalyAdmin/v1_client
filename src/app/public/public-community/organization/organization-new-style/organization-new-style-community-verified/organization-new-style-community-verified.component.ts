@@ -28,7 +28,7 @@ export class OrganizationNewStyleCommunityVerifiedComponent
     super();
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.subscriptions['organization'] =
       this.organizationService.singleData$.subscribe((organization) => {
         if (organization) {
