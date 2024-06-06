@@ -15,7 +15,7 @@ export class RightDrawerComponent extends BaseComponent<any> implements OnInit {
     super();
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.subscriptions['parameters'] =
       this.impactInitiativeService.rightDrawerParams$.subscribe((params) => {
         if (params.state === 'show') {

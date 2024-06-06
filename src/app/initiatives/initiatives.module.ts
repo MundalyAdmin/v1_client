@@ -16,12 +16,12 @@ import { ImpactInitiativeProgressDataCreateComponent } from './impact-initiative
 import { ImpactInitiativeProgressDataShowComponent } from './impact-initiative-progress-data/impact-initiative-progress-data-show/impact-initiative-progress-data-show.component';
 import { InitiativesComponent } from './initiatives.component';
 
-const routes: Routes = [
-  {
-    path: '',
-    component: InitiativesComponent,
-  },
-];
+// const routes: Routes = [
+//   {
+//     path: '',
+//     component: InitiativesComponent,
+//   },
+// ];
 
 @NgModule({
   declarations: [
@@ -38,12 +38,13 @@ const routes: Routes = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes),
+    // RouterModule.forChild(routes),
     DialogModule,
     SharedModule,
     DropdownModule,
     ChartModule,
     AutoCompleteModule,
   ],
+  exports: [ImpactInitiativeCreateComponent],
 })
 export class InitiativesModule {}

@@ -2,8 +2,8 @@ import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { ModalInterface } from 'flowbite';
 import { AuthService } from '../auth/auth.service';
 import { BaseComponent } from '../shared/base-component';
-import { ImpactInitiative } from './initiatives.model';
 import { InitiativesService } from './initiatives.service';
+import { ImpactInitiative } from '../scale/impact-initiative/impact-initiative.model';
 
 @Component({
   selector: 'app-initiatives',
@@ -23,7 +23,7 @@ export class InitiativesComponent
   ) {
     super();
   }
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.authService.organization$.subscribe((organization) => {
       if (organization) this.getByOrganizationId(organization.id!);
     });
@@ -61,7 +61,7 @@ export class InitiativesComponent
     this.showCreateInitiativeModal = true;
   }
 
-  override closeModal() {
+  closeModal() {
     this.modal?.hide();
     document.querySelector('body > div[modal-backdrop]')?.remove();
   }

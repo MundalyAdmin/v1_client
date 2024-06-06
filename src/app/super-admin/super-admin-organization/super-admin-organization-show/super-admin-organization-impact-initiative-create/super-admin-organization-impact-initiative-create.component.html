@@ -1,0 +1,87 @@
+<form class=" py-2  text-left" [formGroup]="form" *ngIf="form"
+      (ngSubmit)="create()">
+
+    <!-- Name -->
+    <div class="mb-6">
+        <label for="name" class="block mb-2 text-sm font-semibold  dark:text-white">What's the name of the initiative</label>
+        <input type="text" id="name" formControlName="name"
+               class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark :border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               placeholder="Empowering young girls in African Schools " required>
+    </div>
+
+    <!-- Dates -->
+    <div class="mb-6 ">
+        <label for="name" class="block mb-2 text-sm font-semibold  dark:text-white">When is the initiative starting</label>
+        <div class="flex justify-between gap-3 items-center">
+            <div class="w-[50%]">
+                <p-calendar formControlName="start_date"
+                            class="w-full block h-full"
+                            appendTo="body"
+                            dateFormat="dd.mm.yy"
+                            [maxDate]="maxDate"
+                            placeholder="July 2, 2024" />
+            </div>
+            <p>to</p>
+            <div class="w-[50%]">
+                <!-- <label for="name" class="block mb-2 text-sm font-semibold  dark:text-white">Whhen is the initiative ending (optional)</label> -->
+                <p-calendar formControlName="end_date"
+                            class="w-full  block h-full"
+                            appendTo="body"
+                            [minDate]="minDate"
+                            dateFormat="dd.mm.yy"
+                            placeholder="July 2, 2025 (optional)" />
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- City -->
+    <div class="mb-6">
+        <label for="city"
+               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">City</label>
+
+        <p-autoComplete formControlName="city" [suggestions]="cityNames" (completeMethod)="getCitiesByName($event)"
+                        (onSelect)="onCitySelected($event)"
+                        panelStyleClass="w-full h-full"
+                        styleClass="w-full h-full"
+                        inputStyleClass="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                        field="name">
+            <ng-template let-city pTemplate="item">
+                <a [innerHTML]="city.name + ', ' + city.stateName + ', ' + city.countryName"></a>
+            </ng-template>
+        </p-autoComplete>
+        <!-- <input type="text" name="city" id="city" formControlName="city"
+           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+           placeholder="" required> -->
+    </div>
+
+    <div>
+        <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">How would you describe your initiative</label>
+        <textarea id="message" rows="4"
+                  class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  formControlName="description"
+                  placeholder="Write your description here..."></textarea>
+    </div>
+
+
+
+
+
+
+
+    <!-- Call to actions -->
+    <div class="my-5 flex justify-end">
+
+
+
+        <!-- Create -->
+        <button type="button" type="submit"
+                [disabled]="!form.valid || loading"
+                class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+            Save initiative
+            <app-loading *ngIf="loading"></app-loading> </button>
+    </div>
+
+
+</form>

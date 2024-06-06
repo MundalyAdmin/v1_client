@@ -3,10 +3,10 @@ import { ImpactInitiativeGoal } from '../impact-initiative-goal.model';
 import { FormBuilder, Validators } from '@angular/forms';
 import { BaseCreateComponent } from '../../../shared/base-component';
 import { ImpactInitiativeGoalService } from '../impact-initiative-goal.service';
-import { ImpactInitiative } from '../../initiatives.model';
 import { InitiativesService } from '../../initiatives.service';
 import { TypeMetricImpactInitiativeGoal } from './../../components/type-metric-impact-initiative-goal/type-metric-impact-initiative-goal.model';
 import { TypeMetricImpactInitiativeGoalService } from '../../components/type-metric-impact-initiative-goal/type-metric-impact-initiative-goal.service';
+import { ImpactInitiative } from '../../../scale/impact-initiative/impact-initiative.model';
 
 @Component({
   selector: 'app-impact-initiative-goal-create',
@@ -32,7 +32,7 @@ export class ImpactInitiativeGoalCreateComponent extends BaseCreateComponent<Imp
     super(impactInitiativeGoalService);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.subscriptions['impact-initiative'] =
       this.impactInitiativeService.singleData$.subscribe((impactInitiative) => {
         if (impactInitiative) {

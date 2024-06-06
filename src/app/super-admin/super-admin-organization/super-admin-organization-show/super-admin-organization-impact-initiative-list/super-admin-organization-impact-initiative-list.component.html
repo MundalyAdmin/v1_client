@@ -1,5 +1,14 @@
 <!-- component -->
 <div class="p-10 min-h-[500px]">
+  <div class="flex justify-end">
+
+    <button data-modal-target="survey-create" data-modal-toggle="survey-create" type="button"
+            (click)="showImpactInitiativeCreateModal = true"
+            class="focus:outline-none border border-primary text-primary bg-secondary hover:bg-secondary-dark focus:ring-4 focus:ring-purple-300  rounded-lg text-sm px-5 py-2.5 font-bold mb-2 ">
+      <span><i class="mdi mdi-plus"></i></span> Add a new initiative
+    </button>
+  </div>
+
   <div class="grid grid-cols-3 text-sm gap-7" *ngIf="!loading && impactInitiativeService.data.length">
 
 
@@ -51,3 +60,11 @@
   <app-missing-data *ngIf="!loading && !impactInitiativeService.data.length" [message]="'No Impact Initative yet'"></app-missing-data>
   <app-page-loading *ngIf="loading"></app-page-loading>
 </div>
+
+
+<p-dialog header="Create an impact initiative" [(visible)]="showImpactInitiativeCreateModal" [modal]="true" [style]="{ width: '40vw' }"
+          [draggable]="false"
+          [resizable]="false">
+  <app-super-admin-organization-impact-initiative-create
+                                                         (created)="showImpactInitiativeCreateModal = false"></app-super-admin-organization-impact-initiative-create>
+</p-dialog>

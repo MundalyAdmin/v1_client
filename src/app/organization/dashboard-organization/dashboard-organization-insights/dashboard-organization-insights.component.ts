@@ -46,7 +46,6 @@ export class DashboardOrganizationInsightsComponent implements OnInit {
     });
 
     this.dateForm.valueChanges.subscribe((value) => {
-      console.log(value);
       this.updateDate();
     });
 

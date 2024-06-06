@@ -28,7 +28,7 @@ export class ImpactInitiativeProgressDataShowComponent
     super(impactInitiativeProgressDataService);
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.getByImpactInitiativeGoalId(this.impactInitiativeGoal.id!);
 
     this.subscriptions['newImpactInitiativeProgressData'] =

@@ -16,6 +16,7 @@ export class SuperAdminOrganizationImpactInitiativeListComponent
   extends BaseComponent<ImpactInitiative>
   implements OnInit
 {
+  showImpactInitiativeCreateModal = false;
   constructor(
     public impactInitiativeService: ImpactInitiativeService,
     public organizationService: OrganizationService

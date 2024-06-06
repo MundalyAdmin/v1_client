@@ -4,17 +4,12 @@ import { SuperAdminComponent } from './super-admin.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { SuperAdminSidebarComponent } from './super-admin-sidebar/super-admin-sidebar.component';
-import { SuperAdminOrganizationListComponent } from './super-admin-organization/super-admin-organization-list/super-admin-organization-list.component';
 
 const routes: Routes = [
   {
     path: '',
     component: SuperAdminComponent,
     children: [
-      {
-        path: '',
-        component: SuperAdminOrganizationListComponent,
-      },
       {
         path: 'organizations',
         loadChildren: () =>

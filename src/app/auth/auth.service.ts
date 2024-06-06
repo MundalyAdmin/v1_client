@@ -189,6 +189,8 @@ export class AuthService extends BaseService<any> {
         'impact_analysis_report_status',
         data.impact_analysis_report_status
       );
+
+      setTimeout(() => {}, 500);
     }
 
     this.user = data.user as User;

@@ -3,7 +3,6 @@ import { BaseCreateComponent } from '../../../shared/base-component';
 import { ImpactInitiativeProgressData } from '../impact-initiative-progress-data.model';
 import { ImpactInitiativeProgressDataService } from '../impact-initiative-progress-data.service';
 import { ImpactInitiativeGoal } from '../../impact-initiative-goal/impact-initiative-goal.model';
-import { ImpactInitiative } from '../../initiatives.model';
 import { Validators } from '@angular/forms';
 import { ImpactInitiativeService } from '../../../scale/impact-initiative/impact-initiative.service';
 import { InitiativesService } from '../../initiatives.service';
@@ -27,7 +26,7 @@ export class ImpactInitiativeProgressDataCreateComponent
     super();
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.subscriptions['impact-inititiative-gaol'] =
       this.impactInitiativeGoalService.singleData$.subscribe((goal) => {
         this.impactInitiativeGoal = goal!;

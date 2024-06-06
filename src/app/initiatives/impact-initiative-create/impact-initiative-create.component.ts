@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseCreateComponent } from '../../shared/base-component';
-import { ImpactInitiative } from '../initiatives.model';
 import { InitiativesService } from '../initiatives.service';
 import { Validators } from '@angular/forms';
 import { AuthService } from '../../auth/auth.service';
@@ -8,6 +7,8 @@ import { Organization } from '../../organization/organization.model';
 import { Country } from '../../country/country.model';
 import { CitySearchResult } from '../../country/city-search-result.model';
 import { CountryService } from '../../country/country.service';
+import { ImpactInitiative } from '../../scale/impact-initiative/impact-initiative.model';
+import { ImpactInitiativeService } from '../../scale/impact-initiative/impact-initiative.service';
 
 @Component({
   selector: 'app-impact-initiative-create',
@@ -19,39 +20,24 @@ export class ImpactInitiativeCreateComponent
   implements OnInit
 {
   organization: Organization | null = null;
-  countries: Country[] = [];
   cityNames: CitySearchResult[] = [];
-  countryLoading: boolean = false;
   cityLoading: boolean = false;
+  minDate!: Date;
+  maxDate!: Date;
   constructor(
-    public impactInitiativeService: InitiativesService,
+    public impactInitiativeService: ImpactInitiativeService,
     public authService: AuthService,
     public countryService: CountryService
   ) {
     super(impactInitiativeService);
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.subscriptions['authenticatedOrganization'] =
       this.authService.organization$.subscribe((organization) => {
         if (organization) this.initForm(organization.id!);
         this.organization = organization;
       });
-
-    this.getCountries();
-  }
-
-  getCountries() {
-    this.countryLoading = true;
-    this.countryService.get().subscribe({
-      next: (response) => {
-        this.countries = response;
-        this.countryLoading = false;
-      },
-      error: () => {
-        this.countryLoading = false;
-      },
-    });
   }
 
   getCitiesByName(event: any) {
@@ -67,31 +53,30 @@ export class ImpactInitiativeCreateComponent
   }
 
   onCitySelected(item: any) {
-    const countryIndex = this.countries.findIndex(
-      (country) =>
-        country.name?.toLocaleLowerCase() ===
-        item.value.countryName?.toLocaleLowerCase()
-    );
-
-    this.form.get('country')?.patchValue(this.countries[countryIndex]);
+    this.form.get('country')?.patchValue(item.value.countryName);
   }
 
   initForm(organizationId: number) {
     this.form = this.fb.group({
       name: ['', Validators.required],
-      start_date: [new Date(), Validators.required],
-      end_date: [new Date()],
+      start_date: [null, Validators.required],
+      end_date: [null],
       country: ['', Validators.required],
-      city: [
-        { value: null, disabled: this.countryLoading },
-        Validators.required,
-      ],
+      city: [null, Validators.required],
       description: ['', Validators.required],
       organization_id: [organizationId, Validators.required],
     });
+
+    this.form.controls['start_date'].valueChanges.subscribe((value) => {
+      this.minDate = value;
+    });
+
+    this.form.controls['end_date'].valueChanges.subscribe((value) => {
+      this.maxDate = value;
+    });
   }
 
-  override closeModal() {
+  closeModal() {
     this.initForm(this.organization?.id!);
 
     this.created.emit();
@@ -100,7 +85,6 @@ export class ImpactInitiativeCreateComponent
   override create(): void {
     const data = {
       ...this.form.value,
-      country: this.formValue('country').name,
       city: this.formValue('city').name,
     };
 

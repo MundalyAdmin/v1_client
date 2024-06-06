@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BaseComponent } from '../../../shared/base-component';
 import { ImpactInitiativeProgressDataService } from '../../impact-initiative-progress-data/impact-initiative-progress-data.service';
-import { ImpactInitiative } from '../../initiatives.model';
 import { InitiativesService } from '../../initiatives.service';
 import { ImpactInitiativeGoal } from '../impact-initiative-goal.model';
 import { ImpactInitiativeGoalService } from '../impact-initiative-goal.service';
 import { ImpactInitiativeProgressData } from '../../impact-initiative-progress-data/impact-initiative-progress-data.model';
+import { ImpactInitiative } from '../../../scale/impact-initiative/impact-initiative.model';
 
 @Component({
   selector: 'app-impact-initiative-goal-list',
@@ -26,7 +26,7 @@ export class ImpactInitiativeGoalListComponent
     super();
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     if (this.impactInitiative) {
       this.getByImpactInitiative(this.impactInitiative.id!);
     }

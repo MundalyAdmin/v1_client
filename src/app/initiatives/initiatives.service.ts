@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from '../shared/services';
-import { ImpactInitiative } from './initiatives.model';
 import { BaseMockService } from '../shared/services/base-mock.service';
 import { Observable, ReplaySubject, map, of, tap } from 'rxjs';
 import { ApiResponse } from '../shared/models/ApiResponse';
 import { RightDrawerParameters } from './components/right-drawer/right-drawer-parameters.model';
+import { ImpactInitiative } from '../scale/impact-initiative/impact-initiative.model';
 
 @Injectable({
   providedIn: 'root',
