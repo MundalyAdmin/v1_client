@@ -1,13 +1,46 @@
 <form [formGroup]="form" (submit)="create()">
-  <div class="grid grid-cols-1 gap-5">
+  <div class="grid grid-cols-1 gap-5 text-left">
     <!-- Title -->
     <div class="mb-6">
-      <label for="title" class="block mb-2 text-sm font-semibold text-primary dark:text-white">Form title</label>
+      <label for="title" class="block mb-2 text-left text-sm font-semibold text-primary dark:text-white">What's the title of your survey?</label>
       <input type="text" id="title" formControlName="title"
              class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark :border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-             placeholder="IPMC FORM" required>
+             placeholder="IPMC Impact Fidelity Survey" required>
     </div>
 
+  </div>
+
+
+  <!-- Type Survey Form -->
+  <div class="mb-6">
+    <label for="type_survey_form"
+           class="block mb-2 text-left text-sm font-medium text-primary dark:text-white">What type of survey form is this? <app-loading
+                   *ngIf="typeSurveyFormLoading"></app-loading> </label>
+    <p-dropdown class="" [filter]="true" filterBy="name" [showClear]="true" placeholder="Select a type"
+                styleClass="bg-gray-50 flex border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full text-left dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                formControlName="type_survey_form_id" [options]="typeSurveyForms" optionLabel="name"></p-dropdown>
+
+  </div>
+
+
+  <!-- Reward -->
+  <div class="mb-6">
+    <label for="reward" class="block mb-2 text-left text-sm font-semibold text-primary dark:text-white">What reward is entitled to this survey?
+      (optional)
+    </label>
+    <input type="text" id="reward" formControlName="reward"
+           class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark :border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+           placeholder="10USD airtime" required>
+  </div>
+
+
+  <div class="mb-6">
+    <label for="message" class="block mb-2 text-left text-sm font-medium text-primary dark:text-white">Any additional note concerning this
+      survey?</label>
+    <textarea id="message" rows="4"
+              class="block p-2.5 w-full text-sm text-primary bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              formControlName="description"
+              placeholder="Write here..."></textarea>
   </div>
 
   <div class="flex justify-end">

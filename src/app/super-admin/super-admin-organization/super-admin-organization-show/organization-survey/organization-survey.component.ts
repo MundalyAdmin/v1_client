@@ -10,6 +10,7 @@ import { ImpactInitiativeService } from '../../../../scale/impact-initiative/imp
   styleUrls: ['./organization-survey.component.scss'],
 })
 export class OrganizationSurveyComponent extends BaseComponent<SurveyForm> {
+  showSurveyFormCreateModal = false;
   constructor(public surveyFormService: SurveyFormService) {
     super(surveyFormService);
   }
