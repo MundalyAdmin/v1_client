@@ -5,6 +5,7 @@ import { Scale } from '../scale/models/scale.model';
 import { SectorOrganization } from './sector-organization/sector-organization.model';
 import { TagOrganization } from './tag-organization/tag-organization.model';
 import { TypeOrganization } from './type-organization/type-organization.model';
+import { ImpactInitiative } from '../scale/impact-initiative/impact-initiative.model';
 
 export interface Organization extends BaseModel {
   name?: null | string;
@@ -44,4 +45,6 @@ export interface Organization extends BaseModel {
   creator_id?: null | number;
 
   community_trust_score?: null | number;
+
+  impact_initiatives?: ImpactInitiative[];
 }
