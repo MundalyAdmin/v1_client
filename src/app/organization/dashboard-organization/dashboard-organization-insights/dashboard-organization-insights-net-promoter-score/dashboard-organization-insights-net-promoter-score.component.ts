@@ -71,7 +71,7 @@ export class DashboardOrganizationInsightsNetPromoterScoreComponent
       ),
       datasets: [
         {
-          label: 'Net Promoter Score',
+          label: 'Customer Satisfaction',
           backgroundColor: ['#c1ddff', '#4f46e5', '#2196f3'],
           borderColor: documentStyle.getPropertyValue('--blue-500'),
           data: [...Object.values(nps)],
