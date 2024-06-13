@@ -30,10 +30,6 @@ export class DashboardOrganizationComponent implements OnInit {
     this.organization = this.authService.organization;
     this.typeOrganizationId = this.organization?.type_organization_id || null;
 
-    if (!this.user?.verified) {
-      this.router.navigate(['/auth/account-verification']);
-    }
-
     // this.menuRedirection();
   }
 
