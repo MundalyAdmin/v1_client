@@ -26,7 +26,6 @@ export class SuperAdminOrganizationImpactInitiativeCreateComponent extends Impac
   override ngOnInit(): void {
     this.subscriptions['organization'] =
       this.organizationService.singleData$.subscribe((organization) => {
-        console.log('organization', organization);
         if (organization) {
           this.initForm(organization.id!);
           this.organization = organization;

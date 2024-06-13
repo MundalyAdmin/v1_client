@@ -49,7 +49,6 @@ export class DashboardOrganizationFacilitationStrategyComponent extends BaseSing
   subscribeToImpactInitiativeData() {
     this.subscriptions['impactInitiative'] =
       this.impactInitiativeService.singleData$.subscribe((impactInitiative) => {
-        console.log('imapact initiative', impactInitiative);
         if (impactInitiative) {
           this.getByImpactInitiativeId(impactInitiative.id!);
         }

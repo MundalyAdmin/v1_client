@@ -102,10 +102,6 @@ export class BaseCreateComponent<T>
   logInvalidFields(form: FormGroup) {
     for (const controlName in form.controls) {
       const control = form.get(controlName);
-
-      if (control?.invalid) {
-        console.log(`Invalid field: ${controlName}`);
-      }
     }
   }
 

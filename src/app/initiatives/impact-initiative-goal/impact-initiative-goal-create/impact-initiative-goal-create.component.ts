@@ -123,7 +123,6 @@ export class ImpactInitiativeGoalCreateComponent extends BaseCreateComponent<Imp
   // }
 
   submitUpdateInitiativeGoal() {
-    console.log(this.form.value);
     // this.updateInitiativeGoal?.(this.getFormData());
   }
 }

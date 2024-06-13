@@ -63,7 +63,6 @@ export class DashboardOrganizationForecastComponent
   }
 
   private subscribeToImpactInitiativeData() {
-    console.log('reached');
     this.subscriptions['impactInitiative'] =
       this.impactInitiativeService.singleData$.subscribe((impactInitiative) => {
         if (impactInitiative) {

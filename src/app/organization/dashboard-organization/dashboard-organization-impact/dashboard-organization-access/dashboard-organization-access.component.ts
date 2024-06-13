@@ -29,7 +29,6 @@ export class DashboardOrganizationAccessComponent
       .getByOrganization(organizationId)
       .subscribe((initiatives) => {
         this.data = initiatives as ImpactInitiative[];
-        console.log(this.data);
       });
   }
 

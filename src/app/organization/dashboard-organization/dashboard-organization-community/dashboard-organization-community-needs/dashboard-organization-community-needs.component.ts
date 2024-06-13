@@ -112,7 +112,6 @@ export class DashboardOrganizationCommunityNeedsComponent
       );
     }
     this.lastYearComparaisonToggled = !this.lastYearComparaisonToggled;
-    console.log(this.lastYearComparaisonToggled);
   }
 
   initChart() {
@@ -220,8 +219,6 @@ export class DashboardOrganizationCommunityNeedsComponent
       borderWidth: 1,
       borderRadius: 10,
     });
-
-    console.log(this.chartDatasets);
 
     this.initChart();
   }

@@ -50,7 +50,6 @@ export class DashboardOrganizationCommunityPerceptionComponent extends BaseSingl
   subscribeToImpactInitiativeData() {
     this.subscriptions['impactInitiative'] =
       this.impactInitiativeService.singleData$.subscribe((impactInitiative) => {
-        console.log('imapact initiative', impactInitiative);
         if (impactInitiative) {
           this.getByImpactInitiativeId(impactInitiative.id!);
         }
@@ -82,7 +81,6 @@ export class DashboardOrganizationCommunityPerceptionComponent extends BaseSingl
       .getScoreBreakdownByImpactInitiative(imapactInitiativeId)
       .subscribe((score) => {
         this.loading = false;
-        console.log('score', this.communityPerceptionService.score);
       });
   }
 }

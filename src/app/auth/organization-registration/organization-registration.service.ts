@@ -22,8 +22,6 @@ export class OrganizationRegistrationService {
   set form(form: FormGroup) {
     this._form = form;
     this.form$.next(this._form);
-
-    console.log('hitted');
   }
 
   addFormDataField(field: string, value: any) {

@@ -53,9 +53,7 @@ export class InitiativesComponent
 
   modal?: ModalInterface;
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log('simple changes', changes);
-  }
+  ngOnChanges(changes: SimpleChanges) {}
 
   showModal() {
     this.showCreateInitiativeModal = true;

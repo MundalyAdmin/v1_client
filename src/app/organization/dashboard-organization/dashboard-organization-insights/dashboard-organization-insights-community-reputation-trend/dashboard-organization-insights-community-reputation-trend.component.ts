@@ -70,7 +70,6 @@ export class DashboardOrganizationInsightsCommunityReputationTrendComponent
     this.subscriptions['organization'] =
       this.organizationService.singleData$.subscribe((organization) => {
         if (organization) {
-          console.log(queryParams);
           this.getTrendByOrganization(organization.id!, queryParams);
         }
       });

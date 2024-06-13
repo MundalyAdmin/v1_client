@@ -37,9 +37,7 @@ export class OrganizationSurveyDataUploadComponent
     this.getMundalySurveyPartners();
   }
 
-  ngAfterViewInit(): void {
-    console.log(this.fileInput);
-  }
+  ngAfterViewInit(): void {}
 
   initForm() {
     this.form = this.fb.group({

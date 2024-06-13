@@ -27,8 +27,6 @@ export class DashboardOrganizationImpactInitiativeComponent extends BaseComponen
       this.authService.organization?.type_organization_id ===
         TypeOrganizationEnum.CORPORATE
     ) {
-      console.log('here');
-      console.log(this.route.snapshot);
       await this.router.navigate(['../partners'], { relativeTo: this.route });
     }
   }

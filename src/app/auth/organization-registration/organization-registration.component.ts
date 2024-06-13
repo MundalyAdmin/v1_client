@@ -159,9 +159,7 @@ export class OrganizationRegistrationComponent
   //   }
   // }
 
-  onTermsChange(event: any) {
-    console.log(event);
-  }
+  onTermsChange(event: any) {}
 
   passwordMatchingValidatior: ValidatorFn = (
     control: AbstractControl

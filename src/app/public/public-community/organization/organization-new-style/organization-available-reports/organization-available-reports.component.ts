@@ -26,7 +26,6 @@ export class OrganizationAvailableReportsComponent extends BaseListComponent<Car
     this.subscriptions['organization'] =
       this.organizationService.singleData$.subscribe((organization) => {
         this.getByOrganization(organization!);
-        console.log(organization);
       });
   }
 
