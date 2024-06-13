@@ -11,6 +11,7 @@ import { DeepPartial } from 'chart.js/dist/types/utils';
 import { ImpactInitiativeService } from '../../../../scale/impact-initiative/impact-initiative.service';
 import { AuthService } from '../../../../auth/auth.service';
 import { TypeOrganizationEnum } from '../../../type-organization/type-organization.enum';
+import { ImpactInitiative } from '../../../../scale/impact-initiative/impact-initiative.model';
 
 @Component({
   selector: 'app-dashboard-organization-community-needs',
@@ -23,6 +24,7 @@ export class DashboardOrganizationCommunityNeedsComponent
   implements OnInit
 {
   organization: Organization | null = null;
+  impactInitiative: ImpactInitiative | null = null;
   lastYearComparaisonToggled = false;
   options: any;
   chartDatasets: {
@@ -77,7 +79,8 @@ export class DashboardOrganizationCommunityNeedsComponent
     this.subscriptions['organization'] =
       this.organizationService.singleData$.subscribe((organization) => {
         if (organization) {
-          // this.organization = organization;
+          this.organization = organization;
+
           this.getByOrganizationIdAndYear(
             organization.id!,
             new Date().getFullYear()
@@ -90,6 +93,7 @@ export class DashboardOrganizationCommunityNeedsComponent
     this.subscriptions['impactInitiative'] =
       this.impactInitiativeService.singleData$.subscribe((impactInitiative) => {
         if (impactInitiative) {
+          this.impactInitiative = impactInitiative;
           this.getByImpactInitiativeIdAndYear(
             impactInitiative.id!,
             new Date().getFullYear()
@@ -106,10 +110,17 @@ export class DashboardOrganizationCommunityNeedsComponent
 
       this.initChart();
     } else {
-      this.getByOrganizationIdAndYear(
-        this.organization?.id!,
-        new Date().getFullYear() - 1
-      );
+      if (this.impactInitiative) {
+        this.getByImpactInitiativeIdAndYear(
+          this.impactInitiative.id!,
+          new Date().getFullYear() - 1
+        );
+      } else if (this.organization) {
+        this.getByOrganizationIdAndYear(
+          this.organization.id!,
+          new Date().getFullYear() - 1
+        );
+      }
     }
     this.lastYearComparaisonToggled = !this.lastYearComparaisonToggled;
   }
