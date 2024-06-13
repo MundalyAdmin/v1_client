@@ -1,6 +1,7 @@
 import { Country } from '../../country/country.model';
 import { Organization } from '../../organization/organization.model';
 import { BaseModel } from '../../shared/models/BaseModel';
+import { ImpactInitiativeStatus } from './impact-initiative-status/impact-initiative-status.model';
 
 export interface ImpactInitiative extends BaseModel {
   name?: string;
@@ -17,7 +18,15 @@ export interface ImpactInitiative extends BaseModel {
 
   organization_id?: number;
 
-  date?: Date;
+  start_date?: Date;
+
+  end_date?: Date;
 
   organization?: Organization;
+
+  impact_initiative_status_id?: number;
+
+  impact_initiative_status?: ImpactInitiativeStatus;
+
+  community_trust_score?: number;
 }

@@ -8,6 +8,9 @@ import { OrganizationService } from '../../../organization.service';
 import { Organization } from '../../../organization.model';
 import { debounceTime } from 'rxjs';
 import { DeepPartial } from 'chart.js/dist/types/utils';
+import { ImpactInitiativeService } from '../../../../scale/impact-initiative/impact-initiative.service';
+import { AuthService } from '../../../../auth/auth.service';
+import { TypeOrganizationEnum } from '../../../type-organization/type-organization.enum';
 
 @Component({
   selector: 'app-dashboard-organization-community-needs',
@@ -36,18 +39,59 @@ export class DashboardOrganizationCommunityNeedsComponent
 
   constructor(
     public communityNeedService: CommunityNeedsService,
-    public organizationService: OrganizationService
+    public organizationService: OrganizationService,
+    public impactInitiativeService: ImpactInitiativeService,
+    public authService: AuthService
   ) {
     super();
   }
 
   override ngOnInit(): void {
+    this.subscribeToData();
+  }
+
+  subscribeToData() {
+    this.subscriptions['currentlyLoggedOrganization'] =
+      this.authService.organization$.subscribe(
+        (currentlyLoggedOrganization) => {
+          if (
+            currentlyLoggedOrganization?.type_organization_id ===
+              TypeOrganizationEnum.CORPORATE ||
+            currentlyLoggedOrganization?.type_organization_id ===
+              TypeOrganizationEnum.IMPACT_FUNDER
+          ) {
+            this.subscribeToOrganizationData();
+          } else if (
+            currentlyLoggedOrganization?.type_organization_id ===
+              TypeOrganizationEnum.IMPACT_IMPLEMENTER ||
+            currentlyLoggedOrganization?.type_organization_id ===
+              TypeOrganizationEnum.SUPPLIER
+          ) {
+            this.subscribeToImpactInitiativeData();
+          }
+        }
+      );
+  }
+
+  subscribeToOrganizationData() {
     this.subscriptions['organization'] =
       this.organizationService.singleData$.subscribe((organization) => {
         if (organization) {
-          this.organization = organization;
+          // this.organization = organization;
           this.getByOrganizationIdAndYear(
             organization.id!,
+            new Date().getFullYear()
+          );
+        }
+      });
+  }
+
+  subscribeToImpactInitiativeData() {
+    this.subscriptions['impactInitiative'] =
+      this.impactInitiativeService.singleData$.subscribe((impactInitiative) => {
+        if (impactInitiative) {
+          this.getByImpactInitiativeIdAndYear(
+            impactInitiative.id!,
             new Date().getFullYear()
           );
         }
@@ -123,6 +167,21 @@ export class DashboardOrganizationCommunityNeedsComponent
 
     this.communityNeedService
       .getByOrganizationAndByYear(organizationId, year)
+      .subscribe((response) => {
+        if (this.chartDatasets.length === 0) {
+          this.addDataToChart('Current year', response);
+        } else {
+          this.addDataToChart('Last year', response);
+        }
+        this.loading = false;
+      });
+  }
+
+  getByImpactInitiativeIdAndYear(impactInitiativeId: number, year: number) {
+    this.loading = true;
+
+    this.communityNeedService
+      .getByImpactInitiativeAndByYear(impactInitiativeId, year)
       .subscribe((response) => {
         if (this.chartDatasets.length === 0) {
           this.addDataToChart('Current year', response);

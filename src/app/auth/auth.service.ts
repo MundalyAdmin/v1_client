@@ -58,7 +58,7 @@ export class AuthService extends BaseService<any> {
     return this.storage.get('impact_analysis_report_status');
   }
 
-  set typeOrganization(typeOrganization: TypeUser | null) {
+  set typeOrganization(typeOrganization: TypeOrganization | null) {
     this._organizationType = typeOrganization;
     this.typeOrganization$.next(this._organizationType);
   }
@@ -94,7 +94,9 @@ export class AuthService extends BaseService<any> {
   override emitData() {
     this.user = this.storage.get('user') as User;
     this.typeUser = this.storage.get('typeUser') as TypeUser;
-    this.typeOrganization = this.storage.get('type_organization') as TypeUser;
+    this.typeOrganization = this.storage.get(
+      'type_organization'
+    ) as TypeOrganization;
     this.organization = this.storage.get('organization') as Organization;
   }
   // public signup(elements: User) {

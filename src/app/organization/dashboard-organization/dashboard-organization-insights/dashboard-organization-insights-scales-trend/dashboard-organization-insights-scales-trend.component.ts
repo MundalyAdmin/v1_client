@@ -4,9 +4,11 @@ import { SocialImpactFidelityService } from '../../../../scale/social-impact-fid
 import { CommunityPerceptionIndexService } from '../../../../scale/community-perception-index/community-perception-index.service';
 import { FacilitationStrategyService } from '../../../../scale/facilitation-strategy/facilitation-strategy.service';
 import { InsightsTrendData } from '../insights-trend.data.model';
-import { min } from 'rxjs';
 import { OrganizationService } from '../../../organization.service';
 import { ActivatedRoute } from '@angular/router';
+import { TypeOrganizationEnum } from '../../../type-organization/type-organization.enum';
+import { AuthService } from '../../../../auth/auth.service';
+import { ImpactInitiativeService } from '../../../../scale/impact-initiative/impact-initiative.service';
 
 @Component({
   selector: 'app-dashboard-organization-insights-scales-trend',
@@ -26,7 +28,9 @@ export class DashboardOrganizationInsightsScalesTrendComponent extends BaseCompo
     public communityPerceptionService: CommunityPerceptionIndexService,
     public facilitationStrategyService: FacilitationStrategyService,
     public organizationService: OrganizationService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    public authService: AuthService,
+    public impactInitiativeService: ImpactInitiativeService
   ) {
     super();
   }
@@ -40,13 +44,22 @@ export class DashboardOrganizationInsightsScalesTrendComponent extends BaseCompo
       if (params['endDate']) {
         queryParams.endDate = params['endDate'];
       }
-      this.subscriptions['organization'] =
-        this.organizationService.singleData$.subscribe((organization) => {
-          if (organization) {
-            this.getFaciliatationStrategyTrendByOrganization(
-              organization.id!,
-              queryParams
-            );
+
+      this.subscriptions['currentLogOrganization'] =
+        this.authService.organization$.subscribe((organization) => {
+          if (
+            organization?.type_organization_id ===
+              TypeOrganizationEnum.IMPACT_FUNDER ||
+            organization?.type_organization_id ===
+              TypeOrganizationEnum.CORPORATE
+          ) {
+            this.subscribeToOrganizationData(queryParams);
+          } else if (
+            organization?.type_organization_id ===
+              TypeOrganizationEnum.IMPACT_IMPLEMENTER ||
+            organization?.type_organization_id === TypeOrganizationEnum.SUPPLIER
+          ) {
+            this.subscribeToImpactInitiativeData(queryParams);
           }
         });
     });
@@ -68,13 +81,49 @@ export class DashboardOrganizationInsightsScalesTrendComponent extends BaseCompo
     });
   }
 
+  subscribeToOrganizationData(queryParams?: any) {
+    this.subscriptions['organization'] =
+      this.organizationService.singleData$.subscribe((organization) => {
+        if (organization) {
+          this.getFaciliatationStrategyTrendByOrganization(
+            organization.id!,
+            queryParams
+          );
+        }
+      });
+  }
+
+  subscribeToImpactInitiativeData(queryParams?: any) {
+    this.subscriptions['impactInitiative'] =
+      this.impactInitiativeService.singleData$.subscribe((impactInitiative) => {
+        if (impactInitiative) {
+          this.getFaciliatationStrategyTrendByImpactInitiative(
+            impactInitiative.id!,
+            queryParams
+          );
+        }
+      });
+  }
+
   getFaciliatationStrategyTrendByOrganization(
+    organizationId: number,
+    queryParams?: any
+  ) {
+    this.loading = true;
+    this.facilitationStrategyService
+      .getTrendScoreByOrganization(organizationId, { params: queryParams })
+      .subscribe(() => {
+        this.loading = false;
+      });
+  }
+
+  getFaciliatationStrategyTrendByImpactInitiative(
     organization: number,
     queryParams?: any
   ) {
     this.loading = true;
     this.facilitationStrategyService
-      .getTrendScore(organization, { params: queryParams })
+      .getTrendScoreByImpactInitiative(organization, { params: queryParams })
       .subscribe(() => {
         this.loading = false;
       });

@@ -10,6 +10,9 @@ import { SocialImpactFidelityService } from '../../../scale/social-impact-fideli
 import { ScaleService } from '../../../scale/scale.service';
 import { OrganizationService } from '../../organization.service';
 import { Organization } from '../../organization.model';
+import { ImpactInitiativeService } from '../../../scale/impact-initiative/impact-initiative.service';
+import { AuthService } from '../../../auth/auth.service';
+import { TypeOrganizationEnum } from '../../type-organization/type-organization.enum';
 
 @Component({
   selector: 'app-dashboard-organization-impact-fidelity',
@@ -21,12 +24,42 @@ export class DashboardOrganizationImpactFidelityComponent extends BaseSingleComp
   constructor(
     public impactFidelityService: SocialImpactFidelityService,
     public scaleService: ScaleService,
-    public organizationService: OrganizationService
+    public organizationService: OrganizationService,
+    public impactInitiativeService: ImpactInitiativeService,
+    public authService: AuthService
   ) {
     super(impactFidelityService);
   }
 
   override ngOnInit(): void {
+    this.subscriptions['currentLogOrganization'] =
+      this.authService.organization$.subscribe((organization) => {
+        if (
+          organization?.type_organization_id ===
+            TypeOrganizationEnum.IMPACT_FUNDER ||
+          organization?.type_organization_id === TypeOrganizationEnum.CORPORATE
+        ) {
+          this.subscribeToOrganizationData();
+        } else if (
+          organization?.type_organization_id ===
+            TypeOrganizationEnum.IMPACT_IMPLEMENTER ||
+          organization?.type_organization_id === TypeOrganizationEnum.SUPPLIER
+        ) {
+          this.subscribeToImpactInitiativeData();
+        }
+      });
+  }
+
+  subscribeToImpactInitiativeData() {
+    this.subscriptions['impactInitiative'] =
+      this.impactInitiativeService.singleData$.subscribe((impactInitiative) => {
+        if (impactInitiative) {
+          this.getByImpactInitiativeId(impactInitiative.id!);
+        }
+      });
+  }
+
+  subscribeToOrganizationData() {
     this.subscriptions['organization'] =
       this.organizationService.singleData$.subscribe((organization) => {
         if (organization) {
@@ -39,7 +72,16 @@ export class DashboardOrganizationImpactFidelityComponent extends BaseSingleComp
   getByOrganizationId(organizationId: number) {
     this.loading = true;
     this.impactFidelityService
-      .getOrganizationScore(organizationId)
+      .getScoreBreakdownByOrganization(organizationId)
+      .subscribe((score) => {
+        this.loading = false;
+      });
+  }
+
+  getByImpactInitiativeId(organizationId: number) {
+    this.loading = true;
+    this.impactFidelityService
+      .getScoreBreakdownByImpactInitiative(organizationId)
       .subscribe((score) => {
         this.loading = false;
       });

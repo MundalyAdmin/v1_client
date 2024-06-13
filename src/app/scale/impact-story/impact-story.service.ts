@@ -85,9 +85,26 @@ export class ImpactStoryService extends BaseService<ImpactStory> {
       );
   }
 
-  getOrganizationNetPromoterScore(organizationId: number, options?: any) {
+  getNetPromoterScoreByOrganization(organizationId: number, options?: any) {
     return this.factory
       .get(`${this.endPoint}/organizations/${organizationId}/nps`, {
+        ...options,
+      })
+      .pipe(
+        tap((response: ApiResponse<NetPromoterScore>) => {
+          this._netPromoterScore = response.data as NetPromoterScore;
+          this.netPromoterScore$.next(this._netPromoterScore);
+        }),
+        map((response) => response.data as NetPromoterScore)
+      );
+  }
+
+  getNetPromoterScoreByImpactInitiative(
+    impactInitiativeId: number,
+    options?: any
+  ) {
+    return this.factory
+      .get(`${this.endPoint}/impact-initiatives/${impactInitiativeId}/nps`, {
         ...options,
       })
       .pipe(

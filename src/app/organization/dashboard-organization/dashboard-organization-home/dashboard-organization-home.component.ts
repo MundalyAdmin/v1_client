@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../auth/auth.service';
 import { Organization } from '../../organization.model';
 import { BaseComponent } from '../../../shared/base-component';
+import { CategoryOrganizationEnum } from '../../category-organization/category-organization.enum';
+import { TypeOrganizationEnum } from '../../type-organization/type-organization.enum';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-organization-home',
@@ -13,8 +16,20 @@ export class DashboardOrganizationHomeComponent
   implements OnInit
 {
   organization: Organization | null = null;
-  constructor(public authService: AuthService) {
+  constructor(
+    public authService: AuthService,
+    public router: Router,
+    public route: ActivatedRoute
+  ) {
     super();
+  }
+
+  get CategoryOrganizationEnum() {
+    return CategoryOrganizationEnum;
+  }
+
+  get TypeOrganizationEnum() {
+    return TypeOrganizationEnum;
   }
 
   override ngOnInit(): void {

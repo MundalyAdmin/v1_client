@@ -54,6 +54,11 @@ import { DashboardOrganizationInsightsImpactFidelityTrendDataComponent } from '.
 import { DashboardOrganizationInsightsCommunityReputationTrendComponent } from './dashboard-organization-insights/dashboard-organization-insights-community-reputation-trend/dashboard-organization-insights-community-reputation-trend.component';
 import { DashboardOrganizationInsightsNetPromoterScoreComponent } from './dashboard-organization-insights/dashboard-organization-insights-net-promoter-score/dashboard-organization-insights-net-promoter-score.component';
 import { DashboardOrganizationInsightsScalesScoreComponent } from './dashboard-organization-insights/dashboard-organization-insights-scales-score/dashboard-organization-insights-scales-score.component';
+import { DashboardOrganizationSidebarMenuImpactComponent } from './dashboard-organization-sidebar/dashboard-organization-sidebar-menu-impact/dashboard-organization-sidebar-menu-impact.component';
+import { DashboardOrganizationSidebarMenuCorporateComponent } from './dashboard-organization-sidebar/dashboard-organization-sidebar-menu-corporate/dashboard-organization-sidebar-menu-corporate.component';
+import { DashboardOrganizationImpactInitiativeComponent } from './dashboard-organization-impact-initiative/dashboard-organization-impact-initiative.component';
+import { DashboardOrganizationImpactInitativeListComponent } from './dashboard-organization-impact-initiative/dashboard-organization-impact-initative-list/dashboard-organization-impact-initative-list.component';
+import { DashboardOrganizationImpactInitiativeDetailsComponent } from './dashboard-organization-impact-initiative-details/dashboard-organization-impact-initiative-details.component';
 
 const routes: Routes = [
   {
@@ -65,12 +70,20 @@ const routes: Routes = [
         component: DashboardOrganizationHomeComponent,
         children: [
           {
-            path: '',
+            path: 'partners',
             component: ImpactPartnerListComponent,
+          },
+          {
+            path: 'programs',
+            component: DashboardOrganizationImpactInitiativeComponent,
           },
           {
             path: 'portfolio',
             component: DashboardOrganizationPortfolioComponent,
+          },
+          {
+            path: '**',
+            redirectTo: 'programs',
           },
         ],
       },
@@ -81,6 +94,69 @@ const routes: Routes = [
       {
         path: 'organizations/:id',
         component: DashboardOrganizationDetailsComponent,
+        children: [
+          {
+            path: 'overview',
+            component: DashboardOrganizationOverviewComponent,
+            children: [
+              {
+                path: 'fundability',
+                component: DashboardOrganizationForecastComponent,
+              },
+              {
+                path: 'community-needs',
+                component: DashboardOrganizationCommunityNeedsComponent,
+              },
+              {
+                path: '**',
+                redirectTo: 'fundability',
+              },
+            ],
+          },
+          {
+            path: 'breakdown',
+            component: DashboardOrganizationBreakdownComponent,
+            children: [
+              {
+                path: 'impact-fidelity',
+                component: DashboardOrganizationImpactFidelityComponent,
+              },
+              {
+                path: 'community-perception',
+                component: DashboardOrganizationCommunityPerceptionComponent,
+              },
+              {
+                path: 'facilitation-strategy',
+                component: DashboardOrganizationFacilitationStrategyComponent,
+              },
+              {
+                path: '**',
+                redirectTo: 'impact-fidelity',
+              },
+            ],
+          },
+          {
+            path: 'surveys',
+            component: SurveyFormListComponent,
+          },
+          {
+            path: 'insights',
+            component: DashboardOrganizationInsightsComponent,
+          },
+          {
+            path: 'reports',
+            component: DashboardOrganizationReportsComponent,
+          },
+
+          {
+            path: '**',
+            redirectTo: 'overview',
+          },
+        ],
+      },
+      {
+        path: 'initiatives/:id',
+        component: DashboardOrganizationImpactInitiativeDetailsComponent,
         children: [
           {
             path: 'overview',
@@ -330,6 +406,11 @@ const routes: Routes = [
     DashboardOrganizationInsightsCommunityReputationTrendComponent,
     DashboardOrganizationInsightsNetPromoterScoreComponent,
     DashboardOrganizationInsightsScalesScoreComponent,
+    DashboardOrganizationSidebarMenuImpactComponent,
+    DashboardOrganizationSidebarMenuCorporateComponent,
+    DashboardOrganizationImpactInitiativeComponent,
+    DashboardOrganizationImpactInitativeListComponent,
+    DashboardOrganizationImpactInitiativeDetailsComponent,
   ],
   imports: [
     CommonModule,

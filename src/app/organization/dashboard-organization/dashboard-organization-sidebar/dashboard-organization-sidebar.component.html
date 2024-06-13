@@ -17,103 +17,12 @@
     </a>
 
     <!-- Sidebar -->
-    <ul class="space-y-2 relative font-medium min-h-[200px]">
-      <!-- Home -->
-      <li>
-        <a [routerLink]="['home']"
-           (click)="selectedImpactPartner = null"
-           class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
-           routerLinkActive="bg-secondary-dark">
-          <span class=""><i class=" text-secondary-dark text-xl mdi mdi-home" routerLinkActive="text-white"></i></span>
-          <span class="ms-2">Home</span>
-        </a>
-      </li>
+    <app-dashboard-organization-sidebar-menu-impact
+                                                    *ngIf="categoryOrganization === CategoryOrganizationEnum.IMPACT"></app-dashboard-organization-sidebar-menu-impact>
+    <app-dashboard-organization-sidebar-menu-corporate
+                                                       *ngIf="categoryOrganization === CategoryOrganizationEnum.CORPORATE"></app-dashboard-organization-sidebar-menu-corporate>
 
 
-
-      <!-- <li>
-        <button type="button"
-                class="flex items-center w-full hover:bg-secondary-dark justify-between text-slate-50  pr-3 transition duration-75 rounded-lg group  dark:text-white dark:hover:bg-gray-700"
-                aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-
-          <a [routerLink]="['impact']"
-             class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group">
-            <span class=""><i class=" text-secondary-dark text-xl mdi mdi-artboard"></i></span>
-            <span class="flex-1 ms-2 whitespace-nowrap">Impact</span>
-          </a>
-          <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-          </svg>
-        </button>
-        <ul id="dropdown-example" class="hidden py-2 space-y-2">
-          <li>
-            <a href="#"
-               class="flex items-center w-full p-2 text-slate-50 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Social
-              impact fidelity</a>
-          </li>
-          <li>
-            <a href="#"
-               class="flex items-center w-full p-2 text-slate-50 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Community
-              Perception</a>
-          </li>
-          <li>
-            <a href="#"
-               class="flex items-center w-full p-2 text-slate-50 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Facilitation
-              Strategy</a>
-          </li>
-        </ul>
-      </li> -->
-
-
-
-
-    </ul>
-
-    <!-- Sidebar Selected Impact Partner -->
-    <ul class="space-y-2 relative font-medium min-h-[250px] border border-primary rounded-xl bg-organization-dashboard-dark p-3 ml-[-10px] mr-[-7px]"
-        *ngIf="selectedImpactPartner">
-      <li class=" text-sm font-bold ms-2 text-slate-100">
-        {{ selectedImpactPartner.name }}
-      </li>
-      <!-- Home -->
-      <li>
-        <a [routerLink]="['organizations', selectedImpactPartner.id,  'overview']"
-           class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
-           routerLinkActive="bg-secondary-dark">
-          <span class=""><i class=" text-secondary-dark  mdi mdi-chart-arc" routerLinkActive="text-white"></i></span>
-          <span class="ms-2">Overview</span>
-        </a>
-      </li>
-
-      <li>
-        <a [routerLink]="['organizations', selectedImpactPartner.id,  'breakdown']"
-           class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
-           routerLinkActive="bg-secondary-dark">
-          <span class=""><i class=" text-secondary-dark  mdi mdi-bullseye" routerLinkActive="text-white"></i></span>
-          <span class="flex-1 ms-2 whitespace-nowrap">Breakdown</span>
-        </a>
-      </li>
-
-      <li>
-        <a [routerLink]="['organizations', selectedImpactPartner.id,  'insights']"
-           class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
-           routerLinkActive="bg-secondary-dark">
-          <span class=""><i class=" text-secondary-dark  mdi mdi-file-chart-outline" routerLinkActive="text-white"></i></span>
-          <span class="flex-1 ms-2 whitespace-nowrap">Insights</span>
-        </a>
-      </li>
-
-
-      <li>
-        <a [routerLink]="['organizations', selectedImpactPartner.id,  'reports']"
-           class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
-           routerLinkActive="bg-secondary-dark">
-          <span class=""><i class=" text-secondary-dark  mdi mdi-file-multiple-outline" routerLinkActive="text-white"></i></span>
-          <span class="flex-1 ms-2 whitespace-nowrap">Reports</span>
-        </a>
-      </li>
-
-    </ul>
 
 
     <!-- User profile -->

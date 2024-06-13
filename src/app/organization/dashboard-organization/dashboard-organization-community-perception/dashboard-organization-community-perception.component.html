@@ -1,4 +1,4 @@
-<div class="p-5">
+<div class="p-5" *ngIf="!loading && communityPerceptionService.score">
   <div class="w-full flex justify-between bg-white shadow dark:bg-gray-800 p-4 md:p-6">
     <div class="text-lg font-bold">Verify Metrics</div>
 
@@ -41,13 +41,13 @@
 
           <!-- Key -->
           <td class="p-6">
-            {{ scaleService.getScoreKey(communityPerceptionService.score?.communication!) }}
+            {{ scaleService.getScoreKey(communityPerceptionService.score.communication!) }}
           </td>
 
           <!-- Score -->
           <td class="p-6">
             <div class="flex items-center font-semibold">
-              {{ communityPerceptionService.score?.communication}}
+              {{ communityPerceptionService.score.communication}}
             </div>
           </td>
 
@@ -76,13 +76,13 @@
 
           <!-- Key -->
           <td class="p-6">
-            {{ scaleService.getScoreKey(communityPerceptionService.score?.contribution_and_impact!) }}
+            {{ scaleService.getScoreKey(communityPerceptionService.score.contribution_and_impact!) }}
           </td>
 
           <!-- Score -->
           <td class="p-6">
             <div class="flex items-center font-semibold">
-              {{ communityPerceptionService.score?.contribution_and_impact}}
+              {{ communityPerceptionService.score.contribution_and_impact}}
             </div>
           </td>
 
@@ -112,13 +112,13 @@
 
           <!-- Key -->
           <td class="p-6">
-            {{ scaleService.getScoreKey(communityPerceptionService.score?.consideration_of_context!) }}
+            {{ scaleService.getScoreKey(communityPerceptionService.score.consideration_of_context!) }}
           </td>
 
           <!-- Score -->
           <td class="p-6">
             <div class="flex items-center font-semibold">
-              {{ communityPerceptionService.score?.consideration_of_context}}
+              {{ communityPerceptionService.score.consideration_of_context}}
             </div>
           </td>
 
@@ -147,13 +147,13 @@
 
           <!-- Key -->
           <td class="p-6">
-            {{ scaleService.getScoreKey(communityPerceptionService.score?.vision_alignment!) }}
+            {{ scaleService.getScoreKey(communityPerceptionService.score.vision_alignment!) }}
           </td>
 
           <!-- Score -->
           <td class="p-6">
             <div class="flex items-center font-semibold">
-              {{ communityPerceptionService.score?.vision_alignment}}
+              {{ communityPerceptionService.score.vision_alignment}}
             </div>
           </td>
 
@@ -182,7 +182,7 @@
 
       <!-- If the community has more than 10 respondents -->
       <span class="font-bold">
-        Community members confirm that {{ organization?.name }} has {{ scaleService.getReputationKey(communityPerceptionService.score?.score_rating!)
+        Community members confirm that {{ organization?.name }} has {{ scaleService.getReputationKey(communityPerceptionService.score.score_rating!)
         }}. See Report for Actionable Insights.
       </span>
 

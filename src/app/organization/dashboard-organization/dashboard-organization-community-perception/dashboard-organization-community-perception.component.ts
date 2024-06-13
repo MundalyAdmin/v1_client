@@ -7,6 +7,9 @@ import { Organization } from '../../organization.model';
 import { ScaleService } from '../../../scale/scale.service';
 import { OrganizationService } from '../../organization.service';
 import { CommunityPerceptionIndexService } from '../../../scale/community-perception-index/community-perception-index.service';
+import { TypeOrganizationEnum } from '../../type-organization/type-organization.enum';
+import { ImpactInitiativeService } from '../../../scale/impact-initiative/impact-initiative.service';
+import { AuthService } from '../../../auth/auth.service';
 
 @Component({
   selector: 'app-dashboard-organization-community-perception',
@@ -18,12 +21,43 @@ export class DashboardOrganizationCommunityPerceptionComponent extends BaseSingl
   constructor(
     public communityPerceptionService: CommunityPerceptionIndexService,
     public scaleService: ScaleService,
-    public organizationService: OrganizationService
+    public organizationService: OrganizationService,
+    public impactInitiativeService: ImpactInitiativeService,
+    public authService: AuthService
   ) {
     super(communityPerceptionService);
   }
 
   override ngOnInit(): void {
+    this.subscriptions['currentLogOrganization'] =
+      this.authService.organization$.subscribe((organization) => {
+        if (
+          organization?.type_organization_id ===
+            TypeOrganizationEnum.IMPACT_FUNDER ||
+          organization?.type_organization_id === TypeOrganizationEnum.CORPORATE
+        ) {
+          this.subscribeToOrganizationData();
+        } else if (
+          organization?.type_organization_id ===
+            TypeOrganizationEnum.IMPACT_IMPLEMENTER ||
+          organization?.type_organization_id === TypeOrganizationEnum.SUPPLIER
+        ) {
+          this.subscribeToImpactInitiativeData();
+        }
+      });
+  }
+
+  subscribeToImpactInitiativeData() {
+    this.subscriptions['impactInitiative'] =
+      this.impactInitiativeService.singleData$.subscribe((impactInitiative) => {
+        console.log('imapact initiative', impactInitiative);
+        if (impactInitiative) {
+          this.getByImpactInitiativeId(impactInitiative.id!);
+        }
+      });
+  }
+
+  subscribeToOrganizationData() {
     this.subscriptions['organization'] =
       this.organizationService.singleData$.subscribe((organization) => {
         if (organization) {
@@ -36,9 +70,19 @@ export class DashboardOrganizationCommunityPerceptionComponent extends BaseSingl
   getByOrganizationId(organizationId: number) {
     this.loading = true;
     this.communityPerceptionService
-      .getOrganizationScore(organizationId)
+      .getScoreBreakdownByOrganization(organizationId)
       .subscribe((score) => {
         this.loading = false;
+      });
+  }
+
+  getByImpactInitiativeId(imapactInitiativeId: number) {
+    this.loading = true;
+    this.communityPerceptionService
+      .getScoreBreakdownByImpactInitiative(imapactInitiativeId)
+      .subscribe((score) => {
+        this.loading = false;
+        console.log('score', this.communityPerceptionService.score);
       });
   }
 }

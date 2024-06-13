@@ -18,7 +18,7 @@ const routes: Routes = [
           ).then((module) => module.SuperAdminOrganizationModule),
       },
       {
-        path: 'settings',
+        path: 'platform-settings',
         loadChildren: () =>
           import('./super-admin-settings/super-admin-settings.module').then(
             (module) => module.SuperAdminSettingsModule

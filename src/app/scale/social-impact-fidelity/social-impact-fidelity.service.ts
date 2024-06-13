@@ -29,18 +29,50 @@ export class SocialImpactFidelityService extends BaseService<SocialImpactFidelit
     super('scale/social-impact-fidelity');
   }
 
-  getOrganizationScore(organizationId: number) {
-    return this.factory.get(`${this.endPoint}/${organizationId}`).pipe(
-      tap((response: ApiResponse<SocialImpactFidelityScore>) => {
-        this.score = response.data as SocialImpactFidelityScore;
-      })
-    );
+  getScoreBreakdownByOrganization(organizationId: number) {
+    return this.factory
+      .get(`${this.endPoint}/organizations/${organizationId}`)
+      .pipe(
+        tap((response: ApiResponse<SocialImpactFidelityScore>) => {
+          this.score = response.data as SocialImpactFidelityScore;
+        })
+      );
   }
 
-  getTrendScore(organizationId: number, options?: { params: any }) {
-    console.log(options);
+  getScoreBreakdownByImpactInitiative(impactInitiativeId: number) {
     return this.factory
-      .get(`${this.endPoint}/${organizationId}/trends`, options)
+      .get(`${this.endPoint}/impact-initiatives/${impactInitiativeId}`)
+      .pipe(
+        tap((response: ApiResponse<SocialImpactFidelityScore>) => {
+          this.score = response.data as SocialImpactFidelityScore;
+        })
+      );
+  }
+
+  getTrendScoreByOrganization(
+    organizationId: number,
+    options?: { params: any }
+  ) {
+    return this.factory
+      .get(`${this.endPoint}/organizations/${organizationId}/trends`, options)
+      .pipe(
+        tap((response: ApiResponse<InsightsTrendData>) => {
+          this._trends = response.data as InsightsTrendData[];
+          this.trends$.next(this._trends);
+        }),
+        map((response) => response.data as InsightsTrendData[])
+      );
+  }
+
+  getTrendScoreByImpactInitiatives(
+    impactInitiativeId: number,
+    options?: { params: any }
+  ) {
+    return this.factory
+      .get(
+        `${this.endPoint}/impact-initiatives/${impactInitiativeId}/trends`,
+        options
+      )
       .pipe(
         tap((response: ApiResponse<InsightsTrendData>) => {
           this._trends = response.data as InsightsTrendData[];

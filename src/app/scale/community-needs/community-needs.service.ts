@@ -29,4 +29,24 @@ export class CommunityNeedsService extends BaseService<CommunityNeeds> {
         )
       );
   }
+
+  getByImpactInitiativeAndByYear(impactInitiative: number, year: number) {
+    return this.factory
+      .get(
+        `${this.endPoint}/impact-initiatives/${impactInitiative}/year/${year}`
+      )
+      .pipe(
+        tap((response: ApiResponse<CommunityNeeds>) => {
+          this.paginationInfo = {
+            total: response.total,
+            itemsPerPage: response.per_page,
+            currentPage: response.current_page,
+          };
+        }),
+        map(
+          (response: ApiResponse<CommunityNeeds>) =>
+            response.data as CommunityNeeds[]
+        )
+      );
+  }
 }

@@ -4,6 +4,9 @@ import { InsightsTrendData } from '../insights-trend.data.model';
 import { SocialImpactFidelityService } from '../../../../scale/social-impact-fidelity/social-impact-fidelity.service';
 import { OrganizationService } from '../../../organization.service';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../../../auth/auth.service';
+import { ImpactInitiativeService } from '../../../../scale/impact-initiative/impact-initiative.service';
+import { TypeOrganizationEnum } from '../../../type-organization/type-organization.enum';
 
 @Component({
   selector: 'app-dashboard-organization-insights-impact-fidelity-trend',
@@ -20,6 +23,8 @@ export class DashboardOrganizationInsightsImpactFidelityTrendComponent
   constructor(
     public impactFidelityService: SocialImpactFidelityService,
     public organizationService: OrganizationService,
+    public authService: AuthService,
+    public impactInitiativeService: ImpactInitiativeService,
     public route: ActivatedRoute
   ) {
     super();
@@ -28,27 +33,67 @@ export class DashboardOrganizationInsightsImpactFidelityTrendComponent
   override ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       const queryParams1: { startDate?: string; endDate?: string } = {};
-      console.log(queryParams1);
       if (params['startDate']) {
         queryParams1.startDate = params['startDate'];
       }
       if (params['endDate']) {
         queryParams1.endDate = params['endDate'];
       }
-      this.subscriptions['organization'] =
-        this.organizationService.singleData$.subscribe((organization) => {
-          if (organization) {
-            console.log(queryParams1);
-            this.getTrendByOrganization(organization.id!, queryParams1);
+
+      this.subscriptions['currentLogOrganization'] =
+        this.authService.organization$.subscribe((organization) => {
+          if (
+            organization?.type_organization_id ===
+              TypeOrganizationEnum.IMPACT_FUNDER ||
+            organization?.type_organization_id ===
+              TypeOrganizationEnum.CORPORATE
+          ) {
+            this.subscribeToOrganizationData(queryParams1);
+          } else if (
+            organization?.type_organization_id ===
+              TypeOrganizationEnum.IMPACT_IMPLEMENTER ||
+            organization?.type_organization_id === TypeOrganizationEnum.SUPPLIER
+          ) {
+            this.subscribeToImpactInitiativeData(queryParams1);
           }
         });
     });
   }
 
+  subscribeToOrganizationData(queryParams?: any) {
+    this.subscriptions['organization'] =
+      this.organizationService.singleData$.subscribe((organization) => {
+        if (organization) {
+          this.getTrendByOrganization(organization.id!, queryParams);
+        }
+      });
+  }
+
+  subscribeToImpactInitiativeData(queryParams?: any) {
+    this.subscriptions['impactInitiative'] =
+      this.impactInitiativeService.singleData$.subscribe((impactInitiative) => {
+        if (impactInitiative) {
+          this.getTrendByImpactInitiative(impactInitiative.id!, queryParams);
+        }
+      });
+  }
+
   getTrendByOrganization(organizationId: number, queryParams?: any) {
     this.loading = true;
     this.impactFidelityService
-      .getTrendScore(organizationId, { params: queryParams })
+      .getTrendScoreByOrganization(organizationId, { params: queryParams })
+      .subscribe((data) => {
+        this.data = data;
+        this.loading = false;
+      });
+  }
+
+  getTrendByImpactInitiative(impactInitiativeId: number, queryParams?: any) {
+    this.loading = true;
+    this.impactFidelityService
+      .getTrendScoreByImpactInitiatives(impactInitiativeId, {
+        params: queryParams,
+      })
       .subscribe((data) => {
         this.data = data;
         this.loading = false;

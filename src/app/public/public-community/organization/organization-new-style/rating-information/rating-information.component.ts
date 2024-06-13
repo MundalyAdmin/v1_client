@@ -44,7 +44,7 @@ export class RatingInformationComponent
   getCommunityTrustScore(organizationId: number) {
     this.loading = true;
     this.scaleService
-      .getCommunityTrustScore(organizationId)
+      .getCommunityTrustScoreByOrganizationId(organizationId)
       .subscribe((response) => {
         this.loading = false;
         this.communityTrustScore = this.scaleService.communityTrustScore;

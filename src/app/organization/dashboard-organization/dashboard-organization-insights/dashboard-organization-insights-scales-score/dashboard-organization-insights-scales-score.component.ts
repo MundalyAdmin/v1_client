@@ -5,6 +5,8 @@ import { ScaleService } from '../../../../scale/scale.service';
 import { AuthService } from '../../../../auth/auth.service';
 import { OrganizationService } from '../../../organization.service';
 import { ActivatedRoute } from '@angular/router';
+import { ImpactInitiativeService } from '../../../../scale/impact-initiative/impact-initiative.service';
+import { TypeOrganizationEnum } from '../../../type-organization/type-organization.enum';
 
 @Component({
   selector: 'app-dashboard-organization-insights-scales-score',
@@ -18,6 +20,8 @@ export class DashboardOrganizationInsightsScalesScoreComponent
   constructor(
     public scaleService: ScaleService,
     public organizationService: OrganizationService,
+    public authService: AuthService,
+    public impactInitiativeService: ImpactInitiativeService,
     public route: ActivatedRoute
   ) {
     super();
@@ -32,19 +36,68 @@ export class DashboardOrganizationInsightsScalesScoreComponent
       if (params['endDate']) {
         queryParams.endDate = params['endDate'];
       }
-      this.subscriptions['organization'] =
-        this.organizationService.singleData$.subscribe((organization) => {
-          if (organization) {
-            this.getScalesScore(organization.id!, queryParams);
+
+      this.subscriptions['currentLogOrganization'] =
+        this.authService.organization$.subscribe((organization) => {
+          if (
+            organization?.type_organization_id ===
+              TypeOrganizationEnum.IMPACT_FUNDER ||
+            organization?.type_organization_id ===
+              TypeOrganizationEnum.CORPORATE
+          ) {
+            this.subscribeToOrganizationData(queryParams);
+          } else if (
+            organization?.type_organization_id ===
+              TypeOrganizationEnum.IMPACT_IMPLEMENTER ||
+            organization?.type_organization_id === TypeOrganizationEnum.SUPPLIER
+          ) {
+            this.subscribeToImpactInitiativeData(queryParams);
           }
         });
     });
   }
 
-  getScalesScore(organizationId: number, queryParams?: any) {
+  subscribeToOrganizationData(queryParams?: any) {
+    this.subscriptions['organization'] =
+      this.organizationService.singleData$.subscribe((organization) => {
+        if (organization) {
+          this.getScalesScoreByOrganization(organization.id!, queryParams);
+        }
+      });
+  }
+
+  subscribeToImpactInitiativeData(queryParams?: any) {
+    this.subscriptions['impactInitiative'] =
+      this.impactInitiativeService.singleData$.subscribe((impactInitiative) => {
+        if (impactInitiative) {
+          this.getScalesScoreByImpactInitiative(
+            impactInitiative.id!,
+            queryParams
+          );
+        }
+      });
+  }
+
+  getScalesScoreByOrganization(organizationId: number, queryParams?: any) {
     this.loading = true;
     this.scaleService
-      .getCommunityTrustScore(organizationId, { params: queryParams })
+      .getCommunityTrustScoreByOrganizationId(organizationId, {
+        params: queryParams,
+      })
+      .subscribe((data) => {
+        this.loading = false;
+      });
+  }
+
+  getScalesScoreByImpactInitiative(
+    impactInitiativeId: number,
+    queryParams?: any
+  ) {
+    this.loading = true;
+    this.scaleService
+      .getCommunityTrustScoreByImpactInitiaitveId(impactInitiativeId, {
+        params: queryParams,
+      })
       .subscribe((data) => {
         this.loading = false;
       });

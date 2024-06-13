@@ -34,7 +34,7 @@ export class OrganizationNewStyleRatingReportComponent
   getSocialImpactFidelityScore(organizationId: number) {
     this.isLoading.socialImpactFidelity = true;
     this.socialImpactFidelityService
-      .getOrganizationScore(organizationId)
+      .getScoreBreakdownByOrganization(organizationId)
       .subscribe(() => {
         this.isLoading.socialImpactFidelity = false;
       });

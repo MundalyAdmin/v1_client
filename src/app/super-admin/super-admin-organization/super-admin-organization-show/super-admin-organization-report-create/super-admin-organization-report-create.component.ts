@@ -7,6 +7,7 @@ import { TypeOrganizationReport } from '../../../../organization/dashboard-organ
 import { Validators } from '@angular/forms';
 import { OrganizationService } from '../../../../organization/organization.service';
 import { Organization } from '../../../../organization/organization.model';
+import { ImpactInitiativeService } from '../../../../scale/impact-initiative/impact-initiative.service';
 
 @Component({
   selector: 'app-super-admin-organization-report-create',
@@ -21,6 +22,7 @@ export class SuperAdminOrganizationReportCreateComponent extends BaseCreateCompo
   constructor(
     public organizationReportService: OrganizationReportService,
     public typeOrganizationReportService: TypeOrganizationReportService,
+    public impactInitiativeService: ImpactInitiativeService,
     public organizationService: OrganizationService
   ) {
     super();
@@ -38,6 +40,13 @@ export class SuperAdminOrganizationReportCreateComponent extends BaseCreateCompo
           this.form.patchValue({ organization_id: organization.id });
         }
       });
+
+    this.subscriptions['impactInitiative'] =
+      this.impactInitiativeService.singleData$.subscribe((impactInitiative) => {
+        if (impactInitiative) {
+          this.form.patchValue({ impact_intiative_id: impactInitiative.id });
+        }
+      });
   }
 
   override onFileChanged(event: any) {
@@ -52,6 +61,7 @@ export class SuperAdminOrganizationReportCreateComponent extends BaseCreateCompo
     this.form = this.fb.group({
       name: ['', Validators.required],
       organization_id: [null, Validators.required],
+      impact_intiative_id: [null, Validators.required],
       type_organization_report: [null, Validators.required],
     });
 
