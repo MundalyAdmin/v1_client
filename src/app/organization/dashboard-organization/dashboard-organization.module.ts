@@ -59,6 +59,7 @@ import { DashboardOrganizationSidebarMenuCorporateComponent } from './dashboard-
 import { DashboardOrganizationImpactInitiativeComponent } from './dashboard-organization-impact-initiative/dashboard-organization-impact-initiative.component';
 import { DashboardOrganizationImpactInitativeListComponent } from './dashboard-organization-impact-initiative/dashboard-organization-impact-initative-list/dashboard-organization-impact-initative-list.component';
 import { DashboardOrganizationImpactInitiativeDetailsComponent } from './dashboard-organization-impact-initiative-details/dashboard-organization-impact-initiative-details.component';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 const routes: Routes = [
   {
@@ -417,6 +418,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule,
     SharedPublicModule,
+    OverlayPanelModule,
     CarouselModule,
     DialogModule,
     CalendarModule,

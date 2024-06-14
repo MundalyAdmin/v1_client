@@ -17,6 +17,10 @@ export class DashboardOrganizationForecastComponent
   implements OnInit
 {
   communityTrustScore: CommunityTrustScore | null = null;
+  showImpactFidelityInfo = false;
+  showCommunityReputationInfo = false;
+  showFacilitationStrategyInfo = false;
+  showCommunityTrustScoreInfo = false;
   constructor(
     public scaleService: ScaleService,
     public organizationService: OrganizationService,

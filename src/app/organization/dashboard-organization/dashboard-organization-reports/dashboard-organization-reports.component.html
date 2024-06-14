@@ -66,7 +66,7 @@
       </thead>
       <tbody *ngIf="organizationReportService.data.length">
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-            *ngFor="let report of organizationReportService.data">
+            *ngFor="let report of organizationReportService.data; let i = index">
 
           <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
             {{ report.name }}
@@ -79,9 +79,10 @@
           </td>
 
           <td class="px-6 py-4">
-            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i
+            <button (click)="selectedReportIndex = i; showReportDetailsModal = true"
+                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i
                  class="mdi mdi-information-outline"></i>
-              Details</a>
+              Details</button>
 
             <a [href]="report.report_url" [download]="report.name" target="_blank"
                class="font-medium ms-3 text-slate-600 dark:text-blue-500 hover:underline"><i
@@ -90,6 +91,18 @@
         </tr>
 
 
+
+        <p-dialog header="Community Trust Score" [(visible)]="showReportDetailsModal" [modal]="true" [style]="{ width: '50vw' }"
+                  [draggable]="false"
+                  [resizable]="false">
+          <ng-template pTemplate="header">
+            <span class="text-xl font-bold">{{ organizationReportService.data[selectedReportIndex].type_organization_report.name }}</span>
+          </ng-template>
+          <p [innerHTML]="organizationReportService.data[selectedReportIndex].type_organization_report.description" class="text-gray-900">
+
+          </p>
+
+        </p-dialog>
 
 
 

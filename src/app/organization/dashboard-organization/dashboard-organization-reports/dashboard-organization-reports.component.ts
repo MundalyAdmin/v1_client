@@ -17,6 +17,8 @@ export class DashboardOrganizationReportsComponent
   implements OnInit
 {
   showReportUploadModal = false;
+  selectedReportIndex = 0;
+  showReportDetailsModal = false;
   constructor(
     public organizationReportService: OrganizationReportService,
     public organizationService: OrganizationService,
