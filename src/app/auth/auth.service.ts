@@ -71,6 +71,7 @@ export class AuthService extends BaseService<any> {
   set organization(organization: Organization | null) {
     this._organization = organization;
     this.organization$.next(this._organization);
+    console.log('organization set', organization);
   }
 
   set user(user: User | null) {
@@ -183,14 +184,11 @@ export class AuthService extends BaseService<any> {
 
   private storeLoginInformation(data: LoginInformation) {
     this.clearLoginInformation();
+
     this.storage.set('accessToken', data.accessToken);
     this.storage.set('user', data.user);
     if (data.organization) {
       this.storage.set('organization', data.organization);
-      this.storage.set(
-        'impact_analysis_report_status',
-        data.impact_analysis_report_status
-      );
 
       setTimeout(() => {}, 500);
     }

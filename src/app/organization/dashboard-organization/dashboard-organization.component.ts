@@ -39,6 +39,12 @@ export class DashboardOrganizationComponent implements OnInit, AfterViewInit {
   }
 
   isRegistrationComplete() {
+    console.log(
+      'test',
+      this.authService.organization?.profile_status_organization_id ===
+        ProfileStatusOrganizationEnum.CLAIMED
+    );
+    console.log(this.authService.organization);
     return (
       this.authService.organization?.profile_status_organization_id ===
       ProfileStatusOrganizationEnum.CLAIMED

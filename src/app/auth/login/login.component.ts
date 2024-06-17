@@ -33,13 +33,17 @@ export class LoginComponent extends BaseCreateComponent<any> {
       next: (response: AuthenticatedUser) => {
         this.loading = false;
 
+        // setTimeout(() => {
         if (response.type_user.id == TypeUserEnum.SUPER_ADMIN) {
-          this.router.navigate(['/super-admin']);
+          // this.router.navigate(['/super-admin']);
+          window.location.href = '/dashboard';
         } else if (response.type_user.id == TypeUserEnum.ADMIN_ORGANIZATION) {
-          this.router.navigate(['/dashboard']);
+          // this.router.navigate(['/dashboard'], { replaceUrl: true });
+          window.location.href = '/dashboard';
         }
         this.helper.notification.alertSuccess();
         this.loading = false;
+        // }, 500);
       },
       error: () => {
         this.loading = false;

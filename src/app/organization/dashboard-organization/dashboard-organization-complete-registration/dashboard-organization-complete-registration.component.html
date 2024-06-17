@@ -43,7 +43,7 @@
         <!-- Organization Details -->
         <li class="flex items-center !min-w-[120px]" [ngClass]="{ 'text-blue-600 font-bold': activeSteps.organizationDetailsForm}">
           <!-- Step number -->
-          <span class="me-2" *!ngIf="form.controls['organizationDetailsForm']?.valid"><i class="mdi mdi-numeric-3-circle"></i></span>
+          <span class="me-2" *ngIf="!form.controls['organizationDetailsForm']?.valid"><i class="mdi mdi-numeric-3-circle"></i></span>
 
           <!-- Check mark -->
           <span class="me-2.5" *ngIf="form.controls['organizationDetailsForm']?.valid"><i class="mdi mdi-check-circle"></i></span>
@@ -103,7 +103,7 @@
 
         <app-dashboard-organization-complete-registration-details
                                                                   [loading]="loading"
-                                                                  (previous)="showStep('organizationDetailsForm')"
+                                                                  (previous)="showStep('organizationInfoForm')"
                                                                   (submitted)="submit()">
         </app-dashboard-organization-complete-registration-details>
 
