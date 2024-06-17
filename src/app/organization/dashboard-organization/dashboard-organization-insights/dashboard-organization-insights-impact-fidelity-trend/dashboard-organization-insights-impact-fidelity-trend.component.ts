@@ -46,7 +46,7 @@ export class DashboardOrganizationInsightsImpactFidelityTrendComponent
             organization?.type_organization_id ===
               TypeOrganizationEnum.IMPACT_FUNDER ||
             organization?.type_organization_id ===
-              TypeOrganizationEnum.CORPORATE
+              TypeOrganizationEnum.CORPORATION
           ) {
             this.subscribeToOrganizationData(queryParams1);
           } else if (

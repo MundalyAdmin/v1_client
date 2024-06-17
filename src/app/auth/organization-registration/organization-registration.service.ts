@@ -24,32 +24,35 @@ export class OrganizationRegistrationService {
     this.form$.next(this._form);
   }
 
-  addFormDataField(field: string, value: any) {
-    this._formData.append(field, value);
-    this.formData$.next(this._formData);
-  }
+  // addFormDataField(field: string, value: any) {
+  //   this._formData.append(field, value);
+  //   this.formData$.next(this._formData);
+  // }
 
   constructor() {}
 
-  fillFormData(data: any, prefix: string) {
-    Object.keys(data).forEach((key) => {
-      this._formData.append(prefix + '[' + key + ']', data[key]);
-    });
-  }
+  // fillFormData(data: any, prefix: string) {
+  //   Object.keys(data).forEach((key) => {
+  //     this._formData.append(prefix + '[' + key + ']', data[key]);
+  //   });
+  // }
 
   updateFormSection(
-    section: 'adminInfo' | 'organizationInfo',
+    section:
+      | 'updatePasswordForm'
+      | 'organizationInfoForm'
+      | 'organizationDetailsForm',
     subForm: FormGroup
   ) {
     this._form.controls[section] = subForm;
     this.form$.next(this._form);
   }
 
-  updateFormDataSection(
-    section: 'adminInfo' | 'organizationInfo',
-    subForm: FormData
-  ) {
-    this._formData.append(section, JSON.stringify(subForm));
-    this.formData$.next(this._formData);
-  }
+  // updateFormDataSection(
+  //   section: 'adminInfo' | 'organizationInfo',
+  //   subForm: FormData
+  // ) {
+  //   this._formData.append(section, JSON.stringify(subForm));
+  //   this.formData$.next(this._formData);
+  // }
 }

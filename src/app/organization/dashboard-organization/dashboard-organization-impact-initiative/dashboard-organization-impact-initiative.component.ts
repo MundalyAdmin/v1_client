@@ -25,7 +25,7 @@ export class DashboardOrganizationImpactInitiativeComponent extends BaseComponen
       this.authService.organization?.type_organization_id ===
         TypeOrganizationEnum.IMPACT_FUNDER ||
       this.authService.organization?.type_organization_id ===
-        TypeOrganizationEnum.CORPORATE
+        TypeOrganizationEnum.CORPORATION
     ) {
       await this.router.navigate(['../partners'], { relativeTo: this.route });
     }

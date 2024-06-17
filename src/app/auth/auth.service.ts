@@ -206,6 +206,37 @@ export class AuthService extends BaseService<any> {
   }
   public logout() {
     this.clearLoginInformation();
-    this.router.navigate(['/']);
+    this.router.navigate(['/auth/login']);
+  }
+
+  verifyRegistrationToken(token: string) {
+    return this.factory
+      .get(`auth/verify-registration-token`, { params: { token } })
+      .pipe(
+        tap({
+          next: (response: { data: any }) => {
+            this.storeLoginInformation(response.data);
+          },
+          error: (error: HttpErrorResponse) => this.errorResponseHandler(error),
+        })
+      );
+  }
+
+  completeOrganizationRegistration(data: any) {
+    return this.factory
+      .post(`auth/complete-registration/organization`, data)
+      .pipe(
+        tap({
+          next: (response: { data: any }) => {
+            this.storage.set('organization', response.data);
+            this.storage.set('user', {
+              ...this.user,
+            });
+
+            this.emitData();
+          },
+          error: (error: HttpErrorResponse) => this.errorResponseHandler(error),
+        })
+      );
   }
 }

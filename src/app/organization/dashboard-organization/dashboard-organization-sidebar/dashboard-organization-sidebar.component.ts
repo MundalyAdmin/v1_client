@@ -63,7 +63,7 @@ export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
       this.subscribeToImpactInitiative();
     } else if (
       this.organization?.type_organization_id ===
-        TypeOrganizationEnum.CORPORATE ||
+        TypeOrganizationEnum.CORPORATION ||
       this.organization?.type_organization_id ===
         TypeOrganizationEnum.IMPACT_FUNDER
     ) {

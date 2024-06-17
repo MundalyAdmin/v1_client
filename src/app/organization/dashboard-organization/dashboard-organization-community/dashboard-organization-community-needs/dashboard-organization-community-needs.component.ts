@@ -58,7 +58,7 @@ export class DashboardOrganizationCommunityNeedsComponent
         (currentlyLoggedOrganization) => {
           if (
             currentlyLoggedOrganization?.type_organization_id ===
-              TypeOrganizationEnum.CORPORATE ||
+              TypeOrganizationEnum.CORPORATION ||
             currentlyLoggedOrganization?.type_organization_id ===
               TypeOrganizationEnum.IMPACT_FUNDER
           ) {

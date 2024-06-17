@@ -34,7 +34,8 @@ export class DashboardOrganizationCommunityPerceptionComponent extends BaseSingl
         if (
           organization?.type_organization_id ===
             TypeOrganizationEnum.IMPACT_FUNDER ||
-          organization?.type_organization_id === TypeOrganizationEnum.CORPORATE
+          organization?.type_organization_id ===
+            TypeOrganizationEnum.CORPORATION
         ) {
           this.subscribeToOrganizationData();
         } else if (

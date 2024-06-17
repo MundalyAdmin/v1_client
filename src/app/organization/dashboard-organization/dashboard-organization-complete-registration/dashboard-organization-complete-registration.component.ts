@@ -1,9 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseCreateComponent } from '../../../shared/base-component';
+import {
+  AbstractControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { AuthService } from '../../../auth/auth.service';
-import { Validators } from '@angular/forms';
-import { OrganizationService } from '../../organization.service';
-import { Organization } from '../../organization.model';
+import { OrganizationRegistrationService } from '../../../auth/organization-registration/organization-registration.service';
+import { BaseCreateComponent } from '../../../shared/base-component';
+import { SectorOrganizationService } from '../../sector-organization/sector-organization.service';
+import { TypeOrganizationService } from '../../type-organization/type-organization.service';
+import { Storage } from '../../../shared/helpers/storage/storage';
+import { CountryService } from '../../../country/country.service';
 
 @Component({
   selector: 'app-dashboard-organization-complete-registration',
@@ -14,82 +23,130 @@ export class DashboardOrganizationCompleteRegistrationComponent
   extends BaseCreateComponent<any>
   implements OnInit
 {
-  // Allow us to display the logo when the user uploads it
-  logoLiveUrl: string | null = null;
+  updatePasswordForm?: FormGroup;
+  organizationInfoForm?: FormGroup;
+  organizationDetailsForm?: FormGroup;
 
-  // Allow us to display the cover when the user uploads it
-  coverLiveUrl: string | null = null;
+  dependanciesLoading = {
+    country: false,
+    sectorOrganization: false,
+  };
 
-  organization: Organization | null = null;
+  dependancies: any = {
+    country: [],
+    sectorOrganization: [],
+  };
+
+  activeSteps = {
+    updatePasswordForm: true,
+    organizationInfoForm: false,
+    organizationDetailsForm: false,
+  };
 
   constructor(
+    public typeOrganizationService: TypeOrganizationService,
+    public sectorOrganizationService: SectorOrganizationService,
+    public storage: Storage,
     public authService: AuthService,
-    public organizationService: OrganizationService
+    public organizationRegistrationService: OrganizationRegistrationService,
+    public countryService: CountryService
   ) {
     super();
   }
 
-  override ngOnInit(): void {
-    this.subscriptions['authenticatedOrganization'] =
+  override ngOnInit() {
+    this.initform();
+
+    this.subscriptions['currentLoggedOrganizatio'] =
       this.authService.organization$.subscribe((organization) => {
-        this.organization = organization;
-        this.initForm(organization);
+        if (organization)
+          this.form.patchValue({ organization_id: organization.id });
       });
   }
 
-  deleteImage(name: string) {
-    if (name === 'file_logo') {
-      this.logoLiveUrl = null;
-      this.formValuePatcher('file_logo', null);
-    } else if (name === 'file_cover') {
-      this.coverLiveUrl = null;
-      this.formValuePatcher('file_cover', null);
-    }
-
-    this.formData.delete(name);
-  }
-
-  initForm(organization: Organization | null) {
-    this.form = this.fb.group({
-      organizationId: [organization?.id, Validators.required],
-      file_logo: [organization?.logo, Validators.required],
-      file_cover: [organization?.cover, Validators.required],
-    });
-
-    this.logoLiveUrl = organization?.logo || null;
-    this.coverLiveUrl = organization?.cover || null;
-  }
-
-  override onFileChanged(event: any, name?: string) {
-    let image = event.target.files[0];
-    let reader = new FileReader();
-    reader.readAsDataURL(image);
-
-    reader.onload = () => {
-      if (name === 'file_logo') {
-        this.logoLiveUrl = reader.result as string;
-        this.formValuePatcher('file_logo', this.logoLiveUrl);
-        this.formData.set('file_logo', image);
-      } else if (name === 'file_cover') {
-        this.coverLiveUrl = reader.result as string;
-        this.formValuePatcher('file_cover', this.coverLiveUrl);
-        this.formData.set('file_cover', image);
-      }
+  closeAllSteps() {
+    this.activeSteps = {
+      updatePasswordForm: false,
+      organizationInfoForm: false,
+      organizationDetailsForm: false,
     };
   }
+
+  showStep(
+    stepName:
+      | 'updatePasswordForm'
+      | 'organizationInfoForm'
+      | 'organizationDetailsForm'
+  ) {
+    this.closeAllSteps();
+    this.activeSteps[stepName] = true;
+  }
+
+  initform() {
+    this.form = this.fb.group({
+      updatePasswordForm: this.fb.group(
+        {
+          password: [null, [Validators.required, Validators.minLength(6)]],
+          password_confirmation: [null, Validators.required],
+        },
+        { validators: this.passwordMatchingValidatior }
+      ),
+      organizationDetailsForm: this.fb.group({
+        website: [null, Validators.required],
+        country: [null, Validators.required],
+      }),
+      organizationInfoForm: this.fb.group({
+        about: [null, Validators.required],
+        sectors_organization: [null, Validators.required],
+      }),
+      organization_id: [null, Validators.required],
+    });
+
+    this.organizationRegistrationService.form = this.form;
+  }
+
+  passwordMatchingValidatior: ValidatorFn = (
+    control: AbstractControl,
+    passwordFieldName = 'password',
+    passwordConfirmationFieldName = 'password_confirmation'
+  ): ValidationErrors | null => {
+    const password = control.get(passwordFieldName);
+    const confirmPassword = control.get(passwordConfirmationFieldName);
+
+    return password?.value === confirmPassword?.value
+      ? null
+      : { notmatched: true };
+  };
 
   submit() {
     if (this.form.valid) {
       this.loading = true;
-      this.formData.set('organizationId', this.formValue('organizationId'));
-      this.organizationService.setupLogoAndCover(this.formData).subscribe({
+
+      const data = {
+        ...this.form.controls['updatePasswordForm'].value,
+        ...this.form.controls['organizationInfoForm'].value,
+        ...this.form.controls['organizationDetailsForm'].value,
+        country:
+          this.form.controls['organizationDetailsForm']?.value['country'].name,
+        sectors_organization: this.helper.arrayObject.extractField(
+          this.form.controls['organizationInfoForm'].value[
+            'sectors_organization'
+          ],
+          'id'
+        ),
+        organization_id: this.form.controls['organization_id'].value,
+      };
+
+      this.authService.completeOrganizationRegistration(data).subscribe({
         next: () => {
-          this.helper.notification.alertSuccess();
-          this.formData = new FormData();
+          this.loading = false;
+          this.helper.notification.toastSuccess(
+            'Organization Information updated successfully'
+          );
 
           this.created.emit();
         },
-        complete: () => {
+        error: () => {
           this.loading = false;
         },
       });

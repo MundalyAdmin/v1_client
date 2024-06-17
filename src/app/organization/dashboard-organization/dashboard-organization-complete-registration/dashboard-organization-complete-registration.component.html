@@ -1,107 +1,124 @@
-<div class="space-y-4 md:space-y-6  p-10 rounded-lg border">
-  <!-- Profile picture and cover -->
-  <form class="w-full  " [formGroup]="form" (submit)="submit()">
+<section class=" dark:bg-gray-900">
 
-    <div class="relative mb-20">
-      <!-- Cover image -->
-      <div class="h-[100px] rounded-xl overflow-hidden border-2 group cover-image relative bg-slate-100">
-
-        <!-- cover image display -->
-        <img [src]="coverLiveUrl" alt="" *ngIf="coverLiveUrl"
-             class="w-full  peer object-cover h-full">
-
-        <!-- Overlay menu -->
-        <span
-              class=" flex absolute pr-3 pb-3 top-0 left-0 pt-2 justify-end items-end h-full w-full " *ngIf="!coverLiveUrl">
+  <div class="flex flex-col items-center min-h-[500px] mx-auto ">
 
 
-          <span class=" flex items-center text-sm justify-center cursor-pointer p-2 h-7 w-auto bg-secondary border-primary rounded-full"
-                (click)="coverPage.click()">
-            <i class="mdi mdi-camera  text-primary"></i>
 
-            <span class="ms-3">Edit your cover image</span>
+    <form class=" w-full  " [formGroup]="form" (submit)="submit()">
+
+      <!-- Stepper -->
+      <ol class="flex items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
+        <!-- Admin info -->
+        <li
+            [ngClass]="{'text-blue-600 dark:text-blue-500 after:border-blue-500': true}"
+            class="flex md:w-full items-center  sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-4 xl:after:mx-7 dark:after:border-gray-700">
+          <span class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
+            <!-- Check mark -->
+            <span class="me-2.5" *ngIf="form.controls['updatePasswordForm'].valid"><i
+                 class="mdi mdi-check-circle"></i></span>
+
+            <!-- Step number -->
+            <span class="me-2" *ngIf="! activeSteps.organizationInfoForm || activeSteps.organizationDetailsForm">
+              <i *ngIf="!form.controls['updatePasswordForm'].valid"
+                 class="mdi mdi-numeric-1-circle"></i></span>
+            Password <span class="hidden sm:inline-flex sm:ms-2">Setup</span>
           </span>
-        </span>
+        </li>
 
-        <span
-              class=" group-hover:flex hidden absolute pr-3 pb-3 top-0 left-0 pt-2 justify-end items-end h-full w-full bg-slate-700/50 gap-4"
-              *ngIf="coverLiveUrl">
+        <!-- Organization info -->
+        <li
+            [ngClass]="{'text-blue-600 dark:text-blue-500 after:border-blue-500':  activeSteps.organizationInfoForm || activeSteps.organizationDetailsForm}"
+            class="flex md:w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-4 xl:after:mx-7 dark:after:border-gray-700">
+          <span class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
+            <!-- Check mark -->
+            <span class="me-2.5" *ngIf="form.controls['organizationInfoForm']?.valid"><i class="mdi mdi-check-circle"></i></span>
 
-          <span class=" flex items-center justify-center cursor-pointer p-2 h-7 w-7 bg-secondary rounded-full"
-                (click)="deleteImage('file_cover')">
-            <i class="mdi mdi-delete  text-primary"></i>
+            <!-- Step number -->
+            <span class="me-2" *ngIf="form.controls['organizationInfoForm']?.invalid"><i class="mdi mdi-numeric-2-circle"></i></span>
+
+            Organization <span class="hidden sm:inline-flex sm:ms-2">Info</span>
           </span>
+        </li>
+
+        <!-- Organization Details -->
+        <li class="flex items-center !min-w-[120px]" [ngClass]="{ 'text-blue-600 font-bold': activeSteps.organizationDetailsForm}">
+          <!-- Step number -->
+          <span class="me-2" *!ngIf="form.controls['organizationDetailsForm']?.valid"><i class="mdi mdi-numeric-3-circle"></i></span>
+
+          <!-- Check mark -->
+          <span class="me-2.5" *ngIf="form.controls['organizationDetailsForm']?.valid"><i class="mdi mdi-check-circle"></i></span>
+          More details
+        </li>
+      </ol>
+
+      <!-- admin information -->
+      <ng-container *ngIf="activeSteps.updatePasswordForm">
+
+        <!-- Title -->
+        <div class="!my-7">
+          <h1 class=" font-bold  leading-tight tracking-tight text-gray-900 mb-2 text-xl dark:text-white">
+            Secure your account for future logins
+          </h1>
+          <h4 class=" text-sm leading-tight  tracking-tight text-gray-900 dark:text-white">
+            Let's kick off by securing your account for smoother, safer logins in the future. Remember, keep your password private and never share it
+            with anyone.
+          </h4>
+        </div>
 
 
-        </span>
+        <app-dashboard-organization-complete-registration-password
+                                                                   (submitted)="showStep('organizationInfoForm')"></app-dashboard-organization-complete-registration-password>
+      </ng-container>
+
+      <!-- organization information -->
+      <ng-container *ngIf="activeSteps.organizationInfoForm">
+        <div class="!my-7">
+          <h1 class="font-bold leading-tight tracking-tight text-gray-900 mb-2 text-xl dark:text-white">
+            Tell Us About Your Organization
+          </h1>
+          <h4 class="text-sm leading-tight tracking-tight text-gray-900 dark:text-white">
+            Help us understand your organization better by providing a brief description and selecting the industry you belong to. This information
+            will
+            enable us to tailor our services to meet your needs more effectively.
+          </h4>
+        </div>
+
+        <app-dashboard-organization-complete-registration-info (previous)="showStep('updatePasswordForm')"
+                                                               (submitted)="showStep('organizationDetailsForm')"></app-dashboard-organization-complete-registration-info>
+      </ng-container>
+
+
+      <!--Organization Details -->
+      <div class="relative min-h-[400px]" *ngIf="activeSteps.organizationDetailsForm">
+        <div class="!my-7">
+          <h1 class="font-bold leading-tight tracking-tight text-gray-900 mb-2 text-xl dark:text-white">
+            Share Your Organization's Details
+          </h1>
+          <h4 class="text-sm leading-tight tracking-tight text-gray-900 dark:text-white">
+            Please provide your organization's website and the country you operate in. This information helps us to better serve and support your
+            specific
+            needs.
+          </h4>
+        </div>
+
+        <app-dashboard-organization-complete-registration-details
+                                                                  [loading]="loading"
+                                                                  (previous)="showStep('organizationDetailsForm')"
+                                                                  (submitted)="submit()">
+        </app-dashboard-organization-complete-registration-details>
 
 
 
 
-        <!-- File Input -->
-        <input type="file" class="hidden" accept="image/*" (change)="onFileChanged($event, 'file_cover')" #coverPage>
+
+        <!-- <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                                    Don’t have an account yet? <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
+                                  </p> -->
       </div>
 
-      <!-- Profile image -->
-      <div
-           class="rounded-full bg-slate-100  cursor-pointer  overflow-hidden group  border-4 h-[120px] w-[120px] left-[40%] absolute bottom-[-55px]"
-           [ngClass]="{ 'border-white': !logoLiveUrl, 'border-slate-300': logoLiveUrl }">
-        <!-- cover image display -->
-        <img [src]="logoLiveUrl" alt="" *ngIf="logoLiveUrl"
-             class="w-full  peer object-cover h-full">
 
-        <!-- Camera icon -->
-        <span
-              class=" flex    py-3 justify-center items-center h-full w-full " *ngIf="!logoLiveUrl">
-
-          <span class=" flex flex-col items-center justify-center cursor-pointer p-2  "
-                (click)="organizationLogo.click()">
-            <i class="mdi mdi-camera  text-primary"></i>
-            <span class="text-xs">Edit your logo</span>
-          </span>
-        </span>
-
-        <!-- Overlay menu -->
-        <span
-              class=" group-hover:flex absolute top-0 left-0 hidden py-3 justify-center items-center h-full w-full bg-slate-700/50 gap-4"
-              *ngIf="logoLiveUrl">
-
-          <span class=" flex items-center justify-center cursor-pointer p-2 h-7 w-7 bg-secondary rounded-full"
-                (click)="deleteImage('file_logo')">
-            <i class="mdi mdi-delete  text-primary"></i>
-          </span>
+    </form>
+  </div>
 
 
-
-        </span>
-
-
-
-
-        <!-- File Input -->
-        <input type="file" class="hidden" accept="image/*" (change)="onFileChanged($event, 'file_logo')" #organizationLogo>
-      </div>
-    </div>
-
-
-    <!-- Organization's name -->
-    <p class="text-xl font-bold text-center">
-      {{ organization?.name }}
-    </p>
-
-
-    <div class="flex mt-5 justify-end gap-4">
-
-      <!-- Next -->
-      <button type="submit"
-              [disabled]=" form!.invalid || loading"
-              [ngClass]="{ 'cursor-not-allowed bg-slate-400': form!.invalid }"
-              class=" text-primary border-primary border bg-secondary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-        Submit
-        <app-loading *ngIf="loading"></app-loading>
-      </button>
-    </div>
-  </form>
-
-
-</div>
+</section>

@@ -149,10 +149,10 @@
 
 
       <!-- For Corporate -->
-      <li class="me-2" *ngIf="CategoryOrganizationEnum.CORPORATE">
+      <li class="me-2" *ngIf="CategoryOrganizationEnum.CORPORATION">
         <!-- For corporate -->
         <a [routerLink]="['partners']"
-           *ngIf="organization.type_organization_id === TypeOrganizationEnum.CORPORATE"
+           *ngIf="organization.type_organization_id === TypeOrganizationEnum.CORPORATION"
            [routerLinkActiveOptions]="{exact: true}"
            routerLinkActive="text-primary border-primary font-semibold"
            class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-lg">

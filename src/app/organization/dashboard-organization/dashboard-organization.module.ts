@@ -60,6 +60,15 @@ import { DashboardOrganizationImpactInitiativeComponent } from './dashboard-orga
 import { DashboardOrganizationImpactInitativeListComponent } from './dashboard-organization-impact-initiative/dashboard-organization-impact-initative-list/dashboard-organization-impact-initative-list.component';
 import { DashboardOrganizationImpactInitiativeDetailsComponent } from './dashboard-organization-impact-initiative-details/dashboard-organization-impact-initiative-details.component';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { PasswordModule } from 'primeng/password';
+import { DashboardOrganizationCompleteRegistrationPasswordComponent } from './dashboard-organization-complete-registration/dashboard-organization-complete-registration-password/dashboard-organization-complete-registration-password.component';
+import { DashboardOrganizationCompleteRegistrationInfoComponent } from './dashboard-organization-complete-registration/dashboard-organization-complete-registration-info/dashboard-organization-complete-registration-info.component';
+import { DashboardOrganizationCompleteRegistrationDetailsComponent } from './dashboard-organization-complete-registration/dashboard-organization-complete-registration-details/dashboard-organization-complete-registration-details.component';
 
 const routes: Routes = [
   {
@@ -412,6 +421,9 @@ const routes: Routes = [
     DashboardOrganizationImpactInitiativeComponent,
     DashboardOrganizationImpactInitativeListComponent,
     DashboardOrganizationImpactInitiativeDetailsComponent,
+    DashboardOrganizationCompleteRegistrationPasswordComponent,
+    DashboardOrganizationCompleteRegistrationInfoComponent,
+    DashboardOrganizationCompleteRegistrationDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -426,6 +438,11 @@ const routes: Routes = [
     SurveyFormModule,
     ChartModule,
     CalendarModule,
+    MultiSelectModule,
+    DropdownModule,
+    InputTextareaModule,
+    ScrollPanelModule,
+    PasswordModule,
   ],
 })
 export class DashboardOrganizationModule {}

@@ -1,24 +1,25 @@
-import { SharedModule } from './../shared/shared.module';
-import { Routes, RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './login/login.component';
-import { AuthService } from './auth.service';
-import { LoginRedirectionComponent } from './login-redirection/login-redirection.component';
-import { OrganizationRegistrationComponent } from './organization-registration/organization-registration.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { CountdownModule } from 'ngx-countdown';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input-gg';
+import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { FileUploadModule } from 'primeng/fileupload';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import { CalendarModule } from 'primeng/calendar';
 import { MultiSelectModule } from 'primeng/multiselect';
-import { OrganizationRegistrationProcessingComponent } from './organization-registration/organization-registration-processing/organization-registration-processing.component';
-import { OrganizationRegistrationAdminInfoComponent } from './organization-registration/organization-registration-admin-info/organization-registration-admin-info.component';
-import { OrganizationRegistrationOrganizationInfoComponent } from './organization-registration/organization-registration-organization-info/organization-registration-organization-info.component';
+import { PasswordModule } from 'primeng/password';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { SharedPublicModule } from '../public/shared-public/shared-public.module';
-import { PasswordModule } from 'primeng/password';
+import { SharedModule } from './../shared/shared.module';
 import { AccountVerificationComponent } from './account-verification/account-verification.component';
-import { CountdownModule } from 'ngx-countdown';
+import { AuthService } from './auth.service';
+import { LoginRedirectionComponent } from './login-redirection/login-redirection.component';
+import { LoginComponent } from './login/login.component';
+import { OrganizationRegistrationProcessingComponent } from './organization-registration/organization-registration-processing/organization-registration-processing.component';
+import { OrganizationRegistrationComponent } from './organization-registration/organization-registration.component';
+import { RegistrationSuccessComponent } from './registration-success/registration-success.component';
+import { VerifyRegistrationComponent } from './verify-registration/verify-registration.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,14 @@ const routes: Routes = [
     component: LoginRedirectionComponent,
   },
   {
+    path: 'registration-success',
+    component: RegistrationSuccessComponent,
+  },
+  {
+    path: 'verify',
+    component: VerifyRegistrationComponent,
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',
@@ -54,9 +63,10 @@ const routes: Routes = [
     LoginRedirectionComponent,
     OrganizationRegistrationComponent,
     OrganizationRegistrationProcessingComponent,
-    OrganizationRegistrationAdminInfoComponent,
-    OrganizationRegistrationOrganizationInfoComponent,
+
     AccountVerificationComponent,
+    RegistrationSuccessComponent,
+    VerifyRegistrationComponent,
   ],
   imports: [
     CommonModule,
@@ -71,6 +81,7 @@ const routes: Routes = [
     SharedPublicModule,
     PasswordModule,
     CountdownModule,
+    NgxIntlTelInputModule,
   ],
   providers: [AuthService],
 })

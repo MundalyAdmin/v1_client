@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { Flowbite } from '../../shared/decorators/flowbite.decorator';
 import { TypeOrganization } from '../type-organization/type-organization.model';
@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../user/user.model';
 import { Organization } from '../organization.model';
 import { Storage } from './../../shared/helpers/storage/storage';
+import { ProfileStatusOrganizationEnum } from '../profile-status-organization/profile-status-organization.enum';
 
 @Component({
   selector: 'app-dashboard-organization',
@@ -13,7 +14,7 @@ import { Storage } from './../../shared/helpers/storage/storage';
   styleUrls: ['./dashboard-organization.component.scss'],
 })
 @Flowbite()
-export class DashboardOrganizationComponent implements OnInit {
+export class DashboardOrganizationComponent implements OnInit, AfterViewInit {
   user: User | null = null;
   organization: Organization | null = null;
   typeOrganizationId: number | null = null;
@@ -29,26 +30,18 @@ export class DashboardOrganizationComponent implements OnInit {
     this.user = this.authService.user;
     this.organization = this.authService.organization;
     this.typeOrganizationId = this.organization?.type_organization_id || null;
-
-    // this.menuRedirection();
   }
 
-  /**
-   * Menu redirection based on the organization type.
-   */
-  menuRedirection() {
-    const currentRoute = this.router.url.split('/').pop();
-    if (currentRoute === 'dashboard') {
-      const redirectRoute =
-        this.typeOrganizationId === 1 ? 'community' : 'report-outcomes';
-      this.router.navigate([redirectRoute], { relativeTo: this.route });
+  ngAfterViewInit(): void {
+    if (!this.isRegistrationComplete()) {
+      this.showSetupLogoAndCoverModal = true;
     }
   }
 
   isRegistrationComplete() {
     return (
-      this.authService.organization?.logo &&
-      this.authService.organization?.cover
+      this.authService.organization?.profile_status_organization_id ===
+      ProfileStatusOrganizationEnum.CLAIMED
     );
   }
 }
