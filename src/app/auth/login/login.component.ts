@@ -36,7 +36,7 @@ export class LoginComponent extends BaseCreateComponent<any> {
         // setTimeout(() => {
         if (response.type_user.id == TypeUserEnum.SUPER_ADMIN) {
           // this.router.navigate(['/super-admin']);
-          window.location.href = '/dashboard';
+          window.location.href = '/super-admin';
         } else if (response.type_user.id == TypeUserEnum.ADMIN_ORGANIZATION) {
           // this.router.navigate(['/dashboard'], { replaceUrl: true });
           window.location.href = '/dashboard';
