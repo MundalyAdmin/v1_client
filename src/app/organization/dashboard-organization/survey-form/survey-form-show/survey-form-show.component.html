@@ -6,118 +6,30 @@
 
   </div>
 
-  <div class="flex justify-self-end">
-    <!-- Language dropdown -->
-    <div class="me-5">
-      <div id="languageDropdown" data-dropdown-toggle="language"
-           class="text-primary text-lg  font-medium  ">
-        Language<span><i class="mdi mdi-menu-down"></i></span>
+  <div class="flex justify-self-end gap-4">
+
+
+    <button (click)="invitation.toggle($event)" class="text-primary text-2xl  font-bold block">
+      <span><i class="mdi mdi-email"></i></span>
+    </button>
+    <p-overlayPanel #invitation>
+      <div class="flex flex-column gap-3 w-25rem">
+        Empty invitations
       </div>
-
-      <!-- Dropdown menu -->
-      <div id="language" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-          <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-          </li>
-          <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-          </li>
-          <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-          </li>
-          <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Location dropdown -->
-    <div class="me-5">
-      <div id="languageDropdown" data-dropdown-toggle="language"
-           class="text-primary text-lg  font-medium  ">
-        All locations<span><i class="mdi mdi-menu-down"></i></span>
-      </div>
-
-      <!-- Dropdown menu -->
-      <div id="language" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-          <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-          </li>
-          <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-          </li>
-          <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-          </li>
-          <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
-          </li>
-        </ul>
-      </div>
-    </div>
+    </p-overlayPanel>
 
 
-    <!-- Messages -->
-    <div class="me-5 relative">
-      <div id="messageDropdown" data-dropdown-toggle="message"
-           class="text-primary text-2xl  font-bold  ">
-        <span><i class="mdi mdi-email"></i></span>
-      </div>
-
-      <span
-            class="absolute top-0 end-[-5px] flex items-center justify-center bg-secondary text-white text-[10px] font-bold rounded-full w-3 h-3 after:content-[''] after:absolute after:h-2 after:w-2 after:bg-secondary after:top-0 after:end-0 after:rounded-full after:animate-ping"></span>
-
-      <!-- Dropdown menu -->
-      <div id="message" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-          <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-          </li>
-          <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-          </li>
-          <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-          </li>
-          <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
-          </li>
-        </ul>
-      </div>
-    </div>
 
 
     <!-- Notifications -->
-    <div class="relative">
-      <div id="notificationDropdown" data-dropdown-toggle="notification"
-           class="text-primary text-2xl  font-bold  ">
-        <span><i class="mdi mdi-bell"></i></span>
+    <button (click)="notification.toggle($event)" class="text-primary text-2xl  font-bold block">
+      <span><i class="mdi mdi-bell"></i></span>
+    </button>
+    <p-overlayPanel #notification>
+      <div class="flex flex-column gap-3 w-25rem">
+        Empty notifications
       </div>
-
-      <span
-            class="absolute top-0 end-[-5px] flex items-center justify-center bg-secondary text-white text-[10px] font-bold rounded-full w-3 h-3 after:content-[''] after:absolute after:h-2 after:w-2 after:bg-secondary after:top-0 after:end-0 after:rounded-full after:animate-ping"></span>
-
-      <!-- Dropdown menu -->
-      <div id="notification" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-          <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-          </li>
-          <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-          </li>
-          <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-          </li>
-          <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
-          </li>
-        </ul>
-      </div>
-    </div>
+    </p-overlayPanel>
   </div>
 </div>
 
