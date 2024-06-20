@@ -71,7 +71,6 @@ export class AuthService extends BaseService<any> {
   set organization(organization: Organization | null) {
     this._organization = organization;
     this.organization$.next(this._organization);
-    console.log('organization set', organization);
   }
 
   set user(user: User | null) {

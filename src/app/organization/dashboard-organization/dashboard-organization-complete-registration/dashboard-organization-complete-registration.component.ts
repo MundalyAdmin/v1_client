@@ -119,8 +119,6 @@ export class DashboardOrganizationCompleteRegistrationComponent
   };
 
   submit() {
-    console.log('hitted');
-    console.log(this.form.value);
     if (this.form.valid) {
       this.loading = true;
 
