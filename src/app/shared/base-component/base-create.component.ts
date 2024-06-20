@@ -102,10 +102,6 @@ export class BaseCreateComponent<T>
   logInvalidFields(form: FormGroup) {
     for (const controlName in form.controls) {
       const control = form.get(controlName);
-
-      if (control?.invalid) {
-        console.log(`Invalid field: ${controlName}`);
-      }
     }
   }
 
@@ -244,20 +240,23 @@ export class BaseCreateComponent<T>
     return control?.touched && control.valid;
   }
 
-  fillFormData(object: any) {
+  fillFormData(object: any, prefix?: string) {
     Object.keys(object).forEach((key) => {
-      this.formData.append(key, object[key]);
+      this.formData.append(
+        prefix ? prefix + '[' + key + ']' : key,
+        object[key]
+      );
     });
   }
 
   // TODO: Gérer la validation des images
   onFileChanged(event: any, name: string = 'image') {
-    let fichier: File = event.target.files[0];
-    // if (fichier.type !== 'application/pdf') {
+    let file: File = event.target.files[0];
+    // if (file.type !== 'application/pdf') {
     //   return this.helper.alertDanger('Format Invalide');
     // }
 
-    this.formData.append(name, fichier);
+    this.formData.append(name, file);
   }
 
   formInvalidError() {

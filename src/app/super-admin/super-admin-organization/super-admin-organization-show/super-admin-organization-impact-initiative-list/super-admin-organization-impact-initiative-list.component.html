@@ -1,0 +1,70 @@
+<!-- component -->
+<div class="p-10 min-h-[500px]">
+  <div class="flex justify-end">
+
+    <button data-modal-target="survey-create" data-modal-toggle="survey-create" type="button"
+            (click)="showImpactInitiativeCreateModal = true"
+            class="focus:outline-none border border-primary text-primary bg-secondary hover:bg-secondary-dark focus:ring-4 focus:ring-purple-300  rounded-lg text-sm px-5 py-2.5 font-bold mb-2 ">
+      <span><i class="mdi mdi-plus"></i></span> Add a new initiative
+    </button>
+  </div>
+
+  <div class="grid grid-cols-3 text-sm gap-7" *ngIf="!loading && impactInitiativeService.data.length">
+
+
+    <a [routerLink]="[impactInitiative.id, 'surveys']"
+       class="w-full  bg-white hover:bg-slate-50 hover:border-primary border rounded-lg shadow-sm flex flex-col space-y-2 p-3"
+       *ngFor="let impactInitiative of impactInitiativeService.data">
+
+
+      <!-- Title -->
+      <h3 class="font-black text-xl text-primary">{{ impactInitiative.name }}</h3>
+
+      <!-- Short description -->
+      <read-more [text]="impactInitiative.description || '<i>No description</i>'" [customClass]="'text-gray-500 text-base'"></read-more>
+
+      <!-- MOre information -->
+      <div class="flex justify-between item-center">
+        <!-- Count -->
+        <p class="text-gray-500 font-medium hidden md:block">
+          <i class="mdi mdi-map-marker me-1"></i> {{ impactInitiative.country }}, {{ impactInitiative.city }}
+
+        </p>
+
+        <!-- Count
+        <div class="flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500" viewBox="0 0 20 20"
+               fill="currentColor">
+            <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+          </svg>
+          <p class="text-gray-600 font-bold text-sm ml-1">
+            4.96
+            <span class="text-gray-500 font-normal">(76 reviews)</span>
+          </p>
+        </div> -->
+
+        <!-- Last submission -->
+        <p class="text-gray-500 font-medium hidden md:block">
+          <i class="mdi mdi-clock-edit me-1"></i> {{ impactInitiative.created_at | date }}
+        </p>
+      </div>
+      <!-- <p class="text-xl font-black text-gray-800">
+        $110
+        <span class="font-normal text-gray-600 text-base">/night</span>
+      </p> -->
+    </a>
+
+  </div>
+
+  <app-missing-data *ngIf="!loading && !impactInitiativeService.data.length" [message]="'No Impact Initative yet'"></app-missing-data>
+  <app-page-loading *ngIf="loading"></app-page-loading>
+</div>
+
+
+<p-dialog header="Create an impact initiative" [(visible)]="showImpactInitiativeCreateModal" [modal]="true" [style]="{ width: '40vw' }"
+          [draggable]="false"
+          [resizable]="false">
+  <app-super-admin-organization-impact-initiative-create
+                                                         (created)="showImpactInitiativeCreateModal = false"></app-super-admin-organization-impact-initiative-create>
+</p-dialog>

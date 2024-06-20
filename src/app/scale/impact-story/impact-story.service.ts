@@ -6,17 +6,26 @@ import { tap, map } from 'rxjs/operators';
 import { ApiResponse } from '../../shared/models/ApiResponse';
 import { ImpactStoryRatingBreakdown } from './impact-story-rating-breakdown.model';
 import { ReplaySubject } from 'rxjs';
+import { NetPromoterScore } from './net-promoter-score.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ImpactStoryService extends BaseService<ImpactStory> {
   private _ratingBreakdown: null | ImpactStoryRatingBreakdown = null;
+  private _netPromoterScore: null | NetPromoterScore = null;
+
   public ratingBreakdown$ =
     new ReplaySubject<ImpactStoryRatingBreakdown | null>(1);
 
+  public netPromoterScore$ = new ReplaySubject<NetPromoterScore | null>(1);
+
   get ratingBreakdown(): ImpactStoryRatingBreakdown | null {
     return this._ratingBreakdown;
+  }
+
+  get netPromoterScore(): NetPromoterScore | null {
+    return this._netPromoterScore;
   }
 
   set ratingBreakdown(ratingBreakdown: ImpactStoryRatingBreakdown | null) {
@@ -73,6 +82,37 @@ export class ImpactStoryService extends BaseService<ImpactStory> {
         map(
           (response: ApiResponse<ImpactStory>) => response.data as ImpactStory[]
         )
+      );
+  }
+
+  getNetPromoterScoreByOrganization(organizationId: number, options?: any) {
+    return this.factory
+      .get(`${this.endPoint}/organizations/${organizationId}/nps`, {
+        ...options,
+      })
+      .pipe(
+        tap((response: ApiResponse<NetPromoterScore>) => {
+          this._netPromoterScore = response.data as NetPromoterScore;
+          this.netPromoterScore$.next(this._netPromoterScore);
+        }),
+        map((response) => response.data as NetPromoterScore)
+      );
+  }
+
+  getNetPromoterScoreByImpactInitiative(
+    impactInitiativeId: number,
+    options?: any
+  ) {
+    return this.factory
+      .get(`${this.endPoint}/impact-initiatives/${impactInitiativeId}/nps`, {
+        ...options,
+      })
+      .pipe(
+        tap((response: ApiResponse<NetPromoterScore>) => {
+          this._netPromoterScore = response.data as NetPromoterScore;
+          this.netPromoterScore$.next(this._netPromoterScore);
+        }),
+        map((response) => response.data as NetPromoterScore)
       );
   }
 

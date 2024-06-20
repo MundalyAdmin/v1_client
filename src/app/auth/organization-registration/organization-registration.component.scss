@@ -1,1 +1,9 @@
+:host ::ng-deep {
+  .dropdown-menu.show {
+    display: block !important;
+  }
 
+  .iti {
+    width: 100% !important;
+  }
+}

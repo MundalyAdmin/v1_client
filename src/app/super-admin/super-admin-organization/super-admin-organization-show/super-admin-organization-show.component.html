@@ -1,148 +1,102 @@
-<section *ngIf="single">
-  <!-- Title -->
-  <div class="text-primary md:text-start text-center text-3xl font-bold  mb-4"> Organizations </div>
-  <div class="layout-specing">
-    <!-- Breadcrumbs -->
-    <div class="md:flex justify-between items-center">
-      <ul class="tracking-[0.5px] inline-block sm:mt-0 mt-3">
-        <li class="inline-block capitalize text-primary font-bold duration-500 dark:text-white/70 hover:text-secondary dark:hover:text-white">
-          <a [routerLink]="['/super-admin']">Admin</a>
-        </li>
-        <li class="inline-block text-base text-primary dark:text-white/70 mx-0.5 ltr:rotate-0 rtl:rotate-180"><i class="uil uil-angle-right-b"></i>
-        </li>
-        <li class="inline-block capitalize  font-bold text-primary-dark dark:text-white" aria-current="page"><a
-             [routerLink]="['/super-admin/organizations']">Organization</a></li>
-        <li class="inline-block text-base text-primary dark:text-white/70 mx-0.5 ltr:rotate-0 rtl:rotate-180"><i class="uil uil-angle-right-b"></i>
-        </li>
-        <li class="inline-block capitalize  font-bold text-secondary-dark dark:text-white" aria-current="page">{{ single.name }}</li>
-      </ul>
+<section *ngIf="single" class="bg-slate-50 pb-10">
 
-      <div>
+  <div class="grid grid-col-1 bg-white border  rounded-xl overflow-hidden ">
+    <!-- Video background -->
+    <div class="md:h-[220px] h-[160px] w-full relative">
+      <img [src]="single.cover" *ngIf="single.cover" class="w-full h-full object-cover object-center" alt="Video background">
+      <img src="https://res.cloudinary.com/mundaly/image/upload/v1701871815/organization/bg-placeholder.jpg" *ngIf="!single.cover"
+           class="w-full h-full object-cover object-center" alt="Video background">
 
-        <div class="flex justify-center">
-          <button class="me-6  " data-toggle="organization-edit" data-modal-toggle="organization-edit">Edit <i
-               class="mdi mdi-pencil-box-outline text-xl text-primary "></i></button>
-
-          <!-- Delete button -->
-          <button (click)="delete()" class="">Delete <i class="me-1 mdi mdi-delete-outline text-xl text-red-800"></i></button>
-        </div>
-      </div>
+      <!-- <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <span><i class="mdi mdi-play-circle text-4xl"></i></span>
+            </div> -->
     </div>
 
-    <div class="grid md:grid-cols-12 gap-4 grid-cols-1 pt-6">
-      <!-- Profile pic and menu -->
-      <div class="xl:col-span-4 lg:col-span-4 md:col-span-4 ">
-        <div class="p-6 relative rounded-md shadow dark:shadow-gray-700 bg-white dark:bg-slate-900">
-          <!-- Profile Image and Name-Country -->
-          <div class="profile-pic text-center mb-5">
-            <div class="relative h-60 w-60 mx-auto">
-              <!-- Logo -->
-              <img [src]="single.logo" *ngIf="single.logo"
-                   class="rounded-full w-full h-full object-cover shadow dark:shadow-gray-700 ring-4 ring-slate-100 dark:ring-slate-800"
-                   id="profile-image" alt="">
+    <!-- Organization information -->
+    <div class="flex flex-col md:flex-row md:gap-10 gap-2 px-8 pt-4 pb-8 relative">
+      <div class="relative flex justify-center md:flex-none">
+        <div
+             class=" w-36 h-36 md:w-56 shrink-0 md:h-56 md:mt-[-100px] mt-[-75px] z-99 bg-white rounded-full overflow-hidden border-2 border-black border-opacity-10 ">
+          <img [src]="single.logo" class="w-full h-full object-cover"
+               alt="">
 
-              <!-- No logo placeholder -->
-              <img src="https://placehold.co/240x240" *ngIf="!single.logo"
-                   class="rounded-full shadow dark:shadow-gray-700 ring-4 w-full h-full object-cover ring-slate-50 dark:ring-slate-800"
-                   id="profile-image" alt="">
-              <label class="absolute inset-0 cursor-pointer" for="pro-img"></label>
-            </div>
-
-            <!-- Name and Country -->
-            <div class="mt-4">
-              <h5 class="text-lg font-semibold">{{ single.name }}</h5>
-              <p class="text-slate-400">{{ single.country }}</p>
-            </div>
-
-            <!-- Status -->
-            <div class="mt-4">
-              <span class="bg-red-600/10 dark:bg-red-600/20 text-red-600 text-base font-medium px-3 py-1 rounded h-5 ms-1"
-                    *ngIf="single.profile_status_organization_id=== 1">Unclaimed<i class="mdi ms-1 mdi-shield-off"></i></span>
-              <span class="bg-secondary dark:bg-green-600/20 text-primary text-base font-medium px-3 py-1 rounded h-5 ms-1"
-                    *ngIf="single.profile_status_organization_id=== 2">Claimed <i class="mdi ms-1 mdi-check-decagram"></i></span>
-            </div>
-          </div>
-
-          <!-- Menu -->
-          <div class="border-t border-gray-100 dark:border-gray-700">
-            <ul class="list-none sidebar-nav mb-0 mt-3" id="navmenu-nav">
-              <!-- Basic information -->
-              <li class="navbar-item account-menu " [routerLinkActive]="['active']">
-                <a [routerLink]="['overview']" class="navbar-link text-slate-400 flex items-center py-2 rounded">
-                  <span class="me-2 text-[18px] mb-0"><i class="mdi mdi-information-slab-box-outline"></i></span>
-                  <h6 class="mb-0 font-semibold">Overview</h6>
-                </a>
-              </li>
-
-
-              <!-- Surveys -->
-              <li class="navbar-item account-menu " [routerLinkActive]="['active']">
-                <a [routerLink]="['surveys']" class="navbar-link text-slate-400  flex items-center py-2 rounded">
-                  <span class="me-2 text-[18px] mb-0"><i class="mdi mdi-format-list-checkbox"></i></span>
-                  <h6 class="mb-0 font-semibold">Surveys</h6>
-                </a>
-              </li>
-
-
-              <!-- Admin -->
-              <li class="navbar-item account-menu " [routerLinkActive]="['active']">
-                <a disabled
-                   class="navbar-link text-slate-400 cursor-not-allowed  flex items-center py-2 rounded">
-                  <span class="me-2 text-[18px] mb-0"><i class="mdi mdi-shield-check"></i></span>
-                  <h6 class="mb-0 font-semibold">Admin</h6>
-                </a>
-              </li>
-
-
-
-
-            </ul>
-          </div>
         </div>
+        <!-- Seal -->
+        <img src="assets/images/new-style/certification.png"
+             class="md:w-[100px] md:h-[100px]  h-[70px] w-[70px] right-[-20px] top-[-100px] absolute object-cover"
+             alt="">
       </div>
 
 
-      <!-- Content -->
-      <div class="xl:col-span-8 lg:col-span-8 md:col-span-8 ">
-        <router-outlet></router-outlet>
+      <!--  -->
+      <div class="flex-col gap-2  inline-flex ">
+        <!-- Basic information -->
+        <div class="justify-between items-center    flex flex-col md:flex-row  md:inline-flex">
+          <div class=" items-center md:gap-5 gap-2 flex">
+            <!-- Title -->
+            <div class="text-violet-950 md:text-4xl text-2xl font-bold ">{{ single.name }}</div>
+
+            <!-- Claiming badge -->
+            <div class="text-violet-950 text-lg " *ngIf="single.profile_status_organization_id == 2">Claimed <span><i
+                   class="mdi mdi-check-decagram"></i></span></div>
+            <div class="text-violet-950 text-lg " *ngIf="single.profile_status_organization_id == 1">Unclaimed <span><i
+                   class="mdi mdi-close-box"></i></span></div>
+
+          </div>
+
+          <a [href]="single.website" target="_blank" type="button"
+             class="px-7 py-3 font-semibold border border-primary  rounded-full text-center text-primary bg-secondary  hover:bg-secondary-dark focus:ring-4 focus:outline-none focus:ring-primary-dark">Visit
+            website</a>
+        </div>
+
+        <!-- Location and badges -->
+        <div class="justify-start items-center md:gap-6 gap-2 flex flex-col md:flex-row  md:inline-flex">
+          <!-- Location -->
+          <div class="  text-slate-500 text-base font-normal">
+            <span class=""><i class="mdi mdi-map-marker"></i></span> {{ single.country }}
+          </div>
+
+          <div class="flex gap-5 md">
+            <ng-container *ngIf="single.type_organization_id === 2">
+              <div
+                   class="bg-white text-slate-700 border text-base font-medium me-2 px-1 rounded  border-green-400">Facilitator <span
+                      class="ms-2"><i
+                     class="mdi mdi-check"></i></span></div>
+
+              <div
+                   class="bg-white text-slate-700 border text-base font-medium me-2 px-1 rounded  border-red-400"> Funder <span class="ms-2"><i
+                     class="mdi mdi-close"></i></span></div>
+            </ng-container>
+
+
+            <ng-container *ngIf="single.type_organization_id === 1">
+              <div
+                   class="bg-white text-slate-700 border text-base font-medium me-2 px-1 rounded  border-green-400">Funder <span class="ms-2"><i
+                     class="mdi mdi-check"></i></span></div>
+
+              <div
+                   class="bg-white text-slate-700 border text-base font-medium me-2 px-1 rounded  border-red-400"> Facilitator <span class="ms-2"><i
+                     class="mdi mdi-close"></i></span></div>
+
+
+
+
+            </ng-container>
+          </div>
+
+        </div>
+
+        <div class=" text-slate-600 text-base md:w-3/4 font-normal  " [innerHTML]="single.about"></div>
       </div>
     </div>
-    <!-- End Content -->
   </div>
 
 
+  <div class="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+    <router-outlet></router-outlet>
 
-
-  <div id="organization-edit" tabindex="-1"
-       backdrop="static"
-       class="fixed top-10 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative w-full max-w-4xl max-h-full">
-      <!-- Modal content -->
-      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-        <!-- Modal header -->
-        <div class="flex items-center bg-primary border-secondary justify-between p-5 border-b rounded-t dark:border-gray-600 sticky">
-          <h3 class="text-xl font-semibold text-white  dark:text-white">
-            Edit type organizations
-          </h3>
-          <button type="button"
-                  class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                  data-modal-hide="organization-edit">
-            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-            </svg>
-            <span class="sr-only">Close modal</span>
-          </button>
-        </div>
-        <!-- Modal body -->
-        <div class="p-6 space-y-6">
-          <app-super-admin-organization-edit></app-super-admin-organization-edit>
-        </div>
-
-      </div>
-    </div>
   </div>
+
+
 </section>
-
 <app-page-loading *ngIf="loading"></app-page-loading>
-
-<app-missing-data *ngIf="!loading && !single"></app-missing-data>

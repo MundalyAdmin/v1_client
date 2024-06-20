@@ -8,10 +8,10 @@
         <select id="countries"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
           <option>Year</option>
-          <option value="2023">2023</option>
-          <option value="2022" selected>2022</option>
+          <option value="2024" selected>2024</option>
+          <!-- <option value="2022" >2022</option>
           <option value="2021">2021</option>
-          <option value="2020">2020</option>
+          <option value="2020">2020</option> -->
         </select>
       </div>
 
@@ -37,17 +37,17 @@
     <!-- Language dropdown -->
     <div class="me-5">
       <div id="languageDropdown" data-dropdown-toggle="language"
-           class="text-primary text-lg  font-medium  ">
-        Language<span><i class="mdi mdi-menu-down"></i></span>
+           class="text-primary cursor-pointer text-lg  font-medium  ">
+        English<span><i class="mdi mdi-menu-down"></i></span>
       </div>
 
       <!-- Dropdown menu -->
       <div id="language" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
           <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">English</a>
           </li>
-          <li>
+          <!-- <li>
             <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
           </li>
           <li>
@@ -55,33 +55,27 @@
           </li>
           <li>
             <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
 
     <!-- Location dropdown -->
     <div class="me-5">
-      <div id="languageDropdown" data-dropdown-toggle="language"
+      <div id="languageDropdown" data-dropdown-toggle="location"
            class="text-primary text-lg  font-medium  ">
-        All locations<span><i class="mdi mdi-menu-down"></i></span>
+        {{ authService.organization!.country }}<span><i class="mdi mdi-menu-down"></i></span>
       </div>
 
       <!-- Dropdown menu -->
-      <div id="language" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+      <div id="location" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
           <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+              {{ authService.organization!.country }}
+            </a>
           </li>
-          <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-          </li>
-          <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-          </li>
-          <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
-          </li>
+
         </ul>
       </div>
     </div>
@@ -163,10 +157,10 @@
     </li>
 
     <li class="me-2">
-      <a [routerLink]="['swot-analysis']"
+      <a [routerLink]="['impact-outcomes']"
          routerLinkActive="text-primary border-primary font-semibold"
          class="inline-block text-lg p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">
-        SWOT analysis
+        Impact Outcomes
       </a>
     </li>
 

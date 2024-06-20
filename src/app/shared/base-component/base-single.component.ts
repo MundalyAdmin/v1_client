@@ -13,9 +13,6 @@ export class BaseSingleComponent<T>
   implements OnInit, OnDestroy
 {
   single: T | null | undefined = null;
-  public enableSubscribeToSingleData: boolean = true;
-  public enableEmitLoading: boolean = false;
-  public enableSubscribeToLoading: boolean = false;
   public enableFetchDataFromURL: boolean = false;
 
   constructor(
@@ -25,7 +22,7 @@ export class BaseSingleComponent<T>
     super(service);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     if (this.enableFetchDataFromURL) {
       this.show(this.route!);
     }

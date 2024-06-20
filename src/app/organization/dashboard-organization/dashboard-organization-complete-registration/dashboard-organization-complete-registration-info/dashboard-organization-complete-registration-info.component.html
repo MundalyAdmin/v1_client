@@ -1,0 +1,152 @@
+<form class="space-y-4 md:space-y-6 relative min-h-[400px] " [formGroup]="form" (submit)="submit()">
+  <!-- Profile picture and cover -->
+  <!-- <div class="w-full relative mb-10 hidden"> -->
+
+  <!-- Cover image -->
+  <!-- <div class="h-[100px] rounded-xl group cover-image relative bg-slate-100"> -->
+
+  <!-- cover image display -->
+  <!-- <img [src]="coverLiveUrl" alt="" *ngIf="coverLiveUrl"
+           class="w-full  peer object-cover h-full"> -->
+
+  <!-- Overlay menu -->
+  <!-- <span
+            class=" flex absolute pr-3 pb-3 top-0 left-0 pt-2 justify-end items-end h-full w-full " *ngIf="!coverLiveUrl">
+
+
+        <span class=" flex items-center justify-center cursor-pointer p-2 h-7 w-7 bg-secondary rounded-full"
+              (click)="coverPage.click()">
+          <i class="mdi mdi-camera  text-primary"></i>
+        </span>
+      </span>
+
+      <span
+            class=" group-hover:flex hidden absolute pr-3 pb-3 top-0 left-0 pt-2 justify-end items-end h-full w-full bg-slate-700/50 gap-4"
+            *ngIf="coverLiveUrl">
+
+        <span class=" flex items-center justify-center cursor-pointer p-2 h-7 w-7 bg-secondary rounded-full"
+              (click)="deleteImage('cover')">
+          <i class="mdi mdi-delete  text-primary"></i>
+        </span>
+
+
+      </span> -->
+
+
+
+
+  <!-- File Input -->
+  <!-- <input type="file" class="hidden" accept="image/*" (change)="onFileChanged($event, 'cover')" #coverPage>
+    </div> -->
+
+  <!-- Profile image -->
+  <!-- <div
+         class="rounded-full bg-slate-100  cursor-pointer  overflow-hidden group  border-4 h-[120px] w-[120px] left-[45%] absolute bottom-[-55px]"
+         [ngClass]="{ 'border-white': !logoLiveUrl, 'border-slate-300': logoLiveUrl }"> -->
+  <!-- cover image display -->
+  <!-- <img [src]="logoLiveUrl" alt="" *ngIf="logoLiveUrl"
+           class="w-full  peer object-cover h-full"> -->
+
+  <!-- Camera icon-->
+  <!-- <span
+            class=" flex    py-3 justify-center items-center h-full w-full " *ngIf="!logoLiveUrl">
+
+        <span class=" flex items-center justify-center cursor-pointer p-2 h-7 w-7 "
+              (click)="organizationLogo.click()">
+          <i class="mdi mdi-camera  text-primary"></i>
+        </span>
+      </span> -->
+
+  <!-- Overlay menu -->
+  <!-- <span
+            class=" group-hover:flex absolute top-0 left-0 hidden py-3 justify-center items-center h-full w-full bg-slate-700/50 gap-4"
+            *ngIf="logoLiveUrl">
+
+        <span class=" flex items-center justify-center cursor-pointer p-2 h-7 w-7 bg-secondary rounded-full"
+              (click)="deleteImage('logo')">
+          <i class="mdi mdi-delete  text-primary"></i>
+        </span>
+
+
+
+      </span> -->
+
+
+
+
+  <!-- File Input -->
+  <!-- <input type="file" class="hidden" accept="image/*" (change)="onFileChanged($event, 'logo')" #organizationLogo>
+    </div>
+  </div> -->
+
+
+
+
+
+
+
+
+  <!-- Type organization and sector organization -->
+  <div class="grid grid-cols-1 gap-4">
+
+
+
+    <!-- Sector -->
+    <div>
+      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Industry</label>
+
+      <p-multiSelect [options]="sectorOrganizations"
+                     formControlName="sectors_organization"
+                     placeholder="Select an industry"
+                     optionLabel="name"
+                     display="chip"
+                     [styleClass]="'bg-gray-50 border flex border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600  w-full  '"
+                     [showClear]="true">
+      </p-multiSelect>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <!-- about -->
+  <div>
+    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">About</label>
+    <textarea formControlName="about"
+              rows="4"
+              class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              pInputTextarea [autoResize]="true" placeholder="Tell us about your orgnization...">
+                </textarea>
+  </div>
+
+
+
+
+
+  <!-- Submit -->
+  <div class="flex absolute bottom-0 w-full item justify-end gap-4">
+    <!-- Previous -->
+    <button type="button"
+
+            (click)="previous.emit()"
+            class="w-full text-white border-white border bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Previous</button>
+
+
+
+    <!-- Next -->
+    <button type="submit"
+            [ngClass]="{ 'cursor-not-allowed bg-slate-400': form!.invalid }"
+            [disabled]="form!.invalid"
+            class="w-full text-primary border-primary border bg-secondary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Next</button>
+  </div>
+
+  <!-- <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                                    Don’t have an account yet? <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
+                                  </p> -->
+</form>

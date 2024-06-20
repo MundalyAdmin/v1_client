@@ -32,7 +32,7 @@ export class ImpactPartnerCreateComponent
     super(impactPartnerService);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.initForm();
   }
 

@@ -68,7 +68,6 @@ const routes: Routes = [
   declarations: [
     PublicComponent,
     PublicCommunitiesCategorieListComponent,
-    TermsAndConditionsComponent,
     PrivacyPolicyComponent,
     LandingPageComponent,
     BecomeAParticipantComponent,

@@ -1,0 +1,124 @@
+<section class=" dark:bg-gray-900">
+
+  <div class="flex flex-col items-center min-h-[500px] mx-auto ">
+
+
+
+    <form class=" w-full  " [formGroup]="form" (submit)="submit()">
+
+      <!-- Stepper -->
+      <ol class="flex items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
+        <!-- Admin info -->
+        <li
+            [ngClass]="{'text-blue-600 dark:text-blue-500 after:border-blue-500': true}"
+            class="flex md:w-full items-center  sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-4 xl:after:mx-7 dark:after:border-gray-700">
+          <span class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
+            <!-- Check mark -->
+            <span class="me-2.5" *ngIf="form.controls['updatePasswordForm'].valid"><i
+                 class="mdi mdi-check-circle"></i></span>
+
+            <!-- Step number -->
+            <span class="me-2" *ngIf="! activeSteps.organizationInfoForm || activeSteps.organizationDetailsForm">
+              <i *ngIf="!form.controls['updatePasswordForm'].valid"
+                 class="mdi mdi-numeric-1-circle"></i></span>
+            Password <span class="hidden sm:inline-flex sm:ms-2">Setup</span>
+          </span>
+        </li>
+
+        <!-- Organization info -->
+        <li
+            [ngClass]="{'text-blue-600 dark:text-blue-500 after:border-blue-500':  activeSteps.organizationInfoForm || activeSteps.organizationDetailsForm}"
+            class="flex md:w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-4 xl:after:mx-7 dark:after:border-gray-700">
+          <span class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
+            <!-- Check mark -->
+            <span class="me-2.5" *ngIf="form.controls['organizationInfoForm']?.valid"><i class="mdi mdi-check-circle"></i></span>
+
+            <!-- Step number -->
+            <span class="me-2" *ngIf="form.controls['organizationInfoForm']?.invalid"><i class="mdi mdi-numeric-2-circle"></i></span>
+
+            Organization <span class="hidden sm:inline-flex sm:ms-2">Info</span>
+          </span>
+        </li>
+
+        <!-- Organization Details -->
+        <li class="flex items-center !min-w-[120px]" [ngClass]="{ 'text-blue-600 font-bold': activeSteps.organizationDetailsForm}">
+          <!-- Step number -->
+          <span class="me-2" *ngIf="!form.controls['organizationDetailsForm']?.valid"><i class="mdi mdi-numeric-3-circle"></i></span>
+
+          <!-- Check mark -->
+          <span class="me-2.5" *ngIf="form.controls['organizationDetailsForm']?.valid"><i class="mdi mdi-check-circle"></i></span>
+          More details
+        </li>
+      </ol>
+
+      <!-- admin information -->
+      <ng-container *ngIf="activeSteps.updatePasswordForm">
+
+        <!-- Title -->
+        <div class="!my-7">
+          <h1 class=" font-bold  leading-tight tracking-tight text-gray-900 mb-2 text-xl dark:text-white">
+            Secure your account for future logins
+          </h1>
+          <h4 class=" text-sm leading-tight  tracking-tight text-gray-900 dark:text-white">
+            Let's kick off by securing your account for smoother, safer logins in the future. Remember, keep your password private and never share it
+            with anyone.
+          </h4>
+        </div>
+
+
+        <app-dashboard-organization-complete-registration-password
+                                                                   (submitted)="showStep('organizationInfoForm')"></app-dashboard-organization-complete-registration-password>
+      </ng-container>
+
+      <!-- organization information -->
+      <ng-container *ngIf="activeSteps.organizationInfoForm">
+        <div class="!my-7">
+          <h1 class="font-bold leading-tight tracking-tight text-gray-900 mb-2 text-xl dark:text-white">
+            Tell Us About Your Organization
+          </h1>
+          <h4 class="text-sm leading-tight tracking-tight text-gray-900 dark:text-white">
+            Help us understand your organization better by providing a brief description and selecting the industry you belong to. This information
+            will
+            enable us to tailor our services to meet your needs more effectively.
+          </h4>
+        </div>
+
+        <app-dashboard-organization-complete-registration-info (previous)="showStep('updatePasswordForm')"
+                                                               (submitted)="showStep('organizationDetailsForm')"></app-dashboard-organization-complete-registration-info>
+      </ng-container>
+
+
+      <!--Organization Details -->
+      <div class="relative min-h-[400px]" *ngIf="activeSteps.organizationDetailsForm">
+        <div class="!my-7">
+          <h1 class="font-bold leading-tight tracking-tight text-gray-900 mb-2 text-xl dark:text-white">
+            Share Your Organization's Details
+          </h1>
+          <h4 class="text-sm leading-tight tracking-tight text-gray-900 dark:text-white">
+            Please provide your organization's website and the country you operate in. This information helps us to better serve and support your
+            specific
+            needs.
+          </h4>
+        </div>
+
+        <app-dashboard-organization-complete-registration-details
+                                                                  [loading]="loading"
+                                                                  (previous)="showStep('organizationInfoForm')"
+                                                                  (submitted)="submit()">
+        </app-dashboard-organization-complete-registration-details>
+
+
+
+
+
+        <!-- <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                                    Don’t have an account yet? <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
+                                  </p> -->
+      </div>
+
+
+    </form>
+  </div>
+
+
+</section>

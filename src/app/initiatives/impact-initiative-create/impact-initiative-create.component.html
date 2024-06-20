@@ -1,0 +1,119 @@
+<form class="space-y-4" [formGroup]="form" (ngSubmit)="create()">
+
+  <!-- Name -->
+  <div>
+    <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What is an outcome
+      you are looking to achieve. This is your initiative.</label>
+    <input type="text" name="initiative-name" id="initiative-name" formControlName="name"
+           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+           placeholder="" required>
+  </div>
+
+  <!-- Start and And date -->
+  <div class="mb-5 flex justify-between gap-3 items-center">
+    <div class="w-[50%]">
+      <input type="date" id="initiative-start-date" formControlName="start_date"
+             class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    </div>
+    <p>to </p>
+    <div class="w-[50%]">
+      <input type="date" id="initiative-end-date" formControlName="end_date"
+             class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      <p class="text-xs">Optional</p>
+    </div>
+  </div>
+
+
+
+  <!-- Country -->
+  <!-- <div>
+    <label for="country"
+           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Country <app-loading *ngIf="countryLoading"></app-loading> </label>
+    <p-dropdown class="" [filter]="true" filterBy="name" [showClear]="true" placeholder="Select a country"
+                styleClass="bg-gray-50 flex border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                formControlName="country" [options]="countries" optionLabel="name"></p-dropdown>
+
+  </div> -->
+
+
+  <!-- City -->
+  <div>
+    <label for="city"
+           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">City</label>
+
+    <p-autoComplete formControlName="city" [suggestions]="cityNames" (completeMethod)="getCitiesByName($event)"
+                    (onSelect)="onCitySelected($event)"
+                    panelStyleClass="w-full h-full"
+                    styleClass="w-full h-full"
+                    inputStyleClass="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                    field="name">
+      <ng-template let-city pTemplate="item">
+        <a [innerHTML]="city.name + ', ' + city.stateName + ', ' + city.countryCode"></a>
+      </ng-template>
+    </p-autoComplete>
+    <!-- <input type="text" name="city" id="city" formControlName="city"
+           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+           placeholder="" required> -->
+  </div>
+
+  <div>
+    <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">How would you describe your initiative</label>
+    <textarea id="message" rows="4"
+              class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              formControlName="description"
+              placeholder="Write your description here..."></textarea>
+  </div>
+
+
+  <!-- <div>
+    <div class="flex items-center mb-5">
+      <input id="demographyCheckbox" type="checkbox" formControlName="demographyCheckbox"
+             class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+      <label for="demographyCheckbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Target Demographics
+        (Optional)</label>
+    </div>
+  </div>
+  <div *ngIf="createInitiativeForm.value.demographyCheckbox">
+
+    <div class="mb-5 flex justify-start gap-3 items-center">
+      <div class="w-[30%]">
+        <label for="initiativeStartAge" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Start Age</label>
+        <input type="number" id="initiativeStartAge" formControlName="initiativeStartAge"
+               class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      </div>
+      <p>to</p>
+      <div class="w-[30%]">
+        <label for="c" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">End Age</label>
+        <input type="number" id="initiativeEndAge" formControlName="initiativeEndAge"
+               class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="initiativeEthnicity"
+             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ethnicity</label>
+      <input type="text" name="initiativeEthnicity" id="initiativeEthnicity" formControlName="initiativeEthnicity"
+             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+             placeholder="" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="initiativeSex" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sex</label>
+      <select id="initiativeSex" formControlName="initiativeSex" name="initiativeSex"
+              class="bg-gray-50 border p-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <option value="Male">All</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </div>
+  </div> -->
+
+  <div class="mb-5 mt-10 flex justify-end">
+    <button type="button" (click)="closeModal()"
+            class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Cancel</button>
+    <button type="button" type="submit"
+            class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Save
+      Initiative <app-loading *ngIf="loading"></app-loading>
+    </button>
+  </div>
+</form>

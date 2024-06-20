@@ -14,7 +14,7 @@ export class SettingsSectorOrganizationEditComponent extends BaseEditComponent<S
     super(sectorOrganizationService);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.subscriptions['sectorOrganization'] =
       this.sectorOrganizationService.singleData$.subscribe(
         (sectorOrganization) => {

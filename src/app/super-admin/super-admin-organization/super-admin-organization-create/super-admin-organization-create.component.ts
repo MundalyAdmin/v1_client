@@ -6,7 +6,6 @@ import { Country } from '../../../country/country.model';
 import { TypeOrganization } from '../../../organization/type-organization/type-organization.model';
 import { SectorOrganization } from '../../../organization/sector-organization/sector-organization.model';
 import { TagOrganization } from '../../../organization/tag-organization/tag-organization.model';
-import { Select2Data, Select2UpdateEvent } from 'ng-select2-component';
 import { SectorOrganizationService } from '../../../organization/sector-organization/sector-organization.service';
 import { CountryService } from '../../../country/country.service';
 import { TypeOrganizationService } from '../../../organization/type-organization/type-organization.service';
@@ -51,7 +50,7 @@ export class SuperAdminOrganizationCreateComponent
     super(organizationService);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.ngMultiselectDropdownSettings = {
       ...this.helper.dropdownSettings.single,
       idField: 'name',
@@ -74,7 +73,7 @@ export class SuperAdminOrganizationCreateComponent
     const email = organization?.email || '';
     const website = organization?.website || '';
     const city = organization?.city || '';
-    const creator_id = organization?.creator_id || this.authService.user.id;
+    const creator_id = organization?.creator_id || this.authService.user?.id;
 
     this.form = this.fb.group({
       name: [name, Validators.required],

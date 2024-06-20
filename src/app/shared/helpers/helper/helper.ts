@@ -7,6 +7,7 @@ import { HelperNavigation } from './helper-navigation';
 import { HelperNotification } from './helper-notification';
 import { HelperObject } from './helper-object';
 import { HelperText } from './helper-text';
+import { HelperColor } from './helper-color';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,7 @@ export class Helper {
     public modal: HelperModal,
     public navigation: HelperNavigation,
     public object: HelperObject,
-    public text: HelperText
+    public text: HelperText,
+    public color: HelperColor
   ) {}
 }

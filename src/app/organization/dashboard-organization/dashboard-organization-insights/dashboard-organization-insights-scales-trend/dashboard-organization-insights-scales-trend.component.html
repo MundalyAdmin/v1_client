@@ -1,0 +1,5 @@
+<div class="pt-8 pb-3 px-3 border ">
+  <h5 class="text-lg font-light text-left mb-3">IFS, CRS, & FSS Trends</h5>
+  <p-chart type="line" [data]="chartData" [options]="options" *ngIf="!loading"></p-chart>
+  <app-loading *ngIf="loading"></app-loading>
+</div>

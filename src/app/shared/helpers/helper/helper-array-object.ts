@@ -8,7 +8,7 @@ export class helperArrayObject {
     return array.find((item) => item[libelleID] == id);
   }
 
-  findIndex(array: any[], id: number, libelleID: string = 'id') {
+  findIndex(array: any[], id: number | string, libelleID: string = 'id') {
     return array.findIndex((element) => {
       return element[libelleID] == id;
     });

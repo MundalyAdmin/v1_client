@@ -1,0 +1,51 @@
+<div class="p-10">
+
+  <div class="grid grid-cols-2">
+    <div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+      <app-page-loading *ngIf="loading"></app-page-loading>
+
+
+      <app-missing-data *ngIf="!loading && !chartDatasets.length"></app-missing-data>
+
+
+      <ng-container *ngIf="!loading && chartDatasets.length">
+        <div class="flex justify-between pb-4 mb-4 border-b border-gray-200  dark:border-gray-700">
+          <div class="text-lg font-bold">Most Pressing Issues</div>
+
+
+          <label class="inline-flex items-center cursor-pointer">
+            <div class="font-normal mr-2">Last Year Comparison </div>
+            <input type="checkbox" (click)="lastYearComparison()" [(ngModel)]="lastYearComparaisonToggled" class="sr-only peer">
+            <div
+
+                 class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+            </div>
+            <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"></span>
+          </label>
+        </div>
+
+
+
+
+
+
+        <!-- Line Chart -->
+        <p-chart type="bar" [data]="chartData" [options]="options" class="min-height-[275px]" />
+
+        <!--  -->
+
+
+
+        <div class="flex gap-4">
+          <!-- <button type="button"
+                  class="text-white grow bg-primary hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-primary dark:focus:ring-blue-800 min-w-fit">Generate
+            Report</button> -->
+          <p class="text-sm leading-tight ">See the most pressing issues in each region to focus your funding and investments on.
+            <a class="font-semibold text-secondary-dark">Learn More</a>
+          </p>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+</div>

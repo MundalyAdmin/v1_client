@@ -17,7 +17,7 @@ export class SettingsSectorOrganizationCreateComponent
     super(sectorOrganizationService);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.initForm();
   }
 

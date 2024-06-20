@@ -3,7 +3,7 @@ import { BaseComponent } from '../../../../shared/base-component';
 import { SocialImpactFidelity } from './../../../../scale/social-impact-fidelity/social-impact-fidelity.model';
 import { ScaleService } from '../../../../scale/scale.service';
 import { SocialImpactFidelityService } from '../../../../scale/social-impact-fidelity/social-impact-fidelity.service';
-import { ImpactFidelityScore } from './../../../../scale/models/impact-fidelity-score.model';
+import { SocialImpactFidelityScore } from '../../../../scale/social-impact-fidelity/social-impact-fidelity-score.model';
 
 @Component({
   selector: 'app-dashboard-organization-verify',
@@ -15,7 +15,7 @@ export class DashboardOrganizationVerifyComponent
   implements OnInit
 {
   stories: any[] = [];
-  impactFidelityScoreBreakdown: ImpactFidelityScore | null = null;
+  impactFidelityScoreBreakdown: SocialImpactFidelityScore | null = null;
 
   constructor(
     public scaleService: ScaleService,
@@ -24,7 +24,7 @@ export class DashboardOrganizationVerifyComponent
     super();
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.impactFidelityScoreBreakdown = {
       acceptability: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
       appropriateness: Math.floor(Math.random() * (100 - 60 + 1)) + 60,

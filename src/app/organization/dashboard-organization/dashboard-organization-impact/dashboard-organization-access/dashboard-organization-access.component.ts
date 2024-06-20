@@ -20,7 +20,7 @@ export class DashboardOrganizationAccessComponent
     super();
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.getByOrganization(24);
   }
 
@@ -29,7 +29,6 @@ export class DashboardOrganizationAccessComponent
       .getByOrganization(organizationId)
       .subscribe((initiatives) => {
         this.data = initiatives as ImpactInitiative[];
-        console.log(this.data);
       });
   }
 

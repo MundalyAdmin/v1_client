@@ -1,1 +1,193 @@
-<p>dashboard-organization-community-perception works!</p>
+<div class="p-5" *ngIf="!loading && communityPerceptionService.score">
+  <div class="w-full flex justify-between bg-white shadow dark:bg-gray-800 p-4 md:p-6">
+    <div class="text-lg font-bold">Verify Metrics</div>
+
+  </div>
+
+  <div class="relative overflow-x-auto shadow-md ">
+    <table class="w-full text-base text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <thead class=" text-gray-400 capitalize bg-slate-100  dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="px-6 py-6">
+            #
+          </th>
+          <th scope="col" class="px-6 py-6 ">
+            Category
+          </th>
+          <th scope="col" class="px-6 py-6">
+            Key
+          </th>
+          <th scope="col" class="px-6 py-6">
+            Score
+          </th>
+          <th scope="col" class="px-6 py-6">
+            Action
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Communication -->
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
+
+          <!-- Number -->
+          <td class="p-6">
+            1
+          </td>
+
+          <!-- Name and Photo -->
+          <th scope="row p-6">
+            Communication
+          </th>
+
+          <!-- Key -->
+          <td class="p-6">
+            {{ scaleService.getScoreKey(communityPerceptionService.score.communication!) }}
+          </td>
+
+          <!-- Score -->
+          <td class="p-6">
+            <div class="flex items-center font-semibold">
+              {{ communityPerceptionService.score.communication}}
+            </div>
+          </td>
+
+
+
+          <td class="p-6">
+            <a href="#" class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
+                 class="mdi mdi-information"></i></a>
+
+          </td>
+        </tr>
+
+
+        <!-- Contribution and Impact -->
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
+
+          <!-- Number -->
+          <td class="p-6">
+            2
+          </td>
+
+          <!-- Name and Photo -->
+          <th scope="row p-6">
+            Contribution and Impact
+          </th>
+
+          <!-- Key -->
+          <td class="p-6">
+            {{ scaleService.getScoreKey(communityPerceptionService.score.contribution_and_impact!) }}
+          </td>
+
+          <!-- Score -->
+          <td class="p-6">
+            <div class="flex items-center font-semibold">
+              {{ communityPerceptionService.score.contribution_and_impact}}
+            </div>
+          </td>
+
+
+
+          <td class="p-6">
+            <a href="#" class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
+                 class="mdi mdi-information"></i></a>
+
+          </td>
+        </tr>
+
+
+
+        <!-- Consideration of context -->
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
+
+          <!-- Number -->
+          <td class="p-6">
+            3
+          </td>
+
+          <!-- Name and Photo -->
+          <th scope="row p-6">
+            Consideration of Context
+          </th>
+
+          <!-- Key -->
+          <td class="p-6">
+            {{ scaleService.getScoreKey(communityPerceptionService.score.consideration_of_context!) }}
+          </td>
+
+          <!-- Score -->
+          <td class="p-6">
+            <div class="flex items-center font-semibold">
+              {{ communityPerceptionService.score.consideration_of_context}}
+            </div>
+          </td>
+
+
+
+          <td class="p-6">
+            <a href="#" class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
+                 class="mdi mdi-information"></i></a>
+
+          </td>
+        </tr>
+
+
+        <!-- Vision alignment -->
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
+
+          <!-- Number -->
+          <td class="p-6">
+            4
+          </td>
+
+          <!-- Name and Photo -->
+          <th scope="row p-6">
+            Vision Alignment
+          </th>
+
+          <!-- Key -->
+          <td class="p-6">
+            {{ scaleService.getScoreKey(communityPerceptionService.score.vision_alignment!) }}
+          </td>
+
+          <!-- Score -->
+          <td class="p-6">
+            <div class="flex items-center font-semibold">
+              {{ communityPerceptionService.score.vision_alignment}}
+            </div>
+          </td>
+
+
+
+          <td class="p-6">
+            <a href="#" class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
+                 class="mdi mdi-information"></i></a>
+
+          </td>
+        </tr>
+
+
+
+
+
+
+      </tbody>
+    </table>
+
+    <div class="text-primary md:text-lg text-sm  bg-primary/5 p-5">
+      <span class="me-2">
+        <i class="mdi mdi-lightbulb-on"></i>
+        Insight:
+      </span>
+
+      <!-- If the community has more than 10 respondents -->
+      <span class="font-bold">
+        Community members confirm that {{ organization?.name }} has {{ scaleService.getReputationKey(communityPerceptionService.score.score_rating!)
+        }}. See Report for Actionable Insights.
+      </span>
+
+
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,169 @@
+<!-- Title -->
+<h1 class="text-xl font-bold text-center leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+  Upload your reports
+</h1>
+<p class="mt-2 mb-5 text-gray-600 text-center text-sm">Upload your reports to get insights on how your organization's activities<br>Preferably
+  the latest 5 years</p>
+
+<form [formGroup]="form" (submit)="submit">
+
+  <form class="space-y-4 md:space-y-6 " [formGroup]="reportForm!" (submit)="addReport()!">
+
+
+    <!-- File upload dropzone -->
+    <div class="flex items-center justify-center w-full">
+      <label for="dropzone-file"
+             class="flex flex-col items-center justify-center w-full h-16 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+        <div class="flex gap-2 items-center justify-center pt-5 pb-6">
+          <svg class="w-8 h-8  text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+               viewBox="0 0 20 16">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+          </svg>
+          <p class=" text-sm text-gray-500 dark:text-gray-400 mb-0" *ngIf="!selectedReportFile"><span class="font-semibold">Click to
+              upload</span> or drag and drop your
+            reports
+          </p>
+
+          <p class=" text-sm text-gray-500 dark:text-gray-400 mb-0" *ngIf="selectedReportFile">
+            {{ selectedReportFile.name }}
+          </p>
+        </div>
+        <input id="dropzone-file" type="file" class="hidden" (change)="onReportsUpload($event)" />
+      </label>
+    </div>
+
+    <!-- Name -->
+    <div class="flex gap-3">
+      <div class="flex-1">
+        <!-- <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name of the report</label> -->
+        <input type="text" name="name" id="name"
+               formControlName="name"
+               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               placeholder="Name of the report" required="">
+      </div>
+
+      <!-- Year -->
+      <div>
+        <!-- <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Year</label> -->
+        <!-- <input type="date" name="email" id="email"
+                       formControlName="year"
+                       min="1900" max="2100"
+                       class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                       placeholder="Year" required=""> -->
+
+        <p-calendar formControlName="year" view="year" appendTo="body" dateFormat="yy" inputId="yearpicker"></p-calendar>
+
+        <!-- <input type="number" id="yearInput" name="year" min="1900" max="2100"> -->
+
+      </div>
+
+
+      <button type="submit"
+              [disabled]="!reportForm?.valid"
+              [ngClass]="{'cursor-not-allowed bg-slate-400': !reportForm?.valid}"
+              class="text-white flex-none bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><i
+           class="mdi mdi-check"></i></button>
+
+
+
+    </div>
+
+  </form>
+
+
+  <hr>
+
+  <div class="relative overflow-x-auto shadow my-5 dark:shadow-gray-800 rounded-md" *ngIf="reports.length">
+    <table class="w-full text-start">
+      <thead class="text-sm uppercase bg-slate-50 dark:bg-slate-800">
+        <tr>
+          <th scope="col" class="p-4 w-4"></th>
+          <th scope="col" class="text-start p-4 min-w-[220px]">Name</th>
+          <th scope="col" class="p-4 w-24 min-w-[220px]">Year</th>
+          <!-- <th scope="col" class="p-4 w-56 min-w-[100px]">File</th> -->
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- List of items -->
+        <ng-container>
+          <tr class="bg-white dark:bg-slate-900 border-t border-gray-100 dark:border-gray-800 "
+              *ngFor="let report of reports; let i = index">
+            <!-- Remove from cart -->
+            <td class="p-4"><button (click)="deleteReportFromList(i)"><i class="mdi mdi-window-close text-red-600"></i></button></td>
+
+            <!-- Report description -->
+            <td class="p-4">
+              <span class="flex items-center">
+                <span class="mt-2">
+                  <span class="block font-semibold text-slate-700">
+                    {{ report.name }}
+                  </span>
+                </span>
+              </span>
+            </td>
+
+            <!-- Year -->
+            <td class="p-4 text-center font-bold">{{ report.year | date: 'yyyy'}}</td>
+
+
+
+
+
+
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+
+  </div>
+
+
+
+  <!-- <div class="flex items-center justify-between">
+                                    <div class="flex items-start">
+                                      <div class="flex items-center h-5">
+                                        <input id="remember" aria-describedby="remember" type="checkbox"
+                                               class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                                               required="">
+                                      </div>
+                                      <div class="ml-3 text-sm">
+                                        <label for="remember" class="text-gray-500 dark:text-gray-300">Remember me</label>
+                                      </div>
+                                    </div>
+                                    <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
+                                  </div> -->
+
+  <!-- <div class="flex items-center justify-between">
+    <div class="flex items-start">
+      <div class="flex items-center h-5">
+        <input id="remember" aria-describedby="remember" type="checkbox"
+               class=" appearance-none "
+               required="">
+      </div>
+      <div class="ml-3 text-sm">
+        <label for="remember" class="text-gray-500 dark:text-gray-300">I agree on the terms and conditions</label>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- Submit -->
+  <div class="flex gap-4">
+
+
+
+
+    <!-- Next -->
+    <button type="submit"
+            (click)="submit()"
+            [disabled]="!reports.length || loading"
+            [ngClass]="{'cursor-not-allowed bg-slate-400': !reports.length || loading}"
+            class="w-full text-primary border-primary border bg-secondary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Submit</button>
+  </div>
+
+
+  <!-- <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                                    Don’t have an account yet? <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
+                                  </p> -->
+</form>

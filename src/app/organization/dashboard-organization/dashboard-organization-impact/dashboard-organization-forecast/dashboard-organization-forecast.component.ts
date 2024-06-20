@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../../../shared/base-component';
 import { CommunityTrustScore } from '../../../../scale/models/community-trust-score.model';
 import { ScaleService } from '../../../../scale/scale.service';
+import { OrganizationService } from '../../../organization.service';
+import { AuthService } from '../../../../auth/auth.service';
+import { ImpactInitiativeService } from '../../../../scale/impact-initiative/impact-initiative.service';
+import { TypeOrganizationEnum } from '../../../type-organization/type-organization.enum';
 
 @Component({
   selector: 'app-dashboard-organization-forecast',
@@ -13,23 +17,81 @@ export class DashboardOrganizationForecastComponent
   implements OnInit
 {
   communityTrustScore: CommunityTrustScore | null = null;
-  constructor(public scaleService: ScaleService) {
+  showImpactFidelityInfo = false;
+  showCommunityReputationInfo = false;
+  showFacilitationStrategyInfo = false;
+  showCommunityTrustScoreInfo = false;
+  constructor(
+    public scaleService: ScaleService,
+    public organizationService: OrganizationService,
+    public authService: AuthService,
+    public impactInitiativeService: ImpactInitiativeService
+  ) {
     super();
   }
 
-  ngOnInit(): void {
-    this.communityTrustScore = {
-      impact_fidelity_score: Math.floor(Math.random() * (100 - 60 + 1)) + 60,
-      community_perception_score:
-        Math.floor(Math.random() * (100 - 60 + 1)) + 60,
-      facilitation_strategy_score:
-        Math.floor(Math.random() * (100 - 60 + 1)) + 60,
-    };
+  override ngOnInit(): void {
+    this.subscribeToData();
+  }
 
-    this.communityTrustScore.community_trust_score =
-      ((this.communityTrustScore['impact_fidelity_score'] || 0) +
-        (this.communityTrustScore['community_perception_score'] || 0) +
-        (this.communityTrustScore['facilitation_strategy_score'] || 0)) /
-      3;
+  subscribeToData() {
+    this.subscriptions['currentlyLoggedOrganization'] =
+      this.authService.organization$.subscribe(
+        (currentlyLoggedOrganization) => {
+          if (
+            currentlyLoggedOrganization?.type_organization_id ===
+              TypeOrganizationEnum.CORPORATION ||
+            currentlyLoggedOrganization?.type_organization_id ===
+              TypeOrganizationEnum.IMPACT_FUNDER
+          ) {
+            this.subscribeToOrganizationData();
+          } else if (
+            currentlyLoggedOrganization?.type_organization_id ===
+              TypeOrganizationEnum.IMPACT_IMPLEMENTER ||
+            currentlyLoggedOrganization?.type_organization_id ===
+              TypeOrganizationEnum.SUPPLIER
+          ) {
+            this.subscribeToImpactInitiativeData();
+          }
+        }
+      );
+  }
+
+  private subscribeToOrganizationData() {
+    this.subscriptions['organization'] =
+      this.organizationService.singleData$.subscribe((organization) => {
+        if (organization) {
+          this.getCommunityTrustScoreByOrganizationId(organization.id!);
+        }
+      });
+  }
+
+  private subscribeToImpactInitiativeData() {
+    this.subscriptions['impactInitiative'] =
+      this.impactInitiativeService.singleData$.subscribe((impactInitiative) => {
+        if (impactInitiative) {
+          this.getCommunityTrustScoreByImpactInitiativeId(
+            impactInitiative?.id!
+          );
+        }
+      });
+  }
+
+  getCommunityTrustScoreByOrganizationId(organizationId: number) {
+    this.loading = true;
+    this.scaleService
+      .getCommunityTrustScoreByOrganizationId(organizationId)
+      .subscribe(() => {
+        this.loading = false;
+      });
+  }
+
+  getCommunityTrustScoreByImpactInitiativeId(organizationId: number) {
+    this.loading = true;
+    this.scaleService
+      .getCommunityTrustScoreByImpactInitiaitveId(organizationId)
+      .subscribe(() => {
+        this.loading = false;
+      });
   }
 }

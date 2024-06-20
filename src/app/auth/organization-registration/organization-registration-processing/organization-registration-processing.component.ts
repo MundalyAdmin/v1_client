@@ -16,7 +16,7 @@ export class OrganizationRegistrationProcessingComponent
     super();
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     const admin = this.storage.get<any>('registration')?.adminInfo;
     setTimeout(() => {
       this.router.navigate(['/dashboard']);

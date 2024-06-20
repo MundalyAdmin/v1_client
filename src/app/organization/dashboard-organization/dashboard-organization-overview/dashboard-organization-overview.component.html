@@ -1,0 +1,25 @@
+<ul class="flex flex-wrap -mb-px">
+  <li class="me-2">
+    <a [routerLink]="['fundability']"
+       routerLinkActive="text-primary border-primary font-semibold"
+       class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-base">
+      Fundability
+    </a>
+  </li>
+
+
+  <li class="me-2">
+    <a [routerLink]="['community-needs']"
+       routerLinkActive="text-primary border-primary font-semibold"
+       class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-base">
+      Community Needs
+    </a>
+  </li>
+
+
+
+</ul>
+
+<div class="bg-slate-100">
+  <router-outlet></router-outlet>
+</div>

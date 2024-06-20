@@ -27,7 +27,7 @@ export class OrganizationWaitlistComponent extends BaseCreateComponent<Organizat
     super(organizationWaitlistService);
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     window.scroll(0, 0);
     this.initForm();
     this.getCountries();

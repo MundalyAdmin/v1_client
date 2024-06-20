@@ -24,9 +24,28 @@ export class ScaleService extends BaseService<any> {
     super('scale');
   }
 
-  getCommunityTrustScore(organizationId: number) {
+  getCommunityTrustScoreByOrganizationId(
+    organizationId: number,
+    options?: { params: any }
+  ) {
     return this.factory
-      .get(`${this.endPoint}/community-trust-score/${organizationId}`)
+      .get(`${this.endPoint}/community-trust-score/${organizationId}`, options)
+      .pipe(
+        tap((response: ApiResponse<CommunityTrustScore>) => {
+          this.communityTrustScore = response.data as CommunityTrustScore;
+        })
+      );
+  }
+
+  getCommunityTrustScoreByImpactInitiaitveId(
+    impactInitiativeId: number,
+    options?: { params: any }
+  ) {
+    return this.factory
+      .get(
+        `${this.endPoint}/community-trust-score/impact-initiatives/${impactInitiativeId}`,
+        options
+      )
       .pipe(
         tap((response: ApiResponse<CommunityTrustScore>) => {
           this.communityTrustScore = response.data as CommunityTrustScore;
@@ -52,9 +71,9 @@ export class ScaleService extends BaseService<any> {
   }
 
   getScoreKey(score: number) {
-    if (score >= 4.5) {
+    if (score >= 80) {
       return 'High';
-    } else if (score >= 3.5) {
+    } else if (score >= 60) {
       return 'Medium';
     } else {
       return 'Low';
@@ -64,11 +83,11 @@ export class ScaleService extends BaseService<any> {
   getImpactStrengthKey(score: number) {
     if (score >= 5) {
       return 'Highly Impactful';
-    } else if (score >= 4) {
+    } else if (score >= 4 && score < 5) {
       return 'More Impactful';
-    } else if (score >= 3) {
+    } else if (score >= 3 && score < 4) {
       return 'Neutral Impact';
-    } else if (score >= 2) {
+    } else if (score >= 2 && score < 3) {
       return 'Less Impactful';
     } else {
       return 'Not Impactful';
@@ -79,20 +98,53 @@ export class ScaleService extends BaseService<any> {
     communityReportedScore: number,
     companyReportedScore: number
   ) {
-    if (communityReportedScore - companyReportedScore < 0) {
+    if (companyReportedScore - communityReportedScore < 0) {
       return 'is even more impactful than';
     } else if (
-      communityReportedScore - companyReportedScore >= 0 &&
-      communityReportedScore - companyReportedScore <= 0.5
+      companyReportedScore - communityReportedScore >= 0 &&
+      companyReportedScore - communityReportedScore <= 0.5
     ) {
       return 'aligns with';
     } else if (
-      communityReportedScore - companyReportedScore <= 1 &&
-      communityReportedScore - companyReportedScore > 0.5
+      companyReportedScore - communityReportedScore <= 1 &&
+      companyReportedScore - communityReportedScore > 0.5
     ) {
       return 'partially aligns with';
     } else {
       return "doens't align with";
     }
+  }
+
+  getReputationKey(score: number) {
+    if (score >= 4) {
+      return 'high reputation';
+    } else if (score >= 3 && score < 4) {
+      return 'average reputation';
+    } else {
+      return 'low reputation';
+    }
+  }
+
+  getFundabilityRecommendation(communityTrustScore: CommunityTrustScore) {
+    if (communityTrustScore?.total_survey_respondant! < 5) {
+      return 'Insufficient data for a recommendation';
+    }
+
+    if (communityTrustScore && communityTrustScore.community_trust_score) {
+      if (communityTrustScore.community_trust_score <= 40) {
+        return 'Bad, Do Not Support';
+      } else if (
+        communityTrustScore.community_trust_score > 40 &&
+        communityTrustScore.community_trust_score <= 70
+      ) {
+        return 'Need more Information';
+      } else if (
+        communityTrustScore.community_trust_score > 70 &&
+        communityTrustScore.community_trust_score <= 80
+      ) {
+        return 'Good, Support.';
+      } else return 'Excellent, Support.';
+    }
+    return '';
   }
 }

@@ -32,7 +32,7 @@ export class BaseContainerComponent<T>
     this.router = AppInjector.injector.get(Router);
   }
 
-  ngOnInit(): void {}
+  override ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     // this.route.fragment.subscribe((fragment) => {

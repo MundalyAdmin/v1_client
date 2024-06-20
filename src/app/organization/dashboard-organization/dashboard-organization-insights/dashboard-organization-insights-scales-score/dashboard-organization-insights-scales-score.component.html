@@ -1,0 +1,19 @@
+<div class="grid grid-cols-1 gap-3" *ngIf="!loading && scaleService.communityTrustScore">
+  <!-- Impact Fidelity Score -->
+  <app-dashboard-organization-insights-scale-score [title]="'Impact Fidelity Score'"
+                                                   [score]="scaleService.communityTrustScore.impact_fidelity_score!">
+  </app-dashboard-organization-insights-scale-score>
+
+  <!-- Community Reputation Score -->
+  <app-dashboard-organization-insights-scale-score [title]="'Community Reputation Score'"
+                                                   [score]="scaleService.communityTrustScore.community_perception_score!">
+  </app-dashboard-organization-insights-scale-score>
+
+  <!-- Facilitation Strategy Score -->
+  <app-dashboard-organization-insights-scale-score [title]="'Faciliation Strategy Score'"
+                                                   [score]="scaleService.communityTrustScore.facilitation_strategy_score!">
+  </app-dashboard-organization-insights-scale-score>
+</div>
+
+<app-page-loading *ngIf="loading"></app-page-loading>
+<app-missing-data *ngIf="!loading && !scaleService.communityTrustScore"></app-missing-data>

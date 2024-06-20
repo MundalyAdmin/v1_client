@@ -42,23 +42,23 @@ export class OrganizationNewStyleRatingOverviewComponent extends BaseSingleCompo
   }
 
   getRecommendation() {
-    if (this.communityTrustScore?.total_survey_respondant! < 10) {
+    if (this.communityTrustScore?.total_survey_respondant! < 5) {
       return 'Insufficient data for a recommendation';
     }
 
     if (this.communityTrustScore && this.communityTrustScore.rating) {
-      if (this.communityTrustScore.rating <= 2) {
+      if (this.communityTrustScore.rating <= 40) {
         return 'Bad, Do Not Support';
       }
       if (
-        this.communityTrustScore.rating > 2 &&
-        this.communityTrustScore.rating <= 3.5
+        this.communityTrustScore.rating > 40 &&
+        this.communityTrustScore.rating <= 70
       ) {
         return 'Need more Information';
       }
       if (
-        this.communityTrustScore.rating > 3.5 &&
-        this.communityTrustScore.rating <= 4
+        this.communityTrustScore.rating > 70 &&
+        this.communityTrustScore.rating <= 80
       ) {
         return 'Good, Support.';
       }

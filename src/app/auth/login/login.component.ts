@@ -16,13 +16,13 @@ export class LoginComponent extends BaseCreateComponent<any> {
     super(authService);
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.initForm();
   }
 
   initForm() {
     this.form = this.fb.group({
-      username: [null, Validators.required],
+      email: [null, Validators.required],
       password: [null, Validators.required],
     });
   }
@@ -32,16 +32,18 @@ export class LoginComponent extends BaseCreateComponent<any> {
     this.authService.login(this.form.value).subscribe({
       next: (response: AuthenticatedUser) => {
         this.loading = false;
-        if (response) {
-          this.router.navigate(['/dashboard']);
+
+        // setTimeout(() => {
+        if (response.type_user.id == TypeUserEnum.SUPER_ADMIN) {
+          // this.router.navigate(['/super-admin']);
+          window.location.href = '/super-admin';
+        } else if (response.type_user.id == TypeUserEnum.ADMIN_ORGANIZATION) {
+          // this.router.navigate(['/dashboard'], { replaceUrl: true });
+          window.location.href = '/dashboard';
         }
-        // if (response.type_user.id == TypeUserEnum.SUPER_ADMIN) {
-        //   this.router.navigate(['/super-admin']);
-        // } else if (response.type_user.id == TypeUserEnum.ADMIN_ORGANIZATION) {
-        //   this.router.navigate(['/dashboard']);
-        // }
-        // this.helper.notification.alertSuccess();
-        // this.loading = false;
+        this.helper.notification.alertSuccess();
+        this.loading = false;
+        // }, 500);
       },
       error: () => {
         this.loading = false;

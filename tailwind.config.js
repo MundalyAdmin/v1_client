@@ -40,7 +40,10 @@ module.exports = {
         dark: "#3c4858",
         black: "#161c2d",
         "dark-footer": "#192132",
-        "organization-dashboard": "#07046B",
+        "organization-dashboard": {
+          DEFAULT: "#07046B",
+          dark: "#050345",
+        },
         primary: {
           DEFAULT: "#282668",
           light: "#4f46e5",
@@ -95,7 +98,7 @@ module.exports = {
       strategy: "class", // only generate classes
     }),
     require("flowbite/plugin")({
-      charts: true
+      charts: true,
     }),
   ],
 };

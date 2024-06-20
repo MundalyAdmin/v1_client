@@ -1,4 +1,4 @@
-<div class="grid grid-cols-1 mt-6">
+<div class="grid grid-cols-1 text-sm mt-6">
   <!-- Liste of organization -->
   <ng-container *ngIf="!loading && organizationService.data">
 
@@ -7,13 +7,12 @@
         <!-- Table header -->
         <thead class="text-base">
           <tr>
-            <th class="text-start p-4 min-w-[128px]">Type</th>
+            <th class="text-start p-4 min-w-[188px]">Type</th>
             <th class="text-start p-4 min-w-[192px]">Name</th>
             <th class="text-center p-4 min-w-[200px]">Sector</th>
             <th class="text-center p-4">Country</th>
-            <th class="text-center p-4 min-w-[150px]">Tags</th>
             <th class="text-center p-4">Status</th>
-            <th class="text-end p-4 min-w-[200px]"></th>
+            <th class="text-end p-4"></th>
           </tr>
         </thead>
 
@@ -45,7 +44,7 @@
 
             <!-- Sector -->
             <td class="text-center border-t border-gray-100 dark:border-gray-800 p-4">
-              <span class="text-slate-400">{{ organization.sector_organizations![0].name }}</span>
+              <span class="text-slate-400" *ngFor="let sector of organization.sector_organizations?.slice(0, 2)">{{ sector.name }}</span>
             </td>
 
             <!-- Country -->
@@ -54,12 +53,7 @@
             </td>
 
 
-            <!-- Tags -->
-            <td class="text-center border-t border-gray-100 dark:border-gray-800 p-4">
-              <span class="bg-secondary text-primary text-sm me-1 font-semibold px-2.5 py-0.5 rounded"
-                    *ngFor="let tag of organization.tag_organizations?.slice(0, 2)">{{ tag.name
-                }}</span>
-            </td>
+
 
             <!-- Status -->
             <td class="text-center border-t border-gray-100 dark:border-gray-800 p-4">
@@ -70,7 +64,7 @@
             </td>
 
             <!-- Actions -->
-            <td class=" border-t border-gray-100 dark:border-gray-800 p-4">
+            <td class=" border-t border-gray-100 flex dark:border-gray-800 p-4">
               <!-- Details button -->
               <a [routerLink]="[organization.id]"
                  class="py-1 px-4 inline-block font-semibold tracking-wide border align-middle duration-500 text-sm  text-center bg-primary hover:bg-primary-dark border-secondary  text-white rounded-md">Details</a>

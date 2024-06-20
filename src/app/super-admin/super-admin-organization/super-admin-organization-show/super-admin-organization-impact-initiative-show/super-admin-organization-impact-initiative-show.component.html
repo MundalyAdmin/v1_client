@@ -1,0 +1,11 @@
+<div class="p-5 py-7 border-b grid grid-cols-2 items-center bg-white w-full" *ngIf="impactInitiativeService.singleData">
+    <div class="flex gap-5">
+
+        <h2 class="text-2xl text-primary ">
+            <span class="me-2"><i class="mdi mdi-chart-box-outline"></i></span>
+            {{ impactInitiativeService.singleData.name}}
+        </h2>
+    </div>
+</div>
+
+<router-outlet></router-outlet>

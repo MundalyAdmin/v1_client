@@ -18,7 +18,7 @@ export class DashboardOrganizationImpactPartnersComponent
     super(organizationService);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     // this.subscriptions['organizaion'] =
     //   this.organizationService.singleData$.subscribe((organization) => {
     //     if (organization) this.getImpactPartners(organization.id!);
@@ -29,11 +29,11 @@ export class DashboardOrganizationImpactPartnersComponent
 
   getImpactPartners(organizationId: number) {
     this.loading = true;
-    this.organizationService
-      .getImpactPartners(organizationId)
-      .subscribe((data) => {
-        this.data = data as Organization[];
-        this.loading = false;
-      });
+    // this.organizationService
+    //   .getImpactPartners(organizationId)
+    //   .subscribe((data) => {
+    //     this.data = data as Organization[];
+    //     this.loading = false;
+    //   });
   }
 }

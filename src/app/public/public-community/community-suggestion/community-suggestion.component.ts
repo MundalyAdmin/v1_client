@@ -12,7 +12,7 @@ import { Organization } from '../../../organization/organization.model';
   styleUrls: ['./community-suggestion.component.scss'],
 })
 export class CommunitySuggestionComponent extends BaseCreateComponent<CommunitySuggestion> {
-  @Input() minified = false
+  @Input() minified = false;
   organization: Organization | null = null;
 
   constructor(
@@ -22,7 +22,7 @@ export class CommunitySuggestionComponent extends BaseCreateComponent<CommunityS
     super(communitySuggestionService);
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     window.scrollTo(0, 0);
 
     this.initForm();

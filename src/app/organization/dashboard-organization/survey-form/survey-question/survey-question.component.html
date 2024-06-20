@@ -1,0 +1,9 @@
+<app-page-loading *ngIf="loading"></app-page-loading>
+
+<app-missing-data *ngIf="!loading && !data.length"></app-missing-data>
+
+<div class="grid grid-cols-1 gap-5" *ngIf="!loading && data.length">
+  <p-card [header]="surveyQuestion.question" *ngFor="let surveyQuestion of data; let i = index">
+    <app-survey-answer [answers]="surveyQuestion.answers" [chartType]="getChartTypeByIndex(i)"></app-survey-answer>
+  </p-card>
+  <div>

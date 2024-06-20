@@ -14,7 +14,7 @@ export class SettingsTypeOrganizationEditComponent extends BaseEditComponent<Typ
     super(typeOrganizationService);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.subscriptions['typeOrganization'] =
       this.typeOrganizationService.singleData$.subscribe((typeOrganization) => {
         if (typeOrganization) {

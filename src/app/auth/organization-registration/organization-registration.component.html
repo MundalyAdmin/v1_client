@@ -1,6 +1,6 @@
 <section class="bg-gray-50 dark:bg-gray-900 py-7 pb-12">
 
-  <div class="flex flex-col justify-center items-center  mx-auto md:h-screen lg:py-0">
+  <div class="flex flex-col justify-center items-center  mx-auto  pt-10 pb-20">
 
     <!-- Logo -->
     <a [routerLink]="['/']" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
@@ -16,382 +16,129 @@
     <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-2xl xl:p-0 dark:bg-gray-800 dark:border-gray-700">
 
 
-      <form class="p-6 space-y-4 md:space-y-6 sm:p-8" [formGroup]="form" (submit)="submit()">
+      <form class="p-6 space-y-4 md:space-y-6 sm:p-8" [formGroup]="form!" (submit)="submit()">
 
-        <!-- Stepper -->
-        <ol class="flex items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
-          <!-- Admin info -->
-          <li
-              [ngClass]="{'text-blue-600 dark:text-blue-500 after:border-blue-500': adminInfoForm!.valid, 'text-gray-700': adminInfoForm!.invalid, 'font-bold': activeSteps.adminInfo}"
-              class="flex md:w-full items-center  sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
-            <span class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
-              <!-- Check mark -->
-              <span class="me-2.5" *ngIf="adminInfoForm!.valid"><i class="mdi mdi-check-circle"></i></span>
-
-              <!-- Step number -->
-              <span class="me-2" *ngIf="!adminInfoForm!.valid"><i class="mdi mdi-numeric-1-circle"></i></span>
-              Personal <span class="hidden sm:inline-flex sm:ms-2">Info</span>
-            </span>
-          </li>
-
-          <!-- Organization info -->
-          <li
-              [ngClass]="{'text-blue-600 dark:text-blue-500 after:border-blue-500':  organizationInfoForm?.valid, 'text-gray-700 ': organizationInfoForm?.invalid, 'font-bold': activeSteps.organizationInfo}"
-              class="flex md:w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
-            <span class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
-              <!-- Check mark -->
-              <span class="me-2.5" *ngIf="organizationInfoForm?.valid"><i class="mdi mdi-check-circle"></i></span>
-
-              <!-- Step number -->
-              <span class="me-2" *ngIf="organizationInfoForm?.invalid"><i class="mdi mdi-numeric-2-circle"></i></span>
-
-              Organization <span class="hidden sm:inline-flex sm:ms-2">Info</span>
-            </span>
-          </li>
-
-          <!-- Reports -->
-          <li class="flex items-center" [ngClass]="{ 'text-gray-700 font-bold': activeSteps.reportsUpload}">
-            <!-- Step number -->
-            <span class="me-2"><i class="mdi mdi-numeric-3-circle"></i></span>
-            Reports
-          </li>
-        </ol>
 
         <!-- admin information -->
-        <ng-container *ngIf="activeSteps.adminInfo">
-          <!-- Title -->
-          <h1 class="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-            Personal information
-          </h1>
+        <!-- Title -->
+        <h1 class="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+          Signup to Get Verified
+        </h1>
 
 
-          <form class="space-y-4 md:space-y-6 " [formGroup]="adminInfoForm!">
+        <form class="space-y-4 md:space-y-6 " [formGroup]="form" (submit)="submit()" *ngIf="form">
+          <!-- Category organization -->
+          <div class="flex rounded-md shadow-sm w-full" role="group">
+            <button type="button"
+                    [ngClass]="{ 'border-primary border-2 text-primary !bg-slate-100': form.get('category_organization')?.value === 1 }"
+                    (click)="updateCategoryOrganization(1)"
+                    class="px-4 py-3 w-full font-medium text-gray-900 border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-primary-light focus:z-10 focus:ring-1 focus:ring-primary-light focus:text-primary-light dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+              Impact
+            </button>
+            <button type="button"
+                    (click)="updateCategoryOrganization(2)"
+                    [ngClass]="{ 'border-primary border-2 text-primary  !bg-slate-100': form.get('category_organization')?.value === 2 }"
+                    class="px-4 py-3 w-full font-medium text-gray-900 border-t border-b rounded-e-lg border-gray-200 hover:bg-gray-100 hover:text-primary-light focus:z-10 focus:ring-2 focus:ring-primary-light focus:text-primary-light dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+              Corporation
+            </button>
 
-            <!-- Name -->
-            <div>
-              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your name</label>
-              <input type="text" name="name" id="name"
-                     formControlName="name"
-                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                     placeholder="Alexander Giggs" required="">
-            </div>
+          </div>
 
 
+          <!-- Name -->
+          <div>
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What's your name?</label>
+            <input type="text" name="name" id="name"
+                   formControlName="name"
+                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   placeholder="Alexander Giggs" required="">
+          </div>
+
+
+          <div class="grid grid-cols-2 gap-5">
             <!-- Email -->
             <div>
-              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your work email</label>
+              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What's your work email?</label>
               <input type="email"
                      name="email"
                      id="email"
                      formControlName="email"
-                     [ngClass]="{ 'border-red-500': adminInfoForm!.controls['email'].dirty && adminInfoForm!.controls['email'].invalid}"
+                     [ngClass]="{ 'border-red-500': form!.controls['email'].dirty && form!.controls['email'].invalid}"
                      class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                      placeholder="alexander@mundaly.com" required="">
               <p class="mt-2 text-sm text-red-600 dark:text-red-500"
-                 *ngIf="adminInfoForm!.controls['email'].dirty && adminInfoForm!.controls['email'].invalid">
+                 *ngIf="form!.controls['email'].dirty && form!.controls['email'].invalid">
                 Kindly add a valid <span class="font-medium">work email.</span>
               </p>
             </div>
 
 
+
             <!-- Phone number -->
             <div>
-              <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your phone number</label>
-              <input type="tel" name="phone" id="phone"
-                     formControlName="phone_number"
-                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                     placeholder="+1234567890" required="">
+              <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What's your phone number?</label>
+              <ngx-intl-tel-input
+                                  [cssClass]="'w-full bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600   py-2.5 '"
+                                  [preferredCountries]="preferredCountries"
+                                  [enableAutoCountrySelect]="true"
+                                  [enablePlaceholder]="true"
+                                  [searchCountryFlag]="true"
+                                  [searchCountryField]="[
+                                  SearchCountryField.Iso2,
+                                  SearchCountryField.Name
+                                ]"
+
+                                  [selectFirstCountry]="false"
+                                  [selectedCountryISO]="CountryISO.UnitedStates"
+                                  [maxLength]="15"
+
+                                  [separateDialCode]="separateDialCode"
+                                  [numberFormat]="PhoneNumberFormat.International"
+                                  name="phone"
+                                  formControlName="phone_number">
+              </ngx-intl-tel-input>
+              <p class="mt-2 text-sm text-red-600 dark:text-red-500"
+                 *ngIf="form!.controls['phone_number'].touched && form!.controls['phone_number'].invalid">
+                Kindly add a valid <span class="font-medium">phone number.</span>
+              </p>
             </div>
+          </div>
 
-            <!-- Password -->
-            <div>
-              <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-              <input type="password" name="password" id="password" placeholder="••••••••"
-                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                     required="" formControlName="password">
-            </div>
-
-
-            <!-- Confirmation Password -->
-            <div>
-              <label for="password_confirmation" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password Confirmation</label>
-              <input type="password" name="password_confirmation" id="password_confirmation" placeholder="••••••••"
-                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                     required="" formControlName="password_confirmation">
-            </div>
+          <!-- Name -->
+          <div>
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What's your organization's name?</label>
+            <input type="text" name="name" id="name"
+                   formControlName="organization_name"
+                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   placeholder="Nobis Inc." required="">
+          </div>
 
 
-            <!-- Submit -->
-            <div class="flex  justify-end gap-4">
-
-              <!-- Next -->
-              <button type="button"
-                      [disabled]="adminInfoForm!.invalid"
-                      [ngClass]="{ 'cursor-not-allowed bg-slate-400': adminInfoForm!.invalid }"
-                      (click)="showStep('organizationInfo')"
-                      class="w-full text-primary border-primary border bg-secondary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Next</button>
-            </div>
-          </form>
-        </ng-container>
-
-        <!-- organization information -->
-        <ng-container *ngIf="activeSteps.organizationInfo">
-          <!-- Title -->
-          <h1 class="text-xl font-bold text-center leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-            Organization's information
-          </h1>
-
-
-          <form class="space-y-4 md:space-y-6 " [formGroup]="organizationInfoForm!">
-
-            <!-- Name -->
-            <div>
-              <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Organization name</label>
-              <input type="text" name="name" id="name"
-                     formControlName="name"
-                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                     placeholder="Nobis Inc." required="">
-            </div>
-
-
-            <!-- Organization Email -->
-            <div>
-              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Organization email</label>
-              <input type="email" name="email" id="email"
-                     formControlName="email"
-                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                     placeholder="support@nobis.com" required="">
-            </div>
-
-            <!-- website -->
-            <div>
-              <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Organization Website</label>
-              <input type="url" name="website" id="website"
-                     formControlName="website"
-                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                     placeholder="email@mundaly.com" required="">
-            </div>
-
-
-            <!-- type -->
-            <div>
-              <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What type of impact partner are you?</label>
-              <p-dropdown class="" [filter]="true" filterBy="name" [showClear]="true" placeholder="Select a type"
-                          formControlName="type" [options]="dependancies.typeOrganization" optionLabel="name"></p-dropdown>
-            </div>
-
-
-            <!-- Sector -->
-            <div>
-              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Industry</label>
-              <!-- <p-dropdown [filter]="true" filterBy="name" [showClear]="true" placeholder="Select an industry"
-                          formControlName="sector" [options]="dependancies.sectorOrganization" optionLabel="name">
-              </p-dropdown> -->
-              <p-multiSelect [options]="dependancies.sectorOrganization" formControlName="sector" placeholder="Select an industry" optionLabel="name"
-                             display="chip"
-                             [styleClass]="'bg-gray-50 border flex border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600  w-full  '"
-                             [showClear]="true"></p-multiSelect>
-            </div>
-
-
-
-            <!-- about -->
-            <div>
-              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">About</label>
-              <textarea formControlName="about" rows="4"
-                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        pInputTextarea [autoResize]="true" placeholder="Tell us about your orgnization..."></textarea>
-            </div>
-
-
-
-
-            <!-- Submit -->
-            <div class="flex gap-4">
-              <!-- Previous -->
-              <button type="button"
-
-                      (click)="showStep('adminInfo')"
-                      class="w-full text-white border-white border bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Previous</button>
-
-
-
-              <!-- Next -->
-              <button type="button"
-                      [disabled]="organizationInfoForm!.invalid"
-                      [ngClass]="{ 'cursor-not-allowed bg-slate-400': organizationInfoForm!.invalid }"
-                      (click)="showStep('reportsUpload')"
-                      class="w-full text-primary border-primary border bg-secondary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Next</button>
-            </div>
-
-            <!-- <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                                    Don’t have an account yet? <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
-                                  </p> -->
-          </form>
-        </ng-container>
-
-
-        <!-- Reports upload -->
-        <ng-container *ngIf="activeSteps.reportsUpload">
-          <!-- Title -->
-          <h1 class="text-xl font-bold text-center leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-            Do you currently have impact reports? (optional)
-          </h1>
-          <p class="mt-2 text-gray-600 text-center text-sm">Upload them to get insights about your organization's activities<br>Preferably
-            the latest 5 years</p>
-
-
-
-          <form class="space-y-4 md:space-y-6 " [formGroup]="reportForm!" (submit)="addReport()!">
-
-
-            <!-- File upload dropzone -->
-            <div class="flex items-center justify-center w-full">
-              <label for="dropzone-file"
-                     class="flex flex-col items-center justify-center w-full h-16 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                <div class="flex gap-2 items-center justify-center pt-5 pb-6">
-                  <svg class="w-8 h-8  text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                       viewBox="0 0 20 16">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
-                  </svg>
-                  <p class=" text-sm text-gray-500 dark:text-gray-400 mb-0" *ngIf="!selectedReportFile"><span class="font-semibold">Click to
-                      upload</span> or drag and drop your
-                    reports
-                  </p>
-
-                  <p class=" text-sm text-gray-500 dark:text-gray-400 mb-0" *ngIf="selectedReportFile">
-                    {{ selectedReportFile.name }}
-                  </p>
-                </div>
-                <input id="dropzone-file" type="file" class="hidden" (change)="onReportsUpload($event)" />
-              </label>
-            </div>
-
-            <!-- Name and year -->
-            <div class="flex gap-3">
-              <div class="flex-1">
-                <!-- <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name of the report</label> -->
-                <input type="text" name="name" id="name"
-                       formControlName="name"
-                       class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       placeholder="Name of the report" required="">
-              </div>
-
-              <!-- Year -->
-              <div>
-                <p-calendar formControlName="year" view="year" dateFormat="yy" inputId="yearpicker"></p-calendar>
-              </div>
-
-
-              <button type="submit"
-                      [disabled]="!reportForm?.valid"
-                      [ngClass]="{'cursor-not-allowed bg-slate-400': !reportForm?.valid}"
-                      class="text-white flex-none bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"><i
-                   class="mdi mdi-check"></i></button>
-
-
-
-            </div>
-
-
-            <hr>
-          </form>
-
-
-          <!-- List of reports -->
-          <div class="relative overflow-x-auto shadow dark:shadow-gray-800 rounded-md" *ngIf="reports.length">
-            <table class="w-full text-start">
-              <thead class="text-sm uppercase bg-slate-50 dark:bg-slate-800">
-                <tr>
-                  <th scope="col" class="p-4 w-4"></th>
-                  <th scope="col" class="text-start p-4 min-w-[220px]">Name</th>
-                  <th scope="col" class="p-4 w-24 min-w-[220px]">Year</th>
-                  <!-- <th scope="col" class="p-4 w-56 min-w-[100px]">File</th> -->
-                </tr>
-              </thead>
-              <tbody>
-
-                <!-- List of items -->
-                <ng-container>
-                  <tr class="bg-white dark:bg-slate-900 border-t border-gray-100 dark:border-gray-800 "
-                      *ngFor="let report of reports">
-                    <!-- Remove from cart -->
-                    <td class="p-4"><button><i class="mdi mdi-window-close text-red-600"></i></button></td>
-
-                    <!-- Report description -->
-                    <td class="p-4">
-                      <span class="flex items-center">
-                        <span class="mt-2">
-                          <span class="block font-semibold text-slate-700">
-                            {{ report.name }}
-                          </span>
-                        </span>
-                      </span>
-                    </td>
-
-                    <!-- Year -->
-                    <td class="p-4 text-center font-bold">{{ report.year | date: 'yyyy'}}</td>
-
-                    <!-- Genereated by -->
-                    <!-- <td class="p-2 text-center">
-
-                        {{ report.file.name }}
-                      </td> -->
-
-
-
-
-
-                  </tr>
-                </ng-container>
-              </tbody>
-            </table>
-
+          <div>
+            <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+              What type of <span *ngIf="form.get('category_organization')?.value === 2">business</span><span
+                    *ngIf="form.get('category_organization')?.value === 1">impact</span> partner are you?</label>
+            <p-dropdown class="" [filter]="true" filterBy="name" [showClear]="true" placeholder="Select a type"
+                        formControlName="type_organization" [options]="dependancies.typeOrganization" optionLabel="name"></p-dropdown>
           </div>
 
 
 
-
-          <div class="flex items-center justify-between">
-            <div class="flex items-start">
-              <div class="flex items-center h-5">
-                <input id="terms" aria-describedby="terms" type="checkbox"
-                       formControlName="terms_and_conditions"
-                       class=" appearance-none "
-                       required="">
-              </div>
-              <div class="ml-3 text-sm">
-                <label for="remember" class="text-gray-500 dark:text-gray-300">
-                  I agree to the <a [routerLink]="['/terms-of-services']" target="_blank" class="text-primary hover:underline"> terms and
-                    conditions </a>
-                </label>
-              </div>
-            </div>
-          </div>
 
           <!-- Submit -->
-          <div class="flex gap-4">
-            <!-- Previous -->
-            <button type="button"
-                    (click)="showStep('organizationInfo')"
-                    class="w-full text-white border-white border bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Previous</button>
-
-
+          <div class="flex  justify-end gap-4">
 
             <!-- Next -->
             <button type="submit"
-                    (click)="submit()"
-                    [disabled]="form.invalid || loading"
-                    [ngClass]="{'cursor-not-allowed bg-slate-400': form.invalid || loading}"
-                    class="w-full text-primary border-primary border bg-secondary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Submit</button>
+                    [disabled]="form!.invalid || loading"
+                    [ngClass]="{ 'cursor-not-allowed bg-slate-400': form!.invalid || loading }"
+
+                    class="w-full text-primary border-primary border bg-secondary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Create
+              an account <app-loading *ngIf="loading"></app-loading></button>
           </div>
+        </form>
 
 
-          <!-- <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-                                    Don’t have an account yet? <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
-                                  </p> -->
-        </ng-container>
 
 
       </form>

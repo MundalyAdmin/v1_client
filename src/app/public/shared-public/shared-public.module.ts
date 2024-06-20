@@ -7,6 +7,7 @@ import { PublicBusinessCheckCommunityReviewsComponent } from '../public-business
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ReportDemographicCreateComponent } from '../../report-demographic/report-demographic-create/report-demographic-create.component';
 import { SelectResearchPartnersComponent } from '../../cart/select-research-partners/select-research-partners.component';
+import { TermsAndConditionsComponent } from '../terms-and-conditions/terms-and-conditions.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { SelectResearchPartnersComponent } from '../../cart/select-research-part
     PublicBusinessCheckCommunityReviewsComponent,
     ReportDemographicCreateComponent,
     SelectResearchPartnersComponent,
+    TermsAndConditionsComponent,
   ],
   imports: [CommonModule, SharedModule, AutoCompleteModule],
   exports: [
@@ -23,6 +25,7 @@ import { SelectResearchPartnersComponent } from '../../cart/select-research-part
     PublicBusinessCheckCommunityReviewsComponent,
     ReportDemographicCreateComponent,
     SelectResearchPartnersComponent,
+    TermsAndConditionsComponent,
   ],
 })
 export class SharedPublicModule {}

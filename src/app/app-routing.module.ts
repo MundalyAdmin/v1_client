@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Router, RouterModule, Routes } from '@angular/router';
 import { PublicComponent } from './public/public.component';
 import { ComingSoonComponent } from './shared/components/coming-soon/coming-soon.component';
 import { AuthGuard } from './auth/auth.guard';
 import { TempDashboardComponent } from './cart/temp-dashboard/temp-dashboard.component';
 import { GeneratingReportComponent } from './generating-report/generating-report.component';
+import { verifiedUserGuard } from './auth/guards/verified-user.guard';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
       },
       {
         path: 'dashboard',
+        canActivate: [AuthGuard],
         loadChildren: () =>
           import(
             './organization/dashboard-organization/dashboard-organization.module'

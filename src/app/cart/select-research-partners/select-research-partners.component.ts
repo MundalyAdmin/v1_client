@@ -27,7 +27,7 @@ export class SelectResearchPartnersComponent
     super();
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     this.form = this.fb.group({
       research_partners: [null],
     });
