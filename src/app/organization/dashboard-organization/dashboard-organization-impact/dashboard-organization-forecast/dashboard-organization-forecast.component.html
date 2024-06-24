@@ -37,7 +37,12 @@
 
           <!-- Name and Photo -->
           <th scope="row p-6">
-            Impact Fidelity
+            <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT">Impact
+              Fidelity</span>
+            <span
+                  *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION">Sustainability
+              Fidelity</span>
+
           </th>
 
           <!-- Key -->
@@ -82,7 +87,10 @@
 
           <!-- Name and Photo -->
           <th scope="row p-6">
-            Community Reputation
+            <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT">Community
+              Reputation</span>
+            <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION">Social
+              License</span>
           </th>
 
           <!-- Key -->
@@ -130,7 +138,11 @@
 
           <!-- Name and Photo -->
           <th scope="row p-6">
-            Facilitation Strategy
+            <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT">Facilitation
+              Strategy</span>
+            <span
+                  *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION">Whistleblowing
+              Risk</span>
           </th>
 
           <!-- Key -->

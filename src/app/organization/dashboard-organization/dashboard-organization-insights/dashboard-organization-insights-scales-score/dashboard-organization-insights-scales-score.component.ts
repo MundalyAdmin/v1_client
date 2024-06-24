@@ -27,6 +27,7 @@ export class DashboardOrganizationInsightsScalesScoreComponent
   }
 
   override ngOnInit(): void {
+    super.ngOnInit();
     this.route.queryParams.subscribe((params) => {
       const queryParams: { startDate?: string; endDate?: string } = {};
       if (params['startDate']) {

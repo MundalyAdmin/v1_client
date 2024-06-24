@@ -3,6 +3,8 @@ import { BaseService } from '../shared/services';
 import { ReplaySubject, tap } from 'rxjs';
 import { ApiResponse } from '../shared/models/ApiResponse';
 import { CommunityTrustScore } from './models/community-trust-score.model';
+import { AuthService } from '../auth/auth.service';
+import { CategoryOrganizationEnum } from '../organization/category-organization/category-organization.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +22,7 @@ export class ScaleService extends BaseService<any> {
     this.communityTrustScore$.next(value);
   }
 
-  constructor() {
+  constructor(public authService: AuthService) {
     super('scale');
   }
 
@@ -126,25 +128,35 @@ export class ScaleService extends BaseService<any> {
   }
 
   getFundabilityRecommendation(communityTrustScore: CommunityTrustScore) {
-    if (communityTrustScore?.total_survey_respondant! < 5) {
+    const totalRespondants = communityTrustScore?.total_survey_respondant;
+    const trustScore = communityTrustScore?.community_trust_score;
+
+    if (totalRespondants! < 5) {
       return 'Insufficient data for a recommendation';
     }
 
-    if (communityTrustScore && communityTrustScore.community_trust_score) {
-      if (communityTrustScore.community_trust_score <= 40) {
-        return 'Bad, Do Not Support';
-      } else if (
-        communityTrustScore.community_trust_score > 40 &&
-        communityTrustScore.community_trust_score <= 70
-      ) {
-        return 'Need more Information';
-      } else if (
-        communityTrustScore.community_trust_score > 70 &&
-        communityTrustScore.community_trust_score <= 80
-      ) {
-        return 'Good, Support.';
-      } else return 'Excellent, Support.';
+    if (trustScore) {
+      const isImpact =
+        this.authService.organization?.type_organization
+          ?.category_organization_id === CategoryOrganizationEnum.IMPACT;
+
+      if (trustScore <= 55) {
+        return `${
+          isImpact ? 'Bad, Do Not Support' : 'High Risk, Do Not Support'
+        }`;
+      } else if (trustScore > 55 && trustScore <= 77) {
+        return `${
+          isImpact
+            ? 'Need more Information'
+            : 'Medium Risk, Need more Information'
+        }`;
+      } else if (trustScore > 77 && trustScore <= 88) {
+        return `${isImpact ? 'Good, Support.' : 'Low Risk, Support.'}`;
+      } else {
+        return `${isImpact ? 'Excellent, Support.' : 'No Risk, Support.'}`;
+      }
     }
+
     return '';
   }
 }

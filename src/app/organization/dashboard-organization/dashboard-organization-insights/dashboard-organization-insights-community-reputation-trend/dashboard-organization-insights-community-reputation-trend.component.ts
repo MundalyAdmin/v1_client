@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TypeOrganizationEnum } from '../../../type-organization/type-organization.enum';
 import { AuthService } from '../../../../auth/auth.service';
 import { ImpactInitiativeService } from '../../../../scale/impact-initiative/impact-initiative.service';
+import { CategoryOrganizationEnum } from '../../../category-organization/category-organization.enum';
 
 @Component({
   selector: 'app-dashboard-organization-insights-community-reputation-trend',
@@ -36,6 +37,8 @@ export class DashboardOrganizationInsightsCommunityReputationTrendComponent
   }
 
   override ngOnInit(): void {
+    super.ngOnInit();
+
     this.route.queryParams.subscribe((params) => {
       const queryParams: { startDate?: string; endDate?: string } = {};
       if (params['startDate']) {
@@ -129,7 +132,11 @@ export class DashboardOrganizationInsightsCommunityReputationTrendComponent
       labels: this.chartLabels,
       datasets: [
         {
-          label: 'Avg. Community Reputation',
+          label:
+            this.currentLoggedInOrganization?.type_organization
+              ?.category_organization_id === CategoryOrganizationEnum.IMPACT
+              ? 'Avg. Community Reputation'
+              : 'Avg. Social Licence',
           data: this.chartDataset,
           fill: true,
           borderColor: '#4f46e5',

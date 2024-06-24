@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BaseComponent } from '../../../shared/base-component';
 
 @Component({
   selector: 'app-dashboard-organization-insights',
   templateUrl: './dashboard-organization-insights.component.html',
   styleUrls: ['./dashboard-organization-insights.component.scss'],
 })
-export class DashboardOrganizationInsightsComponent implements OnInit {
+export class DashboardOrganizationInsightsComponent extends BaseComponent<any> {
   dateForm!: FormGroup;
   minDate!: Date;
   maxDate!: Date;
@@ -16,9 +17,12 @@ export class DashboardOrganizationInsightsComponent implements OnInit {
     public fb: FormBuilder,
     public router: Router,
     public route: ActivatedRoute
-  ) {}
+  ) {
+    super();
+  }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
+    super.ngOnInit();
     this.initForm();
 
     this.route.queryParams.subscribe((params) => {

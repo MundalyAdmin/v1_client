@@ -1,5 +1,14 @@
 <div class="pt-8 pb-3 px-3 border ">
-  <h5 class="text-lg font-light text-left mb-3">IFS, CRS, & FSS Trends</h5>
+  <h5 class="text-lg font-light text-left mb-3">
+
+    <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT">
+      IFS, CRS, & FSS Trends
+    </span>
+
+    <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION">
+      SFS, SLS, & WRS Trends
+    </span>
+  </h5>
   <p-chart type="line" [data]="chartData" [options]="options" *ngIf="!loading"></p-chart>
   <app-loading *ngIf="loading"></app-loading>
 </div>

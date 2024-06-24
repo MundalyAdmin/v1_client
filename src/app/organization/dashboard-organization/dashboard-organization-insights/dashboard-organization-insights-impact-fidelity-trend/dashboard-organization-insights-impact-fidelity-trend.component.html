@@ -1,8 +1,19 @@
 <div class="p-8 border">
-  <h5 class="text-lg font-light text-left mb-3">Impact Fidelity Trends</h5>
+  <h5 class="text-lg font-light text-left mb-3">
+    <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT">Impact Fidelity Trends
+    </span>
+    <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION">Sustainability
+      Fidelity Trends </span>
+  </h5>
 
   <div class="flex gap-2 w-full" *ngIf="!loading && data.length">
-    <h5 class=" font-light text-center rotate-180 [writing-mode:vertical-lr] ml-[-10px]">Avg. Impact Fidelity</h5>
+    <h5 class=" font-light text-center rotate-180 [writing-mode:vertical-lr] ml-[-10px]">
+      Avg.
+      <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT">Impact
+        Fidelity</span>
+      <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION">Sustainability
+        Fidelity</span>
+    </h5>
 
     <div class="flex justify-between gap-1 flex-1 overflow-hidden hover:overflow-auto scrollbar">
 

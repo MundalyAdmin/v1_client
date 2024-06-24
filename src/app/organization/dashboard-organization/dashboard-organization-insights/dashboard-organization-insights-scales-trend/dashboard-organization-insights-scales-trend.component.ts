@@ -35,6 +35,8 @@ export class DashboardOrganizationInsightsScalesTrendComponent extends BaseCompo
   }
 
   override ngOnInit() {
+    super.ngOnInit();
+
     this.route.queryParams.subscribe((params) => {
       const queryParams: { startDate?: string; endDate?: string } = {};
       if (params['startDate']) {
@@ -148,17 +150,29 @@ export class DashboardOrganizationInsightsScalesTrendComponent extends BaseCompo
   getChartDataSets() {
     const trends = [
       {
-        name: 'IFS',
+        name:
+          this.currentLoggedInOrganization?.type_organization
+            ?.category_organization_id === this.CategoryOrganizationEnum.IMPACT
+            ? 'IFS'
+            : 'SFS',
         data: this.impactFidelityTrend,
         color: this.helper.color.getPredictableColor(0),
       },
       {
-        name: 'CPI',
+        name:
+          this.currentLoggedInOrganization?.type_organization
+            ?.category_organization_id === this.CategoryOrganizationEnum.IMPACT
+            ? 'CRS'
+            : 'SLS',
         data: this.communityPerceptionTrend,
         color: this.helper.color.getPredictableColor(5),
       },
       {
-        name: 'FS',
+        name:
+          this.currentLoggedInOrganization?.type_organization
+            ?.category_organization_id === this.CategoryOrganizationEnum.IMPACT
+            ? 'FSS'
+            : 'WRS',
         data: this.facilitationStrategyTrend,
         color: this.helper.color.getPredictableColor(2),
       },
