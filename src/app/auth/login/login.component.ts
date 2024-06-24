@@ -12,8 +12,8 @@ import { TypeUserEnum } from '../../user/type-user.enum';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent extends BaseCreateComponent<any> {
-  constructor(public authService: AuthService) {
-    super(authService);
+  constructor() {
+    super();
   }
 
   override ngOnInit(): void {

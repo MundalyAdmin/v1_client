@@ -23,7 +23,6 @@ export class DashboardOrganizationInsightsImpactFidelityTrendComponent
   constructor(
     public impactFidelityService: SocialImpactFidelityService,
     public organizationService: OrganizationService,
-    public authService: AuthService,
     public impactInitiativeService: ImpactInitiativeService,
     public route: ActivatedRoute
   ) {

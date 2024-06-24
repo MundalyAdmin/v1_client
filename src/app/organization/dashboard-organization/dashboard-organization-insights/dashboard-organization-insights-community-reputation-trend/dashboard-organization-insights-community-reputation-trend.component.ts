@@ -29,7 +29,6 @@ export class DashboardOrganizationInsightsCommunityReputationTrendComponent
   constructor(
     public organizationService: OrganizationService,
     public communityPerceptionService: CommunityPerceptionIndexService,
-    public authService: AuthService,
     public impactInitiativeService: ImpactInitiativeService,
     public route: ActivatedRoute
   ) {

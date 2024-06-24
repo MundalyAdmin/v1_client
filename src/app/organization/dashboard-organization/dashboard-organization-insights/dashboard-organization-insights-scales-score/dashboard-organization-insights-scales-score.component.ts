@@ -20,7 +20,6 @@ export class DashboardOrganizationInsightsScalesScoreComponent
   constructor(
     public scaleService: ScaleService,
     public organizationService: OrganizationService,
-    public authService: AuthService,
     public impactInitiativeService: ImpactInitiativeService,
     public route: ActivatedRoute
   ) {

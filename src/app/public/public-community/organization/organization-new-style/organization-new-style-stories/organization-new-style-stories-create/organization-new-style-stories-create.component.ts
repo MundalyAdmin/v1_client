@@ -28,7 +28,6 @@ export class OrganizationNewStyleStoriesCreateComponent
   constructor(
     public impactStoryOrganizationService: ImpactStoryService,
     public organizationService: OrganizationService,
-    public authService: AuthService,
     public storage: Storage
   ) {
     super(impactStoryOrganizationService);

@@ -29,7 +29,6 @@ export class DashboardOrganizationInsightsScalesTrendComponent extends BaseCompo
     public facilitationStrategyService: FacilitationStrategyService,
     public organizationService: OrganizationService,
     public route: ActivatedRoute,
-    public authService: AuthService,
     public impactInitiativeService: ImpactInitiativeService
   ) {
     super();

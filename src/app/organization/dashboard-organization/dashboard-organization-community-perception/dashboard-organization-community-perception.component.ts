@@ -22,8 +22,7 @@ export class DashboardOrganizationCommunityPerceptionComponent extends BaseSingl
     public communityPerceptionService: CommunityPerceptionIndexService,
     public scaleService: ScaleService,
     public organizationService: OrganizationService,
-    public impactInitiativeService: ImpactInitiativeService,
-    public authService: AuthService
+    public impactInitiativeService: ImpactInitiativeService
   ) {
     super(communityPerceptionService);
   }

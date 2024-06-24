@@ -22,16 +22,14 @@ export class SuperAdminOrganizationEditComponent extends SuperAdminOrganizationC
     public override typeOrganizationService: TypeOrganizationService,
     public override sectorOrganizationService: SectorOrganizationService,
     public override tagService: TagOrganizationService,
-    public override countryService: CountryService,
-    public override authService: AuthService
+    public override countryService: CountryService
   ) {
     super(
       organizationService,
       typeOrganizationService,
       sectorOrganizationService,
       tagService,
-      countryService,
-      authService
+      countryService
     );
   }
 

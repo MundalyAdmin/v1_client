@@ -44,8 +44,7 @@ export class SuperAdminOrganizationCreateComponent
     public typeOrganizationService: TypeOrganizationService,
     public sectorOrganizationService: SectorOrganizationService,
     public tagService: TagOrganizationService,
-    public countryService: CountryService,
-    public authService: AuthService
+    public countryService: CountryService
   ) {
     super(organizationService);
   }

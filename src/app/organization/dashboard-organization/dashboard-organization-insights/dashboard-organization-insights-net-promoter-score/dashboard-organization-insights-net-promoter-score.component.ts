@@ -28,7 +28,6 @@ export class DashboardOrganizationInsightsNetPromoterScoreComponent
   constructor(
     public impactStoryService: ImpactStoryService,
     public organizationService: OrganizationService,
-    public authService: AuthService,
     public impactInitiativeService: ImpactInitiativeService,
     public route: ActivatedRoute
   ) {

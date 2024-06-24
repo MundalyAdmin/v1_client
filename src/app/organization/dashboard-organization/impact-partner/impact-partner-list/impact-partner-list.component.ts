@@ -15,10 +15,7 @@ export class ImpactPartnerListComponent
   implements OnInit
 {
   selectedImpactInitiatives: (ImpactInitiative | null)[] = [];
-  constructor(
-    public impactPartnerService: ImpactPartnerService,
-    public authService: AuthService
-  ) {
+  constructor(public impactPartnerService: ImpactPartnerService) {
     super();
   }
 

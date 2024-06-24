@@ -10,8 +10,7 @@ import { AuthService } from '../../../../auth/auth.service';
 })
 export class DashboardOrganizationImpactInitativeListComponent extends ImpactInitiativeListComponent {
   constructor(
-    public override impactInitiativeService: ImpactInitiativeService,
-    public authService: AuthService
+    public override impactInitiativeService: ImpactInitiativeService
   ) {
     super(impactInitiativeService);
   }

@@ -30,8 +30,7 @@ export class DashboardOrganizationUploadReportsComponent
 
   constructor(
     public storage: Storage,
-    public uploadReportService: DashboardOrganizationUploadReportsService,
-    public authService: AuthService
+    public uploadReportService: DashboardOrganizationUploadReportsService
   ) {
     super();
   }

@@ -14,14 +14,9 @@ import { AuthService } from '../../../auth/auth.service';
 export class DashboardOrganizationDetailsComponent extends BaseSingleComponent<Organization> {
   constructor(
     public organizationService: OrganizationService,
-    public authService: AuthService,
     public override route: ActivatedRoute
   ) {
     super(organizationService, route);
-  }
-
-  get CategoryOrganizationEnum() {
-    return CategoryOrganizationEnum;
   }
 
   get currentLoggedOrganizationCategory() {

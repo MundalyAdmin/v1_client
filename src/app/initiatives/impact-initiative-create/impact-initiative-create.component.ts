@@ -26,7 +26,6 @@ export class ImpactInitiativeCreateComponent
   maxDate!: Date;
   constructor(
     public impactInitiativeService: ImpactInitiativeService,
-    public authService: AuthService,
     public countryService: CountryService
   ) {
     super(impactInitiativeService);
