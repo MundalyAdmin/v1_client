@@ -1,27 +1,62 @@
 <ul class="flex flex-wrap -mb-px">
   <li class="me-2">
+    <!-- For Impact -->
     <a [routerLink]="['impact-fidelity']"
+       *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT"
        routerLinkActive="text-primary border-primary font-semibold"
        class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-base">
       Impact Fidelity
     </a>
+
+
+    <!-- For Corporation -->
+    <a [routerLink]="['impact-fidelity']"
+       *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION"
+       routerLinkActive="text-primary border-primary font-semibold"
+       class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-base">
+      Sustainability Fidelity
+    </a>
+
+
   </li>
 
 
   <li class="me-2">
+    <!-- FOr Impact -->
     <a [routerLink]="['community-perception']"
+       *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT"
        routerLinkActive="text-primary border-primary font-semibold"
        class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-base">
       Community Reputation
+    </a>
+
+
+    <!-- FOr Corporation -->
+    <a [routerLink]="['community-perception']"
+       *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION"
+       routerLinkActive="text-primary border-primary font-semibold"
+       class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-base">
+      Social Licence
     </a>
   </li>
 
 
   <li class="me-2">
+    <!-- FOr Impact -->
     <a [routerLink]="['facilitation-strategy']"
+       *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT"
        routerLinkActive="text-primary border-primary font-semibold"
        class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-base">
       Facilitation Strategy
+    </a>
+
+
+    <!-- FOr Corporation -->
+    <a [routerLink]="['facilitation-strategy']"
+       *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION"
+       routerLinkActive="text-primary border-primary font-semibold"
+       class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-base">
+      Whistleblowing Risk
     </a>
   </li>
 

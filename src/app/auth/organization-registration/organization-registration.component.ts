@@ -38,8 +38,7 @@ export class OrganizationRegistrationComponent
 
   constructor(
     public typeOrganizationService: TypeOrganizationService,
-    public storage: Storage,
-    public authService: AuthService
+    public storage: Storage
   ) {
     super();
   }

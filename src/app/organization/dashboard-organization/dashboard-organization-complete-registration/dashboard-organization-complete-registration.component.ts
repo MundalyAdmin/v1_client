@@ -47,7 +47,6 @@ export class DashboardOrganizationCompleteRegistrationComponent
     public typeOrganizationService: TypeOrganizationService,
     public sectorOrganizationService: SectorOrganizationService,
     public storage: Storage,
-    public authService: AuthService,
     public organizationRegistrationService: OrganizationRegistrationService,
     public countryService: CountryService
   ) {

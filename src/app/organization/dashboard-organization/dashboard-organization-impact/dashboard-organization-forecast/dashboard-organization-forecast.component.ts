@@ -6,6 +6,8 @@ import { OrganizationService } from '../../../organization.service';
 import { AuthService } from '../../../../auth/auth.service';
 import { ImpactInitiativeService } from '../../../../scale/impact-initiative/impact-initiative.service';
 import { TypeOrganizationEnum } from '../../../type-organization/type-organization.enum';
+import { Organization } from '../../../organization.model';
+import { CategoryOrganizationEnum } from '../../../category-organization/category-organization.enum';
 
 @Component({
   selector: 'app-dashboard-organization-forecast',
@@ -21,16 +23,17 @@ export class DashboardOrganizationForecastComponent
   showCommunityReputationInfo = false;
   showFacilitationStrategyInfo = false;
   showCommunityTrustScoreInfo = false;
+
   constructor(
     public scaleService: ScaleService,
     public organizationService: OrganizationService,
-    public authService: AuthService,
     public impactInitiativeService: ImpactInitiativeService
   ) {
     super();
   }
 
   override ngOnInit(): void {
+    super.ngOnInit();
     this.subscribeToData();
   }
 

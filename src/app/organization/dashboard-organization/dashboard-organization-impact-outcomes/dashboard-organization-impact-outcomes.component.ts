@@ -24,7 +24,6 @@ export class DashboardOrganizationImpactOutcomesComponent
   };
 
   constructor(
-    public authService: AuthService,
     public storage: Storage,
     public route: ActivatedRoute,
     public router: Router

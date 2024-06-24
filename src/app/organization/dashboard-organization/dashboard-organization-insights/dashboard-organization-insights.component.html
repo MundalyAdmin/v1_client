@@ -5,7 +5,15 @@
   <div class="w-full grid grid-cols-1 mb-5">
     <!-- HEADER    -->
     <div class="flex justify-between mb-10 ">
-      <h3 class="text-xl font-bold">Community Trust & Fundability Analysis</h3>
+
+      <h3 class="text-xl font-bold">
+        <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT">Community Trust &
+          Fundability Analysis</span>
+        <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION">Sustainability
+          Due Diligence Analysis</span>
+      </h3>
+
+
       <form [formGroup]="dateForm" class="grid grid-cols-1 gap-1">
         <div class="grid grid-cols-2 gap-10">
           <p-calendar

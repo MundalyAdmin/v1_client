@@ -17,8 +17,8 @@ export class AccountVerificationComponent
   allowCodeResend = false;
   @ViewChild('cd', { static: false }) private countdown!: CountdownComponent;
 
-  constructor(public authService: AuthService) {
-    super(authService);
+  constructor() {
+    super();
   }
 
   override ngOnInit(): void {

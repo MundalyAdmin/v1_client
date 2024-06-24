@@ -26,7 +26,6 @@ export class ImpactPartnerCreateComponent
   selectedImplementer: Organization | null = null;
   constructor(
     public impactPartnerService: ImpactPartnerService,
-    public authService: AuthService,
     public organizationService: OrganizationService
   ) {
     super(impactPartnerService);

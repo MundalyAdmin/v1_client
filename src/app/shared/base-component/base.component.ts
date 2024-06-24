@@ -4,6 +4,10 @@ import { Subscription } from 'rxjs';
 
 import { BaseService } from '../services/base.service';
 import { Helper } from '../helpers/helper/helper';
+import { User } from '../../user/user.model';
+import { Organization } from '../../organization/organization.model';
+import { AuthService } from '../../auth/auth.service';
+import { CategoryOrganizationEnum } from '../../organization/category-organization/category-organization.enum';
 
 interface Subscriptions {
   [k: string]: Subscription;
@@ -19,14 +23,33 @@ export abstract class BaseComponent<T> implements OnDestroy, OnInit {
   public data: T[] = [];
   public subscriptions: Subscriptions = {};
 
+  public authService: AuthService;
+
+  currentLoggedInUser: User | null = null;
+  currentLoggedInOrganization: Organization | null = null;
+
   public helper: Helper;
-  modalService: any;
+
+  get CategoryOrganizationEnum() {
+    return CategoryOrganizationEnum;
+  }
 
   constructor(public service?: BaseService<T>) {
     this.helper = AppInjector.injector.get(Helper);
+    this.authService = AppInjector.injector.get(AuthService);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.subscriptions['currentLoggedInOrganization'] =
+      this.authService.organization$.subscribe((organization) => {
+        this.currentLoggedInOrganization = organization;
+      });
+
+    this.subscriptions['currentLoggedInUser'] =
+      this.authService.user$.subscribe((user) => {
+        this.currentLoggedInUser = user;
+      });
+  }
 
   /* ONDESTROY */
   ngOnDestroy(): void {

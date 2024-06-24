@@ -16,16 +16,8 @@ export class DashboardOrganizationHomeComponent
   implements OnInit
 {
   organization: Organization | null = null;
-  constructor(
-    public authService: AuthService,
-    public router: Router,
-    public route: ActivatedRoute
-  ) {
+  constructor(public router: Router, public route: ActivatedRoute) {
     super();
-  }
-
-  get CategoryOrganizationEnum() {
-    return CategoryOrganizationEnum;
   }
 
   get TypeOrganizationEnum() {

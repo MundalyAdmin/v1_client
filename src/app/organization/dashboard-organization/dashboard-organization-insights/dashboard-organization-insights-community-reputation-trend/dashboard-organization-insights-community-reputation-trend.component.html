@@ -1,4 +1,9 @@
 <div class="px-3 border ">
-  <h5 class="text-lg font-light text-left mb-3">Community Reputation Trends</h5>
+  <h5 class="text-lg font-light text-left mb-3">
+    <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT">Community
+      Reputation Trends</span>
+    <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION">Social Licence
+      Trends</span>
+  </h5>
   <p-chart type="line" [data]="chartData" [options]="options" height="16.5rem"></p-chart>
 </div>

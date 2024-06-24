@@ -42,8 +42,7 @@ export class DashboardOrganizationCommunityNeedsComponent
   constructor(
     public communityNeedService: CommunityNeedsService,
     public organizationService: OrganizationService,
-    public impactInitiativeService: ImpactInitiativeService,
-    public authService: AuthService
+    public impactInitiativeService: ImpactInitiativeService
   ) {
     super();
   }

@@ -25,8 +25,7 @@ export class DashboardOrganizationImpactFidelityComponent extends BaseSingleComp
     public impactFidelityService: SocialImpactFidelityService,
     public scaleService: ScaleService,
     public organizationService: OrganizationService,
-    public impactInitiativeService: ImpactInitiativeService,
-    public authService: AuthService
+    public impactInitiativeService: ImpactInitiativeService
   ) {
     super(impactFidelityService);
   }

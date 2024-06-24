@@ -20,8 +20,7 @@ export class DashboardOrganizationCreditReportsComponent extends OrganizationAva
     public override cartService: CartService,
     public override reportService: ReportService,
     public route: ActivatedRoute,
-    public storage: Storage,
-    public authService: AuthService
+    public storage: Storage
   ) {
     super(reportService, organizationService, cartService);
   }

@@ -15,7 +15,6 @@ import { AuthService } from '../../../auth/auth.service';
 export class SuperAdminOrganizationShowComponent extends BaseSingleComponent<Organization> {
   constructor(
     public organizationService: OrganizationService,
-    public authService: AuthService,
     public override route: ActivatedRoute,
     public router: Router
   ) {
