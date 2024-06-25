@@ -5,6 +5,7 @@ import { OrganizationService } from '../../organization.service';
 import { ActivatedRoute } from '@angular/router';
 import { CategoryOrganizationEnum } from '../../category-organization/category-organization.enum';
 import { AuthService } from '../../../auth/auth.service';
+import { DashboardOrganizationService } from '../dashboard-organization.service';
 
 @Component({
   selector: 'app-dashboard-organization-details',
@@ -14,7 +15,8 @@ import { AuthService } from '../../../auth/auth.service';
 export class DashboardOrganizationDetailsComponent extends BaseSingleComponent<Organization> {
   constructor(
     public organizationService: OrganizationService,
-    public override route: ActivatedRoute
+    public override route: ActivatedRoute,
+    public dashboardService: DashboardOrganizationService
   ) {
     super(organizationService, route);
   }
@@ -25,6 +27,11 @@ export class DashboardOrganizationDetailsComponent extends BaseSingleComponent<O
   }
 
   override ngOnInit(): void {
+    this.dashboardService.title =
+      this.currentLoggedOrganizationCategory === CategoryOrganizationEnum.IMPACT
+        ? 'Impact Partners'
+        : 'Supply Chain Partners';
+
     this.route.params.subscribe((params) => {
       this.getSingle(params['id']);
     });

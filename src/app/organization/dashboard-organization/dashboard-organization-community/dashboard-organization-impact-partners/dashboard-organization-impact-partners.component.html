@@ -1,4 +1,4 @@
-<div class="p-10">
+<div class="p-5">
   <div class="flex justify-end">
     <button type="button"
             (click)="showAddOrganizationModal = true"
@@ -8,11 +8,9 @@
   </div>
 
 
-  <div class="w-full flex justify-between bg-white shadow dark:bg-gray-800 p-4 md:p-6">
+  <!-- <div class="w-full flex justify-between bg-white shadow dark:bg-gray-800 p-4 md:p-6">
     <div class="text-lg font-bold">List of Partners</div>
 
-
-    <!-- Search bar -->
     <div class="pb-4 bg-white dark:bg-gray-900">
       <label for="table-search" class="sr-only">Search</label>
       <div class="relative mt-1">
@@ -27,7 +25,7 @@
                placeholder="Search for organizations">
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div class="relative overflow-x-auto shadow-md ">
     <app-impact-partner-list></app-impact-partner-list>
@@ -36,7 +34,7 @@
 
 
 
-<p-dialog header="Add New Partners" [(visible)]="showAddOrganizationModal" [modal]="true" [style]="{ width: '30vw' }" [draggable]="false"
+<p-dialog header="Add New Partners" [(visible)]="showAddOrganizationModal" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false"
           [resizable]="false">
   <app-impact-partner-create (created)="showAddOrganizationModal = false"></app-impact-partner-create>
 </p-dialog>

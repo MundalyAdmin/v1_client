@@ -128,4 +128,24 @@ export class OrganizationService extends BaseService<Organization> {
         map((response: ApiResponse<Organization>) => response.data)
       );
   }
+
+  searchExcludingPartners(organizationId: number, keyword: string) {
+    return this.factory
+      .get(
+        `${this.endPoint}/search/excluding-partners/${organizationId}/${keyword}`
+      )
+      .pipe(
+        tap((response: ApiResponse<Organization>) => {
+          this.paginationInfo = {
+            total: response.total,
+            itemsPerPage: response.per_page,
+            currentPage: response.current_page,
+          };
+        }),
+        map(
+          (response: ApiResponse<Organization>) =>
+            response.data as Organization[]
+        )
+      );
+  }
 }

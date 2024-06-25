@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../auth/auth.service';
-import { Organization } from '../../organization.model';
 import { BaseComponent } from '../../../shared/base-component';
-import { CategoryOrganizationEnum } from '../../category-organization/category-organization.enum';
-import { TypeOrganizationEnum } from '../../type-organization/type-organization.enum';
+import { Organization } from '../../organization.model';
+import { AuthService } from '../../../auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DashboardOrganizationService } from '../dashboard-organization.service';
+import { CategoryOrganizationEnum } from '../../category-organization/category-organization.enum';
+import { TypeOrganizationEnum } from '../../type-organization/type-organization.enum';
 
 @Component({
-  selector: 'app-dashboard-organization-home',
-  templateUrl: './dashboard-organization-home.component.html',
-  styleUrls: ['./dashboard-organization-home.component.scss'],
+  selector: 'app-dashboard-organization-partners',
+  templateUrl: './dashboard-organization-partners.component.html',
+  styleUrls: ['./dashboard-organization-partners.component.scss'],
 })
-export class DashboardOrganizationHomeComponent
+export class DashboardOrganizationPartnersComponent
   extends BaseComponent<any>
   implements OnInit
 {
