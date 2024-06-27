@@ -19,7 +19,7 @@ export class VerifyRegistrationComponent extends BaseComponent<any> {
         this.authService
           .verifyRegistrationToken(params['token'])
           .subscribe(() => {
-            this.router.navigate(['/dashboard']);
+            window.location.href = '/dashboard';
           });
       }
     });

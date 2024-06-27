@@ -74,6 +74,7 @@ import { DashboardOrganizationPartnersComponent } from './dashboard-organization
 import { DashboardOrganizationHeaderComponent } from './dashboard-organization-header/dashboard-organization-header.component';
 import { DashboardOrganizationPartnerInvitationComponent } from './dashboard-organization-partner-invitation/dashboard-organization-partner-invitation.component';
 import { OrganizationPartnerInvitationModule } from '../organization-partner-invitation/organization-partner-invitation.module';
+import { DashboardOrganizationDueDiligenceRequestComponent } from './dashboard-organization-due-diligence-request/dashboard-organization-due-diligence-request.component';
 
 const routes: Routes = [
   {
@@ -468,6 +469,7 @@ const routes: Routes = [
     DashboardOrganizationPartnersComponent,
     DashboardOrganizationHeaderComponent,
     DashboardOrganizationPartnerInvitationComponent,
+    DashboardOrganizationDueDiligenceRequestComponent,
   ],
   imports: [
     CommonModule,
