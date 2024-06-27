@@ -27,6 +27,7 @@ import { SuperAdminOrganizationImpactInitiativeCreateComponent } from './super-a
 import { ImpactInitiativeModule } from '../../../scale/impact-initiative/impact-initiative.module';
 import { InitiativesModule } from '../../../initiatives/initiatives.module';
 import { CalendarModule } from 'primeng/calendar';
+import { DueDiligenceComponent } from '../../due-diligence/due-diligence.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,31 @@ const routes: Routes = [
       {
         path: 'overview',
         component: SuperAdminOrganizationShowOverviewComponent,
+      },
+      {
+        component: DueDiligenceComponent,
+        path: 'due-diligence',
+        children: [
+          {
+            path: 'surveys',
+            component: OrganizationSurveyComponent,
+            children: [
+              {
+                path: '',
+                component: OrganizationSurveyListComponent,
+              },
+              {
+                path: ':id',
+                component: OrganizationSurveyShowComponent,
+              },
+            ],
+          },
+          {
+            path: '',
+            redirectTo: 'surveys',
+            pathMatch: 'full',
+          },
+        ],
       },
       {
         path: 'impact-initiatives',

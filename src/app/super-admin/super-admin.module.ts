@@ -4,6 +4,7 @@ import { SuperAdminComponent } from './super-admin.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { SuperAdminSidebarComponent } from './super-admin-sidebar/super-admin-sidebar.component';
+import { DueDiligenceComponent } from './due-diligence/due-diligence.component';
 
 const routes: Routes = [
   {
@@ -49,7 +50,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [SuperAdminComponent, SuperAdminSidebarComponent],
+  declarations: [
+    SuperAdminComponent,
+    SuperAdminSidebarComponent,
+    DueDiligenceComponent,
+  ],
   imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
 })
 export class SuperAdminModule {}

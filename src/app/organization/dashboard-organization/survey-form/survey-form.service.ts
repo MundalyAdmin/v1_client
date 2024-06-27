@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from '../../../shared/services';
 import { SurveyForm } from './survey-form.model';
-import { map, tap } from 'rxjs';
+import { ReplaySubject, map, tap } from 'rxjs';
 import { ApiResponse } from '../../../shared/models/ApiResponse';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SurveyFormService extends BaseService<SurveyForm> {
+  fetchBy$ = new ReplaySubject<'organization' | 'impact-initiatives'>(1);
   constructor() {
     super('survey/forms');
   }

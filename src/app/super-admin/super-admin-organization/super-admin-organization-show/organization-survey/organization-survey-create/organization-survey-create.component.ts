@@ -25,7 +25,8 @@ export class OrganizationSurveyCreateComponent
   constructor(
     public surveyFormService: SurveyFormService,
     public typeSurveyFormService: TypeSurveyFormService,
-    public impactInitiativeService: ImpactInitiativeService
+    public impactInitiativeService: ImpactInitiativeService,
+    public organizationService: OrganizationService
   ) {
     super(surveyFormService);
   }
@@ -33,6 +34,34 @@ export class OrganizationSurveyCreateComponent
   override ngOnInit() {
     this.initForm();
     this.getTypeSurveyForms();
+
+    this.subscriptions['fetch'] = this.surveyFormService.fetchBy$.subscribe(
+      (fetch) => {
+        if (fetch === 'organization') {
+          this.subscriptions['organization'] =
+            this.organizationService.singleData$.subscribe((organization) => {
+              if (organization) {
+                this.form.patchValue({
+                  organization_id: organization.id,
+                });
+              }
+            });
+        } else if (fetch === 'impact-initiatives') {
+          this.subscriptions['impactInitiative'] =
+            this.impactInitiativeService.singleData$.subscribe(
+              (impactInitiative) => {
+                if (impactInitiative) {
+                  this.impactInitiative = impactInitiative;
+                  this.form.patchValue({
+                    impact_initiative_id: impactInitiative.id,
+                  });
+                }
+              }
+            );
+        }
+      }
+    );
+
     this.subscriptions['organization'] =
       this.impactInitiativeService.singleData$.subscribe((impactInitiative) => {
         if (impactInitiative) {
@@ -57,10 +86,10 @@ export class OrganizationSurveyCreateComponent
     this.form = this.fb.group({
       title: [null, Validators.required],
       type_survey_form_id: [null, Validators.required],
-      impact_initiative_id: [null, Validators.required],
+      impact_initiative_id: [null],
       description: [null, Validators.required],
       reward: [null],
-      organization_id: [null, Validators.required],
+      organization_id: [null],
     });
   }
 
