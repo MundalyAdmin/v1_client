@@ -4,13 +4,17 @@
 
 <!-- Content -->
 
-<div class="sm:ml-64 relative">
+<div class="sm:ml-64 relative" *ngIf="organization">
   <!-- Complete registration banner -->
   <div class="w-full mt-[-1rem]   p-4 text-center bg-secondary" *ngIf="!isRegistrationComplete()">
     Please complete your registration <button type="button" (click)="showSetupLogoAndCoverModal = true"
             class="px-2 py-1.5 text-xs font-medium text-center ms-1 text-white bg-primary rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 ">
       Here</button>
   </div>
+
+
+  <app-dashboard-organization-header></app-dashboard-organization-header>
+
 
 
   <router-outlet></router-outlet>

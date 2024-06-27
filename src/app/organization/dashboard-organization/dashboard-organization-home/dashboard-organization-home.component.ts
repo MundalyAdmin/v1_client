@@ -5,6 +5,7 @@ import { BaseComponent } from '../../../shared/base-component';
 import { CategoryOrganizationEnum } from '../../category-organization/category-organization.enum';
 import { TypeOrganizationEnum } from '../../type-organization/type-organization.enum';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DashboardOrganizationService } from '../dashboard-organization.service';
 
 @Component({
   selector: 'app-dashboard-organization-home',
@@ -16,7 +17,11 @@ export class DashboardOrganizationHomeComponent
   implements OnInit
 {
   organization: Organization | null = null;
-  constructor(public router: Router, public route: ActivatedRoute) {
+  constructor(
+    public router: Router,
+    public route: ActivatedRoute,
+    public dashboardService: DashboardOrganizationService
+  ) {
     super();
   }
 
@@ -28,6 +33,7 @@ export class DashboardOrganizationHomeComponent
     this.subscriptions['organization'] =
       this.authService.organization$.subscribe((organization) => {
         this.organization = organization;
+        this.dashboardService.title = `Welcome, ${this.organization?.name}`;
       });
   }
 }

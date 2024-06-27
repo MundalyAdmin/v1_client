@@ -5,6 +5,8 @@ import { OrganizationService } from '../../organization.service';
 import { ActivatedRoute } from '@angular/router';
 import { CategoryOrganizationEnum } from '../../category-organization/category-organization.enum';
 import { AuthService } from '../../../auth/auth.service';
+import { DashboardOrganizationService } from '../dashboard-organization.service';
+import { StatusImpactVerificationEnum } from '../../../impact-verification/enums/status-impact-verification.enum';
 
 @Component({
   selector: 'app-dashboard-organization-details',
@@ -12,11 +14,18 @@ import { AuthService } from '../../../auth/auth.service';
   styleUrls: ['./dashboard-organization-details.component.scss'],
 })
 export class DashboardOrganizationDetailsComponent extends BaseSingleComponent<Organization> {
+  showDueDiligenceModal = false;
+  reportRequested = false;
   constructor(
     public organizationService: OrganizationService,
-    public override route: ActivatedRoute
+    public override route: ActivatedRoute,
+    public dashboardService: DashboardOrganizationService
   ) {
     super(organizationService, route);
+  }
+
+  get StatusImpactVerificationEnum() {
+    return StatusImpactVerificationEnum;
   }
 
   get currentLoggedOrganizationCategory() {
@@ -25,6 +34,12 @@ export class DashboardOrganizationDetailsComponent extends BaseSingleComponent<O
   }
 
   override ngOnInit(): void {
+    super.ngOnInit();
+    this.dashboardService.title =
+      this.currentLoggedOrganizationCategory === CategoryOrganizationEnum.IMPACT
+        ? 'Impact Partners'
+        : 'Supply Chain Partners';
+
     this.route.params.subscribe((params) => {
       this.getSingle(params['id']);
     });

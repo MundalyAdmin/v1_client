@@ -8,7 +8,8 @@ import {
 } from '@angular/core';
 import { JsLoaderService } from './js-loader.service';
 import { initFlowbite } from 'flowbite';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Storage } from './shared/helpers/storage/storage';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,9 @@ export class AppComponent implements OnInit, AfterViewInit {
   constructor(
     private renderer: Renderer2,
     public jsLoaderService: JsLoaderService,
-    public router: Router
+    public router: Router,
+    public route: ActivatedRoute,
+    public storage: Storage
   ) {}
 
   ngOnInit() {

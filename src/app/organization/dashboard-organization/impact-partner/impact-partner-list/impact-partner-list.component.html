@@ -66,10 +66,12 @@
         <!-- Location -->
         <td class="px-6 py-4">
           <p-dropdown class="" [filter]="true" filterBy="name" placeholder="Select a community"
+                      *ngIf="partner.implementer?.impact_initiatives?.length"
                       [options]="partner.implementer?.impact_initiatives" [(ngModel)]="selectedImpactInitiatives[i]" optionLabel="city">
             <ng-template pTemplate="selectedItem">
               <div class="flex align-items-center gap-2">
                 <div>{{ selectedImpactInitiatives[i]?.city + ', ' + selectedImpactInitiatives[i]?.country }}</div>
+
               </div>
             </ng-template>
             <ng-template let-initiative pTemplate="item">
@@ -78,6 +80,8 @@
               </div>
             </ng-template>
           </p-dropdown>
+
+          <span class="italic text-sm" *ngIf="!partner.implementer?.impact_initiatives?.length">No community registered</span>
         </td>
 
         <!-- Industry -->

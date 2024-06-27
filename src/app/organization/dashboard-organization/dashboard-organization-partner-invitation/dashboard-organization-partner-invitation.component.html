@@ -1,0 +1,47 @@
+<div class=" flex flex-col gap-4 p-10">
+    <div class="card p-0">
+        <p-panel [toggleable]="true" [classList]="'p-0' ">
+            <ng-template pTemplate="header">
+                <div class="text-lg font-semibold text-primary">
+                    <span
+                          *ngIf="currentLoggedInOrganization?.type_organization_id === TypeOrganizationEnum.IMPACT_FUNDER 
+                          || currentLoggedInOrganization?.type_organization_id === TypeOrganizationEnum.CORPORATION">
+                        Invitation Sent</span>
+
+                    <span
+                          *ngIf="currentLoggedInOrganization?.type_organization_id === TypeOrganizationEnum.IMPACT_IMPLEMENTER 
+                          || currentLoggedInOrganization?.type_organization_id === TypeOrganizationEnum.SUPPLIER">Invitation
+                        Received</span>
+                </div>
+            </ng-template>
+
+
+            <app-organization-partner-invitation-list
+                                                      [typeFetch]="currentLoggedInOrganization?.type_organization_id === TypeOrganizationEnum.IMPACT_FUNDER 
+                                                      || currentLoggedInOrganization?.type_organization_id === TypeOrganizationEnum.CORPORATION ? 'sender' : 'receiver'">
+            </app-organization-partner-invitation-list>
+        </p-panel>
+    </div>
+
+
+
+    <div class="card p-0">
+        <p-panel [toggleable]="true" styleClass="p-0">
+            <ng-template pTemplate="header">
+                <div class="text-lg font-semibold text-primary">
+                    <span
+                          *ngIf="currentLoggedInOrganization?.type_organization_id === TypeOrganizationEnum.IMPACT_FUNDER 
+                          || currentLoggedInOrganization?.type_organization_id === TypeOrganizationEnum.CORPORATION">Invitation
+                        Received</span>
+                    <span
+                          *ngIf="currentLoggedInOrganization?.type_organization_id === TypeOrganizationEnum.IMPACT_IMPLEMENTER || currentLoggedInOrganization?.type_organization_id === TypeOrganizationEnum.SUPPLIER">Invitation
+                        Sent</span>
+                </div>
+            </ng-template>
+
+
+            <app-organization-partner-invitation-list
+                                                      [typeFetch]="currentLoggedInOrganization?.type_organization_id === TypeOrganizationEnum.IMPACT_IMPLEMENTER || currentLoggedInOrganization?.type_organization_id === TypeOrganizationEnum.SUPPLIER? 'sender' : 'receiver' "></app-organization-partner-invitation-list>
+        </p-panel>
+    </div>
+</div>
