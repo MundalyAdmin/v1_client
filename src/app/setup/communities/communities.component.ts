@@ -8,7 +8,6 @@ import { SetupreportService } from '../setupreport.service';
   styleUrls: ['./communities.component.scss']
 })
 export class CommunitiesComponent {
-  // @ViewChild('ngxPlaces') placesRef: NgxGpAutocompleteDirective | undefined;
   formattedaddress = "";
 
   options = {

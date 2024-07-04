@@ -86,7 +86,6 @@ export class SetupComponent {
 
   ngOnInit() {
     this.childUrl = this.router.url;
-    console.log(this.childUrl)
   }
 
   nextComponent() {

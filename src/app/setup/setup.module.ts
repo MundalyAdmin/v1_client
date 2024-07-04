@@ -58,7 +58,6 @@ const routes: Routes = [
       provide: Loader,
       useValue: new Loader({
         apiKey: environment.googlePlaceAPI || "",
-        // apiKey: process.env["placeAPIKEY"] || "",
         libraries: ['places']
       })
     },
