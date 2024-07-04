@@ -24,6 +24,11 @@ const routes: Routes = [
           import('./auth/auth.module').then((m) => m.AuthModule),
       },
       {
+        path: 'setupreport',
+        loadChildren: () =>
+          import('./setup/setup.module').then((m) => m.SetupModule),
+      },
+      {
         path: 'super-admin',
         canActivate: [AuthGuard],
         loadChildren: () =>
