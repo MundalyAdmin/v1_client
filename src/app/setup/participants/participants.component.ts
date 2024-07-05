@@ -117,4 +117,9 @@ export class ParticipantsComponent {
 
     this.service.relationshipStatus.next({ ...this.relationshipStatus, [key]: newVal });
   }
+
+  sliderPercent(index: number) {
+    const percent = index * 11;
+    return percent === 99 ? 100 : percent
+  }
 }

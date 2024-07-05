@@ -49,11 +49,11 @@
       </label>
       <div class="py-4">
         <div class="relative">
-          <div class="absolute flex justify-between w-full">
-            <div class="flex items-end flex-col cursor-pointer" *ngFor="let opt of reachOptions;"
+          <div class=" flex justify-between w-full">
+            <div class="absolute flex items-start flex-col cursor-pointer" [ngStyle]="{ 'left': 'calc(' + sliderPercent(i) + '%)' }"  *ngFor="let opt of reachOptions;index as i"
               (click)="setReachOption(opt)">
-              <div class="w-[4px] bg-[#E5E7EB] h-5"></div>
-              <p>{{opt}}</p>
+              <div class="w-[4px] h-5" [ngStyle]="{ 'background-color': i <= (value / 11) ? '#3B82F6' : '#DEE2F1' }"></div>
+              <p class="relative right-3">{{opt}}</p>
             </div>
 
           </div>
@@ -64,12 +64,12 @@
     </div>
 
     <div class="pt-8 flex gap-5 items-center">
-      <input type="checkbox" name="impact" [checked]="impact" value="impact" class="focus:ring-transparent focus:outline-none rounded-sm border-gray-400" (change)="changeImpact()">
-      <label for="impact" class="font-bold text-base">Impact Stories</label>
+      <input type="checkbox" name="impact" [checked]="impact" value="impact" class="focus:ring-transparent focus:outline-none rounded-sm border-gray-400  cursor-pointer" (change)="changeImpact()">
+      <label for="impact" class="font-bold text-base  cursor-pointer" (click)="changeImpact()">Impact Stories</label>
     </div>
 
 
-    <div class="my-10">
+    <div class="my-10 bg-white p-5 px-8">
       <p class="font-bold text-lg text-center">
         Demography
       </p>
