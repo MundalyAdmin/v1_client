@@ -69,53 +69,53 @@ export class ParticipantsComponent {
 
   selectAgeRange(key: string) {
     const newVal = !this.ageRange[key];
-    if (key === "All") {
+    if (key === "All" && newVal) {
       this.service.ageRange.next({
-        ...Object.fromEntries(Object.keys(this.ageRange).map((k) => [k, newVal]))
+        ...Object.fromEntries(Object.keys(this.ageRange).map((k) => [k, false])), [key]: newVal
       });
-      return;
+      return
     }
 
-    this.service.ageRange.next({ ...this.ageRange, [key]: newVal });
+    this.service.ageRange.next({ ...this.ageRange, [key]: newVal, 'All': false });
   }
 
   selectEthnicity(key: string) {
     const newVal = !this.ethnicities[key];
 
-    if (key === "All") {
+    if (key === "All" && newVal) {
       this.service.ethnicities.next({
-        ...Object.fromEntries(Object.keys(this.ethnicities).map((k) => [k, newVal]))
+        ...Object.fromEntries(Object.keys(this.ethnicities).map((k) => [k, false])), [key]: newVal
       });
-      return;
+      return
     }
 
-    this.service.ethnicities.next({ ...this.ethnicities, [key]: newVal });
+    this.service.ethnicities.next({ ...this.ethnicities, [key]: newVal, 'All': false });
   }
 
   selectSex(key: string) {
     const newVal = !this.sexes[key];
 
-    if (key === "All") {
+    if (key === "All" && newVal) {
       this.service.sexes.next({
-        ...Object.fromEntries(Object.keys(this.sexes).map((k) => [k, newVal]))
+        ...Object.fromEntries(Object.keys(this.sexes).map((k) => [k, false])), [key]: newVal
       });
-      return;
+      return
     }
 
-    this.service.sexes.next({ ...this.sexes, [key]: newVal });
+    this.service.sexes.next({ ...this.sexes, [key]: newVal, 'All': false });
   }
 
   selectRelationshipStatus(key: string) {
     const newVal = !this.relationshipStatus[key];
 
-    if (key === "All") {
+    if (key === "All" && newVal) {
       this.service.relationshipStatus.next({
-        ...Object.fromEntries(Object.keys(this.relationshipStatus).map((k) => [k, newVal]))
+        ...Object.fromEntries(Object.keys(this.relationshipStatus).map((k) => [k, false])), [key]: newVal
       });
-      return;
+      return
     }
 
-    this.service.relationshipStatus.next({ ...this.relationshipStatus, [key]: newVal });
+    this.service.relationshipStatus.next({ ...this.relationshipStatus, [key]: newVal, 'All': false });
   }
 
   sliderPercent(index: number) {
