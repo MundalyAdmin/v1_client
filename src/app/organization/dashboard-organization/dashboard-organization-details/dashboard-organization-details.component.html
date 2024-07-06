@@ -1,40 +1,3 @@
-<div class=" p-5 py-7 border-b grid grid-cols-2 items-center w-full ">
-  <div class="flex">
-    <h2 class="text-3xl text-primary me-14" *ngIf="currentLoggedOrganizationCategory === CategoryOrganizationEnum.IMPACT">Impact Partners</h2>
-    <h2 class="text-3xl text-primary me-14" *ngIf="currentLoggedOrganizationCategory === CategoryOrganizationEnum.CORPORATION">Supply Chain Partners
-    </h2>
-
-
-  </div>
-
-  <div class="flex justify-self-end gap-4">
-
-
-    <button (click)="invitation.toggle($event)" class="text-primary text-2xl  font-bold block">
-      <span><i class="mdi mdi-email"></i></span>
-    </button>
-    <p-overlayPanel #invitation>
-      <div class="flex flex-column gap-3 w-25rem">
-        Empty invitations
-      </div>
-    </p-overlayPanel>
-
-
-
-
-    <!-- Notifications -->
-    <button (click)="notification.toggle($event)" class="text-primary text-2xl  font-bold block">
-      <span><i class="mdi mdi-bell"></i></span>
-    </button>
-    <p-overlayPanel #notification>
-      <div class="flex flex-column gap-3 w-25rem">
-        Empty notifications
-      </div>
-    </p-overlayPanel>
-  </div>
-</div>
-
-
 <app-page-loading *ngIf="loading"></app-page-loading>
 
 <app-missing-data *ngIf="!loading && !single"></app-missing-data>
@@ -70,9 +33,9 @@
 
 
       <!--  -->
-      <div class="flex-col gap-2  inline-flex ">
+      <div class="flex-col gap-2 w-full inline-flex ">
         <!-- Basic information -->
-        <div class="justify-between items-center    flex flex-col md:flex-row  md:inline-flex">
+        <div class="justify-between items-center  w-full  flex flex-col md:flex-row  md:inline-flex">
           <div class=" items-center md:gap-5 gap-2 flex">
             <!-- Title -->
             <div class="text-violet-950 md:text-4xl text-2xl font-bold ">{{ single.name }}</div>
@@ -85,9 +48,27 @@
 
           </div>
 
-          <a [href]="single.website" target="_blank" type="button"
-             class="px-7 py-3 font-semibold border border-primary  rounded-full text-center text-primary bg-secondary  hover:bg-secondary-dark focus:ring-4 focus:outline-none focus:ring-primary-dark">Visit
-            website</a>
+
+          <div class="flex gap-2">
+            <button type="button"
+                    *ngIf="!single?.verification_status_from_current_organization"
+                    (click)="showDueDiligenceModal = true"
+                    class="px-7 py-3 font-semibold border border-primary  rounded-full text-center text-white bg-primary  hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-dark">
+              Request Due Diligence Insights
+            </button>
+
+            <button type="button"
+                    *ngIf="single?.verification_status_from_current_organization?.id === StatusImpactVerificationEnum.PARTNER_COMPLETION"
+                    [disabled]="true"
+                    class="px-7 py-3 font-semibold   rounded-full text-center text-gray-900  bg-slate-400   focus:ring-4 focus:outline-none focus:ring-primary-dark">
+              Due Diligence Insights Requested
+            </button>
+
+            <a [href]="single.website" target="_blank" type="button"
+               class="px-7 py-3 font-semibold border border-primary  rounded-full text-center text-primary bg-secondary  hover:bg-secondary-dark focus:ring-4 focus:outline-none focus:ring-primary-dark">Visit
+              website</a>
+          </div>
+
         </div>
 
         <!-- Location and badges -->
@@ -138,3 +119,22 @@
 
   </div>
 </ng-container>
+
+
+<p-dialog header="Request Due Diligence Insights" [(visible)]="showDueDiligenceModal" [modal]="true" [style]="{ width: '50vw', height: 'fit' }"
+          [draggable]="false"
+          [resizable]="false">
+
+  <ng-template pTemplate="header">
+    <div class=" text-primary  w-full text-2xl font-semibold">
+      <span class="mdi mdi-file-chart-check"></span> Due Diligence Insights Request
+    </div>
+  </ng-template>
+
+  <app-dashboard-organization-due-diligence-request (requested$)="reportRequested = true"
+                                                    (close$)="showDueDiligenceModal = false"></app-dashboard-organization-due-diligence-request>
+
+
+
+
+</p-dialog>

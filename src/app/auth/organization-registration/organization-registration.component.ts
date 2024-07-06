@@ -9,6 +9,9 @@ import { TypeOrganizationService } from '../../organization/type-organization/ty
 import { BaseCreateComponent } from '../../shared/base-component';
 import { Storage } from '../../shared/helpers/storage/storage';
 import { AuthService } from '../auth.service';
+import { ActivatedRoute } from '@angular/router';
+import { OrganizationService } from '../../organization/organization.service';
+import { Organization } from '../../organization/organization.model';
 
 @Component({
   selector: 'app-organization-registration',
@@ -19,6 +22,13 @@ export class OrganizationRegistrationComponent
   extends BaseCreateComponent<any>
   implements OnInit
 {
+  // If the user has been invited as an impact partners, An organization has been already created forr them
+  // The organizationId will be passed in the url And Instead of creating a new organization during registration
+  // The existing one will be updated
+  userOrganization: Organization | null = null;
+
+  pageLoading = false;
+
   separateDialCode = true;
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
@@ -39,12 +49,32 @@ export class OrganizationRegistrationComponent
   constructor(
     public typeOrganizationService: TypeOrganizationService,
     public storage: Storage,
-    public authService: AuthService
+    public route: ActivatedRoute,
+    public organizationService: OrganizationService
   ) {
     super();
   }
 
   override ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      if (params['organizationId']) {
+        this.pageLoading = true;
+        this.organizationService
+          .show(+params['organizationId'])
+          .subscribe((organization) => {
+            this.form.patchValue({
+              email: organization.admins?.at(0)?.email,
+              organization_name: organization.name,
+            });
+
+            this.userOrganization = organization;
+
+            this.pageLoading = false;
+          });
+
+        this.router.navigate(['./'], { relativeTo: this.route });
+      }
+    });
     this.initform();
 
     this.getTypeOrganizationsByCategoryOrganization(1);
@@ -101,7 +131,14 @@ export class OrganizationRegistrationComponent
         phone_number: this.form.value.phone_number?.e164Number,
       };
 
-      this.authService.registerOrganization(data).subscribe({
+      const registrationMedthod = this.userOrganization
+        ? this.authService.updateOrganizationRegistration(
+            this.userOrganization.id!,
+            data
+          )
+        : this.authService.registerOrganization(data);
+
+      registrationMedthod.subscribe({
         next: () => {
           this.loading = false;
           this.helper.notification.toastSuccess(

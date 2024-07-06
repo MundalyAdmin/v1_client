@@ -26,7 +26,6 @@ export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
   @Output() showSetupLogoAndCoverModal$ = new EventEmitter();
 
   constructor(
-    public authService: AuthService,
     public router: Router,
     public route: ActivatedRoute,
     public storage: Storage,
@@ -34,10 +33,6 @@ export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
     public impactInitiativeService: ImpactInitiativeService
   ) {
     super();
-  }
-
-  get CategoryOrganizationEnum() {
-    return CategoryOrganizationEnum;
   }
 
   get categoryOrganization() {

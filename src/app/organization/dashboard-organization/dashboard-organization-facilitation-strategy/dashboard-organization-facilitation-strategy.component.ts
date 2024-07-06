@@ -21,7 +21,6 @@ export class DashboardOrganizationFacilitationStrategyComponent extends BaseSing
     public facilitationStrategyService: FacilitationStrategyService,
     public scaleService: ScaleService,
     public organizationService: OrganizationService,
-    public authService: AuthService,
     public impactInitiativeService: ImpactInitiativeService
   ) {
     super(facilitationStrategyService);

@@ -1,0 +1,4 @@
+export enum TypeImpactVerificationEnum {
+  DUE_DILIGENCE_VERIFICATION = 1,
+  IMPACT_INITIATIVE_VERIFICATION = 2,
+}

@@ -9,11 +9,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./verify-registration.component.scss'],
 })
 export class VerifyRegistrationComponent extends BaseComponent<any> {
-  constructor(
-    public route: ActivatedRoute,
-    public authService: AuthService,
-    public router: Router
-  ) {
+  constructor(public route: ActivatedRoute, public router: Router) {
     super();
   }
 
@@ -23,7 +19,7 @@ export class VerifyRegistrationComponent extends BaseComponent<any> {
         this.authService
           .verifyRegistrationToken(params['token'])
           .subscribe(() => {
-            this.router.navigate(['/dashboard']);
+            window.location.href = '/dashboard';
           });
       }
     });

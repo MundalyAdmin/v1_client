@@ -47,4 +47,9 @@ export interface Organization extends BaseModel {
   community_trust_score?: null | number;
 
   impact_initiatives?: ImpactInitiative[];
+
+  verification_status_from_current_organization?: null | {
+    id: number;
+    name: string;
+  };
 }

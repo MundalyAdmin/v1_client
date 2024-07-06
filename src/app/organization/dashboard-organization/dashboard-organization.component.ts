@@ -28,23 +28,28 @@ export class DashboardOrganizationComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.user = this.authService.user;
-    this.organization = this.authService.organization;
-    this.typeOrganizationId = this.organization?.type_organization_id || null;
+
+    this.authService.organization$.subscribe((organization) => {
+      this.organization = organization;
+      this.typeOrganizationId = this.organization?.type_organization_id || null;
+    });
   }
 
   ngAfterViewInit(): void {
     if (!this.isRegistrationComplete()) {
       this.showSetupLogoAndCoverModal = true;
     }
+
+    const redirect = this.storage.get('dashboard-redirect');
+
+    if (redirect) {
+      this.storage.delete('dashboard-redirect');
+
+      this.router.navigate([redirect]);
+    }
   }
 
   isRegistrationComplete() {
-    console.log(
-      'test',
-      this.authService.organization?.profile_status_organization_id ===
-        ProfileStatusOrganizationEnum.CLAIMED
-    );
-    console.log(this.authService.organization);
     return (
       this.authService.organization?.profile_status_organization_id ===
       ProfileStatusOrganizationEnum.CLAIMED

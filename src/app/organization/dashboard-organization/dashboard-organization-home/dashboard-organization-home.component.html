@@ -1,38 +1,5 @@
 <ng-container *ngIf="organization">
-  <!-- Header -->
-  <div class=" p-5 py-7 border-b grid grid-cols-2 items-center w-full ">
-    <div class="flex">
-      <h2 class="text-3xl text-primary me-14">Welcome, {{ organization.name }}</h2>
 
-
-    </div>
-
-    <div class="flex justify-self-end gap-4">
-
-
-      <button (click)="invitation.toggle($event)" class="text-primary text-2xl  font-bold block">
-        <span><i class="mdi mdi-email"></i></span>
-      </button>
-      <p-overlayPanel #invitation>
-        <div class="flex flex-column gap-3 w-25rem">
-          Empty invitations
-        </div>
-      </p-overlayPanel>
-
-
-
-
-      <!-- Notifications -->
-      <button (click)="notification.toggle($event)" class="text-primary text-2xl  font-bold block">
-        <span><i class="mdi mdi-bell"></i></span>
-      </button>
-      <p-overlayPanel #notification>
-        <div class="flex flex-column gap-3 w-25rem">
-          Empty notifications
-        </div>
-      </p-overlayPanel>
-    </div>
-  </div>
 
 
   <div class="text-sm font-medium text-center mt-10 text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
@@ -82,10 +49,10 @@
       </li>
 
       <li class="me-2">
-        <a [routerLink]="['portfolio']"
+        <a [routerLink]="['invitations']"
            routerLinkActive="text-primary border-primary font-semibold"
            class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-lg">
-          Portfolio
+          Invitations
         </a>
       </li>
 

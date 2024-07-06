@@ -22,7 +22,7 @@
         <!-- admin information -->
         <!-- Title -->
         <h1 class="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-          Signup to Get Verified
+          Sign up to Get Verified
         </h1>
 
 
@@ -50,7 +50,7 @@
             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What's your name?</label>
             <input type="text" name="name" id="name"
                    formControlName="name"
-                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   class="bg-gray-50 border border-gray-300 text-primary sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                    placeholder="Alexander Giggs" required="">
           </div>
 
@@ -64,7 +64,7 @@
                      id="email"
                      formControlName="email"
                      [ngClass]="{ 'border-red-500': form!.controls['email'].dirty && form!.controls['email'].invalid}"
-                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                     class="bg-gray-50 border text-primary border-gray-300  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                      placeholder="alexander@mundaly.com" required="">
               <p class="mt-2 text-sm text-red-600 dark:text-red-500"
                  *ngIf="form!.controls['email'].dirty && form!.controls['email'].invalid">
@@ -109,7 +109,7 @@
             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What's your organization's name?</label>
             <input type="text" name="name" id="name"
                    formControlName="organization_name"
-                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   class="bg-gray-50 border border-gray-300 text-primary sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                    placeholder="Nobis Inc." required="">
           </div>
 

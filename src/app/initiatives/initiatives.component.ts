@@ -16,11 +16,7 @@ export class InitiativesComponent
 {
   showCreateInitiativeModal = false;
   isDrawerOpen = false;
-  constructor(
-    private impactInitiativeService: InitiativesService,
-
-    public authService: AuthService
-  ) {
+  constructor(private impactInitiativeService: InitiativesService) {
     super();
   }
   override ngOnInit(): void {

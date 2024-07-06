@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TypeOrganizationEnum } from '../../../type-organization/type-organization.enum';
 import { AuthService } from '../../../../auth/auth.service';
 import { ImpactInitiativeService } from '../../../../scale/impact-initiative/impact-initiative.service';
+import { CategoryOrganizationEnum } from '../../../category-organization/category-organization.enum';
 
 @Component({
   selector: 'app-dashboard-organization-insights-net-promoter-score',
@@ -28,7 +29,6 @@ export class DashboardOrganizationInsightsNetPromoterScoreComponent
   constructor(
     public impactStoryService: ImpactStoryService,
     public organizationService: OrganizationService,
-    public authService: AuthService,
     public impactInitiativeService: ImpactInitiativeService,
     public route: ActivatedRoute
   ) {
@@ -36,6 +36,7 @@ export class DashboardOrganizationInsightsNetPromoterScoreComponent
   }
 
   override ngOnInit(): void {
+    super.ngOnInit();
     this.route.queryParams.subscribe((params) => {
       const queryParams: { startDate?: string; endDate?: string } = {};
       if (params['startDate']) {
@@ -113,7 +114,11 @@ export class DashboardOrganizationInsightsNetPromoterScoreComponent
       ),
       datasets: [
         {
-          label: 'Community Satisfaction Score',
+          label:
+            this.currentLoggedInOrganization?.type_organization
+              ?.category_organization_id === CategoryOrganizationEnum.IMPACT
+              ? 'Community Satisfaction Score'
+              : 'Community Due Diligence Score',
           backgroundColor: ['#c1ddff', '#4f46e5', '#2196f3'],
           borderColor: documentStyle.getPropertyValue('--blue-500'),
           data: [...Object.values(nps)],

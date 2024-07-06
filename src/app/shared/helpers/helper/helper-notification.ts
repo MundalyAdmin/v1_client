@@ -31,12 +31,12 @@ export class HelperNotification {
 
   confirm(title: string, message: string, callback: Function) {
     const options = {
-      title: title || 'Êtes vous sûre?',
+      title: title || 'Are you sure?',
       text: message || "You won't be able to revert this!",
       type: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#c23fff',
-      cancelButtonColor: '#ef1f7e',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
       confirmButtonText: 'Yes',
       cancelButtonText: 'No, exit',
     };

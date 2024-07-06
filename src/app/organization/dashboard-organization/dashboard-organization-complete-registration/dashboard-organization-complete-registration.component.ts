@@ -47,7 +47,6 @@ export class DashboardOrganizationCompleteRegistrationComponent
     public typeOrganizationService: TypeOrganizationService,
     public sectorOrganizationService: SectorOrganizationService,
     public storage: Storage,
-    public authService: AuthService,
     public organizationRegistrationService: OrganizationRegistrationService,
     public countryService: CountryService
   ) {
@@ -119,8 +118,6 @@ export class DashboardOrganizationCompleteRegistrationComponent
   };
 
   submit() {
-    console.log('hitted');
-    console.log(this.form.value);
     if (this.form.valid) {
       this.loading = true;
 

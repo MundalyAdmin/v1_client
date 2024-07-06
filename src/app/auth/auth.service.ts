@@ -13,8 +13,6 @@ import { TypeUser } from '../user/type-user.model';
 import { Organization } from '../organization/organization.model';
 import { AuthenticatedUser } from './authenticated-user.model';
 import { TypeOrganization } from '../organization/type-organization/type-organization.model';
-import { IMPLEMENTER_REGISTRATION_DATA } from './mocks/implementer-registration-data.mock';
-import { FUNDER_REGISTRATION_DATA } from './mocks/funder-registration-data.mock';
 import { ReportOrganizationStatusEnum } from '../organization/report-organization/report-organization-status.enum';
 
 interface LoginInformation {
@@ -71,7 +69,6 @@ export class AuthService extends BaseService<any> {
   set organization(organization: Organization | null) {
     this._organization = organization;
     this.organization$.next(this._organization);
-    console.log('organization set', organization);
   }
 
   set user(user: User | null) {
@@ -160,6 +157,20 @@ export class AuthService extends BaseService<any> {
         error: (error: HttpErrorResponse) => this.errorResponseHandler(error),
       })
     );
+  }
+
+  updateOrganizationRegistration(organizationId: number, data: any) {
+    return this.factory
+      .patch(`auth/update-registration/organization/${organizationId}`, data)
+
+      .pipe(
+        tap({
+          next: (response: { data: any }) => {
+            this.storeLoginInformation(response.data);
+          },
+          error: (error: HttpErrorResponse) => this.errorResponseHandler(error),
+        })
+      );
   }
 
   verifyUser(data: { user_id: number; otp: number }) {

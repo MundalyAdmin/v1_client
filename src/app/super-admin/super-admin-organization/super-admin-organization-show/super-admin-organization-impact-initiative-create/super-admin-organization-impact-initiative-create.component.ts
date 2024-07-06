@@ -16,11 +16,10 @@ import { OrganizationService } from '../../../../organization/organization.servi
 export class SuperAdminOrganizationImpactInitiativeCreateComponent extends ImpactInitiativeCreateComponent {
   constructor(
     public override impactInitiativeService: ImpactInitiativeService,
-    public override authService: AuthService,
     public override countryService: CountryService,
     public organizationService: OrganizationService
   ) {
-    super(impactInitiativeService, authService, countryService);
+    super(impactInitiativeService, countryService);
   }
 
   override ngOnInit(): void {

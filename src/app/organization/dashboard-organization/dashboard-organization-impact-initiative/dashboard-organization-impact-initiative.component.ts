@@ -13,7 +13,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class DashboardOrganizationImpactInitiativeComponent extends BaseComponent<any> {
   constructor(
     public organizationService: OrganizationService,
-    public authService: AuthService,
     public router: Router,
     public route: ActivatedRoute
   ) {

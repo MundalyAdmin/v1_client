@@ -20,7 +20,6 @@ export class DashboardOrganizationInsightsScalesScoreComponent
   constructor(
     public scaleService: ScaleService,
     public organizationService: OrganizationService,
-    public authService: AuthService,
     public impactInitiativeService: ImpactInitiativeService,
     public route: ActivatedRoute
   ) {
@@ -28,6 +27,7 @@ export class DashboardOrganizationInsightsScalesScoreComponent
   }
 
   override ngOnInit(): void {
+    super.ngOnInit();
     this.route.queryParams.subscribe((params) => {
       const queryParams: { startDate?: string; endDate?: string } = {};
       if (params['startDate']) {

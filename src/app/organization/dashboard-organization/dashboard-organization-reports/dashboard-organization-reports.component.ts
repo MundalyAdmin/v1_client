@@ -22,7 +22,6 @@ export class DashboardOrganizationReportsComponent
   constructor(
     public organizationReportService: OrganizationReportService,
     public organizationService: OrganizationService,
-    public authService: AuthService,
     public impactInitiativeService: ImpactInitiativeService
   ) {
     super();

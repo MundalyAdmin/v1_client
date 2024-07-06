@@ -6,11 +6,7 @@ import { Validators } from '@angular/forms';
 import { AuthService } from '../../../../auth/auth.service';
 import { OrganizationService } from '../../../organization.service';
 import { Organization } from '../../../organization.model';
-
-interface OrganizationSearchResult {
-  name: string;
-  logo: string;
-}
+import { OrganizationPartnerInvitationService } from '../../../organization-partner-invitation/organization-partner-invitation.service';
 
 @Component({
   selector: 'app-impact-partner-create',
@@ -21,19 +17,27 @@ export class ImpactPartnerCreateComponent
   extends BaseCreateComponent<ImpactPartner>
   implements OnInit
 {
-  organizationSearchResults: OrganizationSearchResult[] = [];
+  organizationSearchResults: Organization[] = [];
   showCreateForm = false;
   selectedImplementer: Organization | null = null;
   constructor(
     public impactPartnerService: ImpactPartnerService,
-    public authService: AuthService,
-    public organizationService: OrganizationService
+    public organizationService: OrganizationService,
+    public organizationPartnerInvitationService: OrganizationPartnerInvitationService
   ) {
     super(impactPartnerService);
   }
 
   override ngOnInit() {
     this.initForm();
+
+    this.subscriptions['currentLoggedOrganization'] =
+      this.authService.organization$.subscribe((organization) => {
+        if (organization) {
+          this.form.controls['funder_id'].patchValue(organization.id);
+          this.currentLoggedInOrganization = organization;
+        }
+      });
   }
 
   onSelect(event: any) {
@@ -47,7 +51,7 @@ export class ImpactPartnerCreateComponent
       implementer_website: [null],
       implementer_admin_email: [null],
       implementer_id: [null, Validators.required],
-      funder_id: [1, Validators.required],
+      funder_id: [null, Validators.required],
     });
   }
 
@@ -69,44 +73,75 @@ export class ImpactPartnerCreateComponent
     this.form.controls['implementer_name'].updateValueAndValidity();
   }
 
-  searchOrganizationByName(event: any) {
+  hideCreateForm() {
+    this.showCreateForm = false;
+    this.form.controls['implementer_name'].clearValidators();
+    this.form.controls['implementer_website'].clearValidators();
+    this.form.controls['implementer_admin_email'].clearValidators();
+    this.form.controls['implementer_id'].setValidators([Validators.required]);
+    this.form.controls['implementer_id'].updateValueAndValidity();
+    this.form.controls['implementer_website'].updateValueAndValidity();
+    this.form.controls['implementer_admin_email'].updateValueAndValidity();
+    this.form.controls['implementer_name'].updateValueAndValidity();
+  }
+
+  searchExcludingPartners(event: any) {
     if (!event.query) {
       this.organizationSearchResults = [];
       return;
     }
     this.loading = true;
-    this.organizationService.searchNames(event.query).subscribe((response) => {
-      this.organizationSearchResults = response;
-      this.loading = false;
-    });
+    this.organizationService
+      .searchExcludingPartners(
+        this.currentLoggedInOrganization?.id!,
+        event.query
+      )
+      .subscribe((response) => {
+        this.organizationSearchResults = response;
+        this.loading = false;
+      });
   }
 
   override create() {
     if (!this.form.valid) {
       this.helper.notification.toastDanger('Invalid Form');
+      console.log(this.form.value);
       this.loading = false;
       return;
     }
 
     this.loading = true;
+    const funderId = this.formValue('funder_id');
+    const senderId = this.formValue('funder_id');
+    const implementerAdminEmail = this.formValue('implementer_admin_email');
+    const implementerName = this.form.get('implementer_name')?.value;
+    const implementerWebsite = this.form.get('implementer_name')?.value;
+    const implementerId = this.formValue('implementer_id');
+
     const data = this.showCreateForm
       ? {
-          funder_id: this.formValue('funder_id'),
-          implementer_admin_email: this.formValue('implementer_admin_email'),
+          funder_id: funderId,
+          sender_id: senderId,
+          implementer_admin_email: implementerAdminEmail,
           implementer: {
-            name: this.form.get('implementer_name')?.value,
-            website: this.form.get('implementer_name')?.value,
+            name: implementerName,
+            website: implementerWebsite,
           },
         }
       : {
-          funder_id: this.formValue('funder_id'),
-          implementer_id: this.formValue('implementer_id'),
+          funder_id: funderId,
+          implementer_id: implementerId,
+          sender_id: senderId,
+          receiver_id: implementerId,
         };
 
-    this.impactPartnerService.store(data).subscribe(() => {
+    this.organizationPartnerInvitationService.store(data).subscribe(() => {
       this.loading = false;
+      this.helper.notification.toastSuccess('Invitation sent successfully');
       this.initForm();
-      this.showCreateForm = false;
+      this.formValuePatcher('funder_id', this.currentLoggedInOrganization?.id!);
+      this.selectedImplementer = null;
+      this.hideCreateForm();
       this.created.emit();
     });
   }

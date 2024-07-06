@@ -65,23 +65,70 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 
 import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { PanelModule } from 'primeng/panel';
 import { PasswordModule } from 'primeng/password';
 import { DashboardOrganizationCompleteRegistrationPasswordComponent } from './dashboard-organization-complete-registration/dashboard-organization-complete-registration-password/dashboard-organization-complete-registration-password.component';
 import { DashboardOrganizationCompleteRegistrationInfoComponent } from './dashboard-organization-complete-registration/dashboard-organization-complete-registration-info/dashboard-organization-complete-registration-info.component';
 import { DashboardOrganizationCompleteRegistrationDetailsComponent } from './dashboard-organization-complete-registration/dashboard-organization-complete-registration-details/dashboard-organization-complete-registration-details.component';
+import { DashboardOrganizationPartnersComponent } from './dashboard-organization-partners/dashboard-organization-partners.component';
+import { DashboardOrganizationHeaderComponent } from './dashboard-organization-header/dashboard-organization-header.component';
+import { DashboardOrganizationPartnerInvitationComponent } from './dashboard-organization-partner-invitation/dashboard-organization-partner-invitation.component';
+import { OrganizationPartnerInvitationModule } from '../organization-partner-invitation/organization-partner-invitation.module';
+import { DashboardOrganizationDueDiligenceRequestComponent } from './dashboard-organization-due-diligence-request/dashboard-organization-due-diligence-request.component';
+import { DashboardOrganizationImpactVerificationComponent } from './dashboard-organization-impact-verification/dashboard-organization-impact-verification.component';
+import { DashboardOrganizationImpactVerificationRequestedComponent } from './dashboard-organization-impact-verification/dashboard-organization-impact-verification-requested/dashboard-organization-impact-verification-requested.component';
+import { DashboardOrganizationImpactVerificationReceivedComponent } from './dashboard-organization-impact-verification/dashboard-organization-impact-verification-received/dashboard-organization-impact-verification-received.component';
+import { ImpactVerificationModule } from '../../impact-verification/impact-verification.module';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardOrganizationComponent,
     children: [
+      // {
+      //   path: 'home',
+      //   component: DashboardOrganizationHomeComponent,
+      //   children: [
+      //     {
+      //       path: 'portfolio',
+      //       component: DashboardOrganizationPortfolioComponent,
+      //     },
+      //     {
+      //       path: '**',
+      //       redirectTo: 'portfolio',
+      //     },
+      //   ],
+      // },
+      // {
+      //   path: 'partners',
+      //   component: DashboardOrganizationPartnersComponent,
+      //   children: [
+      //     {
+      //       path: '',
+      //       component: DashboardOrganizationImpactPartnersComponent,
+      //     },
+      //     {
+      //       path: 'invitations',
+      //       component: DashboardOrganizationPartnerInvitationComponent,
+      //     },
+      //   ],
+      // },
+      // {
+      //   path: 'initiatives',
+      //   component: DashboardOrganizationImpactInitiativeComponent,
+      // },
       {
         path: 'home',
         component: DashboardOrganizationHomeComponent,
         children: [
           {
             path: 'partners',
-            component: ImpactPartnerListComponent,
+            component: DashboardOrganizationImpactPartnersComponent,
+          },
+
+          {
+            path: 'invitations',
+            component: DashboardOrganizationPartnerInvitationComponent,
           },
           {
             path: 'programs',
@@ -94,6 +141,21 @@ const routes: Routes = [
           {
             path: '**',
             redirectTo: 'programs',
+          },
+        ],
+      },
+      {
+        path: 'verification-requests',
+        component: DashboardOrganizationImpactVerificationComponent,
+        children: [
+          {
+            path: 'requested',
+            component:
+              DashboardOrganizationImpactVerificationRequestedComponent,
+          },
+          {
+            path: 'received',
+            component: DashboardOrganizationImpactVerificationReceivedComponent,
           },
         ],
       },
@@ -424,6 +486,13 @@ const routes: Routes = [
     DashboardOrganizationCompleteRegistrationPasswordComponent,
     DashboardOrganizationCompleteRegistrationInfoComponent,
     DashboardOrganizationCompleteRegistrationDetailsComponent,
+    DashboardOrganizationPartnersComponent,
+    DashboardOrganizationHeaderComponent,
+    DashboardOrganizationPartnerInvitationComponent,
+    DashboardOrganizationDueDiligenceRequestComponent,
+    DashboardOrganizationImpactVerificationComponent,
+    DashboardOrganizationImpactVerificationRequestedComponent,
+    DashboardOrganizationImpactVerificationReceivedComponent,
   ],
   imports: [
     CommonModule,
@@ -443,6 +512,9 @@ const routes: Routes = [
     InputTextareaModule,
     ScrollPanelModule,
     PasswordModule,
+    OrganizationPartnerInvitationModule,
+    PanelModule,
+    ImpactVerificationModule,
   ],
 })
 export class DashboardOrganizationModule {}
