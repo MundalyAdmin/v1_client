@@ -75,6 +75,10 @@ import { DashboardOrganizationHeaderComponent } from './dashboard-organization-h
 import { DashboardOrganizationPartnerInvitationComponent } from './dashboard-organization-partner-invitation/dashboard-organization-partner-invitation.component';
 import { OrganizationPartnerInvitationModule } from '../organization-partner-invitation/organization-partner-invitation.module';
 import { DashboardOrganizationDueDiligenceRequestComponent } from './dashboard-organization-due-diligence-request/dashboard-organization-due-diligence-request.component';
+import { DashboardOrganizationImpactVerificationComponent } from './dashboard-organization-impact-verification/dashboard-organization-impact-verification.component';
+import { DashboardOrganizationImpactVerificationRequestedComponent } from './dashboard-organization-impact-verification/dashboard-organization-impact-verification-requested/dashboard-organization-impact-verification-requested.component';
+import { DashboardOrganizationImpactVerificationReceivedComponent } from './dashboard-organization-impact-verification/dashboard-organization-impact-verification-received/dashboard-organization-impact-verification-received.component';
+import { ImpactVerificationModule } from '../../impact-verification/impact-verification.module';
 
 const routes: Routes = [
   {
@@ -121,6 +125,7 @@ const routes: Routes = [
             path: 'partners',
             component: DashboardOrganizationImpactPartnersComponent,
           },
+
           {
             path: 'invitations',
             component: DashboardOrganizationPartnerInvitationComponent,
@@ -136,6 +141,21 @@ const routes: Routes = [
           {
             path: '**',
             redirectTo: 'programs',
+          },
+        ],
+      },
+      {
+        path: 'verification-requests',
+        component: DashboardOrganizationImpactVerificationComponent,
+        children: [
+          {
+            path: 'requested',
+            component:
+              DashboardOrganizationImpactVerificationRequestedComponent,
+          },
+          {
+            path: 'received',
+            component: DashboardOrganizationImpactVerificationReceivedComponent,
           },
         ],
       },
@@ -470,6 +490,9 @@ const routes: Routes = [
     DashboardOrganizationHeaderComponent,
     DashboardOrganizationPartnerInvitationComponent,
     DashboardOrganizationDueDiligenceRequestComponent,
+    DashboardOrganizationImpactVerificationComponent,
+    DashboardOrganizationImpactVerificationRequestedComponent,
+    DashboardOrganizationImpactVerificationReceivedComponent,
   ],
   imports: [
     CommonModule,
@@ -491,6 +514,7 @@ const routes: Routes = [
     PasswordModule,
     OrganizationPartnerInvitationModule,
     PanelModule,
+    ImpactVerificationModule,
   ],
 })
 export class DashboardOrganizationModule {}

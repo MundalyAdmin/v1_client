@@ -9,7 +9,11 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ImpactPartnerSoloComponent } from './impact-partner-solo/impact-partner-solo.component';
 
 @NgModule({
-  declarations: [ImpactPartnerCreateComponent, ImpactPartnerListComponent, ImpactPartnerSoloComponent],
+  declarations: [
+    ImpactPartnerCreateComponent,
+    ImpactPartnerListComponent,
+    ImpactPartnerSoloComponent,
+  ],
   imports: [CommonModule, SharedModule, AutoCompleteModule, DropdownModule],
   exports: [ImpactPartnerCreateComponent, ImpactPartnerListComponent],
 })
