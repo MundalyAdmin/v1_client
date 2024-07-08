@@ -160,6 +160,11 @@ const routes: Routes = [
         ],
       },
       {
+        path: 'setupreport',
+        loadChildren: () =>
+          import('../../setup/setup.module').then((m) => m.SetupModule),
+      },
+      {
         path: 'organizations/:id/surveys/:id',
         component: SurveyFormShowComponent,
       },

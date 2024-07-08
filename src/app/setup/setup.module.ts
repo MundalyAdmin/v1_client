@@ -15,34 +15,37 @@ import { DividerModule } from 'primeng/divider';
 import { FormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 
-
 const routes: Routes = [
   {
     path: '',
     component: SetupComponent,
     children: [
       {
-        path: "communities",
-        component: CommunitiesComponent
+        path: 'communities',
+        component: CommunitiesComponent,
       },
       {
-        path: "participants",
-        component: ParticipantsComponent
+        path: 'participants',
+        component: ParticipantsComponent,
       },
       {
-        path: "launch",
-        component: LaunchComponent
-      }
-    ]
-  }
-]
+        path: 'launch',
+        component: LaunchComponent,
+      },
+      {
+        path: '**',
+        redirectTo: 'communities',
+      },
+    ],
+  },
+];
 
 @NgModule({
   declarations: [
     SetupComponent,
     CommunitiesComponent,
     ParticipantsComponent,
-    LaunchComponent
+    LaunchComponent,
   ],
   imports: [
     SharedPublicModule,
@@ -51,17 +54,17 @@ const routes: Routes = [
     SliderModule,
     DividerModule,
     FormsModule,
-    CommonModule
+    CommonModule,
   ],
   providers: [
     {
       provide: Loader,
       useValue: new Loader({
-        apiKey: environment.googlePlaceAPI || "",
-        libraries: ['places']
-      })
+        apiKey: environment.googlePlaceAPI || '',
+        libraries: ['places'],
+      }),
     },
-    SetupreportService
-  ]
+    SetupreportService,
+  ],
 })
-export class SetupModule { }
+export class SetupModule {}

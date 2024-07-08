@@ -1,34 +1,34 @@
-<div class="bg-[#F4F5F6] h-screen flex flex-col">
+<div class="bg-[#F4F5F6] min-h-[600px] flex relative flex-col">
   <div class="flex justify-center gap-7 p-5 bg-white">
-    <div class="flex gap-3 items-center cursor-pointer" [routerLink]="['/setupreport/communities']">
+    <div class="flex gap-3 items-center cursor-pointer" [routerLink]="['./communities']">
       <div
-        class="flex justify-center items-center text-xs h-[20px] w-[20px] text-center  rounded-full border border-black"
-        routerLinkActive="bg-black text-white">1</div>
+           class="flex justify-center items-center text-xs h-[20px] w-[20px] text-center  rounded-full border border-black"
+           routerLinkActive="bg-black text-white">1</div>
       <a routerLinkActive="font-bold">Communities</a>
       <span class="block text-slate-600 text-lg"><i class="mdi mdi-chevron-right"></i></span>
     </div>
-    <div class="flex gap-3 items-center cursor-pointer" [routerLink]="['/setupreport/participants']">
+    <div class="flex gap-3 items-center cursor-pointer" [routerLink]="['./participants']">
       <div
-        class="flex justify-center items-center text-xs h-[20px] w-[20px] text-center  rounded-full border border-black"
-        routerLinkActive="bg-black text-white">2</div>
+           class="flex justify-center items-center text-xs h-[20px] w-[20px] text-center  rounded-full border border-black"
+           routerLinkActive="bg-black text-white">2</div>
       <a routerLinkActive="font-bold">Screen Participants</a>
       <span class="block text-slate-600 text-lg"><i class="mdi mdi-chevron-right"></i></span>
     </div>
-    <div class="flex gap-3 items-center cursor-pointer" [routerLink]="['/setupreport/launch']">
+    <div class="flex gap-3 items-center cursor-pointer" [routerLink]="['./launch']">
       <div
-        class="flex justify-center items-center text-xs h-[20px] w-[20px] text-center  rounded-full border border-black"
-        routerLinkActive="bg-black text-white">3</div>
+           class="flex justify-center items-center text-xs h-[20px] w-[20px] text-center  rounded-full border border-black"
+           routerLinkActive="bg-black text-white">3</div>
       <a routerLinkActive="font-bold">Launch</a>
     </div>
   </div>
-  <div class="h-[90%] overflow-y-scroll">
+  <div class=" overflow-y-scroll">
     <router-outlet #myTemplateVar="outlet"></router-outlet>
   </div>
 
-  <div class="flex justify-between w-full bg-white items-center p-3">
+  <div class="flex  absolute bottom-0 justify-between w-full bg-white items-center p-3">
     <div>
     </div>
-    <div >
+    <div>
       <div class="flex items-center font-normal" *ngIf="childUrl!=='/setupreport/communities'">
         Respondents:
         <span class="inline-block pl-1 font-extrabold text-lg">
@@ -46,7 +46,7 @@
     <div>
       <div class="">
         <a [routerLink]="nextComponent()"
-          class="lightbox cursor-pointer py-1.5 px-5 w-auto inline-block font-semibold tracking-wide border align-middle duration-500 bg-primary-light text-lg text-white rounded-full">
+           class="lightbox cursor-pointer py-1.5 px-5 w-auto inline-block font-semibold tracking-wide border align-middle duration-500 bg-primary-light text-lg text-white rounded-full">
           Next <i class="mdi mdi-chevron-right"></i></a>
       </div>
     </div>
