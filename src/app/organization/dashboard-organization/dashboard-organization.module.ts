@@ -160,6 +160,13 @@ const routes: Routes = [
         ],
       },
       {
+        path: 'impact-verification-setup',
+        loadChildren: () =>
+          import(
+            './dashboard-organization-impact-verification-setup/dashboard-organization-impact-verification-setup.module'
+          ).then((m) => m.DashboardOrganizationImpactVerificationSetupModule),
+      },
+      {
         path: 'setupreport',
         loadChildren: () =>
           import('../../setup/setup.module').then((m) => m.SetupModule),

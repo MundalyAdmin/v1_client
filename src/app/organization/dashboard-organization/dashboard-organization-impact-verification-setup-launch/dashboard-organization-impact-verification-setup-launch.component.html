@@ -1,0 +1,306 @@
+<div class="flex flex-col items-center p-10">
+    <h2 class="text-2xl font-bold py-5">
+        Launch And Review
+    </h2>
+    <div class="min-w-[600px]">
+        <div class="py-5">
+            <p class="font-bold">
+                <b>Insufficient funds: your available credit is £0.00</b>
+            </p>
+            <p>
+                If you want to top up your credit, please contact us, or use direct payment via credit/
+                debit card.
+            </p>
+        </div>
+
+        <div class="mt-4">
+            <p class="py-4">
+                <b>
+                    Payment method
+                </b>
+            </p>
+
+            <div class="h-[1px] mb-5 bg-gray-200"></div>
+
+            <div class=" flex justify-between">
+                <div class="w-[30%] border p-3 cursor-pointer rounded-sm"
+                     [ngStyle]="{'background-color': state === 'card' ? '#D1F0FF' : 'white', 'border-color': state === 'card' ? 'black' : 'none'}"
+                     (click)="clickState('card')">
+                    <div>
+                        <div>
+                            <p class="pl-6 py-1 text-lg font-bold text-gray">
+                                <span class="text-lg"><i class="mdi mdi-credit-card-outline me-1 text-lg"></i></span> Card
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-[30%] border p-3 cursor-pointer"
+                     [ngStyle]="{'background-color': state === 'invoice' ? '#D1F0FF' : 'white', 'border-color': state === 'invoice' ? 'black' : 'none'}"
+                     (click)="clickState('invoice')">
+                    <div>
+                        <div>
+                            <p class="pl-6 py-1 text-lg font-bold text-gray">
+                                <span class="text-lg"><i class="mdi mdi-receipt-text-outline me-1 text-lg"></i></span> Invoice
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-[30%] border p-3 cursor-pointer"
+                     [ngStyle]="{'background-color': state === 'link' ? '#D1F0FF' : 'white', 'border-color': state === 'link' ? 'black' : 'none'}"
+                     (click)="clickState('link')">
+                    <div>
+                        <div>
+                            <p class="pl-6 py-1 text-lg font-bold text-gray">
+                                <span class="text-lg"><i class="mdi mdi-open-in-new me-1 text-lg"></i></span> Payment Link
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div *ngIf="state === 'card'">
+            <p class="py-4 mt-4">
+                <b>
+                    Card Details
+                </b>
+            </p>
+
+            <div class="h-[1px] mb-4 bg-gray-200"></div>
+
+
+            <div class="bg-white p-3">
+                <div class="flex justify-between p-3">
+                    <div class="flex w-[70%] gap-1">
+                        <span class="mdi mdi-credit-card"></span>
+                        <input class="w-full focus:ring-transparent focus:outline-none rounded-sm text-base" placeholder="Card Number" />
+                    </div>
+                    <div class="flex w-[20%] justify-between">
+                        <span class="flex ">
+                            <input class="w-full focus:ring-transparent focus:outline-none rounded-sm  text-base" placeholder="MM " />
+                            <input class="w-full focus:ring-transparent focus:outline-none rounded-sm  text-base" placeholder="/ YY" />
+                        </span>
+                        <span>
+                            <input class="w-full focus:ring-transparent focus:outline-none rounded-sm  text-base" placeholder="CVC" />
+                        </span>
+                    </div>
+                </div>
+
+                <div class="h-[1px] mb-4 bg-gray-200"></div>
+
+                <div class="flex justify-between items-center">
+                    <div class="flex gap-2 items-center">
+                        <input type="checkbox" name="saveCard"
+                               class="focus:ring-transparent focus:outline-none rounded-sm border-gray-400">
+                        <label for="saveCard" class="font-semibold text-base">
+                            Save Card Details for future use</label>
+                    </div>
+                    <div class="flex justify-end gap-1 pt-4">
+                        <div>
+                            <button
+                                    class="lightbox cursor-pointer py-1.5 px-5 w-auto inline-block font-semibold tracking-wide border align-middle duration-500  text-base text-primary rounded-full">
+                                Cancel
+                            </button>
+                        </div>
+                        <div>
+                            <button
+                                    class="lightbox cursor-pointer py-1.5 px-5 w-auto inline-block font-semibold tracking-wide border align-middle duration-500 bg-primary-light text-base text-white rounded-full">
+                                Save Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="state === 'card' || state === 'link'">
+            <p class="py-4 mt-4">
+                <b>
+                    Billing Address
+                </b>
+            </p>
+
+            <div class="h-[1px] mb-4 bg-gray-200"></div>
+
+            <div>
+                <span class="mdi mdi-information-outline"></span>
+                Please ensure that your billing details correlate to the selected credit card address
+            </div>
+
+            <div class="p-5 mt-3 bg-white flex flex-col gap-2">
+                <div class="flex flex-col gap-1">
+                    <div>
+                        <label class="text-sm ">Full Name</label>
+                    </div>
+                    <div>
+                        <input type="text" class="w-full border border-gray-400 focus:ring-0" />
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <div>
+                        <label class="text-sm ">Email</label>
+                    </div>
+                    <div>
+                        <input type="text" class="w-full border border-gray-400 focus:ring-0" />
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <div>
+                        <label class="text-sm ">Address</label>
+                    </div>
+                    <div>
+                        <input type="text" class="w-full border border-gray-400 focus:ring-0" />
+                    </div>
+                </div>
+
+                <div class="flex justify-between">
+                    <div class="flex flex-col gap-1 w-[47%]">
+                        <div>
+                            <label class="text-sm ">Postal code/Zip code</label>
+                        </div>
+                        <div>
+                            <input type="text" class="w-full border border-gray-400 focus:ring-0" />
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-1 w-[47%]">
+                        <div>
+                            <label class="text-sm ">Country</label>
+                        </div>
+                        <div>
+                            <select type="text" class="w-full border border-gray-400 focus:ring-0">
+                                <option>
+                                    Ghana
+                                </option>
+                                <option>
+                                    Mali
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="flex justify-between">
+                    <div class="flex flex-col gap-1 w-[47%]">
+                        <div>
+                            <label class="text-sm ">Company Name</label>
+                        </div>
+                        <div>
+                            <input type="text" class="w-full border border-gray-400 focus:ring-0" />
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-1 w-[47%]">
+                        <div>
+                            <label class="text-sm ">Company Tax / VAT Number</label>
+                        </div>
+                        <div>
+                            <input type="text" class="w-full border border-gray-400 focus:ring-0" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="flex justify-end gap-1 pt-4">
+                    <div>
+                        <button
+                                class="lightbox cursor-pointer py-1.5 px-5 w-auto inline-block font-semibold tracking-wide border align-middle duration-500  text-base text-primary rounded-full">
+                            Cancel
+                        </button>
+                    </div>
+                    <div>
+                        <button
+                                class="lightbox cursor-pointer py-1.5 px-5 w-auto inline-block font-semibold tracking-wide border align-middle duration-500 bg-primary-light text-base text-white rounded-full">
+                            Save Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="mt-4">
+            <p class="py-4">
+                <b>
+                    Price Summary
+                </b>
+            </p>
+
+            <div class="h-[1px] mb-8 bg-gray-200"></div>
+
+            <div class="bg-white">
+                <div class="border border-gray p-3 bg-white">
+                    <div>
+                        <div class="px-3">
+                            <p class="py-1 text-base text-gray flex justify-between">
+                                Price per respondents
+                                <span class="font-semibold">
+                                    $15
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border border-gray p-3 cursor-pointer bg-white">
+                    <div>
+                        <div class="px-3">
+                            <p class="py-1 text-base text-gray flex justify-between">
+                                Number of respondents
+                                <span class="font-semibold">
+                                    {{respondents}}
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border border-gray p-3 cursor-pointer bg-white">
+                    <div>
+                        <div class="px-3">
+                            <p class="py-1 text-base text-gray flex justify-between">
+                                Subtotal
+                                <span class="font-semibold">
+                                    {{total}}
+                                </span>
+                            </p>
+
+                            <p class="py-1 text-base text-gray-400 flex justify-between">
+                                Sales tax (0%)
+                                <span class="font-semibold">
+                                    + $0.00
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="border border-gray py-3 px-2 cursor-pointer bg-[#33415C]">
+                    <div>
+                        <div>
+                            <p class="px-3 py-1 text-lg font-bold text-white flex justify-between">
+                                Total
+                                <span>
+                                    {{total}}
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
