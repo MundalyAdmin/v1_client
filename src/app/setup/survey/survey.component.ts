@@ -107,7 +107,7 @@ export class SurveyComponent {
   }
 
   duplicateQuestion(index: number) {
-    this.questions = [...this.questions.slice(0, index + 1), Object.assign({}, this.questions[index]), ...this.questions.slice(index + 1)];
+    this.questions = [...this.questions.slice(0, index + 1), { ...this.questions[index], options: [...this.questions[index].options.map(x => x)]}, ...this.questions.slice(index + 1)];
   }
 
   moveUpward(index: number) {
@@ -165,7 +165,7 @@ export class SurveyComponent {
     this.questions[index].preview.otherSelected = !this.questions[index].preview.otherSelected
   }
 
-  trackByFn(index: number, item: string) {
+  trackByFn(index: number, item: any) {
     return index;
   }
 

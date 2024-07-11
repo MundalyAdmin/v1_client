@@ -25,7 +25,7 @@
     </div>
   </div>
   <div class="grow bg-white py-3 overflow-y-auto">
-    <div class="py-3" *ngFor="let question of questions; index as i"  id="{{'question_box_' + i}}">
+    <div class="py-3" *ngFor="let question of questions; index as i; trackBy:trackByFn"  id="{{'question_box_' + i}}">
       <div class="px-10">
         <div class="text-[#006bdb] font-bold">
           <i class="mdi mdi-chevron-right"></i>
@@ -120,7 +120,7 @@
               </div>
               <div class="py-2">
                 <input class="w-full rounded-sm ring-0 border border-gray-300 p-1.5"
-                  (input)="changeQuestion($event, i)" />
+                  (input)="changeQuestion($event, i)" value="{{question.title}}" />
               </div>
             </div>
 
