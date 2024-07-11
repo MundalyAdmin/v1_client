@@ -10,6 +10,8 @@ import { DashboardOrganizationImpactVerificationSetupCommunitiesComponent } from
 import { DashboardOrganizationImpactVerificationSetupParticipantComponent } from '../dashboard-organization-impact-verification-setup-participant/dashboard-organization-impact-verification-setup-participant.component';
 import { SliderModule } from 'primeng/slider';
 import { DashboardOrganizationImpactVerificationSetupLaunchComponent } from '../dashboard-organization-impact-verification-setup-launch/dashboard-organization-impact-verification-setup-launch.component';
+import { DashboardOrganizationImpactVerificationSetupBaseComponent } from '../dashboard-organization-impact-verification-setup-base/dashboard-organization-impact-verification-setup-base.component';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 const routes = [
   {
@@ -43,6 +45,7 @@ const routes = [
     DashboardOrganizationImpactVerificationSetupCommunitiesComponent,
     DashboardOrganizationImpactVerificationSetupParticipantComponent,
     DashboardOrganizationImpactVerificationSetupLaunchComponent,
+    DashboardOrganizationImpactVerificationSetupBaseComponent,
   ],
   imports: [
     CommonModule,
@@ -50,6 +53,7 @@ const routes = [
     SliderModule,
     NgxGpAutocompleteModule,
     RouterModule.forChild(routes),
+    InputSwitchModule,
   ],
   providers: [
     {

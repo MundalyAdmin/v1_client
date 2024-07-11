@@ -1,5 +1,16 @@
 import { Component } from '@angular/core';
 import { ImpactVerificationSetupService } from '../../../impact-verification/impact-verification-setup/impact-verification-setup.service';
+import { SexService } from '../../../sex/sex.service';
+import { EthnicityService } from '../../../ethnicity/ethnicity.service';
+import { RelationshipStatusService } from '../../../relationship-status/relationship-status.service';
+import { AgeRangeService } from '../../../age-range/age-range.service';
+import { BaseCreateComponent } from '../../../shared/base-component';
+import { CommonModel } from '../../../shared/models/common.model';
+import { DashboardOrganizationImpactVerificationSetupBaseComponent } from '../dashboard-organization-impact-verification-setup-base/dashboard-organization-impact-verification-setup-base.component';
+import { CommunityReachLevelService } from '../../../impact-verification/community-reach-level/community-reach-level.service';
+import { CommunityReachLevel } from '../../../impact-verification/community-reach-level/community-reach-level.model';
+
+type Option = { label: string; value: string };
 
 @Component({
   selector: 'app-dashboard-organization-impact-verification-setup-participant',
@@ -9,11 +20,27 @@ import { ImpactVerificationSetupService } from '../../../impact-verification/imp
     './dashboard-organization-impact-verification-setup-participant.component.scss',
   ],
 })
-export class DashboardOrganizationImpactVerificationSetupParticipantComponent {
+export class DashboardOrganizationImpactVerificationSetupParticipantComponent extends DashboardOrganizationImpactVerificationSetupBaseComponent {
   level: string = 'level1';
-  value: number = 0;
+  sliderValue: number = 0;
   respondents: string = '100';
   impact: boolean = false;
+
+  dependanciesLoading = {
+    ageRange: false,
+    ethnicity: false,
+    relationshipStatus: false,
+    sex: false,
+    communityReachLevel: false,
+  };
+
+  dependancies: { [key: string]: any } = {
+    ageRange: [],
+    ethnicity: [],
+    relationshipStatus: [],
+    sex: [],
+    communityReachLevel: [],
+  };
 
   reachOptions: string[] = Array.from(Array(10).keys()).map((x) => {
     if (x === 0) return '100';
@@ -21,140 +48,165 @@ export class DashboardOrganizationImpactVerificationSetupParticipantComponent {
     return (x * 250).toString();
   });
 
-  ageRange: { [key: string]: boolean } = {};
-
-  ethnicities: { [key: string]: boolean } = {};
-
-  sexes: { [key: string]: boolean } = {};
-
-  relationshipStatus: { [key: string]: boolean } = {};
-
   constructor(
-    public impactVerificationSetupService: ImpactVerificationSetupService
+    public impactVerificationSetupService: ImpactVerificationSetupService,
+    public sexService: SexService,
+    public ethnicityService: EthnicityService,
+    public relationshipStatusService: RelationshipStatusService,
+    public ageRangeService: AgeRangeService,
+    public communityReachLevelService: CommunityReachLevelService
   ) {
-    impactVerificationSetupService.level.subscribe((val) => (this.level = val));
-    impactVerificationSetupService.respondents.subscribe(
-      (val) => (this.respondents = val)
-    );
-    impactVerificationSetupService.impact.subscribe(
-      (val) => (this.impact = val)
-    );
-    impactVerificationSetupService.ageRange.subscribe(
-      (val) => (this.ageRange = val)
-    );
-    impactVerificationSetupService.ethnicities.subscribe(
-      (val) => (this.ethnicities = val)
-    );
-    impactVerificationSetupService.sexes.subscribe((val) => (this.sexes = val));
-    impactVerificationSetupService.relationshipStatus.subscribe(
-      (val) => (this.relationshipStatus = val)
-    );
+    super(impactVerificationSetupService, 'participantsForm');
   }
 
-  selectLevel(level: string): void {
-    this.impactVerificationSetupService.level.next(level);
+  override ngOnInit(): void {
+    super.ngOnInit();
+
+    this.getAgeRanges();
+    this.getEthnicities();
+    this.getSexes();
+    this.getRelationshipStatus();
+    this.getCommunityReachLevels();
+  }
+
+  isSelected(id: number, type: string) {
+    const selectedOptions = this.form.controls[type].value;
+    const totalOptions = this.dependancies[type].length;
+
+    if (
+      selectedOptions?.length === totalOptions ||
+      selectedOptions?.length === 0
+    ) {
+      return false;
+    }
+
+    return selectedOptions?.some((option: CommonModel) => option?.id === id);
+  }
+
+  getCommunityReachLevels(): void {
+    this.dependanciesLoading.communityReachLevel = true;
+    this.communityReachLevelService.get().subscribe({
+      next: (data) => {
+        this.dependancies['communityReachLevel'] = data;
+        this.dependanciesLoading.communityReachLevel = false;
+        if (!this.form.value['communityReachLevel']) {
+          this.form.patchValue({ communityReachLevel: data[0] });
+        }
+      },
+    });
+  }
+
+  getSexes(): void {
+    this.dependanciesLoading.sex = true;
+    this.sexService.get().subscribe((sex) => {
+      this.dependancies['sex'] = sex;
+      this.dependanciesLoading.sex = false;
+    });
+  }
+
+  getEthnicities(): void {
+    this.dependanciesLoading.ethnicity = true;
+    this.ethnicityService.get().subscribe((ethnicity) => {
+      this.dependancies['ethnicity'] = ethnicity;
+      this.dependanciesLoading.ethnicity = false;
+    });
+  }
+
+  getRelationshipStatus(): void {
+    this.dependanciesLoading.relationshipStatus = true;
+    this.relationshipStatusService.get().subscribe((relationshipStatus) => {
+      this.dependancies['relationshipStatus'] = relationshipStatus;
+      this.dependanciesLoading.relationshipStatus = false;
+    });
+  }
+
+  getAgeRanges(): void {
+    this.dependanciesLoading.ageRange = true;
+    this.ageRangeService.get().subscribe((ageRange) => {
+      this.dependancies['ageRange'] = ageRange;
+      this.dependanciesLoading.ageRange = false;
+    });
+  }
+
+  onDemographicChange(event: any, type: string) {
+    // Get the value from the event target
+    const value = +event?.target.value;
+
+    // Update the selected options based on the value
+    if (value === -1) {
+      this.form.patchValue({ [type]: [] });
+    } else {
+      if (this.isSelected(value, type)) {
+        this.form.patchValue({
+          [type]: this.form.controls[type].value?.filter(
+            (item: any) => item.id !== value
+          ),
+        });
+      } else {
+        this.form.patchValue({
+          [type]: [
+            ...(this.form.controls[type].value || []),
+            this.dependancies[type].find(
+              (item: CommonModel) => item.id === value
+            ),
+          ],
+        });
+
+        // Reset selectedOptions if all age range options are selected
+        if (
+          this.form.controls[type].value.length ===
+          this.dependancies[type].length
+        ) {
+          this.form.patchValue({ [type]: [] });
+        }
+      }
+    }
+
+    console.log(this.form.value);
+  }
+
+  selectLevel(level: CommunityReachLevel): void {
+    this.form.patchValue({
+      communityReachLevel: level,
+    });
   }
 
   setReachOption(opt: string): void {
     const num = Number(opt);
-    this.impactVerificationSetupService.respondents.next(opt);
+
     if (isNaN(num)) {
-      this.value = 99;
+      this.form.patchValue({
+        numberOfParticipantsPlaceholder: 99,
+        numberOfParticipants: 2001,
+      });
       return;
     }
-    console.log(num);
     if (num < 250) {
-      this.value = 0;
+      this.form.patchValue({
+        numberOfParticipantsPlaceholder: 0,
+        numberOfParticipants: 100,
+      });
       return;
     }
-    this.value = (num / 250) * 11;
+
+    this.form.patchValue({
+      numberOfParticipantsPlaceholder: (num / 250) * 11,
+      numberOfParticipants: num,
+    });
   }
 
-  reachChanged(num: number) {
-    this.impactVerificationSetupService.respondents.next(
-      this.reachOptions[num / 11]
-    );
+  reachChanged(event: any) {
+    const numberOfParticipantsPlaceholder = event.value;
+    const numberOfParticipants = (+numberOfParticipantsPlaceholder / 11) * 250;
+
+    this.form.patchValue({
+      numberOfParticipants: numberOfParticipants,
+      numberOfParticipantsPlaceholder: numberOfParticipantsPlaceholder,
+    });
   }
 
   changeImpact() {
     this.impactVerificationSetupService.impact.next(!this.impact);
-  }
-
-  selectAgeRange(key: string) {
-    const newVal = !this.ageRange[key];
-    if (key === 'All' && newVal) {
-      this.impactVerificationSetupService.ageRange.next({
-        ...Object.fromEntries(
-          Object.keys(this.ageRange).map((k) => [k, false])
-        ),
-        [key]: newVal,
-      });
-      return;
-    }
-
-    this.impactVerificationSetupService.ageRange.next({
-      ...this.ageRange,
-      [key]: newVal,
-      All: false,
-    });
-  }
-
-  selectEthnicity(key: string) {
-    const newVal = !this.ethnicities[key];
-
-    if (key === 'All' && newVal) {
-      this.impactVerificationSetupService.ethnicities.next({
-        ...Object.fromEntries(
-          Object.keys(this.ethnicities).map((k) => [k, false])
-        ),
-        [key]: newVal,
-      });
-      return;
-    }
-
-    this.impactVerificationSetupService.ethnicities.next({
-      ...this.ethnicities,
-      [key]: newVal,
-      All: false,
-    });
-  }
-
-  selectSex(key: string) {
-    const newVal = !this.sexes[key];
-
-    if (key === 'All' && newVal) {
-      this.impactVerificationSetupService.sexes.next({
-        ...Object.fromEntries(Object.keys(this.sexes).map((k) => [k, false])),
-        [key]: newVal,
-      });
-      return;
-    }
-
-    this.impactVerificationSetupService.sexes.next({
-      ...this.sexes,
-      [key]: newVal,
-      All: false,
-    });
-  }
-
-  selectRelationshipStatus(key: string) {
-    const newVal = !this.relationshipStatus[key];
-
-    if (key === 'All' && newVal) {
-      this.impactVerificationSetupService.relationshipStatus.next({
-        ...Object.fromEntries(
-          Object.keys(this.relationshipStatus).map((k) => [k, false])
-        ),
-        [key]: newVal,
-      });
-      return;
-    }
-
-    this.impactVerificationSetupService.relationshipStatus.next({
-      ...this.relationshipStatus,
-      [key]: newVal,
-      All: false,
-    });
   }
 
   sliderPercent(index: number) {
