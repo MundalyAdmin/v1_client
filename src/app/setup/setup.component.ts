@@ -35,7 +35,8 @@ export class SetupComponent {
   }
 
   nextComponent() {
-    if (this.childUrl === "/setupreport/participants") return "/setupreport/launch"
+    if (this.childUrl === "/setupreport/participants") return "/setupreport/survey";
+    if (this.childUrl === "/setupreport/survey") return "/setupreport/launch";
     return "/setupreport/participants"
   }
 }
