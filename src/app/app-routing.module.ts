@@ -15,6 +15,10 @@ const routes: Routes = [
     children: [
       {
         path: '',
+        redirectTo: 'auth',
+      },
+      {
+        path: 'public',
         loadChildren: () =>
           import('./public/public.module').then((m) => m.PublicModule),
       },
