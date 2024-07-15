@@ -12,6 +12,7 @@ import { SliderModule } from 'primeng/slider';
 import { DashboardOrganizationImpactVerificationSetupLaunchComponent } from '../dashboard-organization-impact-verification-setup-launch/dashboard-organization-impact-verification-setup-launch.component';
 import { DashboardOrganizationImpactVerificationSetupBaseComponent } from '../dashboard-organization-impact-verification-setup-base/dashboard-organization-impact-verification-setup-base.component';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { DashboardOrganizationImpactVerificationSetupSurveyComponent } from '../dashboard-organization-impact-verification-setup-survey/dashboard-organization-impact-verification-setup-survey.component';
 
 const routes = [
   {
@@ -27,6 +28,10 @@ const routes = [
         path: 'participants',
         component:
           DashboardOrganizationImpactVerificationSetupParticipantComponent,
+      },
+      {
+        path: 'survey',
+        component: DashboardOrganizationImpactVerificationSetupSurveyComponent,
       },
 
       {
@@ -46,6 +51,7 @@ const routes = [
     DashboardOrganizationImpactVerificationSetupParticipantComponent,
     DashboardOrganizationImpactVerificationSetupLaunchComponent,
     DashboardOrganizationImpactVerificationSetupBaseComponent,
+    DashboardOrganizationImpactVerificationSetupSurveyComponent,
   ],
   imports: [
     CommonModule,

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { BaseService } from '../../shared/services';
 import { BehaviorSubject, ReplaySubject, combineLatest, map } from 'rxjs';
 import { FormGroup } from '@angular/forms';
+import { ApiResponse } from '../../shared/models/ApiResponse';
+import { ImpactVerification } from '../impact-verification.model';
 
 @Injectable({
   providedIn: 'root',
@@ -40,6 +42,12 @@ export class ImpactVerificationSetupService extends BaseService<any> {
       return '$0.00';
     })
   );
+
+  payment() {
+    return this.factory
+      .post(``, {})
+      .pipe(map((response: ApiResponse<any>) => response.data));
+  }
 
   ageRange: BehaviorSubject<{ [key: string]: boolean }> = new BehaviorSubject<{
     [key: string]: boolean;

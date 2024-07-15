@@ -9,6 +9,8 @@ import { CommonModel } from '../../../shared/models/common.model';
 import { DashboardOrganizationImpactVerificationSetupBaseComponent } from '../dashboard-organization-impact-verification-setup-base/dashboard-organization-impact-verification-setup-base.component';
 import { CommunityReachLevelService } from '../../../impact-verification/community-reach-level/community-reach-level.service';
 import { CommunityReachLevel } from '../../../impact-verification/community-reach-level/community-reach-level.model';
+import { ImpactVerificationPricingTierService } from '../../../impact-verification/impact-verification-pricing-tier/impact-verification-pricing-tier.service';
+import { ImpactVerificationPricingTier } from '../../../impact-verification/impact-verification-pricing-tier/impact-verification-pricing-tier.model';
 
 type Option = { label: string; value: string };
 
@@ -32,6 +34,7 @@ export class DashboardOrganizationImpactVerificationSetupParticipantComponent ex
     relationshipStatus: false,
     sex: false,
     communityReachLevel: false,
+    pricingTier: false,
   };
 
   dependancies: { [key: string]: any } = {
@@ -40,6 +43,7 @@ export class DashboardOrganizationImpactVerificationSetupParticipantComponent ex
     relationshipStatus: [],
     sex: [],
     communityReachLevel: [],
+    pricingTier: [],
   };
 
   reachOptions: string[] = Array.from(Array(10).keys()).map((x) => {
@@ -54,7 +58,8 @@ export class DashboardOrganizationImpactVerificationSetupParticipantComponent ex
     public ethnicityService: EthnicityService,
     public relationshipStatusService: RelationshipStatusService,
     public ageRangeService: AgeRangeService,
-    public communityReachLevelService: CommunityReachLevelService
+    public communityReachLevelService: CommunityReachLevelService,
+    public pricingTierService: ImpactVerificationPricingTierService
   ) {
     super(impactVerificationSetupService, 'participantsForm');
   }
@@ -62,11 +67,31 @@ export class DashboardOrganizationImpactVerificationSetupParticipantComponent ex
   override ngOnInit(): void {
     super.ngOnInit();
 
-    this.getAgeRanges();
-    this.getEthnicities();
-    this.getSexes();
-    this.getRelationshipStatus();
-    this.getCommunityReachLevels();
+    this.subscriptions['sex'] = this.sexService.data$.subscribe((data) => {
+      this.dependancies['sex'] = data;
+    });
+
+    this.subscriptions['ethnicity'] = this.ethnicityService.data$.subscribe(
+      (data) => {
+        this.dependancies['ethnicity'] = data;
+      }
+    );
+
+    this.subscriptions['relationshipStatus'] =
+      this.relationshipStatusService.data$.subscribe((data) => {
+        this.dependancies['relationshipStatus'] = data;
+      });
+
+    this.subscriptions['ageRange'] = this.ageRangeService.data$.subscribe(
+      (data) => {
+        this.dependancies['ageRange'] = data;
+      }
+    );
+
+    this.subscriptions['communityReachLevel'] =
+      this.communityReachLevelService.data$.subscribe((data) => {
+        this.dependancies['communityReachLevel'] = data;
+      });
   }
 
   isSelected(id: number, type: string) {
@@ -81,51 +106,6 @@ export class DashboardOrganizationImpactVerificationSetupParticipantComponent ex
     }
 
     return selectedOptions?.some((option: CommonModel) => option?.id === id);
-  }
-
-  getCommunityReachLevels(): void {
-    this.dependanciesLoading.communityReachLevel = true;
-    this.communityReachLevelService.get().subscribe({
-      next: (data) => {
-        this.dependancies['communityReachLevel'] = data;
-        this.dependanciesLoading.communityReachLevel = false;
-        if (!this.form.value['communityReachLevel']) {
-          this.form.patchValue({ communityReachLevel: data[0] });
-        }
-      },
-    });
-  }
-
-  getSexes(): void {
-    this.dependanciesLoading.sex = true;
-    this.sexService.get().subscribe((sex) => {
-      this.dependancies['sex'] = sex;
-      this.dependanciesLoading.sex = false;
-    });
-  }
-
-  getEthnicities(): void {
-    this.dependanciesLoading.ethnicity = true;
-    this.ethnicityService.get().subscribe((ethnicity) => {
-      this.dependancies['ethnicity'] = ethnicity;
-      this.dependanciesLoading.ethnicity = false;
-    });
-  }
-
-  getRelationshipStatus(): void {
-    this.dependanciesLoading.relationshipStatus = true;
-    this.relationshipStatusService.get().subscribe((relationshipStatus) => {
-      this.dependancies['relationshipStatus'] = relationshipStatus;
-      this.dependanciesLoading.relationshipStatus = false;
-    });
-  }
-
-  getAgeRanges(): void {
-    this.dependanciesLoading.ageRange = true;
-    this.ageRangeService.get().subscribe((ageRange) => {
-      this.dependancies['ageRange'] = ageRange;
-      this.dependanciesLoading.ageRange = false;
-    });
   }
 
   onDemographicChange(event: any, type: string) {
