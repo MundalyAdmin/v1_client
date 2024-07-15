@@ -14,6 +14,9 @@ import { SliderModule } from 'primeng/slider';
 import { DividerModule } from 'primeng/divider';
 import { FormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
+import { DragDropModule } from 'primeng/dragdrop';
+import { SurveyComponent } from './survey/survey.component';
+import { TooltipModule } from 'primeng/tooltip';
 
 const routes: Routes = [
   {
@@ -29,12 +32,12 @@ const routes: Routes = [
         component: ParticipantsComponent,
       },
       {
-        path: 'launch',
-        component: LaunchComponent,
+        path: 'survey',
+        component: SurveyComponent,
       },
       {
-        path: '**',
-        redirectTo: 'communities',
+        path: 'launch',
+        component: LaunchComponent,
       },
     ],
   },
@@ -46,6 +49,7 @@ const routes: Routes = [
     CommunitiesComponent,
     ParticipantsComponent,
     LaunchComponent,
+    SurveyComponent,
   ],
   imports: [
     SharedPublicModule,
@@ -55,6 +59,8 @@ const routes: Routes = [
     DividerModule,
     FormsModule,
     CommonModule,
+    DragDropModule,
+    TooltipModule,
   ],
   providers: [
     {
