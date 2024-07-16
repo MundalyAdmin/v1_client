@@ -20,7 +20,7 @@ const routes = [
     component: DashboardOrganizationImpactVerificationSetupComponent,
     children: [
       {
-        path: 'communities',
+        path: 'setup',
         component:
           DashboardOrganizationImpactVerificationSetupCommunitiesComponent,
       },
@@ -39,7 +39,7 @@ const routes = [
         component: DashboardOrganizationImpactVerificationSetupLaunchComponent,
       },
 
-      { path: '**', redirectTo: 'communities' },
+      { path: '**', redirectTo: 'setup' },
     ],
   },
 ];

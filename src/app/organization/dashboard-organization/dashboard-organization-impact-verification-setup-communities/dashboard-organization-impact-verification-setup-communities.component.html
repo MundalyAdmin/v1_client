@@ -1,10 +1,33 @@
 <div class="flex flex-col items-center p-10">
     <h2 class="text-2xl font-bold py-5">
-        Create Communities
+        Setup Your Survey
     </h2>
-    <form class="min-w-[600px]" [formGroup]="form">
-        <div>
-            <label class="">
+    <form [formGroup]="form" class="min-w-[600px] w-[80%]">
+        <label class="font-semibold">
+            Select one or more type of insights
+        </label>
+        <div class="flex justify-between gap-5 my-2" *ngIf="dependancies['typeInsights'].length">
+
+            <div class="w-[30%] border border-gray p-3 cursor-pointer bg-white"
+                 [ngClass]="{ 'border-primary': isTypeInsightSelected(typeInsight.id) }" *ngFor="let typeInsight of dependancies['typeInsights']"
+                 (click)="toggleTypeInsightSelection(typeInsight)">
+                <div>
+                    <input type="checkbox" class="ring-0" name="typeInsight" [checked]="isTypeInsightSelected(typeInsight.id)"> <label
+                           class="inline-block px-3 font-bold"> <span><i class="mdi mdi-lightbulb-on-10"></i></span> {{ typeInsight.name }}</label>
+                    <div>
+                        <p class="pl-6 py-1 text-sm text-gray">
+                            {{ typeInsight.description }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="mt-14">
+            <label class="font-semibold">
                 Select Community location
             </label>
             <div class="py-4">

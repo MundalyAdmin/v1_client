@@ -25,8 +25,9 @@
         <div class="py-8">
             <label class="font-bold text-lg">
                 Number Of Participants
+                <span class="font-light font-italic" *ngIf="form.controls['numberOfParticipantsPlaceholder'].disabled">: 100</span>
             </label>
-            <div class="py-4 px-3">
+            <div class="py-4 px-3" *ngIf="!form.controls['numberOfParticipantsPlaceholder'].disabled">
                 <div class="relative">
                     <div class=" flex justify-between w-full">
                         <div class="absolute flex items-start flex-col cursor-pointer" [ngStyle]="{ 'left': 'calc(' + sliderPercent(i) + '%)' }"
@@ -38,7 +39,8 @@
 
                     </div>
 
-                    <p-slider formControlName="numberOfParticipantsPlaceholder" (onChange)="reachChanged($event)" class="w-full" [step]="11"
+                    <p-slider formControlName="numberOfParticipantsPlaceholder" (onChange)="reachChanged($event)" class="w-full"
+                              [step]="11"
                               styleClass="p-button-secondary" />
                 </div>
             </div>
