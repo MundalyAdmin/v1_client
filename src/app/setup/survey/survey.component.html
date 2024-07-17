@@ -33,38 +33,36 @@
         </div>
         <div class="flex py-3 justify-between">
           <div>
-            <select class="">
-              <option>
+            <select class="" (change)="chooseQuestionType($event, i)" value="{{question.type}}">
+              <option value="optionBased">
                 <div>
                   Single / Multiple Choice
                 </div>
-
               </option>
-              <option>
-
+              <option value="textBased">
+                Text Respondents
               </option>
 
             </select>
           </div>
           <div class="flex gap-2">
-            <button class="text-lg cursor-pointer" [disabled]="i === 0" [ngStyle]="{'color': i === 0 ? 'lightgray' : ''}" (click)="moveUpward(i)"
-                    pTooltip="Move This Question Upward"
-                    tooltipPosition="top">
+            <button class="text-lg cursor-pointer" [disabled]="i === 0"
+                    [ngStyle]="{'color': i === 0 ? 'lightgray' : ''}" (click)="moveUpward(i)"
+                    pTooltip="Move This Question Upward" tooltipPosition="top">
               <i class="mdi mdi-arrow-up"></i>
             </button>
             <button class="text-lg cursor-pointer" [disabled]="questions.length === i + 1"
                     [ngStyle]="{'color': questions.length ===  i + 1 ? 'lightgray' : ''}" (click)="moveDownward(i)"
-                    pTooltip="Move This Question Downward"
-                    tooltipPosition="top">
+                    pTooltip="Move This Question Downward" tooltipPosition="top">
               <i class="mdi mdi-arrow-down"></i>
             </button>
             <button class="cursor-pointer" (click)="duplicateQuestion(i)" pTooltip="Duplicate This Question"
                     tooltipPosition="top">
               <i class="mdi mdi mdi-content-copy"></i>
             </button>
-            <button class="cursor-pointer" [disabled]="questions.length <= 1" [ngStyle]="{'color': questions.length <= 1 ? 'lightgray' : ''}"
-                    (click)="removeQuestion(i)" pTooltip="Delete This Question"
-                    tooltipPosition="top">
+            <button class="cursor-pointer" [disabled]="questions.length <= 1"
+                    [ngStyle]="{'color': questions.length <= 1 ? 'lightgray' : ''}" (click)="removeQuestion(i)"
+                    pTooltip="Delete This Question" tooltipPosition="top">
               <i class="mdi mdi-delete-outline"></i>
             </button>
             <button class="text-[#006bdb] cursor-pointer">
@@ -74,7 +72,7 @@
           </div>
         </div>
 
-        <ng-template #multiChoice>
+        <ng-template #optionBased>
           <div>
             <div>
               <p class="py-4 text-gray-400">
@@ -82,7 +80,8 @@
               </p>
               <div class="flex gap-3 items-center">
                 <div class="border border-gray-500  px-4 font-semibold flex gap-2 items-center h-[42px]">
-                  <input type="radio" name="optionChoice" class="ring-0 cursor-pointer" [checked]="!question.chooseMany"
+                  <input type="radio" name="optionChoice" class="ring-0 cursor-pointer"
+                         [checked]="!asOptionBasedQuestion(question).chooseMany"
                          (change)="selectOptionSelection(i, false)" />
                   <span>
                     Choose One
@@ -91,27 +90,28 @@
                 </div>
 
                 <div class="border border-gray-500 px-4 font-semibold flex gap-2 items-center h-[42px]">
-                  <input type="radio" name="optionChoice" class="ring-0 cursor-pointer" [checked]="question.chooseMany"
-                         (change)="selectOptionSelection(i, true)" />
+                  <input type="radio" name="optionChoice" class="ring-0 cursor-pointer"
+                         [checked]="asOptionBasedQuestion(question).chooseMany" (change)="selectOptionSelection(i, true)" />
                   <span>
                     Choose Many
                   </span>
                 </div>
 
-                <div class="px-4 font-semibold flex gap-2 items-center" *ngIf="question.chooseMany">
+                <div class="px-4 font-semibold flex gap-2 items-center"
+                     *ngIf="asOptionBasedQuestion(question).chooseMany">
                   <select class="" (change)="selectOptionManyLimit($event, i)">
-                    <option value="false" [selected]="!question.manyOptionLimited">
+                    <option value="false" [selected]="!asOptionBasedQuestion(question).manyOptionLimited">
                       Unlimited
                     </option>
-                    <option value="true" [selected]="question.manyOptionLimited">
+                    <option value="true" [selected]="asOptionBasedQuestion(question).manyOptionLimited">
                       Limited
                     </option>
                   </select>
                 </div>
                 <div class="border border-gray-500 p-2 font-semibold flex gap-5 items-center h-[42px]"
-                     *ngIf="question.chooseMany && question.manyOptionLimited">
+                     *ngIf="asOptionBasedQuestion(question).chooseMany && asOptionBasedQuestion(question).manyOptionLimited">
                   <button (click)="updateOptionCount(i, 1)"><i class="mdi mdi-plus"></i></button>
-                  <span>{{question.optionLimitCount}}</span>
+                  <span>{{asOptionBasedQuestion(question).optionLimitCount}}</span>
                   <button (click)="updateOptionCount(i, -1)"><i class="mdi mdi-minus"></i></button>
                 </div>
               </div>
@@ -125,8 +125,8 @@
                 </div>
               </div>
               <div class="py-2">
-                <input class="w-full rounded-sm ring-0 border border-gray-300 p-1.5"
-                       (input)="changeQuestion($event, i)" value="{{question.title}}" />
+                <input class="w-full rounded-sm ring-0 border border-gray-300 p-1.5" (input)="changeQuestion($event, i)"
+                       value="{{question.title}}" />
               </div>
             </div>
 
@@ -136,13 +136,17 @@
                 <p>Answer Option</p>
                 <div class="flex items-center gap-2 cursor-pointer">
                   <div class="p-0.5 w-[30px] h-[16px] border border-gray-200 rounded-xl flex"
-                       [ngStyle]="{ 'justify-content': question.randomizeOptions ? 'flex-end': 'flex-start' }" (click)="switchRandomizeOption(i)">
-                    <div class="w-[10px] h-[10px] rounded-full" [ngStyle]="{ 'background-color': question.randomizeOptions ? 'black': 'gray' }"></div>
+                       [ngStyle]="{ 'justify-content': asOptionBasedQuestion(question).randomizeOptions ? 'flex-end': 'flex-start' }"
+                       (click)="switchRandomizeOption(i)">
+                    <div class="w-[10px] h-[10px] rounded-full"
+                         [ngStyle]="{ 'background-color': asOptionBasedQuestion(question).randomizeOptions ? 'black': 'gray' }">
+                    </div>
                   </div>
                   Randomize Order
                 </div>
               </div>
-              <div class="py-2" *ngFor="let opt of question.options; index as optionIndex; trackBy: trackByFn">
+              <div class="py-2"
+                   *ngFor="let opt of asOptionBasedQuestion(question).options; index as optionIndex; trackBy: trackByFn">
                 <input class="w-full rounded-sm ring-0 border border-gray-300 p-1.5" placeholder="Enter Option"
                        (input)="changeOptionText($event, i, optionIndex)" value="{{opt}}" />
               </div>
@@ -152,27 +156,53 @@
               <div class="flex gap-6 items-center text-gray-400">
                 <p>Add:</p>
                 <div class="flex gap-2 items-center">
-                  <input type="checkbox" class="ring-0 cursor-pointer" name="others" value="{{question.other}}"
-                         (change)="selectNormalOptions('other', i)" [checked]="question.other" /> Others
+                  <input type="checkbox" class="ring-0 cursor-pointer" name="others"
+                         value="{{asOptionBasedQuestion(question).other}}" (change)="selectNormalOptions('other', i)"
+                         [checked]="asOptionBasedQuestion(question).other" /> Others
                 </div>
                 <div class="flex gap-2 items-center">
-                  <input type="checkbox" class="ring-0 cursor-pointer" name="nonOfAbove" value="{{question.nonOfAbove}}"
-                         (change)="selectNormalOptions('nonOfAbove', i)" [checked]="question.nonOfAbove" /> None Of the Above
+                  <input type="checkbox" class="ring-0 cursor-pointer" name="nonOfAbove"
+                         value="{{asOptionBasedQuestion(question).nonOfAbove}}"
+                         (change)="selectNormalOptions('nonOfAbove', i)"
+                         [checked]="asOptionBasedQuestion(question).nonOfAbove" /> None Of the Above
                 </div>
                 <div class="flex gap-2 items-center">
-                  <input type="checkbox" class="ring-0 cursor-pointer" name="notSure" value="{{question.notSure}}"
-                         (change)="selectNormalOptions('notSure', i)" [checked]="question.notSure" /> Not Sure
+                  <input type="checkbox" class="ring-0 cursor-pointer" name="notSure"
+                         value="{{asOptionBasedQuestion(question).notSure}}" (change)="selectNormalOptions('notSure', i)"
+                         [checked]="asOptionBasedQuestion(question).notSure" /> Not Sure
                 </div>
                 <div class="flex gap-2 items-center">
-                  <input type="checkbox" class="ring-0 cursor-pointer" name="preferNotSay" value="{{question.preferNotSay}}"
-                         (change)="selectNormalOptions('preferNotSay', i)" [checked]="question.preferNotSay" /> Prefer Not To Say
+                  <input type="checkbox" class="ring-0 cursor-pointer" name="preferNotSay"
+                         value="{{asOptionBasedQuestion(question).preferNotSay}}"
+                         (change)="selectNormalOptions('preferNotSay', i)"
+                         [checked]="asOptionBasedQuestion(question).preferNotSay" /> Prefer Not To Say
                 </div>
               </div>
             </div>
           </div>
         </ng-template>
 
-        <div *ngTemplateOutlet="multiChoice"></div>
+        <ng-template #textBased>
+          <div>
+            <div class="py-3">
+              <div class="flex justify-between">
+                <p>Question</p>
+                <div>
+                  <button><i class="mdi mdi-plus"></i>Add Image</button>
+                </div>
+              </div>
+              <div class="py-2">
+                <input class="w-full rounded-sm ring-0 border border-gray-300 p-1.5" (input)="changeQuestion($event, i)"
+                       value="{{question.title}}" />
+              </div>
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-container [ngSwitch]="question.type">
+          <ng-container *ngSwitchCase="'optionBased'" [ngTemplateOutlet]="optionBased"></ng-container>
+          <ng-container *ngSwitchCase="'textBased'" [ngTemplateOutlet]="textBased"></ng-container>
+        </ng-container>
       </div>
 
 
@@ -185,7 +215,7 @@
 
 
     <div class="flex justify-center items-center p-10">
-      <button class="p-2 px-4 border border-[#006bdb] text-[#006bdb] rounded-full" (click)="newQuestion()">
+      <button class="p-2 px-4 border border-[#006bdb] text-[#006bdb] rounded-full" (click)="addNewQuestion()">
         Add Question
       </button>
     </div>
@@ -203,21 +233,26 @@
           </p>
           <div class="bg-white">
             <div>
-              <ng-template #p_multiChoice>
+              <ng-template #p_optionBased>
                 <div class="flex flex-col gap-4 px-8 py-4">
-                  <ng-container *ngFor="let opt of questions[activeQuestionIndex].options; index as i">
-                    <div class="flex gap-2.5 items-center" *ngIf="i < questions[activeQuestionIndex].options.length - 1">
-                      <input type="{{questions[activeQuestionIndex].chooseMany ? 'checkbox' : 'radio'}}"
+                  <ng-container
+                                *ngFor="let opt of asOptionBasedQuestion(questions[activeQuestionIndex]).options; index as i">
+                    <div class="flex gap-2.5 items-center"
+                         *ngIf="i < asOptionBasedQuestion(questions[activeQuestionIndex]).options.length - 1">
+                      <input
+                             type="{{asOptionBasedQuestion(questions[activeQuestionIndex]).chooseMany ? 'checkbox' : 'radio'}}"
                              class="p-3 border border-gray-200 ring-0 cursor-pointer" /> {{opt}}
                     </div>
                   </ng-container>
 
-                  <div *ngIf="questions[activeQuestionIndex].other">
+                  <div *ngIf="asOptionBasedQuestion(questions[activeQuestionIndex]).other">
                     <div class="flex gap-2.5 items-center">
-                      <input type="{{questions[activeQuestionIndex].chooseMany ? 'checkbox' : 'radio'}}"
-                             class="p-3 border border-gray-200 ring-0 cursor-pointer" (change)="selectPreviewOther(activeQuestionIndex)" /> Others
+                      <input
+                             type="{{asOptionBasedQuestion(questions[activeQuestionIndex]).chooseMany ? 'checkbox' : 'radio'}}"
+                             class="p-3 border border-gray-200 ring-0 cursor-pointer"
+                             (change)="selectPreviewOther(activeQuestionIndex)" /> Others
                     </div>
-                    <div *ngIf="questions[activeQuestionIndex].preview.otherSelected">
+                    <div *ngIf="asOptionBasedQuestion(questions[activeQuestionIndex]).preview.otherSelected">
                       <div class="py-3">
                         <textarea class="rounded-lg border border-gray-300">
 
@@ -230,28 +265,52 @@
 
                   </div>
 
-                  <div class="flex gap-2.5 items-center" *ngIf="questions[activeQuestionIndex].notSure">
-                    <input type="{{questions[activeQuestionIndex].chooseMany ? 'checkbox' : 'radio'}}"
+                  <div class="flex gap-2.5 items-center"
+                       *ngIf="asOptionBasedQuestion(questions[activeQuestionIndex]).notSure">
+                    <input
+                           type="{{asOptionBasedQuestion(questions[activeQuestionIndex]).chooseMany ? 'checkbox' : 'radio'}}"
                            class="p-3 border border-gray-200 ring-0 cursor-pointer" /> Not Sure
                   </div>
 
-                  <div class="flex gap-2.5 items-center" *ngIf="questions[activeQuestionIndex].nonOfAbove">
-                    <input type="{{questions[activeQuestionIndex].chooseMany ? 'checkbox' : 'radio'}}"
+                  <div class="flex gap-2.5 items-center"
+                       *ngIf="asOptionBasedQuestion(questions[activeQuestionIndex]).nonOfAbove">
+                    <input
+                           type="{{asOptionBasedQuestion(questions[activeQuestionIndex]).chooseMany ? 'checkbox' : 'radio'}}"
                            class="p-3 border border-gray-200 ring-0 cursor-pointer" /> None Of the Above
                   </div>
-                  <div class="flex gap-2.5 items-center" *ngIf="questions[activeQuestionIndex].preferNotSay">
-                    <input type="{{questions[activeQuestionIndex].chooseMany ? 'checkbox' : 'radio'}}"
+                  <div class="flex gap-2.5 items-center"
+                       *ngIf="asOptionBasedQuestion(questions[activeQuestionIndex]).preferNotSay">
+                    <input
+                           type="{{asOptionBasedQuestion(questions[activeQuestionIndex]).chooseMany ? 'checkbox' : 'radio'}}"
                            class="p-3 border border-gray-200 ring-0 cursor-pointer" /> Prefer Not To Say
                   </div>
                 </div>
               </ng-template>
 
-              <div *ngTemplateOutlet="p_multiChoice"></div>
+              <ng-template #p_textBased>
+                <div class="flex flex-col gap-4 px-8 py-4">
+                  <div>
+                    <div class="py-3">
+                      <textarea class="rounded-lg border border-gray-300 min-h-[200px]">
+
+                      </textarea>
+                    </div>
+                    <div class="text-gray-400">
+                      <span>0</span>/500
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+
+              <ng-container [ngSwitch]="questions[activeQuestionIndex].type">
+                <ng-container *ngSwitchCase="'optionBased'" [ngTemplateOutlet]="p_optionBased"></ng-container>
+                <ng-container *ngSwitchCase="'textBased'" [ngTemplateOutlet]="p_textBased"></ng-container>
+              </ng-container>
             </div>
             <div class="flex justify-center items-center p-5">
               <button class="p-2 px-12 border font-semibold text-white rounded-full"
-                      [ngClass]="activeQuestionIndex >= questions.length - 1 ? 'bg-[#ffdcd9]' : 'bg-[#f34a3e]'" (click)="nextPreviewQuestion()"
-                      [disabled]="activeQuestionIndex >= questions.length - 1">
+                      [ngClass]="activeQuestionIndex >= questions.length - 1 ? 'bg-[#ffdcd9]' : 'bg-[#f34a3e]'"
+                      (click)="nextPreviewQuestion()" [disabled]="activeQuestionIndex >= questions.length - 1">
                 Next
               </button>
             </div>
