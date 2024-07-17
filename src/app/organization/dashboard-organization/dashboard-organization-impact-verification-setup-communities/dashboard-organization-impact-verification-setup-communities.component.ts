@@ -58,7 +58,7 @@ export class DashboardOrganizationImpactVerificationSetupCommunitiesComponent ex
 
   isTypeInsightSelected(typeInsightId: number) {
     return this.form
-      .get('type_insights')
+      .get('typeInsights')
       ?.value.map(
         (typeInsight: ImpactVerificationTypeInsights) => typeInsight.id
       )
@@ -66,7 +66,7 @@ export class DashboardOrganizationImpactVerificationSetupCommunitiesComponent ex
   }
 
   toggleTypeInsightSelection(typeInsight: ImpactVerificationTypeInsights) {
-    const currentTypeInsights = this.form.get('type_insights')?.value ?? [];
+    const currentTypeInsights = this.form.get('typeInsights')?.value ?? [];
     const isTypeInsightAlreadySelected = this.isTypeInsightSelected(
       typeInsight.id!
     );
@@ -76,8 +76,8 @@ export class DashboardOrganizationImpactVerificationSetupCommunitiesComponent ex
             selectedTypeInsight.id !== typeInsight.id
         )
       : [...currentTypeInsights, typeInsight];
-    this.form.get('type_insights')?.setValue(newTypeInsights);
-    this.form.get('type_insights')?.updateValueAndValidity();
+    this.form.get('typeInsights')?.setValue(newTypeInsights);
+    this.form.get('typeInsights')?.updateValueAndValidity();
   }
 
   public handleAddressChange(address: any) {

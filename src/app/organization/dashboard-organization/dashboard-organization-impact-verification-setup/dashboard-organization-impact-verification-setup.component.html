@@ -1,34 +1,38 @@
 <div class="bg-[#F4F5F6] flex relative flex-col">
     <div class="flex justify-center gap-7 p-5 bg-white">
         <!-- Setup -->
-        <div class="flex gap-3 items-center cursor-pointer" [routerLink]="['./setup']">
+        <button class="flex gap-3 items-center cursor-pointer" [routerLink]="['./setup']">
             <div
                  class="flex justify-center items-center text-xs h-[20px] w-[20px] text-center  rounded-full border border-black"
                  routerLinkActive="bg-black text-white">1</div>
             <a routerLinkActive="font-bold">Setup</a>
             <span class="block text-slate-600 text-lg"><i class="mdi mdi-chevron-right"></i></span>
-        </div>
+        </button>
 
         <!-- Participant -->
-        <div class="flex gap-3 items-center cursor-pointer" [routerLink]="['./participants']">
+        <button class="flex gap-3 items-center disabled:text-slate-500 disabled:cursor-not-allowed" [routerLink]="['./participants']"
+                [disabled]="!steps[0].completed">
             <div
-                 class="flex justify-center items-center text-xs h-[20px] w-[20px] text-center  rounded-full border border-black"
+                 class="flex justify-center  items-center text-xs h-[20px] w-[20px] text-center  rounded-full border border-black"
                  routerLinkActive="bg-black text-white">2</div>
             <a routerLinkActive="font-bold">Screen Participants</a>
             <span class="block text-slate-600 text-lg"><i class="mdi mdi-chevron-right"></i></span>
-        </div>
+        </button>
 
         <!-- Survey -->
-        <div class="flex gap-3 items-center cursor-pointer" [routerLink]="['./survey']" *ngIf="isCustomInsightSelected()">
+        <button class="flex gap-3 items-center disabled:text-slate-500 disabled:cursor-not-allowed " [routerLink]="['./survey']"
+                [disabled]="!steps[1].completed"
+                *ngIf="isCustomInsightSelected()">
             <div
-                 class="flex justify-center items-center text-xs h-[20px] w-[20px] text-center  rounded-full border border-black"
+                 class="flex justify-center items-center border-slate-900 disabled:border-slate-500 text-xs h-[20px] w-[20px] text-center  rounded-full border "
                  routerLinkActive="bg-black text-white">3</div>
             <a routerLinkActive="font-bold">Build Survey</a>
             <span class="block text-slate-600 text-lg"><i class="mdi mdi-chevron-right"></i></span>
-        </div>
+        </button>
 
         <!-- Launch -->
-        <div class="flex gap-3 items-center cursor-pointer" [routerLink]="['./launch']">
+        <button class="flex gap-3 items-center disabled:text-slate-500 disabled:cursor-not-allowed" [routerLink]="['./launch']"
+                [disabled]="isCustomInsightSelected() ?  !steps[2].completed : !steps[1].completed">
             <div
                  class="flex justify-center items-center text-xs h-[20px] w-[20px] text-center  rounded-full border border-black"
                  routerLinkActive="bg-black text-white">
@@ -36,7 +40,7 @@
                 <span *ngIf="isCustomInsightSelected()">4</span>
             </div>
             <a routerLinkActive="font-bold">Launch</a>
-        </div>
+        </button>
     </div>
     <div class="">
         <router-outlet #myTemplateVar="outlet"></router-outlet>
@@ -67,16 +71,20 @@
 
         </div>
         <div>
-            <div class="" *ngIf="activeStep?.name === 'launch' && activeStep?.completed">
-                <a (click)="submit()"
-                   class="lightbox cursor-pointer py-1.5 px-5 w-auto inline-block font-semibold tracking-wide border align-middle duration-500 bg-primary-light text-lg text-white rounded-full">
-                    Submit <i class="mdi mdi-chevron-right"></i></a>
+            <div class="" *ngIf="activeStep?.name === 'launch'">
+                <button (click)="submit()"
+                        [disabled]="form.invalid || loading"
+
+                        class="lightbox disabled:bg-slate-400 disabled:cursor-not-allowed disabled:text-dark  py-1.5 px-5 w-auto inline-block font-semibold tracking-wide border align-middle duration-500 bg-primary-light text-lg text-white rounded-full">
+                    Submit <i class="mdi mdi-chevron-right"></i></button>
             </div>
 
-            <div class="" *ngIf="activeStep?.name !== 'launch' && activeStep?.completed">
-                <a (click)="nextStep()"
-                   class="lightbox cursor-pointer py-1.5 px-5 w-auto inline-block font-semibold tracking-wide border align-middle duration-500 bg-primary-light text-lg text-white rounded-full">
-                    Next <i class="mdi mdi-chevron-right"></i></a>
+            <div class="" *ngIf="activeStep?.name !== 'launch'">
+
+                <button (click)="nextStep()"
+                        [disabled]="!activeStep?.completed"
+                        class="lightbox disabled:bg-slate-400 disabled:cursor-not-allowed disabled:text-dark  py-1.5 px-5 w-auto inline-block font-semibold tracking-wide border align-middle duration-500 bg-primary-light text-lg text-white rounded-full">
+                    Next <i class="mdi mdi-chevron-right"></i></button>
             </div>
         </div>
     </div>

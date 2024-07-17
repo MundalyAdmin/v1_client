@@ -18,6 +18,10 @@ import { ImpactVerificationTypeInsightsService } from '../../../impact-verificat
 import { ImpactVerificationTypeInsights } from '../../../impact-verification/impact-verification-type-insights/impact-verification-type-insights.model';
 import { ImpactVerificationTypeInsightsEnum } from '../../../impact-verification/impact-verification-type-insights/impact-verification-type-insights.enum';
 import { filter } from 'rxjs';
+import { AgeRange } from '../../../age-range/age-range.model';
+import { Sex } from '../../../sex/sex.model';
+import { RelationshipStatus } from '../../../relationship-status/relationship-status.model';
+import { Ethnicity } from '../../../ethnicity/ethnicity.model';
 
 const IMPACT_STORIES_COST_PER_100_PARTICIPANTS = 15;
 
@@ -117,7 +121,7 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
 
   isCustomInsightSelected() {
     const selectedTypeInsights = this.form?.value['communitiesForm'][
-      'type_insights'
+      'typeInsights'
     ] as ImpactVerificationTypeInsights[];
     const customInsightId = ImpactVerificationTypeInsightsEnum.CUSTOM_INSIGHTS;
 
@@ -149,17 +153,17 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
       communitiesForm: this.fb.group({
         location: [null, Validators.required],
         location_placeholder: [null, Validators.required],
-        type_insights: [[], Validators.required],
+        typeInsights: [[], Validators.required],
       }),
       participantsForm: this.fb.group({
         communityReachLevel: [null, Validators.required],
         numberOfParticipants: [100, Validators.required],
-        impact_stories: [false, Validators.required],
+        impactStoriesEnabled: [false, Validators.required],
         numberOfParticipantsPlaceholder: [0, Validators.required],
-        ageRange: [[], Validators.required],
-        sex: [[], Validators.required],
-        relationshipStatus: [[], Validators.required],
-        ethnicity: [[], Validators.required],
+        ageRange: [[]],
+        sex: [[]],
+        relationshipStatus: [[]],
+        ethnicity: [[]],
       }),
       buildSurveyForm: this.fb.group({}),
       launchForm: this.fb.group({}),
@@ -177,26 +181,26 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
     this.form.valueChanges.subscribe((value) => {
       // Get the total price of the verification
       this.totalPrice = this.getTotalPrice(
-        value['communitiesForm']['type_insights'],
+        value['communitiesForm']['typeInsights'],
         value['participantsForm']['communityReachLevel'],
         +value['participantsForm']['numberOfParticipants'],
-        value['participantsForm']['impact_stories']
+        value['participantsForm']['impactStoriesEnabled']
       );
 
       // Enforcing that either well-being or due diligence is selected
       if (
-        (!value['communitiesForm']['type_insights']?.length ||
-          (!value['communitiesForm']['type_insights']
+        (!value['communitiesForm']['typeInsights']?.length ||
+          (!value['communitiesForm']['typeInsights']
             .map((item: ImpactVerificationTypeInsights) => item?.id)
             .includes(ImpactVerificationTypeInsightsEnum.DUE_DILIGENCE) &&
-            !value['communitiesForm']['type_insights']
+            !value['communitiesForm']['typeInsights']
               .map((item: ImpactVerificationTypeInsights) => item?.id)
               .includes(ImpactVerificationTypeInsightsEnum.WELLBEING))) &&
         this.dependancies['typeInsights'].length
       ) {
         this.form.controls['communitiesForm'].patchValue({
-          type_insights: [
-            ...value['communitiesForm']['type_insights'],
+          typeInsights: [
+            ...value['communitiesForm']['typeInsights'],
             this.dependancies['typeInsights'][0],
           ],
         });
@@ -204,7 +208,7 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
 
       // Limit the number of particpant to 100 if custom insights is not selected
       if (
-        !value['communitiesForm']['type_insights'].some(
+        !value['communitiesForm']['typeInsights'].some(
           (item: ImpactVerificationTypeInsights) =>
             item.id === ImpactVerificationTypeInsightsEnum.CUSTOM_INSIGHTS
         )
@@ -240,10 +244,8 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
       }
 
       // Make sure to updated the validity of every steps
-      Object.keys(this.form.controls).forEach((controlKey) => {
-        this.steps.forEach((step) => {
-          step.completed = this.form.controls[controlKey].valid;
-        });
+      this.steps.forEach((step) => {
+        step.completed = this.form.controls[step.formName].valid;
       });
     });
   }
@@ -290,19 +292,33 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
     this.getCommunityReachLevels();
     this.getTypeInsights();
 
+    this.router.navigate(['./'], { relativeTo: this.route });
+
     // Set the step whenever the route changes
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
-        const urlSegments = this.router.url.split('/');
-
-        const stepIndex =
-          this.steps.findIndex(
-            (step) => step.name === urlSegments[urlSegments.length - 1]
-          ) || 0;
-
-        this.steps[stepIndex].active = true;
+        this.navigateToTheRightStepByUrl(this.router.url);
       });
+  }
+
+  navigateToTheRightStepByUrl(url: string) {
+    const urlSegments = url.split('/');
+
+    const stepIndex =
+      this.steps.findIndex(
+        (step) => step.name === urlSegments[urlSegments.length - 1]
+      ) || 0;
+
+    this.deactivateAllSteps();
+
+    this.steps[stepIndex].active = true;
+  }
+
+  deactivateAllSteps() {
+    this.steps = this.steps.map((step) => {
+      return { ...step, active: false };
+    });
   }
 
   nextStep() {
@@ -310,27 +326,17 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
       (step) => step.active === true
     );
 
-    console.log(this.steps[activeStepIndex]);
-
-    this.steps = this.steps.map((step) => {
-      return { ...step, active: false };
-    });
+    this.deactivateAllSteps();
 
     const nextStep = this.steps.find((step) => {
-      // console.log(step.position, this.steps[activeStepIndex]?.position! + 1);
-      // console.log(step.position === this.steps[activeStepIndex]?.position! + 1);
       if (
         this.steps[activeStepIndex]!.position === 2 &&
         !this.isCustomInsightSelected()
       ) {
-        console.log(step.position, this.steps[activeStepIndex]?.position! + 2);
         return step.position === this.steps[activeStepIndex]?.position! + 2;
       }
       return step.position === this.steps[activeStepIndex]?.position! + 1;
-      // }
     });
-
-    console.log(nextStep);
 
     this.router.navigate([nextStep!.name], {
       relativeTo: this.route,
@@ -342,9 +348,9 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
     this.typeInsightsService.get().subscribe((typeInsights) => {
       this.dependancies['typeInsights'] = typeInsights;
       this.dependanciesLoading.typeInsights = false;
-      if (!this.form.value['communitiesForm']['type_insights'].length) {
+      if (!this.form.value['communitiesForm']['typeInsights'].length) {
         this.form.controls['communitiesForm'].patchValue({
-          type_insights: [typeInsights[0]],
+          typeInsights: [typeInsights[0]],
         });
       }
     });
@@ -406,8 +412,36 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
   }
 
   submit() {
-    this.impactVerificationSetupService.payment().subscribe((data) => {
-      window.location.href = data;
-    });
+    const data = {
+      location: this.form.controls['communitiesForm'].value['location'],
+      number_of_participants:
+        this.form.controls['participantsForm'].value['numberOfParticipants'],
+      impact_stories_enabled:
+        this.form.controls['participantsForm'].value['impactStoriesEnabled'],
+      typeInsights: this.form.controls['communitiesForm'].value[
+        'typeInsights'
+      ].map((type_insight: ImpactVerificationTypeInsights) => type_insight.id),
+
+      community_reach_level:
+        this.form.controls['participantsForm'].value['communityReachLevel']?.id,
+      age_range: this.form.controls['participantsForm'].value['ageRange']?.map(
+        (item: AgeRange) => item.id
+      ),
+      sex: this.form.controls['participantsForm'].value['sex']?.map(
+        (item: Sex) => item.id
+      ),
+      relationship_status: this.form.controls['participantsForm']?.value[
+        'relationshipStatus'
+      ]?.map((item: RelationshipStatus) => item.id),
+      ethnicity: this.form.controls['participantsForm'].value['ethnicity']?.map(
+        (item: Ethnicity) => item.id
+      ),
+    };
+
+    console.log(data);
+
+    // this.impactVerificationSetupService.payment().subscribe((data) => {
+    //   window.location.href = data;
+    // });
   }
 }
