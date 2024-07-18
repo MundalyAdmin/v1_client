@@ -65,7 +65,7 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
       position: 1,
       active: true,
       completed: false,
-      formName: 'communitiesForm',
+      formName: 'setupForm',
     },
     {
       name: 'participants',
@@ -120,7 +120,7 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
   }
 
   isCustomInsightSelected() {
-    const selectedTypeInsights = this.form?.value['communitiesForm'][
+    const selectedTypeInsights = this.form?.value['setupForm'][
       'typeInsights'
     ] as ImpactVerificationTypeInsights[];
     const customInsightId = ImpactVerificationTypeInsightsEnum.CUSTOM_INSIGHTS;
@@ -150,10 +150,12 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
 
   initForm() {
     this.form = this.fb.group({
-      communitiesForm: this.fb.group({
+      setupForm: this.fb.group({
         location: [null, Validators.required],
         location_placeholder: [null, Validators.required],
         typeInsights: [[], Validators.required],
+        surveyName: [null],
+        surveyLink: [null],
       }),
       participantsForm: this.fb.group({
         communityReachLevel: [null, Validators.required],
@@ -181,7 +183,7 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
     this.form.valueChanges.subscribe((value) => {
       // Get the total price of the verification
       this.totalPrice = this.getTotalPrice(
-        value['communitiesForm']['typeInsights'],
+        value['setupForm']['typeInsights'],
         value['participantsForm']['communityReachLevel'],
         +value['participantsForm']['numberOfParticipants'],
         value['participantsForm']['impactStoriesEnabled']
@@ -189,26 +191,43 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
 
       // Enforcing that either well-being or due diligence is selected
       if (
-        (!value['communitiesForm']['typeInsights']?.length ||
-          (!value['communitiesForm']['typeInsights']
+        (!value['setupForm']['typeInsights']?.length ||
+          (!value['setupForm']['typeInsights']
             .map((item: ImpactVerificationTypeInsights) => item?.id)
             .includes(ImpactVerificationTypeInsightsEnum.DUE_DILIGENCE) &&
-            !value['communitiesForm']['typeInsights']
+            !value['setupForm']['typeInsights']
               .map((item: ImpactVerificationTypeInsights) => item?.id)
               .includes(ImpactVerificationTypeInsightsEnum.WELLBEING))) &&
         this.dependancies['typeInsights'].length
       ) {
-        this.form.controls['communitiesForm'].patchValue({
+        this.form.controls['setupForm'].patchValue({
           typeInsights: [
-            ...value['communitiesForm']['typeInsights'],
+            ...value['setupForm']['typeInsights'],
             this.dependancies['typeInsights'][0],
           ],
         });
       }
 
+      if (this.isCustomInsightSelected()) {
+        this.form.controls['setupForm']
+          ?.get('survey_name')
+          ?.setValidators([Validators.required]);
+
+        this.form.controls['setupForm']?.updateValueAndValidity({
+          onlySelf: true,
+          emitEvent: false,
+        });
+      } else {
+        this.form.controls['setupForm']?.get('survey_name')?.clearValidators();
+        this.form.controls['setupForm']?.updateValueAndValidity({
+          onlySelf: true,
+          emitEvent: false,
+        });
+      }
+
       // Limit the number of particpant to 100 if custom insights is not selected
       if (
-        !value['communitiesForm']['typeInsights'].some(
+        !value['setupForm']['typeInsights'].some(
           (item: ImpactVerificationTypeInsights) =>
             item.id === ImpactVerificationTypeInsightsEnum.CUSTOM_INSIGHTS
         )
@@ -348,8 +367,8 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
     this.typeInsightsService.get().subscribe((typeInsights) => {
       this.dependancies['typeInsights'] = typeInsights;
       this.dependanciesLoading.typeInsights = false;
-      if (!this.form.value['communitiesForm']['typeInsights'].length) {
-        this.form.controls['communitiesForm'].patchValue({
+      if (!this.form.value['setupForm']['typeInsights'].length) {
+        this.form.controls['setupForm'].patchValue({
           typeInsights: [typeInsights[0]],
         });
       }
@@ -413,14 +432,16 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
 
   submit() {
     const data = {
-      location: this.form.controls['communitiesForm'].value['location'],
+      location: this.form.controls['setupForm'].value['location'],
+      survey_name: this.form.controls['setupForm'].value['surveyName'],
+      survey_link: this.form.controls['setupForm'].value['surveyLink'],
       number_of_participants:
         this.form.controls['participantsForm'].value['numberOfParticipants'],
       impact_stories_enabled:
         this.form.controls['participantsForm'].value['impactStoriesEnabled'],
-      typeInsights: this.form.controls['communitiesForm'].value[
-        'typeInsights'
-      ].map((type_insight: ImpactVerificationTypeInsights) => type_insight.id),
+      typeInsights: this.form.controls['setupForm'].value['typeInsights'].map(
+        (type_insight: ImpactVerificationTypeInsights) => type_insight.id
+      ),
 
       community_reach_level:
         this.form.controls['participantsForm'].value['communityReachLevel']?.id,

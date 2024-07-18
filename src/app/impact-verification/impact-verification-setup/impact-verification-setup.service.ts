@@ -22,7 +22,7 @@ export class ImpactVerificationSetupService extends BaseService<any> {
   }
 
   updateFormSection(
-    section: 'communitiesForm' | 'participantsForm' | 'launchForm',
+    section: 'setupForm' | 'participantsForm' | 'launchForm',
     subForm: FormGroup
   ) {
     this._form.controls[section] = subForm;

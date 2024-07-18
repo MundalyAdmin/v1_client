@@ -21,7 +21,7 @@ export class DashboardOrganizationImpactVerificationSetupBaseComponent
   constructor(
     public impactVerificationSetup: ImpactVerificationSetupService,
     @Inject('string')
-    public formName: 'communitiesForm' | 'participantsForm' | 'launchForm'
+    public formName: 'setupForm' | 'participantsForm' | 'launchForm'
   ) {
     super();
   }

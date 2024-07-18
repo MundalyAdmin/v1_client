@@ -5,6 +5,7 @@ import { ImpactVerificationPricingTierService } from '../../../impact-verificati
 import { CommunityReachLevelService } from '../../../impact-verification/community-reach-level/community-reach-level.service';
 import { ImpactVerificationTypeInsightsService } from '../../../impact-verification/impact-verification-type-insights/impact-verification-type-insights.service';
 import { ImpactVerificationTypeInsights } from '../../../impact-verification/impact-verification-type-insights/impact-verification-type-insights.model';
+import { ImpactVerificationTypeInsightsEnum } from '../../../impact-verification/impact-verification-type-insights/impact-verification-type-insights.enum';
 
 @Component({
   selector: 'app-dashboard-organization-impact-verification-setup-communities',
@@ -31,6 +32,10 @@ export class DashboardOrganizationImpactVerificationSetupCommunitiesComponent ex
     // }
   };
 
+  get ImpactVerificationTypeInsightsEnum() {
+    return ImpactVerificationTypeInsightsEnum;
+  }
+
   override ngOnInit(): void {
     super.ngOnInit();
 
@@ -53,7 +58,7 @@ export class DashboardOrganizationImpactVerificationSetupCommunitiesComponent ex
     public communityReachLevelService: CommunityReachLevelService,
     public typeInsightsService: ImpactVerificationTypeInsightsService
   ) {
-    super(impactVerificationSetupService, 'communitiesForm');
+    super(impactVerificationSetupService, 'setupForm');
   }
 
   isTypeInsightSelected(typeInsightId: number) {
