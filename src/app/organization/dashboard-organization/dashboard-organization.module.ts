@@ -79,6 +79,7 @@ import { DashboardOrganizationImpactVerificationComponent } from './dashboard-or
 import { DashboardOrganizationImpactVerificationRequestedComponent } from './dashboard-organization-impact-verification/dashboard-organization-impact-verification-requested/dashboard-organization-impact-verification-requested.component';
 import { DashboardOrganizationImpactVerificationReceivedComponent } from './dashboard-organization-impact-verification/dashboard-organization-impact-verification-received/dashboard-organization-impact-verification-received.component';
 import { ImpactVerificationModule } from '../../impact-verification/impact-verification.module';
+import { DashboardOrganizationUnavailableInsightsComponent } from './dashboard-organization-unavailable-insights/dashboard-organization-unavailable-insights.component';
 
 const routes: Routes = [
   {
@@ -505,6 +506,7 @@ const routes: Routes = [
     DashboardOrganizationImpactVerificationComponent,
     DashboardOrganizationImpactVerificationRequestedComponent,
     DashboardOrganizationImpactVerificationReceivedComponent,
+    DashboardOrganizationUnavailableInsightsComponent,
   ],
   imports: [
     CommonModule,

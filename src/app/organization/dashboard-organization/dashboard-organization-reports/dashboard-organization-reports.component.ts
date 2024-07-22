@@ -6,6 +6,7 @@ import { OrganizationService } from '../../organization.service';
 import { AuthService } from '../../../auth/auth.service';
 import { ImpactInitiativeService } from '../../../scale/impact-initiative/impact-initiative.service';
 import { TypeOrganizationEnum } from '../../type-organization/type-organization.enum';
+import { StatusImpactVerificationEnum } from '../../../impact-verification/enums/status-impact-verification.enum';
 
 @Component({
   selector: 'app-dashboard-organization-reports',
@@ -19,6 +20,7 @@ export class DashboardOrganizationReportsComponent
   showReportUploadModal = false;
   selectedReportIndex = 0;
   showReportDetailsModal = false;
+  StatusImpactVerificationEnum = StatusImpactVerificationEnum;
   constructor(
     public organizationReportService: OrganizationReportService,
     public organizationService: OrganizationService,

@@ -8,6 +8,7 @@ import { ImpactInitiativeService } from '../../../../scale/impact-initiative/imp
 import { TypeOrganizationEnum } from '../../../type-organization/type-organization.enum';
 import { Organization } from '../../../organization.model';
 import { CategoryOrganizationEnum } from '../../../category-organization/category-organization.enum';
+import { StatusImpactVerificationEnum } from '../../../../impact-verification/enums/status-impact-verification.enum';
 
 @Component({
   selector: 'app-dashboard-organization-forecast',
@@ -30,6 +31,10 @@ export class DashboardOrganizationForecastComponent
     public impactInitiativeService: ImpactInitiativeService
   ) {
     super();
+  }
+
+  get StatusImpactVerificationEnum() {
+    return StatusImpactVerificationEnum;
   }
 
   override ngOnInit(): void {
@@ -63,7 +68,11 @@ export class DashboardOrganizationForecastComponent
   private subscribeToOrganizationData() {
     this.subscriptions['organization'] =
       this.organizationService.singleData$.subscribe((organization) => {
-        if (organization) {
+        if (
+          organization &&
+          organization.verification_status_from_current_organization?.id ===
+            StatusImpactVerificationEnum.LAUNCHED
+        ) {
           this.getCommunityTrustScoreByOrganizationId(organization.id!);
         }
       });

@@ -14,7 +14,8 @@
 
 </ul>
 
-<div class="bg-gray-100 p-10">
+<div class="bg-gray-100 p-10"
+     *ngIf="organizationService.singleData?.verification_status_from_current_organization?.id === StatusImpactVerificationEnum.LAUNCHED">
 
 
 
@@ -111,3 +112,7 @@
     <app-missing-data *ngIf="!organizationReportService.data.length" class="w-full" [message]="'No reports yet'"></app-missing-data>
   </div>
 </div>
+
+
+<app-dashboard-organization-unavailable-insights
+                                                 *ngIf="organizationService.singleData?.verification_status_from_current_organization?.id !== StatusImpactVerificationEnum.LAUNCHED"></app-dashboard-organization-unavailable-insights>
