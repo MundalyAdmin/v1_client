@@ -80,14 +80,14 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
     },
     {
       name: 'survey',
-      position: 3,
+      position: -1,
       active: true,
       completed: false,
       formName: 'buildSurveyForm',
     },
     {
       name: 'launch',
-      position: 4,
+      position: 3,
       active: true,
       completed: false,
       formName: 'launchForm',
@@ -365,12 +365,6 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
     this.deactivateAllSteps();
 
     const nextStep = this.steps.find((step) => {
-      if (
-        this.steps[activeStepIndex]!.position === 2 &&
-        !this.isCustomInsightSelected()
-      ) {
-        return step.position === this.steps[activeStepIndex]?.position! + 2;
-      }
       return step.position === this.steps[activeStepIndex]?.position! + 1;
     });
 
