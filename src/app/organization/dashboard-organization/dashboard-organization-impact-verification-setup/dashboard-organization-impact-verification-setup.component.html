@@ -1,4 +1,6 @@
-<div class="bg-[#F4F5F6] flex relative flex-col">
+<app-page-loading *ngIf="pageLoading"></app-page-loading>
+
+<div class="bg-[#F4F5F6] flex relative flex-col" *ngIf="!pageLoading">
     <div class="flex justify-center gap-7 p-5 bg-white">
         <!-- Setup -->
         <button class="flex gap-3 items-center cursor-pointer" [routerLink]="['./setup']">
@@ -20,7 +22,7 @@
         </button>
 
         <!-- Survey -->
-        <button class="flex gap-3 items-center disabled:text-slate-500 disabled:cursor-not-allowed " [routerLink]="['./survey']"
+        <!-- <button class="flex gap-3 items-center disabled:text-slate-500 disabled:cursor-not-allowed " [routerLink]="['./survey']"
                 [disabled]="!steps[1].completed"
                 *ngIf="isCustomInsightSelected()">
             <div
@@ -28,11 +30,11 @@
                  routerLinkActive="bg-black text-white">3</div>
             <a routerLinkActive="font-bold">Build Survey</a>
             <span class="block text-slate-600 text-lg"><i class="mdi mdi-chevron-right"></i></span>
-        </button>
+        </button> -->
 
         <!-- Launch -->
         <button class="flex gap-3 items-center disabled:text-slate-500 disabled:cursor-not-allowed" [routerLink]="['./launch']"
-                [disabled]="isCustomInsightSelected() ?  !steps[2].completed : !steps[1].completed">
+                [disabled]="!steps[1].completed">
             <div
                  class="flex justify-center items-center text-xs h-[20px] w-[20px] text-center  rounded-full border border-black"
                  routerLinkActive="bg-black text-white">
@@ -64,8 +66,8 @@
 
                 Amount:
                 <span class="inline-block pl-1 font-extrabold text-lg">
-                    <b *ngIf="this.form.get('participantsForm')?.get('numberOfParticipants')?.value <= 2000">${{totalPrice}}</b>
-                    <b *ngIf="this.form.get('participantsForm')?.get('numberOfParticipants')?.value > 2000">Contact Sales</b>
+                    <b *ngIf="totalPrice">${{totalPrice}}</b>
+                    <b *ngIf="!totalPrice">Contact Sales</b>
                 </span>
             </div>
 

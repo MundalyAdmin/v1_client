@@ -4,11 +4,12 @@ import { BehaviorSubject, ReplaySubject, combineLatest, map } from 'rxjs';
 import { FormGroup } from '@angular/forms';
 import { ApiResponse } from '../../shared/models/ApiResponse';
 import { ImpactVerification } from '../impact-verification.model';
+import { ImpactVerificationSetup } from './impact-verification-setup.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ImpactVerificationSetupService extends BaseService<any> {
+export class ImpactVerificationSetupService extends BaseService<ImpactVerificationSetup> {
   private _form = new FormGroup({} as any);
   form$ = new ReplaySubject<FormGroup>(1);
 
@@ -91,7 +92,7 @@ export class ImpactVerificationSetupService extends BaseService<any> {
     });
 
   constructor() {
-    super('impact-initiatives/setup');
+    super('impact-verifications/setup');
   }
   submitReport() {
     this.store({

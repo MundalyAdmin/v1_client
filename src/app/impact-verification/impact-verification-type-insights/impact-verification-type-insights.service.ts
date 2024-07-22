@@ -7,6 +7,6 @@ import { ImpactVerificationTypeInsights } from './impact-verification-type-insig
 })
 export class ImpactVerificationTypeInsightsService extends BaseService<ImpactVerificationTypeInsights> {
   constructor() {
-    super('impact-verifications/type-insights');
+    super('impact-verification-type-insights');
   }
 }

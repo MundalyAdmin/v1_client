@@ -7,6 +7,6 @@ import { ImpactVerificationPricingTier } from './impact-verification-pricing-tie
 })
 export class ImpactVerificationPricingTierService extends BaseService<ImpactVerificationPricingTier> {
   constructor() {
-    super('impact-verifications/pricing-tiers');
+    super('impact-verification-pricing-tiers');
   }
 }

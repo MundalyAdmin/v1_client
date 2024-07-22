@@ -16,7 +16,7 @@ import { DashboardOrganizationImpactVerificationSetupSurveyComponent } from '../
 
 const routes = [
   {
-    path: '',
+    path: ':id',
     component: DashboardOrganizationImpactVerificationSetupComponent,
     children: [
       {

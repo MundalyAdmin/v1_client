@@ -22,6 +22,9 @@ import { AgeRange } from '../../../age-range/age-range.model';
 import { Sex } from '../../../sex/sex.model';
 import { RelationshipStatus } from '../../../relationship-status/relationship-status.model';
 import { Ethnicity } from '../../../ethnicity/ethnicity.model';
+import { ImpactVerification } from '../../../impact-verification/impact-verification.model';
+import { ImpactVerificationService } from '../../../impact-verification/impact-verification.service';
+import { StatusImpactVerificationEnum } from '../../../impact-verification/enums/status-impact-verification.enum';
 
 const IMPACT_STORIES_COST_PER_100_PARTICIPANTS = 15;
 
@@ -38,6 +41,7 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
   respondents = '';
   childUrl = '';
   totalPrice = 0;
+  pageLoading = false;
 
   dependanciesLoading = {
     ageRange: false,
@@ -103,6 +107,7 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
     public communityReachLevelService: CommunityReachLevelService,
     public pricingTierService: ImpactVerificationPricingTierService,
     public typeInsightsService: ImpactVerificationTypeInsightsService,
+    public impactVerificationService: ImpactVerificationService,
     public route: ActivatedRoute
   ) {
     super();
@@ -139,10 +144,8 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
       (tier: ImpactVerificationPricingTier) =>
         tier.community_reach_level_id === reachLevel.id &&
         tier.impact_verification_type_insight_id === typeInsight &&
-        (typeInsight === ImpactVerificationTypeInsightsEnum.CUSTOM_INSIGHTS
-          ? tier.min_number_of_participants <= numberOfParticipants &&
-            tier.max_number_of_participants >= numberOfParticipants
-          : true)
+        tier.min_number_of_participants <= numberOfParticipants &&
+        tier.max_number_of_participants >= numberOfParticipants
     );
 
     return matchingPricingTier ? +matchingPricingTier.price : 0;
@@ -154,6 +157,7 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
         location: [null, Validators.required],
         location_placeholder: [null, Validators.required],
         typeInsights: [[], Validators.required],
+        impactVerificationId: [null, Validators.required],
         surveyName: [null],
         surveyLink: [null],
       }),
@@ -172,13 +176,6 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
     });
 
     this.impactVerificationSetupService.form = this.form;
-
-    this.getPricingTiers();
-    this.getCommunityReachLevels();
-    this.getAgeRanges();
-    this.getEthnicities();
-    this.getSexes();
-    this.getRelationshipStatus();
 
     this.form.valueChanges.subscribe((value) => {
       // Get the total price of the verification
@@ -200,67 +197,56 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
               .includes(ImpactVerificationTypeInsightsEnum.WELLBEING))) &&
         this.dependancies['typeInsights'].length
       ) {
-        this.form.controls['setupForm'].patchValue({
-          typeInsights: [
-            ...value['setupForm']['typeInsights'],
-            this.dependancies['typeInsights'][0],
-          ],
-        });
-      }
-
-      if (this.isCustomInsightSelected()) {
-        this.form.controls['setupForm']
-          ?.get('survey_name')
-          ?.setValidators([Validators.required]);
-
-        this.form.controls['setupForm']?.updateValueAndValidity({
-          onlySelf: true,
-          emitEvent: false,
-        });
-      } else {
-        this.form.controls['setupForm']?.get('survey_name')?.clearValidators();
-        this.form.controls['setupForm']?.updateValueAndValidity({
-          onlySelf: true,
-          emitEvent: false,
-        });
+        this.form.controls['setupForm'].patchValue(
+          {
+            typeInsights: [
+              ...value['setupForm']['typeInsights'],
+              this.dependancies['typeInsights'][0],
+            ],
+          },
+          {
+            emitEvent: false,
+            onlySelf: true,
+          }
+        );
       }
 
       // Limit the number of particpant to 100 if custom insights is not selected
-      if (
-        !value['setupForm']['typeInsights'].some(
-          (item: ImpactVerificationTypeInsights) =>
-            item.id === ImpactVerificationTypeInsightsEnum.CUSTOM_INSIGHTS
-        )
-      ) {
-        // Reset the number of participants to 100
-        this.form.patchValue(
-          {
-            participantsForm: {
-              numberOfParticipants: 100,
-              numberOfParticipantsPlaceholder: 0,
-            },
-          },
-          { onlySelf: true, emitEvent: false }
-        );
+      // if (
+      //   !value['setupForm']['typeInsights'].some(
+      //     (item: ImpactVerificationTypeInsights) =>
+      //       item.id === ImpactVerificationTypeInsightsEnum.CUSTOM_INSIGHTS
+      //   )
+      // ) {
+      //   // Reset the number of participants to 100
+      //   this.form.patchValue(
+      //     {
+      //       participantsForm: {
+      //         numberOfParticipants: 100,
+      //         numberOfParticipantsPlaceholder: 0,
+      //       },
+      //     },
+      //     { onlySelf: true, emitEvent: false }
+      //   );
 
-        // Disable the number of participants input
-        this.form.controls['participantsForm']
-          .get('numberOfParticipantsPlaceholder')
-          ?.disable({ onlySelf: true, emitEvent: false });
+      //   // Disable the number of participants input
+      //   this.form.controls['participantsForm']
+      //     .get('numberOfParticipantsPlaceholder')
+      //     ?.disable({ onlySelf: true, emitEvent: false });
 
-        this.form.controls['participantsForm']
-          .get('numberOfParticipants')
-          ?.updateValueAndValidity({ onlySelf: true, emitEvent: false });
-      } else {
-        // Enable the number of participants input
-        this.form.controls['participantsForm']
-          .get('numberOfParticipantsPlaceholder')
-          ?.enable({ onlySelf: true, emitEvent: false });
+      //   this.form.controls['participantsForm']
+      //     .get('numberOfParticipants')
+      //     ?.updateValueAndValidity({ onlySelf: true, emitEvent: false });
+      // } else {
+      //   // Enable the number of participants input
+      //   this.form.controls['participantsForm']
+      //     .get('numberOfParticipantsPlaceholder')
+      //     ?.enable({ onlySelf: true, emitEvent: false });
 
-        this.form.controls['participantsForm']
-          .get('numberOfParticipants')
-          ?.updateValueAndValidity({ onlySelf: true, emitEvent: false });
-      }
+      //   this.form.controls['participantsForm']
+      //     .get('numberOfParticipants')
+      //     ?.updateValueAndValidity({ onlySelf: true, emitEvent: false });
+      // }
 
       // Make sure to updated the validity of every steps
       this.steps.forEach((step) => {
@@ -285,7 +271,7 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
       );
     });
 
-    if (isImpactStoriesEnabled) {
+    if (isImpactStoriesEnabled && totalPrice > 0) {
       totalPrice += this.getImpactStoriesCost(numberOfParticipants);
     }
 
@@ -318,6 +304,37 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
         this.navigateToTheRightStepByUrl(this.router.url);
+      });
+
+    // Subscribe to the current impact verification
+    this.route.params.subscribe((params) => {
+      if (params['id']) {
+        this.getCurrentImpactVerification(+params['id']);
+      }
+    });
+  }
+
+  getCurrentImpactVerification(impactVerificationId: number) {
+    this.pageLoading = true;
+    this.impactVerificationService
+      .show(impactVerificationId)
+      .subscribe((impactVerification: ImpactVerification) => {
+        // Redirect to the dashboard if the user is not authorized to setup the impact verification
+        if (
+          impactVerification.status_impact_verification_id !==
+          StatusImpactVerificationEnum.INQUIRER_CONFIRMATION
+        ) {
+          this.router.navigate(['/dashboard', 'verification-requests'], {
+            relativeTo: this.route,
+          });
+        }
+
+        // Update the form with the current impact verification
+        this.form.controls['setupForm'].patchValue({
+          impactVerificationId: impactVerification.id,
+        });
+
+        this.pageLoading = false;
       });
   }
 
@@ -431,6 +448,12 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
   }
 
   submit() {
+    if (!this.form.valid) {
+      this.helper.notification.alertDanger('Form invalid');
+      return;
+    }
+
+    this.loading = true;
     const data = {
       location: this.form.controls['setupForm'].value['location'],
       survey_name: this.form.controls['setupForm'].value['surveyName'],
@@ -439,27 +462,35 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
         this.form.controls['participantsForm'].value['numberOfParticipants'],
       impact_stories_enabled:
         this.form.controls['participantsForm'].value['impactStoriesEnabled'],
-      typeInsights: this.form.controls['setupForm'].value['typeInsights'].map(
+      type_insights: this.form.controls['setupForm'].value['typeInsights'].map(
         (type_insight: ImpactVerificationTypeInsights) => type_insight.id
       ),
+      impact_verification_id:
+        this.form.controls['setupForm'].value['impactVerificationId'],
 
-      community_reach_level:
+      community_reach_level_id:
         this.form.controls['participantsForm'].value['communityReachLevel']?.id,
-      age_range: this.form.controls['participantsForm'].value['ageRange']?.map(
+      age_ranges: this.form.controls['participantsForm'].value['ageRange']?.map(
         (item: AgeRange) => item.id
       ),
-      sex: this.form.controls['participantsForm'].value['sex']?.map(
+      sexes: this.form.controls['participantsForm'].value['sex']?.map(
         (item: Sex) => item.id
       ),
       relationship_status: this.form.controls['participantsForm']?.value[
         'relationshipStatus'
       ]?.map((item: RelationshipStatus) => item.id),
-      ethnicity: this.form.controls['participantsForm'].value['ethnicity']?.map(
-        (item: Ethnicity) => item.id
-      ),
+      ethnicities: this.form.controls['participantsForm'].value[
+        'ethnicity'
+      ]?.map((item: Ethnicity) => item.id),
     };
 
-    console.log(data);
+    this.impactVerificationSetupService.store(data).subscribe((data) => {
+      window.location.href = data.data;
+      this.loading = false;
+      this.helper.notification.alertSuccess();
+      // this.initForm();
+      // this.router.navigate(['dashboard']);
+    });
 
     // this.impactVerificationSetupService.payment().subscribe((data) => {
     //   window.location.href = data;

@@ -141,8 +141,6 @@ export class DashboardOrganizationImpactVerificationSetupParticipantComponent ex
         }
       }
     }
-
-    console.log(this.form.value);
   }
 
   selectLevel(level: CommunityReachLevel): void {
@@ -183,10 +181,6 @@ export class DashboardOrganizationImpactVerificationSetupParticipantComponent ex
       numberOfParticipants: numberOfParticipants,
       numberOfParticipantsPlaceholder: numberOfParticipantsPlaceholder,
     });
-  }
-
-  changeImpact() {
-    this.impactVerificationSetupService.impact.next(!this.impact);
   }
 
   sliderPercent(index: number) {
