@@ -41,6 +41,7 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
   respondents = '';
   childUrl = '';
   totalPrice = 0;
+  discountedPrice = 0;
   pageLoading = false;
 
   dependanciesLoading = {
@@ -78,13 +79,7 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
       completed: false,
       formName: 'participantsForm',
     },
-    {
-      name: 'survey',
-      position: -1,
-      active: true,
-      completed: false,
-      formName: 'buildSurveyForm',
-    },
+
     {
       name: 'launch',
       position: 3,
@@ -92,7 +87,15 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
       completed: false,
       formName: 'launchForm',
     },
+    {
+      name: 'survey',
+      position: -1,
+      active: true,
+      completed: false,
+      formName: 'buildSurveyForm',
+    },
   ];
+  shownPrice: number = 0;
 
   get activeStep() {
     return this.steps.find((step) => step.active === true);
@@ -111,9 +114,7 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
     public route: ActivatedRoute
   ) {
     super();
-    this.impactVerificationSetupService.total.subscribe((total) => {
-      this.total = total;
-    });
+
     this.impactVerificationSetupService.respondents.subscribe((val) => {
       this.respondents = val;
     });
@@ -147,6 +148,7 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
         tier.min_number_of_participants <= numberOfParticipants &&
         tier.max_number_of_participants >= numberOfParticipants
     );
+    console.log(matchingPricingTier.price);
 
     return matchingPricingTier ? +matchingPricingTier.price : 0;
   }
@@ -172,18 +174,29 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
         ethnicity: [[]],
       }),
       buildSurveyForm: this.fb.group({}),
-      launchForm: this.fb.group({}),
+      launchForm: this.fb.group({
+        paymentMethod: [null, Validators.required],
+      }),
     });
 
     this.impactVerificationSetupService.form = this.form;
 
     this.form.valueChanges.subscribe((value) => {
       // Get the total price of the verification
-      this.totalPrice = this.getTotalPrice(
+      const { totalPrice, discountedPrice } = this.getTotalPrice(
         value['setupForm']['typeInsights'],
         value['participantsForm']['communityReachLevel'],
         +value['participantsForm']['numberOfParticipants'],
         value['participantsForm']['impactStoriesEnabled']
+      );
+
+      this.totalPrice = totalPrice;
+      this.discountedPrice = discountedPrice;
+      this.shownPrice = totalPrice - discountedPrice;
+
+      this.impactVerificationSetupService.totalPrice$.next(totalPrice);
+      this.impactVerificationSetupService.discountedPrice$.next(
+        discountedPrice
       );
 
       // Enforcing that either well-being or due diligence is selected
@@ -260,22 +273,31 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
     reachLevel: CommunityReachLevel,
     numberOfParticipants: number,
     isImpactStoriesEnabled = false
-  ): number {
+  ) {
     let totalPrice = 0;
+    let discountedPrice = 0;
 
-    typeInsights.forEach((insight: ImpactVerificationTypeInsights) => {
-      totalPrice += this.getIndividualInsightPrice(
-        reachLevel,
-        numberOfParticipants,
-        insight.id!
-      );
-    });
+    typeInsights.forEach(
+      (insight: ImpactVerificationTypeInsights, index: number) => {
+        const individualPrice = this.getIndividualInsightPrice(
+          reachLevel,
+          numberOfParticipants,
+          insight.id!
+        );
+
+        if (index > 0) {
+          discountedPrice += individualPrice * 0.5;
+        }
+
+        totalPrice += individualPrice;
+      }
+    );
 
     if (isImpactStoriesEnabled && totalPrice > 0) {
       totalPrice += this.getImpactStoriesCost(numberOfParticipants);
     }
 
-    return totalPrice;
+    return { totalPrice, discountedPrice };
   }
 
   getImpactStoriesCost(numberOfParticipants: number) {
@@ -476,6 +498,7 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
       ethnicities: this.form.controls['participantsForm'].value[
         'ethnicity'
       ]?.map((item: Ethnicity) => item.id),
+      payment_method: this.form.controls['launchForm'].value['paymentMethod'],
     };
 
     this.impactVerificationSetupService.store(data).subscribe((data) => {
@@ -485,9 +508,5 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
       // this.initForm();
       // this.router.navigate(['dashboard']);
     });
-
-    // this.impactVerificationSetupService.payment().subscribe((data) => {
-    //   window.location.href = data;
-    // });
   }
 }

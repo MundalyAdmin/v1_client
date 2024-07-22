@@ -1,4 +1,4 @@
-<div class="flex flex-col items-center p-10">
+<div class="flex flex-col items-center p-10" *ngIf="completeForm">
     <h2 class="text-2xl font-bold py-5">
         Launch And Review
     </h2>
@@ -62,7 +62,7 @@
 
         </div>
 
-        <div *ngIf="state === 'card'">
+        <!-- <div *ngIf="state === 'card'">
             <p class="py-4 mt-4">
                 <b>
                     Card Details
@@ -223,7 +223,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
 
@@ -237,7 +237,7 @@
             <div class="h-[1px] mb-8 bg-gray-200"></div>
 
             <div class="bg-white">
-                <div class="border border-gray p-3 bg-white">
+                <!-- <div class="border border-gray p-3 bg-white">
                     <div>
                         <div class="px-3">
                             <p class="py-1 text-base text-gray flex justify-between">
@@ -248,7 +248,7 @@
                             </p>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="border border-gray p-3 cursor-pointer bg-white">
                     <div>
@@ -256,7 +256,31 @@
                             <p class="py-1 text-base text-gray flex justify-between">
                                 Number of respondents
                                 <span class="font-semibold">
-                                    {{respondents}}
+                                    {{completeForm.value['participantsForm'].numberOfParticipants}}
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="border border-gray p-3 cursor-pointer bg-white">
+                    <div>
+                        <div class="px-3">
+                            <p class="py-1 text-base text-gray flex justify-between">
+                                Location
+                                <span class="font-semibold">
+                                    {{completeForm.value['setupForm'].location}}
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="border border-gray p-3 cursor-pointer bg-white">
+                    <div>
+                        <div class="px-3">
+                            <p class="py-1 text-base text-gray flex justify-between">
+                                Community Reach Level
+                                <span class="font-semibold">
+                                    {{completeForm.value['participantsForm'].communityReachLevel.name}}
                                 </span>
                             </p>
                         </div>
@@ -269,14 +293,14 @@
                             <p class="py-1 text-base text-gray flex justify-between">
                                 Subtotal
                                 <span class="font-semibold">
-                                    {{total}}
+                                    ${{totalPrice}}
                                 </span>
                             </p>
 
                             <p class="py-1 text-base text-gray-400 flex justify-between">
-                                Sales tax (0%)
+                                Discounted price
                                 <span class="font-semibold">
-                                    + $0.00
+                                    - ${{ discountedPrice }}
                                 </span>
                             </p>
                         </div>
@@ -290,7 +314,7 @@
                             <p class="px-3 py-1 text-lg font-bold text-white flex justify-between">
                                 Total
                                 <span>
-                                    {{total}}
+                                    ${{totalPrice}}
                                 </span>
                             </p>
                         </div>
