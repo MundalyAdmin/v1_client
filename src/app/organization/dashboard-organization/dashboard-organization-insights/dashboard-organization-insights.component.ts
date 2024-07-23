@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BaseComponent } from '../../../shared/base-component';
+import { OrganizationService } from '../../organization.service';
+import { StatusImpactVerificationEnum } from '../../../impact-verification/enums/status-impact-verification.enum';
 
 @Component({
   selector: 'app-dashboard-organization-insights',
@@ -12,11 +14,13 @@ export class DashboardOrganizationInsightsComponent extends BaseComponent<any> {
   dateForm!: FormGroup;
   minDate!: Date;
   maxDate!: Date;
+  StatusImpactVerificationEnum = StatusImpactVerificationEnum;
 
   constructor(
     public fb: FormBuilder,
     public router: Router,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    public organizationService: OrganizationService
   ) {
     super();
   }

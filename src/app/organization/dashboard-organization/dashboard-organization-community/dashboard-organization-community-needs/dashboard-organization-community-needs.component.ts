@@ -12,6 +12,8 @@ import { ImpactInitiativeService } from '../../../../scale/impact-initiative/imp
 import { AuthService } from '../../../../auth/auth.service';
 import { TypeOrganizationEnum } from '../../../type-organization/type-organization.enum';
 import { ImpactInitiative } from '../../../../scale/impact-initiative/impact-initiative.model';
+import { TypeImpactVerificationEnum } from '../../../../impact-verification/enums/type-impact-verification.enum';
+import { StatusImpactVerificationEnum } from '../../../../impact-verification/enums/status-impact-verification.enum';
 
 @Component({
   selector: 'app-dashboard-organization-community-needs',
@@ -47,6 +49,8 @@ export class DashboardOrganizationCommunityNeedsComponent
     super();
   }
 
+  StatusImpactVerificationEnum = StatusImpactVerificationEnum;
+
   override ngOnInit(): void {
     this.subscribeToData();
   }
@@ -77,7 +81,11 @@ export class DashboardOrganizationCommunityNeedsComponent
   subscribeToOrganizationData() {
     this.subscriptions['organization'] =
       this.organizationService.singleData$.subscribe((organization) => {
-        if (organization) {
+        if (
+          organization &&
+          organization.verification_status_from_current_organization?.id ===
+            StatusImpactVerificationEnum.LAUNCHED
+        ) {
           this.organization = organization;
 
           this.getByOrganizationIdAndYear(

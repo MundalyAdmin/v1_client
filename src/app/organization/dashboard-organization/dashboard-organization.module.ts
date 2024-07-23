@@ -79,6 +79,7 @@ import { DashboardOrganizationImpactVerificationComponent } from './dashboard-or
 import { DashboardOrganizationImpactVerificationRequestedComponent } from './dashboard-organization-impact-verification/dashboard-organization-impact-verification-requested/dashboard-organization-impact-verification-requested.component';
 import { DashboardOrganizationImpactVerificationReceivedComponent } from './dashboard-organization-impact-verification/dashboard-organization-impact-verification-received/dashboard-organization-impact-verification-received.component';
 import { ImpactVerificationModule } from '../../impact-verification/impact-verification.module';
+import { DashboardOrganizationUnavailableInsightsComponent } from './dashboard-organization-unavailable-insights/dashboard-organization-unavailable-insights.component';
 
 const routes: Routes = [
   {
@@ -160,10 +161,17 @@ const routes: Routes = [
         ],
       },
       {
-        path: 'setupreport',
+        path: 'impact-verification',
         loadChildren: () =>
-          import('../../setup/setup.module').then((m) => m.SetupModule),
+          import(
+            './dashboard-organization-impact-verification-setup/dashboard-organization-impact-verification-setup.module'
+          ).then((m) => m.DashboardOrganizationImpactVerificationSetupModule),
       },
+      // {
+      //   path: 'setupreport',
+      //   loadChildren: () =>
+      //     import('../../setup/setup.module').then((m) => m.SetupModule),
+      // },
       {
         path: 'organizations/:id/surveys/:id',
         component: SurveyFormShowComponent,
@@ -498,6 +506,7 @@ const routes: Routes = [
     DashboardOrganizationImpactVerificationComponent,
     DashboardOrganizationImpactVerificationRequestedComponent,
     DashboardOrganizationImpactVerificationReceivedComponent,
+    DashboardOrganizationUnavailableInsightsComponent,
   ],
   imports: [
     CommonModule,

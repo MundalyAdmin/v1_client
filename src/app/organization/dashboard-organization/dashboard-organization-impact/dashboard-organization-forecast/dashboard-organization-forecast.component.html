@@ -1,4 +1,4 @@
-<div class="p-5">
+<div class="p-5" *ngIf="organizationService.singleData?.verification_status_from_current_organization?.id === StatusImpactVerificationEnum.LAUNCHED">
 
   <div class="w-full flex justify-between bg-white shadow dark:bg-gray-800 p-4 md:p-6">
     <div class="text-lg font-bold">Forecast</div>
@@ -248,3 +248,6 @@
   <app-page-loading *ngIf="loading"></app-page-loading>
   <app-missing-data *ngIf="!loading && !scaleService.communityTrustScore"></app-missing-data>
 </div>
+
+<app-dashboard-organization-unavailable-insights
+                                                 *ngIf="organizationService.singleData?.verification_status_from_current_organization?.id !== StatusImpactVerificationEnum.LAUNCHED"></app-dashboard-organization-unavailable-insights>

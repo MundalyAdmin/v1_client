@@ -10,6 +10,7 @@ import { CommunityPerceptionIndexService } from '../../../scale/community-percep
 import { TypeOrganizationEnum } from '../../type-organization/type-organization.enum';
 import { ImpactInitiativeService } from '../../../scale/impact-initiative/impact-initiative.service';
 import { AuthService } from '../../../auth/auth.service';
+import { StatusImpactVerificationEnum } from '../../../impact-verification/enums/status-impact-verification.enum';
 
 @Component({
   selector: 'app-dashboard-organization-community-perception',
@@ -18,6 +19,7 @@ import { AuthService } from '../../../auth/auth.service';
 })
 export class DashboardOrganizationCommunityPerceptionComponent extends BaseSingleComponent<CommunityPerceptionIndexScore> {
   organization: Organization | null = null;
+  StatusImpactVerificationEnum = StatusImpactVerificationEnum;
   constructor(
     public communityPerceptionService: CommunityPerceptionIndexService,
     public scaleService: ScaleService,
@@ -59,7 +61,11 @@ export class DashboardOrganizationCommunityPerceptionComponent extends BaseSingl
   subscribeToOrganizationData() {
     this.subscriptions['organization'] =
       this.organizationService.singleData$.subscribe((organization) => {
-        if (organization) {
+        if (
+          organization &&
+          organization.verification_status_from_current_organization?.id ===
+            StatusImpactVerificationEnum.LAUNCHED
+        ) {
           this.organization = organization;
           this.getByOrganizationId(organization.id!);
         }

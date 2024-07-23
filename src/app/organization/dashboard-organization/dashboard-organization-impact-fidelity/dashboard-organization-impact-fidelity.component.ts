@@ -13,6 +13,7 @@ import { Organization } from '../../organization.model';
 import { ImpactInitiativeService } from '../../../scale/impact-initiative/impact-initiative.service';
 import { AuthService } from '../../../auth/auth.service';
 import { TypeOrganizationEnum } from '../../type-organization/type-organization.enum';
+import { StatusImpactVerificationEnum } from '../../../impact-verification/enums/status-impact-verification.enum';
 
 @Component({
   selector: 'app-dashboard-organization-impact-fidelity',
@@ -29,6 +30,8 @@ export class DashboardOrganizationImpactFidelityComponent extends BaseSingleComp
   ) {
     super(impactFidelityService);
   }
+
+  StatusImpactVerificationEnum = StatusImpactVerificationEnum;
 
   override ngOnInit(): void {
     this.subscriptions['currentLogOrganization'] =
@@ -62,7 +65,11 @@ export class DashboardOrganizationImpactFidelityComponent extends BaseSingleComp
   subscribeToOrganizationData() {
     this.subscriptions['organization'] =
       this.organizationService.singleData$.subscribe((organization) => {
-        if (organization) {
+        if (
+          organization &&
+          organization.verification_status_from_current_organization?.id ===
+            StatusImpactVerificationEnum.LAUNCHED
+        ) {
           this.organization = organization;
           this.getByOrganizationId(organization.id!);
         }

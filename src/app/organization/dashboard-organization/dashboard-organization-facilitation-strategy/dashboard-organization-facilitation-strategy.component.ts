@@ -9,6 +9,7 @@ import { OrganizationService } from '../../organization.service';
 import { TypeOrganizationEnum } from '../../type-organization/type-organization.enum';
 import { AuthService } from '../../../auth/auth.service';
 import { ImpactInitiativeService } from '../../../scale/impact-initiative/impact-initiative.service';
+import { StatusImpactVerificationEnum } from '../../../impact-verification/enums/status-impact-verification.enum';
 
 @Component({
   selector: 'app-dashboard-organization-facilitation-strategy',
@@ -17,6 +18,7 @@ import { ImpactInitiativeService } from '../../../scale/impact-initiative/impact
 })
 export class DashboardOrganizationFacilitationStrategyComponent extends BaseSingleComponent<FacilitationStrategyScore> {
   organization: Organization | null = null;
+  StatusImpactVerificationEnum = StatusImpactVerificationEnum;
   constructor(
     public facilitationStrategyService: FacilitationStrategyService,
     public scaleService: ScaleService,
@@ -58,7 +60,11 @@ export class DashboardOrganizationFacilitationStrategyComponent extends BaseSing
   subscribeToOrganizationData() {
     this.subscriptions['organization'] =
       this.organizationService.singleData$.subscribe((organization) => {
-        if (organization) {
+        if (
+          organization &&
+          organization.verification_status_from_current_organization?.id ===
+            StatusImpactVerificationEnum.LAUNCHED
+        ) {
           this.organization = organization;
           this.getByOrganizationId(organization.id!);
         }
