@@ -23,10 +23,7 @@ type Option = { label: string; value: string };
   ],
 })
 export class DashboardOrganizationImpactVerificationSetupParticipantComponent extends DashboardOrganizationImpactVerificationSetupBaseComponent {
-  level: string = 'level1';
   sliderValue: number = 0;
-  respondents: string = '100';
-  impact: boolean = false;
 
   dependanciesLoading = {
     ageRange: false,

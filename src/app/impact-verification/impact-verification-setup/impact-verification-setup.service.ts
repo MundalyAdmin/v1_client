@@ -11,8 +11,6 @@ import { ImpactVerificationSetup } from './impact-verification-setup.model';
 })
 export class ImpactVerificationSetupService extends BaseService<ImpactVerificationSetup> {
   private _form = new FormGroup({} as any);
-  private totalPrice: number = 0;
-  private discountedPrice: number = 0;
 
   form$ = new ReplaySubject<FormGroup>(1);
   totalPrice$ = new ReplaySubject<number>(1);
@@ -34,12 +32,6 @@ export class ImpactVerificationSetupService extends BaseService<ImpactVerificati
     this._form.controls[section] = subForm;
     this.form$.next(this._form);
   }
-
-  locationAddress: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  level: BehaviorSubject<string> = new BehaviorSubject<string>('level1');
-  respondents: BehaviorSubject<string> = new BehaviorSubject<string>('100');
-  impact: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  total = 0;
 
   constructor() {
     super('impact-verifications/setup');

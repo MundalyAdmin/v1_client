@@ -167,11 +167,11 @@ const routes: Routes = [
             './dashboard-organization-impact-verification-setup/dashboard-organization-impact-verification-setup.module'
           ).then((m) => m.DashboardOrganizationImpactVerificationSetupModule),
       },
-      {
-        path: 'setupreport',
-        loadChildren: () =>
-          import('../../setup/setup.module').then((m) => m.SetupModule),
-      },
+      // {
+      //   path: 'setupreport',
+      //   loadChildren: () =>
+      //     import('../../setup/setup.module').then((m) => m.SetupModule),
+      // },
       {
         path: 'organizations/:id/surveys/:id',
         component: SurveyFormShowComponent,

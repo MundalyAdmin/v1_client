@@ -37,9 +37,6 @@ const IMPACT_STORIES_COST_PER_100_PARTICIPANTS = 15;
   ],
 })
 export class DashboardOrganizationImpactVerificationSetupComponent extends BaseCreateComponent<any> {
-  total: number | string = '';
-  respondents = '';
-  childUrl = '';
   totalPrice = 0;
   discountedPrice = 0;
   pageLoading = false;
@@ -114,15 +111,6 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
     public route: ActivatedRoute
   ) {
     super();
-
-    this.impactVerificationSetupService.respondents.subscribe((val) => {
-      this.respondents = val;
-    });
-
-    this.router.events.subscribe((evt: any) => {
-      if (!(evt instanceof NavigationEnd)) return;
-      this.childUrl = evt['url'];
-    });
   }
 
   isCustomInsightSelected() {
@@ -148,7 +136,6 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
         tier.min_number_of_participants <= numberOfParticipants &&
         tier.max_number_of_participants >= numberOfParticipants
     );
-    console.log(matchingPricingTier.price);
 
     return matchingPricingTier ? +matchingPricingTier.price : 0;
   }
@@ -224,43 +211,6 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
         );
       }
 
-      // Limit the number of particpant to 100 if custom insights is not selected
-      // if (
-      //   !value['setupForm']['typeInsights'].some(
-      //     (item: ImpactVerificationTypeInsights) =>
-      //       item.id === ImpactVerificationTypeInsightsEnum.CUSTOM_INSIGHTS
-      //   )
-      // ) {
-      //   // Reset the number of participants to 100
-      //   this.form.patchValue(
-      //     {
-      //       participantsForm: {
-      //         numberOfParticipants: 100,
-      //         numberOfParticipantsPlaceholder: 0,
-      //       },
-      //     },
-      //     { onlySelf: true, emitEvent: false }
-      //   );
-
-      //   // Disable the number of participants input
-      //   this.form.controls['participantsForm']
-      //     .get('numberOfParticipantsPlaceholder')
-      //     ?.disable({ onlySelf: true, emitEvent: false });
-
-      //   this.form.controls['participantsForm']
-      //     .get('numberOfParticipants')
-      //     ?.updateValueAndValidity({ onlySelf: true, emitEvent: false });
-      // } else {
-      //   // Enable the number of participants input
-      //   this.form.controls['participantsForm']
-      //     .get('numberOfParticipantsPlaceholder')
-      //     ?.enable({ onlySelf: true, emitEvent: false });
-
-      //   this.form.controls['participantsForm']
-      //     .get('numberOfParticipants')
-      //     ?.updateValueAndValidity({ onlySelf: true, emitEvent: false });
-      // }
-
       // Make sure to updated the validity of every steps
       this.steps.forEach((step) => {
         step.completed = this.form.controls[step.formName].valid;
@@ -309,7 +259,6 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
   override ngOnInit() {
     super.ngOnInit();
     this.initForm();
-    this.childUrl = this.router.url;
 
     this.getPricingTiers();
     this.getAgeRanges();
