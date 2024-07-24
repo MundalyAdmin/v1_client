@@ -12,11 +12,11 @@
         </thead>
         <tbody>
             <tr *ngFor="let item of data;let i = index" class="border-t border-gray-700">
-                <td class="py-3" *ngIf="typeVerification === 'requested' && item.verified_organizations">
+                <td class="py-3" *ngIf="typeVerification === 'requested' && item.verified_organizations?.length">
                     <div class="flex items-center">
-                        <img [src]="item.verified_organizations[0].logo" alt="{{ item.verified_organizations[0].name }}"
+                        <img [src]="item.verified_organizations?.at(0)?.logo" alt="{{ item.verified_organizations?.at(0)?.name }}"
                              class="w-10 border h-10 rounded-full mr-3">
-                        <span>{{ item.verified_organizations[0].name }}</span>
+                        <span>{{ item.verified_organizations?.at(0)?.name }}</span>
                     </div>
                 </td>
 
