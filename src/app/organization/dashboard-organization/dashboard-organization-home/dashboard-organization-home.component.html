@@ -51,8 +51,12 @@
       <li class="me-2">
         <a [routerLink]="['invitations']"
            routerLinkActive="text-primary border-primary font-semibold"
-           class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-lg">
+           class="flex items-center p-4 border-b-2  gap-1 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-lg">
           Invitations
+          <span *ngIf="receivedInvitations"
+                class="inline-flex items-center justify-center w-4 h-4 me-2 text-xs font-semibold text-red-800 bg-red-200 rounded-full dark:bg-gray-700 dark:text-red-400">
+            {{ receivedInvitations }}
+          </span>
         </a>
       </li>
 

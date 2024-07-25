@@ -16,14 +16,40 @@
       <img src="assets/images/munlogo-white.png/" class="h-6 me-3 sm:h-7" alt="Mundaly logo" />
     </a>
 
-    <!-- Sidebar -->
-    <app-dashboard-organization-sidebar-menu-impact
-                                                    *ngIf="categoryOrganization === CategoryOrganizationEnum.IMPACT"></app-dashboard-organization-sidebar-menu-impact>
-    <app-dashboard-organization-sidebar-menu-corporate
-                                                       *ngIf="categoryOrganization === CategoryOrganizationEnum.CORPORATION"></app-dashboard-organization-sidebar-menu-corporate>
+    <ul class="space-y-2 relative font-medium min-h-[200px]">
+
+      <!-- Home -->
+      <li>
+        <a [routerLink]="['home']"
+           (click)="hideSidebar()"
+           class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
+           routerLinkActive="bg-secondary-dark">
+          <span class=""><i class=" text-secondary-dark text-xl mdi mdi-home" routerLinkActive="text-white"></i></span>
+          <span class="ms-2">Home</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['verification-requests']"
+           (click)="hideSidebar()"
+           class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
+           routerLinkActive="bg-secondary-dark">
+          <span class=""><i class=" text-secondary-dark text-xl mdi mdi-email-seal-outline" routerLinkActive="text-white"></i></span>
+          <span class="ms-2">Verification Requests <span *ngIf="verificationRequests"
+                  class="inline-flex items-center  justify-center w-4 h-4 ms-2 text-xs font-semibold text-red-800 bg-red-200 rounded-full dark:bg-gray-700 dark:text-red-400">
+              {{ verificationRequests }}
+            </span></span>
+        </a>
+      </li>
+
+      <!-- Sidebar -->
+      <app-dashboard-organization-sidebar-menu-impact
+                                                      *ngIf="categoryOrganization === CategoryOrganizationEnum.IMPACT"></app-dashboard-organization-sidebar-menu-impact>
+      <app-dashboard-organization-sidebar-menu-corporate
+                                                         *ngIf="categoryOrganization === CategoryOrganizationEnum.CORPORATION"></app-dashboard-organization-sidebar-menu-corporate>
 
 
 
+    </ul>
 
     <!-- User profile -->
     <div class="absolute bottom-10 p-2 ">

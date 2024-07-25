@@ -49,6 +49,17 @@ export class OrganizationPartnerInvitationService extends BaseService<Organizati
     );
   }
 
+  countByReceiverId(receiverId: number) {
+    return this.factory
+      .get(`${this.endPoint}/receiver/${receiverId}/count`)
+      .pipe(
+        map(
+          (response: ApiResponse<{ count: number }>) =>
+            response.data as { count: number }
+        )
+      );
+  }
+
   updateStatus(
     organizationPartnerInvitationId: number,
     status: OrganizationPartnerInvitationStatusEnum
@@ -59,6 +70,7 @@ export class OrganizationPartnerInvitationService extends BaseService<Organizati
       })
       .pipe(
         tap((response: ApiResponse<OrganizationPartnerInvitation>) => {
+          this.notification$.next({});
           this.deleteItemInData(organizationPartnerInvitationId);
         })
       );

@@ -19,11 +19,18 @@
     <!-- Organization information -->
     <div class="flex flex-col md:flex-row md:gap-10 gap-2 px-8 pt-4 pb-8 relative">
       <div class="relative flex justify-center md:flex-none">
-        <div
+        <div *ngIf="single.logo"
              class=" w-36 h-36 md:w-56 shrink-0 md:h-56 md:mt-[-100px] mt-[-75px] z-99 bg-white rounded-full overflow-hidden border-2 border-black border-opacity-10 ">
           <img [src]="single.logo" class="w-full h-full object-cover"
                alt="">
 
+        </div>
+
+        <div class="w-36 h-36 md:w-56 shrink-0 md:h-56 md:mt-[-100px] mt-[-75px] z-99 bg-slate-200  overflow-hidden border-2 border-black border-opacity-10 flex items-center justify-center rounded-full"
+             *ngIf="!single.logo">
+          <div>
+            <i class="mdi text-[75px] text-slate-800  font-semibold mdi-domain"></i>
+          </div>
         </div>
         <!-- Seal -->
         <img src="assets/images/new-style/certification.png"

@@ -6,6 +6,7 @@ import { CategoryOrganizationEnum } from '../../category-organization/category-o
 import { TypeOrganizationEnum } from '../../type-organization/type-organization.enum';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DashboardOrganizationService } from '../dashboard-organization.service';
+import { OrganizationPartnerInvitationService } from '../../organization-partner-invitation/organization-partner-invitation.service';
 
 @Component({
   selector: 'app-dashboard-organization-home',
@@ -17,10 +18,12 @@ export class DashboardOrganizationHomeComponent
   implements OnInit
 {
   organization: Organization | null = null;
+  receivedInvitations: number = 0;
   constructor(
     public router: Router,
     public route: ActivatedRoute,
-    public dashboardService: DashboardOrganizationService
+    public dashboardService: DashboardOrganizationService,
+    public invitationService: OrganizationPartnerInvitationService
   ) {
     super();
   }
@@ -34,6 +37,17 @@ export class DashboardOrganizationHomeComponent
       this.authService.organization$.subscribe((organization) => {
         this.organization = organization;
         this.dashboardService.title = `Welcome, ${this.organization?.name}`;
+
+        this.countInvitations(organization?.id!);
+        this.invitationService.notification$.subscribe(() => {
+          this.countInvitations(organization?.id!);
+        });
       });
+  }
+
+  countInvitations(organization: number) {
+    this.invitationService.countByReceiverId(organization).subscribe((res) => {
+      this.receivedInvitations = +res.count;
+    });
   }
 }

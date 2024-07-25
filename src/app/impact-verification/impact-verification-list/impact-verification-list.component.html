@@ -15,8 +15,17 @@
                 <td class="py-3" *ngIf="typeVerification === 'requested' && item.verified_organizations?.length">
                     <div class="flex items-center">
                         <img [src]="item.verified_organizations?.at(0)?.logo" alt="{{ item.verified_organizations?.at(0)?.name }}"
+                             *ngIf="item.verified_organizations?.at(0)?.logo"
                              class="w-10 border h-10 rounded-full mr-3">
+                        <div class="h-10 mr-3 w-10 bg-slate-200 flex items-center justify-center rounded-full"
+                             *ngIf="!item.verified_organizations?.at(0)?.logo">
+                            <div>
+                                <i class="mdi text-[16px] text-slate-800  font-semibold mdi-domain"></i>
+                            </div>
+                        </div>
                         <span>{{ item.verified_organizations?.at(0)?.name }}</span>
+
+
                     </div>
                 </td>
 

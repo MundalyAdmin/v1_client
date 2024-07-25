@@ -23,6 +23,7 @@ export class ImpactVerificationService extends BaseService<ImpactVerification> {
           next: (response) => {
             this.lastItemEdited$ = response.data;
             this.updateItemInData(id, response.data);
+            this.notification$.next({});
           },
           error: (error) => {
             this.errorResponseHandler(error);
@@ -92,11 +93,23 @@ export class ImpactVerificationService extends BaseService<ImpactVerification> {
         tap({
           next: (response) => {
             this.updateItemInData(response.data.id, response.data);
+            this.notification$.next({});
           },
           error: (error) => {
             this.errorResponseHandler(error);
           },
         })
+      );
+  }
+
+  countByOrganizationId(organization: number) {
+    return this.factory
+      .get(`${this.endPoint}/organizations/${organization}/count`)
+      .pipe(
+        map(
+          (response: ApiResponse<{ count: number }>) =>
+            response.data as { count: number }
+        )
       );
   }
 }

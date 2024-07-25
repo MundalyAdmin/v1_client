@@ -25,6 +25,8 @@ export abstract class BaseService<T = any> {
   public data$ = new ReplaySubject<T[]>(1);
   public paginationInfo$ = new ReplaySubject<PaginationInfo>();
 
+  public notification$ = new Subject<any>();
+
   public lastItemCreated$ = new Subject<T>();
   public lastItemEdited$ = new Subject<T>();
   public lastItemDeleted$ = new Subject<T>();
@@ -126,6 +128,7 @@ export abstract class BaseService<T = any> {
         next: (response) => {
           this.lastItemCreated = response.data;
           this.unshiftItemInData(response.data);
+          this.notification$.next({});
         },
         error: (error) => {
           this.errorResponseHandler(error);

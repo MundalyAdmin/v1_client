@@ -10,6 +10,7 @@ import { CategoryOrganizationEnum } from '../../category-organization/category-o
 import { ImpactInitiativeService } from '../../../scale/impact-initiative/impact-initiative.service';
 import { ImpactInitiative } from '../../../scale/impact-initiative/impact-initiative.model';
 import { TypeOrganizationEnum } from '../../type-organization/type-organization.enum';
+import { ImpactVerificationService } from '../../../impact-verification/impact-verification.service';
 
 @Component({
   selector: 'app-dashboard-organization-sidebar',
@@ -17,6 +18,7 @@ import { TypeOrganizationEnum } from '../../type-organization/type-organization.
   styleUrls: ['./dashboard-organization-sidebar.component.scss'],
 })
 export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
+  verificationRequests: number = 0;
   organization: Organization | null = null;
   selectedImpactPartner: Organization | null = null;
   selectedImpactInitiative: ImpactInitiative | null = null;
@@ -30,7 +32,8 @@ export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
     public route: ActivatedRoute,
     public storage: Storage,
     public organizationService: OrganizationService,
-    public impactInitiativeService: ImpactInitiativeService
+    public impactInitiativeService: ImpactInitiativeService,
+    public impactVerificationService: ImpactVerificationService
   ) {
     super();
   }
@@ -47,23 +50,41 @@ export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
   }
   override ngOnInit(): void {
     this.user = this.authService.user;
-    this.organization = this.authService.organization;
-    this.typeOrganizationId = this.organization?.type_organization_id || null;
 
-    if (
-      this.organization?.type_organization_id ===
-        TypeOrganizationEnum.IMPACT_IMPLEMENTER ||
-      this.organization?.type_organization_id === TypeOrganizationEnum.SUPPLIER
-    ) {
-      this.subscribeToImpactInitiative();
-    } else if (
-      this.organization?.type_organization_id ===
-        TypeOrganizationEnum.CORPORATION ||
-      this.organization?.type_organization_id ===
-        TypeOrganizationEnum.IMPACT_FUNDER
-    ) {
-      this.subscribeToOrganization();
-    }
+    this.authService.organization$.subscribe((organization) => {
+      this.organization = organization;
+      this.typeOrganizationId = this.organization?.type_organization_id || null;
+
+      this.countVerificationRequests(organization?.id!);
+
+      this.impactVerificationService.notification$.subscribe((res) => {
+        this.countVerificationRequests(organization?.id!);
+      });
+
+      if (
+        this.organization?.type_organization_id ===
+          TypeOrganizationEnum.IMPACT_IMPLEMENTER ||
+        this.organization?.type_organization_id ===
+          TypeOrganizationEnum.SUPPLIER
+      ) {
+        this.subscribeToImpactInitiative();
+      } else if (
+        this.organization?.type_organization_id ===
+          TypeOrganizationEnum.CORPORATION ||
+        this.organization?.type_organization_id ===
+          TypeOrganizationEnum.IMPACT_FUNDER
+      ) {
+        this.subscribeToOrganization();
+      }
+    });
+  }
+
+  countVerificationRequests(organizationId: number) {
+    this.impactVerificationService
+      .countByOrganizationId(organizationId)
+      .subscribe((res) => {
+        this.verificationRequests = +res.count;
+      });
   }
 
   subscribeToOrganization() {

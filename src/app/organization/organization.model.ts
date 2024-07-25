@@ -52,4 +52,6 @@ export interface Organization extends BaseModel {
     id: number;
     name: string;
   };
+
+  received_invitations?: number;
 }
