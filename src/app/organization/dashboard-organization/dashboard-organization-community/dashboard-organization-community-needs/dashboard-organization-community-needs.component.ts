@@ -52,7 +52,8 @@ export class DashboardOrganizationCommunityNeedsComponent
   StatusImpactVerificationEnum = StatusImpactVerificationEnum;
 
   override ngOnInit(): void {
-    this.subscribeToData();
+    // this.subscribeToData();
+    this.getByOrganizationIdAndYear(28, new Date().getFullYear());
   }
 
   subscribeToData() {
@@ -84,10 +85,7 @@ export class DashboardOrganizationCommunityNeedsComponent
         if (organization) {
           this.organization = organization;
 
-          this.getByOrganizationIdAndYear(
-            organization.id!,
-            new Date().getFullYear()
-          );
+          this.getByOrganizationIdAndYear(28, new Date().getFullYear());
         }
       });
   }
@@ -113,17 +111,14 @@ export class DashboardOrganizationCommunityNeedsComponent
 
       this.initChart();
     } else {
-      if (this.impactInitiative) {
-        this.getByImpactInitiativeIdAndYear(
-          this.impactInitiative.id!,
-          new Date().getFullYear() - 1
-        );
-      } else if (this.organization) {
-        this.getByOrganizationIdAndYear(
-          this.organization.id!,
-          new Date().getFullYear() - 1
-        );
-      }
+      // if (this.impactInitiative) {
+      //   this.getByImpactInitiativeIdAndYear(
+      //     this.impactInitiative.id!,
+      //     new Date().getFullYear() - 1
+      //   );
+      // } else if (this.organization) {
+      this.getByOrganizationIdAndYear(28, new Date().getFullYear() - 1);
+      // }
     }
     this.lastYearComparaisonToggled = !this.lastYearComparaisonToggled;
   }
