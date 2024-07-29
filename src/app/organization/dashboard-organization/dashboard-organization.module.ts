@@ -90,6 +90,7 @@ import { DashboardOrganizationWellbeingScoresComponent } from './wellbeing/dashb
 import { DashboardOrganizationInsightsPhysicalHealthTrendComponent } from './wellbeing/dashboard-organization-insights-physical-health-trend/dashboard-organization-insights-physical-health-trend.component';
 import { DashboardOrganizationInsightsPsychologicalHealthTrendComponent } from './wellbeing/dashboard-organization-insights-psychological-health-trend/dashboard-organization-insights-psychological-health-trend.component';
 import { DashboardOrganizationInsightsWellbeingTrendComponent } from './wellbeing/dashboard-organization-insights-wellbeing-trend/dashboard-organization-insights-wellbeing-trend.component';
+import { DashboardOrganizationDueDiligenceOverviewSecondComponent } from './dashboard-organization-due-diligence-overview-second/dashboard-organization-due-diligence-overview-second.component';
 
 const routes: Routes = [
   {
@@ -159,13 +160,13 @@ const routes: Routes = [
               },
             ],
           },
-          {
-            path: 'overview',
-            component: DashboardOrganizationPortfolioComponent,
-          },
+          // {
+          //   path: 'overview',
+          //   component: DashboardOrganizationPortfolioComponent,
+          // },
           {
             path: '**',
-            redirectTo: 'overview',
+            redirectTo: 'community-needs',
           },
         ],
       },
@@ -204,9 +205,24 @@ const routes: Routes = [
       {
         path: 'due-diligence',
         component: DashboardOrganizationDueDiligenceComponent,
+        children: [
+          {
+            path: 'overview',
+            component: DashboardOrganizationDueDiligenceOverviewSecondComponent,
+          },
+          {
+            path: 'partners',
+            component: DashboardOrganizationImpactPartnersComponent,
+          },
+          {
+            path: '',
+            redirectTo: 'overview',
+            pathMatch: 'full',
+          },
+        ],
       },
       {
-        path: 'due-diligence/:id',
+        path: 'due-diligence/partners/:id',
         component: DashboardOrganizationDetailsComponent,
         children: [
           {
@@ -269,9 +285,24 @@ const routes: Routes = [
       {
         path: 'wellbeing',
         component: DashboardOrganizationWellbeingComponent,
+        children: [
+          {
+            path: 'overview',
+            component: DashboardOrganizationDueDiligenceOverviewSecondComponent,
+          },
+          {
+            path: 'partners',
+            component: DashboardOrganizationImpactPartnersComponent,
+          },
+          {
+            path: '',
+            redirectTo: 'overview',
+            pathMatch: 'full',
+          },
+        ],
       },
       {
-        path: 'wellbeing/:id',
+        path: 'wellbeing/partners/:id',
         component: DashboardOrganizationDetailsComponent,
         children: [
           {
@@ -282,10 +313,7 @@ const routes: Routes = [
                 path: 'summary',
                 component: DashboardOrganizationWellbeingSummaryComponent,
               },
-              {
-                path: 'community-needs',
-                component: DashboardOrganizationCommunityNeedsComponent,
-              },
+
               {
                 path: '**',
                 redirectTo: 'summary',
@@ -588,6 +616,7 @@ const routes: Routes = [
     DashboardOrganizationInsightsPhysicalHealthTrendComponent,
     DashboardOrganizationInsightsPsychologicalHealthTrendComponent,
     DashboardOrganizationInsightsWellbeingTrendComponent,
+    DashboardOrganizationDueDiligenceOverviewSecondComponent,
   ],
   imports: [
     CommonModule,
