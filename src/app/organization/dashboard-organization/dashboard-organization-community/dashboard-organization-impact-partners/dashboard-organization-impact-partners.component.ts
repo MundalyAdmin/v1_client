@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BaseComponent } from '../../../../shared/base-component';
 import { OrganizationService } from '../../../organization.service';
 import { Organization } from '../../../organization.model';

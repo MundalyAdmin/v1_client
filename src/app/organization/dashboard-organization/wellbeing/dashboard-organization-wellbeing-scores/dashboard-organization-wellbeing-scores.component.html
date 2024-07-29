@@ -1,0 +1,25 @@
+<div class="grid grid-cols-1 gap-3" *ngIf="!loading && scaleService.communityTrustScore">
+    <!-- Physical Health -->
+    <app-dashboard-organization-insights-scale-score [title]="'Physical Health Score'"
+                                                     [score]="scaleService.communityTrustScore.impact_fidelity_score!">
+    </app-dashboard-organization-insights-scale-score>
+
+    <!-- Psychological Health -->
+    <app-dashboard-organization-insights-scale-score [title]="'Psychological Health Score'"
+                                                     [score]="scaleService.communityTrustScore.community_perception_score!">
+    </app-dashboard-organization-insights-scale-score>
+
+    <!-- Social Relations -->
+    <app-dashboard-organization-insights-scale-score [title]="'Social Relations Score'"
+                                                     [score]="scaleService.communityTrustScore.facilitation_strategy_score!">
+    </app-dashboard-organization-insights-scale-score>
+
+
+    <!-- Environmental conditions -->
+    <app-dashboard-organization-insights-scale-score [title]="'Environmental conditions Score'"
+                                                     [score]="scaleService.communityTrustScore.impact_fidelity_score!">
+    </app-dashboard-organization-insights-scale-score>
+</div>
+
+<app-page-loading *ngIf="loading"></app-page-loading>
+<app-missing-data *ngIf="!loading && !scaleService.communityTrustScore"></app-missing-data>

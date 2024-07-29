@@ -54,8 +54,6 @@ import { DashboardOrganizationInsightsImpactFidelityTrendDataComponent } from '.
 import { DashboardOrganizationInsightsCommunityReputationTrendComponent } from './dashboard-organization-insights/dashboard-organization-insights-community-reputation-trend/dashboard-organization-insights-community-reputation-trend.component';
 import { DashboardOrganizationInsightsNetPromoterScoreComponent } from './dashboard-organization-insights/dashboard-organization-insights-net-promoter-score/dashboard-organization-insights-net-promoter-score.component';
 import { DashboardOrganizationInsightsScalesScoreComponent } from './dashboard-organization-insights/dashboard-organization-insights-scales-score/dashboard-organization-insights-scales-score.component';
-import { DashboardOrganizationSidebarMenuImpactComponent } from './dashboard-organization-sidebar/dashboard-organization-sidebar-menu-impact/dashboard-organization-sidebar-menu-impact.component';
-import { DashboardOrganizationSidebarMenuCorporateComponent } from './dashboard-organization-sidebar/dashboard-organization-sidebar-menu-corporate/dashboard-organization-sidebar-menu-corporate.component';
 import { DashboardOrganizationImpactInitiativeComponent } from './dashboard-organization-impact-initiative/dashboard-organization-impact-initiative.component';
 import { DashboardOrganizationImpactInitativeListComponent } from './dashboard-organization-impact-initiative/dashboard-organization-impact-initative-list/dashboard-organization-impact-initative-list.component';
 import { DashboardOrganizationImpactInitiativeDetailsComponent } from './dashboard-organization-impact-initiative-details/dashboard-organization-impact-initiative-details.component';
@@ -80,6 +78,18 @@ import { DashboardOrganizationImpactVerificationRequestedComponent } from './das
 import { DashboardOrganizationImpactVerificationReceivedComponent } from './dashboard-organization-impact-verification/dashboard-organization-impact-verification-received/dashboard-organization-impact-verification-received.component';
 import { ImpactVerificationModule } from '../../impact-verification/impact-verification.module';
 import { DashboardOrganizationUnavailableInsightsComponent } from './dashboard-organization-unavailable-insights/dashboard-organization-unavailable-insights.component';
+import { DashboardOrganizationDueDiligenceComponent } from './dashboard-organization-due-diligence/dashboard-organization-due-diligence.component';
+import { DashboardOrganizationWellbeingComponent } from './dashboard-organization-wellbeing/dashboard-organization-wellbeing.component';
+import { DashboardOrganizationImpactStoriesComponent } from './dashboard-organization-impact-stories/dashboard-organization-impact-stories.component';
+import { OrganizationNewStyleStoriesComponent } from '../../public/public-community/organization/organization-new-style/organization-new-style-stories/organization-new-style-stories.component';
+import { OrganizationNewStyleStoriesListComponent } from '../../public/public-community/organization/organization-new-style/organization-new-style-stories/organization-new-style-stories-list/organization-new-style-stories-list.component';
+import { DashboardOrganizationWellbeingOverviewComponent } from './wellbeing/dashboard-organization-wellbeing-overview/dashboard-organization-wellbeing-overview.component';
+import { DashboardOrganizationWellbeingSummaryComponent } from './wellbeing/dashboard-organization-wellbeing-summary/dashboard-organization-wellbeing-summary.component';
+import { DashboardOrganizationWellbeingInsightsComponent } from './wellbeing/dashboard-organization-wellbeing-insights/dashboard-organization-wellbeing-insights.component';
+import { DashboardOrganizationWellbeingScoresComponent } from './wellbeing/dashboard-organization-wellbeing-scores/dashboard-organization-wellbeing-scores.component';
+import { DashboardOrganizationInsightsPhysicalHealthTrendComponent } from './wellbeing/dashboard-organization-insights-physical-health-trend/dashboard-organization-insights-physical-health-trend.component';
+import { DashboardOrganizationInsightsPsychologicalHealthTrendComponent } from './wellbeing/dashboard-organization-insights-psychological-health-trend/dashboard-organization-insights-psychological-health-trend.component';
+import { DashboardOrganizationInsightsWellbeingTrendComponent } from './wellbeing/dashboard-organization-insights-wellbeing-trend/dashboard-organization-insights-wellbeing-trend.component';
 
 const routes: Routes = [
   {
@@ -123,11 +133,6 @@ const routes: Routes = [
         component: DashboardOrganizationHomeComponent,
         children: [
           {
-            path: 'partners',
-            component: DashboardOrganizationImpactPartnersComponent,
-          },
-
-          {
             path: 'invitations',
             component: DashboardOrganizationPartnerInvitationComponent,
           },
@@ -136,12 +141,31 @@ const routes: Routes = [
             component: DashboardOrganizationImpactInitiativeComponent,
           },
           {
-            path: 'portfolio',
+            path: 'community-needs',
+            component: DashboardOrganizationCommunityNeedsComponent,
+          },
+          {
+            path: 'impact-stories',
+            component: DashboardOrganizationImpactStoriesComponent,
+            children: [
+              {
+                path: ':id',
+                component: OrganizationNewStyleStoriesListComponent,
+              },
+              {
+                path: '**',
+                redirectTo: 'verified',
+                pathMatch: 'full',
+              },
+            ],
+          },
+          {
+            path: 'overview',
             component: DashboardOrganizationPortfolioComponent,
           },
           {
             path: '**',
-            redirectTo: 'programs',
+            redirectTo: 'overview',
           },
         ],
       },
@@ -176,8 +200,13 @@ const routes: Routes = [
         path: 'organizations/:id/surveys/:id',
         component: SurveyFormShowComponent,
       },
+      // Due diligence
       {
-        path: 'organizations/:id',
+        path: 'due-diligence',
+        component: DashboardOrganizationDueDiligenceComponent,
+      },
+      {
+        path: 'due-diligence/:id',
         component: DashboardOrganizationDetailsComponent,
         children: [
           {
@@ -188,10 +217,7 @@ const routes: Routes = [
                 path: 'fundability',
                 component: DashboardOrganizationForecastComponent,
               },
-              {
-                path: 'community-needs',
-                component: DashboardOrganizationCommunityNeedsComponent,
-              },
+
               {
                 path: '**',
                 redirectTo: 'fundability',
@@ -227,6 +253,53 @@ const routes: Routes = [
           {
             path: 'insights',
             component: DashboardOrganizationInsightsComponent,
+          },
+          {
+            path: 'reports',
+            component: DashboardOrganizationReportsComponent,
+          },
+
+          {
+            path: '**',
+            redirectTo: 'overview',
+          },
+        ],
+      },
+      // Wellbeing
+      {
+        path: 'wellbeing',
+        component: DashboardOrganizationWellbeingComponent,
+      },
+      {
+        path: 'wellbeing/:id',
+        component: DashboardOrganizationDetailsComponent,
+        children: [
+          {
+            path: 'overview',
+            component: DashboardOrganizationWellbeingOverviewComponent,
+            children: [
+              {
+                path: 'summary',
+                component: DashboardOrganizationWellbeingSummaryComponent,
+              },
+              {
+                path: 'community-needs',
+                component: DashboardOrganizationCommunityNeedsComponent,
+              },
+              {
+                path: '**',
+                redirectTo: 'summary',
+              },
+            ],
+          },
+
+          {
+            path: 'surveys',
+            component: SurveyFormListComponent,
+          },
+          {
+            path: 'insights',
+            component: DashboardOrganizationWellbeingInsightsComponent,
           },
           {
             path: 'reports',
@@ -491,8 +564,6 @@ const routes: Routes = [
     DashboardOrganizationInsightsCommunityReputationTrendComponent,
     DashboardOrganizationInsightsNetPromoterScoreComponent,
     DashboardOrganizationInsightsScalesScoreComponent,
-    DashboardOrganizationSidebarMenuImpactComponent,
-    DashboardOrganizationSidebarMenuCorporateComponent,
     DashboardOrganizationImpactInitiativeComponent,
     DashboardOrganizationImpactInitativeListComponent,
     DashboardOrganizationImpactInitiativeDetailsComponent,
@@ -507,6 +578,16 @@ const routes: Routes = [
     DashboardOrganizationImpactVerificationRequestedComponent,
     DashboardOrganizationImpactVerificationReceivedComponent,
     DashboardOrganizationUnavailableInsightsComponent,
+    DashboardOrganizationDueDiligenceComponent,
+    DashboardOrganizationWellbeingComponent,
+    DashboardOrganizationImpactStoriesComponent,
+    DashboardOrganizationWellbeingOverviewComponent,
+    DashboardOrganizationWellbeingSummaryComponent,
+    DashboardOrganizationWellbeingInsightsComponent,
+    DashboardOrganizationWellbeingScoresComponent,
+    DashboardOrganizationInsightsPhysicalHealthTrendComponent,
+    DashboardOrganizationInsightsPsychologicalHealthTrendComponent,
+    DashboardOrganizationInsightsWellbeingTrendComponent,
   ],
   imports: [
     CommonModule,

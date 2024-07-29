@@ -81,11 +81,7 @@ export class DashboardOrganizationCommunityNeedsComponent
   subscribeToOrganizationData() {
     this.subscriptions['organization'] =
       this.organizationService.singleData$.subscribe((organization) => {
-        if (
-          organization &&
-          organization.verification_status_from_current_organization?.id ===
-            StatusImpactVerificationEnum.LAUNCHED
-        ) {
+        if (organization) {
           this.organization = organization;
 
           this.getByOrganizationIdAndYear(

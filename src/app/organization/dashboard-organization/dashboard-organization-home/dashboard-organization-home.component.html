@@ -6,47 +6,37 @@
     <ul class="flex flex-wrap -mb-px">
 
       <!-- For impact -->
-      <li class="me-2" *ngIf="CategoryOrganizationEnum.IMPACT">
-        <!-- For impact funder -->
-        <a [routerLink]="['programs']"
-           *ngIf="organization.type_organization_id === TypeOrganizationEnum.IMPACT_IMPLEMENTER"
-           [routerLinkActiveOptions]="{exact: true}"
-           routerLinkActive="text-primary border-primary font-semibold"
-           class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-lg">
-          Programs
-        </a>
+      <li class="me-2">
 
         <!-- For impact partner -->
-        <a [routerLink]="['partners']"
-           *ngIf="organization.type_organization_id === TypeOrganizationEnum.IMPACT_FUNDER"
+        <a [routerLink]="['overview']"
+
            [routerLinkActiveOptions]="{exact: true}"
            routerLinkActive="text-primary border-primary font-semibold"
            class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-lg">
-          Portfolio
+          Overview
         </a>
       </li>
 
 
-      <!-- For Corporate -->
-      <li class="me-2" *ngIf="CategoryOrganizationEnum.CORPORATION">
-        <!-- For corporate -->
-        <a [routerLink]="['partners']"
-           *ngIf="organization.type_organization_id === TypeOrganizationEnum.CORPORATION"
-           [routerLinkActiveOptions]="{exact: true}"
+      <li class="me-2">
+        <a [routerLink]="['community-needs']"
            routerLinkActive="text-primary border-primary font-semibold"
-           class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-lg">
-          Portfolio
-        </a>
-
-        <!-- For supplier -->
-        <a [routerLink]="['programs']"
-           *ngIf="organization.type_organization_id === TypeOrganizationEnum.SUPPLIER"
-           [routerLinkActiveOptions]="{exact: true}"
-           routerLinkActive="text-primary border-primary font-semibold"
-           class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-lg">
-          Programs
+           class="flex items-center p-4 border-b-2  gap-1 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-lg">
+          Community Needs
         </a>
       </li>
+
+
+      <li class="me-2">
+        <a [routerLink]="['impact-stories']"
+           routerLinkActive="text-primary border-primary font-semibold"
+           class="flex items-center p-4 border-b-2  gap-1 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-lg">
+          Impact Stories
+        </a>
+      </li>
+
+
 
       <li class="me-2">
         <a [routerLink]="['invitations']"
