@@ -31,8 +31,14 @@
 
                 <td class="py-3" *ngIf="typeVerification === 'received'">
                     <div class="flex items-center">
-                        <img [src]="item.inquirer?.logo" alt="{{ item.inquirer?.name }}"
+                        <img [src]="item.inquirer?.logo" alt="{{ item.inquirer?.name }}" *ngIf="item.inquirer?.logo"
                              class="w-10 border h-10 rounded-full mr-3">
+                        <div class="h-10 mr-3 w-10 bg-slate-200 flex items-center justify-center rounded-full"
+                             *ngIf="!item.inquirer?.logo">
+                            <div>
+                                <i class="mdi text-[16px] text-slate-800  font-semibold mdi-domain"></i>
+                            </div>
+                        </div>
                         <span>{{ item.inquirer?.name }}</span>
                     </div>
                 </td>

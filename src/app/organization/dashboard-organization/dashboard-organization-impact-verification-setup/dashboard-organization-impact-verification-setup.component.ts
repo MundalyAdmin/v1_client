@@ -450,12 +450,17 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
       payment_method: this.form.controls['launchForm'].value['paymentMethod'],
     };
 
-    this.impactVerificationSetupService.store(data).subscribe((data) => {
-      window.location.href = data.data;
-      this.loading = false;
-      this.helper.notification.alertSuccess();
-      // this.initForm();
-      // this.router.navigate(['dashboard']);
+    this.impactVerificationSetupService.store(data).subscribe({
+      next: (data) => {
+        window.location.href = data.data;
+        this.loading = false;
+        this.helper.notification.alertSuccess();
+        // this.initForm();
+        // this.router.navigate(['dashboard']);
+      },
+      error: () => {
+        this.loading = false;
+      },
     });
   }
 }
