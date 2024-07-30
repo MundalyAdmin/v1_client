@@ -1,0 +1,13 @@
+tbody:before {
+    content: "-";
+    display: block;
+    line-height: 1em;
+    color: transparent;
+}
+
+tr::before {
+    content: "-";
+    display: block;
+    padding-top: 8px;
+    color: transparent;
+}

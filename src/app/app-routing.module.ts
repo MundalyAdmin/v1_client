@@ -46,6 +46,11 @@ const routes: Routes = [
           ).then((m) => m.DashboardOrganizationModule),
       },
       {
+        path: 'stats',
+        loadChildren: () =>
+          import('./stats/stats.module').then((m) => m.FundsModule),
+      },
+      {
         path: 'not-found',
         component: PageNotFoundComponent,
       },

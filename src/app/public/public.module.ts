@@ -76,7 +76,8 @@ const routes: Routes = [
     CommonModule,
     SharedModule,
     SharedPublicModule,
-    RouterModule.forChild(routes),
+
+    
   ],
 })
 export class PublicModule {}

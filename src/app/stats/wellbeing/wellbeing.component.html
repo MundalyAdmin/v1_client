@@ -1,0 +1,281 @@
+<div class="px-6 bg-gray-100">
+  <div class="flex justify-between items-center border-b-[1px] py-4">
+    <div class="flex gap-5">
+      <p class="font-semibold min-w-[200px]">
+        Yale Haven Foundation
+      </p>
+      <div class="min-w-[100px] w-[30%]">
+        <select class="py-1 w-full inline-block border-0 rounded-md ring-0">
+          <option>
+            Year
+          </option>
+        </select>
+      </div>
+      <div >
+        <div class="bg-white p-1 rounded-md min-w-[100px] w-[300px]">
+          <input type="text" pInputText placeholder="Search" class="p-0.5 px-2 ring-0 border-0 w-[90%]" />
+          <i class="mdi mdi-magnify"></i>
+        </div>
+      </div>
+    </div>
+   
+    <div class="flex gap-5">
+      <div>
+        <select class="p-0.5 min-w-[100px] inline-block border-0 bg-transparent ring-0">
+          <option>
+            Location
+          </option>
+        </select>
+      </div>
+     <div>
+      <select class="p-0.5 min-w-[100px] inline-block border-0 bg-transparent ring-0">
+        <option>
+          Language
+        </option>
+      </select>
+     </div>
+    </div>
+
+  </div>
+
+
+
+  <div class="flex py-4 gap-5">
+    <div class="min-w-[100px] w-[30%]">
+      <label class="text-sm">
+        Fund Name
+      </label>
+      <div>
+        <select class="border border-gray-100 ring-0 outline-0 rounded-md p-1 inline-block w-full">
+          <option>
+            N/A
+          </option>
+        </select>
+      </div>
+    </div>
+
+
+    <div class="min-w-[200px] w-[30%]">
+      <label class="text-sm">
+        Portfolio
+      </label>
+      <div>
+        <select class="border border-gray-100 ring-0 outline-0 rounded-md p-1 inline-block inline-block w-full ">
+          <option>
+            Haven Promise
+          </option>
+        </select>
+      </div>
+    </div>
+
+
+    <div class="min-w-[200px] w-[30%]">
+      <label class="text-sm">
+        Portfolio Communities
+      </label>
+      <div>
+        <select class="border border-gray-100 ring-0 outline-0 rounded-md p-1 inline-block w-full">
+          <option>
+            All
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="flex gap-10">
+    <div class="px-2 bg-white rounded-md">
+      <h3 class="py-2 border-b-[1px] font-semibold">
+        Portfolio Wellbeing Summary
+      </h3>
+      <div class="p-4 pb-8">
+        <p-chart type="pie" [data]="data" [options]="options" />
+      </div>
+    </div>
+    <div class="px-2 bg-white rounded-md">
+      <h3 class="py-2 border-b-[1px] font-semibold">
+        Overall Snapshot
+      </h3>
+      <div class="p-2 pt-4 flex flex-col gap-5">
+
+        <div class="flex gap-8 flex-wrap max-w-[450px] justify-left">
+          <div>
+            <p class="text-[25px] font-bold p-0">
+              20
+            </p>
+            <p class="text-[15px] text-gray-400">
+              Communities Reporting Wellbeing
+            </p>
+          </div>
+
+          <div>
+            <p class="text-[25px] font-bold p-0">
+              5
+            </p>
+            <p class="text-[15px] text-gray-400">
+              Country Reporting
+            </p>
+          </div>
+          <div>
+            <p class="text-[25px] font-bold p-0">
+              68%
+            </p>
+            <p class="text-[15px] text-gray-400">
+              Improve Wellbeing Score
+            </p>
+          </div>
+
+          <div>
+            <p class="text-[25px] font-bold p-0">
+              32%
+            </p>
+            <p class="text-[15px] text-gray-400">
+              No Change
+            </p>
+          </div>
+
+          <div>
+            <p class="text-[25px] font-bold p-0">
+              20
+            </p>
+            <p class="text-[15px] text-gray-400">
+              Communities Beneficiary Reporting
+            </p>
+          </div>
+
+          <div>
+            <p class="text-[25px] font-bold p-0">
+              20
+            </p>
+            <p class="text-[15px] text-gray-400">
+              Communities Reporting
+            </p>
+          </div>
+
+        </div>
+
+        <div class="flex gap-8">
+          
+
+          
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="py-5">
+    <div class="bg-white p-2 rounded-md">
+      <h3 class="font-semibold ps-2">Breakdown</h3>
+      <div>
+        <table class="table-auto text-left w-full">
+          <thead class="text-gray-400">
+            <tr>
+              <th></th>
+              <th>Average Change (%)</th>
+              <th>Improved (%)</th>
+              <th>No Change (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Overall</td>
+              <td>10</td>
+              <td>30</td>
+              <td>90</td>
+            </tr>
+            <tr>
+              <td>Physical</td>
+              <td>20</td>
+              <td>40</td>
+              <td>80</td>
+            </tr>
+            <tr>
+              <td>Psycological</td>
+              <td>70</td>
+              <td>45</td>
+              <td>40</td>
+            </tr>
+            <tr>
+              <td>Social</td>
+              <td>70</td>
+              <td>45</td>
+              <td>40</td>
+            </tr>
+            <tr>
+              <td>Environmental</td>
+              <td>70</td>
+              <td>45</td>
+              <td>40</td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="py-4">
+    <h2 class="py-2 border-b-[1px] font-semibold">Demographics <span class="text-sm text-gray-400">(Breakdown for improved Wellbeing)</span></h2>
+    <div class="flex gap-5">
+      <div class="bg-white p-2 rounded-md min-w-[500px]">
+        <h3 class="py-2 border-b-[1px] font-semibold">Gender</h3>
+        <div class="p-3 py-5">
+          <div>
+            <p class="text-gray-400">
+              Users
+            </p>
+            <p class="text-[25px] font-semibold">91</p>
+          </div>
+        </div>
+        <div>
+          <p-chart type="line" [data]="lineData" [options]="lineOptions" height="300px" />
+        </div>
+      </div>
+
+      <div class="bg-white p-2 rounded-md max-w-[700px]">
+        <h3 class="py-2 border-b-[1px] font-semibold">Age Range</h3>
+        <div class="p-3">
+          <div class="flex flex-wrap gap-5">
+            <div class="w-[300px]" *ngFor="let age of ageRange">
+              <div class="flex justify-between">
+                <p>{{age.percentage}}%</p>
+                <p> {{age.name}}</p>
+              </div>
+              <div class="bg-slate-200 h-[20px] rounded-md">
+                <div class="h-full rounded-md" [ngStyle]="{'width': age.percentage + '%', 'background': age.color}"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+     
+      </div>
+    </div>
+  </div>
+
+  <div class="py-4 pb-6">
+    <div class="bg-white p-2 rounded-md max-w-[700px]">
+      <h3 class="py-2 border-b-[1px] font-semibold">Ethnicities</h3>
+      <div class="p-3">
+        <div class="flex flex-wrap gap-5">
+          <div class="w-[300px]" *ngFor="let ethnicity of ethnicities">
+            <div class="flex justify-between">
+              <p>{{ethnicity.percentage}}%</p>
+              <p> {{ethnicity.name}}</p>
+            </div>
+            <div class="bg-slate-200 h-[20px] rounded-md">
+              <div class="h-full rounded-md" [ngStyle]="{'width': ethnicity.percentage + '%', 'background': ethnicity.color}"></div>
+            </div>
+          </div>
+        </div>
+      </div> 
+
+   </div>  
+  </div>
+</div>
