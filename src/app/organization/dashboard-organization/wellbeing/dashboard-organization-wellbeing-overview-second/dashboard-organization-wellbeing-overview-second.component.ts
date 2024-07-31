@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 @Component({
-  selector: 'app-dashboard-organization-due-diligence-overview-second',
+  selector: 'app-dashboard-organization-wellbeing-overview-second',
   templateUrl:
-    './dashboard-organization-due-diligence-overview-second.component.html',
+    './dashboard-organization-wellbeing-overview-second.component.html',
   styleUrls: [
-    './dashboard-organization-due-diligence-overview-second.component.scss',
+    './dashboard-organization-wellbeing-overview-second.component.scss',
   ],
 })
-export class DashboardOrganizationDueDiligenceOverviewSecondComponent {
+export class DashboardOrganizationWellbeingOverviewSecondComponent {
   data: any;
 
   funders: any[] = [];
@@ -36,7 +36,7 @@ export class DashboardOrganizationDueDiligenceOverviewSecondComponent {
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
     this.data = {
-      labels: ['High Risk', 'Medium to High Risk', 'Medium Risk', 'Low risk'],
+      labels: ['High', 'Moderate to High', 'Moderate', 'Low'],
       datasets: [
         {
           data: [300, 50, 100, 200],

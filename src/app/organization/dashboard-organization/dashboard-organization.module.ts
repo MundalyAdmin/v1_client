@@ -91,6 +91,7 @@ import { DashboardOrganizationInsightsPhysicalHealthTrendComponent } from './wel
 import { DashboardOrganizationInsightsPsychologicalHealthTrendComponent } from './wellbeing/dashboard-organization-insights-psychological-health-trend/dashboard-organization-insights-psychological-health-trend.component';
 import { DashboardOrganizationInsightsWellbeingTrendComponent } from './wellbeing/dashboard-organization-insights-wellbeing-trend/dashboard-organization-insights-wellbeing-trend.component';
 import { DashboardOrganizationDueDiligenceOverviewSecondComponent } from './dashboard-organization-due-diligence-overview-second/dashboard-organization-due-diligence-overview-second.component';
+import { DashboardOrganizationWellbeingOverviewSecondComponent } from './wellbeing/dashboard-organization-wellbeing-overview-second/dashboard-organization-wellbeing-overview-second.component';
 
 const routes: Routes = [
   {
@@ -288,7 +289,7 @@ const routes: Routes = [
         children: [
           {
             path: 'overview',
-            component: DashboardOrganizationDueDiligenceOverviewSecondComponent,
+            component: DashboardOrganizationWellbeingOverviewSecondComponent,
           },
           {
             path: 'partners',
@@ -617,6 +618,7 @@ const routes: Routes = [
     DashboardOrganizationInsightsPsychologicalHealthTrendComponent,
     DashboardOrganizationInsightsWellbeingTrendComponent,
     DashboardOrganizationDueDiligenceOverviewSecondComponent,
+    DashboardOrganizationWellbeingOverviewSecondComponent,
   ],
   imports: [
     CommonModule,
