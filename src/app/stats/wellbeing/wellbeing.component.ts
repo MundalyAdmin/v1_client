@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import ChartDataLabels from "chartjs-plugin-datalabels"
 
 interface ItemPercentage {
     name: string
@@ -23,6 +24,8 @@ export class WellBeingComponent implements OnInit  {
 
   ethnicities: { name: string, percentage: number, color?: string }[] = []
 
+  plugins : any = [];
+
 
   ngOnInit() {
     const documentStyle = getComputedStyle(document.documentElement);
@@ -44,15 +47,32 @@ export class WellBeingComponent implements OnInit  {
 
 
     this.options = {
-        cutout: '60%',
+        cutout: '40%',
         plugins: {
             legend: {
                 labels: {
                     color: textColor
                 }
-            }
+            },
+            datalabels: {
+                color: "black",
+                labels: {
+                    title: {
+                      font: {
+                        weight: 'bold'
+                      }
+                    },
+                },
+                formatter: (value: any, context: any) => {
+                    return `${context.chart.data.labels[
+                        context.dataIndex
+                    ]}\n ${Math.floor((value /  450) * 100)}%`;
+                },
+            },
         }
     };
+
+    this.plugins = [ChartDataLabels]
 
     this.lineData = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],

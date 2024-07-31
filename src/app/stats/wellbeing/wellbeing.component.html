@@ -90,8 +90,11 @@
       <h3 class="py-2 border-b-[1px] font-semibold">
         Portfolio Wellbeing Summary
       </h3>
-      <div class="p-4 pb-8">
-        <p-chart type="pie" [data]="data" [options]="options" />
+      <div class="p-4 pb-8 relative">
+        <p-chart type="pie" [data]="data" [options]="options" [plugins]="plugins" />
+        <div class="absolute w-[65px] bottom-[38%] left-[38%]">
+          <span class="text-green-400 font-semibold">68.8% </span>Low Risk Beneficiary
+        </div>
       </div>
     </div>
     <div class="px-2 bg-white rounded-md">
