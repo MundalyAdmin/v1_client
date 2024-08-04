@@ -60,18 +60,20 @@
                alt="" class="h-12 w-12 rounded-full border-2 border-slate-50">
         </span>
         <div class="p-2 flex align-center flex-col">
-          <div class="text-slate-50 font-semibold flex items-center">{{ user?.name }} <span><i
-                 class="mdi mdi-menu-down text-2xl"></i></span></div>
+          <div class="text-slate-50 font-semibold flex items-center">{{ user?.name }}
+            <!-- <span><i
+                 class="mdi mdi-menu-down text-2xl"></i></span> -->
+          </div>
           <p class="text-slate-300 text-sm">{{ organization?.name }}</p>
         </div>
       </div>
 
 
-      <!-- Setting button -->
+      <!-- Setting button
       <div class="flex text-slate-400 mt-5 cursor-pointer hover:text-slate-500">
         <span class="me-2"><i class="mdi mdi-cog-outline"></i></span>
         <span (click)="showSetupLogoAndCoverModal$.emit()">Settings</span>
-      </div>
+      </div> -->
 
 
       <!-- Logout button -->
