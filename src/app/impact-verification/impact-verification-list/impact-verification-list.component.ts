@@ -34,13 +34,33 @@ export class ImpactVerificationListComponent extends BaseComponent<ImpactVerific
     statusId: StatusImpactVerificationEnum,
     index: number
   ) {
-    this.loading = true;
-    this.impactVerificationService
-      .updateStatus(id, statusId)
-      .subscribe((response) => {
-        this.data[index] = response.data;
-        this.loading = false;
-      });
+    this.helper.notification.confirm(
+      'Are you sure?',
+      'You are about to change the status of the verification',
+      () => {
+        this.loading = true;
+        this.impactVerificationService
+          .updateStatus(id, statusId)
+          .subscribe((response) => {
+            this.data[index] = response.data;
+            this.loading = false;
+          });
+      }
+    );
+  }
+
+  relauch(id: number, index: number) {
+    this.helper.notification.confirm(
+      'Are you sure?',
+      'You are about to relauch the verification',
+      () => {
+        this.loading = true;
+        this.impactVerificationService.relauch(id).subscribe((response) => {
+          this.data[index] = response.data;
+          this.loading = false;
+        });
+      }
+    );
   }
 
   displayUploadCommunityDetails(impactInitiative: ImpactVerification) {

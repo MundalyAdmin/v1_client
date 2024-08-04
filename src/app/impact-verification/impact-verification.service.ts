@@ -32,6 +32,20 @@ export class ImpactVerificationService extends BaseService<ImpactVerification> {
       );
   }
 
+  relauch(id: number) {
+    return this.factory.put(`${this.endPoint}/${id}/relaunch`, {}).pipe(
+      tap({
+        next: (response) => {
+          this.updateItemInData(id, response.data);
+          this.notification$.next({});
+        },
+        error: (error) => {
+          this.errorResponseHandler(error);
+        },
+      })
+    );
+  }
+
   override store(elements: any) {
     return this.factory.post(this.endPoint, elements).pipe(
       tap({
@@ -102,9 +116,20 @@ export class ImpactVerificationService extends BaseService<ImpactVerification> {
       );
   }
 
-  countByOrganizationId(organization: number) {
+  countReceivedByOrganizationId(organization: number) {
     return this.factory
-      .get(`${this.endPoint}/organizations/${organization}/count`)
+      .get(`${this.endPoint}/organizations/${organization}/received/count`)
+      .pipe(
+        map(
+          (response: ApiResponse<{ count: number }>) =>
+            response.data as { count: number }
+        )
+      );
+  }
+
+  countRequestedByOrganizationId(organization: number) {
+    return this.factory
+      .get(`${this.endPoint}/organizations/${organization}/requested/count`)
       .pipe(
         map(
           (response: ApiResponse<{ count: number }>) =>

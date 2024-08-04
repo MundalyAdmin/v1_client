@@ -77,11 +77,19 @@
                                 Suspend
                             </button>
 
+                            <button type="button"
+                                    *ngIf="item.status_impact_verification_id === StatusImpactVerificationEnum.ABORTED"
+                                    (click)="relauch(item.id!, i)"
+                                    class="focus:outline-none text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-500 dark:focus:ring-green-900">
+                                <span class="mdi mdi-play"></span>
+                                Relaunch
+                            </button>
+
 
 
 
                             <button type="button"
-
+                                    *ngIf="item.status_impact_verification_id !== StatusImpactVerificationEnum.ABORTED"
                                     (click)="updateStatus(item.id!, StatusImpactVerificationEnum.ABORTED, i)"
                                     class="focus:outline-none text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-500 dark:focus:ring-red-900">
                                 <span class="mdi mdi-cancel"></span>
@@ -97,7 +105,7 @@
 </div>
 
 
-<app-loading *ngIf="loading"></app-loading>
+<app-page-loading *ngIf="loading"></app-page-loading>
 
 <p-dialog header="Upload your community members details" [(visible)]="showUploadCommunityDetails" [modal]="true" [style]="{ width: '50vw' }"
           [draggable]="false"

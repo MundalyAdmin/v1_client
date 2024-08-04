@@ -49,6 +49,7 @@ export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
     this.selectedImpactPartner = null;
   }
   override ngOnInit(): void {
+    super.ngOnInit();
     this.user = this.authService.user;
 
     this.authService.organization$.subscribe((organization) => {
@@ -80,8 +81,29 @@ export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
   }
 
   countVerificationRequests(organizationId: number) {
+    if (
+      this.currentLoggedInOrganization?.type_organization_id ===
+        TypeOrganizationEnum.IMPACT_FUNDER ||
+      this.currentLoggedInOrganization?.type_organization_id ===
+        TypeOrganizationEnum.CORPORATION
+    ) {
+      this.countRequestedVerificationRequests(organizationId);
+      return;
+    }
+    this.countReceivedVerificationRequests(organizationId);
+  }
+
+  countRequestedVerificationRequests(organizationId: number) {
     this.impactVerificationService
-      .countByOrganizationId(organizationId)
+      .countRequestedByOrganizationId(organizationId)
+      .subscribe((res) => {
+        this.verificationRequests = +res.count;
+      });
+  }
+
+  countReceivedVerificationRequests(organizationId: number) {
+    this.impactVerificationService
+      .countReceivedByOrganizationId(organizationId)
       .subscribe((res) => {
         this.verificationRequests = +res.count;
       });
