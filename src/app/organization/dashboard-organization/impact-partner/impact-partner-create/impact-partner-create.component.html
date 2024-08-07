@@ -30,6 +30,7 @@
           <img [src]="organization.logo" [class]="'w-8 h-8'"
                *ngIf="organization?.logo"
                style="width: 18px" />
+
           <div class="h-10 w-10 bg-slate-200 flex items-center justify-center rounded-full"
                *ngIf="!organization?.logo">
             <div>
@@ -38,6 +39,7 @@
           </div>
           <div>{{ organization.name }}</div>
         </div>
+        <span *ngIf="organization.logo">Tatta</span>
       </ng-template>
 
       <!-- No data handling template -->
@@ -63,10 +65,20 @@
       <div class="">
 
         <!-- Image -->
-        <img [src]="selectedImplementer.logo"
+        <img [src]="selectedImplementer.logo" *ngIf="selectedImplementer.logo"
              class="rounded-full absolute shadow-md bg-white h-20 w-20 mx-auto block" style="left: 35%; top: -20%;
         height: 6rem !important;
         width: 6rem !important;" [alt]="selectedImplementer.name">
+
+        <div class="h-22 w-22 absolute mb-1 bg-slate-200 flex items-center justify-center rounded-full" style="left: 35%; top: -20%;
+        height: 6rem !important;
+        width: 6rem !important;"
+             *ngIf="!selectedImplementer?.logo">
+          <div>
+            <i class="mdi text-[26px] text-slate-500 font-semibold mdi-domain"></i>
+          </div>
+        </div>
+
         <!-- Name and sector-organization -->
         <div class="mt-10 mb-4">
 
