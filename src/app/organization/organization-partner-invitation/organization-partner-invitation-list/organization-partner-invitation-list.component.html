@@ -27,7 +27,8 @@
                         <!-- Logo , name and website -->
                         <div class="flex items-center">
                             <!-- Logo -->
-                            <img class="w-10 h-10 rounded-full" [src]="invitation.partner?.logo" *ngIf="invitation.partner?.logo"
+                            <img class="w-10 h-10 object-cover border  rounded-full" [src]="invitation.partner?.logo"
+                                 *ngIf="invitation.partner?.logo"
                                  [alt]="invitation.partner?.name">
 
                             <!-- No logo placeholder -->

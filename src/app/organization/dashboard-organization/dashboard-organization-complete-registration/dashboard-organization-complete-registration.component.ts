@@ -81,6 +81,10 @@ export class DashboardOrganizationCompleteRegistrationComponent
     this.activeSteps[stepName] = true;
   }
 
+  onLogoUpdated(event: any) {
+    this.formData = event;
+  }
+
   initform() {
     this.form = this.fb.group({
       updatePasswordForm: this.fb.group(
@@ -96,7 +100,7 @@ export class DashboardOrganizationCompleteRegistrationComponent
       }),
       organizationInfoForm: this.fb.group({
         about: [null, Validators.required],
-        sectors_organization: [null, Validators.required],
+        sector_organizations: [null, Validators.required],
       }),
       organization_id: [null, Validators.required],
     });
@@ -121,34 +125,42 @@ export class DashboardOrganizationCompleteRegistrationComponent
     if (this.form.valid) {
       this.loading = true;
 
+      const {
+        updatePasswordForm,
+        organizationInfoForm,
+        organizationDetailsForm,
+        organization_id,
+      } = this.form.controls;
+
       const data = {
-        ...this.form.controls['updatePasswordForm'].value,
-        ...this.form.controls['organizationInfoForm'].value,
-        ...this.form.controls['organizationDetailsForm'].value,
-        country:
-          this.form.controls['organizationDetailsForm']?.value['country'].name,
-        sectors_organization: this.helper.arrayObject.extractField(
-          this.form.controls['organizationInfoForm'].value[
-            'sectors_organization'
-          ],
+        ...updatePasswordForm.value,
+        ...organizationInfoForm.value,
+        ...organizationDetailsForm.value,
+        country: organizationDetailsForm.value.country.name,
+        sector_organization_ids: this.helper.arrayObject.extractField(
+          organizationInfoForm.value.sector_organizations,
           'id'
         ),
-        organization_id: this.form.controls['organization_id'].value,
+        organization_id: organization_id.value,
       };
 
-      this.authService.completeOrganizationRegistration(data).subscribe({
-        next: () => {
-          this.loading = false;
-          this.helper.notification.toastSuccess(
-            'Organization Information updated successfully'
-          );
+      this.fillFormData(data);
 
-          this.created.emit();
-        },
-        error: () => {
-          this.loading = false;
-        },
-      });
+      this.authService
+        .completeOrganizationRegistration(this.formData)
+        .subscribe({
+          next: () => {
+            this.loading = false;
+            this.helper.notification.toastSuccess(
+              'Organization Information updated successfully'
+            );
+
+            this.created.emit();
+          },
+          error: () => {
+            this.loading = false;
+          },
+        });
     }
   }
 }

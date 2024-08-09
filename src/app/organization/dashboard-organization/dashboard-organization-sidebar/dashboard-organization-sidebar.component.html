@@ -57,7 +57,11 @@
       <div class=" flex items-center justify-self-end ">
         <span>
           <img src="https://media.istockphoto.com/id/942153448/de/vektor/avatar.jpg?s=612x612&w=0&k=20&c=dYzovkqwc-ADwIYjH7fd6MdgaJi0UslcMC3ycK9dmSg="
+               *ngIf="!organization?.logo"
                alt="" class="h-12 w-12 rounded-full border-2 border-slate-50">
+
+          <img class="w-12 h-12 object-cover border rounded-full" [src]="organization?.logo" *ngIf="organization?.logo"
+               [alt]="organization?.name">
         </span>
         <div class="p-2 flex align-center flex-col">
           <div class="text-slate-50 font-semibold flex items-center">{{ user?.name }}

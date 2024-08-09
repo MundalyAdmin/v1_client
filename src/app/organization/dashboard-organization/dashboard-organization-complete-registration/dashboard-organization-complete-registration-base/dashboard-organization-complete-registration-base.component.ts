@@ -26,6 +26,7 @@ export abstract class OrganizationDashboardCompleteRegistrationBaseComponent
   }
 
   override ngOnInit(): void {
+    super.ngOnInit();
     this.subscriptions['form'] =
       this.organizationRegistrationService.form$.subscribe((form) => {
         this.form = form.controls[this.formName] as FormGroup;

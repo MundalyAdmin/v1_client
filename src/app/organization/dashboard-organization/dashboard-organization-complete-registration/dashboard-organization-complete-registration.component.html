@@ -83,7 +83,8 @@
           </h4>
         </div>
 
-        <app-dashboard-organization-complete-registration-info (previous)="showStep('updatePasswordForm')"
+        <app-dashboard-organization-complete-registration-info (logoUpdated)="onLogoUpdated($event)"
+                                                               (previous)="showStep('updatePasswordForm')"
                                                                (submitted)="showStep('organizationDetailsForm')"></app-dashboard-organization-complete-registration-info>
       </ng-container>
 

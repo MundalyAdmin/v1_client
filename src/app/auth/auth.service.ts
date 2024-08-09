@@ -231,7 +231,7 @@ export class AuthService extends BaseService<any> {
       );
   }
 
-  completeOrganizationRegistration(data: any) {
+  completeOrganizationRegistration(data: FormData) {
     return this.factory
       .post(`auth/complete-registration/organization`, data)
       .pipe(

@@ -240,13 +240,17 @@ export class BaseCreateComponent<T>
     return control?.touched && control.valid;
   }
 
-  fillFormData(object: any, prefix?: string) {
-    Object.keys(object).forEach((key) => {
-      this.formData.append(
-        prefix ? prefix + '[' + key + ']' : key,
-        object[key]
-      );
-    });
+  fillFormData(data: Record<string, any>, prefix?: string): void {
+    for (const key in data) {
+      const formDataKey = prefix ? `${prefix}[${key}]` : key;
+      if (data[key] instanceof Array) {
+        data[key].forEach((value: any, index: number) => {
+          this.formData.append(`${formDataKey}[${index}]`, value);
+        });
+        continue;
+      }
+      this.formData.append(formDataKey, data[key]);
+    }
   }
 
   // TODO: Gérer la validation des images

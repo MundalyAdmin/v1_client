@@ -1,16 +1,16 @@
-<form class="space-y-4 md:space-y-6 relative min-h-[400px] " [formGroup]="form" (submit)="submit()">
+<form class="space-y-4 md:space-y-6 relative min-h-[480px] " [formGroup]="form" (submit)="submit()">
   <!-- Profile picture and cover -->
-  <!-- <div class="w-full relative mb-10 hidden"> -->
+  <div class="w-full min-h-[130px] flex-col flex items-center justify-center relative">
 
-  <!-- Cover image -->
-  <!-- <div class="h-[100px] rounded-xl group cover-image relative bg-slate-100"> -->
+    <!-- Cover image -->
+    <!-- <div class="h-[100px] rounded-xl group cover-image relative bg-slate-100"> -->
 
-  <!-- cover image display -->
-  <!-- <img [src]="coverLiveUrl" alt="" *ngIf="coverLiveUrl"
+    <!-- cover image display -->
+    <!-- <img [src]="coverLiveUrl" alt="" *ngIf="coverLiveUrl"
            class="w-full  peer object-cover h-full"> -->
 
-  <!-- Overlay menu -->
-  <!-- <span
+    <!-- Overlay menu -->
+    <!-- <span
             class=" flex absolute pr-3 pb-3 top-0 left-0 pt-2 justify-end items-end h-full w-full " *ngIf="!coverLiveUrl">
 
 
@@ -35,49 +35,53 @@
 
 
 
-  <!-- File Input -->
-  <!-- <input type="file" class="hidden" accept="image/*" (change)="onFileChanged($event, 'cover')" #coverPage>
+    <!-- File Input -->
+    <!-- <input type="file" class="hidden" accept="image/*" (change)="onFileChanged($event, 'cover')" #coverPage>
     </div> -->
 
-  <!-- Profile image -->
-  <!-- <div
-         class="rounded-full bg-slate-100  cursor-pointer  overflow-hidden group  border-4 h-[120px] w-[120px] left-[45%] absolute bottom-[-55px]"
-         [ngClass]="{ 'border-white': !logoLiveUrl, 'border-slate-300': logoLiveUrl }"> -->
-  <!-- cover image display -->
-  <!-- <img [src]="logoLiveUrl" alt="" *ngIf="logoLiveUrl"
-           class="w-full  peer object-cover h-full"> -->
+    <!-- Profile image -->
+    <div
+         class="rounded-full bg-slate-100  cursor-pointer  overflow-hidden group  border-4 h-[120px] w-[120px] "
+         [ngClass]="{ 'border-white': !logoLiveUrl, 'border-slate-300': logoLiveUrl }">
+      <!-- cover image display -->
+      <img [src]="logoLiveUrl" alt="" *ngIf="logoLiveUrl"
+           class="w-full  peer object-cover h-full">
 
-  <!-- Camera icon-->
-  <!-- <span
-            class=" flex    py-3 justify-center items-center h-full w-full " *ngIf="!logoLiveUrl">
 
-        <span class=" flex items-center justify-center cursor-pointer p-2 h-7 w-7 "
-              (click)="organizationLogo.click()">
+
+      <!-- Camera icon-->
+      <div
+           class=" flex    py-3 justify-center items-center h-full w-full " *ngIf="!logoLiveUrl" (click)="organizationLogo.click()">
+
+        <span class=" flex items-center justify-center cursor-pointer p-2 h-7 w-7 ">
           <i class="mdi mdi-camera  text-primary"></i>
         </span>
-      </span> -->
+      </div>
 
-  <!-- Overlay menu -->
-  <!-- <span
+      <!-- Overlay menu -->
+      <span
             class=" group-hover:flex absolute top-0 left-0 hidden py-3 justify-center items-center h-full w-full bg-slate-700/50 gap-4"
             *ngIf="logoLiveUrl">
 
         <span class=" flex items-center justify-center cursor-pointer p-2 h-7 w-7 bg-secondary rounded-full"
-              (click)="deleteImage('logo')">
+              (click)="deleteImage('file_logo')">
           <i class="mdi mdi-delete  text-primary"></i>
         </span>
 
 
 
-      </span> -->
+      </span>
 
 
 
 
-  <!-- File Input -->
-  <!-- <input type="file" class="hidden" accept="image/*" (change)="onFileChanged($event, 'logo')" #organizationLogo>
+      <!-- File Input -->
+      <input type="file" class="hidden" accept="image/*" (change)="onFileChanged($event, 'file_logo')" #organizationLogo>
     </div>
-  </div> -->
+    <h1 class=" font-semibold  leading-tight tracking-tight text-gray-900 mb-2 text-xl dark:text-white">
+      {{ currentLoggedInOrganization?.name }}
+    </h1>
+  </div>
 
 
 
@@ -96,7 +100,7 @@
       <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Industry</label>
 
       <p-multiSelect [options]="sectorOrganizations"
-                     formControlName="sectors_organization"
+                     formControlName="sector_organizations"
                      placeholder="Select an industry"
                      optionLabel="name"
                      display="chip"
