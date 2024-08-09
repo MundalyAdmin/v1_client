@@ -233,9 +233,9 @@ export abstract class BaseService<T = any> {
   errorResponseHandler(error: CustomHttpErrorResponse) {
     const errorMessage = error?.error?.message;
 
-    if (error.status == 404) {
-      this.helper.navigation.navigate(['not-found']);
-    }
+    // if (error.status == 404) {
+    //   this.helper.navigation.navigate(['not-found']);
+    // }
 
     if (error.status === 400) {
       (error.error.message as string[]).forEach((element) => {

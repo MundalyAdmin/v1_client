@@ -15,12 +15,32 @@ export class ImpactPartnerListComponent
   implements OnInit
 {
   selectedImpactInitiatives: (ImpactInitiative | null)[] = [];
+
   constructor(public impactPartnerService: ImpactPartnerService) {
     super();
   }
 
   override ngOnInit(): void {
     this.getByFunderId(this.authService.organization?.id!);
+  }
+
+  deleteImpactPartner(impactPartner: ImpactPartner) {
+    this.helper.notification.confirm(
+      'Are you sure you want to delete this impact partner?',
+      "You won't be able to revert this!",
+      () => {
+        this.loading = true;
+        this.impactPartnerService.delete(impactPartner.id!).subscribe({
+          next: () => {
+            this.loading = false;
+            this.helper.notification.alertSuccess();
+          },
+          error: () => {
+            this.loading = false;
+          },
+        });
+      }
+    );
   }
 
   getByFunderId(funderId: number) {
