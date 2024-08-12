@@ -29,7 +29,7 @@
         <div class="w-36 h-36 md:w-56 shrink-0 md:h-56 md:mt-[-100px] mt-[-75px] z-99 bg-slate-200  overflow-hidden border-2 border-black border-opacity-10 flex items-center justify-center rounded-full"
              *ngIf="!single.logo">
           <div>
-            <i class="mdi text-[75px] text-slate-800  font-semibold mdi-domain"></i>
+            <i class="mdi md:text-[75px] text-[60px] text-slate-800  font-semibold mdi-domain"></i>
           </div>
         </div>
         <!-- Seal -->
@@ -40,17 +40,17 @@
 
 
       <!--  -->
-      <div class="flex-col gap-2 w-full inline-flex ">
+      <div class="flex-col md:gap-2  gap-5 w-full inline-flex ">
         <!-- Basic information -->
         <div class="justify-between items-center  w-full  flex flex-col md:flex-row  md:inline-flex">
-          <div class=" items-center md:gap-5 gap-2 flex">
+          <div class=" items-center  gap-5 flex">
             <!-- Title -->
-            <div class="text-violet-950 md:text-4xl text-2xl font-bold ">{{ single.name }}</div>
+            <div class="text-violet-950  md:text-4xl text-xl font-bold ">{{ single.name }}</div>
 
             <!-- Claiming badge -->
-            <div class="text-violet-950 text-lg " *ngIf="single.profile_status_organization_id == 2">Claimed <span><i
+            <div class="text-violet-950 text-xs md:text-lg " *ngIf="single.profile_status_organization_id == 2">Claimed <span><i
                    class="mdi mdi-check-decagram"></i></span></div>
-            <div class="text-violet-950 text-lg " *ngIf="single.profile_status_organization_id == 1">Unclaimed <span><i
+            <div class="text-violet-950 text-xs md:text-lg " *ngIf="single.profile_status_organization_id == 1">Unclaimed <span><i
                    class="mdi mdi-close-box"></i></span></div>
 
           </div>
@@ -60,40 +60,43 @@
             <button type="button"
                     *ngIf="!single?.verification_status_from_current_organization"
                     (click)="showDueDiligenceModal = true"
-                    class="px-7 py-3 font-semibold border border-primary  rounded-full text-center text-white bg-primary  hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-dark">
+                    class="px-3 md:px-7 py-2 md:py-4 text-sm md:text-base font-semibold border border-primary  rounded-full text-center text-white bg-primary  hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-dark">
               Request Insights
             </button>
 
             <button type="button"
                     *ngIf="single?.verification_status_from_current_organization && (single?.verification_status_from_current_organization?.id !== StatusImpactVerificationEnum.ABORTED || single?.verification_status_from_current_organization?.id !== StatusImpactVerificationEnum.SUSPENDED)"
                     [disabled]="true"
-                    class="px-7 py-3 font-semibold   rounded-full text-center text-gray-900  bg-slate-400   focus:ring-4 focus:outline-none focus:ring-primary-dark">
+                    class="px-3 md:px-7 py-2 md:py-3 text-sm md:text-base font-semibold   rounded-full text-center text-gray-900  bg-slate-400   focus:ring-4 focus:outline-none focus:ring-primary-dark">
               Insights Requested
             </button>
 
             <a [href]="single.website" target="_blank" type="button"
-               class="px-7 py-3 font-semibold border border-primary  rounded-full text-center text-primary bg-secondary  hover:bg-secondary-dark focus:ring-4 focus:outline-none focus:ring-primary-dark">Visit
+               class="px-3 md:px-7 py-2 md:py-3 text-sm md:text-base font-semibold border border-primary  rounded-full text-center text-primary bg-secondary  hover:bg-secondary-dark focus:ring-4 focus:outline-none focus:ring-primary-dark">Visit
               website</a>
           </div>
 
         </div>
 
         <!-- Location and badges -->
-        <div class="justify-start items-center md:gap-6 gap-2 flex flex-col md:flex-row  md:inline-flex">
+        <div class="justify-center md:justify-start items-center md:gap-6 gap-2 flex flex-row  md:inline-flex">
           <!-- Location -->
-          <div class="  text-slate-500 text-base font-normal">
+          <div class="  text-slate-500 text-xs md:text-base font-normal">
             <span class=""><i class="mdi mdi-map-marker"></i></span> {{ single.country }}
           </div>
 
-          <div class="flex gap-5 md">
+          <div class="flex md:gap-5 gap-2 md">
             <ng-container *ngIf="single.type_organization_id === 2">
               <div
-                   class="bg-white text-slate-700 border text-base font-medium me-2 px-1 rounded  border-green-400">Facilitator <span
+                   class="bg-white text-slate-700 border text-xs md:text-base  font-medium md:me-2  px-1 rounded  border-green-400">Facilitator
+                <span
                       class="ms-2"><i
-                     class="mdi mdi-check"></i></span></div>
+                     class="mdi mdi-check"></i></span>
+              </div>
 
               <div
-                   class="bg-white text-slate-700 border text-base font-medium me-2 px-1 rounded  border-red-400"> Funder <span class="ms-2"><i
+                   class="bg-white text-slate-700 border text-xs md:text-base  font-medium  px-1 rounded  border-red-400"> Funder <span
+                      class="ms-2"><i
                      class="mdi mdi-close"></i></span></div>
             </ng-container>
 
@@ -115,7 +118,7 @@
 
         </div>
 
-        <div class=" text-slate-600 text-base md:w-3/4 font-normal  " [innerHTML]="single.about"></div>
+        <div class=" text-slate-600 text-center md:text-start text-sm md:text-base md:w-3/4 font-normal  " [innerHTML]="single.about"></div>
       </div>
     </div>
   </div>
@@ -128,12 +131,12 @@
 </ng-container>
 
 
-<p-dialog header="Insights Request" [(visible)]="showDueDiligenceModal" [modal]="true" [style]="{ width: '50vw', height: 'fit' }"
+<p-dialog header="Insights Request" [(visible)]="showDueDiligenceModal" [modal]="true" styleClass="md:w-[50vw] w-[95vw]"
           [draggable]="false"
           [resizable]="false">
 
   <ng-template pTemplate="header">
-    <div class=" text-primary  w-full text-2xl font-semibold">
+    <div class=" text-primary  w-full md:text-2xl text-lg font-semibold">
       <span class="mdi mdi-file-chart-check"></span>Insights Request
     </div>
   </ng-template>

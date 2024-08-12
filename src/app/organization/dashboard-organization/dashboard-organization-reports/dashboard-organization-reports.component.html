@@ -1,8 +1,8 @@
 <ul class="flex flex-wrap -mb-px">
   <li class="me-2">
-    <a [routerLink]="['']"
+    <a [routerLink]="['./']"
        routerLinkActive="text-primary border-primary font-semibold"
-       class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-base">
+       class="inline-block  md:p-4 p-2 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-sm md:text-base">
       Reports with Actionnable Insights
     </a>
   </li>
@@ -14,7 +14,7 @@
 
 </ul>
 
-<div class="bg-gray-100 p-10"
+<div class="bg-gray-100 p-5  px-2 md:p-10"
      *ngIf="organizationService.singleData?.verification_status_from_current_organization?.id === StatusImpactVerificationEnum.LAUNCHED">
 
 
@@ -36,7 +36,7 @@
           </svg>
         </div>
         <input type="text" id="table-search"
-               class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               class="block p-2 ps-10 text-xs md:text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                placeholder="Search for items">
       </div>
 
@@ -47,20 +47,20 @@
     <app-loading *ngIf="loading"></app-loading>
 
     <!-- Table -->
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" *ngIf="!loading">
+    <table class="w-full md:text-sm text-[10px] text-left rtl:text-right text-gray-500 dark:text-gray-400" *ngIf="!loading">
       <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr>
 
-          <th scope="col" class="px-6 py-3">
+          <th scope="col" class="w-3/4  md:w-auto px-3 md:px-6 py-1.5 md:py-3">
             Reports
           </th>
-          <th scope="col" class="px-6 py-3">
+          <th scope="col" class="w-1/5 md:w-auto hidden md:table-cell  px-3 md:px-6 py-1.5 md:py-3">
             Type
           </th>
-          <th scope="col" class="px-6 py-3">
+          <th scope="col" class="w-1/5 md:w-auto  px-3 md:px-6 py-1.5 md:py-3">
             Status
           </th>
-          <th scope="col" class="px-6 py-3">
+          <th scope="col" class="w-1/5 md:w-auto  px-3 md:px-6 py-1.5 md:py-3">
             Action
           </th>
         </tr>
@@ -69,25 +69,27 @@
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
             *ngFor="let report of organizationReportService.data; let i = index">
 
-          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          <th scope="row" class="md:px-6 w-3/5 md:w-auto px-3 md:py-4 py-2 font-medium text-gray-900 wrap dark:text-white">
             {{ report.name }}
           </th>
-          <td class="px-6 py-4">
+          <td class="md:px-6 px-3 md:py-4 py-2 hidden md:table-cell">
             {{ getMinifiedTypeLabel(report.type_organization_report.name) }}
           </td>
-          <td class="px-6 py-4">
+          <td class="md:px-6 px-3 md:py-4 py-2">
             <i class="mdi mdi-circle text-emerald-600"></i> Done
           </td>
 
-          <td class="px-6 py-4">
+          <td class="md:px-6 px-3 md:py-4 py-2 text-sm">
             <button (click)="selectedReportIndex = i; showReportDetailsModal = true"
                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline"><i
                  class="mdi mdi-information-outline"></i>
-              Details</button>
+              <span class="hidden md:inline">Details</span></button>
 
             <a [href]="report.report_url" [download]="report.name" target="_blank"
                class="font-medium ms-3 text-slate-600 dark:text-blue-500 hover:underline"><i
-                 class="mdi mdi-download"></i> Download</a>
+                 class="mdi mdi-download"></i>
+              <span class="hidden md:inline">Download</span>
+            </a>
           </td>
         </tr>
 

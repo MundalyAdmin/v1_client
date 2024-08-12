@@ -1,27 +1,27 @@
 <ng-container *ngIf="organizationService.singleData?.verification_status_from_current_organization?.id === StatusImpactVerificationEnum.LAUNCHED">
-  <div class="p-5" *ngIf="!loading && impactFidelityService.score">
-    <div class="w-full flex justify-between bg-white shadow dark:bg-gray-800 p-4 md:p-6">
-      <div class="text-lg font-bold">Verify Metrics</div>
+  <div class="md:p-5 p-2" *ngIf="!loading && impactFidelityService.score">
+    <div class="w-full flex justify-between bg-white shadow dark:bg-gray-800 p-3 md:p-3 md:p-6">
+      <div class="md:text-lg etxt-sm font-bold">Verify Metrics</div>
 
     </div>
 
     <div class="relative overflow-x-auto shadow-md ">
-      <table class="w-full text-base text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <table class="w-full md:text-base text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class=" text-gray-400 capitalize bg-slate-100  dark:bg-gray-700 dark:text-gray-400">
           <tr>
-            <th scope="col" class="px-6 py-6">
+            <th scope="col" class="md:px-6 md:py-6 p-3">
               #
             </th>
-            <th scope="col" class="px-6 py-6 ">
+            <th scope="col" class="md:px-6 md:py-6 p-3 ">
               Category
             </th>
-            <th scope="col" class="px-6 py-6">
+            <th scope="col" class="md:px-6 md:py-6 p-3">
               Key
             </th>
-            <th scope="col" class="px-6 py-6">
+            <th scope="col" class="md:px-6 md:py-6 p-3">
               Score
             </th>
-            <th scope="col" class="px-6 py-6">
+            <th scope="col" class="md:px-6 md:py-6 p-3">
               Action
             </th>
           </tr>
@@ -31,22 +31,22 @@
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
 
             <!-- Number -->
-            <td class="p-6">
+            <td class="p-3 md:p-6">
               1
             </td>
 
             <!-- Name and Photo -->
-            <th scope="row p-6">
+            <th scope="row p-3 md:p-6">
               Acceptability
             </th>
 
             <!-- Key -->
-            <td class="p-6">
+            <td class="p-3 md:p-6">
               {{ scaleService.getScoreKey(impactFidelityService.score.acceptability! ) }}
             </td>
 
             <!-- Score -->
-            <td class="p-6">
+            <td class="p-3 md:p-6">
               <div class="flex items-center font-semibold">
                 {{ impactFidelityService.score.acceptability}}
               </div>
@@ -54,8 +54,8 @@
 
 
 
-            <td class="p-6">
-              <a href="#" class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
+            <td class="p-3 md:p-6">
+              <a href="#" class="font-medium text-slate-400  text-sm md:text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                    class="mdi mdi-information"></i></a>
 
             </td>
@@ -66,22 +66,22 @@
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
 
             <!-- Number -->
-            <td class="p-6">
+            <td class="p-3 md:p-6">
               2
             </td>
 
             <!-- Name and Photo -->
-            <th scope="row p-6">
+            <th scope="row p-3 md:p-6">
               Appropriateness
             </th>
 
             <!-- Key -->
-            <td class="p-6">
+            <td class="p-3 md:p-6">
               {{ scaleService.getScoreKey(impactFidelityService.score.appropriateness! ) }}
             </td>
 
             <!-- Score -->
-            <td class="p-6">
+            <td class="p-3 md:p-6">
               <div class="flex items-center font-semibold">
                 {{ impactFidelityService.score.appropriateness}}
               </div>
@@ -89,8 +89,8 @@
 
 
 
-            <td class="p-6">
-              <a href="#" class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
+            <td class="p-3 md:p-6">
+              <a href="#" class="font-medium text-slate-400  text-sm md:text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                    class="mdi mdi-information"></i></a>
 
             </td>
@@ -102,22 +102,22 @@
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
 
             <!-- Number -->
-            <td class="p-6">
+            <td class="p-3 md:p-6">
               3
             </td>
 
             <!-- Name and Photo -->
-            <th scope="row p-6">
+            <th scope="row p-3 md:p-6">
               Feasibility
             </th>
 
             <!-- Key -->
-            <td class="p-6">
+            <td class="p-3 md:p-6">
               {{ scaleService.getScoreKey(impactFidelityService.score.feasibility! ) }}
             </td>
 
             <!-- Score -->
-            <td class="p-6">
+            <td class="p-3 md:p-6">
               <div class="flex items-center font-semibold">
                 {{ impactFidelityService.score.feasibility}}
               </div>
@@ -125,8 +125,8 @@
 
 
 
-            <td class="p-6">
-              <a href="#" class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
+            <td class="p-3 md:p-6">
+              <a href="#" class="font-medium text-slate-400  text-sm md:text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                    class="mdi mdi-information"></i></a>
 
             </td>
@@ -137,22 +137,22 @@
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
 
             <!-- Number -->
-            <td class="p-6">
+            <td class="p-3 md:p-6">
               4
             </td>
 
             <!-- Name and Photo -->
-            <th scope="row p-6">
+            <th scope="row p-3 md:p-6">
               Comprehensiveness
             </th>
 
             <!-- Key -->
-            <td class="p-6">
+            <td class="p-3 md:p-6">
               {{ scaleService.getScoreKey(impactFidelityService.score.comprehensiveness! ) }}
             </td>
 
             <!-- Score -->
-            <td class="p-6">
+            <td class="p-3 md:p-6">
               <div class="flex items-center font-semibold">
                 {{ impactFidelityService.score.comprehensiveness}}
               </div>
@@ -160,8 +160,8 @@
 
 
 
-            <td class="p-6">
-              <a href="#" class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
+            <td class="p-3 md:p-6">
+              <a href="#" class="font-medium text-slate-400  text-sm md:text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                    class="mdi mdi-information"></i></a>
 
             </td>
@@ -172,22 +172,22 @@
           <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
 
             <!-- Number -->
-            <td class="p-6">
+            <td class="p-3 md:p-6">
               5
             </td>
 
             <!-- Name and Photo -->
-            <th scope="row p-6">
+            <th scope="row p-3 md:p-6">
               Quality of delivery
             </th>
 
             <!-- Key -->
-            <td class="p-6">
+            <td class="p-3 md:p-6">
               {{ scaleService.getScoreKey(impactFidelityService.score.quality_of_delivery! ) }}
             </td>
 
             <!-- Score -->
-            <td class="p-6">
+            <td class="p-3 md:p-6">
               <div class="flex items-center font-semibold">
                 {{ impactFidelityService.score.quality_of_delivery}}
               </div>
@@ -195,8 +195,8 @@
 
 
 
-            <td class="p-6">
-              <a href="#" class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
+            <td class="p-3 md:p-6">
+              <a href="#" class="font-medium text-slate-400  text-sm md:text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                    class="mdi mdi-information"></i></a>
 
             </td>
@@ -207,7 +207,7 @@
         </tbody>
       </table>
 
-      <div class="text-primary md:text-lg text-sm bg-primary/5 p-2">
+      <div class="text-primary md:text-lg text-xs bg-primary/5 p-2">
         <span class="me-2">
           <i class="mdi mdi-lightbulb-on"></i>
           Insight:

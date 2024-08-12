@@ -1,27 +1,28 @@
-<div class="p-5" *ngIf="organizationService.singleData?.verification_status_from_current_organization?.id === StatusImpactVerificationEnum.LAUNCHED">
+<div class="md:p-5 p-2"
+     *ngIf="organizationService.singleData?.verification_status_from_current_organization?.id === StatusImpactVerificationEnum.LAUNCHED">
 
-  <div class="w-full flex justify-between bg-white shadow dark:bg-gray-800 p-4 md:p-6">
-    <div class="text-lg font-bold">Forecast</div>
+  <div class="w-full flex justify-between bg-white shadow dark:bg-gray-800 p-3 md:p-6">
+    <div class="md:text-lg text-sm font-bold">Forecast</div>
 
   </div>
 
   <div class="relative overflow-x-auto shadow-md " *ngIf="!loading && scaleService.communityTrustScore">
-    <table class="w-full text-base text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <table class="w-full md:text-base text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400">
       <thead class=" text-gray-400 capitalize bg-slate-100  dark:bg-gray-700 dark:text-gray-400">
         <tr>
-          <th scope="col" class="px-6 py-6">
+          <th scope="col" class="md:px-6 md:py-6 p-3">
             #
           </th>
-          <th scope="col" class="px-6 py-6 ">
+          <th scope="col" class="md:px-6 md:py-6 p-3 ">
             Category
           </th>
-          <th scope="col" class="px-6 py-6">
+          <th scope="col" class="md:px-6 md:py-6 p-3">
             Key
           </th>
-          <th scope="col" class="px-6 py-6">
+          <th scope="col" class="md:px-6 md:py-6 p-3">
             Score
           </th>
-          <th scope="col" class="px-6 py-6">
+          <th scope="col" class="md:px-6 md:py-6 p-3">
             Action
           </th>
         </tr>
@@ -31,12 +32,12 @@
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
 
           <!-- Number -->
-          <td class="p-6">
+          <td class="p-3 md:p-6">
             1
           </td>
 
           <!-- Name and Photo -->
-          <th scope="row p-6">
+          <th scope="row p-3 md:p-6">
             <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT">Impact
               Fidelity</span>
             <span
@@ -46,12 +47,12 @@
           </th>
 
           <!-- Key -->
-          <td class="p-6">
+          <td class="p-3 md:p-6">
             {{ scaleService.getScoreKey(scaleService.communityTrustScore.impact_fidelity_score!) }}
           </td>
 
           <!-- Score -->
-          <td class="p-6">
+          <td class="p-3 md:p-6">
             <div class="flex items-center font-semibold">
               {{ scaleService.communityTrustScore.impact_fidelity_score}}
             </div>
@@ -59,14 +60,15 @@
 
 
 
-          <td class="p-6">
+          <td class="p-3 md:p-6">
             <button (click)="showImpactFidelityInfo = true"
                     class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                  class="mdi mdi-information"></i></button>
 
-            <p-dialog header="Impact Fidelity" [(visible)]="showImpactFidelityInfo" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false"
+            <p-dialog header="Impact Fidelity" [(visible)]="showImpactFidelityInfo" [modal]="true" styleClass="w-[95vw] md:w-[50vw]"
+                      [draggable]="false"
                       [resizable]="false">
-              <p class="m-0">
+              <p class="m-0 md:text-base text-sm">
                 The Impact Fidelity Score measures how accurately your actions align with your stated goals. It assesses your acceptability,
                 feasibility,
                 comprehensiveness of your intervention, its appropriateness and quality of delivery.
@@ -81,12 +83,12 @@
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
 
           <!-- Number -->
-          <td class="p-6">
+          <td class="p-3 md:p-6">
             2
           </td>
 
           <!-- Name and Photo -->
-          <th scope="row p-6">
+          <th scope="row p-3 md:p-6">
             <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT">Community
               Reputation</span>
             <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION">Social
@@ -94,12 +96,12 @@
           </th>
 
           <!-- Key -->
-          <td class="p-6">
+          <td class="p-3 md:p-6">
             {{ scaleService.getScoreKey(scaleService.communityTrustScore.community_perception_score!) }}
           </td>
 
           <!-- Score -->
-          <td class="p-6">
+          <td class="p-3 md:p-6">
             <div class="flex items-center font-semibold">
               {{ scaleService.communityTrustScore.community_perception_score}}
             </div>
@@ -107,15 +109,15 @@
 
 
 
-          <td class="p-6">
+          <td class="p-3 md:p-6">
             <button (click)="showCommunityReputationInfo = true"
                     class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                  class="mdi mdi-information"></i></button>
 
-            <p-dialog header="Community Reputation" [(visible)]="showCommunityReputationInfo" [modal]="true" [style]="{ width: '50vw' }"
+            <p-dialog header="Community Reputation" [(visible)]="showCommunityReputationInfo" [modal]="true" styleClass="w-[95vw] md:w-[50vw]"
                       [draggable]="false"
                       [resizable]="false">
-              <p class="m-0">
+              <p class="m-0 md:text-base text-sm">
                 Your Community Reputation score provides insights into how your company is perceived
                 by the communities in which it operates. Knowing your community reputation score helps your company build credibility, trust, and
                 positive
@@ -132,12 +134,12 @@
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
 
           <!-- Number -->
-          <td class="p-6">
+          <td class="p-3 md:p-6">
             3
           </td>
 
           <!-- Name and Photo -->
-          <th scope="row p-6">
+          <th scope="row p-3 md:p-6">
             <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT">Facilitation
               Strategy</span>
             <span
@@ -146,12 +148,12 @@
           </th>
 
           <!-- Key -->
-          <td class="p-6">
+          <td class="p-3 md:p-6">
             {{ scaleService.getScoreKey(scaleService.communityTrustScore.facilitation_strategy_score!) }}
           </td>
 
           <!-- Score -->
-          <td class="p-6">
+          <td class="p-3 md:p-6">
             <div class="flex items-center font-semibold">
               {{ scaleService.communityTrustScore.facilitation_strategy_score}}
             </div>
@@ -159,15 +161,15 @@
 
 
 
-          <td class="p-6">
+          <td class="p-3 md:p-6">
             <button (click)="showFacilitationStrategyInfo = true"
                     class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                  class="mdi mdi-information"></i></button>
 
-            <p-dialog header="Facilitation Strategy" [(visible)]="showFacilitationStrategyInfo" [modal]="true" [style]="{ width: '50vw' }"
+            <p-dialog header="Facilitation Strategy" [(visible)]="showFacilitationStrategyInfo" [modal]="true" styleClass="w-[95vw] md:w-[50vw]"
                       [draggable]="false"
                       [resizable]="false">
-              <p class="m-0">
+              <p class="m-0 md:text-base text-sm">
                 Your facilitation score is calculated using our proprietary, research-backed facilitation
                 assessment scale. The facilitation score serves as a valuable tool for organizations to assess and improve their facilitation
                 practices, enhance
@@ -186,23 +188,23 @@
         <tr class="bg-primary/60 text-white border-b dark:bg-gray-800 dark:border-gray-700 pointer  dark:hover:bg-gray-600">
 
           <!-- Number -->
-          <td class="p-6">
+          <td class="p-3 md:p-6">
 
           </td>
 
           <!-- Name and Photo -->
-          <th scope="row p-6">
+          <th scope="row p-3 md:p-6">
             Community Trust Score
           </th>
 
           <!-- Key -->
-          <td class="p-6">
+          <td class="p-3 md:p-6">
             {{ scaleService.getScoreKey(scaleService.communityTrustScore.community_trust_score!) }}
 
           </td>
 
           <!-- Score -->
-          <td class="p-6">
+          <td class="p-3 md:p-6">
             <div class="flex items-center font-semibold">
               {{ scaleService.communityTrustScore.community_trust_score}}
             </div>
@@ -210,15 +212,15 @@
 
 
 
-          <td class="p-6">
+          <td class="p-3 md:p-6">
             <button (click)="showCommunityTrustScoreInfo = true"
                     class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                  class="mdi mdi-information"></i></button>
 
-            <p-dialog header="Community Trust Score" [(visible)]="showCommunityTrustScoreInfo" [modal]="true" [style]="{ width: '50vw' }"
+            <p-dialog header="Community Trust Score" [(visible)]="showCommunityTrustScoreInfo" [modal]="true" styleClass="w-[95vw] md:w-[50vw]"
                       [draggable]="false"
                       [resizable]="false">
-              <p class="m-0">
+              <p class="m-0 md:text-base text-sm">
                 The Community Impact Verification Score is a combined measure of impact fidelity, community reputation, and facilitation assessment
                 scores.
               </p>
@@ -228,7 +230,7 @@
         </tr>
       </tbody>
     </table>
-    <div class="text-primary md:text-lg text-sm  bg-primary/5 p-5">
+    <div class="text-primary md:text-lg text-xs  bg-primary/5 p-5">
       <span class="me-2">
         <i class="mdi mdi-lightbulb-on"></i>
         Recommendation:

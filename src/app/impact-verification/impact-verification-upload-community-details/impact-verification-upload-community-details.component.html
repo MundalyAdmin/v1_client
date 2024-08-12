@@ -1,6 +1,6 @@
 <div class="bg-white rounded-lg w-full">
 
-    <p class="text-sm text-gray-600 mb-4">
+    <p class="md:text-sm text-xs text-gray-600 mb-4">
         Please upload a CSV file containing your community members' information. The file should include fields for location, phone
         number,
         email (optional), age (optional), and gender (optional).
@@ -20,12 +20,12 @@
                     </p>
                     <p class="mt-1 text-xs text-gray-500">Or</p>
                     <button (click)="file.click()"
-                            class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                            class="mt-2 md:px-4 md:py-2 px-2 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
                         Select file
                     </button>
                 </ng-container>
 
-                <p class="mb-2 text-lg text-gray-500 dark:text-gray-400" *ngIf="csvFile"><span class="font-semibold"> <span
+                <p class="mb-2 nd:text-lg text-sm text-gray-500 dark:text-gray-400" *ngIf="csvFile"><span class="font-semibold"> <span
                               class="mdi mdi-file-table"></span> {{csvFile.name }}</span> </p>
             </div>
 
@@ -45,35 +45,39 @@
         <p class="mt-1 text-sm text-gray-600">Drag and drop your CSV file here to upload</p>
         <p class="mt-1 text-xs text-gray-500">Or</p>
         <button
-                class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                class="mt-2 md:px-4 md:py-2 px-2 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
             Select file
         </button>
     </div> -->
 
 
     <div class="mb-4" *ngIf="communityMembers.length">
-        <h3 class="text-lg font-semibold mb-2 mt-4">Preview: {{ communityMembers.length }} entries</h3>
-        <p-scrollPanel [style]="{ width: '100%', height: '300px', border: '1px solid #dee2e6' }">
+        <h3 class="md:text-lg text-sm font-semibold mb-2 mt-4">Preview: {{ communityMembers.length }} entries</h3>
+        <p-scrollPanel [style]="{ width: '100%', border: '1px solid #dee2e6' }" styleClass="md:h-[300px] h-[200px]">
             <div class="mb-4">
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y  divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone Number</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Age</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Gender</th>
+                                <th class="md:px-6 px-3 md:py-3 py-1.5 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location
+                                </th>
+                                <th class="md:px-6 px-3 md:py-3 py-1.5 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone
+                                    Number</th>
+                                <th class="md:px-6 px-3 md:py-3 py-1.5 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email
+                                </th>
+                                <th class="md:px-6 px-3 md:py-3 py-1.5 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Age</th>
+                                <th class="md:px-6 px-3 md:py-3 py-1.5 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Gender
+                                </th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             <!-- Example rows, replace with dynamic data -->
                             <tr *ngFor="let item of communityMembers">
-                                <td class="px-6 py-4 whitespace-nowrap text-xs text-gray-500">{{ item.location }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-xs text-gray-500">{{ item.phone_number }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-xs text-gray-500">{{ item.email }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-xs text-gray-500">{{ item.age }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-xs text-gray-500">{{ item.gender }}</td>
+                                <td class="md:px-6 px-3 md:py-4 py-2 whitespace-nowrap text-xs text-gray-500">{{ item.location }}</td>
+                                <td class="md:px-6 px-3 md:py-4 py-2 whitespace-nowrap text-xs text-gray-500">{{ item.phone_number }}</td>
+                                <td class="md:px-6 px-3 md:py-4 py-2 whitespace-nowrap text-xs text-gray-500">{{ item.email }}</td>
+                                <td class="md:px-6 px-3 md:py-4 py-2 whitespace-nowrap text-xs text-gray-500">{{ item.age }}</td>
+                                <td class="md:px-6 px-3 md:py-4 py-2 whitespace-nowrap text-xs text-gray-500">{{ item.gender }}</td>
                             </tr>
 
                             <!-- Add more rows as needed -->
@@ -88,11 +92,11 @@
 
     <div class="flex justify-between items-center">
         <a href="https://res.cloudinary.com/mundaly/raw/upload/sample-community-members-details" download
-           class="text-sm text-blue-500 hover:text-blue-700">Download sample CSV</a>
+           class="text-xs md:text-sm text-blue-500 hover:text-blue-700">Download sample CSV</a>
         <div>
-            <button class="px-4 py-2 text-sm text-gray-600 hover:text-gray-800" (click)="closeModal.emit()">Cancel</button>
+            <button class="md:px-4 md:py-2 px-2 py-1 text-sm text-gray-600 hover:text-gray-800" (click)="closeModal.emit()">Cancel</button>
             <button (click)="submit()"
-                    class="ml-2 px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50">
+                    class="ml-2 md:px-4 md:py-2 px-2 py-1 text-sm md:text-base bg-black text-white rounded-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50">
                 Submit <app-loading *ngIf="loading"></app-loading>
             </button>
         </div>

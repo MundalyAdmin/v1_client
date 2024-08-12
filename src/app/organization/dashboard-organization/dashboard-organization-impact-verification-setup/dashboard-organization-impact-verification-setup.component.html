@@ -7,7 +7,7 @@
             <div
                  class="flex justify-center items-center text-xs h-[20px] w-[20px] text-center  rounded-full border border-black"
                  routerLinkActive="bg-black text-white">1</div>
-            <a routerLinkActive="font-bold">Setup</a>
+            <a class="md:text-base text-sm" routerLinkActive="font-bold">Setup</a>
             <span class="block text-slate-600 text-lg"><i class="mdi mdi-chevron-right"></i></span>
         </button>
 
@@ -17,7 +17,7 @@
             <div
                  class="flex justify-center  items-center text-xs h-[20px] w-[20px] text-center  rounded-full border border-black"
                  routerLinkActive="bg-black text-white">2</div>
-            <a routerLinkActive="font-bold">Screen Participants</a>
+            <a class="md:text-base text-sm" routerLinkActive="font-bold">Screen Participants</a>
             <span class="block text-slate-600 text-lg"><i class="mdi mdi-chevron-right"></i></span>
         </button>
 
@@ -28,19 +28,18 @@
             <div
                  class="flex justify-center items-center border-slate-900 disabled:border-slate-500 text-xs h-[20px] w-[20px] text-center  rounded-full border "
                  routerLinkActive="bg-black text-white">3</div>
-            <a routerLinkActive="font-bold">Build Survey</a>
+            <a class="md:text-base text-sm" routerLinkActive="font-bold">Build Survey</a>
             <span class="block text-slate-600 text-lg"><i class="mdi mdi-chevron-right"></i></span>
         </button> -->
 
         <!-- Launch -->
-        <button class="flex gap-3 items-center disabled:text-slate-500 disabled:cursor-not-allowed" [routerLink]="['./launch']"
-                [disabled]="!steps[0].completed || !steps[1].completed">
+        <button class="flex gap-3 items-center disabled:text-slate-500 disabled:cursor-not-allowed" [routerLink]="['./launch']">
             <div
                  class="flex justify-center items-center text-xs h-[20px] w-[20px] text-center  rounded-full border border-black"
                  routerLinkActive="bg-black text-white">
                 <span>3</span>
             </div>
-            <a routerLinkActive="font-bold">Launch</a>
+            <a class="md:text-base text-sm" routerLinkActive="font-bold">Launch</a>
         </button>
     </div>
     <div class="">
@@ -51,9 +50,9 @@
         <div>
         </div>
         <div>
-            <div class="flex items-center font-normal">
+            <div class="flex items-center font-normal md:text-base text-xs">
                 Respondents:
-                <span class="inline-block pl-1 font-extrabold text-lg"
+                <span class="inline-block pl-1 font-extrabold text-sm md:text-lg"
                       *ngIf="this.form.get('participantsForm')?.get('numberOfParticipants')?.value <= 2000">
                     {{this.form.get('participantsForm')?.get('numberOfParticipants')?.value}}
                 </span>
@@ -61,10 +60,10 @@
                       *ngIf="this.form.get('participantsForm')?.get('numberOfParticipants')?.value > 2000">
                     > 2000
                 </span>
-                <span class="w-[1px] bg-gray-300 inline-block mx-7 h-5"> </span>
+                <span class="w-[1px] md:text-base text-xs bg-gray-300 inline-block mx-7 h-5"> </span>
 
                 Amount:
-                <span class="inline-block pl-1 font-extrabold text-lg">
+                <span class="inline-block pl-1 font-extrabold text-sm md:text-lg">
                     <b *ngIf="totalPrice">${{shownPrice}}</b>
                     <b *ngIf="!totalPrice">Contact Sales</b>
                 </span>
@@ -76,7 +75,7 @@
                 <button (click)="submit()"
                         [disabled]="form.invalid || loading"
 
-                        class="lightbox disabled:bg-slate-400 disabled:cursor-not-allowed disabled:text-dark  py-1.5 px-5 w-auto inline-block font-semibold tracking-wide border align-middle duration-500 bg-primary-light text-lg text-white rounded-full">
+                        class="lightbox disabled:bg-slate-400 disabled:cursor-not-allowed disabled:text-dark  md:py-1.5 py-1.5 md:px-5 px-2.5 w-auto inline-block font-semibold tracking-wide border align-middle duration-500 bg-primary-light md:text-lg text-sm text-white rounded-full">
                     Submit
                     <i class="mdi mdi-chevron-right" *ngIf="!loading"></i>
                     <span *ngIf="loading"><app-loading></app-loading></span>
@@ -87,7 +86,7 @@
 
                 <button (click)="nextStep()"
                         [disabled]="!activeStep?.completed"
-                        class="lightbox disabled:bg-slate-400 disabled:cursor-not-allowed disabled:text-dark  py-1.5 px-5 w-auto inline-block font-semibold tracking-wide border align-middle duration-500 bg-primary-light text-lg text-white rounded-full">
+                        class="lightbox disabled:bg-slate-400 disabled:cursor-not-allowed disabled:text-dark  md:py-1.5 py-1.5 md:px-5 px-2.5 w-auto inline-block font-semibold tracking-wide border align-middle duration-500 bg-primary-light md:text-lg text-sm text-white rounded-full">
                     Next <i class="mdi mdi-chevron-right"></i></button>
             </div>
         </div>

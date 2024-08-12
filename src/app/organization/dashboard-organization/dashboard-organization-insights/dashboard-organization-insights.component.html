@@ -1,12 +1,13 @@
 <!-- Community Trust And Fundability Analysis -->
-<div class="p-10" *ngIf="organizationService.singleData?.verification_status_from_current_organization?.id === StatusImpactVerificationEnum.LAUNCHED">
+<div class="p-5 md:p-10"
+     *ngIf="organizationService.singleData?.verification_status_from_current_organization?.id === StatusImpactVerificationEnum.LAUNCHED">
 
   <!-- Header and Net Promoter Score -->
   <div class="w-full grid grid-cols-1 mb-5">
     <!-- HEADER    -->
-    <div class="flex justify-between mb-10 ">
+    <div class="grid grid-cols-1 gap-3  md:flex md:justify-between mb-5 md:mb-10 ">
 
-      <h3 class="text-xl font-bold">
+      <h3 class="md:text-xl text-base text-left font-bold">
         <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT">Community Trust &
           Fundability Analysis</span>
         <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION">Sustainability
@@ -15,11 +16,12 @@
 
 
       <form [formGroup]="dateForm" class="grid grid-cols-1 gap-1">
-        <div class="grid grid-cols-2 gap-10">
+        <div class="grid grid-cols-2 ga-5 md:gap-10">
           <p-calendar
                       formControlName="startDate"
                       [showIcon]="true" placeholder="Start Date"
                       view="month"
+                      inputStyleClass="text-xs md:text-base"
                       dateFormat="dd.mm.yy"
                       [maxDate]="maxDate"
                       inputId="icondisplay" />
@@ -28,6 +30,7 @@
           <p-calendar
                       formControlName="endDate"
                       [showIcon]="true"
+                      inputStyleClass="text-xs md:text-base"
                       placeholder="End Date"
                       view="month"
                       [minDate]="minDate"
@@ -35,7 +38,7 @@
                       inputId="icondisplay" />
         </div>
 
-        <div class="text-primary text-xs text-left cursor-pointer underline mr-10"
+        <div class="text-primary md:text-xs text-[10px] text-left cursor-pointer underline mr-10"
              *ngIf="dateForm.get('startDate')?.value || dateForm.get('endDate')?.value"
              (click)="clearDates()">
           <span><i class="mdi mdi-close-circle"></i></span> Clear all
@@ -50,12 +53,12 @@
 
 
   <!-- Trend Analysis -->
-  <div class="grid grid-cols-4 gap-3">
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
     <!-- Scales score -->
     <app-dashboard-organization-insights-scales-score></app-dashboard-organization-insights-scales-score>
 
     <div class="col-span-3">
-      <div class="grid grid-cols-2 gap-3 pb-3">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pb-3">
 
         <!-- Impact Fidelity Trends -->
         <app-dashboard-organization-insights-impact-fidelity-trend></app-dashboard-organization-insights-impact-fidelity-trend>
@@ -78,7 +81,7 @@
 
 
 <ng-container *ngIf="organizationService.singleData?.verification_status_from_current_organization?.id !== StatusImpactVerificationEnum.LAUNCHED">
-  <h3 class="text-xl text-left pl-8 font-bold">
+  <h3 class="md:text-xl text-base text-left pl-8 font-bold">
     <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT">Community Trust &
       Fundability Analysis</span>
     <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION">Sustainability

@@ -1,6 +1,6 @@
-<div class="p-10 border">
-  <h5 class="font-bold text-lg mb-5">{{ title }}</h5>
-  <!-- <div class="relative  h-24 overflow-hidden">
+<div class="md:p-10 p-4 border">
+     <h5 class="font-bold md:text-lg text-sm mb-2 md:mb-5">{{ title }}</h5>
+     <!-- <div class="relative  h-24 overflow-hidden">
     <div class="h-48 border-t-8 border-b-0 border-l-8 border-r-8  absolute top-0 left-0  w-full bd-neutrals"
          style="border-radius: 700px 700px 0 0;">
     </div>
@@ -9,51 +9,51 @@
     </div>
   </div> -->
 
-  <!-- 0 - 10   -->
-  <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/Mundaly%20Platform/dashboard/speedometers/10percent"
-       alt="speedometer" *ngIf="score >= 0 && score < 10">
+     <!-- 0 - 10   -->
+     <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/Mundaly%20Platform/dashboard/speedometers/10percent"
+          alt="speedometer" *ngIf="score >= 0 && score < 10">
 
-  <!-- 20 - 30   -->
-  <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/Mundaly%20Platform/dashboard/speedometers/20percent"
-       alt="speedometer" *ngIf="score >= 20 && score < 30">
+     <!-- 20 - 30   -->
+     <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/Mundaly%20Platform/dashboard/speedometers/20percent"
+          alt="speedometer" *ngIf="score >= 20 && score < 30">
 
-  <!-- 30 - 40   -->
-  <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/Mundaly%20Platform/dashboard/speedometers/30percent"
-       alt="speedometer" *ngIf="score >= 30 && score < 40">
-
-
-  <!-- 40 - 50   -->
-  <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/Mundaly%20Platform/dashboard/speedometers/40percent"
-       alt="speedometer" *ngIf="score >= 40 && score < 50">
+     <!-- 30 - 40   -->
+     <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/Mundaly%20Platform/dashboard/speedometers/30percent"
+          alt="speedometer" *ngIf="score >= 30 && score < 40">
 
 
-  <!-- 50 - 60   -->
-  <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/Mundaly%20Platform/dashboard/speedometers/50percent"
-       alt="speedometer" *ngIf="score >= 50 && score < 60">
+     <!-- 40 - 50   -->
+     <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/Mundaly%20Platform/dashboard/speedometers/40percent"
+          alt="speedometer" *ngIf="score >= 40 && score < 50">
 
 
-  <!-- 60 - 70   -->
-  <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/Mundaly%20Platform/dashboard/speedometers/60percent"
-       alt="speedometer" *ngIf="score >= 60 && score < 70">
+     <!-- 50 - 60   -->
+     <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/Mundaly%20Platform/dashboard/speedometers/50percent"
+          alt="speedometer" *ngIf="score >= 50 && score < 60">
 
 
-  <!-- 70 - 80   -->
-  <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/Mundaly%20Platform/dashboard/speedometers/70percent"
-       alt="speedometer" *ngIf="score >= 70 && score < 80">
+     <!-- 60 - 70   -->
+     <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/Mundaly%20Platform/dashboard/speedometers/60percent"
+          alt="speedometer" *ngIf="score >= 60 && score < 70">
 
 
-  <!-- 80 - 90   -->
-  <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/Mundaly%20Platform/dashboard/speedometers/80percent"
-       alt="speedometer" *ngIf="score >= 80 && score < 90">
-
-  <!-- 90 - 100   -->
-  <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/Mundaly%20Platform/dashboard/speedometers/90percent"
-       alt="speedometer" *ngIf="score >= 90 && score < 100">
-
-  <!-- 100   -->
-  <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/Mundaly%20Platform/dashboard/speedometers/100percent"
-       alt="speedometer" *ngIf="score >= 100">
+     <!-- 70 - 80   -->
+     <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/Mundaly%20Platform/dashboard/speedometers/70percent"
+          alt="speedometer" *ngIf="score >= 70 && score < 80">
 
 
-  <h2 class="text-3xl font-bold mt-[-140px]">{{ score }}</h2>
+     <!-- 80 - 90   -->
+     <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/Mundaly%20Platform/dashboard/speedometers/80percent"
+          alt="speedometer" *ngIf="score >= 80 && score < 90">
+
+     <!-- 90 - 100   -->
+     <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/Mundaly%20Platform/dashboard/speedometers/90percent"
+          alt="speedometer" *ngIf="score >= 90 && score < 100">
+
+     <!-- 100   -->
+     <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/Mundaly%20Platform/dashboard/speedometers/100percent"
+          alt="speedometer" *ngIf="score >= 100">
+
+
+     <h2 class="md:text-3xl text-lg font-bold md:mt-[-140px] mt-[-80px]">{{ score }}</h2>
 </div>

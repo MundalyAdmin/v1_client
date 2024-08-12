@@ -1,16 +1,16 @@
 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" *ngIf="!loading && impactPartnerService.data.length">
   <thead class=" text-gray-400 capitalize bg-slate-100  dark:bg-gray-700 dark:text-gray-400">
     <tr>
-      <th scope="col" class="px-6 py-6 w-[500px]">
+      <th scope="col" class="px-6 py-6 md:w-[500px] w-[300px]">
         Name
       </th>
-      <th scope="col" class="px-6 py-6 w-[300px]">
+      <th scope="col" class="px-6 py-6 w-[300px] hidden md:table-cell">
         Communities
       </th>
-      <th scope="col" class="px-6 py-6">
+      <th scope="col" class="px-6 py-6 hidden md:table-cell">
         Industry
       </th>
-      <th scope="col" class="px-6 py-6">
+      <th scope="col" class="px-6 py-6 hidden md:table-cell">
         Community <br>Trust Score
       </th>
       <th scope="col" class="px-6 py-6">
@@ -31,40 +31,62 @@
             <!-- Logo , name and website -->
             <div class="flex items-center">
               <!-- Logo -->
-              <img class="w-10 h-10 object-cover border rounded-full" [src]="partner.implementer?.logo" *ngIf="partner.implementer?.logo"
+              <img class="md:w-10 md:h-10  w-10 h-10 object-cover border rounded-full" [src]="partner.implementer?.logo"
+                   *ngIf="partner.implementer?.logo"
                    [alt]="partner.implementer?.name">
 
               <!-- No logo placeholder -->
-              <div class="h-10 w-10 bg-slate-200 flex items-center justify-center rounded-full" *ngIf="!partner.implementer?.logo">
+              <div class="md:h-10 md:w-10 w-7 h-7  bg-slate-200 flex items-center justify-center rounded-full" *ngIf="!partner.implementer?.logo">
                 <div>
-                  <i class="mdi text-[16px] text-slate-800 font-semibold mdi-domain"></i>
+                  <i class="mdi md:text-[16px] text-[12px] text-slate-800 font-semibold mdi-domain"></i>
                 </div>
               </div>
 
               <!-- Name and website -->
-              <div class="ps-3">
+              <div class="ps-1  flex flex-col justify-center md:ps-3">
 
                 <!-- Name -->
-                <div class="text-base font-semibold">{{ partner.implementer?.name }}</div>
+                <div class="md:text-base mb-1 text-xs font-semibold">{{ partner.implementer?.name }}</div>
 
                 <!-- Website -->
-                <div class="font-normal text-gray-500">{{ partner.implementer?.website }}</div>
+                <div class="font-normal md:block hidden text-gray-500">{{ partner.implementer?.website }}</div>
+
+                <div class="md:hidden">
+                  <p-dropdown class="" [filter]="true" filterBy="name" placeholder="Select a community"
+                              *ngIf="partner.implementer?.impact_initiatives?.length"
+                              [options]="partner.implementer?.impact_initiatives" [(ngModel)]="selectedImpactInitiatives[i]" optionLabel="city">
+                    <ng-template pTemplate="selectedItem">
+                      <div class="flex align-items-center gap-2">
+                        <div>{{ selectedImpactInitiatives[i]?.city + ', ' + selectedImpactInitiatives[i]?.country }}</div>
+
+                      </div>
+                    </ng-template>
+                    <ng-template let-initiative pTemplate="item">
+                      <div class="flex align-items-center gap-2">
+                        <div>{{ initiative.city + ', ' + initiative.country }}</div>
+                      </div>
+                    </ng-template>
+                  </p-dropdown>
+
+                  <span class="italic md:text-sm text-xs" *ngIf="!partner.implementer?.impact_initiatives?.length">No community registered</span>
+                </div>
+
               </div>
             </div>
 
 
             <!-- Type organization -->
             <span *ngIf="partner.implementer?.type_organization_id === 1"
-                  class="bg-green-100 text-green-800 text-sm rounded-lg font-medium me-2 px-2.5 py-2  dark:bg-green-900 dark:text-green-300">Funder</span>
+                  class="bg-green-100 hidden md:inline text-green-800 text-sm rounded-lg font-medium me-2 px-2.5 py-2  dark:bg-green-900 dark:text-green-300">Funder</span>
 
             <span
                   *ngIf="partner.implementer?.type_organization_id === 2"
-                  class="bg-blue-100 text-blue-800 text-sm rounded-lg font-medium me-2 px-2.5 py-2  dark:bg-blue-900 dark:text-blue-300">Implementer</span>
+                  class="bg-blue-100 hidden md:inline text-blue-800 text-sm rounded-lg font-medium me-2 px-2.5 py-2  dark:bg-blue-900 dark:text-blue-300">Implementer</span>
           </a>
         </th>
 
         <!-- Location -->
-        <td class="px-6 py-4">
+        <td class="px-6 py-4 hidden md:table-cell">
           <p-dropdown class="" [filter]="true" filterBy="name" placeholder="Select a community"
                       *ngIf="partner.implementer?.impact_initiatives?.length"
                       [options]="partner.implementer?.impact_initiatives" [(ngModel)]="selectedImpactInitiatives[i]" optionLabel="city">
@@ -81,11 +103,11 @@
             </ng-template>
           </p-dropdown>
 
-          <span class="italic text-sm" *ngIf="!partner.implementer?.impact_initiatives?.length">No community registered</span>
+          <span class="italic md:text-sm text-xs" *ngIf="!partner.implementer?.impact_initiatives?.length">No community registered</span>
         </td>
 
         <!-- Industry -->
-        <td class="px-6 py-4">
+        <td class="px-6 py-4 hidden md:table-cell">
           <div class="flex items-center font-semibold">
             <div *ngIf="partner.implementer?.sector_organizations?.length"><span *ngFor="let sector of partner.implementer?.sector_organizations">
                 {{ sector.name}}
@@ -95,18 +117,23 @@
         </td>
 
         <!-- Community trust score -->
-        <td class="px-6 py-4 text-center">
+        <td class="px-6 py-4 text-center hidden md:table-cell">
           <span *ngIf="partner.implementer?.community_trust_score">{{ partner.implementer?.community_trust_score }}</span>
           <span class="italic text-sm" *ngIf="!partner.implementer?.community_trust_score ">Insufficient data</span>
         </td>
 
 
         <!-- Actions -->
-        <td class="px-6 flex items-center py-4">
+        <td class="px-4  py-4">
           <!-- <a href="#" class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                class="mdi mdi-pencil-plus"></i></a> -->
+          <a [routerLink]="['/', 'dashboard', 'organizations',  partner.implementer_id ]"
+             class="font-medium me-3 text-slate-400 md:text-xl text-base dark:text-slate-500 hover:text-secondary-dark"><i
+               class="mdi mdi-information"></i></a>
+
+
           <button (click)="deleteImpactPartner(partner)"
-                  class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark"><i
+                  class="font-medium text-slate-400 md:text-xl text-base dark:text-slate-500 hover:text-secondary-dark"><i
                class="mdi mdi-trash-can"></i></button>
         </td>
       </tr>

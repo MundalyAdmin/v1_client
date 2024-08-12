@@ -1,15 +1,15 @@
 <!-- Header -->
-<div class=" p-5 py-7 border-b grid grid-cols-2 items-center w-full ">
+<div class=" p-5 md:py-7 py-4 border-b flex justify-between items-center w-full ">
     <div class="flex">
-        <h2 class="text-3xl text-primary me-14">{{title}}</h2>
+        <h2 class="md:text-3xl text-xl text-primary md:me-14 me-2">{{title}}</h2>
 
 
     </div>
 
-    <div class="flex justify-self-end gap-4">
+    <div class="flex justify-self-end md:gap-4 gap-2">
 
 
-        <button (click)="invitation.toggle($event)" class="text-primary text-2xl  font-bold block">
+        <button (click)="invitation.toggle($event)" class="text-primary md:text-2xl text-base font-bold block">
             <span><i class="mdi mdi-email"></i></span>
         </button>
         <p-overlayPanel #invitation>
@@ -22,7 +22,7 @@
 
 
         <!-- Notifications -->
-        <button (click)="notification.toggle($event)" class="text-primary text-2xl  font-bold block">
+        <button (click)="notification.toggle($event)" class="text-primary md:text-2xl text-base font-bold block">
             <span><i class="mdi mdi-bell"></i></span>
         </button>
         <p-overlayPanel #notification>

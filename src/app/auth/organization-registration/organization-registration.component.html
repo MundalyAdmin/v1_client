@@ -1,4 +1,4 @@
-<section class="bg-gray-50 dark:bg-gray-900 py-7 pb-12">
+<section class="bg-gray-50 dark:bg-gray-900 px-5 pt-7 pb-12">
 
   <div class="flex flex-col justify-center items-center  mx-auto  pt-10 pb-20">
 
@@ -16,7 +16,7 @@
     <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-2xl xl:p-0 dark:bg-gray-800 dark:border-gray-700">
 
 
-      <form class="p-6 space-y-4 md:space-y-6 sm:p-8" [formGroup]="form!" (submit)="submit()">
+      <form class="p-6 space-y-4 md:space-y-6  grid grid-cols-1 gap-3 md:gap-1 sm:p-8" [formGroup]="form!" (submit)="submit()">
 
 
         <!-- admin information -->
@@ -26,117 +26,115 @@
         </h1>
 
 
-        <form class="space-y-4 md:space-y-6 " [formGroup]="form" (submit)="submit()" *ngIf="form">
-          <!-- Category organization -->
-          <div class="flex rounded-md shadow-sm w-full" role="group">
-            <button type="button"
-                    [ngClass]="{ 'border-primary border-2 text-primary !bg-slate-100': form.get('category_organization')?.value === 1 }"
-                    (click)="updateCategoryOrganization(1)"
-                    class="px-4 py-3 w-full font-medium text-gray-900 border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-primary-light focus:z-10 focus:ring-1 focus:ring-primary-light focus:text-primary-light dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
-              Impact
-            </button>
-            <button type="button"
-                    (click)="updateCategoryOrganization(2)"
-                    [ngClass]="{ 'border-primary border-2 text-primary  !bg-slate-100': form.get('category_organization')?.value === 2 }"
-                    class="px-4 py-3 w-full font-medium text-gray-900 border-t border-b rounded-e-lg border-gray-200 hover:bg-gray-100 hover:text-primary-light focus:z-10 focus:ring-2 focus:ring-primary-light focus:text-primary-light dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
-              Corporation
-            </button>
+        <!-- Category organization -->
+        <div class="flex rounded-md shadow-sm w-full" role="group">
+          <button type="button"
+                  [ngClass]="{ 'border-primary border-2 text-primary !bg-slate-100': form.get('category_organization')?.value === 1 }"
+                  (click)="updateCategoryOrganization(1)"
+                  class="md:px-4 md:py-3 py-2 px-3 w-full font-medium text-gray-900 border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-primary-light focus:z-10 focus:ring-1 focus:ring-primary-light focus:text-primary-light dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+            Impact
+          </button>
+          <button type="button"
+                  (click)="updateCategoryOrganization(2)"
+                  [ngClass]="{ 'border-primary border-2 text-primary  !bg-slate-100': form.get('category_organization')?.value === 2 }"
+                  class="md:px-4 md:py-3 py-2 px-3 w-full font-medium text-gray-900 border-t border-b rounded-e-lg border-gray-200 hover:bg-gray-100 hover:text-primary-light focus:z-10 focus:ring-2 focus:ring-primary-light focus:text-primary-light dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+            Corporation
+          </button>
 
-          </div>
+        </div>
 
 
-          <!-- Name -->
+        <!-- Name -->
+        <div>
+          <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What's your name?</label>
+          <input type="text" name="name" id="name"
+                 formControlName="name"
+                 class="bg-gray-50 border border-gray-300 text-primary sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                 placeholder="Alexander Giggs" required="">
+        </div>
+
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- Email -->
           <div>
-            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What's your name?</label>
-            <input type="text" name="name" id="name"
-                   formControlName="name"
-                   class="bg-gray-50 border border-gray-300 text-primary sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                   placeholder="Alexander Giggs" required="">
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What's your work email?</label>
+            <input type="email"
+                   name="email"
+                   id="email"
+                   formControlName="email"
+                   [ngClass]="{ 'border-red-500': form!.controls['email'].dirty && form!.controls['email'].invalid}"
+                   class="bg-gray-50 border text-primary border-gray-300  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   placeholder="alexander@mundaly.com" required="">
+            <p class="mt-2 text-sm text-red-600 dark:text-red-500"
+               *ngIf="form!.controls['email'].dirty && form!.controls['email'].invalid">
+              Kindly add a valid <span class="font-medium">work email.</span>
+            </p>
           </div>
 
 
-          <div class="grid grid-cols-2 gap-5">
-            <!-- Email -->
-            <div>
-              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What's your work email?</label>
-              <input type="email"
-                     name="email"
-                     id="email"
-                     formControlName="email"
-                     [ngClass]="{ 'border-red-500': form!.controls['email'].dirty && form!.controls['email'].invalid}"
-                     class="bg-gray-50 border text-primary border-gray-300  sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                     placeholder="alexander@mundaly.com" required="">
-              <p class="mt-2 text-sm text-red-600 dark:text-red-500"
-                 *ngIf="form!.controls['email'].dirty && form!.controls['email'].invalid">
-                Kindly add a valid <span class="font-medium">work email.</span>
-              </p>
-            </div>
 
-
-
-            <!-- Phone number -->
-            <div>
-              <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What's your phone number?</label>
-              <ngx-intl-tel-input
-                                  [cssClass]="'w-full bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600   py-2.5 '"
-                                  [preferredCountries]="preferredCountries"
-                                  [enableAutoCountrySelect]="true"
-                                  [enablePlaceholder]="true"
-                                  [searchCountryFlag]="true"
-                                  [searchCountryField]="[
+          <!-- Phone number -->
+          <div>
+            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What's your phone number?</label>
+            <ngx-intl-tel-input
+                                [cssClass]="'w-full bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600   py-2.5 '"
+                                [preferredCountries]="preferredCountries"
+                                [enableAutoCountrySelect]="true"
+                                [enablePlaceholder]="true"
+                                [searchCountryFlag]="true"
+                                [searchCountryField]="[
                                   SearchCountryField.Iso2,
                                   SearchCountryField.Name
                                 ]"
 
-                                  [selectFirstCountry]="false"
-                                  [selectedCountryISO]="CountryISO.UnitedStates"
-                                  [maxLength]="15"
+                                [selectFirstCountry]="false"
+                                [selectedCountryISO]="CountryISO.UnitedStates"
+                                [maxLength]="15"
 
-                                  [separateDialCode]="separateDialCode"
-                                  [numberFormat]="PhoneNumberFormat.International"
-                                  name="phone"
-                                  formControlName="phone_number">
-              </ngx-intl-tel-input>
-              <p class="mt-2 text-sm text-red-600 dark:text-red-500"
-                 *ngIf="form!.controls['phone_number'].touched && form!.controls['phone_number'].invalid">
-                Kindly add a valid <span class="font-medium">phone number.</span>
-              </p>
-            </div>
+                                [separateDialCode]="separateDialCode"
+                                [numberFormat]="PhoneNumberFormat.International"
+                                name="phone"
+                                formControlName="phone_number">
+            </ngx-intl-tel-input>
+            <p class="mt-2 text-sm text-red-600 dark:text-red-500"
+               *ngIf="form!.controls['phone_number'].touched && form!.controls['phone_number'].invalid">
+              Kindly add a valid <span class="font-medium">phone number.</span>
+            </p>
           </div>
+        </div>
 
-          <!-- Name -->
-          <div>
-            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What's your organization's name?</label>
-            <input type="text" name="name" id="name"
-                   formControlName="organization_name"
-                   class="bg-gray-50 border border-gray-300 text-primary sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                   placeholder="Nobis Inc." required="">
-          </div>
-
-
-          <div>
-            <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              What type of <span *ngIf="form.get('category_organization')?.value === 2">business</span><span
-                    *ngIf="form.get('category_organization')?.value === 1">impact</span> partner are you?</label>
-            <p-dropdown class="" [filter]="true" filterBy="name" [showClear]="true" placeholder="Select a type"
-                        formControlName="type_organization" [options]="dependancies.typeOrganization" optionLabel="name"></p-dropdown>
-          </div>
+        <!-- Name -->
+        <div>
+          <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">What's your organization's name?</label>
+          <input type="text" name="name" id="name"
+                 formControlName="organization_name"
+                 class="bg-gray-50 border border-gray-300 text-primary sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                 placeholder="Nobis Inc." required="">
+        </div>
 
 
+        <div>
+          <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            What type of <span *ngIf="form.get('category_organization')?.value === 2">business</span><span
+                  *ngIf="form.get('category_organization')?.value === 1">impact</span> partner are you?</label>
+          <p-dropdown class="" [filter]="true" filterBy="name" [showClear]="true" placeholder="Select a type"
+                      formControlName="type_organization" [options]="dependancies.typeOrganization" optionLabel="name"></p-dropdown>
+        </div>
 
 
-          <!-- Submit -->
-          <div class="flex  justify-end gap-4">
 
-            <!-- Next -->
-            <button type="submit"
-                    [disabled]="form!.invalid || loading"
-                    [ngClass]="{ 'cursor-not-allowed bg-slate-400': form!.invalid || loading }"
 
-                    class="w-full text-primary border-primary border bg-secondary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Create
-              an account <app-loading *ngIf="loading"></app-loading></button>
-          </div>
-        </form>
+        <!-- Submit -->
+        <div class="flex  justify-end gap-4">
+
+          <!-- Next -->
+          <button type="submit"
+                  [disabled]="form!.invalid || loading"
+                  [ngClass]="{ 'cursor-not-allowed bg-slate-400': form!.invalid || loading }"
+
+                  class="w-full text-primary border-primary border bg-secondary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Create
+            an account <app-loading *ngIf="loading"></app-loading></button>
+        </div>
 
 
 

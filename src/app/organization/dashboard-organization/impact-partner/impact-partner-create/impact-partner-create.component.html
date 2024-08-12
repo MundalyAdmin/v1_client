@@ -1,18 +1,18 @@
-<form class="space-y-4 " [formGroup]="form" (submit)="create()" *ngIf="form">
+<form class="space-y-6 mt-[20px] md:mt-auto" [formGroup]="form" (submit)="create()" *ngIf="form">
 
   <!-- Search Form -->
-  <div class="min-h-[200px] flex flex-col items-center" *ngIf="!showCreateForm">
+  <div class="md:min-h-[200px] min-h-[130px] flex flex-col items-center" *ngIf="!showCreateForm">
     <!-- Search box -->
     <p-autoComplete
 
                     id="organizationSearchBox"
-                    scrollHeight="1000px"
+                    scrollHeight="250px"
                     (onSelect)="onSelect($event)"
                     [completeOnFocus]="true"
                     [suggestions]="organizationSearchResults"
                     [placeholder]="'Your organization\'s name'"
                     [showEmptyMessage]="true"
-                    [inputStyleClass]="'p-5 text-base outline-4 w-full outline border-2 outline-none text-black dark:text-white rounded-full bg-white dark:bg-slate-900 dark:shadow-gray-800'"
+                    [inputStyleClass]="'md:p-5 p-3 md:text-base text-sm outline-4 w-full outline border-2 outline-none text-black dark:text-white rounded-full bg-white dark:bg-slate-900 dark:shadow-gray-800'"
                     (completeMethod)="searchExcludingPartners($event)"
                     [styleClass]="'w-full h-full' "
                     class="w-full h-full"
@@ -39,7 +39,6 @@
           </div>
           <div>{{ organization.name }}</div>
         </div>
-        <span *ngIf="organization.logo">Tatta</span>
       </ng-template>
 
       <!-- No data handling template -->
@@ -51,7 +50,7 @@
 
 
           <div (click)="displayCreateForm()"
-               class="text-white bg-primary cursor-pointer hover:bg-primary-dark focus:ring-4  focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-primary focus:outline-none dark:focus:ring-primary-dark">
+               class="text-white bg-primary cursor-pointer hover:bg-primary-dark focus:ring-4  focus:ring-blue-300 font-medium rounded-full md:mx-auto mx-2  text-xs md:text-sm md:px-5 md:py-2.5 px-3 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-primary focus:outline-none dark:focus:ring-primary-dark">
             Not found the organization you are looking for? <br>
           </div>
         </div>
@@ -108,25 +107,26 @@
   <ng-container *ngIf="showCreateForm">
     <!-- Name -->
     <div>
-      <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+      <label for="text" class="block md:mb-2 mb-1 md:text-sm text-xs font-medium text-gray-900 dark:text-white">Name</label>
       <input type="text" name="initiative-name" id="initiative-name" formControlName="implementer_name"
-             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+             class="bg-gray-50 border border-gray-300 text-gray-900 md:text-sm text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:p-4 p-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
              placeholder="" required>
     </div>
 
     <!-- Website -->
     <div>
-      <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Organization Website</label>
+      <label for="text" class="block md:mb-2 mb-1 md:text-sm text-xs font-medium text-gray-900 dark:text-white">Organization Website</label>
       <input type="url" name="initiative-name" id="initiative-name" formControlName="implementer_website"
-             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+             class="bg-gray-50 border border-gray-300 text-gray-900 md:text-sm text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:p-4 p-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
              placeholder="" required>
     </div>
 
     <!-- Admin Email -->
     <div>
-      <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email of the organization's admin</label>
+      <label for="text" class="block md:mb-2 mb-1 md:text-sm text-xs font-medium text-gray-900 dark:text-white">Email of the organization's
+        admin</label>
       <input type="email" name="initiative-name" id="initiative-name" formControlName="implementer_admin_email"
-             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+             class="bg-gray-50 border border-gray-300 text-gray-900 md:text-sm text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:p-4 p-3 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
              placeholder="" required>
     </div>
 
@@ -137,14 +137,14 @@
   <div class="mb-5 mt-10 flex justify-end">
     <button type="button" (click)="hideCreateForm()"
             *ngIf="showCreateForm"
-            class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-slate-100 border  rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Search
+            class="md:py-2.5 md:px-5 px-3 py-2 me-2 mb-2 md:text-sm text-xs font-medium text-gray-900 focus:outline-none bg-slate-100 border  rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Search
       organization</button>
 
     <button type="button" (click)="created.emit()"
-            class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Cancel</button>
+            class="md:py-2.5 md:px-5 px-3 py-2 me-2 mb-2 md:text-sm text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Cancel</button>
 
     <button type="button" type="submit"
-            class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Save
+            class="md:py-2.5 md:px-5 px-3 py-2 me-2 mb-2 md:text-sm text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Save
       <app-loading *ngIf="loading"></app-loading>
     </button>
   </div>

@@ -1,26 +1,27 @@
-<div class="p-5" *ngIf="organizationService.singleData?.verification_status_from_current_organization?.id === StatusImpactVerificationEnum.LAUNCHED">
-  <div class="w-full flex justify-between bg-white shadow dark:bg-gray-800 p-4 md:p-6">
-    <div class="text-lg font-bold">Safety and Ethics</div>
+<div class="p-2 md:p-5"
+     *ngIf="organizationService.singleData?.verification_status_from_current_organization?.id === StatusImpactVerificationEnum.LAUNCHED">
+  <div class="w-full flex justify-between bg-white shadow dark:bg-gray-800 p-3 md:md:p-6 p-3">
+    <div class="text-sm md:text-lg font-bold">Safety and Ethics</div>
 
   </div>
 
   <div class="relative overflow-x-auto shadow-md " *ngIf="!loading && facilitationStrategyService.score">
-    <table class="w-full text-base text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <table class="w-full  text-xs md:text-base text-left rtl:text-right text-gray-500 dark:text-gray-400">
       <thead class=" text-gray-400 capitalize bg-slate-100  dark:bg-gray-700 dark:text-gray-400">
         <tr>
-          <th scope="col" class="px-6 py-6">
+          <th scope="col" class="md:px-6 md:py-6 p-3">
             #
           </th>
-          <th scope="col" class="px-6 py-6 ">
+          <th scope="col" class="md:px-6 md:py-6 p-3 ">
             Category
           </th>
-          <th scope="col" class="px-6 py-6">
+          <th scope="col" class="md:px-6 md:py-6 p-3">
             Key
           </th>
-          <th scope="col" class="px-6 py-6">
+          <th scope="col" class="md:px-6 md:py-6 p-3">
             Score
           </th>
-          <th scope="col" class="px-6 py-6">
+          <th scope="col" class="md:px-6 md:py-6 p-3">
             Action
           </th>
         </tr>
@@ -30,22 +31,22 @@
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
 
           <!-- Number -->
-          <td class="p-6">
+          <td class="md:p-6 p-3">
             1
           </td>
 
           <!-- Name and Photo -->
-          <th scope="row p-6">
+          <th scope="row md:p-6 p-3">
             Leaves and Benefits
           </th>
 
           <!-- Key -->
-          <td class="p-6">
+          <td class="md:p-6 p-3">
             {{ scaleService.getScoreKey(facilitationStrategyService.score.leaves_and_benefits!) }}
           </td>
 
           <!-- Score -->
-          <td class="p-6">
+          <td class="md:p-6 p-3">
             <div class="flex items-center font-semibold">
               {{ facilitationStrategyService.score.leaves_and_benefits}}
             </div>
@@ -53,7 +54,7 @@
 
 
 
-          <td class="p-6">
+          <td class="md:p-6 p-3">
             <a href="#" class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                  class="mdi mdi-information"></i></a>
 
@@ -65,22 +66,22 @@
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
 
           <!-- Number -->
-          <td class="p-6">
+          <td class="md:p-6 p-3">
             2
           </td>
 
           <!-- Name and Photo -->
-          <th scope="row p-6">
+          <th scope="row md:p-6 p-3">
             Diversity, Equity and Inclusion
           </th>
 
           <!-- Key -->
-          <td class="p-6">
+          <td class="md:p-6 p-3">
             {{ scaleService.getScoreKey(facilitationStrategyService.score.diversity_equity_and_inclusion!) }}
           </td>
 
           <!-- Score -->
-          <td class="p-6">
+          <td class="md:p-6 p-3">
             <div class="flex items-center font-semibold">
               {{ facilitationStrategyService.score.diversity_equity_and_inclusion}}
             </div>
@@ -88,7 +89,7 @@
 
 
 
-          <td class="p-6">
+          <td class="md:p-6 p-3">
             <a href="#" class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                  class="mdi mdi-information"></i></a>
 
@@ -101,22 +102,22 @@
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
 
           <!-- Number -->
-          <td class="p-6">
+          <td class="md:p-6 p-3">
             3
           </td>
 
           <!-- Name and Photo -->
-          <th scope="row p-6">
+          <th scope="row md:p-6 p-3">
             Safety and Wellbeing
           </th>
 
           <!-- Key -->
-          <td class="p-6">
+          <td class="md:p-6 p-3">
             {{ scaleService.getScoreKey(facilitationStrategyService.score.safety_and_wellbeing!) }}
           </td>
 
           <!-- Score -->
-          <td class="p-6">
+          <td class="md:p-6 p-3">
             <div class="flex items-center font-semibold">
               {{ facilitationStrategyService.score.safety_and_wellbeing | number: '1.0-0'}}
             </div>
@@ -124,7 +125,7 @@
 
 
 
-          <td class="p-6">
+          <td class="md:p-6 p-3">
             <a href="#" class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                  class="mdi mdi-information"></i></a>
 
@@ -136,22 +137,22 @@
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
 
           <!-- Number -->
-          <td class="p-6">
+          <td class="md:p-6 p-3">
             4
           </td>
 
           <!-- Name and Photo -->
-          <th scope="row p-6">
+          <th scope="row md:p-6 p-3">
             Work-Life Balance
           </th>
 
           <!-- Key -->
-          <td class="p-6">
+          <td class="md:p-6 p-3">
             {{ scaleService.getScoreKey(facilitationStrategyService.score.work_life_balance!) }}
           </td>
 
           <!-- Score -->
-          <td class="p-6">
+          <td class="md:p-6 p-3">
             <div class="flex items-center font-semibold">
               {{ facilitationStrategyService.score.work_life_balance}}
             </div>
@@ -159,7 +160,7 @@
 
 
 
-          <td class="p-6">
+          <td class="md:p-6 p-3">
             <a href="#" class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                  class="mdi mdi-information"></i></a>
 
@@ -171,22 +172,22 @@
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
 
           <!-- Number -->
-          <td class="p-6">
+          <td class="md:p-6 p-3">
             5
           </td>
 
           <!-- Name and Photo -->
-          <th scope="row p-6">
+          <th scope="row md:p-6 p-3">
             Support and Control
           </th>
 
           <!-- Key -->
-          <td class="p-6">
+          <td class="md:p-6 p-3">
             {{ scaleService.getScoreKey(facilitationStrategyService.score.support_and_control!) }}
           </td>
 
           <!-- Score -->
-          <td class="p-6">
+          <td class="md:p-6 p-3">
             <div class="flex items-center font-semibold">
               {{ facilitationStrategyService.score.support_and_control}}
             </div>
@@ -194,7 +195,7 @@
 
 
 
-          <td class="p-6">
+          <td class="md:p-6 p-3">
             <a href="#" class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                  class="mdi mdi-information"></i></a>
 
@@ -206,22 +207,22 @@
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
 
           <!-- Number -->
-          <td class="p-6">
+          <td class="md:p-6 p-3">
             6
           </td>
 
           <!-- Name and Photo -->
-          <th scope="row p-6">
+          <th scope="row md:p-6 p-3">
             Growth and Recongnition
           </th>
 
           <!-- Key -->
-          <td class="p-6">
+          <td class="md:p-6 p-3">
             {{ scaleService.getScoreKey(facilitationStrategyService.score.growth_and_recognition!) }}
           </td>
 
           <!-- Score -->
-          <td class="p-6">
+          <td class="md:p-6 p-3">
             <div class="flex items-center font-semibold">
               {{ facilitationStrategyService.score.growth_and_recognition}}
             </div>
@@ -229,8 +230,8 @@
 
 
 
-          <td class="p-6">
-            <a href="#" class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
+          <td class="md:p-6 p-3">
+            <a href="#" class="font-medium text-slate-400 text-sm md:text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                  class="mdi mdi-information"></i></a>
 
           </td>
@@ -242,7 +243,7 @@
       </tbody>
     </table>
 
-    <div class="text-primary md:text-lg text-sm  bg-primary/5 p-5">
+    <div class="text-primary md:text-lg text-xs  bg-primary/5 p-5">
       <span class="me-2">
         <i class="mdi mdi-lightbulb-on"></i>
         Insight:

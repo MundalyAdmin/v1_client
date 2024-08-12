@@ -1,8 +1,8 @@
-<div class="flex flex-col items-center p-10" *ngIf="completeForm">
-    <h2 class="text-2xl font-bold py-5">
+<div class="flex flex-col items-center md:p-10 p-5" *ngIf="completeForm">
+    <h2 class="md:text-2xl text-lg font-bold md:py-5 py-2">
         Launch And Review
     </h2>
-    <div class="min-w-[50vw]">
+    <div class="md:min-w-[50vw] w-full px-2">
         <!-- <div class="py-5">
             <p class="font-bold">
                 <b>Insufficient funds: your available credit is £0.00</b>
@@ -13,8 +13,8 @@
             </p>
         </div> -->
 
-        <div class="mt-4">
-            <p class="py-4">
+        <div class="md:mt-4 mt-2">
+            <p class="md:py-4 text-base md:text-sm py-2">
                 <b>
                     Payment method
                 </b>
@@ -22,38 +22,38 @@
 
             <div class="h-[1px] mb-5 bg-gray-200"></div>
 
-            <div class=" flex justify-between">
-                <div class="w-[30%] border p-3 cursor-pointer rounded-sm"
+            <div class=" grid grid-cols-3 md:gap-5 gap-2">
+                <div class=" border md:p-3 p-1 cursor-pointer rounded-sm"
                      [ngStyle]="{'background-color': state === 'card' ? '#D1F0FF' : 'white', 'border-color': state === 'card' ? 'black' : 'none'}"
                      (click)="clickState('card')">
                     <div>
                         <div>
-                            <p class="pl-6 py-1 text-lg font-bold text-gray">
-                                <span class="text-lg"><i class="mdi mdi-credit-card-outline me-1 text-lg"></i></span> Card
+                            <p class="md:pl-6 pl-3 py-1 text-sm md:text-lg font-bold text-gray">
+                                <span class="md:text-lg text-sm"><i class="mdi mdi-credit-card-outline me-1 text-sm md:text-lg"></i></span> Card
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <div class="w-[30%] border p-3 cursor-pointer"
+                <div class=" border md:p-3 p-1 cursor-pointer"
                      [ngStyle]="{'background-color': state === 'invoice' ? '#D1F0FF' : 'white', 'border-color': state === 'invoice' ? 'black' : 'none'}"
                      (click)="clickState('invoice')">
                     <div>
                         <div>
-                            <p class="pl-6 py-1 text-lg font-bold text-gray">
-                                <span class="text-lg"><i class="mdi mdi-receipt-text-outline me-1 text-lg"></i></span> Invoice
+                            <p class="md:pl-6 pl-3 py-1 text-sm md:text-lg font-bold text-gray">
+                                <span class="md:text-lg text-sm"><i class="mdi mdi-receipt-text-outline me-1 text-sm md:text-lg"></i></span> Invoice
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <div class="w-[30%] border p-3 cursor-pointer"
+                <div class=" border md:p-3 p-1 cursor-pointer"
                      [ngStyle]="{'background-color': state === 'link' ? '#D1F0FF' : 'white', 'border-color': state === 'link' ? 'black' : 'none'}"
                      (click)="clickState('link')">
                     <div>
                         <div>
-                            <p class="pl-6 py-1 text-lg font-bold text-gray">
-                                <span class="text-lg"><i class="mdi mdi-open-in-new me-1 text-lg"></i></span> Payment Link
+                            <p class="md:pl-6 pl-3 py-1 text-sm md:text-lg font-bold text-gray">
+                                <span class="md:text-lg text-sm"><i class="mdi mdi-open-in-new me-1 text-sm md:text-lg"></i></span> Payment Link
                             </p>
                         </div>
                     </div>
@@ -227,20 +227,20 @@
 
 
 
-        <div class="mt-4">
-            <p class="py-4">
+        <div class="md:mt-4 mt-2">
+            <p class="md:py-4 py-2">
                 <b>
                     Price Summary
                 </b>
             </p>
 
-            <div class="h-[1px] mb-8 bg-gray-200"></div>
+            <div class="h-[1px] md:mb-8 mb-4 bg-gray-200"></div>
 
             <div class="bg-white">
                 <!-- <div class="border border-gray p-3 bg-white">
                     <div>
                         <div class="px-3">
-                            <p class="py-1 text-base text-gray flex justify-between">
+                            <p class="py-1 md:text-base text-xs text-gray flex justify-between">
                                 Price per respondents
                                 <span class="font-semibold">
                                     $15
@@ -253,7 +253,7 @@
                 <div class="border border-gray p-3 cursor-pointer bg-white">
                     <div>
                         <div class="px-3">
-                            <p class="py-1 text-base text-gray flex justify-between">
+                            <p class="py-1 md:text-base text-xs text-gray flex justify-between">
                                 Number of respondents
                                 <span class="font-semibold">
                                     {{completeForm.value['participantsForm'].numberOfParticipants}}
@@ -265,7 +265,7 @@
                 <div class="border border-gray p-3 cursor-pointer bg-white">
                     <div>
                         <div class="px-3">
-                            <p class="py-1 text-base text-gray flex justify-between">
+                            <p class="py-1 md:text-base text-xs text-gray flex justify-between">
                                 Location
                                 <span class="font-semibold">
                                     {{completeForm.value['setupForm'].location}}
@@ -277,7 +277,7 @@
                 <div class="border border-gray p-3 cursor-pointer bg-white">
                     <div>
                         <div class="px-3">
-                            <p class="py-1 text-base text-gray flex justify-between">
+                            <p class="py-1 md:text-base text-xs text-gray flex justify-between">
                                 Community Reach Level
                                 <span class="font-semibold">
                                     {{completeForm.value['participantsForm'].communityReachLevel.name}}
@@ -290,14 +290,14 @@
                 <div class="border border-gray p-3 cursor-pointer bg-white">
                     <div>
                         <div class="px-3">
-                            <p class="py-1 text-base text-gray flex justify-between">
+                            <p class="py-1 md:text-base text-xs text-gray flex justify-between">
                                 Subtotal
                                 <span class="font-semibold">
                                     ${{totalPrice}}
                                 </span>
                             </p>
 
-                            <p class="py-1 text-base text-gray-400 flex justify-between">
+                            <p class="py-1 md:text-base text-xs text-gray-400 flex justify-between">
                                 Discounted price
                                 <span class="font-semibold">
                                     - ${{ discountedPrice }}

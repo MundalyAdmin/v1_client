@@ -1,6 +1,6 @@
 <div class="relative">
       <div class="w-100 flex items-center justify-center" *ngIf="selectedOrganization">
-            <svg class="animated h-[400px] w-[400px]" id="freepik_stories-data-report" xmlns="http://www.w3.org/2000/svg"
+            <svg class="animated md:h-[400px] md:w-[400px] w-[300px] h-[300px]" id="freepik_stories-data-report" xmlns="http://www.w3.org/2000/svg"
                  xmlns:xlink="http://www.w3.org/1999/xlink"
                  viewBox="0 0 500 500" version="1.1" xmlns:svgjs="http://svgjs.com/svgjs">
                   <style>
@@ -721,7 +721,7 @@
                   </defs>
             </svg>
       </div>
-      <p class="">
+      <p class=" text-sm md:text-base">
             You are about to request <b class="text-primary">Insights</b> for <b class="text-primary">{{ selectedOrganization?.name }}</b>
             from
             it's own
@@ -729,17 +729,17 @@
 
       </p>
 
-      <p>
+      <p class="text-sm md:text-base">
             The Sales Team will get in touch with you within the next 24 hours to go through the details. Kindly confirm by clicking on <b
-               class="text-primary">Proceed</b>
+               class="text-primary ">Proceed</b>
       </p>
 
       <br>
 
-      <div class="flex justify-end gap-2   mt-10">
+      <div class="flex justify-end gap-2  mt-5 md:mt-10">
             <button type="button"
                     [disabled]="loading"
-                    class="text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-dark font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                    class="text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-dark font-medium rounded-lg text-sm md:px-5 px-3 md:py-2.5 py-1.5 text-center "
                     (click)="close$.emit()">
                   Cancel
             </button>
@@ -747,7 +747,7 @@
 
             <button type="button"
                     [disabled]="loading"
-                    class="text-primary border border-primary bg-secondary hover:bg-secondary-dark focus:ring-4 focus:outline-none focus:ring-primary-dark font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                    class="text-primary border border-primary bg-secondary hover:bg-secondary-dark focus:ring-4 focus:outline-none focus:ring-primary-dark font-medium rounded-lg text-sm md:px-5 px-3 md:py-2.5 py-1.5 text-center "
                     (click)="create()">
                   Proceed
                   <app-loading *ngIf="loading"></app-loading>
