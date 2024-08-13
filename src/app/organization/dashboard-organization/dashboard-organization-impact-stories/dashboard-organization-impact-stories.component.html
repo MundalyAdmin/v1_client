@@ -1,0 +1,47 @@
+<div class="p-10">
+    <div class="grid grid-cols-1">
+        <div class="md:col-span-2 col-span-1">
+            <h3 class="md:text-3xl text-xl text-primary font-bold mb-3">Impact Stories</h3>
+            <div class="grid  grid-cols-4 gap-10 md:gap-24 w-full m mb-10">
+                <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/static-content/stories-video-1"
+                     class=" h-52 w-auto" alt="">
+                <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/static-content/stories-video-2"
+                     class=" h-52 w-auto" alt="">
+                <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/static-content/stories-video-3"
+                     class=" h-52 w-auto" alt="">
+                <img src="https://res.cloudinary.com/mundaly/image/upload/f_auto,q_auto/v1/static-content/stories-video-4"
+                     class=" h-52 w-auto" alt="">
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="my-5" id="rating">
+        <!-- <app-stories-rating></app-stories-rating> -->
+    </div>
+
+    <div class="border-b border-gray-200 dark:border-gray-700">
+        <ul class="flex flex-wrap -mb-px text-lg font-medium text-center text-gray-500 dark:text-gray-400">
+            <li class="me-2">
+                <a [routerLink]="['verified']"
+                   [routerLinkActive]="['text-primary', 'border-primary']"
+                   class="inline-flex items-center justify-center p-4  border-b-2  rounded-t-lg active dark:text-blue-500 dark:border-blue-500 group"
+                   aria-current="page">
+                    <i class="mdi mdi-check-decagram me-2"></i>Verified
+                </a>
+            </li>
+            <li class="me-2">
+                <a [routerLink]="['unverified']"
+                   [routerLinkActive]="['text-primary', 'border-primary']"
+                   class="inline-flex items-center justify-center p-4 border-b-2   rounded-t-lg hover:text-gray-600 hover:border-gray-300group">
+                    <i class="mdi mdi-comment-edit-outline me-2"></i> Unverified
+                </a>
+            </li>
+
+
+        </ul>
+    </div>
+
+    <router-outlet></router-outlet>
+</div>

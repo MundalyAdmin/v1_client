@@ -1,0 +1,28 @@
+<div class="p-8 border">
+    <h5 class="text-lg font-light text-left mb-3">
+        Physical Health Trends
+    </h5>
+
+    <div class="flex gap-2 w-full" *ngIf="!loading && data.length">
+        <h5 class=" font-light text-center rotate-180 [writing-mode:vertical-lr] ml-[-10px]">
+            Avg. Physical Health
+        </h5>
+
+        <div class="flex justify-between gap-1 flex-1 overflow-hidden hover:overflow-auto scrollbar">
+
+            <app-dashboard-organization-insights-impact-fidelity-trend-data *ngFor="let trend of data" [month]="trend.month"
+                                                                            [year]="trend.year.toString()"
+                                                                            [score]="trend.score">
+            </app-dashboard-organization-insights-impact-fidelity-trend-data>
+
+
+
+
+        </div>
+    </div>
+
+    <app-loading *ngIf="loading"></app-loading>
+    <app-missing-data *ngIf="!loading && !data.length"></app-missing-data>
+
+
+</div>

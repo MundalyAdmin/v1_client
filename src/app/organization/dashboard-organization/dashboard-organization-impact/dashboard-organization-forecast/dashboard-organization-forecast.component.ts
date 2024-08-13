@@ -20,10 +20,12 @@ export class DashboardOrganizationForecastComponent
   implements OnInit
 {
   communityTrustScore: CommunityTrustScore | null = null;
-  showImpactFidelityInfo = false;
-  showCommunityReputationInfo = false;
+  showPhysicalHealthInfo = false;
+  showPsychologicalHealthInfo = false;
   showFacilitationStrategyInfo = false;
   showCommunityTrustScoreInfo = false;
+  showImpactFidelityInfo = false;
+  showCommunityReputationInfo = false;
 
   constructor(
     public scaleService: ScaleService,

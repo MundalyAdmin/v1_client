@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BaseComponent } from '../../../../shared/base-component';
 import { ImpactPartner } from '../impact-partner.model';
 import { ImpactPartnerService } from '../impact-partner.service';

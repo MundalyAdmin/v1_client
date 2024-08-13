@@ -32,22 +32,23 @@ export class OrganizationNewStyleStoriesListComponent
   }
 
   override ngOnInit(): void {
-    this.subscriptions['organization'] =
-      this.organizationService.singleData$.subscribe((organization) => {
-        if (organization) {
-          this.organization = organization;
-          this.getDataByOrganization(organization.id!);
-        }
-      });
+    // this.subscriptions['organization'] =
+    //   this.organizationService.singleData$.subscribe((organization) => {
+    //     if (organization) {
+    //       this.organization = organization;
+    //       this.getDataByOrganization(organization.id!);
+    //     }
+    //   });
+
+    this.getDataByOrganization(28);
   }
 
   getDataByOrganization(organizationId: number) {
     this.route.params.subscribe((params) => {
       if (params['id'] === 'verified') {
-        this.verified = true;
+        this.getVerifiedByOrganization(organizationId);
       } else if (params['id'] === 'unverified') {
         this.getUnverifiedByOrganization(organizationId);
-        this.verified = false;
       } else {
         this.router.navigate(['..', 'unverified'], { relativeTo: this.route });
       }

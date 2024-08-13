@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-interface ItemPercentage {
-  name: string;
-  percentage: number;
-}
-
 @Component({
-  selector: 'app-funds',
-  templateUrl: './wellbeing.component.html',
-  styleUrls: ['./wellbeing.component.scss'],
+  selector: 'app-dashboard-organization-due-diligence-overview-second',
+  templateUrl:
+    './dashboard-organization-due-diligence-overview-second.component.html',
+  styleUrls: [
+    './dashboard-organization-due-diligence-overview-second.component.scss',
+  ],
 })
-export class WellBeingComponent implements OnInit {
+export class DashboardOrganizationDueDiligenceOverviewSecondComponent {
   data: any;
+
+  funders: any[] = [];
 
   options: any;
 
@@ -36,18 +36,15 @@ export class WellBeingComponent implements OnInit {
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
     this.data = {
-      labels: ['Poor', 'Moderate', 'Cox'],
+      labels: ['High Risk', 'Medium to High Risk', 'Medium Risk', 'Low risk'],
       datasets: [
         {
-          data: [300, 50, 100],
-          backgroundColor: [
-            documentStyle.getPropertyValue('--blue-500'),
-            documentStyle.getPropertyValue('--blue-200'),
-            documentStyle.getPropertyValue('--blue-700'),
-          ],
+          data: [300, 50, 100, 200],
+          backgroundColor: ['#07046B', '#07046B99', '#07046B66', '#07046B33'],
           hoverBackgroundColor: [
             documentStyle.getPropertyValue('--blue-400'),
             documentStyle.getPropertyValue('--blue-100'),
+            documentStyle.getPropertyValue('--blue-800'),
             documentStyle.getPropertyValue('--blue-600'),
           ],
         },
@@ -64,7 +61,7 @@ export class WellBeingComponent implements OnInit {
         },
         datalabels: {
           color: 'white',
-          backgroundColor: 'aqua',
+          backgroundColor: '#21CEB9',
           labels: {
             title: {
               font: {
@@ -87,14 +84,14 @@ export class WellBeingComponent implements OnInit {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [
         {
-          label: 'First Dataset',
+          label: 'Male',
           data: [65, 59, 80, 81, 56, 55, 40],
           fill: false,
           borderColor: documentStyle.getPropertyValue('--blue-500'),
           tension: 0.4,
         },
         {
-          label: 'Second Dataset',
+          label: 'Female',
           data: [28, 48, 40, 19, 86, 27, 90],
           fill: false,
           borderColor: documentStyle.getPropertyValue('--pink-500'),

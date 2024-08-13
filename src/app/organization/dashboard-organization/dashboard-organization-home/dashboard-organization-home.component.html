@@ -16,10 +16,11 @@
           Programs
         </a>
 
-        <!-- For impact partner -->
-        <a [routerLink]="['partners']"
-           *ngIf="organization.type_organization_id === TypeOrganizationEnum.IMPACT_FUNDER"
-           [routerLinkActiveOptions]="{exact: true}"
+
+
+
+      <li class="me-2">
+        <a [routerLink]="['community-needs']"
            routerLinkActive="text-primary border-primary font-semibold"
            class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-base md:text-lg">
           Portfolio
@@ -27,12 +28,8 @@
       </li>
 
 
-      <!-- For Corporate -->
-      <li class="me-2" *ngIf="CategoryOrganizationEnum.CORPORATION">
-        <!-- For corporate -->
-        <a [routerLink]="['partners']"
-           *ngIf="organization.type_organization_id === TypeOrganizationEnum.CORPORATION"
-           [routerLinkActiveOptions]="{exact: true}"
+      <li class="me-2">
+        <a [routerLink]="['impact-stories']"
            routerLinkActive="text-primary border-primary font-semibold"
            class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-base md:text-lg">
           Portfolio
@@ -47,6 +44,8 @@
           Programs
         </a>
       </li>
+
+
 
       <li class="me-2">
         <a [routerLink]="['invitations']"
