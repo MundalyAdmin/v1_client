@@ -66,10 +66,19 @@ export class OrganizationPartnerInvitationListComponent extends BaseComponent<Or
     invitation: OrganizationPartnerInvitation,
     status: OrganizationPartnerInvitationStatusEnum
   ) {
-    const message =
-      status === OrganizationPartnerInvitationStatusEnum.ACCEPTED
-        ? `Are you sure you want to accept this invitation from ${invitation.sender?.name}`
-        : `Are you sure you want to reject this invitation from ${invitation.sender?.name}`;
+    let message = '';
+    switch (status) {
+      case OrganizationPartnerInvitationStatusEnum.ACCEPTED:
+        message = `Are you sure you want to accept this invitation from ${invitation.sender?.name}`;
+        break;
+      case OrganizationPartnerInvitationStatusEnum.REJECTED:
+        message = `Are you sure you want to reject this invitation from ${invitation.sender?.name}`;
+        break;
+      case OrganizationPartnerInvitationStatusEnum.ABORTED:
+        message = `Are you sure you want to abort this invitation from ${invitation.sender?.name}`;
+        break;
+    }
+
     this.helper.notification.confirm('Invitation', message, () => {
       this.loading = true;
       this.organizationPartnerInvitationService

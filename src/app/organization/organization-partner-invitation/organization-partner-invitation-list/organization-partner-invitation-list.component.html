@@ -109,6 +109,10 @@
                         <span class="mdi mdi-clock"></span> <span class="ms-1 hidden md:inline">Pending</span></button>
 
 
+                    <button type="button"
+                            class=" bg-red-500 hover:bg-red-500-light focus:ring-4 focus:ring-blue-300 border font-medium rounded-lg text-sm md:px-5 md:py-2.5 py-1.5 px-3 me-2 mb-2  text-white focus:outline-none dark:focus:ring-bg-red-500-dark"
+                            (click)="updateStatus(invitation, OrganizationInvitationStatusEnum.ABORTED)">
+                        <span class="mdi mdi-trash-can"></span> <span class="ms-1 hidden md:inline">Delete</span> </button>
                 </td>
             </tr>
         </ng-container>
