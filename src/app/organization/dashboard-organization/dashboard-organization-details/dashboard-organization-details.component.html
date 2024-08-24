@@ -58,18 +58,18 @@
 
           <div class="flex gap-2">
             <button type="button"
-                    *ngIf="!single?.verification_status_from_current_organization"
+
                     (click)="showDueDiligenceModal = true"
                     class="px-3 md:px-7 py-2 md:py-4 text-sm md:text-base font-semibold border border-primary  rounded-full text-center text-white bg-primary  hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-dark">
               Request Insights
             </button>
-
+            <!-- 
             <button type="button"
                     *ngIf="single?.verification_status_from_current_organization && (single?.verification_status_from_current_organization?.id !== StatusImpactVerificationEnum.ABORTED || single?.verification_status_from_current_organization?.id !== StatusImpactVerificationEnum.SUSPENDED)"
                     [disabled]="true"
                     class="px-3 md:px-7 py-2 md:py-3 text-sm md:text-base font-semibold   rounded-full text-center text-gray-900  bg-slate-400   focus:ring-4 focus:outline-none focus:ring-primary-dark">
               Insights Requested
-            </button>
+            </button> -->
 
             <a [href]="single.website" target="_blank" type="button"
                class="px-3 md:px-7 py-2 md:py-3 text-sm md:text-base font-semibold border border-primary  rounded-full text-center text-primary bg-secondary  hover:bg-secondary-dark focus:ring-4 focus:outline-none focus:ring-primary-dark">Visit
