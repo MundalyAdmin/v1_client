@@ -38,7 +38,11 @@ export class DashboardOrganizationInsightsScalesTrendComponent extends BaseCompo
     super.ngOnInit();
 
     this.route.queryParams.subscribe((params) => {
-      const queryParams: { startDate?: string; endDate?: string } = {};
+      const queryParams: {
+        startDate?: string;
+        endDate?: string;
+        location?: string;
+      } = {};
       if (params['startDate']) {
         queryParams.startDate = params['startDate'];
       }
@@ -46,23 +50,11 @@ export class DashboardOrganizationInsightsScalesTrendComponent extends BaseCompo
         queryParams.endDate = params['endDate'];
       }
 
-      this.subscriptions['currentLogOrganization'] =
-        this.authService.organization$.subscribe((organization) => {
-          if (
-            organization?.type_organization_id ===
-              TypeOrganizationEnum.IMPACT_FUNDER ||
-            organization?.type_organization_id ===
-              TypeOrganizationEnum.CORPORATION
-          ) {
-            this.subscribeToOrganizationData(queryParams);
-          } else if (
-            organization?.type_organization_id ===
-              TypeOrganizationEnum.IMPACT_IMPLEMENTER ||
-            organization?.type_organization_id === TypeOrganizationEnum.SUPPLIER
-          ) {
-            this.subscribeToImpactInitiativeData(queryParams);
-          }
-        });
+      if (params['community']) {
+        queryParams.location = params['community'];
+      }
+
+      this.subscribeToOrganizationData(queryParams);
     });
 
     this.subscriptions['impactFidelityTrend'] =
@@ -94,18 +86,6 @@ export class DashboardOrganizationInsightsScalesTrendComponent extends BaseCompo
       });
   }
 
-  subscribeToImpactInitiativeData(queryParams?: any) {
-    this.subscriptions['impactInitiative'] =
-      this.impactInitiativeService.singleData$.subscribe((impactInitiative) => {
-        if (impactInitiative) {
-          this.getFaciliatationStrategyTrendByImpactInitiative(
-            impactInitiative.id!,
-            queryParams
-          );
-        }
-      });
-  }
-
   getFaciliatationStrategyTrendByOrganization(
     organizationId: number,
     queryParams?: any
@@ -113,18 +93,6 @@ export class DashboardOrganizationInsightsScalesTrendComponent extends BaseCompo
     this.loading = true;
     this.facilitationStrategyService
       .getTrendScoreByOrganization(organizationId, { params: queryParams })
-      .subscribe(() => {
-        this.loading = false;
-      });
-  }
-
-  getFaciliatationStrategyTrendByImpactInitiative(
-    organization: number,
-    queryParams?: any
-  ) {
-    this.loading = true;
-    this.facilitationStrategyService
-      .getTrendScoreByImpactInitiative(organization, { params: queryParams })
       .subscribe(() => {
         this.loading = false;
       });

@@ -36,7 +36,7 @@ export class OrganizationNewStyleRatingOverviewComponent extends BaseSingleCompo
     super.ngOnInit();
 
     this.subscriptions['communityTrstScore'] =
-      this.scaleService.communityTrustScore$.subscribe((score) => {
+      this.scaleService.score$.subscribe((score) => {
         this.communityTrustScore = score;
       });
   }

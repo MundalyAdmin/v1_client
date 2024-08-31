@@ -1,19 +1,19 @@
-<div class="grid grid-cols-2 md:grid-cols-1 gap-3" *ngIf="!loading && scaleService.communityTrustScore">
+<div class="grid grid-cols-2 md:grid-cols-1 gap-3" *ngIf="!loading && scaleService.score">
   <!-- Impact Fidelity -->
   <app-dashboard-organization-insights-scale-score [title]="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT ? 'Impact Fidelity' : 'Sustainability Fidelity'"
-                                                   [score]="scaleService.communityTrustScore.impact_fidelity_score!">
+                                                   [score]="scaleService.score.impact_fidelity_score!">
   </app-dashboard-organization-insights-scale-score>
 
   <!-- Community Reputation -->
   <app-dashboard-organization-insights-scale-score [title]="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT ? 'Community Reputation' : 'Social Licence'"
-                                                   [score]="scaleService.communityTrustScore.community_perception_score!">
+                                                   [score]="scaleService.score.community_perception_score!">
   </app-dashboard-organization-insights-scale-score>
 
   <!-- Facilitation Strategy -->
   <app-dashboard-organization-insights-scale-score [title]="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT ? 'Faciliation Strategy' : 'Whistleblowing Risk'"
-                                                   [score]="scaleService.communityTrustScore.facilitation_strategy_score!">
+                                                   [score]="scaleService.score.facilitation_strategy_score!">
   </app-dashboard-organization-insights-scale-score>
 </div>
 
 <app-page-loading *ngIf="loading"></app-page-loading>
-<app-missing-data *ngIf="!loading && !scaleService.communityTrustScore"></app-missing-data>
+<app-missing-data *ngIf="!loading && !scaleService.score"></app-missing-data>

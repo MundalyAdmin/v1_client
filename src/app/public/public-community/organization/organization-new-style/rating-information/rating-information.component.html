@@ -1,4 +1,4 @@
-<div class="grid grid-cols-1 col-span-1 h-fit sticky top-0" *ngIf="scaleService.communityTrustScore">
+<div class="grid grid-cols-1 col-span-1 h-fit sticky top-0" *ngIf="scaleService.score">
   <div class="p-8 rounded-xl bg-primary text-white">
     <!-- Title -->
     <h5 class="text-xl text-center mb-2 font-semibold">Community Trust Score</h5>
@@ -25,7 +25,7 @@
 
 
 
-      <div class="text-xl font-bold ">{{ scaleService.communityTrustScore.community_trust_score }}%</div>
+      <div class="text-xl font-bold ">{{ scaleService.score.community_trust_score }}%</div>
 
     </div>
 
@@ -37,7 +37,7 @@
         <div class="text-slate-100 text-md mb-1">Social Impact Fidelity</div>
         <div class="w-full bg-slate-300/20 rounded-full h-3 ">
           <div class="bg-green-600 h-3 rounded-full"
-               [style]="{width: scaleService.getProgressBarWidth(scaleService.communityTrustScore.impact_fidelity_score!)}">
+               [style]="{width: scaleService.getProgressBarWidth(scaleService.score.impact_fidelity_score!)}">
           </div>
         </div>
       </li>
@@ -47,7 +47,7 @@
         <div class="text-slate-100 text-md mb-1">Community Reputation</div>
         <div class="w-full bg-slate-300/20 rounded-full h-3 ">
           <div class="bg-green-600 h-3 rounded-full"
-               [style]="{width: scaleService.getProgressBarWidth(scaleService.communityTrustScore.community_perception_score!)}"></div>
+               [style]="{width: scaleService.getProgressBarWidth(scaleService.score.community_perception_score!)}"></div>
         </div>
       </li>
 
@@ -57,7 +57,7 @@
         <div class="text-slate-100 text-md mb-1">Facilitation Strategy</div>
         <div class="w-full bg-slate-300/20 rounded-full h-3 ">
           <div class="bg-green-600 h-3 rounded-full"
-               [style]="{width: scaleService.getProgressBarWidth(scaleService.communityTrustScore.facilitation_strategy_score!)}"></div>
+               [style]="{width: scaleService.getProgressBarWidth(scaleService.score.facilitation_strategy_score!)}"></div>
         </div>
       </li>
 

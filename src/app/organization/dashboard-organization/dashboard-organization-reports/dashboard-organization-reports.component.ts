@@ -7,6 +7,7 @@ import { AuthService } from '../../../auth/auth.service';
 import { ImpactInitiativeService } from '../../../scale/impact-initiative/impact-initiative.service';
 import { TypeOrganizationEnum } from '../../type-organization/type-organization.enum';
 import { StatusImpactVerificationEnum } from '../../../impact-verification/enums/status-impact-verification.enum';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-organization-reports',
@@ -24,61 +25,37 @@ export class DashboardOrganizationReportsComponent
   constructor(
     public organizationReportService: OrganizationReportService,
     public organizationService: OrganizationService,
-    public impactInitiativeService: ImpactInitiativeService
+    public impactInitiativeService: ImpactInitiativeService,
+    public route: ActivatedRoute
   ) {
     super();
   }
 
   override ngOnInit(): void {
-    this.authService.organization$.subscribe((organization) => {
-      if (
-        organization?.type_organization_id ===
-          TypeOrganizationEnum.IMPACT_FUNDER ||
-        organization?.type_organization_id === TypeOrganizationEnum.CORPORATION
-      ) {
-        this.subscribeToOrganizationData();
-      } else if (
-        organization?.type_organization_id ===
-          TypeOrganizationEnum.IMPACT_IMPLEMENTER ||
-        organization?.type_organization_id === TypeOrganizationEnum.SUPPLIER
-      ) {
-        this.subscribeToImpactInitiativeData();
+    this.route.queryParams.subscribe((params) => {
+      const queryParams: { location?: string } = {};
+
+      if (params['community']) {
+        queryParams['location'] = params['community'];
       }
+
+      this.subscribeToOrganizationData(queryParams);
     });
   }
 
-  subscribeToImpactInitiativeData() {
-    this.subscriptions['impactInitiative'] =
-      this.impactInitiativeService.singleData$.subscribe((impactInitiative) => {
-        if (impactInitiative) {
-          this.getByImpactInitiativeId(impactInitiative.id!);
-        }
-      });
-  }
-
-  subscribeToOrganizationData() {
+  subscribeToOrganizationData(queryParams?: any) {
     this.subscriptions['organization'] =
       this.organizationService.singleData$.subscribe((organization) => {
         if (organization) {
-          this.getByOrganizationId(organization.id!);
+          this.getByOrganizationId(organization.id!, queryParams);
         }
       });
   }
 
-  getByOrganizationId(organizationId: number) {
+  getByOrganizationId(organizationId: number, params?: any) {
     this.loading = true;
     this.organizationReportService
-      .getByOrganizationId(organizationId)
-      .subscribe({
-        next: () => (this.loading = false),
-        error: () => (this.loading = false),
-      });
-  }
-
-  getByImpactInitiativeId(impactInitiativeId: number) {
-    this.loading = true;
-    this.organizationReportService
-      .getByImpactInitiativeId(impactInitiativeId)
+      .getByOrganizationId(organizationId, { params })
       .subscribe({
         next: () => (this.loading = false),
         error: () => (this.loading = false),

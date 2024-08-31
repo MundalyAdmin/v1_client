@@ -29,13 +29,12 @@ export class RatingInformationComponent
         if (organization) {
           this.organization = organization;
           if (
-            !this.scaleService.communityTrustScore ||
-            this.scaleService.communityTrustScore.organization_id !==
-              organization.id
+            !this.scaleService.score ||
+            this.scaleService.score.organization_id !== organization.id
           ) {
             this.getCommunityTrustScore(organization.id!);
           } else {
-            this.communityTrustScore = this.scaleService.communityTrustScore;
+            this.communityTrustScore = this.scaleService.score;
           }
         }
       });
@@ -44,10 +43,10 @@ export class RatingInformationComponent
   getCommunityTrustScore(organizationId: number) {
     this.loading = true;
     this.scaleService
-      .getCommunityTrustScoreByOrganizationId(organizationId)
+      .getByOrganizationId(organizationId)
       .subscribe((response) => {
         this.loading = false;
-        this.communityTrustScore = this.scaleService.communityTrustScore;
+        this.communityTrustScore = this.scaleService.score;
       });
   }
 }

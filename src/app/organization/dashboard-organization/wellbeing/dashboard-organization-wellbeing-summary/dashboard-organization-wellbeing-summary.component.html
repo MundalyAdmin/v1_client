@@ -5,7 +5,7 @@
 
     </div>
 
-    <div class="relative overflow-x-auto shadow-md " *ngIf="!loading && scaleService.communityTrustScore">
+    <div class="relative overflow-x-auto shadow-md " *ngIf="!loading && wellbeingScoringService.score">
         <table class="w-full text-base text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class=" text-gray-400 capitalize bg-slate-100  dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -27,7 +27,7 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Phisical Health-->
+                <!-- Phisical Wellbeing-->
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
 
                     <!-- Number -->
@@ -37,30 +37,30 @@
 
                     <!-- Name and Photo -->
                     <th scope="row p-6">
-                        Physical Health
+                        Physical Wellbeing
 
                     </th>
 
                     <!-- Key -->
                     <td class="p-6">
-                        {{ scaleService.getScoreKey(scaleService.communityTrustScore.impact_fidelity_score!) }}
+                        {{ scaleService.getScoreKey(wellbeingScoringService.score.physical_wellbeing!) }}
                     </td>
 
                     <!-- Score -->
                     <td class="p-6">
                         <div class="flex items-center font-semibold">
-                            {{ scaleService.communityTrustScore.impact_fidelity_score}}
+                            {{ wellbeingScoringService.score.physical_wellbeing}}
                         </div>
                     </td>
 
 
 
                     <td class="p-6">
-                        <button (click)="showPhysicalHealthInfo = true"
+                        <button (click)="showPhysicalWellbeingInfo = true"
                                 class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                                class="mdi mdi-information"></i></button>
 
-                        <p-dialog header="Physical Health" [(visible)]="showPhysicalHealthInfo" [modal]="true" [style]="{ width: '50vw' }"
+                        <p-dialog header="Physical Wellbeing" [(visible)]="showPhysicalWellbeingInfo" [modal]="true" [style]="{ width: '50vw' }"
                                   [draggable]="false"
                                   [resizable]="false">
                             <p class="m-0">
@@ -74,7 +74,7 @@
                 </tr>
 
 
-                <!-- Psychological Health -->
+                <!-- Psychological Wellbeing -->
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
 
                     <!-- Number -->
@@ -84,29 +84,30 @@
 
                     <!-- Name and Photo -->
                     <th scope="row p-6">
-                        Psychological Health
+                        Psychological Wellbeing
                     </th>
 
                     <!-- Key -->
                     <td class="p-6">
-                        {{ scaleService.getScoreKey(scaleService.communityTrustScore.community_perception_score!) }}
+                        {{ scaleService.getScoreKey(wellbeingScoringService.score.psychological_wellbeing!) }}
                     </td>
 
                     <!-- Score -->
                     <td class="p-6">
                         <div class="flex items-center font-semibold">
-                            {{ scaleService.communityTrustScore.community_perception_score}}
+                            {{ wellbeingScoringService.score.psychological_wellbeing}}
                         </div>
                     </td>
 
 
 
                     <td class="p-6">
-                        <button (click)="showPsychologicalHealthInfo = true"
+                        <button (click)="showPsychologicalWellbeingInfo = true"
                                 class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                                class="mdi mdi-information"></i></button>
 
-                        <p-dialog header="Psychological Health" [(visible)]="showPsychologicalHealthInfo" [modal]="true" [style]="{ width: '50vw' }"
+                        <p-dialog header="Psychological Wellbeing" [(visible)]="showPsychologicalWellbeingInfo" [modal]="true"
+                                  [style]="{ width: '50vw' }"
                                   [draggable]="false"
                                   [resizable]="false">
                             <p class="m-0">
@@ -120,7 +121,7 @@
                     </td>
                 </tr>
 
-                <!-- Social Relations -->
+                <!-- Social Wellbeing -->
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
 
                     <!-- Number -->
@@ -130,29 +131,29 @@
 
                     <!-- Name and Photo -->
                     <th scope="row p-6">
-                        Social Relations
+                        Social Wellbeing
                     </th>
 
                     <!-- Key -->
                     <td class="p-6">
-                        {{ scaleService.getScoreKey(scaleService.communityTrustScore.facilitation_strategy_score!) }}
+                        {{ scaleService.getScoreKey(wellbeingScoringService.score.social_wellbeing!) }}
                     </td>
 
                     <!-- Score -->
                     <td class="p-6">
                         <div class="flex items-center font-semibold">
-                            {{ scaleService.communityTrustScore.facilitation_strategy_score}}
+                            {{ wellbeingScoringService.score.social_wellbeing}}
                         </div>
                     </td>
 
 
 
                     <td class="p-6">
-                        <button (click)="showFacilitationStrategyInfo = true"
+                        <button (click)="showSocialWellbeingInfo = true"
                                 class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                                class="mdi mdi-information"></i></button>
 
-                        <p-dialog header="Facilitation Strategy" [(visible)]="showFacilitationStrategyInfo" [modal]="true" [style]="{ width: '50vw' }"
+                        <p-dialog header="Social Wellbeing" [(visible)]="showSocialWellbeingInfo" [modal]="true" [style]="{ width: '50vw' }"
                                   [draggable]="false"
                                   [resizable]="false">
                             <p class="m-0">
@@ -172,7 +173,7 @@
                     </td>
                 </tr>
 
-                <!-- Environmental Conditions -->
+                <!-- Environmental Wellbeing -->
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
 
                     <!-- Number -->
@@ -182,29 +183,30 @@
 
                     <!-- Name and Photo -->
                     <th scope="row p-6">
-                        Environmental Conditions
+                        Environmental Wellbeing
                     </th>
 
                     <!-- Key -->
                     <td class="p-6">
-                        {{ scaleService.getScoreKey(scaleService.communityTrustScore.impact_fidelity_score!) }}
+                        {{ scaleService.getScoreKey(wellbeingScoringService.score.environment_wellbeing!) }}
                     </td>
 
                     <!-- Score -->
                     <td class="p-6">
                         <div class="flex items-center font-semibold">
-                            {{ scaleService.communityTrustScore.impact_fidelity_score}}
+                            {{ wellbeingScoringService.score.environment_wellbeing}}
                         </div>
                     </td>
 
 
 
                     <td class="p-6">
-                        <button (click)="showFacilitationStrategyInfo = true"
+                        <button (click)="showEnvironmentWellbeingInfo = true"
                                 class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                                class="mdi mdi-information"></i></button>
 
-                        <p-dialog header="Facilitation Strategy" [(visible)]="showFacilitationStrategyInfo" [modal]="true" [style]="{ width: '50vw' }"
+                        <p-dialog header="Environmental Wellbeing" [(visible)]="showEnvironmentWellbeingInfo" [modal]="true"
+                                  [style]="{ width: '50vw' }"
                                   [draggable]="false"
                                   [resizable]="false">
                             <p class="m-0">
@@ -239,25 +241,25 @@
 
                     <!-- Key -->
                     <td class="p-6">
-                        {{ scaleService.getScoreKey(scaleService.communityTrustScore.community_trust_score!) }}
+                        {{ scaleService.getScoreKey(wellbeingScoringService.score.score!) }}
 
                     </td>
 
                     <!-- Score -->
                     <td class="p-6">
                         <div class="flex items-center font-semibold">
-                            {{ scaleService.communityTrustScore.community_trust_score}}
+                            {{ wellbeingScoringService.score.score}}
                         </div>
                     </td>
 
 
 
                     <td class="p-6">
-                        <button (click)="showCommunityTrustScoreInfo = true"
+                        <button (click)="showWellbeingScoringInfo = true"
                                 class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                                class="mdi mdi-information"></i></button>
 
-                        <p-dialog header="Community Trust Score" [(visible)]="showCommunityTrustScoreInfo" [modal]="true" [style]="{ width: '50vw' }"
+                        <p-dialog header="Community Trust Score" [(visible)]="showWellbeingScoringInfo" [modal]="true" [style]="{ width: '50vw' }"
                                   [draggable]="false"
                                   [resizable]="false">
                             <p class="m-0">
@@ -279,7 +281,7 @@
 
             <!-- If the community has more than 10 respondents -->
             <span class="font-bold">
-                {{ scaleService.getFundabilityRecommendation(scaleService.communityTrustScore) }}
+                {{ wellbeingScoringService.getRecommendation(wellbeingScoringService.score) }}
             </span>
 
 
@@ -289,7 +291,7 @@
 
 
     <app-page-loading *ngIf="loading"></app-page-loading>
-    <app-missing-data *ngIf="!loading && !scaleService.communityTrustScore"></app-missing-data>
+    <app-missing-data *ngIf="!loading && !wellbeingScoringService.score"></app-missing-data>
 </div>
 
 <app-dashboard-organization-unavailable-insights

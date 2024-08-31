@@ -4,6 +4,7 @@ import { ImpactPartner } from '../impact-partner.model';
 import { ImpactPartnerService } from '../impact-partner.service';
 import { AuthService } from '../../../../auth/auth.service';
 import { ImpactInitiative } from '../../../../scale/impact-initiative/impact-initiative.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-impact-partner-list',
@@ -14,9 +15,13 @@ export class ImpactPartnerListComponent
   extends BaseComponent<ImpactPartner>
   implements OnInit
 {
-  selectedImpactInitiatives: (ImpactInitiative | null)[] = [];
+  selectedImpactInitiatives: ({ id: number; location: string } | null)[] = [];
 
-  constructor(public impactPartnerService: ImpactPartnerService) {
+  constructor(
+    public impactPartnerService: ImpactPartnerService,
+    public router: Router,
+    public route: ActivatedRoute
+  ) {
     super();
   }
 
@@ -47,11 +52,25 @@ export class ImpactPartnerListComponent
     this.loading = true;
     this.impactPartnerService.getByFunderId(funderId).subscribe((data) => {
       this.loading = false;
-      this.selectedImpactInitiatives = data.map((partner) => {
-        return partner.implementer?.impact_initiatives?.length
-          ? partner.implementer.impact_initiatives[0]
-          : null;
-      });
+      // if (data)
+      //   this.selectedImpactInitiatives = data.map((partner) => {
+      //     return partner.implementer?.verifications?.length
+      //       ? partner.implementer.verifications[0]
+      //       : null;
+      //   });
     });
+  }
+
+  selectImpactPartner(partnerId: number, indexCommunity: number) {
+    this.router.navigate([partnerId], {
+      relativeTo: this.route,
+      queryParams: {
+        community: this.selectedImpactInitiatives[indexCommunity]?.location,
+      },
+    });
+  }
+
+  goToPartner(partnerId: any, index: any) {
+    console.log(partnerId, index);
   }
 }

@@ -3,7 +3,7 @@ import { BaseComponent } from '../../../../shared/base-component';
 import { NetPromoterScore } from '../../../../scale/impact-story/net-promoter-score.model';
 import { ImpactStoryService } from '../../../../scale/impact-story/impact-story.service';
 import { OrganizationService } from '../../../organization.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TypeOrganizationEnum } from '../../../type-organization/type-organization.enum';
 import { AuthService } from '../../../../auth/auth.service';
 import { ImpactInitiativeService } from '../../../../scale/impact-initiative/impact-initiative.service';
@@ -22,7 +22,6 @@ export class DashboardOrganizationInsightsNetPromoterScoreComponent
   implements OnInit
 {
   nps: NetPromoterScore | undefined;
-
   chartData: any;
   options: any;
 
@@ -30,7 +29,8 @@ export class DashboardOrganizationInsightsNetPromoterScoreComponent
     public impactStoryService: ImpactStoryService,
     public organizationService: OrganizationService,
     public impactInitiativeService: ImpactInitiativeService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    public router: Router
   ) {
     super();
   }
@@ -38,7 +38,11 @@ export class DashboardOrganizationInsightsNetPromoterScoreComponent
   override ngOnInit(): void {
     super.ngOnInit();
     this.route.queryParams.subscribe((params) => {
-      const queryParams: { startDate?: string; endDate?: string } = {};
+      const queryParams: {
+        startDate?: string;
+        endDate?: string;
+        location?: string;
+      } = {};
       if (params['startDate']) {
         queryParams.startDate = params['startDate'];
       }
@@ -46,23 +50,11 @@ export class DashboardOrganizationInsightsNetPromoterScoreComponent
         queryParams.endDate = params['endDate'];
       }
 
-      this.subscriptions['currentLogOrganization'] =
-        this.authService.organization$.subscribe((organization) => {
-          if (
-            organization?.type_organization_id ===
-              TypeOrganizationEnum.IMPACT_FUNDER ||
-            organization?.type_organization_id ===
-              TypeOrganizationEnum.CORPORATION
-          ) {
-            this.subscribeToOrganizationData(queryParams);
-          } else if (
-            organization?.type_organization_id ===
-              TypeOrganizationEnum.IMPACT_IMPLEMENTER ||
-            organization?.type_organization_id === TypeOrganizationEnum.SUPPLIER
-          ) {
-            this.subscribeToImpactInitiativeData(queryParams);
-          }
-        });
+      if (params['community']) {
+        queryParams.location = params['community'];
+      }
+
+      this.subscribeToOrganizationData(queryParams);
     });
 
     this.subscriptions['netPromoterScore'] =
@@ -70,8 +62,8 @@ export class DashboardOrganizationInsightsNetPromoterScoreComponent
         if (nps) {
           this.nps = {
             ...nps,
-            detractors: nps.detractors + 150,
-            loyals: nps.loyals + 200,
+            detractors: nps.detractors,
+            loyals: nps.loyals,
           };
 
           this.initChart(this.nps);
@@ -84,18 +76,6 @@ export class DashboardOrganizationInsightsNetPromoterScoreComponent
       this.organizationService.singleData$.subscribe((organization) => {
         if (organization) {
           this.getNetPromoterScoreByOrganization(organization.id!, queryParams);
-        }
-      });
-  }
-
-  subscribeToImpactInitiativeData(queryParams?: any) {
-    this.subscriptions['impactInitiative'] =
-      this.impactInitiativeService.singleData$.subscribe((impactInitiative) => {
-        if (impactInitiative) {
-          this.getNetPromoterScoreByImpactInitiative(
-            impactInitiative.id!,
-            queryParams
-          );
         }
       });
   }
@@ -165,26 +145,21 @@ export class DashboardOrganizationInsightsNetPromoterScoreComponent
 
   getNetPromoterScoreByOrganization(organizationId: number, queryParams?: any) {
     this.loading = true;
+
     this.impactStoryService
       .getNetPromoterScoreByOrganization(organizationId, {
         params: queryParams,
       })
-      .subscribe(() => {
-        this.loading = false;
-      });
-  }
-
-  getNetPromoterScoreByImpactInitiative(
-    impactInitiativeId: number,
-    queryParams?: any
-  ) {
-    this.loading = true;
-    this.impactStoryService
-      .getNetPromoterScoreByImpactInitiative(impactInitiativeId, {
-        params: queryParams,
-      })
-      .subscribe(() => {
-        this.loading = false;
+      .subscribe({
+        next: () => {
+          this.loading = false;
+        },
+        error: () => {
+          this.loading = false;
+          this.router.navigate(['./'], {
+            relativeTo: this.route,
+          });
+        },
       });
   }
 }
