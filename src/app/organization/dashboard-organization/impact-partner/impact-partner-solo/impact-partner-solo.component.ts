@@ -12,8 +12,7 @@ export class ImpactPartnerSoloComponent implements OnInit {
   selectedImpactInitiative!: ImpactInitiative;
 
   ngOnInit(): void {
-    if (this.partner.implementer?.impact_initiatives?.length)
-      this.selectedImpactInitiative =
-        this.partner.implementer.impact_initiatives[0];
+    if (this.partner.implementer?.verifications?.length)
+      this.selectedImpactInitiative = this.partner.implementer.verifications[0];
   }
 }

@@ -1,58 +1,15 @@
 import { Injectable } from '@angular/core';
-import { BaseService } from '../shared/services';
-import { ReplaySubject, tap } from 'rxjs';
-import { ApiResponse } from '../shared/models/ApiResponse';
-import { CommunityTrustScore } from './models/community-trust-score.model';
 import { AuthService } from '../auth/auth.service';
 import { CategoryOrganizationEnum } from '../organization/category-organization/category-organization.enum';
+import { BaseScaleService } from './base-scale.service';
+import { CommunityTrustScore } from './models/community-trust-score.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ScaleService extends BaseService<any> {
-  communityTrustScore$ = new ReplaySubject<CommunityTrustScore>(1);
-  private _communityTrustScore!: CommunityTrustScore;
-
-  get communityTrustScore(): CommunityTrustScore {
-    return this._communityTrustScore;
-  }
-
-  set communityTrustScore(value: CommunityTrustScore) {
-    this._communityTrustScore = value;
-    this.communityTrustScore$.next(value);
-  }
-
+export class ScaleService extends BaseScaleService<any> {
   constructor(public authService: AuthService) {
-    super('scale');
-  }
-
-  getCommunityTrustScoreByOrganizationId(
-    organizationId: number,
-    options?: { params: any }
-  ) {
-    return this.factory
-      .get(`${this.endPoint}/community-trust-score/${organizationId}`, options)
-      .pipe(
-        tap((response: ApiResponse<CommunityTrustScore>) => {
-          this.communityTrustScore = response.data as CommunityTrustScore;
-        })
-      );
-  }
-
-  getCommunityTrustScoreByImpactInitiaitveId(
-    impactInitiativeId: number,
-    options?: { params: any }
-  ) {
-    return this.factory
-      .get(
-        `${this.endPoint}/community-trust-score/impact-initiatives/${impactInitiativeId}`,
-        options
-      )
-      .pipe(
-        tap((response: ApiResponse<CommunityTrustScore>) => {
-          this.communityTrustScore = response.data as CommunityTrustScore;
-        })
-      );
+    super('scale/community-trust-score');
   }
 
   getNumberOfStars(scaleElementScore: number) {

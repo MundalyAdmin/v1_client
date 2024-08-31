@@ -26,8 +26,8 @@
 
         <!-- Name and Photo -->
         <th scope="row">
-          <a class="flex justify-between  items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
-             [routerLink]="['/', 'dashboard', 'organizations',  partner.implementer_id ]">
+          <a class="flex justify-between cursor-pointer items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+             (click)="selectImpactPartner(partner.implementer_id!, i)">
             <!-- Logo , name and website -->
             <div class="flex items-center">
               <!-- Logo -->
@@ -52,23 +52,13 @@
                 <div class="font-normal md:block hidden text-gray-500">{{ partner.implementer?.website }}</div>
 
                 <div class="md:hidden">
-                  <p-dropdown class="" [filter]="true" filterBy="name" placeholder="Select a community"
-                              *ngIf="partner.implementer?.impact_initiatives?.length"
-                              [options]="partner.implementer?.impact_initiatives" [(ngModel)]="selectedImpactInitiatives[i]" optionLabel="city">
-                    <ng-template pTemplate="selectedItem">
-                      <div class="flex align-items-center gap-2">
-                        <div>{{ selectedImpactInitiatives[i]?.city + ', ' + selectedImpactInitiatives[i]?.country }}</div>
+                  <p-dropdown class="" [filter]="true" filterBy="name" placeholder="All Communities"
+                              *ngIf="partner.implementer?.verifications?.length"
+                              [options]="partner.implementer?.verifications" [(ngModel)]="selectedImpactInitiatives[i]" optionLabel="location">
 
-                      </div>
-                    </ng-template>
-                    <ng-template let-initiative pTemplate="item">
-                      <div class="flex align-items-center gap-2">
-                        <div>{{ initiative.city + ', ' + initiative.country }}</div>
-                      </div>
-                    </ng-template>
                   </p-dropdown>
 
-                  <span class="italic md:text-sm text-xs" *ngIf="!partner.implementer?.impact_initiatives?.length">No community registered</span>
+                  <span class="italic md:text-sm text-xs" *ngIf="!partner.implementer?.verifications?.length">No community registered</span>
                 </div>
 
               </div>
@@ -87,23 +77,14 @@
 
         <!-- Location -->
         <td class="px-6 py-4 hidden md:table-cell">
-          <p-dropdown class="" [filter]="true" filterBy="name" placeholder="Select a community"
-                      *ngIf="partner.implementer?.impact_initiatives?.length"
-                      [options]="partner.implementer?.impact_initiatives" [(ngModel)]="selectedImpactInitiatives[i]" optionLabel="city">
-            <ng-template pTemplate="selectedItem">
-              <div class="flex align-items-center gap-2">
-                <div>{{ selectedImpactInitiatives[i]?.city + ', ' + selectedImpactInitiatives[i]?.country }}</div>
+          <p-dropdown class="" [filter]="true" filterBy="name" placeholder="All Communities"
+                      *ngIf=" partner.implementer?.verifications?.length"
+                      [showClear]="true"
+                      [options]="partner.implementer?.verifications" [(ngModel)]="selectedImpactInitiatives[i]" optionLabel="location">
 
-              </div>
-            </ng-template>
-            <ng-template let-initiative pTemplate="item">
-              <div class="flex align-items-center gap-2">
-                <div>{{ initiative.city + ', ' + initiative.country }}</div>
-              </div>
-            </ng-template>
           </p-dropdown>
 
-          <span class="italic md:text-sm text-xs" *ngIf="!partner.implementer?.impact_initiatives?.length">No community registered</span>
+          <span class="italic md:text-sm text-xs" *ngIf="!partner.implementer?.verifications?.length">No community registered</span>
         </td>
 
         <!-- Industry -->
@@ -127,7 +108,7 @@
         <td class="px-4  py-4">
           <!-- <a href="#" class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                class="mdi mdi-pencil-plus"></i></a> -->
-          <a [routerLink]="['/', 'dashboard', 'organizations',  partner.implementer_id ]"
+          <a (click)="selectImpactPartner(partner.implementer_id!, i)"
              class="font-medium me-3 text-slate-400 md:text-xl text-base dark:text-slate-500 hover:text-secondary-dark"><i
                class="mdi mdi-information"></i></a>
 

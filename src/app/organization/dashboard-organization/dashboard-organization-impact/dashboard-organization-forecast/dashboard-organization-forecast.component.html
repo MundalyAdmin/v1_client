@@ -6,7 +6,7 @@
 
   </div>
 
-  <div class="relative overflow-x-auto shadow-md " *ngIf="!loading && scaleService.communityTrustScore">
+  <div class="relative overflow-x-auto shadow-md " *ngIf="!loading && scaleService.score">
     <table class="w-full md:text-base text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400">
       <thead class=" text-gray-400 capitalize bg-slate-100  dark:bg-gray-700 dark:text-gray-400">
         <tr>
@@ -48,13 +48,13 @@
 
           <!-- Key -->
           <td class="p-3 md:p-6">
-            {{ scaleService.getScoreKey(scaleService.communityTrustScore.impact_fidelity_score!) }}
+            {{ scaleService.getScoreKey(scaleService.score.impact_fidelity_score!) }}
           </td>
 
           <!-- Score -->
           <td class="p-3 md:p-6">
             <div class="flex items-center font-semibold">
-              {{ scaleService.communityTrustScore.impact_fidelity_score}}
+              {{ scaleService.score.impact_fidelity_score}}
             </div>
           </td>
 
@@ -97,13 +97,13 @@
 
           <!-- Key -->
           <td class="p-3 md:p-6">
-            {{ scaleService.getScoreKey(scaleService.communityTrustScore.community_perception_score!) }}
+            {{ scaleService.getScoreKey(scaleService.score.community_perception_score!) }}
           </td>
 
           <!-- Score -->
           <td class="p-3 md:p-6">
             <div class="flex items-center font-semibold">
-              {{ scaleService.communityTrustScore.community_perception_score}}
+              {{ scaleService.score.community_perception_score}}
             </div>
           </td>
 
@@ -149,13 +149,13 @@
 
           <!-- Key -->
           <td class="p-3 md:p-6">
-            {{ scaleService.getScoreKey(scaleService.communityTrustScore.facilitation_strategy_score!) }}
+            {{ scaleService.getScoreKey(scaleService.score.facilitation_strategy_score!) }}
           </td>
 
           <!-- Score -->
           <td class="p-3 md:p-6">
             <div class="flex items-center font-semibold">
-              {{ scaleService.communityTrustScore.facilitation_strategy_score}}
+              {{ scaleService.score.facilitation_strategy_score}}
             </div>
           </td>
 
@@ -199,14 +199,14 @@
 
           <!-- Key -->
           <td class="p-3 md:p-6">
-            {{ scaleService.getScoreKey(scaleService.communityTrustScore.community_trust_score!) }}
+            {{ scaleService.getScoreKey(scaleService.score.community_trust_score!) }}
 
           </td>
 
           <!-- Score -->
           <td class="p-3 md:p-6">
             <div class="flex items-center font-semibold">
-              {{ scaleService.communityTrustScore.community_trust_score}}
+              {{ scaleService.score.community_trust_score}}
             </div>
           </td>
 
@@ -238,7 +238,7 @@
 
       <!-- If the community has more than 10 respondents -->
       <span class="font-bold">
-        {{ scaleService.getFundabilityRecommendation(scaleService.communityTrustScore) }}
+        {{ scaleService.getFundabilityRecommendation(scaleService.score) }}
       </span>
 
 
@@ -248,7 +248,7 @@
 
 
   <app-page-loading *ngIf="loading"></app-page-loading>
-  <app-missing-data *ngIf="!loading && !scaleService.communityTrustScore"></app-missing-data>
+  <app-missing-data *ngIf="!loading && !scaleService.score"></app-missing-data>
 </div>
 
 <app-dashboard-organization-unavailable-insights

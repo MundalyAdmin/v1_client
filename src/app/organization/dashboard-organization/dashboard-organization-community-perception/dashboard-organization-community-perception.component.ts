@@ -1,92 +1,30 @@
 import { Component } from '@angular/core';
-import { DashboardOrganizationVerifyComponent } from '../dashboard-organization-impact/dashboard-organization-verify/dashboard-organization-verify.component';
-import { BaseSingleComponent } from '../../../shared/base-component';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommunityPerceptionIndexScore } from '../../../scale/community-perception-index/community-perception-index-score.model';
-import { CommunitySuggestionService } from '../../../public/public-community/community-suggestion/community-suggestion.service';
-import { Organization } from '../../organization.model';
+import { CommunityPerceptionIndexService } from '../../../scale/community-perception-index/community-perception-index.service';
 import { ScaleService } from '../../../scale/scale.service';
 import { OrganizationService } from '../../organization.service';
-import { CommunityPerceptionIndexService } from '../../../scale/community-perception-index/community-perception-index.service';
-import { TypeOrganizationEnum } from '../../type-organization/type-organization.enum';
-import { ImpactInitiativeService } from '../../../scale/impact-initiative/impact-initiative.service';
-import { AuthService } from '../../../auth/auth.service';
-import { StatusImpactVerificationEnum } from '../../../impact-verification/enums/status-impact-verification.enum';
+import { DashboardOrganizationBaseScaleComponent } from '../dashboard-organization-base-scale/dashboard-organization-base-scale.component';
 
 @Component({
   selector: 'app-dashboard-organization-community-perception',
   templateUrl: './dashboard-organization-community-perception.component.html',
   styleUrls: ['./dashboard-organization-community-perception.component.scss'],
 })
-export class DashboardOrganizationCommunityPerceptionComponent extends BaseSingleComponent<CommunityPerceptionIndexScore> {
-  organization: Organization | null = null;
-  StatusImpactVerificationEnum = StatusImpactVerificationEnum;
+export class DashboardOrganizationCommunityPerceptionComponent extends DashboardOrganizationBaseScaleComponent<CommunityPerceptionIndexScore> {
   constructor(
     public communityPerceptionService: CommunityPerceptionIndexService,
-    public scaleService: ScaleService,
-    public organizationService: OrganizationService,
-    public impactInitiativeService: ImpactInitiativeService
+    public override scaleService: ScaleService,
+    public override organizationService: OrganizationService,
+    public override route: ActivatedRoute,
+    public override router: Router
   ) {
-    super(communityPerceptionService);
-  }
-
-  override ngOnInit(): void {
-    this.subscriptions['currentLogOrganization'] =
-      this.authService.organization$.subscribe((organization) => {
-        if (
-          organization?.type_organization_id ===
-            TypeOrganizationEnum.IMPACT_FUNDER ||
-          organization?.type_organization_id ===
-            TypeOrganizationEnum.CORPORATION
-        ) {
-          this.subscribeToOrganizationData();
-        } else if (
-          organization?.type_organization_id ===
-            TypeOrganizationEnum.IMPACT_IMPLEMENTER ||
-          organization?.type_organization_id === TypeOrganizationEnum.SUPPLIER
-        ) {
-          this.subscribeToImpactInitiativeData();
-        }
-      });
-  }
-
-  subscribeToImpactInitiativeData() {
-    this.subscriptions['impactInitiative'] =
-      this.impactInitiativeService.singleData$.subscribe((impactInitiative) => {
-        if (impactInitiative) {
-          this.getByImpactInitiativeId(impactInitiative.id!);
-        }
-      });
-  }
-
-  subscribeToOrganizationData() {
-    this.subscriptions['organization'] =
-      this.organizationService.singleData$.subscribe((organization) => {
-        if (
-          organization &&
-          organization.verification_status_from_current_organization?.id ===
-            StatusImpactVerificationEnum.LAUNCHED
-        ) {
-          this.organization = organization;
-          this.getByOrganizationId(organization.id!);
-        }
-      });
-  }
-
-  getByOrganizationId(organizationId: number) {
-    this.loading = true;
-    this.communityPerceptionService
-      .getScoreBreakdownByOrganization(organizationId)
-      .subscribe((score) => {
-        this.loading = false;
-      });
-  }
-
-  getByImpactInitiativeId(imapactInitiativeId: number) {
-    this.loading = true;
-    this.communityPerceptionService
-      .getScoreBreakdownByImpactInitiative(imapactInitiativeId)
-      .subscribe((score) => {
-        this.loading = false;
-      });
+    super(
+      communityPerceptionService,
+      scaleService,
+      organizationService,
+      route,
+      router
+    );
   }
 }

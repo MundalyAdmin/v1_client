@@ -9,6 +9,7 @@ import { TypeOrganizationEnum } from '../../../type-organization/type-organizati
 import { Organization } from '../../../organization.model';
 import { CategoryOrganizationEnum } from '../../../category-organization/category-organization.enum';
 import { StatusImpactVerificationEnum } from '../../../../impact-verification/enums/status-impact-verification.enum';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-organization-forecast',
@@ -20,15 +21,19 @@ export class DashboardOrganizationForecastComponent
   implements OnInit
 {
   communityTrustScore: CommunityTrustScore | null = null;
-  showImpactFidelityInfo = false;
-  showCommunityReputationInfo = false;
+
   showFacilitationStrategyInfo = false;
   showCommunityTrustScoreInfo = false;
+  showImpactFidelityInfo = false;
+  showCommunityReputationInfo = false;
+  selectedCommunity: string | null = null;
 
   constructor(
     public scaleService: ScaleService,
     public organizationService: OrganizationService,
-    public impactInitiativeService: ImpactInitiativeService
+    public impactInitiativeService: ImpactInitiativeService,
+    public route: ActivatedRoute,
+    public router: Router
   ) {
     super();
   }
@@ -39,30 +44,19 @@ export class DashboardOrganizationForecastComponent
 
   override ngOnInit(): void {
     super.ngOnInit();
-    this.subscribeToData();
+
+    this.route.queryParams.subscribe((params) => {
+      if (params['community']) {
+        this.selectedCommunity = params['community'];
+      } else {
+        this.selectedCommunity = null;
+      }
+      this.subscribeToData();
+    });
   }
 
   subscribeToData() {
-    this.subscriptions['currentlyLoggedOrganization'] =
-      this.authService.organization$.subscribe(
-        (currentlyLoggedOrganization) => {
-          if (
-            currentlyLoggedOrganization?.type_organization_id ===
-              TypeOrganizationEnum.CORPORATION ||
-            currentlyLoggedOrganization?.type_organization_id ===
-              TypeOrganizationEnum.IMPACT_FUNDER
-          ) {
-            this.subscribeToOrganizationData();
-          } else if (
-            currentlyLoggedOrganization?.type_organization_id ===
-              TypeOrganizationEnum.IMPACT_IMPLEMENTER ||
-            currentlyLoggedOrganization?.type_organization_id ===
-              TypeOrganizationEnum.SUPPLIER
-          ) {
-            this.subscribeToImpactInitiativeData();
-          }
-        }
-      );
+    this.subscribeToOrganizationData();
   }
 
   private subscribeToOrganizationData() {
@@ -78,32 +72,25 @@ export class DashboardOrganizationForecastComponent
       });
   }
 
-  private subscribeToImpactInitiativeData() {
-    this.subscriptions['impactInitiative'] =
-      this.impactInitiativeService.singleData$.subscribe((impactInitiative) => {
-        if (impactInitiative) {
-          this.getCommunityTrustScoreByImpactInitiativeId(
-            impactInitiative?.id!
-          );
-        }
-      });
-  }
-
   getCommunityTrustScoreByOrganizationId(organizationId: number) {
     this.loading = true;
+    const params = this.selectedCommunity
+      ? { location: this.selectedCommunity }
+      : {};
     this.scaleService
-      .getCommunityTrustScoreByOrganizationId(organizationId)
-      .subscribe(() => {
-        this.loading = false;
-      });
-  }
-
-  getCommunityTrustScoreByImpactInitiativeId(organizationId: number) {
-    this.loading = true;
-    this.scaleService
-      .getCommunityTrustScoreByImpactInitiaitveId(organizationId)
-      .subscribe(() => {
-        this.loading = false;
+      .getByOrganizationId(organizationId, {
+        params,
+      })
+      .subscribe({
+        next: () => {
+          this.loading = false;
+        },
+        error: () => {
+          this.loading = false;
+          this.router.navigate(['./'], {
+            relativeTo: this.route,
+          });
+        },
       });
   }
 }

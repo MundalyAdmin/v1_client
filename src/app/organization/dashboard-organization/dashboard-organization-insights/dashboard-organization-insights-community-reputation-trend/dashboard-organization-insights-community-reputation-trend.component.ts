@@ -8,6 +8,7 @@ import { TypeOrganizationEnum } from '../../../type-organization/type-organizati
 import { AuthService } from '../../../../auth/auth.service';
 import { ImpactInitiativeService } from '../../../../scale/impact-initiative/impact-initiative.service';
 import { CategoryOrganizationEnum } from '../../../category-organization/category-organization.enum';
+import { DashboardOrganizationBaseScaleTrendComponent } from '../../dashboard-organization-base-scale-trend/dashboard-organization-base-scale-trend.component';
 
 @Component({
   selector: 'app-dashboard-organization-insights-community-reputation-trend',
@@ -18,7 +19,7 @@ import { CategoryOrganizationEnum } from '../../../category-organization/categor
   ],
 })
 export class DashboardOrganizationInsightsCommunityReputationTrendComponent
-  extends BaseComponent<InsightsTrendData>
+  extends DashboardOrganizationBaseScaleTrendComponent
   implements OnInit
 {
   chartLabels: string[] = [];
@@ -28,86 +29,17 @@ export class DashboardOrganizationInsightsCommunityReputationTrendComponent
   options: any;
 
   constructor(
-    public organizationService: OrganizationService,
     public communityPerceptionService: CommunityPerceptionIndexService,
-    public impactInitiativeService: ImpactInitiativeService,
-    public route: ActivatedRoute
+    public override organizationService: OrganizationService,
+    public override route: ActivatedRoute
   ) {
-    super();
+    super(communityPerceptionService, organizationService, route);
   }
 
-  override ngOnInit(): void {
-    super.ngOnInit();
-
-    this.route.queryParams.subscribe((params) => {
-      const queryParams: { startDate?: string; endDate?: string } = {};
-      if (params['startDate']) {
-        queryParams.startDate = params['startDate'];
-      }
-      if (params['endDate']) {
-        queryParams.endDate = params['endDate'];
-      }
-
-      this.subscriptions['currentLogOrganization'] =
-        this.authService.organization$.subscribe((organization) => {
-          if (
-            organization?.type_organization_id ===
-              TypeOrganizationEnum.IMPACT_FUNDER ||
-            organization?.type_organization_id ===
-              TypeOrganizationEnum.CORPORATION
-          ) {
-            this.subscribeToOrganizationData(queryParams);
-          } else if (
-            organization?.type_organization_id ===
-              TypeOrganizationEnum.IMPACT_IMPLEMENTER ||
-            organization?.type_organization_id === TypeOrganizationEnum.SUPPLIER
-          ) {
-            this.subscribeToImpactInitiativeData(queryParams);
-          }
-        });
-    });
-  }
-
-  subscribeToOrganizationData(queryParams?: any) {
-    this.subscriptions['organization'] =
-      this.organizationService.singleData$.subscribe((organization) => {
-        if (organization) {
-          this.getTrendByOrganization(organization.id!, queryParams);
-        }
-      });
-  }
-
-  subscribeToImpactInitiativeData(queryParams?: any) {
-    this.subscriptions['impactInitiative'] =
-      this.impactInitiativeService.singleData$.subscribe((impactInitiative) => {
-        if (impactInitiative) {
-          this.getTrendByImpactInitiative(impactInitiative.id!, queryParams);
-        }
-      });
-  }
-
-  getTrendByOrganization(organizationId: number, queryParams?: any) {
+  override getTrendByOrganization(organizationId: number, queryParams?: any) {
     this.loading = true;
     this.communityPerceptionService
       .getTrendScoreByOrganization(organizationId, { params: queryParams })
-      .subscribe((data) => {
-        this.chartLabels = data.map((data) => {
-          return data.month.substring(0, 3) + ' ' + data.year;
-        });
-        this.chartDataset = data.map((data) => {
-          return data.score;
-        });
-        this.loading = false;
-        this.initChart();
-      });
-  }
-
-  getTrendByImpactInitiative(impactInitiativeId: number, queryParams?: any) {
-    this.loading = true;
-    this.communityPerceptionService
-      .getTrendScoreByImpactInitiative(impactInitiativeId, {
-        params: queryParams,
-      })
       .subscribe((data) => {
         this.chartLabels = data.map((data) => {
           return data.month.substring(0, 3) + ' ' + data.year;

@@ -1,0 +1,85 @@
+<!-- Community Trust And Fundability Analysis -->
+<div class="p-10" *ngIf="organizationService.singleData?.verification_status_from_current_organization?.id === StatusImpactVerificationEnum.LAUNCHED">
+
+    <!-- Header and Net Promoter Score -->
+    <div class="w-full grid grid-cols-1 mb-5">
+        <!-- HEADER    -->
+        <div class="flex justify-between mb-10 ">
+
+            <h3 class="text-xl font-bold">
+                Wellbeing Analysis
+            </h3>
+
+
+            <form [formGroup]="dateForm" class="grid grid-cols-1 gap-1">
+                <div class="grid grid-cols-2 gap-10">
+                    <p-calendar
+                                formControlName="startDate"
+                                [showIcon]="true" placeholder="Start Date"
+                                view="month"
+                                dateFormat="dd.mm.yy"
+                                [maxDate]="maxDate"
+                                inputId="icondisplay" />
+
+
+                    <p-calendar
+                                formControlName="endDate"
+                                [showIcon]="true"
+                                placeholder="End Date"
+                                view="month"
+                                [minDate]="minDate"
+                                dateFormat="dd.mm.yy"
+                                inputId="icondisplay" />
+                </div>
+
+                <div class="text-primary text-xs text-left cursor-pointer underline mr-10"
+                     *ngIf="dateForm.get('startDate')?.value || dateForm.get('endDate')?.value"
+                     (click)="clearDates()">
+                    <span><i class="mdi mdi-close-circle"></i></span> Clear all
+                </div>
+
+
+            </form>
+        </div>
+
+    </div>
+
+
+    <!-- Trend Analysis -->
+    <div class="grid grid-cols-4 gap-3">
+        <!-- Scales score -->
+        <app-dashboard-organization-wellbeing-scores></app-dashboard-organization-wellbeing-scores>
+
+        <div class="col-span-3">
+            <div class="grid grid-cols-2 gap-3 pb-3">
+
+                <!-- Impact Fidelity Trends -->
+                <app-dashboard-organization-insights-physical-health-trend></app-dashboard-organization-insights-physical-health-trend>
+
+
+                <!-- Community Reputation Trends -->
+                <app-dashboard-organization-insights-psychological-wellbeing-trend></app-dashboard-organization-insights-psychological-wellbeing-trend>
+            </div>
+
+            <!-- Scales Trends -->
+            <app-dashboard-organization-insights-wellbeing-trend></app-dashboard-organization-insights-wellbeing-trend>
+
+        </div>
+
+
+    </div>
+</div>
+
+
+
+<ng-container *ngIf="organizationService.singleData?.verification_status_from_current_organization?.id !== StatusImpactVerificationEnum.LAUNCHED">
+    <h3 class="text-xl text-left pl-8 font-bold">
+        <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT">Community Trust &
+            Fundability Analysis</span>
+        <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION">Sustainability
+            Due Diligence Analysis</span>
+    </h3>
+
+
+    <app-dashboard-organization-unavailable-insights></app-dashboard-organization-unavailable-insights>
+</ng-container>

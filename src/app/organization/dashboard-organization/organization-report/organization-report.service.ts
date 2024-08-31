@@ -12,9 +12,9 @@ export class OrganizationReportService extends BaseService<OrganizationReport> {
     super('organization-reports');
   }
 
-  getByOrganizationId(organizationId: number) {
+  getByOrganizationId(organizationId: number, options?: { params: any }) {
     return this.factory
-      .get(`${this.endPoint}/organizations/${organizationId}`)
+      .get(`${this.endPoint}/organizations/${organizationId}`, options)
       .pipe(
         tap((response: ApiResponse<OrganizationReport>) => {
           this.data = response.data as OrganizationReport[];

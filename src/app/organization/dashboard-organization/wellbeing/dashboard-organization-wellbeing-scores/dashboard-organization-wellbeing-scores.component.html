@@ -1,0 +1,25 @@
+<div class="grid grid-cols-1 gap-3" *ngIf="!loading && wellbeingService.score">
+    <!-- Physical Health -->
+    <app-dashboard-organization-insights-scale-score [title]="'Physical Score'"
+                                                     [score]="wellbeingService.score.physical_wellbeing!">
+    </app-dashboard-organization-insights-scale-score>
+
+    <!-- Psychological Health -->
+    <app-dashboard-organization-insights-scale-score [title]="'Psychological Score'"
+                                                     [score]="wellbeingService.score.psychological_wellbeing!">
+    </app-dashboard-organization-insights-scale-score>
+
+    <!-- Social Relations -->
+    <app-dashboard-organization-insights-scale-score [title]="'Social Relations Score'"
+                                                     [score]="wellbeingService.score.social_wellbeing!">
+    </app-dashboard-organization-insights-scale-score>
+
+
+    <!-- Environmental conditions -->
+    <app-dashboard-organization-insights-scale-score [title]="'Environmental conditions Score'"
+                                                     [score]="wellbeingService.score.environment_wellbeing!">
+    </app-dashboard-organization-insights-scale-score>
+</div>
+
+<app-page-loading *ngIf="loading"></app-page-loading>
+<app-missing-data *ngIf="!loading && !wellbeingService.score"></app-missing-data>

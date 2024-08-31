@@ -40,21 +40,19 @@ export class OrganizationNewStyleCommunityVerifiedComponent
 
   getImpactFidelityScore(organizationId: number) {
     this.loading = true;
-    this.impactFidelityService
-      .getScoreBreakdownByOrganization(organizationId)
-      .subscribe({
-        complete: () => {
-          this.company_score_rating =
-            this.impactFidelityService.score?.score_rating;
+    this.impactFidelityService.getByOrganizationId(organizationId).subscribe({
+      complete: () => {
+        this.company_score_rating =
+          this.impactFidelityService.score?.score_rating;
 
-          this.company_reported_impact_strength =
-            this.impactFidelityService.score?.company_reported_impact_strength;
+        this.company_reported_impact_strength =
+          this.impactFidelityService.score?.company_reported_impact_strength;
 
-          this.total_respondant =
-            this.impactFidelityService.score?.total_respondants || 0;
+        this.total_respondant =
+          this.impactFidelityService.score?.total_respondants || 0;
 
-          this.loading = false;
-        },
-      });
+        this.loading = false;
+      },
+    });
   }
 }

@@ -1,4 +1,6 @@
-export interface SocialImpactFidelity {
+import { BaseScaleScore } from '../base-scale-score.model';
+
+export interface SocialImpactFidelity extends BaseScaleScore {
   // comment: 'Id of the organization which the survey is about',
 
   organization_id: number;
