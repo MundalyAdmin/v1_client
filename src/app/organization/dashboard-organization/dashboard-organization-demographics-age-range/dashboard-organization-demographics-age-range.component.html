@@ -1,0 +1,62 @@
+<!-- Age range -->
+<div class="w-full bg-white rounded-lg h-full shadow dark:bg-gray-800 p-4 md:p-6">
+    <div class="flex justify-between pb-4 mb-4 border-b border-gray-200 dark:border-gray-700">
+        <div class="text-lg font-bold">Age Range</div>
+    </div>
+
+    <div class="flex justify-between  my-8  border-gray-200 dark:border-gray-700">
+        <div class="flex items-center">
+            <div class="w-12 h-12 rounded-lg bg-green-500 dark:bg-gray-700 flex items-center justify-center me-3">
+                <i class="text-slate-50 mdi mdi-baby text-2xl"></i>
+            </div>
+            <div>
+                <h5 class="leading-none text-xl font-bold text-gray-900 dark:text-white pb-1">{{ children }}</h5>
+                <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Children</p>
+            </div>
+        </div>
+
+        <div class="flex items-center">
+            <div class="w-12 h-12 rounded-lg bg-yellow-300 dark:bg-gray-700 flex items-center justify-center me-3">
+                <i class="text-slate-50 mdi mdi-walk text-2xl"></i>
+            </div>
+            <div>
+                <h5 class="leading-none text-xl font-bold text-gray-900 dark:text-white pb-1">{{ adults }}</h5>
+                <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Adults</p>
+            </div>
+        </div>
+
+
+        <div class="flex items-center">
+            <div class="w-12 h-12 rounded-lg bg-yellow-500 dark:bg-gray-700 flex items-center justify-center me-3">
+                <i class="text-slate-50 mdi mdi-human-cane text-2xl"></i>
+            </div>
+            <div>
+                <h5 class="leading-none text-xl font-bold text-gray-900 dark:text-white pb-1">{{ eldery }}</h5>
+                <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Eldery</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid gap-5 gap-y-5 grid-cols-2">
+        <div class="mb-5 " *ngFor="let ageRange of demographicAgeData; let i = index">
+            <div class="text-primary text-md mb-1 flex justify-between">
+                <span class="font-semibold">{{ ageRange.percentage }}%</span> <span class="text-slate-600">
+                    {{ ageRange.name }}</span>
+            </div>
+            <div class="w-full bg-slate-300/40 rounded-full h-4 ">
+                <div class=" h-4 rounded-full"
+                     [ngClass]="{'bg-blue-500': ageRange.name === '-18', 'bg-yellow-500': ageRange.name === '18 - 24', 'bg-blue-300': ageRange.name === '25 - 34', 'bg-green-500': ageRange.name === '35 - 44' , 'bg-pink-500': ageRange.name === '45 - 54', 'bg-red-500': ageRange.name === '55 - 64', 'bg-purple-500': ageRange.name === '65+', }"
+                     [style]="{width: ageRange.percentage + '%'}">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!-- Line Chart -->
+    <div class="py-6" id="pie-chart"></div>
+
+    <!--  -->
+</div>

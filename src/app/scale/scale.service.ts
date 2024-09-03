@@ -3,6 +3,10 @@ import { AuthService } from '../auth/auth.service';
 import { CategoryOrganizationEnum } from '../organization/category-organization/category-organization.enum';
 import { BaseScaleService } from './base-scale.service';
 import { CommunityTrustScore } from './models/community-trust-score.model';
+import { map, tap } from 'rxjs';
+import { PortfolioRiskScore } from './models/portfolio-risk-score.model';
+import { ApiResponse } from '../shared/models/ApiResponse';
+import { PortfolioOverallSnapshot } from './models/portfolio-overall-snapshot.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +14,28 @@ import { CommunityTrustScore } from './models/community-trust-score.model';
 export class ScaleService extends BaseScaleService<any> {
   constructor(public authService: AuthService) {
     super('scale/community-trust-score');
+  }
+
+  getPortfolioRiskScoreByFunderId(funderId: number) {
+    return this.factory
+      .get(`scale/portfolio-risk-score/funders/${funderId}`)
+      .pipe(
+        map(
+          (response: ApiResponse<PortfolioRiskScore[]>) =>
+            response.data as PortfolioRiskScore[]
+        )
+      );
+  }
+
+  getPortfolioOverallSnapshotByFunderId(funderId: number) {
+    return this.factory
+      .get(`scale/portfolio-overall-snapshot/funders/${funderId}`)
+      .pipe(
+        map(
+          (response: ApiResponse<PortfolioOverallSnapshot>) =>
+            response.data as PortfolioOverallSnapshot
+        )
+      );
   }
 
   getNumberOfStars(scaleElementScore: number) {

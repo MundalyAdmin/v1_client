@@ -1,0 +1,76 @@
+<div class="px-2 bg-white rounded-md h-full">
+    <h3 class="p-5 text-lg border-b-[1px] font-semibold">
+        Overall Snapshot
+    </h3>
+
+
+    <div class="grid grid-cols-2 p-2 pt-4  gap-x-8 gap-y-12  justify-left" *ngIf="single && !loading">
+        <!-- Community reporting wellbeing -->
+        <div>
+            <p class="text-[28px] font-bold p-0">
+                {{ single.cityCount }}
+            </p>
+            <p class="text-[15px] text-gray-400">
+                Communities Reporting Due Diligence
+            </p>
+        </div>
+
+
+        <!-- Country reporting Due Diligence -->
+        <div>
+            <p class="text-[28px] font-bold p-0">
+                {{ single.countryCount }}
+            </p>
+            <p class="text-[15px] text-gray-400">
+                Country Reporting Due Diligence
+            </p>
+        </div>
+
+
+        <!-- Improve Due Diligence Score -->
+        <div>
+            <p class="text-[28px] font-bold p-0">
+                {{ single.percentageIncreasedScore }}%
+            </p>
+            <p class="text-[15px] text-gray-400">
+                Improved Due Diligence Score
+            </p>
+        </div>
+
+
+        <!-- Reduced Due Diligence Score -->
+        <div>
+            <p class="text-[28px] font-bold p-0">
+                {{ single.percentageDecreasedScore }}%
+            </p>
+            <p class="text-[15px] text-gray-400">
+                Reduced Due Diligence Score
+            </p>
+        </div>
+
+
+        <!-- Beneficiary -->
+        <div>
+            <p class="text-[28px] font-bold p-0">
+                {{ single.communityMembersCount }}
+            </p>
+            <p class="text-[15px] text-gray-400">
+                Communities Beneficiary Reporting
+            </p>
+        </div>
+
+        <!-- Regulatory Matches -->
+        <div>
+            <p class="text-[28px] font-bold p-0">
+                {{ single.regulatoryMatchesCount }}
+            </p>
+            <p class="text-[15px] text-gray-400">
+                Regulatory Matches
+            </p>
+        </div>
+
+    </div>
+
+
+    <app-page-loading *ngIf="loading"></app-page-loading>
+</div>
