@@ -1,0 +1,12 @@
+<div class="px-2 bg-white rounded-md h-full">
+    <h3 class="p-5 border-b-[1px] text-lg font-semibold">
+        Portfolio Risk Score
+    </h3>
+    <div class="p-4 relative ">
+        <p-chart type="pie" *ngIf="showChart && !loading" [data]="data" [height]="'400'" [options]="options" [plugins]="plugins" />
+        <app-page-loading *ngIf="loading"></app-page-loading>
+        <!-- <div class="absolute w-[120px]  translate-x-[-50%] translate-y-[-50%]  text-sm top-[51%] left-[50%]">
+            <span class="text-green-400 font-bold">68.8% </span>Low Risk Beneficiary
+        </div> -->
+    </div>
+</div>

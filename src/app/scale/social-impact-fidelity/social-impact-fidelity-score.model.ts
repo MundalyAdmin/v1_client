@@ -1,10 +1,8 @@
-export interface SocialImpactFidelityScore {
-  total_respondants?: number;
+import { BaseScaleScore } from '../base-scale-score.model';
 
+export interface SocialImpactFidelityScore extends BaseScaleScore {
   // Scaled from 0 to 5
-  score_rating?: number;
   company_reported_impact_strength?: number;
-  score?: number;
 
   // Scaled from 0 to 100
   acceptability?: number;

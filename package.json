@@ -28,6 +28,7 @@
     "apexcharts": "^3.45.2",
     "bootstrap": "^5.2.3",
     "chart.js": "^4.4.2",
+    "chartjs-plugin-datalabels": "^2.2.0",
     "feather-icons": "^4.29.1",
     "flowbite": "^1.8.1",
     "google-libphonenumber": "^3.2.34",

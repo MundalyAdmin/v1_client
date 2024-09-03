@@ -35,7 +35,7 @@ export class OrganizationNewStyleCompanyReportedComponent extends BaseComponent<
       });
 
     this.subscriptions['facilitationStrategy'] =
-      this.scaleService.communityTrustScore$.subscribe((score) => {
+      this.scaleService.score$.subscribe((score) => {
         this.facilitationStrategyScore = score.facilitation_strategy_score || 0;
         this.organizationReportedImpactStrength =
           score.organization_reported_impact_strength || 0;

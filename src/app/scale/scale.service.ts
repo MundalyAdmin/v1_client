@@ -1,57 +1,40 @@
 import { Injectable } from '@angular/core';
-import { BaseService } from '../shared/services';
-import { ReplaySubject, tap } from 'rxjs';
-import { ApiResponse } from '../shared/models/ApiResponse';
-import { CommunityTrustScore } from './models/community-trust-score.model';
 import { AuthService } from '../auth/auth.service';
 import { CategoryOrganizationEnum } from '../organization/category-organization/category-organization.enum';
+import { BaseScaleService } from './base-scale.service';
+import { CommunityTrustScore } from './models/community-trust-score.model';
+import { map, tap } from 'rxjs';
+import { PortfolioRiskScore } from './models/portfolio-risk-score.model';
+import { ApiResponse } from '../shared/models/ApiResponse';
+import { PortfolioOverallSnapshot } from './models/portfolio-overall-snapshot.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ScaleService extends BaseService<any> {
-  communityTrustScore$ = new ReplaySubject<CommunityTrustScore>(1);
-  private _communityTrustScore!: CommunityTrustScore;
-
-  get communityTrustScore(): CommunityTrustScore {
-    return this._communityTrustScore;
-  }
-
-  set communityTrustScore(value: CommunityTrustScore) {
-    this._communityTrustScore = value;
-    this.communityTrustScore$.next(value);
-  }
-
+export class ScaleService extends BaseScaleService<any> {
   constructor(public authService: AuthService) {
-    super('scale');
+    super('scale/community-trust-score');
   }
 
-  getCommunityTrustScoreByOrganizationId(
-    organizationId: number,
-    options?: { params: any }
-  ) {
+  getPortfolioRiskScoreByFunderId(funderId: number) {
     return this.factory
-      .get(`${this.endPoint}/community-trust-score/${organizationId}`, options)
+      .get(`scale/portfolio-risk-score/funders/${funderId}`)
       .pipe(
-        tap((response: ApiResponse<CommunityTrustScore>) => {
-          this.communityTrustScore = response.data as CommunityTrustScore;
-        })
+        map(
+          (response: ApiResponse<PortfolioRiskScore[]>) =>
+            response.data as PortfolioRiskScore[]
+        )
       );
   }
 
-  getCommunityTrustScoreByImpactInitiaitveId(
-    impactInitiativeId: number,
-    options?: { params: any }
-  ) {
+  getPortfolioOverallSnapshotByFunderId(funderId: number) {
     return this.factory
-      .get(
-        `${this.endPoint}/community-trust-score/impact-initiatives/${impactInitiativeId}`,
-        options
-      )
+      .get(`scale/portfolio-overall-snapshot/funders/${funderId}`)
       .pipe(
-        tap((response: ApiResponse<CommunityTrustScore>) => {
-          this.communityTrustScore = response.data as CommunityTrustScore;
-        })
+        map(
+          (response: ApiResponse<PortfolioOverallSnapshot>) =>
+            response.data as PortfolioOverallSnapshot
+        )
       );
   }
 

@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { BaseComponent } from '../../../shared/base-component';
 import { Organization } from '../../organization.model';
 import { AuthService } from '../../../auth/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { User } from '../../../user/user.model';
 import { Storage } from '../../../shared/helpers/storage/storage';
 import { OrganizationService } from '../../organization.service';
@@ -11,6 +11,7 @@ import { ImpactInitiativeService } from '../../../scale/impact-initiative/impact
 import { ImpactInitiative } from '../../../scale/impact-initiative/impact-initiative.model';
 import { TypeOrganizationEnum } from '../../type-organization/type-organization.enum';
 import { ImpactVerificationService } from '../../../impact-verification/impact-verification.service';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard-organization-sidebar',
@@ -25,6 +26,7 @@ export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
   menuUrlPrefix: string = '';
   typeOrganizationId: number | null = null;
   user: User | null = null;
+  typeSubmenu: 'due-diligence' | 'wellbeing' | null = null;
   @Output() showSetupLogoAndCoverModal$ = new EventEmitter();
 
   constructor(
@@ -78,6 +80,24 @@ export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
         this.subscribeToOrganization();
       }
     });
+
+    this.typeSubmenu = this.getTypeSubmenu();
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.typeSubmenu = this.getTypeSubmenu();
+      });
+  }
+
+  getTypeSubmenu() {
+    const splittedUrl = this.router.url.split('/');
+    if (splittedUrl.includes('due-diligence')) {
+      return 'due-diligence';
+    } else if (splittedUrl.includes('wellbeing')) {
+      return 'wellbeing';
+    }
+
+    return null;
   }
 
   countVerificationRequests(organizationId: number) {

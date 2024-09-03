@@ -1,0 +1,194 @@
+<div class="p-10 bg-gray-100">
+
+
+    <!-- 
+    <div class="grid grid-cols-3 w-full py-4 gap-5">
+        <div>
+            <label class="text-sm font-semibold">
+                Fund Name
+            </label>
+            <div>
+                <p-dropdown
+                            [options]="[]"
+                            [(ngModel)]="funders"
+                            optionLabel="name"
+                            [showClear]="true"
+                            placeholder="N\A" />
+            </div>
+        </div>
+
+
+        <div>
+            <label class="text-sm font-semibold">
+                Portfolio
+            </label>
+            <div>
+                <p-dropdown
+                            [options]="[]"
+                            [(ngModel)]="funders"
+                            optionLabel="name"
+                            [showClear]="true"
+                            placeholder="All" />
+            </div>
+        </div>
+
+
+        <div>
+            <label class="text-sm font-semibold">
+                Portfolio Communities
+            </label>
+            <div>
+                <p-dropdown
+                            [options]="[]"
+                            [(ngModel)]="funders"
+                            optionLabel="name"
+                            [showClear]="true"
+                            placeholder="All" />
+            </div>
+        </div>
+    </div> -->
+
+
+
+    <div class="grid grid-cols-2 gap-10">
+        <!-- Portfolio Risk -->
+        <app-dashboard-organization-overview-portfolio-risk></app-dashboard-organization-overview-portfolio-risk>
+
+
+        <!-- Overall snapshot -->
+        <app-dashboard-organization-overview-portfolio-overall-snapshot></app-dashboard-organization-overview-portfolio-overall-snapshot>
+    </div>
+
+
+
+    <!-- Breakdown -->
+    <app-dashboard-organization-demographics></app-dashboard-organization-demographics>
+    <!-- <div class="bg-white p-7 mt-10 rounded-md">
+        <h3 class="font-bold text-xl ps-2 mb-4">Breakdown</h3>
+        <div>
+            <div class="relative ">
+                <table class="w-full text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-gray-700 uppercase  dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Metrics
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Average Change (%)
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Improved(%)
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                No Change (%)
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Overall
+                            </th>
+                            <td class="px-12 py-4">70</td>
+                            <td class="px-12 py-4">45</td>
+                            <td class="px-12 py-4">40</td>
+
+                        </tr>
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Impact Fidelity
+                            </th>
+                            <td class="px-12 py-4">10</td>
+                            <td class="px-12 py-4">30</td>
+                            <td class="px-12 py-4">90</td>
+
+                        </tr>
+                        <tr class="bg-white border-b dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Community Reputation
+                            </th>
+                            <td class="px-12 py-4">20</td>
+                            <td class="px-12 py-4">40</td>
+                            <td class="px-12 py-4">80</td>
+
+                        </tr>
+
+                        <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Facilitation Strategy
+                            </th>
+                            <td class="px-12 py-4">70</td>
+                            <td class="px-12 py-4">45</td>
+                            <td class="px-12 py-4">40</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <div class="py-4 mt-10">
+        <h2 class="py-2 border-b-[1px] text-xl font-bold">Demographics <span class="text-sm text-gray-400">(Breakdown for improved Due
+                Diligence)</span>
+        </h2>
+        <div class="grid grid-cols-2 gap-5">
+            <div class="bg-white p-5 rounded-md min-w-[500px]">
+                <h3 class="py-2 border-b-[1px] font-semibold text-lg">Gender</h3>
+                <div class="p-3 pt-5">
+                    <div>
+                        <p class="text-gray-400">
+                            Users
+                        </p>
+                        <p class="text-[25px] font-semibold">91</p>
+                    </div>
+                </div>
+                <div>
+                    <p-chart type="line" [data]="lineData" [options]="lineOptions" height="250px" />
+                </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-md max-w-[700px]">
+                <h3 class="py-2 border-b-[1px] font-semibold text-lg">Age Range</h3>
+                <div class="p-3">
+                    <div class="grid grid-cols-2 gap-5">
+                        <div class="" *ngFor="let age of ageRange">
+                            <div class="flex justify-between">
+                                <p>{{age.percentage}}%</p>
+                                <p> {{age.name}}</p>
+                            </div>
+                            <div class="bg-slate-200 h-[20px] rounded-md">
+                                <div class="h-full rounded-md" [ngStyle]="{'width': age.percentage + '%', 'background': age.color}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="py-4 grid grid-cols-2 pb-6">
+        <div class="bg-white p-2 rounded-md ">
+            <h3 class="py-2 border-b-[1px] font-semibold">Ethnicities</h3>
+            <div class="p-3">
+                <div class="grid  grid-cols-2 gap-5">
+                    <div class="" *ngFor="let ethnicity of ethnicities">
+                        <div class="flex justify-between">
+                            <p>{{ethnicity.percentage}}%</p>
+                            <p> {{ethnicity.name}}</p>
+                        </div>
+                        <div class="bg-slate-200 h-[20px] rounded-md">
+                            <div class="h-full rounded-md" [ngStyle]="{'width': ethnicity.percentage + '%', 'background': ethnicity.color}"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div> -->
+</div>
