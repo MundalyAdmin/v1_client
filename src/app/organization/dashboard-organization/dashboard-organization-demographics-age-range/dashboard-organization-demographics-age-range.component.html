@@ -45,7 +45,7 @@
             </div>
             <div class="w-full bg-slate-300/40 rounded-full h-4 ">
                 <div class=" h-4 rounded-full"
-                     [ngClass]="{'bg-blue-500': ageRange.name === '-18', 'bg-yellow-500': ageRange.name === '18 - 24', 'bg-blue-300': ageRange.name === '25 - 34', 'bg-green-500': ageRange.name === '35 - 44' , 'bg-pink-500': ageRange.name === '45 - 54', 'bg-red-500': ageRange.name === '55 - 64', 'bg-purple-500': ageRange.name === '65+', }"
+                     [ngClass]="{'bg-blue-500': ageRange.name === '-18', 'bg-yellow-500': ageRange.name === '18 - 24', 'bg-blue-300': ageRange.name === '25 - 34', 'bg-green-500': ageRange.name === '35 - 44' , 'bg-pink-500': ageRange.name === '45 - 54', 'bg-red-500': ageRange.name === '55 - 64', 'bg-purple-500': ageRange.name === '65+', 'bg-teal-500': ageRange.name === 'Unknown' }"
                      [style]="{width: ageRange.percentage + '%'}">
                 </div>
             </div>

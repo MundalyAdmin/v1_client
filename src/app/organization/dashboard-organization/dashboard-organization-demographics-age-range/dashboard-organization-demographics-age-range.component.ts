@@ -15,6 +15,7 @@ export class DashboardOrganizationDemographicsAgeRangeComponent
   children: number = 0;
   adults: number = 0;
   eldery: number = 0;
+  unknown: number = 0;
 
   constructor(public demographicService: DemographicService) {
     super(demographicService);
@@ -35,7 +36,9 @@ export class DashboardOrganizationDemographicsAgeRangeComponent
       .subscribe((data) => {
         this.demographicAgeData = data;
         this.demographicAgeData.forEach((data) => {
-          if (data.name === '-18') {
+          if (data.name === 'Unknown') {
+            this.unknown += +data.count;
+          } else if (data.name === '-18') {
             this.children += +data.count;
           } else if (data.name === '65+') {
             this.eldery += +data.count;
