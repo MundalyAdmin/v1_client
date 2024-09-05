@@ -96,6 +96,12 @@ import { DashboardOrganizationWellbeingOverviewSecondComponent } from './wellbei
 import { DashboardOrganizationWellbeingOverviewComponent } from './wellbeing/dashboard-organization-wellbeing-overview/dashboard-organization-wellbeing-overview.component';
 import { DashboardOrganizationWellbeingScoresComponent } from './wellbeing/dashboard-organization-wellbeing-scores/dashboard-organization-wellbeing-scores.component';
 import { DashboardOrganizationWellbeingSummaryComponent } from './wellbeing/dashboard-organization-wellbeing-summary/dashboard-organization-wellbeing-summary.component';
+import { DashboardOrganizationOverviewPortfolioRiskComponent } from './dashboard-organization-overview-portfolio-risk/dashboard-organization-overview-portfolio-risk.component';
+import { DashboardOrganizationOverviewPortfolioOverallSnapshotComponent } from './dashboard-organization-overview-portfolio-overall-snapshot/dashboard-organization-overview-portfolio-overall-snapshot.component';
+import { DashboardOrganizationDemographicsGenderComponent } from './dashboard-organization-demographics-gender/dashboard-organization-demographics-gender.component';
+import { DashboardOrganizationDemographicsAgeRangeComponent } from './dashboard-organization-demographics-age-range/dashboard-organization-demographics-age-range.component';
+import { DashboardOrganizationDemographicsEhtnicityComponent } from './dashboard-organization-demographics-ehtnicity/dashboard-organization-demographics-ehtnicity.component';
+import { DashboardOrganizationDemographicsRelationshipStatusComponent } from './dashboard-organization-demographics-relationship-status/dashboard-organization-demographics-relationship-status.component';
 
 const routes: Routes = [
   {
@@ -659,6 +665,12 @@ const routes: Routes = [
     DashboardOrganizationSocialWellbeingComponent,
     DashboardOrganizationBaseScaleTrendComponent,
     DashboardOrganizationInsightTrendDataComponent,
+    DashboardOrganizationOverviewPortfolioRiskComponent,
+    DashboardOrganizationOverviewPortfolioOverallSnapshotComponent,
+    DashboardOrganizationDemographicsGenderComponent,
+    DashboardOrganizationDemographicsAgeRangeComponent,
+    DashboardOrganizationDemographicsEhtnicityComponent,
+    DashboardOrganizationDemographicsRelationshipStatusComponent,
   ],
   imports: [
     CommonModule,
