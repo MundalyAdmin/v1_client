@@ -95,7 +95,7 @@ export class DashboardOrganizationDemographicsEhtnicityComponent extends BaseCom
             },
           },
           formatter: (value: any, context: any) => {
-            return `${context.chart.data.labels[context.dataIndex]}`;
+            return `${value}`;
           },
         },
       },

@@ -1,4 +1,4 @@
-<table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" *ngIf="!loading && impactPartnerService.data.length">
+<table class="w-full h-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" *ngIf="!loading && impactPartnerService.data.length">
   <thead class=" text-gray-400 capitalize bg-slate-100  dark:bg-gray-700 dark:text-gray-400">
     <tr>
       <th scope="col" class="px-6 py-6 md:w-[500px] w-[300px]">
@@ -52,7 +52,7 @@
                 <div class="font-normal md:block hidden text-gray-500">{{ partner.implementer?.website }}</div>
 
                 <div class="md:hidden">
-                  <p-dropdown class="" [filter]="true" filterBy="name" placeholder="All Communities"
+                  <p-dropdown class="" [filter]="true" filterBy="name" placeholder="All Communities" [appendTo]="'body'"
                               *ngIf="partner.implementer?.verifications?.length"
                               [options]="partner.implementer?.verifications" [(ngModel)]="selectedImpactInitiatives[i]" optionLabel="location">
 
@@ -66,12 +66,12 @@
 
 
             <!-- Type organization -->
-            <span *ngIf="partner.implementer?.type_organization_id === 1"
+            <!-- <span *ngIf="partner.implementer?.type_organization_id === 1"
                   class="bg-green-100 hidden md:inline text-green-800 text-sm rounded-lg font-medium me-2 px-2.5 py-2  dark:bg-green-900 dark:text-green-300">Funder</span>
 
             <span
                   *ngIf="partner.implementer?.type_organization_id === 2"
-                  class="bg-blue-100 hidden md:inline text-blue-800 text-sm rounded-lg font-medium me-2 px-2.5 py-2  dark:bg-blue-900 dark:text-blue-300">Implementer</span>
+                  class="bg-blue-100 hidden md:inline text-blue-800 text-sm rounded-lg font-medium me-2 px-2.5 py-2  dark:bg-blue-900 dark:text-blue-300">Implementer</span> -->
           </a>
         </th>
 
@@ -79,6 +79,7 @@
         <td class="px-6 py-4 hidden md:table-cell">
           <p-dropdown class="" [filter]="true" filterBy="name" placeholder="All Communities"
                       *ngIf=" partner.implementer?.verifications?.length"
+                      appendTo="body"
                       [showClear]="true"
                       [options]="partner.implementer?.verifications" [(ngModel)]="selectedImpactInitiatives[i]" optionLabel="location">
 

@@ -145,39 +145,47 @@ const routes: Routes = [
         component: DashboardOrganizationHomeComponent,
         children: [
           {
+            path: 'overview',
+            component: DashboardOrganizationDueDiligenceOverviewSecondComponent,
+          },
+          {
+            path: 'partners',
+            component: DashboardOrganizationImpactPartnersComponent,
+          },
+          {
             path: 'invitations',
             component: DashboardOrganizationPartnerInvitationComponent,
           },
-          {
-            path: 'programs',
-            component: DashboardOrganizationImpactInitiativeComponent,
-          },
-          {
-            path: 'community-needs',
-            component: DashboardOrganizationCommunityNeedsComponent,
-          },
-          {
-            path: 'impact-stories',
-            component: DashboardOrganizationImpactStoriesComponent,
-            children: [
-              {
-                path: ':id',
-                component: OrganizationNewStyleStoriesListComponent,
-              },
-              {
-                path: '**',
-                redirectTo: 'verified',
-                pathMatch: 'full',
-              },
-            ],
-          },
+          // {
+          //   path: 'programs',
+          //   component: DashboardOrganizationImpactInitiativeComponent,
+          // },
+          // {
+          //   path: 'community-needs',
+          //   component: DashboardOrganizationCommunityNeedsComponent,
+          // },
+          // {
+          //   path: 'impact-stories',
+          //   component: DashboardOrganizationImpactStoriesComponent,
+          //   children: [
+          //     {
+          //       path: ':id',
+          //       component: OrganizationNewStyleStoriesListComponent,
+          //     },
+          //     {
+          //       path: '**',
+          //       redirectTo: 'verified',
+          //       pathMatch: 'full',
+          //     },
+          //   ],
+          // },
           // {
           //   path: 'overview',
           //   component: DashboardOrganizationPortfolioComponent,
           // },
           {
             path: '**',
-            redirectTo: 'community-needs',
+            redirectTo: 'overview',
           },
         ],
       },

@@ -208,13 +208,13 @@
       </table>
 
       <div class="text-primary md:text-lg text-xs bg-primary/5 p-2">
-        <span class="me-2">
+        <!-- <span class="me-2">
           <i class="mdi mdi-lightbulb-on"></i>
           Insight:
-        </span>
+        </span> -->
 
         <!-- If the community has more than 10 respondents -->
-        <span class="font-bold"
+        <!-- <span class="font-bold"
               *ngIf="impactFidelityService.score.total_respondants! >= 5 && impactFidelityService.score.company_reported_impact_strength">
           Community beneficiaries confirm
           {{ scaleService.getImpactStrengthKey(impactFidelityService.score.score_rating!) }}
@@ -224,14 +224,14 @@
           what
           {{ organization?.name }}
           reported
-        </span>
+        </span> -->
 
 
         <!-- If the community has less than 10 respondents -->
-        <span class="font-bold italic"
+        <!-- <span class="font-bold italic"
               *ngIf="impactFidelityService.score.total_respondants! < 5 || !impactFidelityService.score.company_reported_impact_strength">
           Insufficient data for insights
-        </span>
+        </span> -->
       </div>
     </div>
   </div>

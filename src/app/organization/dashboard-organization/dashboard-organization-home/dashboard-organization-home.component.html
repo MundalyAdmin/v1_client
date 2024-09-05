@@ -15,35 +15,27 @@
            class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-base md:text-lg">
           Programs
         </a>
-
+      </li>
 
 
 
       <li class="me-2">
-        <a [routerLink]="['community-needs']"
+        <a [routerLink]="['overview']"
            routerLinkActive="text-primary border-primary font-semibold"
            class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-base md:text-lg">
-          Community Needs
+          Overview
         </a>
       </li>
 
 
       <li class="me-2">
-        <a [routerLink]="['impact-stories']"
+        <a [routerLink]="['partners']"
            routerLinkActive="text-primary border-primary font-semibold"
            class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-base md:text-lg">
-          Impact Stories
-        </a>
-
-        <!-- For supplier -->
-        <a [routerLink]="['programs']"
-           *ngIf="organization.type_organization_id === TypeOrganizationEnum.SUPPLIER"
-           [routerLinkActiveOptions]="{exact: true}"
-           routerLinkActive="text-primary border-primary font-semibold"
-           class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-base md:text-lg">
-          Programs
+          Portfolio Partners
         </a>
       </li>
+
 
 
 
