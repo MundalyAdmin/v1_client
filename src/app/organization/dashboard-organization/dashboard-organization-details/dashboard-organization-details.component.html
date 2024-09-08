@@ -48,10 +48,10 @@
             <div class="text-violet-950  md:text-4xl text-xl font-bold ">{{ single.name }}</div>
 
             <!-- Claiming badge -->
-            <div class="text-violet-950 text-xs md:text-lg " *ngIf="single.profile_status_organization_id == 2">Claimed <span><i
+            <!-- <div class="text-violet-950 text-xs md:text-lg " *ngIf="single.profile_status_organization_id == 2">Claimed <span><i
                    class="mdi mdi-check-decagram"></i></span></div>
             <div class="text-violet-950 text-xs md:text-lg " *ngIf="single.profile_status_organization_id == 1">Unclaimed <span><i
-                   class="mdi mdi-close-box"></i></span></div>
+                   class="mdi mdi-close-box"></i></span></div> -->
 
           </div>
 
@@ -60,7 +60,7 @@
             <button type="button"
 
                     (click)="showDueDiligenceModal = true"
-                    class="px-3 md:px-7 py-2 md:py-4 text-sm md:text-base font-semibold border border-primary  rounded-full text-center text-white bg-primary  hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-dark">
+                    class="px-3 md:px-7 py-2  text-sm  font-semibold border border-primary  rounded-full text-center text-white bg-primary  hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-dark">
               Request Insights
             </button>
             <!-- 
@@ -72,7 +72,7 @@
             </button> -->
 
             <a [href]="single.website" target="_blank" type="button"
-               class="px-3 md:px-7 py-2 md:py-3 text-sm md:text-base font-semibold border border-primary  rounded-full text-center text-primary bg-secondary  hover:bg-secondary-dark focus:ring-4 focus:outline-none focus:ring-primary-dark">Visit
+               class="px-3 md:px-7 py-2 text-sm  font-semibold border border-primary  rounded-full text-center text-primary bg-secondary  hover:bg-secondary-dark focus:ring-4 focus:outline-none focus:ring-primary-dark">Visit
               website</a>
           </div>
 
@@ -81,16 +81,16 @@
         <!-- Location and badges -->
         <div class="justify-center md:justify-start items-center md:gap-6 gap-2 flex flex-row  md:inline-flex">
           <!-- Location -->
-          <div class="  min-w-[200px]" *ngIf=" single.verifications?.length">
-            <!-- <span class=""><i class="mdi mdi-map-marker"></i></span> {{ single.country }} -->
-            <p-dropdown class="" [filter]="true" filterBy="name" placeholder="All Communities"
+          <!-- <div class="  min-w-[200px]" *ngIf=" single.verifications?.length"> -->
+          <span class=""><i class="mdi mdi-map-marker"></i></span> {{ single.country }}
+          <!-- <p-dropdown class="" [filter]="true" filterBy="name" placeholder="All Communities"
 
                         [showClear]="true"
                         (onChange)="onCommunityChange($event)"
                         [options]="single.verifications" [(ngModel)]="selectedCommunity" optionLabel="location">
 
-            </p-dropdown>
-          </div>
+            </p-dropdown> -->
+          <!-- </div> -->
 
           <div class="flex md:gap-5 gap-2 md">
             <ng-container *ngIf="single.type_organization_id === 2">

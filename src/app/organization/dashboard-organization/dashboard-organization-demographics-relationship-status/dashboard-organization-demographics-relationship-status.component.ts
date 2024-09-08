@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BaseComponent } from '../../../shared/base-component';
 import { DemographicData } from '../../../demographic/demographic-gender-data.service';
 import { DemographicService } from '../../../demographic/demographic.service';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 @Component({
   selector: 'app-dashboard-organization-demographics-relationship-status',
@@ -66,27 +67,26 @@ export class DashboardOrganizationDemographicsRelationshipStatusComponent extend
             color: textColor,
           },
         },
-        // datalabels: {
-        //   color: 'white',
-        //   // backgroundColor: '#21CEB9',
-        //   anchor: 'center',
-        //   rotation: -10,
-        //   display: true,
-        //   clamp: true,
-        //   labels: {
-        //     title: {
-        //       font: {
-        //         weight: 'bold',
-        //         size: 12,
-        //       },
-        //     },
-        //   },
-        //   formatter: (value: any, context: any) => {
-        //     return `${context.chart.data.labels[context.dataIndex]}`;
-        //   },
-        // },
+        datalabels: {
+          color: 'white',
+
+          display: 'auto',
+          // backgroundColor: '#21CEB9',
+          labels: {
+            title: {
+              font: {
+                weight: 'bold',
+              },
+            },
+          },
+          formatter: (value: any, context: any) => {
+            return `${value}`;
+          },
+        },
       },
     };
+
+    this.plugins = [ChartDataLabels];
 
     this.showChart = true;
   }

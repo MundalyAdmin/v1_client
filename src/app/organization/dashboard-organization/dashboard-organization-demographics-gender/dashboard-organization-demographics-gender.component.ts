@@ -70,7 +70,9 @@ export class DashboardOrganizationDemographicsGenderComponent extends BaseCompon
         },
         datalabels: {
           color: 'white',
-          backgroundColor: '#21CEB9',
+
+          display: 'auto',
+          // backgroundColor: '#21CEB9',
           labels: {
             title: {
               font: {
@@ -79,7 +81,7 @@ export class DashboardOrganizationDemographicsGenderComponent extends BaseCompon
             },
           },
           formatter: (value: any, context: any) => {
-            return `${context.chart.data.labels[context.dataIndex]}\n ${value}`;
+            return `${value}`;
           },
         },
       },
