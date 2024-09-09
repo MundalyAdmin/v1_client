@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StatusImpactVerificationEnum } from '../../../impact-verification/enums/status-impact-verification.enum';
 import { FacilitationStrategyScore } from '../../../scale/facilitation-strategy/facilitation-strategy-score.model';
 import { FacilitationStrategyService } from '../../../scale/facilitation-strategy/facilitation-strategy.service';
-import { ImpactInitiativeService } from '../../../scale/impact-initiative/impact-initiative.service';
 import { ScaleService } from '../../../scale/scale.service';
-import { BaseSingleComponent } from '../../../shared/base-component';
-import { Organization } from '../../organization.model';
 import { OrganizationService } from '../../organization.service';
 import { DashboardOrganizationBaseScaleComponent } from '../dashboard-organization-base-scale/dashboard-organization-base-scale.component';
 

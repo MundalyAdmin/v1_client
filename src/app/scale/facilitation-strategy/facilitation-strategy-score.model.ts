@@ -8,8 +8,8 @@ export interface FacilitationStrategyScore {
   score: number;
   leaves_and_benefits: number;
   diversity_equity_and_inclusion: number;
-  safety_and_wellbeing: number;
-  work_life_balance: number;
-  growth_and_recognition: number;
-  support_and_control: number;
+  health_and_wellbeing: number;
+  no_bribery_and_financial_embezzlement: number;
+  no_criminal_and_assault_concerns: number;
+  environmental_issues: number;
 }
