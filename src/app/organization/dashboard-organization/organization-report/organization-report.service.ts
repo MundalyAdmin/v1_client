@@ -12,6 +12,31 @@ export class OrganizationReportService extends BaseService<OrganizationReport> {
     super('organization-reports');
   }
 
+  getByOrganizationInquirerAndTypeInsights(
+    organizationId: number,
+    inquirerId: number,
+    typeInsightsId: number,
+    options?: { params: any }
+  ) {
+    return this.factory
+      .get(
+        `${this.endPoint}/organizations/${organizationId}/inquirers/${inquirerId}/type-insights/${typeInsightsId}`,
+        options
+      )
+      .pipe(
+        tap((response: ApiResponse<OrganizationReport>) => {
+          this.data = response.data as OrganizationReport[];
+
+          this.paginationInfo = {
+            total: response.total,
+            itemsPerPage: response.per_page,
+            currentPage: response.current_page,
+          };
+        }),
+        map((response: ApiResponse<OrganizationReport>) => response.data)
+      );
+  }
+
   getByOrganizationId(organizationId: number, options?: { params: any }) {
     return this.factory
       .get(`${this.endPoint}/organizations/${organizationId}`, options)

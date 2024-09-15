@@ -1,20 +1,32 @@
 <!-- Humberger menu -->
-<button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button"
+<button data-drawer-target="logo-sidebar"
+        data-drawer-toggle="logo-sidebar"
+        aria-controls="logo-sidebar"
+        type="button"
         class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-secondary-dark rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-slate-50 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
   <span class="sr-only">Open sidebar</span>
-  <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-    <path clip-rule="evenodd" fill-rule="evenodd"
+  <svg class="w-6 h-6"
+       aria-hidden="true"
+       fill="currentColor"
+       viewBox="0 0 20 20"
+       xmlns="http://www.w3.org/2000/svg">
+    <path clip-rule="evenodd"
+          fill-rule="evenodd"
           d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
     </path>
   </svg>
 </button>
 
-<aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform  -translate-x-full sm:translate-x-0"
+<aside id="logo-sidebar"
+       class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform  -translate-x-full sm:translate-x-0"
        aria-label="Sidebar">
   <div class="h-full px-3 py-4 overflow-y-auto md:text-sm text-xs bg-organization-dashboard pt-10 relative dark:bg-gray-800">
     <!-- Logo -->
-    <a [routerLink]="['/']" class="flex items-center ps-2.5 mb-5">
-      <img src="assets/images/munlogo-white.png/" class="h-6 me-3 sm:h-7" alt="Mundaly logo" />
+    <a [routerLink]="['/']"
+       class="flex items-center ps-2.5 mb-5">
+      <img src="assets/images/munlogo-white.png/"
+           class="h-6 me-3 sm:h-7"
+           alt="Mundaly logo" />
     </a>
 
     <ul class="space-y-2 relative font-medium min-h-[200px]">
@@ -25,7 +37,8 @@
            (click)="hideSidebar()"
            class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
            routerLinkActive="bg-secondary-dark">
-          <span class=""><i class=" text-secondary-dark text-xl mdi mdi-home" routerLinkActive="text-white"></i></span>
+          <span class=""><i class=" text-secondary-dark text-xl mdi mdi-home"
+               routerLinkActive="text-white"></i></span>
           <span class="ms-2">Home</span>
         </a>
       </li>
@@ -39,7 +52,8 @@
            (click)="hideSidebar()"
            class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
            routerLinkActive="bg-secondary-dark">
-          <span class=""><i class=" text-secondary-dark text-xl mdi mdi-email-seal-outline" routerLinkActive="text-white"></i></span>
+          <span class=""><i class=" text-secondary-dark text-xl mdi mdi-email-seal-outline"
+               routerLinkActive="text-white"></i></span>
           <span class="ms-2">Verification Requests <span *ngIf="verificationRequests"
                   class="inline-flex items-center  justify-center w-4 h-4 ms-2 text-xs font-semibold text-red-800 bg-red-200 rounded-full dark:bg-gray-700 dark:text-red-400">
               {{ verificationRequests }}
@@ -53,7 +67,7 @@
         <hr class="my-5  text-slate-50 opacity-20">
 
         <!-- Due DIligence -->
-        <li *ngIf="(selectedImpactPartner || selectedImpactInitiative) && typeSubmenu == 'due-diligence'">
+        <li *ngIf="(selectedImpactPartner || selectedImpactInitiative) && typeSubmenu == ImpactVerificationTypeInsightsEnum.DUE_DILIGENCE">
           <!-- Sidebar Selected Impact Partner -->
           <ul class="space-y-2 relative font-medium min-h-[250px] border border-primary rounded-xl bg-organization-dashboard-dark p-3 ml-[-10px] mr-[-7px]"
               *ngIf="selectedImpactPartner || selectedImpactInitiative ">
@@ -63,38 +77,46 @@
             </li>
             <!-- Home -->
             <li>
-              <a [routerLink]="['due-diligence', 'partners', selectedImpactPartner?.id,  'overview']" [queryParamsHandling]="'preserve'"
+              <a [routerLink]="['due-diligence', 'partners', selectedImpactPartner?.id,  'overview']"
+                 [queryParamsHandling]="'preserve'"
                  class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
                  routerLinkActive="bg-secondary-dark">
-                <span class=""><i class=" text-secondary-dark  mdi mdi-chart-arc" routerLinkActive="text-white"></i></span>
+                <span class=""><i class=" text-secondary-dark  mdi mdi-chart-arc"
+                     routerLinkActive="text-white"></i></span>
                 <span class="ms-2">Overview</span>
               </a>
             </li>
 
             <li>
-              <a [routerLink]="['due-diligence', 'partners', selectedImpactPartner?.id,  'breakdown']" [queryParamsHandling]="'preserve'"
+              <a [routerLink]="['due-diligence', 'partners', selectedImpactPartner?.id,  'breakdown']"
+                 [queryParamsHandling]="'preserve'"
                  class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
                  routerLinkActive="bg-secondary-dark">
-                <span class=""><i class=" text-secondary-dark  mdi mdi-bullseye" routerLinkActive="text-white"></i></span>
+                <span class=""><i class=" text-secondary-dark  mdi mdi-bullseye"
+                     routerLinkActive="text-white"></i></span>
                 <span class="flex-1 ms-2 whitespace-nowrap">Breakdown</span>
               </a>
             </li>
 
             <li>
-              <a [routerLink]="['due-diligence', 'partners', selectedImpactPartner?.id,  'insights']" [queryParamsHandling]="'preserve'"
+              <a [routerLink]="['due-diligence', 'partners', selectedImpactPartner?.id,  'insights']"
+                 [queryParamsHandling]="'preserve'"
                  class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
                  routerLinkActive="bg-secondary-dark">
-                <span class=""><i class=" text-secondary-dark  mdi mdi-file-chart-outline" routerLinkActive="text-white"></i></span>
+                <span class=""><i class=" text-secondary-dark  mdi mdi-file-chart-outline"
+                     routerLinkActive="text-white"></i></span>
                 <span class="flex-1 ms-2 whitespace-nowrap">Insights</span>
               </a>
             </li>
 
 
             <li>
-              <a [routerLink]="['due-diligence', 'partners', selectedImpactPartner?.id,  'reports']" [queryParamsHandling]="'preserve'"
+              <a [routerLink]="['due-diligence', 'partners', selectedImpactPartner?.id,  'reports']"
+                 [queryParamsHandling]="'preserve'"
                  class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
                  routerLinkActive="bg-secondary-dark">
-                <span class=""><i class=" text-secondary-dark  mdi mdi-file-multiple-outline" routerLinkActive="text-white"></i></span>
+                <span class=""><i class=" text-secondary-dark  mdi mdi-file-multiple-outline"
+                     routerLinkActive="text-white"></i></span>
                 <span class="flex-1 ms-2 whitespace-nowrap">Reports</span>
               </a>
             </li>
@@ -104,7 +126,7 @@
 
 
         <!-- Wellbeing -->
-        <li *ngIf="(selectedImpactPartner || selectedImpactInitiative) && typeSubmenu == 'wellbeing'">
+        <li *ngIf="(selectedImpactPartner || selectedImpactInitiative) && typeSubmenu == ImpactVerificationTypeInsightsEnum.WELLBEING">
           <!-- Sidebar Selected Impact Partner -->
           <ul class="space-y-2 relative font-medium min-h-[250px] border border-primary rounded-xl bg-organization-dashboard-dark p-3 ml-[-10px] mr-[-7px]"
               *ngIf="selectedImpactPartner || selectedImpactInitiative ">
@@ -114,20 +136,24 @@
             </li>
             <!-- Home -->
             <li>
-              <a [routerLink]="['wellbeing', 'partners', selectedImpactPartner?.id,  'overview']" [queryParamsHandling]="'preserve'"
+              <a [routerLink]="['wellbeing', 'partners', selectedImpactPartner?.id,  'overview']"
+                 [queryParamsHandling]="'preserve'"
                  class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
                  routerLinkActive="bg-secondary-dark">
-                <span class=""><i class=" text-secondary-dark  mdi mdi-chart-arc" routerLinkActive="text-white"></i></span>
+                <span class=""><i class=" text-secondary-dark  mdi mdi-chart-arc"
+                     routerLinkActive="text-white"></i></span>
                 <span class="ms-2">Overview</span>
               </a>
             </li>
 
 
             <li>
-              <a [routerLink]="['wellbeing', 'partners', selectedImpactPartner?.id,  'breakdown']" [queryParamsHandling]="'preserve'"
+              <a [routerLink]="['wellbeing', 'partners', selectedImpactPartner?.id,  'breakdown']"
+                 [queryParamsHandling]="'preserve'"
                  class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
                  routerLinkActive="bg-secondary-dark">
-                <span class=""><i class=" text-secondary-dark  mdi mdi-bullseye" routerLinkActive="text-white"></i></span>
+                <span class=""><i class=" text-secondary-dark  mdi mdi-bullseye"
+                     routerLinkActive="text-white"></i></span>
                 <span class="flex-1 ms-2 whitespace-nowrap">Breakdown</span>
               </a>
             </li>
@@ -135,20 +161,24 @@
 
 
             <li>
-              <a [routerLink]="['wellbeing', 'partners', selectedImpactPartner?.id,  'insights']" [queryParamsHandling]="'preserve'"
+              <a [routerLink]="['wellbeing', 'partners', selectedImpactPartner?.id,  'insights']"
+                 [queryParamsHandling]="'preserve'"
                  class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
                  routerLinkActive="bg-secondary-dark">
-                <span class=""><i class=" text-secondary-dark  mdi mdi-file-chart-outline" routerLinkActive="text-white"></i></span>
+                <span class=""><i class=" text-secondary-dark  mdi mdi-file-chart-outline"
+                     routerLinkActive="text-white"></i></span>
                 <span class="flex-1 ms-2 whitespace-nowrap">Insights</span>
               </a>
             </li>
 
 
             <li>
-              <a [routerLink]="['wellbeing', 'partners', selectedImpactPartner?.id,  'reports']" [queryParamsHandling]="'preserve'"
+              <a [routerLink]="['wellbeing', 'partners', selectedImpactPartner?.id,  'reports']"
+                 [queryParamsHandling]="'preserve'"
                  class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
                  routerLinkActive="bg-secondary-dark">
-                <span class=""><i class=" text-secondary-dark  mdi mdi-file-multiple-outline" routerLinkActive="text-white"></i></span>
+                <span class=""><i class=" text-secondary-dark  mdi mdi-file-multiple-outline"
+                     routerLinkActive="text-white"></i></span>
                 <span class="flex-1 ms-2 whitespace-nowrap">Reports</span>
               </a>
             </li>
@@ -172,9 +202,12 @@
         <span>
           <img src="https://media.istockphoto.com/id/942153448/de/vektor/avatar.jpg?s=612x612&w=0&k=20&c=dYzovkqwc-ADwIYjH7fd6MdgaJi0UslcMC3ycK9dmSg="
                *ngIf="!organization?.logo"
-               alt="" class="h-12 w-12 rounded-full border-2 border-slate-50">
+               alt=""
+               class="h-12 w-12 rounded-full border-2 border-slate-50">
 
-          <img class="w-12 h-12 object-cover border rounded-full" [src]="organization?.logo" *ngIf="organization?.logo"
+          <img class="w-12 h-12 object-cover border rounded-full"
+               [src]="organization?.logo"
+               *ngIf="organization?.logo"
                [alt]="organization?.name">
         </span>
         <div class="p-2 flex align-center flex-col">
@@ -195,7 +228,8 @@
 
 
       <!-- Logout button -->
-      <div class="flex text-slate-400 mt-5 cursor-pointer hover:text-slate-500" (click)="authService.logout()">
+      <div class="flex text-slate-400 mt-5 cursor-pointer hover:text-slate-500"
+           (click)="authService.logout()">
         <span class="me-2"><i class="mdi mdi-logout"></i></span>
         <span>Logout</span>
       </div>

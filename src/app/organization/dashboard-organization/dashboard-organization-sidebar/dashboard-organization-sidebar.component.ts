@@ -12,6 +12,8 @@ import { ImpactInitiative } from '../../../scale/impact-initiative/impact-initia
 import { TypeOrganizationEnum } from '../../type-organization/type-organization.enum';
 import { ImpactVerificationService } from '../../../impact-verification/impact-verification.service';
 import { filter } from 'rxjs';
+import { ImpactVerificationTypeInsightsEnum } from 'src/app/impact-verification/impact-verification-type-insights/impact-verification-type-insights.enum';
+import { DashboardOrganizationService } from '../dashboard-organization.service';
 
 @Component({
   selector: 'app-dashboard-organization-sidebar',
@@ -26,7 +28,7 @@ export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
   menuUrlPrefix: string = '';
   typeOrganizationId: number | null = null;
   user: User | null = null;
-  typeSubmenu: 'due-diligence' | 'wellbeing' | null = null;
+  typeSubmenu: ImpactVerificationTypeInsightsEnum | null = null;
   @Output() showSetupLogoAndCoverModal$ = new EventEmitter();
 
   constructor(
@@ -35,9 +37,14 @@ export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
     public storage: Storage,
     public organizationService: OrganizationService,
     public impactInitiativeService: ImpactInitiativeService,
-    public impactVerificationService: ImpactVerificationService
+    public impactVerificationService: ImpactVerificationService,
+    public dashboardOrganizationService: DashboardOrganizationService
   ) {
     super();
+  }
+
+  get ImpactVerificationTypeInsightsEnum() {
+    return ImpactVerificationTypeInsightsEnum;
   }
 
   get categoryOrganization() {
@@ -64,21 +71,7 @@ export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
         this.countVerificationRequests(organization?.id!);
       });
 
-      if (
-        this.organization?.type_organization_id ===
-          TypeOrganizationEnum.IMPACT_IMPLEMENTER ||
-        this.organization?.type_organization_id ===
-          TypeOrganizationEnum.SUPPLIER
-      ) {
-        this.subscribeToImpactInitiative();
-      } else if (
-        this.organization?.type_organization_id ===
-          TypeOrganizationEnum.CORPORATION ||
-        this.organization?.type_organization_id ===
-          TypeOrganizationEnum.IMPACT_FUNDER
-      ) {
-        this.subscribeToOrganization();
-      }
+      this.subscribeToOrganization();
     });
 
     this.typeSubmenu = this.getTypeSubmenu();
@@ -92,9 +85,13 @@ export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
   getTypeSubmenu() {
     const splittedUrl = this.router.url.split('/');
     if (splittedUrl.includes('due-diligence')) {
-      return 'due-diligence';
+      this.dashboardOrganizationService.type_insights_id =
+        ImpactVerificationTypeInsightsEnum.DUE_DILIGENCE;
+      return ImpactVerificationTypeInsightsEnum.DUE_DILIGENCE;
     } else if (splittedUrl.includes('wellbeing')) {
-      return 'wellbeing';
+      this.dashboardOrganizationService.type_insights_id =
+        ImpactVerificationTypeInsightsEnum.WELLBEING;
+      return ImpactVerificationTypeInsightsEnum.WELLBEING;
     }
 
     return null;
@@ -135,16 +132,6 @@ export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
         if (organization) {
           this.selectedImpactPartner = organization;
           this.menuUrlPrefix = `organizations/${this.selectedImpactPartner?.id}`;
-        }
-      });
-  }
-
-  subscribeToImpactInitiative() {
-    this.subscriptions['impactInitiative'] =
-      this.impactInitiativeService.singleData$.subscribe((impactInitiative) => {
-        if (impactInitiative) {
-          this.selectedImpactInitiative = impactInitiative;
-          this.menuUrlPrefix = `initiatives/${this.selectedImpactInitiative?.id}`;
         }
       });
   }

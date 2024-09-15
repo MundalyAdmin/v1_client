@@ -8,6 +8,8 @@ import { ImpactInitiativeService } from '../../../scale/impact-initiative/impact
 import { TypeOrganizationEnum } from '../../type-organization/type-organization.enum';
 import { StatusImpactVerificationEnum } from '../../../impact-verification/enums/status-impact-verification.enum';
 import { ActivatedRoute } from '@angular/router';
+import { DashboardOrganizationService } from '../dashboard-organization.service';
+import { ImpactVerificationTypeInsightsEnum } from 'src/app/impact-verification/impact-verification-type-insights/impact-verification-type-insights.enum';
 
 @Component({
   selector: 'app-dashboard-organization-reports',
@@ -22,16 +24,27 @@ export class DashboardOrganizationReportsComponent
   selectedReportIndex = 0;
   showReportDetailsModal = false;
   StatusImpactVerificationEnum = StatusImpactVerificationEnum;
+  typeInsightsId: ImpactVerificationTypeInsightsEnum =
+    ImpactVerificationTypeInsightsEnum.UNDEFINED;
   constructor(
     public organizationReportService: OrganizationReportService,
     public organizationService: OrganizationService,
     public impactInitiativeService: ImpactInitiativeService,
+    public dashboardOrganizationService: DashboardOrganizationService,
     public route: ActivatedRoute
   ) {
     super();
   }
 
   override ngOnInit(): void {
+    super.ngOnInit();
+
+    this.subscriptions['type_insights_id'] =
+      this.dashboardOrganizationService.type_insights_id$.subscribe(
+        (type_insights_id) => {
+          this.typeInsightsId = type_insights_id;
+        }
+      );
     this.route.queryParams.subscribe((params) => {
       const queryParams: { location?: string } = {};
 
@@ -47,15 +60,30 @@ export class DashboardOrganizationReportsComponent
     this.subscriptions['organization'] =
       this.organizationService.singleData$.subscribe((organization) => {
         if (organization) {
-          this.getByOrganizationId(organization.id!, queryParams);
+          this.getByOrganizationInquirerAndTypeInsights(
+            organization.id!,
+            this.currentLoggedInOrganization?.id!,
+            this.typeInsightsId,
+            queryParams
+          );
         }
       });
   }
 
-  getByOrganizationId(organizationId: number, params?: any) {
+  getByOrganizationInquirerAndTypeInsights(
+    organizationId: number,
+    inquirerId: number,
+    typeInsightsId: number,
+    params?: any
+  ) {
     this.loading = true;
     this.organizationReportService
-      .getByOrganizationId(organizationId, { params })
+      .getByOrganizationInquirerAndTypeInsights(
+        organizationId,
+        inquirerId,
+        typeInsightsId,
+        { params }
+      )
       .subscribe({
         next: () => (this.loading = false),
         error: () => (this.loading = false),
@@ -64,16 +92,7 @@ export class DashboardOrganizationReportsComponent
 
   getMinifiedTypeLabel(type: string) {
     if (type.toLowerCase() === 'custom report') return type;
-    return type
-      .split(' ')
-      .map((word) => {
-        return word.includes('-')
-          ? word
-              .split('-')
-              .map((w) => w[0].toUpperCase())
-              .join('')
-          : word[0].toUpperCase();
-      })
-      .join('');
+    const typeName = type.split(' Insights')[0];
+    return typeName;
   }
 }
