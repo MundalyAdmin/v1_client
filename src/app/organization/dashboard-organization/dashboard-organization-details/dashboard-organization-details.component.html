@@ -7,9 +7,14 @@
   <div class="grid grid-col-1 bg-white border  rounded-xl overflow-hidden ">
     <!-- Video background -->
     <div class="md:h-[220px] h-[160px] w-full relative">
-      <img [src]="single.cover" *ngIf="single.cover" class="w-full h-full object-cover object-center" alt="Video background">
-      <img src="https://res.cloudinary.com/mundaly/image/upload/v1701871815/organization/bg-placeholder.jpg" *ngIf="!single.cover"
-           class="w-full h-full object-cover object-center" alt="Video background">
+      <img [src]="single.cover"
+           *ngIf="single.cover"
+           class="w-full h-full object-cover object-center"
+           alt="Video background">
+      <img src="https://res.cloudinary.com/mundaly/image/upload/v1701871815/organization/bg-placeholder.jpg"
+           *ngIf="!single.cover"
+           class="w-full h-full object-cover object-center"
+           alt="Video background">
 
       <!-- <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
               <span><i class="mdi mdi-play-circle text-4xl"></i></span>
@@ -21,7 +26,8 @@
       <div class="relative flex justify-center md:flex-none">
         <div *ngIf="single.logo"
              class=" w-36 h-36 md:w-56 shrink-0 md:h-56 md:mt-[-100px] mt-[-75px] z-99 bg-white rounded-full overflow-hidden border-2 border-black border-opacity-10 ">
-          <img [src]="single.logo" class="w-full h-full object-cover"
+          <img [src]="single.logo"
+               class="w-full h-full object-cover"
                alt="">
 
         </div>
@@ -58,12 +64,11 @@
 
           <div class="flex gap-2">
             <button type="button"
-
                     (click)="showDueDiligenceModal = true"
                     class="px-3 md:px-7 py-2  text-sm  font-semibold border border-primary  rounded-full text-center text-white bg-primary  hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-dark">
               Request Insights
             </button>
-            <!-- 
+            <!--
             <button type="button"
                     *ngIf="single?.verification_status_from_current_organization && (single?.verification_status_from_current_organization?.id !== StatusImpactVerificationEnum.ABORTED || single?.verification_status_from_current_organization?.id !== StatusImpactVerificationEnum.SUSPENDED)"
                     [disabled]="true"
@@ -71,7 +76,9 @@
               Insights Requested
             </button> -->
 
-            <a [href]="single.website" target="_blank" type="button"
+            <a [href]="single.website"
+               target="_blank"
+               type="button"
                class="px-3 md:px-7 py-2 text-sm  font-semibold border border-primary  rounded-full text-center text-primary bg-secondary  hover:bg-secondary-dark focus:ring-4 focus:outline-none focus:ring-primary-dark">Visit
               website</a>
           </div>
@@ -81,40 +88,39 @@
         <!-- Location and badges -->
         <div class="justify-center md:justify-start items-center md:gap-6 gap-2 flex flex-row  md:inline-flex">
           <!-- Location -->
-          <!-- <div class="  min-w-[200px]" *ngIf=" single.verifications?.length"> -->
-          <span class=""><i class="mdi mdi-map-marker"></i></span> {{ single.country }}
-          <!-- <p-dropdown class="" [filter]="true" filterBy="name" placeholder="All Communities"
-
+          <div class="  min-w-[200px]"
+               *ngIf=" single.verifications?.length">
+            <!-- <span class=""><i class="mdi mdi-map-marker"></i></span> {{ single.country }} q -->
+            <p-dropdown class=""
+                        [filter]="true"
+                        filterBy="name"
+                        placeholder="All Communities"
                         [showClear]="true"
+                        appendTo="body"
                         (onChange)="onCommunityChange($event)"
-                        [options]="single.verifications" [(ngModel)]="selectedCommunity" optionLabel="location">
+                        [options]="single.verifications"
+                        [(ngModel)]="selectedCommunity"
+                        optionLabel="location">
 
-            </p-dropdown> -->
-          <!-- </div> -->
+            </p-dropdown>
+          </div>
 
           <div class="flex md:gap-5 gap-2 md">
             <ng-container *ngIf="single.type_organization_id === 2">
-              <div
-                   class="bg-white text-slate-700 border text-xs md:text-base  font-medium md:me-2  px-1 rounded  border-green-400">Facilitator
-                <span
-                      class="ms-2"><i
-                     class="mdi mdi-check"></i></span>
+              <div class="bg-white text-slate-700 border text-xs md:text-base  font-medium md:me-2  px-1 rounded  border-green-400">Facilitator
+                <span class="ms-2"><i class="mdi mdi-check"></i></span>
               </div>
 
-              <div
-                   class="bg-white text-slate-700 border text-xs md:text-base  font-medium  px-1 rounded  border-red-400"> Funder <span
-                      class="ms-2"><i
-                     class="mdi mdi-close"></i></span></div>
+              <div class="bg-white text-slate-700 border text-xs md:text-base  font-medium  px-1 rounded  border-red-400"> Funder <span
+                      class="ms-2"><i class="mdi mdi-close"></i></span></div>
             </ng-container>
 
 
             <ng-container *ngIf="single.type_organization_id === 1">
-              <div
-                   class="bg-white text-slate-700 border text-base font-medium me-2 px-1 rounded  border-green-400">Funder <span class="ms-2"><i
+              <div class="bg-white text-slate-700 border text-base font-medium me-2 px-1 rounded  border-green-400">Funder <span class="ms-2"><i
                      class="mdi mdi-check"></i></span></div>
 
-              <div
-                   class="bg-white text-slate-700 border text-base font-medium me-2 px-1 rounded  border-red-400"> Facilitator <span class="ms-2"><i
+              <div class="bg-white text-slate-700 border text-base font-medium me-2 px-1 rounded  border-red-400"> Facilitator <span class="ms-2"><i
                      class="mdi mdi-close"></i></span></div>
 
 
@@ -125,7 +131,8 @@
 
         </div>
 
-        <div class=" text-slate-600 text-center md:text-start text-sm md:text-base md:w-3/4 font-normal  " [innerHTML]="single.about"></div>
+        <div class=" text-slate-600 text-center md:text-start text-sm md:text-base md:w-3/4 font-normal  "
+             [innerHTML]="single.about"></div>
       </div>
     </div>
   </div>
@@ -138,7 +145,10 @@
 </ng-container>
 
 
-<p-dialog header="Insights Request" [(visible)]="showDueDiligenceModal" [modal]="true" styleClass="md:w-[50vw] w-[95vw]"
+<p-dialog header="Insights Request"
+          [(visible)]="showDueDiligenceModal"
+          [modal]="true"
+          styleClass="md:w-[50vw] w-[95vw]"
           [draggable]="false"
           [resizable]="false">
 

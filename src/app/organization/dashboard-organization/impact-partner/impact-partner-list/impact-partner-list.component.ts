@@ -62,14 +62,12 @@ export class ImpactPartnerListComponent
   }
 
   selectImpactPartner(partnerId: number, indexCommunity: number) {
-    this.router.navigate(
-      ['dashboard', 'due-diligence', 'partners', partnerId]
-      // {
-      //   queryParams: {
-      //     community: this.selectedImpactInitiatives[indexCommunity]?.location,
-      //   },
-      // }
-    );
+    this.router.navigate([partnerId], {
+      relativeTo: this.route,
+      queryParams: {
+        community: this.selectedImpactInitiatives[indexCommunity]?.location,
+      },
+    });
   }
 
   goToPartner(partnerId: any, index: any) {

@@ -54,8 +54,7 @@ export class DashboardOrganizationDetailsComponent
 
   onCommunityChange(event: any) {
     this.selectedCommunity = event.value;
-    this.router.navigate(['./'], {
-      relativeTo: this.route,
+    this.router.navigate([this.helper.navigation.getCurrentUrl()], {
       queryParams: { community: event.value?.location },
     });
   }
