@@ -5,6 +5,10 @@ import {
 } from '../../../shared/base-component';
 import { PortfolioOverallSnapshot } from '../../../scale/models/portfolio-overall-snapshot.model';
 import { ScaleService } from '../../../scale/scale.service';
+import { WellbeingScoring } from 'src/app/wellbeing-scoring/wellbeing-scoring.model';
+import { WellbeingScoringService } from 'src/app/wellbeing-scoring/wellbeing-scoring.service';
+import { DashboardOrganizationService } from '../dashboard-organization.service';
+import { ImpactVerificationTypeInsightsEnum } from 'src/app/impact-verification/impact-verification-type-insights/impact-verification-type-insights.enum';
 
 @Component({
   selector: 'app-dashboard-organization-overview-portfolio-overall-snapshot',
@@ -15,19 +19,42 @@ import { ScaleService } from '../../../scale/scale.service';
   ],
 })
 export class DashboardOrganizationOverviewPortfolioOverallSnapshotComponent extends BaseSingleComponent<PortfolioOverallSnapshot> {
-  constructor(public scaleService: ScaleService) {
+  constructor(
+    public scaleService: ScaleService,
+    private readonly wellbeingScoringService: WellbeingScoringService,
+    private readonly dashboardOrganizationService: DashboardOrganizationService
+  ) {
     super(scaleService);
   }
 
   override ngOnInit(): void {
     super.ngOnInit();
 
-    this.getPortfolioOverallSnapshot();
+    this.subscriptions['type-insights'] =
+      this.dashboardOrganizationService.typeInsight$.subscribe(
+        (typeInsights) => {
+          if (
+            typeInsights === ImpactVerificationTypeInsightsEnum.DUE_DILIGENCE
+          ) {
+            this.getDueDiligencePortfolioOverallSnapshot();
+          } else {
+            this.getWellbeingPortfolioOverallSnapshot();
+          }
+        }
+      );
   }
 
-  getPortfolioOverallSnapshot() {
+  getDueDiligencePortfolioOverallSnapshot() {
+    this.getPortfolioOverallSnapshot(this.scaleService);
+  }
+
+  getWellbeingPortfolioOverallSnapshot() {
+    this.getPortfolioOverallSnapshot(this.wellbeingScoringService);
+  }
+
+  getPortfolioOverallSnapshot(service: ScaleService | WellbeingScoringService) {
     this.loading = true;
-    this.scaleService
+    service
       .getPortfolioOverallSnapshotByFunderId(
         this.currentLoggedInOrganization?.id!
       )

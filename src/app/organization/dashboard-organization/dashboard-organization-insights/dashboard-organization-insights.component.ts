@@ -44,7 +44,14 @@ export class DashboardOrganizationInsightsComponent extends BaseComponent<any> {
 
   clearDates() {
     this.dateForm.reset();
-    this.router.navigate(['./'], { relativeTo: this.route, queryParams: {} });
+    this.router.navigate(['./'], {
+      relativeTo: this.route,
+      queryParams: {
+        startDate: null,
+        endDate: null,
+      },
+      queryParamsHandling: 'merge',
+    });
   }
 
   initForm() {
@@ -73,6 +80,7 @@ export class DashboardOrganizationInsightsComponent extends BaseComponent<any> {
         startDate: this.dateForm.value?.startDate?.toISOString().split('T')[0],
         endDate: this.dateForm.value?.endDate?.toISOString().split('T')[0],
       },
+      queryParamsHandling: 'merge',
     });
   }
 }

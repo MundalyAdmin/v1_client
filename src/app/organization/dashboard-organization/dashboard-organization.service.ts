@@ -7,12 +7,12 @@ import { ImpactVerificationTypeInsightsEnum } from 'src/app/impact-verification/
 })
 export class DashboardOrganizationService {
   private _title: string = 'Dashboard';
-  private _type_insights_id: ImpactVerificationTypeInsightsEnum =
+  private _typeInsightId: ImpactVerificationTypeInsightsEnum =
     ImpactVerificationTypeInsightsEnum.UNDEFINED;
 
   title$ = new BehaviorSubject<string>(this._title);
-  type_insights_id$ = new BehaviorSubject<ImpactVerificationTypeInsightsEnum>(
-    this._type_insights_id
+  typeInsight$ = new BehaviorSubject<ImpactVerificationTypeInsightsEnum>(
+    this._typeInsightId
   );
 
   set title(title: string) {
@@ -20,9 +20,9 @@ export class DashboardOrganizationService {
     this.title$.next(title);
   }
 
-  set type_insights_id(type_insights_id: ImpactVerificationTypeInsightsEnum) {
-    this._type_insights_id = type_insights_id;
-    this.type_insights_id$.next(type_insights_id);
+  set typeInsightId(type_insights_id: ImpactVerificationTypeInsightsEnum) {
+    this._typeInsightId = type_insights_id;
+    this.typeInsight$.next(type_insights_id);
   }
 
   constructor() {}

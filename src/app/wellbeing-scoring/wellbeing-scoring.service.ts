@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { BaseService } from '../shared/services';
-import { WellbeingScoring } from './wellbeing-scoring.model';
-import { ReplaySubject, tap } from 'rxjs';
-import { ApiResponse } from '../shared/models/ApiResponse';
-import { BaseScaleService } from '../scale/base-scale.service';
+import { map } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
-import { CategoryOrganizationEnum } from '../organization/category-organization/category-organization.enum';
+import { BaseScaleService } from '../scale/base-scale.service';
+import { PortfolioOverallSnapshot } from '../scale/models/portfolio-overall-snapshot.model';
+import { PortfolioRiskScore } from '../scale/models/portfolio-risk-score.model';
+import { ApiResponse } from '../shared/models/ApiResponse';
+import { WellbeingScoring } from './wellbeing-scoring.model';
 
 @Injectable({
   providedIn: 'root',
@@ -38,5 +38,27 @@ export class WellbeingScoringService extends BaseScaleService<WellbeingScoring> 
     }
 
     return '';
+  }
+
+  getPortfolioRiskScoreByFunderId(funderId: number) {
+    return this.factory
+      .get(`${this.endPoint}/portfolio-risk-score/funders/${funderId}`)
+      .pipe(
+        map(
+          (response: ApiResponse<PortfolioRiskScore[]>) =>
+            response.data as PortfolioRiskScore[]
+        )
+      );
+  }
+
+  getPortfolioOverallSnapshotByFunderId(funderId: number) {
+    return this.factory
+      .get(`${this.endPoint}/portfolio-overall-snapshot/funders/${funderId}`)
+      .pipe(
+        map(
+          (response: ApiResponse<PortfolioOverallSnapshot>) =>
+            response.data as PortfolioOverallSnapshot
+        )
+      );
   }
 }

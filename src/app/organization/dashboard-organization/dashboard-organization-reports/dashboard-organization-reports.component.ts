@@ -40,7 +40,7 @@ export class DashboardOrganizationReportsComponent
     super.ngOnInit();
 
     this.subscriptions['type_insights_id'] =
-      this.dashboardOrganizationService.type_insights_id$.subscribe(
+      this.dashboardOrganizationService.typeInsight$.subscribe(
         (type_insights_id) => {
           this.typeInsightsId = type_insights_id;
         }

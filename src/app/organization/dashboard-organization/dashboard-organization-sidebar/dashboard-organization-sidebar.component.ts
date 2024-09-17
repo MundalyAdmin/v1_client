@@ -1,18 +1,16 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { BaseComponent } from '../../../shared/base-component';
-import { Organization } from '../../organization.model';
-import { AuthService } from '../../../auth/auth.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { User } from '../../../user/user.model';
-import { Storage } from '../../../shared/helpers/storage/storage';
-import { OrganizationService } from '../../organization.service';
-import { CategoryOrganizationEnum } from '../../category-organization/category-organization.enum';
-import { ImpactInitiativeService } from '../../../scale/impact-initiative/impact-initiative.service';
-import { ImpactInitiative } from '../../../scale/impact-initiative/impact-initiative.model';
-import { TypeOrganizationEnum } from '../../type-organization/type-organization.enum';
-import { ImpactVerificationService } from '../../../impact-verification/impact-verification.service';
 import { filter } from 'rxjs';
 import { ImpactVerificationTypeInsightsEnum } from 'src/app/impact-verification/impact-verification-type-insights/impact-verification-type-insights.enum';
+import { ImpactVerificationService } from '../../../impact-verification/impact-verification.service';
+import { ImpactInitiative } from '../../../scale/impact-initiative/impact-initiative.model';
+import { ImpactInitiativeService } from '../../../scale/impact-initiative/impact-initiative.service';
+import { BaseComponent } from '../../../shared/base-component';
+import { Storage } from '../../../shared/helpers/storage/storage';
+import { User } from '../../../user/user.model';
+import { Organization } from '../../organization.model';
+import { OrganizationService } from '../../organization.service';
+import { TypeOrganizationEnum } from '../../type-organization/type-organization.enum';
 import { DashboardOrganizationService } from '../dashboard-organization.service';
 
 @Component({
@@ -75,6 +73,7 @@ export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
     });
 
     this.typeSubmenu = this.getTypeSubmenu();
+
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
@@ -85,11 +84,11 @@ export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
   getTypeSubmenu() {
     const splittedUrl = this.router.url.split('/');
     if (splittedUrl.includes('due-diligence')) {
-      this.dashboardOrganizationService.type_insights_id =
+      this.dashboardOrganizationService.typeInsightId =
         ImpactVerificationTypeInsightsEnum.DUE_DILIGENCE;
       return ImpactVerificationTypeInsightsEnum.DUE_DILIGENCE;
     } else if (splittedUrl.includes('wellbeing')) {
-      this.dashboardOrganizationService.type_insights_id =
+      this.dashboardOrganizationService.typeInsightId =
         ImpactVerificationTypeInsightsEnum.WELLBEING;
       return ImpactVerificationTypeInsightsEnum.WELLBEING;
     }
