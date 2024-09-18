@@ -3,6 +3,8 @@ import { BaseComponent } from '../../../shared/base-component';
 import { DemographicService } from '../../../demographic/demographic.service';
 import { DemographicData } from '../../../demographic/demographic-gender-data.service';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { ImpactVerificationTypeInsightsEnum } from 'src/app/impact-verification/impact-verification-type-insights/impact-verification-type-insights.enum';
+import { DashboardOrganizationService } from '../dashboard-organization.service';
 
 @Component({
   selector: 'app-dashboard-organization-demographics-gender',
@@ -17,26 +19,37 @@ export class DashboardOrganizationDemographicsGenderComponent extends BaseCompon
   options: any;
   plugins: any = [];
 
-  constructor(public demographicService: DemographicService) {
+  constructor(
+    public demographicService: DemographicService,
+    public dashboardOrganizationService: DashboardOrganizationService
+  ) {
     super(demographicService);
   }
   override ngOnInit(): void {
     super.ngOnInit();
 
-    this.getDemographicGenderDataByFunder(
-      this.currentLoggedInOrganization?.id!
-    );
+    this.subscriptions['type_insight'] =
+      this.dashboardOrganizationService.typeInsight$.subscribe(
+        (typeInsight) => {
+          this.getGenderBreakdownByFunderAndTypeInsight(
+            this.currentLoggedInOrganization?.id!,
+            typeInsight
+          );
+        }
+      );
   }
 
-  getDemographicGenderDataByFunder(funderId: number) {
+  getGenderBreakdownByFunderAndTypeInsight(
+    funderId: number,
+    typeInsight: ImpactVerificationTypeInsightsEnum
+  ) {
     this.loading = true;
     this.demographicService
-      .getGenderBreakdownByFunder(funderId!)
+      .getGenderBreakdownByFunderAndTypeInsight(funderId!, typeInsight)
       .subscribe((data) => {
         this.totalCommunityMembers = data
           .map((x) => +x.count)
           .reduce((a, b) => a + b, 0);
-        // this.initDemographicGenderChart(data);
         this.initChart(
           data.map((x) => x.name),
           data.map((x) => x.count)

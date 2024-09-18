@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DemographicService } from '../../../demographic/demographic.service';
 import { BaseComponent } from '../../../shared/base-component';
 import { DemographicData } from '../../../demographic/demographic-gender-data.service';
+import { DashboardOrganizationService } from '../dashboard-organization.service';
+import { ImpactVerificationTypeInsightsEnum } from 'src/app/impact-verification/impact-verification-type-insights/impact-verification-type-insights.enum';
 
 @Component({
   selector: 'app-dashboard-organization-demographics-age-range',
@@ -17,22 +19,35 @@ export class DashboardOrganizationDemographicsAgeRangeComponent
   eldery: number = 0;
   unknown: number = 0;
 
-  constructor(public demographicService: DemographicService) {
+  constructor(
+    public demographicService: DemographicService,
+    private dashboardOrganizationService: DashboardOrganizationService
+  ) {
     super(demographicService);
   }
   demographicAgeData: DemographicData[] = [];
 
   override ngOnInit(): void {
     super.ngOnInit();
-    this.getDemographicGenderDataByFunder(
-      this.currentLoggedInOrganization?.id!
-    );
+
+    this.subscriptions['type_insight'] =
+      this.dashboardOrganizationService.typeInsight$.subscribe(
+        (typeInsight) => {
+          this.getDemographicGenderDataByFunder(
+            this.currentLoggedInOrganization?.id!,
+            typeInsight
+          );
+        }
+      );
   }
 
-  getDemographicGenderDataByFunder(funderId: number) {
+  getDemographicGenderDataByFunder(
+    funderId: number,
+    typeInsight: ImpactVerificationTypeInsightsEnum
+  ) {
     this.loading = true;
     this.demographicService
-      .getAgeRangeBreakdownByFunder(funderId!)
+      .getAgeRangeBreakdownByFunderAndTypeInsight(funderId!, typeInsight)
       .subscribe((data) => {
         this.demographicAgeData = data;
         this.demographicAgeData.forEach((data) => {

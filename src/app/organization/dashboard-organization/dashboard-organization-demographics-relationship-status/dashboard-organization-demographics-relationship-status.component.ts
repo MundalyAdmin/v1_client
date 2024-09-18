@@ -3,6 +3,8 @@ import { BaseComponent } from '../../../shared/base-component';
 import { DemographicData } from '../../../demographic/demographic-gender-data.service';
 import { DemographicService } from '../../../demographic/demographic.service';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { DashboardOrganizationService } from '../dashboard-organization.service';
+import { ImpactVerificationTypeInsightsEnum } from 'src/app/impact-verification/impact-verification-type-insights/impact-verification-type-insights.enum';
 
 @Component({
   selector: 'app-dashboard-organization-demographics-relationship-status',
@@ -19,21 +21,36 @@ export class DashboardOrganizationDemographicsRelationshipStatusComponent extend
   options: any;
   plugins: any = [];
 
-  constructor(public demographicService: DemographicService) {
+  constructor(
+    public demographicService: DemographicService,
+    private readonly dashboardOrganizationService: DashboardOrganizationService
+  ) {
     super(demographicService);
   }
   override ngOnInit(): void {
     super.ngOnInit();
 
-    this.getDemographicRelationshipStatusDataByFunder(
-      this.currentLoggedInOrganization?.id!
-    );
+    this.subscriptions['type-insights'] =
+      this.dashboardOrganizationService.typeInsight$.subscribe(
+        (typeInsight) => {
+          this.getRelationshipStatusByFunderAndTypeInsight(
+            this.currentLoggedInOrganization?.id!,
+            typeInsight
+          );
+        }
+      );
   }
 
-  getDemographicRelationshipStatusDataByFunder(funderId: number) {
+  getRelationshipStatusByFunderAndTypeInsight(
+    funderId: number,
+    typeInsight: ImpactVerificationTypeInsightsEnum
+  ) {
     this.loading = true;
     this.demographicService
-      .getRelationshipStatusBreakdownByFunder(funderId!)
+      .getRelationshipStatusBreakdownByFunderAndTypeInsight(
+        funderId!,
+        typeInsight
+      )
       .subscribe((data) => {
         this.initChart(
           data.map((x) => x.name),
@@ -42,6 +59,14 @@ export class DashboardOrganizationDemographicsRelationshipStatusComponent extend
         this.loading = false;
       });
   }
+
+  // getDueDiligenceRelationshipStatusByFunder(funderId: number) {
+  //   this.getRelationshipStatusByFunderAndTypeInsight(funderId, ImpactVerificationTypeInsightsEnum.DUE_DILIGENCE);
+  // }
+
+  // getWellbeingRelationshipStatusByFunder(funderId: number) {
+  //   this.getRelationshipStatusByFunderAndTypeInsight(funderId, ImpactVerificationTypeInsightsEnum.WELLBEING);
+  // }
 
   initChart(labels: string[], data: number[]) {
     const documentStyle = getComputedStyle(document.documentElement);

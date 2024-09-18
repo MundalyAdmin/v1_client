@@ -3,6 +3,8 @@ import { BaseComponent } from '../../../shared/base-component';
 import { DemographicData } from '../../../demographic/demographic-gender-data.service';
 import { DemographicService } from '../../../demographic/demographic.service';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { ImpactVerificationTypeInsightsEnum } from 'src/app/impact-verification/impact-verification-type-insights/impact-verification-type-insights.enum';
+import { DashboardOrganizationService } from '../dashboard-organization.service';
 
 @Component({
   selector: 'app-dashboard-organization-demographics-ehtnicity',
@@ -16,21 +18,33 @@ export class DashboardOrganizationDemographicsEhtnicityComponent extends BaseCom
   options: any;
   plugins: any = [];
 
-  constructor(public demographicService: DemographicService) {
+  constructor(
+    public demographicService: DemographicService,
+    public dashboardOrganizationService: DashboardOrganizationService
+  ) {
     super(demographicService);
   }
   override ngOnInit(): void {
     super.ngOnInit();
 
-    this.getDemographicEthnicityDataByFunder(
-      this.currentLoggedInOrganization?.id!
-    );
+    this.subscriptions['type_insight'] =
+      this.dashboardOrganizationService.typeInsight$.subscribe(
+        (typeInsight) => {
+          this.getEthnicityBreakdownByFunderAndTypeInsight(
+            this.currentLoggedInOrganization?.id!,
+            typeInsight
+          );
+        }
+      );
   }
 
-  getDemographicEthnicityDataByFunder(funderId: number) {
+  getEthnicityBreakdownByFunderAndTypeInsight(
+    funderId: number,
+    typeInsight: ImpactVerificationTypeInsightsEnum
+  ) {
     this.loading = true;
     this.demographicService
-      .getEthnicityBreakdownByFunder(funderId!)
+      .getEthnicityBreakdownByFunderAndTypeInsight(funderId!, typeInsight)
       .subscribe((data) => {
         this.initChart(
           data.map((x) => x.name),
