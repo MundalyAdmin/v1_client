@@ -61,10 +61,10 @@ export class ImpactStoryService extends BaseService<ImpactStory> {
     );
   }
 
-  getByOrganizationId(organizationId: number, params?: Params) {
+  getByFunderId(funderId: number, params?: Params) {
     return this.factory
       .get(
-        `${this.endPoint}/organizations/${organizationId}/${
+        `${this.endPoint}/funders/${funderId}/${
           params?.['verified'] ? 'verified' : 'unverified'
         }`,
         { params }
@@ -81,6 +81,16 @@ export class ImpactStoryService extends BaseService<ImpactStory> {
         }),
         map(
           (response: ApiResponse<ImpactStory>) => response.data as ImpactStory[]
+        )
+      );
+  }
+
+  getByOrganizationId(organizationId: number, params?: Params) {
+    return this.factory
+      .get(`${this.endPoint}/organizations/${organizationId}`, { params })
+      .pipe(
+        map(
+          (response: ApiResponse<ImpactStory>) => response.data as ImpactStory
         )
       );
   }
@@ -116,15 +126,15 @@ export class ImpactStoryService extends BaseService<ImpactStory> {
       );
   }
 
-  getVerifiedByOrganizationId(organizationId: number, params?: Params) {
-    return this.getByOrganizationId(organizationId, {
+  getVerifiedByFunderId(funderId: number, params?: Params) {
+    return this.getByFunderId(funderId, {
       ...params,
       verified: true,
     });
   }
 
-  getUnverifiedByOrganizationId(organizationId: number, params?: Params) {
-    return this.getByOrganizationId(organizationId, {
+  getUnverifiedByFunderId(funderId: number, params?: Params) {
+    return this.getByFunderId(funderId, {
       ...params,
       verified: false,
     });

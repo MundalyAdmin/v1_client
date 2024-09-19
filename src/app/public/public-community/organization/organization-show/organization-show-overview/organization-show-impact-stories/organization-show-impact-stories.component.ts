@@ -26,10 +26,9 @@ export class OrganizationShowImpactStoriesComponent
   }
 
   override ngOnInit(): void {
-    this.subscriptions['organization'] =
-      this.organizationService.singleData$.subscribe((organization) => {
-        if (organization) this.getDataByOrganization(organization.id!);
-      });
+    super.ngOnInit();
+
+    this.getDataByOrganization(this.currentLoggedInOrganization?.id!);
   }
 
   getDataByOrganization(organizationId: number) {

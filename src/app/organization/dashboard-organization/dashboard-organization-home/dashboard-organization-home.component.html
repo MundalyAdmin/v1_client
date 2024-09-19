@@ -2,47 +2,37 @@
 
 
 
-  <div class="text-sm font-medium text-center  mt-3 md:mt-10 text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+  <div class="text-sm font-medium text-center mt-10 text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
     <ul class="flex flex-wrap -mb-px">
 
       <!-- For impact -->
-      <li class="me-2" *ngIf="CategoryOrganizationEnum.IMPACT">
-        <!-- For impact funder -->
-        <a [routerLink]="['programs']"
-           *ngIf="organization.type_organization_id === TypeOrganizationEnum.IMPACT_IMPLEMENTER"
-           [routerLinkActiveOptions]="{exact: true}"
-           routerLinkActive="text-primary border-primary font-semibold"
-           class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-base md:text-lg">
-          Programs
-        </a>
-      </li>
+      <li class="me-2">
 
 
 
       <li class="me-2">
-        <a [routerLink]="['overview']"
+        <a [routerLink]="['community-needs']"
            routerLinkActive="text-primary border-primary font-semibold"
-           class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-base md:text-lg">
-          Overview
+           class="flex items-center p-4 border-b-2  gap-1 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-lg">
+          Community Needs
         </a>
       </li>
 
 
       <li class="me-2">
-        <a [routerLink]="['partners']"
+        <a [routerLink]="['impact-stories']"
            routerLinkActive="text-primary border-primary font-semibold"
-           class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-base md:text-lg">
-          Portfolio Partners
+           class="flex items-center p-4 border-b-2  gap-1 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-lg">
+          Impact Stories
         </a>
       </li>
-
 
 
 
       <li class="me-2">
         <a [routerLink]="['invitations']"
            routerLinkActive="text-primary border-primary font-semibold"
-           class="flex items-center p-4 border-b-2  gap-1 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-base md:text-lg">
+           class="flex items-center p-4 border-b-2  gap-1 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-lg">
           Invitations
           <span *ngIf="receivedInvitations"
                 class="inline-flex items-center justify-center w-4 h-4 me-2 text-xs font-semibold text-red-800 bg-red-200 rounded-full dark:bg-gray-700 dark:text-red-400">

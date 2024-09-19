@@ -19,7 +19,7 @@ import { RatingInformationComponent } from '../public/public-community/organizat
 import { OrganizationSearchBarComponent } from '../public/public-community/organization/organization-search-bar/organization-search-bar.component';
 import { OrganizationShowAboutComponent } from '../public/public-community/organization/organization-show/organization-show-about/organization-show-about.component';
 import { OrganizationShowHeroComponent } from '../public/public-community/organization/organization-show/organization-show-hero/organization-show-hero.component';
-import { OrganizationShowImpactStoriesComponent } from '../public/public-community/organization/organization-show/organization-show-overview/organization-show-impact-stories/organization-show-impact-stories.component';
+
 import { OrganizationShowOverviewOtherOrganizationsComponent } from '../public/public-community/organization/organization-show/organization-show-overview/organization-show-overview-other-organization/organization-show-overview-other-organizations.component';
 import { OrganizationShowOverviewComponent } from '../public/public-community/organization/organization-show/organization-show-overview/organization-show-overview.component';
 import { OrganizationShowRatingInformationsComponent } from '../public/public-community/organization/organization-show/organization-show-rating-informations/organization-show-rating-informations.component';
@@ -126,7 +126,6 @@ const routes: Routes = [
     OrganizationShowAboutComponent,
     OrganizationShowRatingInformationsComponent,
     OrganizationShowOverviewOtherOrganizationsComponent,
-    OrganizationShowImpactStoriesComponent,
   ],
   imports: [
     CommonModule,

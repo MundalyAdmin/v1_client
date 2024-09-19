@@ -102,6 +102,8 @@ import { DashboardOrganizationDemographicsGenderComponent } from './dashboard-or
 import { DashboardOrganizationDemographicsAgeRangeComponent } from './dashboard-organization-demographics-age-range/dashboard-organization-demographics-age-range.component';
 import { DashboardOrganizationDemographicsEhtnicityComponent } from './dashboard-organization-demographics-ehtnicity/dashboard-organization-demographics-ehtnicity.component';
 import { DashboardOrganizationDemographicsRelationshipStatusComponent } from './dashboard-organization-demographics-relationship-status/dashboard-organization-demographics-relationship-status.component';
+import { OrganizationShowImpactStoriesComponent } from 'src/app/public/public-community/organization/organization-show/organization-show-overview/organization-show-impact-stories/organization-show-impact-stories.component';
+import { DashboardOrganizationImpactStoriesListComponent } from './dashboard-organization-impact-stories-list/dashboard-organization-impact-stories-list.component';
 
 const routes: Routes = [
   {
@@ -145,21 +147,35 @@ const routes: Routes = [
         component: DashboardOrganizationHomeComponent,
         children: [
           {
-            path: 'overview',
-            component: DashboardOrganizationDueDiligenceOverviewSecondComponent,
-          },
-          {
-            path: 'partners',
-            component: DashboardOrganizationImpactPartnersComponent,
-          },
-          {
             path: 'invitations',
             component: DashboardOrganizationPartnerInvitationComponent,
           },
-
+          {
+            path: 'programs',
+            component: DashboardOrganizationImpactInitiativeComponent,
+          },
+          {
+            path: 'community-needs',
+            component: DashboardOrganizationCommunityNeedsComponent,
+          },
+          {
+            path: 'impact-stories',
+            component: DashboardOrganizationImpactStoriesComponent,
+            children: [
+              {
+                path: ':id',
+                component: DashboardOrganizationImpactStoriesListComponent,
+              },
+              {
+                path: '**',
+                redirectTo: 'verified',
+                pathMatch: 'full',
+              },
+            ],
+          },
           {
             path: '**',
-            redirectTo: 'overview',
+            redirectTo: 'community-needs',
           },
         ],
       },
@@ -653,6 +669,8 @@ const routes: Routes = [
     DashboardOrganizationDemographicsAgeRangeComponent,
     DashboardOrganizationDemographicsEhtnicityComponent,
     DashboardOrganizationDemographicsRelationshipStatusComponent,
+    OrganizationShowImpactStoriesComponent,
+    DashboardOrganizationImpactStoriesListComponent,
   ],
   imports: [
     CommonModule,

@@ -1,24 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Organization } from '../../../../../../organization/organization.model';
-import { OrganizationService } from '../../../../../../organization/organization.service';
-import { ImpactStory } from '../../../../../../scale/impact-story/impact-story.model';
-import { ImpactStoryService } from '../../../../../../scale/impact-story/impact-story.service';
-import { ScaleService } from '../../../../../../scale/scale.service';
-import { BaseComponent } from '../../../../../../shared/base-component';
+import { ImpactStory } from 'src/app/scale/impact-story/impact-story.model';
+import { BaseComponent } from 'src/app/shared/base-component';
+import { Organization } from '../../organization.model';
+import { ImpactStoryService } from 'src/app/scale/impact-story/impact-story.service';
 import { AuthService } from 'src/app/auth/auth.service';
+import { ScaleService } from 'src/app/scale/scale.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-organization-new-style-stories-list',
-  templateUrl: './organization-new-style-stories-list.component.html',
-  styleUrls: ['./organization-new-style-stories-list.component.scss'],
+  selector: 'app-dashboard-organization-impact-stories-list',
+  templateUrl: './dashboard-organization-impact-stories-list.component.html',
+  styleUrls: ['./dashboard-organization-impact-stories-list.component.scss'],
 })
-export class OrganizationNewStyleStoriesListComponent
+export class DashboardOrganizationImpactStoriesListComponent
   extends BaseComponent<ImpactStory>
   implements OnInit
 {
-  organization: Organization | null = null;
-  verified = false;
   constructor(
     public impactStoryOrganizationService: ImpactStoryService,
     public override authService: AuthService,
@@ -35,7 +32,6 @@ export class OrganizationNewStyleStoriesListComponent
     this.subscriptions['currentLoggedInOrganization'] =
       this.authService.organization$.subscribe((organization) => {
         if (organization) {
-          this.organization = organization;
           this.getDataByFunder(organization.id!);
         }
       });
