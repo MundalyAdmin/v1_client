@@ -16,9 +16,9 @@ export class ScaleService extends BaseScaleService<any> {
     super('scale/community-trust-score');
   }
 
-  getPortfolioRiskScoreByFunderId(funderId: number) {
+  getPortfolioRiskScoreByFunderId(funderId: number, params?: any) {
     return this.factory
-      .get(`scale/portfolio-risk-score/funders/${funderId}`)
+      .get(`scale/portfolio-risk-score/funders/${funderId}`, { params })
       .pipe(
         map(
           (response: ApiResponse<PortfolioRiskScore[]>) =>
@@ -27,9 +27,9 @@ export class ScaleService extends BaseScaleService<any> {
       );
   }
 
-  getPortfolioOverallSnapshotByFunderId(funderId: number) {
+  getPortfolioOverallSnapshotByFunderId(funderId: number, params?: any) {
     return this.factory
-      .get(`scale/portfolio-overall-snapshot/funders/${funderId}`)
+      .get(`scale/portfolio-overall-snapshot/funders/${funderId}`, { params })
       .pipe(
         map(
           (response: ApiResponse<PortfolioOverallSnapshot>) =>

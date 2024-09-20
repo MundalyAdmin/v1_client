@@ -1,0 +1,66 @@
+<div class="grid grid-cols-3 w-full py-4 gap-5">
+  <div>
+    <label class="text-sm font-semibold">
+      Filter by Verified Organization <app-loading *ngIf="filterLoading['verified-organization']"></app-loading>
+    </label>
+    <div>
+
+      <p-dropdown [options]="filters['verified-organization']"
+                  (onClick)="getVerifiedOrganizations(currentLoggedInOrganization?.id!)"
+                  [(ngModel)]="selectedFilters['verified-organization']"
+                  [showClear]="true"
+                  filterBy="name"
+                  (onChange)="navigateWithFilterQueryParams('verified-organization', selectedFilters['verified-organization']?.id)"
+                  (onClear)="navigateWithFilterQueryParams('verified-organization', null)"
+                  [filter]="true"
+                  optionLabel="name"
+                  placeholder="All">
+        <ng-template pTemplate="option"
+                     let-verifiedOrganization>
+          <div class="flex items-center">
+            <img [src]="verifiedOrganization.logo"
+                 alt="Impact Partner Logo"
+                 class="w-8 h-8 rounded-full mr-2">
+            {{verifiedOrganization.name}}
+          </div>
+        </ng-template>
+      </p-dropdown>
+    </div>
+  </div>
+
+
+  <div>
+    <label class="text-sm font-semibold">
+      Filter by Country <app-loading *ngIf="filterLoading.country"></app-loading>
+    </label>
+    <div>
+      <p-dropdown [options]="filters.country"
+                  [(ngModel)]="selectedFilters.country"
+                  [filter]="true"
+                  optionLabel="name"
+                  (onClick)="getCountries(currentLoggedInOrganization?.id!)"
+                  [showClear]="true"
+                  placeholder="All"
+                  (onClear)="navigateWithFilterQueryParams('country', null)"
+                  (onChange)="navigateWithFilterQueryParams('country', selectedFilters.country?.name)" />
+    </div>
+  </div>
+
+
+  <div>
+    <label class="text-sm font-semibold">
+      Filter by Community <app-loading *ngIf="filterLoading.community"></app-loading>
+    </label>
+    <div>
+      <p-dropdown [options]="filters.community"
+                  [(ngModel)]="selectedFilters.community"
+                  [filter]="true"
+                  optionLabel="name"
+                  (onClick)="getCommunities(currentLoggedInOrganization?.id!)"
+                  (onClear)="navigateWithFilterQueryParams('community', null)"
+                  [showClear]="true"
+                  placeholder="All"
+                  (onChange)="navigateWithFilterQueryParams('community', selectedFilters.community?.name)" />
+    </div>
+  </div>
+</div>

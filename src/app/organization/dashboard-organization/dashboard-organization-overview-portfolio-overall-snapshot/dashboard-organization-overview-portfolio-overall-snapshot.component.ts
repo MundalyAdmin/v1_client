@@ -9,6 +9,7 @@ import { WellbeingScoring } from 'src/app/wellbeing-scoring/wellbeing-scoring.mo
 import { WellbeingScoringService } from 'src/app/wellbeing-scoring/wellbeing-scoring.service';
 import { DashboardOrganizationService } from '../dashboard-organization.service';
 import { ImpactVerificationTypeInsightsEnum } from 'src/app/impact-verification/impact-verification-type-insights/impact-verification-type-insights.enum';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-organization-overview-portfolio-overall-snapshot',
@@ -22,7 +23,8 @@ export class DashboardOrganizationOverviewPortfolioOverallSnapshotComponent exte
   constructor(
     public scaleService: ScaleService,
     private readonly wellbeingScoringService: WellbeingScoringService,
-    private readonly dashboardOrganizationService: DashboardOrganizationService
+    private readonly dashboardOrganizationService: DashboardOrganizationService,
+    public override readonly route: ActivatedRoute
   ) {
     super(scaleService);
   }
@@ -33,30 +35,37 @@ export class DashboardOrganizationOverviewPortfolioOverallSnapshotComponent exte
     this.subscriptions['type-insights'] =
       this.dashboardOrganizationService.typeInsight$.subscribe(
         (typeInsights) => {
-          if (
-            typeInsights === ImpactVerificationTypeInsightsEnum.DUE_DILIGENCE
-          ) {
-            this.getDueDiligencePortfolioOverallSnapshot();
-          } else {
-            this.getWellbeingPortfolioOverallSnapshot();
-          }
+          console.log(typeInsights);
+          this.route.queryParams.subscribe((params) => {
+            if (
+              typeInsights === ImpactVerificationTypeInsightsEnum.DUE_DILIGENCE
+            ) {
+              this.getDueDiligencePortfolioOverallSnapshot(params);
+            } else {
+              this.getWellbeingPortfolioOverallSnapshot(params);
+            }
+          });
         }
       );
   }
 
-  getDueDiligencePortfolioOverallSnapshot() {
-    this.getPortfolioOverallSnapshot(this.scaleService);
+  getDueDiligencePortfolioOverallSnapshot(params?: any) {
+    this.getPortfolioOverallSnapshot(this.scaleService, params);
   }
 
-  getWellbeingPortfolioOverallSnapshot() {
-    this.getPortfolioOverallSnapshot(this.wellbeingScoringService);
+  getWellbeingPortfolioOverallSnapshot(params?: any) {
+    this.getPortfolioOverallSnapshot(this.wellbeingScoringService, params);
   }
 
-  getPortfolioOverallSnapshot(service: ScaleService | WellbeingScoringService) {
+  getPortfolioOverallSnapshot(
+    service: ScaleService | WellbeingScoringService,
+    params?: any
+  ) {
     this.loading = true;
     service
       .getPortfolioOverallSnapshotByFunderId(
-        this.currentLoggedInOrganization?.id!
+        this.currentLoggedInOrganization?.id!,
+        params
       )
       .subscribe((response: PortfolioOverallSnapshot) => {
         this.single = response;

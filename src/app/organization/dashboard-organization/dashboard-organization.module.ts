@@ -104,6 +104,7 @@ import { DashboardOrganizationDemographicsEhtnicityComponent } from './dashboard
 import { DashboardOrganizationDemographicsRelationshipStatusComponent } from './dashboard-organization-demographics-relationship-status/dashboard-organization-demographics-relationship-status.component';
 import { OrganizationShowImpactStoriesComponent } from 'src/app/public/public-community/organization/organization-show/organization-show-overview/organization-show-impact-stories/organization-show-impact-stories.component';
 import { DashboardOrganizationImpactStoriesListComponent } from './dashboard-organization-impact-stories-list/dashboard-organization-impact-stories-list.component';
+import { DashboardOrganizationOverviewFilterComponent } from './dashboard-organization-overview-filter/dashboard-organization-overview-filter.component';
 
 const routes: Routes = [
   {
@@ -671,6 +672,7 @@ const routes: Routes = [
     DashboardOrganizationDemographicsRelationshipStatusComponent,
     OrganizationShowImpactStoriesComponent,
     DashboardOrganizationImpactStoriesListComponent,
+    DashboardOrganizationOverviewFilterComponent,
   ],
   imports: [
     CommonModule,

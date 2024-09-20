@@ -40,9 +40,11 @@ export class WellbeingScoringService extends BaseScaleService<WellbeingScoring> 
     return '';
   }
 
-  getPortfolioRiskScoreByFunderId(funderId: number) {
+  getPortfolioRiskScoreByFunderId(funderId: number, params?: any) {
     return this.factory
-      .get(`${this.endPoint}/portfolio-risk-score/funders/${funderId}`)
+      .get(`${this.endPoint}/portfolio-risk-score/funders/${funderId}`, {
+        params,
+      })
       .pipe(
         map(
           (response: ApiResponse<PortfolioRiskScore[]>) =>
@@ -51,9 +53,11 @@ export class WellbeingScoringService extends BaseScaleService<WellbeingScoring> 
       );
   }
 
-  getPortfolioOverallSnapshotByFunderId(funderId: number) {
+  getPortfolioOverallSnapshotByFunderId(funderId: number, params?: any) {
     return this.factory
-      .get(`${this.endPoint}/portfolio-overall-snapshot/funders/${funderId}`)
+      .get(`${this.endPoint}/portfolio-overall-snapshot/funders/${funderId}`, {
+        params,
+      })
       .pipe(
         map(
           (response: ApiResponse<PortfolioOverallSnapshot>) =>

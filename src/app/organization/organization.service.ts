@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
+import { map, tap } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
+import { OrganizationSearchData } from '../public/public-community/organization/organization-search-data.model';
+import { ApiResponse } from '../shared/models/ApiResponse';
 import { BaseService } from '../shared/services';
 import { Organization } from './organization.model';
-import { debounceTime, map, tap, of, Observable } from 'rxjs';
-import { ApiResponse } from '../shared/models/ApiResponse';
-import { OrganizationSearchData } from '../public/public-community/organization/organization-search-data.model';
-import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -142,6 +142,22 @@ export class OrganizationService extends BaseService<Organization> {
             currentPage: response.current_page,
           };
         }),
+        map(
+          (response: ApiResponse<Organization>) =>
+            response.data as Organization[]
+        )
+      );
+  }
+
+  getVerifiedOrganizationsByFunderAndTypeInsight(
+    funderId: number,
+    typeInsightId: number
+  ) {
+    return this.factory
+      .get(
+        `${this.endPoint}/verified-organizations/funders/${funderId}/type-insights/${typeInsightId}`
+      )
+      .pipe(
         map(
           (response: ApiResponse<Organization>) =>
             response.data as Organization[]

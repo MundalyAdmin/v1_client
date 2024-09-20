@@ -5,6 +5,7 @@ import { DemographicData } from '../../../demographic/demographic-gender-data.se
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { ImpactVerificationTypeInsightsEnum } from 'src/app/impact-verification/impact-verification-type-insights/impact-verification-type-insights.enum';
 import { DashboardOrganizationService } from '../dashboard-organization.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-organization-demographics-gender',
@@ -13,56 +14,66 @@ import { DashboardOrganizationService } from '../dashboard-organization.service'
 })
 export class DashboardOrganizationDemographicsGenderComponent extends BaseComponent<any> {
   showChart = false;
-  override data: any;
+  chartData: any;
   totalCommunityMembers = 0;
   demographicGenderData: DemographicData | undefined;
-  options: any;
-  plugins: any = [];
+  chartOptions: any;
+  chartPlugins: any = [];
 
   constructor(
     public demographicService: DemographicService,
-    public dashboardOrganizationService: DashboardOrganizationService
+    public dashboardOrganizationService: DashboardOrganizationService,
+    private route: ActivatedRoute
   ) {
     super(demographicService);
   }
   override ngOnInit(): void {
     super.ngOnInit();
 
+    this.subscribeToData();
+
+    this.initChartOptions();
+  }
+
+  subscribeToData() {
     this.subscriptions['type_insight'] =
       this.dashboardOrganizationService.typeInsight$.subscribe(
         (typeInsight) => {
-          this.getGenderBreakdownByFunderAndTypeInsight(
-            this.currentLoggedInOrganization?.id!,
-            typeInsight
-          );
+          this.route.queryParams.subscribe((params) => {
+            this.getGenderBreakdownByFunderAndTypeInsight(
+              this.currentLoggedInOrganization?.id!,
+              typeInsight,
+              params
+            );
+          });
         }
       );
   }
 
   getGenderBreakdownByFunderAndTypeInsight(
     funderId: number,
-    typeInsight: ImpactVerificationTypeInsightsEnum
+    typeInsight: ImpactVerificationTypeInsightsEnum,
+    params?: any
   ) {
     this.loading = true;
     this.demographicService
-      .getGenderBreakdownByFunderAndTypeInsight(funderId!, typeInsight)
+      .getGenderBreakdownByFunderAndTypeInsight(funderId!, typeInsight, params)
       .subscribe((data) => {
         this.totalCommunityMembers = data
           .map((x) => +x.count)
           .reduce((a, b) => a + b, 0);
-        this.initChart(
+
+        this.updateChartData(
           data.map((x) => x.name),
           data.map((x) => x.count)
         );
+
         this.loading = false;
       });
   }
 
-  initChart(labels: string[], data: number[]) {
-    const documentStyle = getComputedStyle(document.documentElement);
-    const textColor = documentStyle.getPropertyValue('--text-color');
-
-    this.data = {
+  updateChartData(labels: string[], data: number[]) {
+    this.chartData = {
       labels,
       datasets: [
         {
@@ -72,8 +83,13 @@ export class DashboardOrganizationDemographicsGenderComponent extends BaseCompon
         },
       ],
     };
+  }
 
-    this.options = {
+  initChartOptions() {
+    const documentStyle = getComputedStyle(document.documentElement);
+    const textColor = documentStyle.getPropertyValue('--text-color');
+
+    this.chartOptions = {
       plugins: {
         legend: {
           labels: {
@@ -100,7 +116,7 @@ export class DashboardOrganizationDemographicsGenderComponent extends BaseCompon
       },
     };
 
-    this.plugins = [ChartDataLabels];
+    this.chartPlugins = [ChartDataLabels];
 
     this.showChart = true;
   }

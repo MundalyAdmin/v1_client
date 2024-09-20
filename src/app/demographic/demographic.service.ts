@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BaseService } from '../shared/services';
-import { UserDemographic } from './user-demographic.model';
 import { map } from 'rxjs';
-import { ApiResponse } from '../shared/models/ApiResponse';
-import { PortfolioRiskScore } from '../scale/models/portfolio-risk-score.model';
-import { DemographicData as DemographicData } from './demographic-gender-data.service';
 import { ImpactVerificationTypeInsightsEnum } from '../impact-verification/impact-verification-type-insights/impact-verification-type-insights.enum';
+import { ApiResponse } from '../shared/models/ApiResponse';
+import { BaseService } from '../shared/services';
+import { DemographicData } from './demographic-gender-data.service';
+import { UserDemographic } from './user-demographic.model';
 
 @Injectable({
   providedIn: 'root',
@@ -17,11 +16,13 @@ export class DemographicService extends BaseService<UserDemographic> {
 
   getGenderBreakdownByFunderAndTypeInsight(
     funderId: number,
-    typeInsight: ImpactVerificationTypeInsightsEnum
+    typeInsight: ImpactVerificationTypeInsightsEnum,
+    params?: any
   ) {
     return this.factory
       .get(
-        `${this.endPoint}/gender-breakdown/funders/${funderId}/type-insights/${typeInsight}`
+        `${this.endPoint}/gender-breakdown/funders/${funderId}/type-insights/${typeInsight}`,
+        { params }
       )
       .pipe(
         map(
@@ -33,11 +34,13 @@ export class DemographicService extends BaseService<UserDemographic> {
 
   getAgeRangeBreakdownByFunderAndTypeInsight(
     funderId: number,
-    typeInsight: ImpactVerificationTypeInsightsEnum
+    typeInsight: ImpactVerificationTypeInsightsEnum,
+    params?: any
   ) {
     return this.factory
       .get(
-        `${this.endPoint}/age-breakdown/funders/${funderId}/type-insights/${typeInsight}`
+        `${this.endPoint}/age-breakdown/funders/${funderId}/type-insights/${typeInsight}`,
+        { params }
       )
       .pipe(
         map(
@@ -49,11 +52,13 @@ export class DemographicService extends BaseService<UserDemographic> {
 
   getEthnicityBreakdownByFunderAndTypeInsight(
     funderId: number,
-    typeInsight: ImpactVerificationTypeInsightsEnum
+    typeInsight: ImpactVerificationTypeInsightsEnum,
+    params?: any
   ) {
     return this.factory
       .get(
-        `${this.endPoint}/ethnicity-breakdown/funders/${funderId}/type-insights/${typeInsight}`
+        `${this.endPoint}/ethnicity-breakdown/funders/${funderId}/type-insights/${typeInsight}`,
+        { params }
       )
       .pipe(
         map(
@@ -65,11 +70,13 @@ export class DemographicService extends BaseService<UserDemographic> {
 
   getRelationshipStatusBreakdownByFunderAndTypeInsight(
     funderId: number,
-    typeInsight: ImpactVerificationTypeInsightsEnum
+    typeInsight: ImpactVerificationTypeInsightsEnum,
+    params?: any
   ) {
     return this.factory
       .get(
-        `${this.endPoint}/relationship-status-breakdown/funders/${funderId}/type-insights/${typeInsight}`
+        `${this.endPoint}/relationship-status-breakdown/funders/${funderId}/type-insights/${typeInsight}`,
+        { params }
       )
       .pipe(
         map(

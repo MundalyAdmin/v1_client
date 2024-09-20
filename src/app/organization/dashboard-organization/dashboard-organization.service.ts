@@ -16,13 +16,17 @@ export class DashboardOrganizationService {
   );
 
   set title(title: string) {
-    this._title = title;
-    this.title$.next(title);
+    if (this._title !== title) {
+      this._title = title;
+      this.title$.next(this._title);
+    }
   }
 
   set typeInsightId(type_insights_id: ImpactVerificationTypeInsightsEnum) {
-    this._typeInsightId = type_insights_id;
-    this.typeInsight$.next(type_insights_id);
+    if (this._typeInsightId !== type_insights_id) {
+      this._typeInsightId = type_insights_id;
+      this.typeInsight$.next(this._typeInsightId);
+    }
   }
 
   constructor() {}

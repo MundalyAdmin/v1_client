@@ -5,6 +5,7 @@ import { DemographicService } from '../../../demographic/demographic.service';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { DashboardOrganizationService } from '../dashboard-organization.service';
 import { ImpactVerificationTypeInsightsEnum } from 'src/app/impact-verification/impact-verification-type-insights/impact-verification-type-insights.enum';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-organization-demographics-relationship-status',
@@ -16,43 +17,55 @@ import { ImpactVerificationTypeInsightsEnum } from 'src/app/impact-verification/
 })
 export class DashboardOrganizationDemographicsRelationshipStatusComponent extends BaseComponent<any> {
   showChart = false;
-  override data: any;
+  chartData: any;
   demographicGenderData: DemographicData | undefined;
-  options: any;
-  plugins: any = [];
+  chartOptions: any;
+  chartPlugins: any = [];
 
   constructor(
-    public demographicService: DemographicService,
-    private readonly dashboardOrganizationService: DashboardOrganizationService
+    private demographicService: DemographicService,
+    private dashboardOrganizationService: DashboardOrganizationService,
+    private route: ActivatedRoute
   ) {
     super(demographicService);
   }
   override ngOnInit(): void {
     super.ngOnInit();
 
+    this.subscribeToTypeInsight();
+
+    this.initChartOptions();
+  }
+
+  private subscribeToTypeInsight() {
     this.subscriptions['type-insights'] =
       this.dashboardOrganizationService.typeInsight$.subscribe(
         (typeInsight) => {
-          this.getRelationshipStatusByFunderAndTypeInsight(
-            this.currentLoggedInOrganization?.id!,
-            typeInsight
-          );
+          this.route.queryParams.subscribe((params) => {
+            this.getRelationshipStatusData(
+              this.currentLoggedInOrganization?.id!,
+              typeInsight,
+              params
+            );
+          });
         }
       );
   }
 
-  getRelationshipStatusByFunderAndTypeInsight(
+  getRelationshipStatusData(
     funderId: number,
-    typeInsight: ImpactVerificationTypeInsightsEnum
+    typeInsight: ImpactVerificationTypeInsightsEnum,
+    params?: any
   ) {
     this.loading = true;
     this.demographicService
       .getRelationshipStatusBreakdownByFunderAndTypeInsight(
         funderId!,
-        typeInsight
+        typeInsight,
+        params
       )
       .subscribe((data) => {
-        this.initChart(
+        this.updateChartData(
           data.map((x) => x.name),
           data.map((x) => x.count)
         );
@@ -60,19 +73,8 @@ export class DashboardOrganizationDemographicsRelationshipStatusComponent extend
       });
   }
 
-  // getDueDiligenceRelationshipStatusByFunder(funderId: number) {
-  //   this.getRelationshipStatusByFunderAndTypeInsight(funderId, ImpactVerificationTypeInsightsEnum.DUE_DILIGENCE);
-  // }
-
-  // getWellbeingRelationshipStatusByFunder(funderId: number) {
-  //   this.getRelationshipStatusByFunderAndTypeInsight(funderId, ImpactVerificationTypeInsightsEnum.WELLBEING);
-  // }
-
-  initChart(labels: string[], data: number[]) {
-    const documentStyle = getComputedStyle(document.documentElement);
-    const textColor = documentStyle.getPropertyValue('--text-color');
-
-    this.data = {
+  updateChartData(labels: string[], data: number[]) {
+    this.chartData = {
       labels,
       datasets: [
         {
@@ -84,7 +86,14 @@ export class DashboardOrganizationDemographicsRelationshipStatusComponent extend
       ],
     };
 
-    this.options = {
+    this.showChart = true;
+  }
+
+  initChartOptions() {
+    const documentStyle = getComputedStyle(document.documentElement);
+    const textColor = documentStyle.getPropertyValue('--text-color');
+
+    this.chartOptions = {
       plugins: {
         legend: {
           labels: {
@@ -96,11 +105,11 @@ export class DashboardOrganizationDemographicsRelationshipStatusComponent extend
           color: 'white',
 
           display: 'auto',
-          // backgroundColor: '#21CEB9',
           labels: {
             title: {
               font: {
                 weight: 'bold',
+                color: textColor,
               },
             },
           },
@@ -111,8 +120,6 @@ export class DashboardOrganizationDemographicsRelationshipStatusComponent extend
       },
     };
 
-    this.plugins = [ChartDataLabels];
-
-    this.showChart = true;
+    this.chartPlugins = [ChartDataLabels];
   }
 }

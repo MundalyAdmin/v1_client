@@ -1,19 +1,24 @@
 <div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
-    <div class="flex justify-between pb-4 mb-4 border-b border-gray-200 dark:border-gray-700">
-        <div class="text-lg font-bold">Relationship Status Breakdown</div>
-    </div>
+  <div class="flex justify-between pb-4 mb-4 border-b border-gray-200 dark:border-gray-700">
+    <div class="text-lg font-bold">Relationship Status Breakdown</div>
+  </div>
 
 
-    <ng-container *ngIf="!loading">
+  <ng-container *ngIf="!loading">
 
 
 
 
-        <!-- Line Chart -->
-        <p-chart type="bar" [data]="data" [plugins]="plugins" [options]="options" *ngIf="showChart" [height]="'400'"></p-chart>
-    </ng-container>
+    <!-- Line Chart -->
+    <p-chart type="bar"
+             [data]="chartData"
+             [plugins]="chartPlugins"
+             [options]="chartOptions"
+             *ngIf="showChart"
+             [height]="'400'"></p-chart>
+  </ng-container>
 
 
-    <app-page-loading *ngIf="loading"></app-page-loading>
-    <!--  -->
+  <app-page-loading *ngIf="loading"></app-page-loading>
+  <!--  -->
 </div>
