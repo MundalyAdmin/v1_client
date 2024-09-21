@@ -1,5 +1,6 @@
 <ng-container *ngIf="organizationService.singleData?.verification_status_from_current_organization?.id === StatusImpactVerificationEnum.LAUNCHED">
-  <div class="md:p-5 p-2" *ngIf="!loading && impactFidelityService.score">
+  <div class="md:p-5 p-2"
+       *ngIf="!loading && impactFidelityService.score">
     <div class="w-full flex justify-between bg-white shadow dark:bg-gray-800 p-3 md:p-3 md:p-6">
       <div class="md:text-lg etxt-sm font-bold">Verify Metrics</div>
 
@@ -9,19 +10,24 @@
       <table class="w-full md:text-base text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class=" text-gray-400 capitalize bg-slate-100  dark:bg-gray-700 dark:text-gray-400">
           <tr>
-            <th scope="col" class="md:px-6 md:py-6 p-3">
+            <th scope="col"
+                class="md:px-6 md:py-6 p-3">
               #
             </th>
-            <th scope="col" class="md:px-6 md:py-6 p-3 ">
+            <th scope="col"
+                class="md:px-6 md:py-6 p-3 ">
               Category
             </th>
-            <th scope="col" class="md:px-6 md:py-6 p-3">
+            <th scope="col"
+                class="md:px-6 md:py-6 p-3">
               Key
             </th>
-            <th scope="col" class="md:px-6 md:py-6 p-3">
+            <th scope="col"
+                class="md:px-6 md:py-6 p-3">
               Score
             </th>
-            <th scope="col" class="md:px-6 md:py-6 p-3">
+            <th scope="col"
+                class="md:px-6 md:py-6 p-3">
               Action
             </th>
           </tr>
@@ -55,7 +61,8 @@
 
 
             <td class="p-3 md:p-6">
-              <a href="#" class="font-medium text-slate-400  text-sm md:text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
+              <a href="#"
+                 class="font-medium text-slate-400  text-sm md:text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                    class="mdi mdi-information"></i></a>
 
             </td>
@@ -90,7 +97,8 @@
 
 
             <td class="p-3 md:p-6">
-              <a href="#" class="font-medium text-slate-400  text-sm md:text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
+              <a href="#"
+                 class="font-medium text-slate-400  text-sm md:text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                    class="mdi mdi-information"></i></a>
 
             </td>
@@ -126,7 +134,8 @@
 
 
             <td class="p-3 md:p-6">
-              <a href="#" class="font-medium text-slate-400  text-sm md:text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
+              <a href="#"
+                 class="font-medium text-slate-400  text-sm md:text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                    class="mdi mdi-information"></i></a>
 
             </td>
@@ -161,7 +170,8 @@
 
 
             <td class="p-3 md:p-6">
-              <a href="#" class="font-medium text-slate-400  text-sm md:text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
+              <a href="#"
+                 class="font-medium text-slate-400  text-sm md:text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                    class="mdi mdi-information"></i></a>
 
             </td>
@@ -196,7 +206,8 @@
 
 
             <td class="p-3 md:p-6">
-              <a href="#" class="font-medium text-slate-400  text-sm md:text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
+              <a href="#"
+                 class="font-medium text-slate-400  text-sm md:text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                    class="mdi mdi-information"></i></a>
 
             </td>
@@ -207,32 +218,7 @@
         </tbody>
       </table>
 
-      <div class="text-primary md:text-lg text-xs bg-primary/5 p-2">
-        <!-- <span class="me-2">
-          <i class="mdi mdi-lightbulb-on"></i>
-          Insight:
-        </span> -->
 
-        <!-- If the community has more than 10 respondents -->
-        <!-- <span class="font-bold"
-              *ngIf="impactFidelityService.score.total_respondants! >= 5 && impactFidelityService.score.company_reported_impact_strength">
-          Community beneficiaries confirm
-          {{ scaleService.getImpactStrengthKey(impactFidelityService.score.score_rating!) }}
-          which
-          {{ scaleService.getScoresAlignmentKey(impactFidelityService.score.score_rating!,
-          impactFidelityService.score.company_reported_impact_strength!) }}
-          what
-          {{ organization?.name }}
-          reported
-        </span> -->
-
-
-        <!-- If the community has less than 10 respondents -->
-        <!-- <span class="font-bold italic"
-              *ngIf="impactFidelityService.score.total_respondants! < 5 || !impactFidelityService.score.company_reported_impact_strength">
-          Insufficient data for insights
-        </span> -->
-      </div>
     </div>
   </div>
 
