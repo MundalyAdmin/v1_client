@@ -20,6 +20,13 @@ import { ActivatedRoute } from '@angular/router';
   ],
 })
 export class DashboardOrganizationOverviewPortfolioOverallSnapshotComponent extends BaseSingleComponent<PortfolioOverallSnapshot> {
+  typeInsight: ImpactVerificationTypeInsightsEnum =
+    ImpactVerificationTypeInsightsEnum.UNDEFINED;
+
+  get ImpactVerificationTypeInsightsEnum() {
+    return ImpactVerificationTypeInsightsEnum;
+  }
+
   constructor(
     public scaleService: ScaleService,
     private readonly wellbeingScoringService: WellbeingScoringService,
@@ -35,7 +42,7 @@ export class DashboardOrganizationOverviewPortfolioOverallSnapshotComponent exte
     this.subscriptions['type-insights'] =
       this.dashboardOrganizationService.typeInsight$.subscribe(
         (typeInsights) => {
-          console.log(typeInsights);
+          this.typeInsight = typeInsights;
           this.route.queryParams.subscribe((params) => {
             if (
               typeInsights === ImpactVerificationTypeInsightsEnum.DUE_DILIGENCE

@@ -40,7 +40,7 @@ const routes: Routes = [
       },
       {
         component: DueDiligenceComponent,
-        path: 'due-diligence',
+        path: 'alignment',
         children: [
           {
             path: 'surveys',

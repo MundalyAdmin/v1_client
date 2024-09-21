@@ -186,7 +186,7 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
         discountedPrice
       );
 
-      // Enforcing that either well-being or due diligence is selected
+      // Enforcing that either well-being or alignment is selected
       if (
         (!value['setupForm']['typeInsights']?.length ||
           (!value['setupForm']['typeInsights']

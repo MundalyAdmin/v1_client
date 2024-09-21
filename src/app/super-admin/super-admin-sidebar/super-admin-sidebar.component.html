@@ -1,19 +1,32 @@
 <!-- Humberger menu -->
-<button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button"
+<button data-drawer-target="logo-sidebar"
+        data-drawer-toggle="logo-sidebar"
+        aria-controls="logo-sidebar"
+        type="button"
         class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-secondary-dark rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-slate-50 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
   <span class="sr-only">Open sidebar</span>
-  <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-    <path clip-rule="evenodd" fill-rule="evenodd"
+  <svg class="w-6 h-6"
+       aria-hidden="true"
+       fill="currentColor"
+       viewBox="0 0 20 20"
+       xmlns="http://www.w3.org/2000/svg">
+    <path clip-rule="evenodd"
+          fill-rule="evenodd"
           d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
     </path>
   </svg>
 </button>
 
-<aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+<aside id="logo-sidebar"
+       class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+       aria-label="Sidebar">
   <div class="h-full px-3 py-4 overflow-y-auto text-[14px] bg-organization-dashboard pt-10 relative dark:bg-gray-800">
     <!-- Logo -->
-    <a [routerLink]="['/']" class="flex items-center ps-2.5 mb-5">
-      <img src="assets/images/munlogo-white.png/" class="h-6 me-3 sm:h-7" alt="Mundaly logo" />
+    <a [routerLink]="['/']"
+       class="flex items-center ps-2.5 mb-5">
+      <img src="assets/images/munlogo-white.png/"
+           class="h-6 me-3 sm:h-7"
+           alt="Mundaly logo" />
     </a>
 
     <!-- Sidebar -->
@@ -23,7 +36,8 @@
         <a [routerLink]="['organizations']"
            class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
            routerLinkActive="bg-secondary-dark">
-          <span class=""><i class=" text-secondary-dark text-xl mdi mdi-home" routerLinkActive="text-white"></i></span>
+          <span class=""><i class=" text-secondary-dark text-xl mdi mdi-home"
+               routerLinkActive="text-white"></i></span>
           <span class="ms-2">Organizations</span>
         </a>
       </li>
@@ -34,7 +48,8 @@
         <a [routerLink]="['platform-settigns']"
            class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
            routerLinkActive="bg-secondary-dark">
-          <span class=""><i class=" text-secondary-dark text-xl mdi mdi-application-cog-outline" routerLinkActive="text-white"></i></span>
+          <span class=""><i class=" text-secondary-dark text-xl mdi mdi-application-cog-outline"
+               routerLinkActive="text-white"></i></span>
           <span class="ms-2">Platform Settings</span>
         </a>
       </li>
@@ -52,11 +67,12 @@
       </li>
       <!-- Home -->
       <li>
-        <a [routerLink]="['organizations', organizationService.singleData.id,  'due-diligence']"
+        <a [routerLink]="['organizations', organizationService.singleData.id,  'alignment']"
            class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
            routerLinkActive="bg-secondary-dark">
-          <span class=""><i class=" text-secondary-dark  mdi mdi-chart-box-outline" routerLinkActive="text-white"></i></span>
-          <span class="ms-2">Due Diligence</span>
+          <span class=""><i class=" text-secondary-dark  mdi mdi-chart-box-outline"
+               routerLinkActive="text-white"></i></span>
+          <span class="ms-2">Alignment</span>
         </a>
       </li>
 
@@ -65,7 +81,8 @@
         <a [routerLink]="['organizations', organizationService.singleData.id,  'impact-initiatives']"
            class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
            routerLinkActive="bg-secondary-dark">
-          <span class=""><i class=" text-secondary-dark  mdi mdi-chart-box-outline" routerLinkActive="text-white"></i></span>
+          <span class=""><i class=" text-secondary-dark  mdi mdi-chart-box-outline"
+               routerLinkActive="text-white"></i></span>
           <span class="ms-2">Impact Initiatives</span>
         </a>
       </li>
@@ -76,7 +93,8 @@
         <a [routerLink]="['organizations', organizationService.singleData.id,  'reports']"
            class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
            routerLinkActive="bg-secondary-dark">
-          <span class=""><i class=" text-secondary-dark  mdi mdi-file-multiple-outline" routerLinkActive="text-white"></i></span>
+          <span class=""><i class=" text-secondary-dark  mdi mdi-file-multiple-outline"
+               routerLinkActive="text-white"></i></span>
           <span class="flex-1 ms-2 whitespace-nowrap">Reports</span>
         </a>
       </li>
@@ -90,7 +108,8 @@
       <div class=" flex items-center justify-self-end ">
         <span>
           <img src="https://media.istockphoto.com/id/942153448/de/vektor/avatar.jpg?s=612x612&w=0&k=20&c=dYzovkqwc-ADwIYjH7fd6MdgaJi0UslcMC3ycK9dmSg="
-               alt="" class="h-12 w-12 rounded-full border-2 border-slate-50">
+               alt=""
+               class="h-12 w-12 rounded-full border-2 border-slate-50">
         </span>
         <div class="p-2 flex align-center flex-col">
           <div class="text-slate-50 font-semibold flex items-center">{{ authService.user?.name }} <span><i
@@ -108,7 +127,8 @@
 
 
       <!-- Logout button -->
-      <div class="flex text-slate-400 mt-5 cursor-pointer hover:text-slate-500" (click)="authService.logout()">
+      <div class="flex text-slate-400 mt-5 cursor-pointer hover:text-slate-500"
+           (click)="authService.logout()">
         <span class="me-2"><i class="mdi mdi-logout"></i></span>
         <span>Logout</span>
       </div>

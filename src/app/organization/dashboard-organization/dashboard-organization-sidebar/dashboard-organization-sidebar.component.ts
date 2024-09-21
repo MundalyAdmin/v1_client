@@ -83,7 +83,7 @@ export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
 
   getTypeSubmenu() {
     const splittedUrl = this.router.url.split('/');
-    if (splittedUrl.includes('due-diligence')) {
+    if (splittedUrl.includes('alignment')) {
       this.dashboardOrganizationService.typeInsightId =
         ImpactVerificationTypeInsightsEnum.DUE_DILIGENCE;
       return ImpactVerificationTypeInsightsEnum.DUE_DILIGENCE;

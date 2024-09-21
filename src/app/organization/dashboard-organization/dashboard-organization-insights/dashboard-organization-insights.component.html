@@ -11,15 +11,16 @@
         <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT">Community Trust &
           Fundability Analysis</span>
         <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION">Sustainability
-          Due Diligence Analysis</span>
+          Alignment Analysis</span>
       </h3>
 
 
-      <form [formGroup]="dateForm" class="grid grid-cols-1 gap-1">
+      <form [formGroup]="dateForm"
+            class="grid grid-cols-1 gap-1">
         <div class="grid grid-cols-2 ga-5 md:gap-10">
-          <p-calendar
-                      formControlName="startDate"
-                      [showIcon]="true" placeholder="Start Date"
+          <p-calendar formControlName="startDate"
+                      [showIcon]="true"
+                      placeholder="Start Date"
                       view="month"
                       inputStyleClass="text-xs md:text-base"
                       dateFormat="dd.mm.yy"
@@ -27,8 +28,7 @@
                       inputId="icondisplay" />
 
 
-          <p-calendar
-                      formControlName="endDate"
+          <p-calendar formControlName="endDate"
                       [showIcon]="true"
                       inputStyleClass="text-xs md:text-base"
                       placeholder="End Date"
@@ -85,7 +85,7 @@
     <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT">Community Trust &
       Fundability Analysis</span>
     <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION">Sustainability
-      Due Diligence Analysis</span>
+      Alignment Analysis</span>
   </h3>
 
 

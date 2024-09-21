@@ -98,7 +98,7 @@ export class DashboardOrganizationInsightsNetPromoterScoreComponent
             this.currentLoggedInOrganization?.type_organization
               ?.category_organization_id === CategoryOrganizationEnum.IMPACT
               ? 'Community Satisfaction Score'
-              : 'Community Due Diligence Score',
+              : 'Community Alignment Score',
           backgroundColor: ['#c1ddff', '#4f46e5', '#2196f3'],
           borderColor: documentStyle.getPropertyValue('--blue-500'),
           data: [...Object.values(nps)],
