@@ -6,6 +6,8 @@ import { ImpactStoryService } from 'src/app/scale/impact-story/impact-story.serv
 import { AuthService } from 'src/app/auth/auth.service';
 import { ScaleService } from 'src/app/scale/scale.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ImpactVerificationTypeInsightsEnum } from 'src/app/impact-verification/impact-verification-type-insights/impact-verification-type-insights.enum';
+import { DashboardOrganizationService } from '../dashboard-organization.service';
 
 @Component({
   selector: 'app-dashboard-organization-impact-stories-list',
@@ -18,6 +20,7 @@ export class DashboardOrganizationImpactStoriesListComponent
 {
   constructor(
     public impactStoryOrganizationService: ImpactStoryService,
+    private readonly dashboardOrganizationService: DashboardOrganizationService,
     public override authService: AuthService,
     public scaleService: ScaleService,
     public route: ActivatedRoute,
@@ -32,40 +35,40 @@ export class DashboardOrganizationImpactStoriesListComponent
     this.subscriptions['currentLoggedInOrganization'] =
       this.authService.organization$.subscribe((organization) => {
         if (organization) {
-          this.getDataByFunder(organization.id!);
+          this.dashboardOrganizationService.typeInsight$.subscribe(
+            (typeInsight) => {
+              this.getByFunderAndTypeInsight(organization.id!, typeInsight);
+            }
+          );
         }
       });
   }
 
-  getDataByFunder(funderId: number) {
+  getByFunderAndTypeInsight(
+    funderId: number,
+    typeInsight: ImpactVerificationTypeInsightsEnum
+  ) {
     this.route.params.subscribe((params) => {
       if (params['id'] === 'verified') {
-        this.getVerifiedByFunderId(funderId);
+        this.getDataByFunderAndTypeInsight(funderId, typeInsight, 'verified');
       } else if (params['id'] === 'unverified') {
-        this.getUnverifiedByOrganization(funderId);
+        this.getDataByFunderAndTypeInsight(funderId, typeInsight, 'unverified');
       } else {
         this.router.navigate(['..', 'unverified'], { relativeTo: this.route });
       }
     });
   }
 
-  getVerifiedByFunderId(organizationId: number) {
+  getDataByFunderAndTypeInsight(
+    funderId: number,
+    typeInsight: ImpactVerificationTypeInsightsEnum,
+    state: 'verified' | 'unverified'
+  ) {
     this.loading = true;
     this.impactStoryOrganizationService
-      .getVerifiedByFunderId(organizationId)
+      .getByFunderAndTypeInsight(funderId, typeInsight, state)
       .subscribe({
-        complete: () => {
-          this.loading = false;
-        },
-      });
-  }
-
-  getUnverifiedByOrganization(organizationId: number) {
-    this.loading = true;
-    this.impactStoryOrganizationService
-      .getUnverifiedByFunderId(organizationId)
-      .subscribe({
-        complete: () => {
+        next: () => {
           this.loading = false;
         },
       });

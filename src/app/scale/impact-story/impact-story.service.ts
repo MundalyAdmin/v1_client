@@ -7,6 +7,7 @@ import { ApiResponse } from '../../shared/models/ApiResponse';
 import { ImpactStoryRatingBreakdown } from './impact-story-rating-breakdown.model';
 import { ReplaySubject } from 'rxjs';
 import { NetPromoterScore } from './net-promoter-score.model';
+import { ImpactVerificationTypeInsightsEnum } from 'src/app/impact-verification/impact-verification-type-insights/impact-verification-type-insights.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -34,7 +35,7 @@ export class ImpactStoryService extends BaseService<ImpactStory> {
   }
 
   constructor() {
-    super('impact-storys');
+    super('impact-stories');
   }
 
   override store(elements: FormData) {
@@ -61,12 +62,15 @@ export class ImpactStoryService extends BaseService<ImpactStory> {
     );
   }
 
-  getByFunderId(funderId: number, params?: Params) {
+  getByFunderAndTypeInsight(
+    funderId: number,
+    typeInsight: ImpactVerificationTypeInsightsEnum,
+    state: string,
+    params?: Params
+  ) {
     return this.factory
       .get(
-        `${this.endPoint}/funders/${funderId}/${
-          params?.['verified'] ? 'verified' : 'unverified'
-        }`,
+        `${this.endPoint}/funders/${funderId}/type-insights/${typeInsight}/state/${state}`,
         { params }
       )
       .pipe(
@@ -124,20 +128,6 @@ export class ImpactStoryService extends BaseService<ImpactStory> {
         }),
         map((response) => response.data as NetPromoterScore)
       );
-  }
-
-  getVerifiedByFunderId(funderId: number, params?: Params) {
-    return this.getByFunderId(funderId, {
-      ...params,
-      verified: true,
-    });
-  }
-
-  getUnverifiedByFunderId(funderId: number, params?: Params) {
-    return this.getByFunderId(funderId, {
-      ...params,
-      verified: false,
-    });
   }
 
   getAuth() {

@@ -54,24 +54,24 @@ export class OrganizationNewStyleStoriesListComponent
   }
 
   getVerifiedByFunderId(organizationId: number) {
-    this.loading = true;
-    this.impactStoryOrganizationService
-      .getVerifiedByFunderId(organizationId)
-      .subscribe({
-        complete: () => {
-          this.loading = false;
-        },
-      });
+    // this.loading = true;
+    // this.impactStoryOrganizationService
+    //   .getVerifiedByFunderId(organizationId)
+    //   .subscribe({
+    //     complete: () => {
+    //       this.loading = false;
+    //     },
+    //   });
   }
 
   getUnverifiedByOrganization(organizationId: number) {
-    this.loading = true;
-    this.impactStoryOrganizationService
-      .getUnverifiedByFunderId(organizationId)
-      .subscribe({
-        complete: () => {
-          this.loading = false;
-        },
-      });
+    // this.loading = true;
+    // this.impactStoryOrganizationService
+    //   .getUnverifiedByFunderId(organizationId)
+    //   .subscribe({
+    //     complete: () => {
+    //       this.loading = false;
+    //     },
+    //   });
   }
 }
