@@ -143,39 +143,25 @@ const routes: Routes = [
       //   component: DashboardOrganizationImpactInitiativeComponent,
       // },
       {
-        path: 'home',
+        path: 'overview',
         component: DashboardOrganizationHomeComponent,
         children: [
+          {
+            path: 'alignment',
+            component: DashboardOrganizationDueDiligenceOverviewSecondComponent,
+          },
+          {
+            path: 'wellbeing',
+            component: DashboardOrganizationWellbeingOverviewSecondComponent,
+          },
           {
             path: 'invitations',
             component: DashboardOrganizationPartnerInvitationComponent,
           },
-          {
-            path: 'programs',
-            component: DashboardOrganizationImpactInitiativeComponent,
-          },
-          {
-            path: 'community-needs',
-            component: DashboardOrganizationCommunityNeedsComponent,
-          },
-          {
-            path: 'impact-stories',
-            component: DashboardOrganizationImpactStoriesComponent,
-            children: [
-              {
-                path: ':id',
-                component: DashboardOrganizationImpactStoriesListComponent,
-              },
-              {
-                path: '**',
-                redirectTo: 'verified',
-                pathMatch: 'full',
-              },
-            ],
-          },
+
           {
             path: '**',
-            redirectTo: 'community-needs',
+            redirectTo: 'alignment',
           },
         ],
       },
@@ -216,16 +202,31 @@ const routes: Routes = [
         component: DashboardOrganizationDueDiligenceComponent,
         children: [
           {
-            path: 'overview',
-            component: DashboardOrganizationDueDiligenceOverviewSecondComponent,
-          },
-          {
             path: 'partners',
             component: DashboardOrganizationImpactPartnersComponent,
           },
           {
+            path: 'community-needs',
+            component: DashboardOrganizationCommunityNeedsComponent,
+          },
+          {
+            path: 'stories',
+            component: DashboardOrganizationImpactStoriesComponent,
+            children: [
+              {
+                path: ':id',
+                component: DashboardOrganizationImpactStoriesListComponent,
+              },
+              {
+                path: '**',
+                redirectTo: 'verified',
+                pathMatch: 'full',
+              },
+            ],
+          },
+          {
             path: '',
-            redirectTo: 'overview',
+            redirectTo: 'partners',
             pathMatch: 'full',
           },
         ],
@@ -296,17 +297,27 @@ const routes: Routes = [
         component: DashboardOrganizationWellbeingComponent,
         children: [
           {
-            path: 'overview',
-            component: DashboardOrganizationWellbeingOverviewSecondComponent,
-          },
-
-          {
             path: 'partners',
             component: DashboardOrganizationImpactPartnersComponent,
           },
           {
+            path: 'stories',
+            component: DashboardOrganizationImpactStoriesComponent,
+            children: [
+              {
+                path: ':id',
+                component: DashboardOrganizationImpactStoriesListComponent,
+              },
+              {
+                path: '**',
+                redirectTo: 'verified',
+                pathMatch: 'full',
+              },
+            ],
+          },
+          {
             path: '',
-            redirectTo: 'overview',
+            redirectTo: 'partners',
             pathMatch: 'full',
           },
         ],
@@ -444,7 +455,7 @@ const routes: Routes = [
 
       {
         path: '**',
-        redirectTo: 'home',
+        redirectTo: 'overview',
       },
       // {
       //   path: 'community',
