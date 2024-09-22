@@ -1,19 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import * as ApexCharts from 'apexcharts';
-import { Flowbite } from './../../../../shared/decorators/flowbite.decorator';
-import { BaseComponent } from '../../../../shared/base-component';
-import { CommunityNeedsService } from '../../../../scale/community-needs/community-needs.service';
-import { CommunityNeeds } from '../../../../scale/community-needs/community-needs.model';
-import { OrganizationService } from '../../../organization.service';
-import { Organization } from '../../../organization.model';
-import { debounceTime } from 'rxjs';
 import { DeepPartial } from 'chart.js/dist/types/utils';
-import { ImpactInitiativeService } from '../../../../scale/impact-initiative/impact-initiative.service';
-import { AuthService } from '../../../../auth/auth.service';
-import { TypeOrganizationEnum } from '../../../type-organization/type-organization.enum';
-import { ImpactInitiative } from '../../../../scale/impact-initiative/impact-initiative.model';
-import { TypeImpactVerificationEnum } from '../../../../impact-verification/enums/type-impact-verification.enum';
 import { StatusImpactVerificationEnum } from '../../../../impact-verification/enums/status-impact-verification.enum';
+import { CommunityNeeds } from '../../../../scale/community-needs/community-needs.model';
+import { CommunityNeedsService } from '../../../../scale/community-needs/community-needs.service';
+import { ImpactInitiativeService } from '../../../../scale/impact-initiative/impact-initiative.service';
+import { BaseComponent } from '../../../../shared/base-component';
+import { Organization } from '../../../organization.model';
+import { OrganizationService } from '../../../organization.service';
+import { Flowbite } from './../../../../shared/decorators/flowbite.decorator';
+import { map, tap } from 'rxjs';
+
+const DEFAULT_COMMUNITY_NEEDS = [
+  'Education',
+  'Environmental Issues',
+  'Food Insecurity',
+  'Medication Adherence',
+  'Assaults and Abuses',
+];
 
 @Component({
   selector: 'app-dashboard-organization-community-needs',
@@ -26,7 +29,7 @@ export class DashboardOrganizationCommunityNeedsComponent
   implements OnInit
 {
   organization: Organization | null = null;
-  impactInitiative: ImpactInitiative | null = null;
+
   lastYearComparaisonToggled = false;
   options: any;
   chartDatasets: {
@@ -43,8 +46,7 @@ export class DashboardOrganizationCommunityNeedsComponent
 
   constructor(
     public communityNeedService: CommunityNeedsService,
-    public organizationService: OrganizationService,
-    public impactInitiativeService: ImpactInitiativeService
+    public organizationService: OrganizationService
   ) {
     super();
   }
@@ -52,54 +54,47 @@ export class DashboardOrganizationCommunityNeedsComponent
   StatusImpactVerificationEnum = StatusImpactVerificationEnum;
 
   override ngOnInit(): void {
-    // this.subscribeToData();
-    this.getByOrganizationIdAndYear(28, new Date().getFullYear());
-  }
-
-  subscribeToData() {
-    this.subscriptions['currentlyLoggedOrganization'] =
-      this.authService.organization$.subscribe(
-        (currentlyLoggedOrganization) => {
-          if (
-            currentlyLoggedOrganization?.type_organization_id ===
-              TypeOrganizationEnum.CORPORATION ||
-            currentlyLoggedOrganization?.type_organization_id ===
-              TypeOrganizationEnum.IMPACT_FUNDER
-          ) {
-            this.subscribeToOrganizationData();
-          } else if (
-            currentlyLoggedOrganization?.type_organization_id ===
-              TypeOrganizationEnum.IMPACT_IMPLEMENTER ||
-            currentlyLoggedOrganization?.type_organization_id ===
-              TypeOrganizationEnum.SUPPLIER
-          ) {
-            this.subscribeToImpactInitiativeData();
-          }
-        }
-      );
-  }
-
-  subscribeToOrganizationData() {
-    this.subscriptions['organization'] =
-      this.organizationService.singleData$.subscribe((organization) => {
+    this.subscriptions['currentLoggedInOrganization'] =
+      this.authService.organization$.subscribe((organization) => {
         if (organization) {
           this.organization = organization;
-
-          this.getByOrganizationIdAndYear(28, new Date().getFullYear());
+          this.getByFunderAndByYear(organization.id!, new Date().getFullYear());
         }
       });
   }
 
-  subscribeToImpactInitiativeData() {
-    this.subscriptions['impactInitiative'] =
-      this.impactInitiativeService.singleData$.subscribe((impactInitiative) => {
-        if (impactInitiative) {
-          this.impactInitiative = impactInitiative;
-          this.getByImpactInitiativeIdAndYear(
-            impactInitiative.id!,
-            new Date().getFullYear()
+  getByFunderAndByYear(funderId: number, year: number) {
+    this.loading = true;
+    this.communityNeedService
+      .getByFunderAndByYear(funderId, year)
+      .pipe(
+        map((response) => {
+          const defaults = response.filter((x) =>
+            DEFAULT_COMMUNITY_NEEDS.includes(x.name!)
           );
+          const others = response.filter(
+            (x) => !DEFAULT_COMMUNITY_NEEDS.includes(x.name!)
+          );
+          return [
+            ...defaults,
+            {
+              name: 'Others',
+              count: others.reduce(
+                (acc: number, curr: any) => +acc + +curr.count!,
+                0
+              ),
+            },
+          ];
+        })
+      )
+      .subscribe((response) => {
+        console.log(response);
+        if (this.chartDatasets.length === 0) {
+          this.addDataToChart('Current year', response);
+        } else {
+          this.addDataToChart('Last year', response);
         }
+        this.loading = false;
       });
   }
 
@@ -111,14 +106,10 @@ export class DashboardOrganizationCommunityNeedsComponent
 
       this.initChart();
     } else {
-      // if (this.impactInitiative) {
-      //   this.getByImpactInitiativeIdAndYear(
-      //     this.impactInitiative.id!,
-      //     new Date().getFullYear() - 1
-      //   );
-      // } else if (this.organization) {
-      this.getByOrganizationIdAndYear(28, new Date().getFullYear() - 1);
-      // }
+      this.getByFunderAndByYear(
+        this.organization!.id!,
+        new Date().getFullYear() - 1
+      );
     }
     this.lastYearComparaisonToggled = !this.lastYearComparaisonToggled;
   }
@@ -175,21 +166,7 @@ export class DashboardOrganizationCommunityNeedsComponent
 
     this.communityNeedService
       .getByOrganizationAndByYear(organizationId, year)
-      .subscribe((response) => {
-        if (this.chartDatasets.length === 0) {
-          this.addDataToChart('Current year', response);
-        } else {
-          this.addDataToChart('Last year', response);
-        }
-        this.loading = false;
-      });
-  }
 
-  getByImpactInitiativeIdAndYear(impactInitiativeId: number, year: number) {
-    this.loading = true;
-
-    this.communityNeedService
-      .getByImpactInitiativeAndByYear(impactInitiativeId, year)
       .subscribe((response) => {
         if (this.chartDatasets.length === 0) {
           this.addDataToChart('Current year', response);

@@ -49,4 +49,15 @@ export class CommunityNeedsService extends BaseService<CommunityNeeds> {
         )
       );
   }
+
+  getByFunderAndByYear(funderId: number, year: number) {
+    return this.factory
+      .get(`${this.endPoint}/funders/${funderId}/year/${year}`)
+      .pipe(
+        map(
+          (response: ApiResponse<CommunityNeeds>) =>
+            response.data as CommunityNeeds[]
+        )
+      );
+  }
 }
