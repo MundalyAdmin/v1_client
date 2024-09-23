@@ -13,7 +13,10 @@
       </div>
       <div>
         <div class="bg-white p-1 rounded-md min-w-[100px] w-[300px]">
-          <input type="text" pInputText placeholder="Search" class="p-0.5 px-2 ring-0 border-0 w-[90%]" />
+          <input type="text"
+                 pInputText
+                 placeholder="Search"
+                 class="p-0.5 px-2 ring-0 border-0 w-[90%]" />
           <i class="mdi mdi-magnify"></i>
         </div>
       </div>
@@ -88,10 +91,13 @@
   <div class="flex gap-10">
     <div class="px-2 bg-white rounded-md">
       <h3 class="py-2 border-b-[1px] font-semibold">
-        Portfolio Wellbeing Summary
+        Portfolio Well-being Summary
       </h3>
       <div class="p-4 pb-8 relative">
-        <p-chart type="pie" [data]="data" [options]="options" [plugins]="plugins" />
+        <p-chart type="pie"
+                 [data]="data"
+                 [options]="options"
+                 [plugins]="plugins" />
         <!-- <div class="absolute w-[65px] bottom-[38%] left-[38%]">
           <span class="text-green-400 font-semibold">68.8% </span>Low Risk Beneficiary
         </div> -->
@@ -109,7 +115,7 @@
               20
             </p>
             <p class="text-[15px] text-gray-400">
-              Communities Reporting Wellbeing
+              Communities Reporting Well-being
             </p>
           </div>
 
@@ -126,7 +132,7 @@
               68%
             </p>
             <p class="text-[15px] text-gray-400">
-              Improve Wellbeing Score
+              Improve Well-being Score
             </p>
           </div>
 
@@ -225,7 +231,7 @@
 
 
   <div class="py-4">
-    <h2 class="py-2 border-b-[1px] font-semibold">Demographics <span class="text-sm text-gray-400">(Breakdown for improved Wellbeing)</span></h2>
+    <h2 class="py-2 border-b-[1px] font-semibold">Demographics <span class="text-sm text-gray-400">(Breakdown for improved Well-being)</span></h2>
     <div class="flex gap-5">
       <div class="bg-white p-2 rounded-md min-w-[500px]">
         <h3 class="py-2 border-b-[1px] font-semibold">Gender</h3>
@@ -238,7 +244,10 @@
           </div>
         </div>
         <div>
-          <p-chart type="line" [data]="lineData" [options]="lineOptions" height="300px" />
+          <p-chart type="line"
+                   [data]="lineData"
+                   [options]="lineOptions"
+                   height="300px" />
         </div>
       </div>
 
@@ -246,13 +255,15 @@
         <h3 class="py-2 border-b-[1px] font-semibold">Age Range</h3>
         <div class="p-3">
           <div class="flex flex-wrap gap-5">
-            <div class="w-[300px]" *ngFor="let age of ageRange">
+            <div class="w-[300px]"
+                 *ngFor="let age of ageRange">
               <div class="flex justify-between">
                 <p>{{age.percentage}}%</p>
                 <p> {{age.name}}</p>
               </div>
               <div class="bg-slate-200 h-[20px] rounded-md">
-                <div class="h-full rounded-md" [ngStyle]="{'width': age.percentage + '%', 'background': age.color}"></div>
+                <div class="h-full rounded-md"
+                     [ngStyle]="{'width': age.percentage + '%', 'background': age.color}"></div>
               </div>
             </div>
           </div>
@@ -267,13 +278,15 @@
       <h3 class="py-2 border-b-[1px] font-semibold">Ethnicities</h3>
       <div class="p-3">
         <div class="flex flex-wrap gap-5">
-          <div class="w-[300px]" *ngFor="let ethnicity of ethnicities">
+          <div class="w-[300px]"
+               *ngFor="let ethnicity of ethnicities">
             <div class="flex justify-between">
               <p>{{ethnicity.percentage}}%</p>
               <p> {{ethnicity.name}}</p>
             </div>
             <div class="bg-slate-200 h-[20px] rounded-md">
-              <div class="h-full rounded-md" [ngStyle]="{'width': ethnicity.percentage + '%', 'background': ethnicity.color}"></div>
+              <div class="h-full rounded-md"
+                   [ngStyle]="{'width': ethnicity.percentage + '%', 'background': ethnicity.color}"></div>
             </div>
           </div>
         </div>
