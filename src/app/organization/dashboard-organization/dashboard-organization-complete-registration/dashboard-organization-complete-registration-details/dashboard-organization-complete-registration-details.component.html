@@ -1,51 +1,64 @@
-<form class="space-y-4 md:space-y-6 relative min-h-[400px] " [formGroup]="form" (submit)="submit()">
+<form class="space-y-4 md:space-y-6 relative min-h-[400px] "
+      [formGroup]="form"
+      (submit)="submit()">
 
 
 
 
 
 
-    <!-- website -->
-    <div>
-        <label for="website" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Organization Website</label>
-        <input type="url" name="website" id="website"
-               formControlName="website"
-               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-               placeholder="mundaly.com" required="">
-    </div>
+  <!-- website -->
+  <div>
+    <label for="website"
+           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Organization Website</label>
+    <input type="url"
+           name="website"
+           id="website"
+           formControlName="website"
+           class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+           placeholder="mundaly.com"
+           required="">
+  </div>
 
 
 
 
 
 
-    <!-- Country -->
-    <div>
-        <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Country</label>
-        <p-dropdown class="" [filter]="true" filterBy="name" [showClear]="true" placeholder="Select a country"
-                    formControlName="country" [options]="countries" optionLabel="name"></p-dropdown>
-    </div>
+  <!-- Country -->
+  <div>
+    <label for="type"
+           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Country</label>
+    <p-dropdown class=""
+                [filter]="true"
+                filterBy="name"
+                [showClear]="true"
+                placeholder="Select a country"
+                formControlName="country"
+                [options]="countries"
+                optionLabel="name"></p-dropdown>
+  </div>
 
 
 
 
-    <!-- Submit -->
-    <div class="flex gap-4 w-full absolute bottom-0 ">
-        <!-- Previous -->
-        <button type="button"
-                (click)="previous.emit"
-                class="w-full text-white border-white border bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Previous</button>
+  <!-- Submit -->
+  <div class="flex gap-4 w-full absolute bottom-0 ">
+    <!-- Previous -->
+    <button type="button"
+            (click)="previous.emit()"
+            class="w-full text-white border-white border bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Previous</button>
 
 
 
-        <!-- Next -->
-        <button type="submit"
-                [disabled]="form.invalid || loading"
-                [ngClass]="{'cursor-not-allowed bg-slate-400': form.invalid || loading}"
-                class="w-full text-primary border-primary border bg-secondary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Submit
-            <app-loading *ngIf="loading"></app-loading>
-        </button>
-    </div>
+    <!-- Next -->
+    <button type="submit"
+            [disabled]="form.invalid || loading"
+            [ngClass]="{'cursor-not-allowed bg-slate-400': form.invalid || loading}"
+            class="w-full text-primary border-primary border bg-secondary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Submit
+      <app-loading *ngIf="loading"></app-loading>
+    </button>
+  </div>
 
 
 
