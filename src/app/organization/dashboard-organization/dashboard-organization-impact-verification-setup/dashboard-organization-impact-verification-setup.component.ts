@@ -235,9 +235,10 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
           insight.id!
         );
 
-        if (index > 0) {
-          discountedPrice += individualPrice * 0.5;
-        }
+        // TODO: Uncomment this when we have a pricing tier for the alignment
+        // if (index > 0) {
+        discountedPrice += individualPrice * 1;
+        // }
 
         totalPrice += individualPrice;
       }
