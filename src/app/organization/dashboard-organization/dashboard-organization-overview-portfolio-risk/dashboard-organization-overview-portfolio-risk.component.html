@@ -4,12 +4,12 @@
   </h3>
   <div class="p-4 relative ">
     <p-chart type="pie"
-             *ngIf="showChart && !loading && chartData"
+             *ngIf="showChart && !loading && chartData.length"
              [data]="chartData"
              [height]="'400'"
              [options]="options"
              [plugins]="plugins" />
     <app-page-loading *ngIf="loading"></app-page-loading>
-    <app-missing-data *ngIf="!loading && !chartData"></app-missing-data>
+    <app-missing-data *ngIf="!loading && !chartData.length"></app-missing-data>
   </div>
 </div>
