@@ -1,12 +1,11 @@
 import { AfterViewInit, Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { StatusImpactVerificationEnum } from '../../../impact-verification/enums/status-impact-verification.enum';
 import { BaseSingleComponent } from '../../../shared/base-component';
+import { CategoryOrganizationEnum } from '../../category-organization/category-organization.enum';
 import { Organization } from '../../organization.model';
 import { OrganizationService } from '../../organization.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CategoryOrganizationEnum } from '../../category-organization/category-organization.enum';
-import { AuthService } from '../../../auth/auth.service';
 import { DashboardOrganizationService } from '../dashboard-organization.service';
-import { StatusImpactVerificationEnum } from '../../../impact-verification/enums/status-impact-verification.enum';
 
 @Component({
   selector: 'app-dashboard-organization-details',
@@ -66,7 +65,7 @@ export class DashboardOrganizationDetailsComponent
       this.route.queryParams.subscribe((params) => {
         if (params['community']) {
           this.selectedCommunity =
-            this.single?.verifications?.find(
+            this.single?.impact_verifications?.find(
               (verification) => verification.location === params['community']
             ) || null;
         }

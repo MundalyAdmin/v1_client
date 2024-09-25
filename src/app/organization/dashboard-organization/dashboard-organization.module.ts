@@ -104,6 +104,8 @@ import { DashboardOrganizationWellbeingOverviewSecondComponent } from './wellbei
 import { DashboardOrganizationWellbeingOverviewComponent } from './wellbeing/dashboard-organization-wellbeing-overview/dashboard-organization-wellbeing-overview.component';
 import { DashboardOrganizationWellbeingScoresComponent } from './wellbeing/dashboard-organization-wellbeing-scores/dashboard-organization-wellbeing-scores.component';
 import { DashboardOrganizationWellbeingSummaryComponent } from './wellbeing/dashboard-organization-wellbeing-summary/dashboard-organization-wellbeing-summary.component';
+import { DashboardOrganizationImpactPartnersAlignmentComponent } from './dashboard-organization-impact-partners-alignment/dashboard-organization-impact-partners-alignment.component';
+import { DashboardOrganizationImpactPartnersWellbeingComponent } from './dashboard-organization-impact-partners-wellbeing/dashboard-organization-impact-partners-wellbeing.component';
 
 const routes: Routes = [
   {
@@ -203,7 +205,7 @@ const routes: Routes = [
         children: [
           {
             path: 'partners',
-            component: DashboardOrganizationImpactPartnersComponent,
+            component: DashboardOrganizationImpactPartnersAlignmentComponent,
           },
           {
             path: 'community-needs',
@@ -298,7 +300,7 @@ const routes: Routes = [
         children: [
           {
             path: 'partners',
-            component: DashboardOrganizationImpactPartnersComponent,
+            component: DashboardOrganizationImpactPartnersWellbeingComponent,
           },
           {
             path: 'stories',
@@ -683,6 +685,8 @@ const routes: Routes = [
     OrganizationShowImpactStoriesComponent,
     DashboardOrganizationImpactStoriesListComponent,
     DashboardOrganizationOverviewFilterComponent,
+    DashboardOrganizationImpactPartnersAlignmentComponent,
+    DashboardOrganizationImpactPartnersWellbeingComponent,
   ],
   imports: [
     CommonModule,

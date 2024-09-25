@@ -29,13 +29,18 @@
   </div> -->
 
   <div class="relative overflow-x-auto shadow-md h-full ">
-    <app-impact-partner-list></app-impact-partner-list>
+    <app-impact-partner-list [scaleScoreLabel]="scaleScoreLabel"
+                             [data]="data"></app-impact-partner-list>
   </div>
 </div>
 
 
 
-<p-dialog header="Add New Partners" [(visible)]="showAddOrganizationModal" [modal]="true" [styleClass]="'md:w-[50vw] w-[95vw]'" [draggable]="false"
+<p-dialog header="Add New Partners"
+          [(visible)]="showAddOrganizationModal"
+          [modal]="true"
+          [styleClass]="'md:w-[50vw] w-[95vw]'"
+          [draggable]="false"
           [resizable]="false">
   <app-impact-partner-create (created)="showAddOrganizationModal = false"></app-impact-partner-create>
 </p-dialog>

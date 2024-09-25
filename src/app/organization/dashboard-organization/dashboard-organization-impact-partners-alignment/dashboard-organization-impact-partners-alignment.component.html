@@ -1,0 +1,8 @@
+<app-page-loading *ngIf="loading"></app-page-loading>
+<app-dashboard-organization-impact-partners [data]="data"
+                                            [scaleScoreLabel]="'Community Trust Score'">
+</app-dashboard-organization-impact-partners>
+
+
+
+<app-missing-data *ngIf="!data.length && !loading"></app-missing-data>

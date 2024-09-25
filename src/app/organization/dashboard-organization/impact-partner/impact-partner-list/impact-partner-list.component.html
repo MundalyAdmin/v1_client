@@ -1,25 +1,31 @@
-<table class="w-full h-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" *ngIf="!loading && impactPartnerService.data.length">
+<table class="w-full h-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+       *ngIf="!loading && impactPartnerService.data.length">
   <thead class=" text-gray-400 capitalize bg-slate-100  dark:bg-gray-700 dark:text-gray-400">
     <tr>
-      <th scope="col" class="px-6 py-6 md:w-[500px] w-[300px]">
+      <th scope="col"
+          class="px-6 py-6 md:w-[500px] w-[300px]">
         Name
       </th>
-      <th scope="col" class="px-6 py-6 w-[300px] hidden md:table-cell">
+      <th scope="col"
+          class="px-6 py-6 w-[300px] hidden md:table-cell">
         Communities
       </th>
-      <th scope="col" class="px-6 py-6 hidden md:table-cell">
+      <th scope="col"
+          class="px-6 py-6 hidden md:table-cell">
         Industry
       </th>
-      <th scope="col" class="px-6 py-6 hidden md:table-cell">
-        Community <br>Trust Score
+      <th scope="col"
+          class="px-6 py-6 hidden md:table-cell">
+        {{ scaleScoreLabel }}
       </th>
-      <th scope="col" class="px-6 py-6">
+      <th scope="col"
+          class="px-6 py-6">
         Action
       </th>
     </tr>
   </thead>
   <tbody>
-    <ng-container *ngFor="let partner of impactPartnerService.data; let i = index">
+    <ng-container *ngFor="let partner of data; let i = index">
       <!-- <tr is="app-impact-partner-solo" [partner]="partner"></tr> -->
       <!-- <app-impact-partner-solo [partner]="partner"></app-impact-partner-solo>/ -->
       <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -31,12 +37,14 @@
             <!-- Logo , name and website -->
             <div class="flex items-center">
               <!-- Logo -->
-              <img class="md:w-10 md:h-10  w-10 h-10 object-cover border rounded-full" [src]="partner.implementer?.logo"
+              <img class="md:w-10 md:h-10  w-10 h-10 object-cover border rounded-full"
+                   [src]="partner.implementer?.logo"
                    *ngIf="partner.implementer?.logo"
                    [alt]="partner.implementer?.name">
 
               <!-- No logo placeholder -->
-              <div class="md:h-10 md:w-10 w-7 h-7  bg-slate-200 flex items-center justify-center rounded-full" *ngIf="!partner.implementer?.logo">
+              <div class="md:h-10 md:w-10 w-7 h-7  bg-slate-200 flex items-center justify-center rounded-full"
+                   *ngIf="!partner.implementer?.logo">
                 <div>
                   <i class="mdi md:text-[16px] text-[12px] text-slate-800 font-semibold mdi-domain"></i>
                 </div>
@@ -52,13 +60,20 @@
                 <div class="font-normal md:block hidden text-gray-500">{{ partner.implementer?.website }}</div>
 
                 <div class="md:hidden">
-                  <p-dropdown class="" [filter]="true" filterBy="name" placeholder="All Communities" [appendTo]="'body'"
-                              *ngIf="partner.implementer?.verifications?.length"
-                              [options]="partner.implementer?.verifications" [(ngModel)]="selectedImpactInitiatives[i]" optionLabel="location">
+                  <p-dropdown class=""
+                              [filter]="true"
+                              filterBy="name"
+                              placeholder="All Communities"
+                              [appendTo]="'body'"
+                              *ngIf="partner.implementer?.impact_verifications?.length"
+                              [options]="partner.implementer?.impact_verifications"
+                              [(ngModel)]="selectedImpactInitiatives[i]"
+                              optionLabel="location">
 
                   </p-dropdown>
 
-                  <span class="italic md:text-sm text-xs" *ngIf="!partner.implementer?.verifications?.length">No community registered</span>
+                  <span class="italic md:text-sm text-xs"
+                        *ngIf="!partner.implementer?.impact_verifications?.length">No community registered</span>
                 </div>
 
               </div>
@@ -77,15 +92,21 @@
 
         <!-- Location -->
         <td class="px-6 py-4 hidden md:table-cell">
-          <p-dropdown class="" [filter]="true" filterBy="name" placeholder="All Communities"
-                      *ngIf=" partner.implementer?.verifications?.length"
+          <p-dropdown class=""
+                      [filter]="true"
+                      filterBy="label"
+                      placeholder="All Communities"
+                      *ngIf=" partner.implementer?.impact_verifications?.length"
                       appendTo="body"
                       [showClear]="true"
-                      [options]="partner.implementer?.verifications" [(ngModel)]="selectedImpactInitiatives[i]" optionLabel="location">
+                      [options]="partner.implementer?.impact_verifications"
+                      [(ngModel)]="selectedImpactInitiatives[i]"
+                      optionLabel="impact_verification_setup.location">
 
           </p-dropdown>
 
-          <span class="italic md:text-sm text-xs" *ngIf="!partner.implementer?.verifications?.length">No community registered</span>
+          <span class="italic md:text-sm text-xs"
+                *ngIf="!partner.implementer?.impact_verifications?.length">No community registered</span>
         </td>
 
         <!-- Industry -->
@@ -95,13 +116,15 @@
                 {{ sector.name}}
               </span></div>
           </div>
-          <span class="italic text-sm flex items-center" *ngIf="!partner.implementer?.sector_organizations?.length">Registration not completed</span>
+          <span class="italic text-sm flex items-center"
+                *ngIf="!partner.implementer?.sector_organizations?.length">Registration not completed</span>
         </td>
 
-        <!-- Community trust score -->
-        <td class="px-6 py-4 text-center hidden md:table-cell">
-          <span *ngIf="partner.implementer?.community_trust_score">{{ partner.implementer?.community_trust_score }}</span>
-          <span class="italic text-sm" *ngIf="!partner.implementer?.community_trust_score ">Insufficient data</span>
+        <!-- Scale score -->
+        <td class="px-6 py-4  hidden md:table-cell">
+          <span *ngIf="partner.scale_score">{{ partner.scale_score }}</span>
+          <span class="italic text-sm"
+                *ngIf="!partner.scale_score">Insufficient data</span>
         </td>
 
 
@@ -124,8 +147,3 @@
 
   </tbody>
 </table>
-
-
-<app-page-loading *ngIf="loading"></app-page-loading>
-
-<app-missing-data *ngIf="!loading && !impactPartnerService.data.length"></app-missing-data>

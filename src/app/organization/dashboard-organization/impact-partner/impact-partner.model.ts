@@ -7,4 +7,7 @@ export interface ImpactPartner extends BaseModel {
   implementer_id?: number;
   implementer_admin_email: string;
   status: string;
+  community_trust_score?: number;
+  wellbeing_score?: number;
+  scale_score?: number;
 }

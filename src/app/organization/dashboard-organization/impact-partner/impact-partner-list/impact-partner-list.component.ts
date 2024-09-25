@@ -1,10 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BaseComponent } from '../../../../shared/base-component';
 import { ImpactPartner } from '../impact-partner.model';
 import { ImpactPartnerService } from '../impact-partner.service';
-import { AuthService } from '../../../../auth/auth.service';
-import { ImpactInitiative } from '../../../../scale/impact-initiative/impact-initiative.model';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-impact-partner-list',
@@ -15,6 +13,8 @@ export class ImpactPartnerListComponent
   extends BaseComponent<ImpactPartner>
   implements OnInit
 {
+  @Input({ required: true }) override data: ImpactPartner[] = [];
+  @Input({ required: true }) scaleScoreLabel: string = '';
   selectedImpactInitiatives: ({ id: number; location: string } | null)[] = [];
 
   constructor(
@@ -26,7 +26,7 @@ export class ImpactPartnerListComponent
   }
 
   override ngOnInit(): void {
-    this.getByFunderId(this.authService.organization?.id!);
+    super.ngOnInit();
   }
 
   deleteImpactPartner(impactPartner: ImpactPartner) {
@@ -48,19 +48,6 @@ export class ImpactPartnerListComponent
     );
   }
 
-  getByFunderId(funderId: number) {
-    this.loading = true;
-    this.impactPartnerService.getByFunderId(funderId).subscribe((data) => {
-      this.loading = false;
-      // if (data)
-      //   this.selectedImpactInitiatives = data.map((partner) => {
-      //     return partner.implementer?.verifications?.length
-      //       ? partner.implementer.verifications[0]
-      //       : null;
-      //   });
-    });
-  }
-
   selectImpactPartner(partnerId: number, indexCommunity: number) {
     this.router.navigate([partnerId], {
       relativeTo: this.route,
@@ -68,9 +55,5 @@ export class ImpactPartnerListComponent
         community: this.selectedImpactInitiatives[indexCommunity]?.location,
       },
     });
-  }
-
-  goToPartner(partnerId: any, index: any) {
-    console.log(partnerId, index);
   }
 }

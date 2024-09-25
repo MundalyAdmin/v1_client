@@ -89,7 +89,7 @@
         <div class="justify-center md:justify-start items-center md:gap-6 gap-2 flex flex-row  md:inline-flex">
           <!-- Location -->
           <div class="  min-w-[200px]"
-               *ngIf=" single.verifications?.length">
+               *ngIf=" single.impact_verifications?.length">
             <!-- <span class=""><i class="mdi mdi-map-marker"></i></span> {{ single.country }} q -->
             <p-dropdown class=""
                         [filter]="true"
@@ -98,7 +98,7 @@
                         [showClear]="true"
                         appendTo="body"
                         (onChange)="onCommunityChange($event)"
-                        [options]="single.verifications"
+                        [options]="single.impact_verifications"
                         [(ngModel)]="selectedCommunity"
                         optionLabel="location">
 
