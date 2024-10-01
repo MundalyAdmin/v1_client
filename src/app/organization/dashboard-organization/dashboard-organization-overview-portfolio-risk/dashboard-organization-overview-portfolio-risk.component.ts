@@ -57,55 +57,53 @@ export class DashboardOrganizationOverviewPortfolioRiskComponent
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
 
-    this.chartData = {
-      labels,
-      datasets: [
-        {
-          data,
-          backgroundColor: ['#07046B', '#07046B99', '#07046B66', '#07046B33'],
-          hoverBackgroundColor: [
-            documentStyle.getPropertyValue('--blue-400'),
-            documentStyle.getPropertyValue('--blue-100'),
-            documentStyle.getPropertyValue('--blue-800'),
-            documentStyle.getPropertyValue('--blue-600'),
-          ],
-        },
-      ],
-    };
-
-    this.options = {
-      cutout: '50%',
-      plugins: {
-        legend: {
-          labels: {
-            color: textColor,
+    if (data.length) {
+      this.chartData = {
+        labels,
+        datasets: [
+          {
+            data,
+            backgroundColor: ['#07046B', '#07046B99', '#07046B66', '#07046B33'],
+            hoverBackgroundColor: [
+              documentStyle.getPropertyValue('--blue-400'),
+              documentStyle.getPropertyValue('--blue-100'),
+              documentStyle.getPropertyValue('--blue-800'),
+              documentStyle.getPropertyValue('--blue-600'),
+            ],
           },
-        },
-        datalabels: {
-          color: 'white',
-          backgroundColor: '#21CEB9',
-          labels: {
-            title: {
-              font: {
-                weight: 'bold',
-              },
+        ],
+      };
+
+      this.options = {
+        cutout: '50%',
+        plugins: {
+          legend: {
+            labels: {
+              color: textColor,
             },
           },
-          formatter: (value: any, context: any) => {
-            return `${
-              context.chart.data.labels[context.dataIndex]
-            }\n ${value}%`;
+          datalabels: {
+            color: 'white',
+            backgroundColor: '#21CEB9',
+            labels: {
+              title: {
+                font: {
+                  weight: 'bold',
+                },
+              },
+            },
+            formatter: (value: any, context: any) => {
+              return `${
+                context.chart.data.labels[context.dataIndex]
+              }\n ${value}%`;
+            },
           },
         },
-      },
-    };
+      };
 
-    this.plugins = [ChartDataLabels];
-    this.showChart = true;
-
-    console.log('chartData', this.chartData);
-    console.log('loading', this.loading);
-    console.log();
+      this.plugins = [ChartDataLabels];
+      this.showChart = true;
+    }
   }
 
   private getDueDiligencePortfolioRiskScore(params?: any) {
@@ -134,6 +132,8 @@ export class DashboardOrganizationOverviewPortfolioRiskComponent
           response.filter((x) => x.percentage > 0).map((x) => x.label),
           response.filter((x) => x.percentage > 0).map((x) => x.percentage)
         );
+
+        console.log('chartData', this.chartData);
       });
   }
 }
