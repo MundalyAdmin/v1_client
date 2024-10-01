@@ -1,319 +1,290 @@
 <ng-container *ngIf="organizationService.singleData?.verification_status_from_current_organization?.id === StatusImpactVerificationEnum.LAUNCHED">
-    <div class="md:p-5 p-2" *ngIf="!loading && environmentalWellebing.score">
-        <div class="w-full flex justify-between bg-white shadow dark:bg-gray-800 p-3 md:p-3">
-            <div class="md:text-lg etxt-sm font-bold">Verify Metrics</div>
+  <div class="md:p-5 p-2"
+       *ngIf="!loading && environmentalWellebing.score">
+    <div class="w-full flex justify-between bg-white shadow dark:bg-gray-800 p-3 md:p-3">
+      <div class="md:text-lg etxt-sm font-bold">Verify Metrics</div>
 
-        </div>
-
-        <div class="relative overflow-x-auto shadow-md ">
-            <table class="w-full md:text-base text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class=" text-gray-400 capitalize bg-slate-100  dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" class="md:px-6 md:py-6 p-3">
-                            #
-                        </th>
-                        <th scope="col" class="md:px-6 md:py-6 p-3 ">
-                            Category
-                        </th>
-                        <th scope="col" class="md:px-6 md:py-6 p-3">
-                            Key
-                        </th>
-                        <th scope="col" class="md:px-6 md:py-6 p-3">
-                            Score
-                        </th>
-                        <th scope="col" class="md:px-6 md:py-6 p-3">
-                            Action
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Pollution Free -->
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                        <!-- Number -->
-                        <td class="p-3 md:p-6">
-                            1
-                        </td>
-
-                        <!-- Name and Photo -->
-                        <th scope="row p-3 md:p-6">
-                            Pollution Free
-                        </th>
-
-                        <!-- Key -->
-                        <td class="p-3 md:p-6">
-                            {{ scaleService.getScoreKey(environmentalWellebing.score.pollution_free! ) }}
-                        </td>
-
-                        <!-- Score -->
-                        <td class="p-3 md:p-6">
-                            <div class="flex items-center font-semibold">
-                                {{ environmentalWellebing.score.pollution_free}}
-                            </div>
-                        </td>
-
-
-
-                        <td class="p-3 md:p-6">
-                            <a href="#" class="font-medium text-slate-400  text-sm md:text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
-                                   class="mdi mdi-information"></i></a>
-
-                        </td>
-                    </tr>
-
-
-                    <!-- Safety -->
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                        <!-- Number -->
-                        <td class="p-3 md:p-6">
-                            2
-                        </td>
-
-                        <!-- Name and Photo -->
-                        <th scope="row p-3 md:p-6">
-                            Safety
-                        </th>
-
-                        <!-- Key -->
-                        <td class="p-3 md:p-6">
-                            {{ scaleService.getScoreKey(environmentalWellebing.score.safety! ) }}
-                        </td>
-
-                        <!-- Score -->
-                        <td class="p-3 md:p-6">
-                            <div class="flex items-center font-semibold">
-                                {{ environmentalWellebing.score.safety}}
-                            </div>
-                        </td>
-
-
-
-                        <td class="p-3 md:p-6">
-                            <a href="#" class="font-medium text-slate-400  text-sm md:text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
-                                   class="mdi mdi-information"></i></a>
-
-                        </td>
-                    </tr>
-
-
-
-                    <!-- Financial Capacity -->
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                        <!-- Number -->
-                        <td class="p-3 md:p-6">
-                            3
-                        </td>
-
-                        <!-- Name and Photo -->
-                        <th scope="row p-3 md:p-6">
-                            Financial Capacity
-                        </th>
-
-                        <!-- Key -->
-                        <td class="p-3 md:p-6">
-                            {{ scaleService.getScoreKey(environmentalWellebing.score.financial_capacity! ) }}
-                        </td>
-
-                        <!-- Score -->
-                        <td class="p-3 md:p-6">
-                            <div class="flex items-center font-semibold">
-                                {{ environmentalWellebing.score.financial_capacity}}
-                            </div>
-                        </td>
-
-
-
-                        <td class="p-3 md:p-6">
-                            <a href="#" class="font-medium text-slate-400  text-sm md:text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
-                                   class="mdi mdi-information"></i></a>
-
-                        </td>
-                    </tr>
-
-
-                    <!-- Access to Information -->
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                        <!-- Number -->
-                        <td class="p-3 md:p-6">
-                            4
-                        </td>
-
-                        <!-- Name and Photo -->
-                        <th scope="row p-3 md:p-6">
-                            Access to Information
-                        </th>
-
-                        <!-- Key -->
-                        <td class="p-3 md:p-6">
-                            {{ scaleService.getScoreKey(environmentalWellebing.score.access_to_information! ) }}
-                        </td>
-
-                        <!-- Score -->
-                        <td class="p-3 md:p-6">
-                            <div class="flex items-center font-semibold">
-                                {{ environmentalWellebing.score.access_to_information}}
-                            </div>
-                        </td>
-
-
-
-                        <td class="p-3 md:p-6">
-                            <a href="#" class="font-medium text-slate-400  text-sm md:text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
-                                   class="mdi mdi-information"></i></a>
-
-                        </td>
-                    </tr>
-
-
-                    <!-- Leisure Opportunities -->
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                        <!-- Number -->
-                        <td class="p-3 md:p-6">
-                            5
-                        </td>
-
-                        <!-- Name and Photo -->
-                        <th scope="row p-3 md:p-6">
-                            Leisure Opportunities
-                        </th>
-
-                        <!-- Key -->
-                        <td class="p-3 md:p-6">
-                            {{ scaleService.getScoreKey(environmentalWellebing.score.leisure_opportunities! ) }}
-                        </td>
-
-                        <!-- Score -->
-                        <td class="p-3 md:p-6">
-                            <div class="flex items-center font-semibold">
-                                {{ environmentalWellebing.score.leisure_opportunities}}
-                            </div>
-                        </td>
-
-
-
-                        <td class="p-3 md:p-6">
-                            <a href="#" class="font-medium text-slate-400  text-sm md:text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
-                                   class="mdi mdi-information"></i></a>
-
-                        </td>
-                    </tr>
-
-
-                    <!-- Living Space Quality -->
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                        <!-- Number -->
-                        <td class="p-3 md:p-6">
-                            6
-                        </td>
-
-                        <!-- Name and Photo -->
-                        <th scope="row p-3 md:p-6">
-                            Living Space Quality
-                        </th>
-
-                        <!-- Key -->
-                        <td class="p-3 md:p-6">
-                            {{ scaleService.getScoreKey(environmentalWellebing.score.living_space_quality! ) }}
-                        </td>
-
-                        <!-- Score -->
-                        <td class="p-3 md:p-6">
-                            <div class="flex items-center font-semibold">
-                                {{ environmentalWellebing.score.living_space_quality}}
-                            </div>
-                        </td>
-
-
-
-                        <td class="p-3 md:p-6">
-                            <a href="#" class="font-medium text-slate-400  text-sm md:text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
-                                   class="mdi mdi-information"></i></a>
-
-                        </td>
-                    </tr>
-
-                    <!-- Healthcare Access -->
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                        <!-- Number -->
-                        <td class="p-3 md:p-6">
-                            7
-                        </td>
-
-                        <!-- Name and Photo -->
-                        <th scope="row p-3 md:p-6">
-                            Healthcare Access
-                        </th>
-
-                        <!-- Key -->
-                        <td class="p-3 md:p-6">
-                            {{ scaleService.getScoreKey(environmentalWellebing.score.healthcare_access! ) }}
-                        </td>
-
-                        <!-- Score -->
-                        <td class="p-3 md:p-6">
-                            <div class="flex items-center font-semibold">
-                                {{ environmentalWellebing.score.healthcare_access}}
-                            </div>
-                        </td>
-
-
-
-                        <td class="p-3 md:p-6">
-                            <a href="#" class="font-medium text-slate-400  text-sm md:text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
-                                   class="mdi mdi-information"></i></a>
-
-                        </td>
-                    </tr>
-
-
-                    <!-- Transport Access -->
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
-
-                        <!-- Number -->
-                        <td class="p-3 md:p-6">
-                            8
-                        </td>
-
-                        <!-- Name and Photo -->
-                        <th scope="row p-3 md:p-6">
-                            Transport Access
-                        </th>
-
-                        <!-- Key -->
-                        <td class="p-3 md:p-6">
-                            {{ scaleService.getScoreKey(environmentalWellebing.score.transport_access! ) }}
-                        </td>
-
-                        <!-- Score -->
-                        <td class="p-3 md:p-6">
-                            <div class="flex items-center font-semibold">
-                                {{ environmentalWellebing.score.transport_access}}
-                            </div>
-                        </td>
-
-
-
-                        <td class="p-3 md:p-6">
-                            <a href="#" class="font-medium text-slate-400  text-sm md:text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
-                                   class="mdi mdi-information"></i></a>
-
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
-
-
-        </div>
     </div>
 
-    <app-loading *ngIf="loading"></app-loading>
+    <div class="relative overflow-x-auto shadow-md ">
+      <table class="w-full md:text-base text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class=" text-gray-400 capitalize bg-slate-100  dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <th scope="col"
+                class="md:px-6 md:py-6 p-3">
+              #
+            </th>
+            <th scope="col"
+                class="md:px-6 md:py-6 p-3 ">
+              Category
+            </th>
+            <th scope="col"
+                class="md:px-6 md:py-6 p-3">
+              Key
+            </th>
+            <th scope="col"
+                class="md:px-6 md:py-6 p-3">
+              Score
+            </th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Pollution Free -->
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
+
+            <!-- Number -->
+            <td class="p-3 md:p-6">
+              1
+            </td>
+
+            <!-- Name and Photo -->
+            <th scope="row p-3 md:p-6">
+              Pollution Free
+            </th>
+
+            <!-- Key -->
+            <td class="p-3 md:p-6">
+              {{ scaleService.getScoreKey(environmentalWellebing.score.pollution_free! ) }}
+            </td>
+
+            <!-- Score -->
+            <td class="p-3 md:p-6">
+              <div class="flex items-center font-semibold">
+                {{ environmentalWellebing.score.pollution_free}}
+              </div>
+            </td>
+
+
+
+
+          </tr>
+
+
+          <!-- Safety -->
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
+
+            <!-- Number -->
+            <td class="p-3 md:p-6">
+              2
+            </td>
+
+            <!-- Name and Photo -->
+            <th scope="row p-3 md:p-6">
+              Safety
+            </th>
+
+            <!-- Key -->
+            <td class="p-3 md:p-6">
+              {{ scaleService.getScoreKey(environmentalWellebing.score.safety! ) }}
+            </td>
+
+            <!-- Score -->
+            <td class="p-3 md:p-6">
+              <div class="flex items-center font-semibold">
+                {{ environmentalWellebing.score.safety}}
+              </div>
+            </td>
+
+
+
+
+          </tr>
+
+
+
+          <!-- Financial Capacity -->
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
+
+            <!-- Number -->
+            <td class="p-3 md:p-6">
+              3
+            </td>
+
+            <!-- Name and Photo -->
+            <th scope="row p-3 md:p-6">
+              Financial Capacity
+            </th>
+
+            <!-- Key -->
+            <td class="p-3 md:p-6">
+              {{ scaleService.getScoreKey(environmentalWellebing.score.financial_capacity! ) }}
+            </td>
+
+            <!-- Score -->
+            <td class="p-3 md:p-6">
+              <div class="flex items-center font-semibold">
+                {{ environmentalWellebing.score.financial_capacity}}
+              </div>
+            </td>
+
+
+
+
+          </tr>
+
+
+          <!-- Access to Information -->
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
+
+            <!-- Number -->
+            <td class="p-3 md:p-6">
+              4
+            </td>
+
+            <!-- Name and Photo -->
+            <th scope="row p-3 md:p-6">
+              Access to Information
+            </th>
+
+            <!-- Key -->
+            <td class="p-3 md:p-6">
+              {{ scaleService.getScoreKey(environmentalWellebing.score.access_to_information! ) }}
+            </td>
+
+            <!-- Score -->
+            <td class="p-3 md:p-6">
+              <div class="flex items-center font-semibold">
+                {{ environmentalWellebing.score.access_to_information}}
+              </div>
+            </td>
+
+
+
+
+          </tr>
+
+
+          <!-- Leisure Opportunities -->
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
+
+            <!-- Number -->
+            <td class="p-3 md:p-6">
+              5
+            </td>
+
+            <!-- Name and Photo -->
+            <th scope="row p-3 md:p-6">
+              Leisure Opportunities
+            </th>
+
+            <!-- Key -->
+            <td class="p-3 md:p-6">
+              {{ scaleService.getScoreKey(environmentalWellebing.score.leisure_opportunities! ) }}
+            </td>
+
+            <!-- Score -->
+            <td class="p-3 md:p-6">
+              <div class="flex items-center font-semibold">
+                {{ environmentalWellebing.score.leisure_opportunities}}
+              </div>
+            </td>
+
+
+
+
+          </tr>
+
+
+          <!-- Living Space Quality -->
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
+
+            <!-- Number -->
+            <td class="p-3 md:p-6">
+              6
+            </td>
+
+            <!-- Name and Photo -->
+            <th scope="row p-3 md:p-6">
+              Living Space Quality
+            </th>
+
+            <!-- Key -->
+            <td class="p-3 md:p-6">
+              {{ scaleService.getScoreKey(environmentalWellebing.score.living_space_quality! ) }}
+            </td>
+
+            <!-- Score -->
+            <td class="p-3 md:p-6">
+              <div class="flex items-center font-semibold">
+                {{ environmentalWellebing.score.living_space_quality}}
+              </div>
+            </td>
+
+
+
+
+          </tr>
+
+          <!-- Healthcare Access -->
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
+
+            <!-- Number -->
+            <td class="p-3 md:p-6">
+              7
+            </td>
+
+            <!-- Name and Photo -->
+            <th scope="row p-3 md:p-6">
+              Healthcare Access
+            </th>
+
+            <!-- Key -->
+            <td class="p-3 md:p-6">
+              {{ scaleService.getScoreKey(environmentalWellebing.score.healthcare_access! ) }}
+            </td>
+
+            <!-- Score -->
+            <td class="p-3 md:p-6">
+              <div class="flex items-center font-semibold">
+                {{ environmentalWellebing.score.healthcare_access}}
+              </div>
+            </td>
+
+
+
+
+          </tr>
+
+
+          <!-- Transport Access -->
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 pointer hover:bg-gray-50 dark:hover:bg-gray-600">
+
+            <!-- Number -->
+            <td class="p-3 md:p-6">
+              8
+            </td>
+
+            <!-- Name and Photo -->
+            <th scope="row p-3 md:p-6">
+              Transport Access
+            </th>
+
+            <!-- Key -->
+            <td class="p-3 md:p-6">
+              {{ scaleService.getScoreKey(environmentalWellebing.score.transport_access! ) }}
+            </td>
+
+            <!-- Score -->
+            <td class="p-3 md:p-6">
+              <div class="flex items-center font-semibold">
+                {{ environmentalWellebing.score.transport_access}}
+              </div>
+            </td>
+
+
+
+
+          </tr>
+
+        </tbody>
+      </table>
+
+
+    </div>
+  </div>
+
+  <app-loading *ngIf="loading"></app-loading>
 </ng-container>
 
 

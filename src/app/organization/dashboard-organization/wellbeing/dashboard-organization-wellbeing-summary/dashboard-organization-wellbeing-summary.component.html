@@ -27,10 +27,7 @@ b<div class="p-5"
               class="px-6 py-6">
             Score
           </th>
-          <th scope="col"
-              class="px-6 py-6">
-            Action
-          </th>
+
         </tr>
       </thead>
       <tbody>
@@ -62,25 +59,6 @@ b<div class="p-5"
 
 
 
-          <td class="p-6">
-            <button (click)="showPhysicalWellbeingInfo = true"
-                    class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
-                 class="mdi mdi-information"></i></button>
-
-            <p-dialog header="Physical Well-being"
-                      [(visible)]="showPhysicalWellbeingInfo"
-                      [modal]="true"
-                      [style]="{ width: '50vw' }"
-                      [draggable]="false"
-                      [resizable]="false">
-              <p class="m-0">
-                Activities of daily living; Dependence on medicinal substances and medical aids; Energy and fatigue; Mobility; Pain
-                and discomfort; Sleep and rest;
-                Work Capacity
-              </p>
-            </p-dialog>
-
-          </td>
         </tr>
 
 
@@ -111,26 +89,6 @@ b<div class="p-5"
 
 
 
-          <td class="p-6">
-            <button (click)="showPsychologicalWellbeingInfo = true"
-                    class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
-                 class="mdi mdi-information"></i></button>
-
-            <p-dialog header="Psychological Well-being"
-                      [(visible)]="showPsychologicalWellbeingInfo"
-                      [modal]="true"
-                      [style]="{ width: '50vw' }"
-                      [draggable]="false"
-                      [resizable]="false">
-              <p class="m-0">
-                Bodily image and appearance; Negative feelings; Positive feelings; Self-esteem; Spirituality / Religion / Personal
-                beliefs; Thinking, learning, memory
-                and concentration
-
-              </p>
-            </p-dialog>
-
-          </td>
         </tr>
 
         <!-- Social Wellbeing -->
@@ -160,32 +118,7 @@ b<div class="p-5"
 
 
 
-          <td class="p-6">
-            <button (click)="showSocialWellbeingInfo = true"
-                    class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
-                 class="mdi mdi-information"></i></button>
 
-            <p-dialog header="Social Well-being"
-                      [(visible)]="showSocialWellbeingInfo"
-                      [modal]="true"
-                      [style]="{ width: '50vw' }"
-                      [draggable]="false"
-                      [resizable]="false">
-              <p class="m-0">
-                Your facilitation score is calculated using our proprietary, research-backed facilitation
-                assessment scale. The facilitation score serves as a valuable tool for organizations to assess and improve their
-                facilitation
-                practices, enhance
-                employee satisfaction and engagement, and create a positive and supportive workplace culture that promotes individual
-                and
-                organizational
-                success
-
-
-              </p>
-            </p-dialog>
-
-          </td>
         </tr>
 
         <!-- Environmental Well-being -->
@@ -215,32 +148,6 @@ b<div class="p-5"
 
 
 
-          <td class="p-6">
-            <button (click)="showEnvironmentWellbeingInfo = true"
-                    class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
-                 class="mdi mdi-information"></i></button>
-
-            <p-dialog header="Environmental Well-being"
-                      [(visible)]="showEnvironmentWellbeingInfo"
-                      [modal]="true"
-                      [style]="{ width: '50vw' }"
-                      [draggable]="false"
-                      [resizable]="false">
-              <p class="m-0">
-                Your facilitation score is calculated using our proprietary, research-backed facilitation
-                assessment scale. The facilitation score serves as a valuable tool for organizations to assess and improve their
-                facilitation
-                practices, enhance
-                employee satisfaction and engagement, and create a positive and supportive workplace culture that promotes individual
-                and
-                organizational
-                success
-
-
-              </p>
-            </p-dialog>
-
-          </td>
         </tr>
 
         <!-- Wellbeing Score -->
@@ -271,25 +178,6 @@ b<div class="p-5"
 
 
 
-          <td class="p-6">
-            <button (click)="showWellbeingScoringInfo = true"
-                    class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
-                 class="mdi mdi-information"></i></button>
-
-            <p-dialog header="Community Trust Score"
-                      [(visible)]="showWellbeingScoringInfo"
-                      [modal]="true"
-                      [style]="{ width: '50vw' }"
-                      [draggable]="false"
-                      [resizable]="false">
-              <p class="m-0">
-                The Community Impact Verification Score is a combined measure of impact fidelity, community reputation, and
-                facilitation assessment
-                scores.
-              </p>
-            </p-dialog>
-
-          </td>
         </tr>
       </tbody>
     </table>
