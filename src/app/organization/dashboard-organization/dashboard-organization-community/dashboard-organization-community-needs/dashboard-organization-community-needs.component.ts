@@ -88,7 +88,6 @@ export class DashboardOrganizationCommunityNeedsComponent
         })
       )
       .subscribe((response) => {
-        console.log(response);
         if (this.chartDatasets.length === 0) {
           this.addDataToChart('Current year', response);
         } else {

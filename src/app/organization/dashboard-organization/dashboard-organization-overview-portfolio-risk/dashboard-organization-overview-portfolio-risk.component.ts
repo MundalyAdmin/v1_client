@@ -118,7 +118,6 @@ export class DashboardOrganizationOverviewPortfolioRiskComponent
     service: ScaleService | WellbeingScoringService,
     params?: any
   ) {
-    console.log('params', params);
     this.loading = true;
     service
       .getPortfolioRiskScoreByFunderId(
@@ -132,8 +131,6 @@ export class DashboardOrganizationOverviewPortfolioRiskComponent
           response.filter((x) => x.percentage > 0).map((x) => x.label),
           response.filter((x) => x.percentage > 0).map((x) => x.percentage)
         );
-
-        console.log('chartData', this.chartData);
       });
   }
 }

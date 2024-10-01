@@ -105,7 +105,6 @@ export class ImpactPartnerCreateComponent
   override create() {
     if (!this.form.valid) {
       this.helper.notification.toastDanger('Invalid Form');
-      console.log(this.form.value);
       this.loading = false;
       return;
     }
