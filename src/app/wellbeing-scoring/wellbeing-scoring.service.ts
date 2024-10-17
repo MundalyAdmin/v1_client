@@ -25,15 +25,15 @@ export class WellbeingScoringService extends BaseScaleService<WellbeingScoring> 
 
     if (trustScore) {
       if (trustScore <= 55) {
-        return `Poor Wellbeing Status, Action Needed`;
+        return `Poor Quality of Life status, Action Needed`;
       } else if (trustScore > 55 && trustScore <= 67) {
-        return `Poor to Moderate Wellbeing Status, Action Needed`;
+        return `Poor to Moderate Quality of Life status, Action Needed`;
       } else if (trustScore > 68 && trustScore <= 77) {
-        return `Moderate Wellbeing Status, Need More Insights`;
+        return `Moderate Quality of Life status, Need More Insights`;
       } else if (trustScore > 78 && trustScore <= 88) {
-        return `Moderate to High Wellbeing Status, No Action`;
+        return `Moderate to High Quality of Life status, No Action`;
       } else {
-        return `High Wellbeing Status, No Action`;
+        return `High Quality of Life status, No Action`;
       }
     }
 

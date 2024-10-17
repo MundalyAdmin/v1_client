@@ -87,7 +87,7 @@ export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
       this.dashboardOrganizationService.typeInsightId =
         ImpactVerificationTypeInsightsEnum.DUE_DILIGENCE;
       return ImpactVerificationTypeInsightsEnum.DUE_DILIGENCE;
-    } else if (splittedUrl.includes('wellbeing')) {
+    } else if (splittedUrl.includes('quality-of-life')) {
       this.dashboardOrganizationService.typeInsightId =
         ImpactVerificationTypeInsightsEnum.WELLBEING;
       return ImpactVerificationTypeInsightsEnum.WELLBEING;

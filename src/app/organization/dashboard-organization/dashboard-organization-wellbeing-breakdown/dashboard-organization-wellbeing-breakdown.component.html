@@ -1,41 +1,45 @@
 <ul class="flex flex-wrap gap-3 -mb-px">
-    <li class="me-2">
-        <a [queryParamsHandling]="'preserve'" [routerLink]="['physical-wellbeing']"
-           routerLinkActive="text-primary border-primary font-semibold"
-           class="inline-block  md:p-4 p-2 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-sm md:text-base">
-            Physical
-        </a>
-    </li>
+  <li class="me-2">
+    <a [queryParamsHandling]="'preserve'"
+       [routerLink]="['physical']"
+       routerLinkActive="text-primary border-primary font-semibold"
+       class="inline-block  md:p-4 p-2 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-sm md:text-base">
+      Physical
+    </a>
+  </li>
 
 
-    <li class="me-2">
-        <a [queryParamsHandling]="'preserve'" [routerLink]="['psychological-wellbeing']"
-           routerLinkActive="text-primary border-primary font-semibold"
-           class="inline-block  md:p-4 p-2 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-sm md:text-base">
-            Psychological
-        </a>
-    </li>
+  <li class="me-2">
+    <a [queryParamsHandling]="'preserve'"
+       [routerLink]="['psychological']"
+       routerLinkActive="text-primary border-primary font-semibold"
+       class="inline-block  md:p-4 p-2 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-sm md:text-base">
+      Psychological
+    </a>
+  </li>
 
 
-    <li class="me-2">
-        <a [queryParamsHandling]="'preserve'" [routerLink]="['social-wellbeing']"
-           routerLinkActive="text-primary border-primary font-semibold"
-           class="inline-block  md:p-4 p-2 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-sm md:text-base">
-            Social
-        </a>
-    </li>
+  <li class="me-2">
+    <a [queryParamsHandling]="'preserve'"
+       [routerLink]="['social']"
+       routerLinkActive="text-primary border-primary font-semibold"
+       class="inline-block  md:p-4 p-2 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-sm md:text-base">
+      Social
+    </a>
+  </li>
 
 
-    <li class="me-2">
-        <a [queryParamsHandling]="'preserve'" [routerLink]="['environmental-wellbeing']"
-           routerLinkActive="text-primary border-primary font-semibold"
-           class="inline-block  md:p-4 p-2 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-sm md:text-base">
-            Environmental
-        </a>
-    </li>
+  <li class="me-2">
+    <a [queryParamsHandling]="'preserve'"
+       [routerLink]="['environmental']"
+       routerLinkActive="text-primary border-primary font-semibold"
+       class="inline-block  md:p-4 p-2 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-sm md:text-base">
+      Environmental
+    </a>
+  </li>
 
 </ul>
 
 <div class="bg-slate-100">
-    <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </div>

@@ -153,7 +153,7 @@ const routes: Routes = [
             component: DashboardOrganizationDueDiligenceOverviewSecondComponent,
           },
           {
-            path: 'wellbeing',
+            path: 'quality-of-life',
             component: DashboardOrganizationWellbeingOverviewSecondComponent,
           },
           {
@@ -295,7 +295,7 @@ const routes: Routes = [
       },
       // Wellbeing
       {
-        path: 'wellbeing',
+        path: 'quality-of-life',
         component: DashboardOrganizationWellbeingComponent,
         children: [
           {
@@ -325,7 +325,7 @@ const routes: Routes = [
         ],
       },
       {
-        path: 'wellbeing/partners/:id',
+        path: 'quality-of-life/partners/:id',
         component: DashboardOrganizationDetailsComponent,
         children: [
           {
@@ -349,25 +349,25 @@ const routes: Routes = [
             component: DashboardOrganizationWellbeingBreakdownComponent,
             children: [
               {
-                path: 'physical-wellbeing',
+                path: 'physical',
                 component: DashboardOrganizationPhysicalWellbeingComponent,
               },
               {
-                path: 'psychological-wellbeing',
+                path: 'psychological',
                 component: DashboardOrganizationPsychologicalWellbeingComponent,
               },
               {
-                path: 'social-wellbeing',
+                path: 'social',
                 component: DashboardOrganizationSocialWellbeingComponent,
               },
 
               {
-                path: 'environmental-wellbeing',
+                path: 'environmental',
                 component: DashboardOrganizationEnvironmentalWellbeingComponent,
               },
               {
                 path: '**',
-                redirectTo: 'physical-wellbeing',
+                redirectTo: 'physical',
               },
             ],
           },

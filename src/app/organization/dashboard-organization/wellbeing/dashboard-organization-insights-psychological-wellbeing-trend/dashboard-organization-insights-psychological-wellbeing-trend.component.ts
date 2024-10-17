@@ -42,7 +42,7 @@ export class DashboardOrganizationInsightsPsychologicalWellbeingTrendComponent e
       labels,
       datasets: [
         {
-          label: 'Avg. Psychological Health',
+          label: 'Avg. Psychological',
           data: this.chartDataset,
           fill: true,
           borderColor: '#4f46e5',

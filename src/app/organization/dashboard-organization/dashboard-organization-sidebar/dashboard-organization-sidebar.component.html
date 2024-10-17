@@ -56,15 +56,15 @@
       </li>
 
 
-      <!-- Wellbeing -->
+      <!-- Quality of life -->
       <li>
-        <a [routerLink]="['wellbeing']"
+        <a [routerLink]="['quality-of-life']"
            (click)="hideSidebar()"
            class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
            routerLinkActive="bg-secondary-dark">
           <span class=""><i class=" text-secondary-dark text-xl mdi mdi-hand-heart"
                routerLinkActive="text-white"></i></span>
-          <span class="ms-2">Well-being Impact</span>
+          <span class="ms-2">Quality of life</span>
         </a>
       </li>
 
@@ -148,7 +148,7 @@
         </li>
 
 
-        <!-- Well-being -->
+        <!-- Quality of life -->
         <li *ngIf="(selectedImpactPartner || selectedImpactInitiative) && typeSubmenu == ImpactVerificationTypeInsightsEnum.WELLBEING">
           <!-- Sidebar Selected Impact Partner -->
           <ul class="space-y-2 relative font-medium min-h-[250px] border border-primary rounded-xl bg-organization-dashboard-dark p-3 ml-[-10px] mr-[-7px]"
@@ -159,7 +159,7 @@
             </li>
             <!-- Home -->
             <li>
-              <a [routerLink]="['wellbeing', 'partners', selectedImpactPartner?.id,  'overview']"
+              <a [routerLink]="['quality-of-life', 'partners', selectedImpactPartner?.id,  'overview']"
                  [queryParamsHandling]="'preserve'"
                  class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
                  routerLinkActive="bg-secondary-dark">
@@ -171,7 +171,7 @@
 
 
             <li>
-              <a [routerLink]="['wellbeing', 'partners', selectedImpactPartner?.id,  'breakdown']"
+              <a [routerLink]="['quality-of-life', 'partners', selectedImpactPartner?.id,  'breakdown']"
                  [queryParamsHandling]="'preserve'"
                  class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
                  routerLinkActive="bg-secondary-dark">
@@ -184,7 +184,7 @@
 
 
             <li>
-              <a [routerLink]="['wellbeing', 'partners', selectedImpactPartner?.id,  'insights']"
+              <a [routerLink]="['quality-of-life', 'partners', selectedImpactPartner?.id,  'insights']"
                  [queryParamsHandling]="'preserve'"
                  class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
                  routerLinkActive="bg-secondary-dark">
@@ -196,7 +196,7 @@
 
 
             <li>
-              <a [routerLink]="['wellbeing', 'partners', selectedImpactPartner?.id,  'reports']"
+              <a [routerLink]="['quality-of-life', 'partners', selectedImpactPartner?.id,  'reports']"
                  [queryParamsHandling]="'preserve'"
                  class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
                  routerLinkActive="bg-secondary-dark">
