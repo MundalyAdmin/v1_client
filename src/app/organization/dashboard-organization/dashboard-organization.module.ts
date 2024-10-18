@@ -106,6 +106,7 @@ import { DashboardOrganizationWellbeingScoresComponent } from './wellbeing/dashb
 import { DashboardOrganizationWellbeingSummaryComponent } from './wellbeing/dashboard-organization-wellbeing-summary/dashboard-organization-wellbeing-summary.component';
 import { DashboardOrganizationImpactPartnersAlignmentComponent } from './dashboard-organization-impact-partners-alignment/dashboard-organization-impact-partners-alignment.component';
 import { DashboardOrganizationImpactPartnersWellbeingComponent } from './dashboard-organization-impact-partners-wellbeing/dashboard-organization-impact-partners-wellbeing.component';
+import { DashboardOrganizationReportsCreateComponent } from './dashboard-organization-reports-create/dashboard-organization-reports-create.component';
 
 const routes: Routes = [
   {
@@ -687,6 +688,7 @@ const routes: Routes = [
     DashboardOrganizationOverviewFilterComponent,
     DashboardOrganizationImpactPartnersAlignmentComponent,
     DashboardOrganizationImpactPartnersWellbeingComponent,
+    DashboardOrganizationReportsCreateComponent,
   ],
   imports: [
     CommonModule,

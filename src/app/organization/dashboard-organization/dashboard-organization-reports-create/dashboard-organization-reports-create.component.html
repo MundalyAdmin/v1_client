@@ -1,0 +1,89 @@
+<form class=" py-2  text-left"
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()">
+
+  <!-- Name -->
+  <div class="mb-6">
+    <label for="name"
+           class="block mb-2 text-sm font-semibold  dark:text-white">What's the report name</label>
+    <input type="text"
+           id="name"
+           formControlName="name"
+           class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark :border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+           placeholder="Community-Verified Fundability Report- June 2024."
+           required>
+  </div>
+
+  <div class="mb-7">
+    <label for="mundaly_survey_partner"
+           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+      Specify the date range for the report
+      <!-- <app-loading *ngIf="getTypeOrganizationReportsLoading"></app-loading> -->
+    </label>
+
+    <div class="grid grid-cols-2 ga-5 md:gap-10">
+      <p-calendar formControlName="start_date_insight"
+                  [showIcon]="true"
+                  placeholder="Start Date"
+                  view="month"
+                  inputStyleClass="text-xs w-full md:text-base"
+                  dateFormat="dd.mm.yy"
+                  [maxDate]="maxDate"
+                  [appendTo]="'body'"
+                  inputId="icondisplay" />
+
+
+      <p-calendar formControlName="end_date_insight"
+                  [showIcon]="true"
+                  inputStyleClass="text-xs w-full md:text-base"
+                  placeholder="End Date"
+                  view="month"
+                  [minDate]="minDate"
+                  [appendTo]="'body'"
+                  dateFormat="dd.mm.yy"
+                  inputId="icondisplay" />
+    </div>
+
+
+  </div>
+
+
+
+  <div class="mb-7">
+    <label for="mundaly_survey_partner"
+           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+      What is the community you want to report on?
+      <app-loading *ngIf="impactVerificationSetupLoading"></app-loading>
+    </label>
+
+
+    <p-dropdown formControlName="impact_verification_setup"
+                styleClass="bg-gray-50 border  flex border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                [options]="impactVerificationSetups"
+                optionLabel="location"
+                [appendTo]="'body'"
+                placeholder="Select">
+    </p-dropdown>
+
+  </div>
+
+
+
+
+  <!-- Call to actions -->
+  <div class="my-5 flex justify-end">
+
+
+
+    <!-- Create -->
+    <button type="button"
+            type="submit"
+            [disabled]="loading || form.invalid"
+            class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+      Proceed to payment
+      <app-loading *ngIf="loading"></app-loading>
+    </button>
+  </div>
+
+
+</form>

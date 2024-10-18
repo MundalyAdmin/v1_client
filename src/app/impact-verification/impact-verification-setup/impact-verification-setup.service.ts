@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from '../../shared/services';
-import { BehaviorSubject, ReplaySubject, combineLatest, map } from 'rxjs';
+import { BehaviorSubject, ReplaySubject, combineLatest, map, tap } from 'rxjs';
 import { FormGroup } from '@angular/forms';
 import { ApiResponse } from '../../shared/models/ApiResponse';
 import { ImpactVerification } from '../impact-verification.model';
@@ -35,5 +35,28 @@ export class ImpactVerificationSetupService extends BaseService<ImpactVerificati
 
   constructor() {
     super('impact-verifications/setup');
+  }
+
+  getByInquirerId(inquirerId: number) {
+    return this.factory.get(`${this.endPoint}/inquirer/${inquirerId}`).pipe(
+      tap((response: ApiResponse<ImpactVerificationSetup>) => {
+        this.data = response.data as ImpactVerificationSetup[];
+      }),
+      map((response: ApiResponse<ImpactVerificationSetup>) => response.data)
+    );
+  }
+
+  getByVerifiedOrganizationId(verifiedOrganizationId: number) {
+    return this.factory
+      .get(`${this.endPoint}/organizations/${verifiedOrganizationId}`)
+      .pipe(
+        tap((response: ApiResponse<ImpactVerificationSetup>) => {
+          this.data = response.data as ImpactVerificationSetup[];
+        }),
+        map(
+          (response: ApiResponse<ImpactVerificationSetup>) =>
+            response.data as ImpactVerificationSetup[]
+        )
+      );
   }
 }

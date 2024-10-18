@@ -96,7 +96,10 @@ export class ImpactVerificationService extends BaseService<ImpactVerification> {
             currentPage: response.current_page,
           };
         }),
-        map((response: ApiResponse<ImpactVerification>) => response.data)
+        map(
+          (response: ApiResponse<ImpactVerification>) =>
+            response.data as ImpactVerification[]
+        )
       );
   }
 

@@ -16,4 +16,12 @@ export interface OrganizationReport extends BaseModel {
   type_insight: ImpactVerificationTypeInsights;
 
   organization_id: number;
+
+  report_status: ReportStatus;
+}
+
+export enum ReportStatus {
+  DONE = 'done',
+  ON_PROGRESS = 'on-progress',
+  NOT_STARTED = 'not-started',
 }

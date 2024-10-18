@@ -20,6 +20,7 @@ export class DashboardOrganizationReportsComponent
   extends BaseComponent<OrganizationReport>
   implements OnInit
 {
+  showReportCreateModal = false;
   showReportUploadModal = false;
   selectedReportIndex = 0;
   showReportDetailsModal = false;

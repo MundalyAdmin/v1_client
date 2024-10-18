@@ -22,29 +22,40 @@
 
   <!-- Table list of reports -->
   <div class="relative overflow-x-auto   shadow-md sm:rounded-lg">
-    <div class="flex flex-column mt-2 ms-2 sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
+    <div class="flex items-center justify-between">
+      <div class="flex flex-column mt-2 ms-2  sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
 
-      <!-- Search Button -->
-      <label for="table-search"
-             class="sr-only">Search</label>
-      <div class="relative">
-        <div class="absolute inset-y-0 left-0 rtl:inset-r-0 rtl:right-0 ©flex items-center ps-3 pointer-events-none">
-          <svg class="w-5 h-5 text-gray-500 dark:text-gray-400"
-               aria-hidden="true"
-               fill="currentColor"
-               viewBox="0 0 20 20"
-               xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd"
-                  d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                  clip-rule="evenodd"></path>
-          </svg>
+        <!-- Search Button -->
+        <label for="table-search"
+               class="sr-only">Search</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 rtl:inset-r-0 rtl:right-0 flex items-center ps-3 pointer-events-none">
+            <svg class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                 aria-hidden="true"
+                 fill="currentColor"
+                 viewBox="0 0 20 20"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                    clip-rule="evenodd"></path>
+            </svg>
+          </div>
+          <input type="text"
+                 id="table-search"
+                 class="block p-2 ps-10 text-xs md:text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                 placeholder="Search for items">
         </div>
-        <input type="text"
-               id="table-search"
-               class="block p-2 ps-10 text-xs md:text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-               placeholder="Search for items">
+
+
       </div>
 
+      <!-- New "Request Report" button -->
+      <div class="me-5">
+        <button class="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded"
+                (click)="showReportCreateModal = true">
+          Request Report
+        </button>
+      </div>
 
 
     </div>
@@ -87,7 +98,9 @@
             {{ getMinifiedTypeLabel(report.type_insight.name) }}
           </td>
           <td class="md:px-6 px-3 md:py-4 py-2">
-            <i class="mdi mdi-circle text-emerald-600"></i> Done
+            <span *ngIf="report.report_status === 'done'"><i class="mdi mdi-circle text-emerald-600"></i> Done</span>
+            <span *ngIf="report.report_status === 'on-progress'"><i class="mdi mdi-circle text-blue-600"></i> On Progress</span>
+            <span *ngIf="report.report_status === 'not-started'"><i class="mdi mdi-circle text-gray-600"></i> Not Started</span>
           </td>
 
           <td class="md:px-6 px-3 md:py-4 py-2 text-sm">
@@ -98,6 +111,7 @@
             <a [href]="report.report_url"
                [download]="report.name"
                target="_blank"
+               *ngIf="report.report_status === 'done'"
                class="font-medium ms-3 text-slate-600 dark:text-blue-500 hover:underline"><i class="mdi mdi-download"></i>
               <span class="hidden md:inline">Download</span>
             </a>
@@ -135,3 +149,12 @@
 
 <app-dashboard-organization-unavailable-insights
                                                  *ngIf="organizationService.singleData?.verification_status_from_current_organization?.id !== StatusImpactVerificationEnum.LAUNCHED"></app-dashboard-organization-unavailable-insights>
+
+<p-dialog header="Create Report"
+          [modal]="true"
+          [(visible)]="showReportCreateModal"
+          [style]="{ width: '50rem' }"
+          [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+          [maximizable]="true">
+  <app-dashboard-organization-reports-create></app-dashboard-organization-reports-create>
+</p-dialog>
