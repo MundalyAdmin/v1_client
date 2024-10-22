@@ -23,7 +23,7 @@
   <div class="h-full px-3 py-4 overflow-y-auto md:text-sm text-xs bg-organization-dashboard pt-10 relative dark:bg-gray-800">
     <!-- Logo -->
     <a [routerLink]="['/']"
-       class="flex items-center ps-2.5 mb-5">
+       class="flex  items-center ps-2.5 mb-5">
       <img src="assets/images/munlogo-white.png/"
            class="h-6 me-3 sm:h-7"
            alt="Mundaly logo" />
@@ -228,7 +228,7 @@
                alt=""
                class="h-12 w-12 rounded-full border-2 border-slate-50">
 
-          <img class="w-12 h-12 object-cover border rounded-full"
+          <img class="w-12 h-12 object-cover bg-white border rounded-full"
                [src]="organization?.logo"
                *ngIf="organization?.logo"
                [alt]="organization?.name">

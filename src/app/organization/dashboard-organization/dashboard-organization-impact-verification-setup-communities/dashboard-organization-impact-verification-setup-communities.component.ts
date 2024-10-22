@@ -81,8 +81,11 @@ export class DashboardOrganizationImpactVerificationSetupCommunitiesComponent ex
             selectedTypeInsight.id !== typeInsight.id
         )
       : [...currentTypeInsights, typeInsight];
+
     this.form.get('typeInsights')?.setValue(newTypeInsights);
     this.form.get('typeInsights')?.updateValueAndValidity();
+
+    console.log(this.form.get('typeInsights')?.value);
   }
 
   public handleAddressChange(address: any) {

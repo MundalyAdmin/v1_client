@@ -3,4 +3,5 @@ export enum TypeOrganizationEnum {
   IMPACT_IMPLEMENTER = 2,
   CORPORATION = 3,
   SUPPLIER = 4,
+  RESEARCHER = 5,
 }

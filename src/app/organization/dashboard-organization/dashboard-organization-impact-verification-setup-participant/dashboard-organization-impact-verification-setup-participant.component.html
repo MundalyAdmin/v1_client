@@ -1,222 +1,242 @@
 <div class="flex flex-col items-center pt-10">
-    <h2 class="md:text-2xl text-lg font-bold md:py-5 py-2">
-        Screen Participants
-    </h2>
-    <form [formGroup]="form" class="md:min-w-[600px] md:w-[70%] w-full px-2">
-        <div class="grid grid-cols-2 md:grid-cols-3 md:gap-5 gap-2" *ngIf="dependancies['communityReachLevel'].length">
+  <h2 class="md:text-2xl text-lg font-bold md:py-5 py-2">
+    Screen Participants
+  </h2>
+  <form [formGroup]="form"
+        class="md:min-w-[600px] md:w-[70%] w-full px-2">
+    <div class="grid grid-cols-2 md:grid-cols-3 md:gap-5 gap-2"
+         *ngIf="dependancies['communityReachLevel'].length">
 
-            <div class=" border border-gray p-3 text-sm md:text-base cursor-pointer bg-white"
-                 *ngFor="let level of dependancies['communityReachLevel']"
-                 (click)="selectLevel(level)">
-                <div>
-                    <input type="radio" class="ring-0" name="level" [checked]="form.value['communityReachLevel']?.id === level.id"> <label
-                           class="inline-block md:px-3 px-1 font-bold">{{ level.name }}</label>
-                    <div>
-                        <p class="pl-6 py-1 md:text-sm text-xs text-gray">
-                            {{ level.description }}
-                        </p>
-                    </div>
-                </div>
+      <div class=" border border-gray p-3 text-sm md:text-base cursor-pointer bg-white"
+           *ngFor="let level of dependancies['communityReachLevel']"
+           (click)="selectLevel(level)">
+        <div>
+          <input type="radio"
+                 class="ring-0"
+                 name="level"
+                 [checked]="form.value['communityReachLevel']?.id === level.id"> <label class="inline-block md:px-3 px-1 font-bold">{{ level.name
+            }}</label>
+          <div>
+            <p class="pl-6 py-1 md:text-sm text-xs text-gray">
+              {{ level.description }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <div class="py-8">
+      <label class="font-bold md:text-lg text-sm">
+        Number Of Participants
+      </label>
+      <div class="py-4 px-3">
+        <div class="relative">
+          <div class=" flex justify-between w-full">
+            <div class="absolute text-[10px] md:text-base flex items-start flex-col cursor-pointer"
+                 [ngStyle]="{ 'left': 'calc(' + sliderPercent(i) + '%)' }"
+                 *ngFor="let opt of reachOptions;index as i"
+                 (click)="setReachOption(opt)">
+              <div class="md:w-[4px] w-[2px] h-5 "
+                   [ngStyle]="{ 'background-color': i <= (sliderValue / 11) ? '#3B82F6' : '#DEE2F1' }">
+              </div>
+              <p class="relative right-2 md:right-4">{{opt}}</p>
             </div>
 
+          </div>
+
+          <p-slider formControlName="numberOfParticipantsPlaceholder"
+                    (onChange)="reachChanged($event)"
+                    class="w-full"
+                    [step]="11"
+                    styleClass="p-button-secondary" />
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Impact stories and incentive -->
+    <div class="pt-8 flex flex-col gap-10">
+      <!-- Incentive -->
+      <div class="flex md:gap-2 gap-2 items-center"
+           *ngIf="currentLoggedInOrganization?.type_organization_id ===TypeOrganizationEnum.IMPACT_IMPLEMENTER">
+        <p-inputSwitch formControlName="incentiveEnabled" />
+        <label for="impact"
+               class="font-semibold text-sm md:text-base  cursor-pointer">Enable incentives</label>
+      </div>
+
+      <!-- Impact stories -->
+      <div class="flex md:gap-2 gap-2 items-center">
+        <p-inputSwitch formControlName="impactStoriesEnabled" />
+        <label for="impact"
+               class="font-semibold text-sm md:text-base  cursor-pointer">Enable impact stories</label>
+      </div>
+
+
+    </div>
+
+    <div class="grid grid-cols-1 my-10 md:p-10 p-5 bg-white justify-around gap-5"
+         *ngIf="form">
+
+      <!-- Age Range -->
+      <div class="mb-7">
+        <h3 class="font-semibold md:text-xl text-base md:mb-4 mb-2 ">Age range</h3>
+
+        <div class="grid grid-cols-3 md:grid-cols-4 justify-items-end align-center gap-y-3 ">
+          <!-- All -->
+          <div class="flex items-center w-full mb-0">
+            <input (change)="onDemographicChange($event, 'ageRange')"
+                   class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2"
+                   type="checkbox"
+                   [checked]="form.value['ageRange']?.length === 0 || form.value['ageRange']?.length === dependancies['ageRange'].length"
+                   [value]="-1"
+                   [id]="'AgeRangeAll'">
+            <label class="form-check-label text-slate-400 md:text-base text-sm"
+                   [for]="'AgeRangeAll'">All</label>
+          </div>
+
+          <!-- Other options -->
+          <div class="flex items-center w-full mb-0"
+               *ngFor="let ageRange of dependancies['ageRange']">
+
+            <input class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2"
+                   type="checkbox"
+                   (click)="onDemographicChange($event, 'ageRange')"
+                   [checked]="isSelected(ageRange.id, 'ageRange')"
+                   [value]="ageRange.id"
+                   [id]="'ageRange-' + ageRange.id">
+            <label class="form-check-label text-slate-400 md:text-base text-sm"
+                   [for]="'ageRange-' + ageRange.id">{{
+              ageRange.name}}</label>
+          </div>
 
 
         </div>
+      </div>
 
-        <div class="py-8">
-            <label class="font-bold md:text-lg text-sm">
-                Number Of Participants
-            </label>
-            <div class="py-4 px-3">
-                <div class="relative">
-                    <div class=" flex justify-between w-full">
-                        <div class="absolute text-[10px] md:text-base flex items-start flex-col cursor-pointer"
-                             [ngStyle]="{ 'left': 'calc(' + sliderPercent(i) + '%)' }"
-                             *ngFor="let opt of reachOptions;index as i"
-                             (click)="setReachOption(opt)">
-                            <div class="md:w-[4px] w-[2px] h-5 "
-                                 [ngStyle]="{ 'background-color': i <= (sliderValue / 11) ? '#3B82F6' : '#DEE2F1' }">
-                            </div>
-                            <p class="relative right-2 md:right-4">{{opt}}</p>
-                        </div>
+      <!-- Ethnicity -->
+      <div class="mb-7">
+        <h3 class="font-semibold md:text-xl text-base md:mb-4 mb-2 ">Ethnicity</h3>
 
-                    </div>
+        <div class="grid grid-cols-3 md:grid-cols-4 align-center gap-y-3 ">
+          <!-- All -->
+          <div class="flex items-center w-full mb-0">
+            <input (change)="onDemographicChange($event, 'ethnicity')"
+                   class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2"
+                   type="checkbox"
+                   [checked]="form.value['ethnicity']?.length === 0 || form.value['ethnicity']?.length === dependancies['ethnicity'].length"
+                   [value]="-1"
+                   [id]="'ethnicityOptionsAll'">
+            <label class="form-check-label text-slate-400 md:text-base text-sm"
+                   [for]="'ethnicityOptionsAll'">All</label>
+          </div>
 
-                    <p-slider formControlName="numberOfParticipantsPlaceholder" (onChange)="reachChanged($event)" class="w-full"
-                              [step]="11"
-                              styleClass="p-button-secondary" />
-                </div>
-            </div>
+          <!-- Other options -->
+          <div class="flex items-center w-full mb-0"
+               *ngFor="let ethnicity of dependancies['ethnicity']">
+
+            <input class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2"
+                   type="checkbox"
+                   (click)="onDemographicChange($event, 'ethnicity')"
+                   [checked]="isSelected(ethnicity.id, 'ethnicity')"
+                   [value]="ethnicity.id"
+                   [id]="'ethnicity-' + ethnicity.id">
+            <label class="form-check-label text-slate-400 md:text-base text-sm"
+                   [for]="'ethnicity-' + ethnicity.id">{{
+              ethnicity.name}}</label>
+          </div>
+
+
         </div>
+      </div>
 
-        <div class="pt-8 flex md:gap-5 gap-2 items-center">
-            <p-inputSwitch formControlName="impactStoriesEnabled" />
-            <label for="impact" class="font-semibold text-sm md:text-base  cursor-pointer">Enable impact stories</label>
+
+      <!-- Sex -->
+      <div class="mb-7">
+        <h3 class="font-semibold md:text-xl text-base md:mb-4 mb-2 ">Sex</h3>
+
+        <div class="grid grid-cols-3 md:grid-cols-4 align-center gap-y-3 ">
+          <!-- All -->
+          <div class="flex items-center w-full mb-0">
+            <input (change)="onDemographicChange($event, 'sex')"
+                   class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2"
+                   type="checkbox"
+                   [checked]="form.value['sex']?.length === 0 || form.value['sex']?.length === dependancies['sex'].length"
+                   [value]="-1"
+                   [id]="'sexOptionsAll'">
+            <label class="form-check-label text-slate-400 md:text-base text-sm"
+                   [for]="'sexOptionsAll'">All</label>
+          </div>
+
+          <!-- Other options -->
+          <div class="flex items-center w-full mb-0"
+               *ngFor="let sex of dependancies['sex']">
+
+            <input class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2"
+                   type="checkbox"
+                   (click)="onDemographicChange($event, 'sex')"
+                   [checked]="isSelected(sex.id, 'sex')"
+                   [value]="sex.id"
+                   [id]="'sex-' +sex.id">
+            <label class="form-check-label text-slate-400 md:text-base text-sm"
+                   [for]="'sex-' +sex.id">{{ sex.name}}</label>
+          </div>
+
+
         </div>
-
-        <div class="grid grid-cols-1 my-10 md:p-10 p-5 bg-white justify-around gap-5" *ngIf="form">
-
-            <!-- Age Range -->
-            <div class="mb-7">
-                <h3 class="font-semibold md:text-xl text-base md:mb-4 mb-2 ">Age range</h3>
-
-                <div class="grid grid-cols-3 md:grid-cols-4 justify-items-end align-center gap-y-3 ">
-                    <!-- All -->
-                    <div class="flex items-center w-full mb-0">
-                        <input
-                               (change)="onDemographicChange($event, 'ageRange')"
-                               class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2"
-                               type="checkbox"
-                               [checked]="form.value['ageRange']?.length === 0 || form.value['ageRange']?.length === dependancies['ageRange'].length"
-                               [value]="-1"
-                               [id]="'AgeRangeAll'">
-                        <label class="form-check-label text-slate-400 md:text-base text-sm" [for]="'AgeRangeAll'">All</label>
-                    </div>
-
-                    <!-- Other options -->
-                    <div
-                         class="flex items-center w-full mb-0"
-                         *ngFor="let ageRange of dependancies['ageRange']">
-
-                        <input
-                               class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2"
-                               type="checkbox"
-                               (click)="onDemographicChange($event, 'ageRange')"
-                               [checked]="isSelected(ageRange.id, 'ageRange')"
-                               [value]="ageRange.id"
-                               [id]="'ageRange-' + ageRange.id">
-                        <label class="form-check-label text-slate-400 md:text-base text-sm" [for]="'ageRange-' + ageRange.id">{{
-                            ageRange.name}}</label>
-                    </div>
+      </div>
 
 
-                </div>
-            </div>
+      <!-- Relationship status -->
+      <div class="mb-7">
+        <h3 class="font-semibold md:text-xl text-base md:mb-4 mb-2 "> Relationship Status
+        </h3>
 
-            <!-- Ethnicity -->
-            <div class="mb-7">
-                <h3 class="font-semibold md:text-xl text-base md:mb-4 mb-2 ">Ethnicity</h3>
+        <div class="grid grid-cols-3 md:grid-cols-4 align-center gap-y-3 ">
+          <!-- All -->
+          <div class="flex items-center w-full mb-0">
+            <input (change)="onDemographicChange($event, 'relationshipStatus')"
+                   class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2"
+                   type="checkbox"
+                   [checked]="form.value['relationshipStatus']?.length === 0 || form.value['relationshipStatus']?.length === dependancies['relationshipStatus'].length"
+                   [value]="-1"
+                   [id]="'relationshipStatusOptionsAll'">
+            <label class="form-check-label text-slate-400 md:text-base text-sm"
+                   [for]="'relationshipStatusOptionsAll'">All</label>
+          </div>
 
-                <div class="grid grid-cols-3 md:grid-cols-4 align-center gap-y-3 ">
-                    <!-- All -->
-                    <div class="flex items-center w-full mb-0">
-                        <input
-                               (change)="onDemographicChange($event, 'ethnicity')"
-                               class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2"
-                               type="checkbox"
-                               [checked]="form.value['ethnicity']?.length === 0 || form.value['ethnicity']?.length === dependancies['ethnicity'].length"
-                               [value]="-1"
-                               [id]="'ethnicityOptionsAll'">
-                        <label class="form-check-label text-slate-400 md:text-base text-sm" [for]="'ethnicityOptionsAll'">All</label>
-                    </div>
+          <!-- Other options -->
+          <div class="flex items-center w-full mb-0"
+               *ngFor="let relationshipStatus of dependancies['relationshipStatus']">
 
-                    <!-- Other options -->
-                    <div
-                         class="flex items-center w-full mb-0"
-                         *ngFor="let ethnicity of dependancies['ethnicity']">
-
-                        <input
-                               class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2"
-                               type="checkbox"
-                               (click)="onDemographicChange($event, 'ethnicity')"
-                               [checked]="isSelected(ethnicity.id, 'ethnicity')"
-                               [value]="ethnicity.id"
-                               [id]="'ethnicity-' + ethnicity.id">
-                        <label class="form-check-label text-slate-400 md:text-base text-sm" [for]="'ethnicity-' + ethnicity.id">{{
-                            ethnicity.name}}</label>
-                    </div>
+            <input class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2"
+                   type="checkbox"
+                   (click)="onDemographicChange($event, 'relationshipStatus')"
+                   [checked]="isSelected(relationshipStatus.id, 'relationshipStatus')"
+                   [value]="relationshipStatus.id"
+                   [id]="'relationshipStatus-' + relationshipStatus.id">
+            <label class="form-check-label text-slate-400 md:text-base text-sm"
+                   [for]="'relationshipStatus-' + relationshipStatus.id">{{
+              relationshipStatus.name}}</label>
+          </div>
 
 
-                </div>
-            </div>
+        </div>
+      </div>
 
 
-            <!-- Sex -->
-            <div class="mb-7">
-                <h3 class="font-semibold md:text-xl text-base md:mb-4 mb-2 ">Sex</h3>
-
-                <div class="grid grid-cols-3 md:grid-cols-4 align-center gap-y-3 ">
-                    <!-- All -->
-                    <div class="flex items-center w-full mb-0">
-                        <input
-                               (change)="onDemographicChange($event, 'sex')"
-                               class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2"
-                               type="checkbox"
-                               [checked]="form.value['sex']?.length === 0 || form.value['sex']?.length === dependancies['sex'].length"
-                               [value]="-1"
-                               [id]="'sexOptionsAll'">
-                        <label class="form-check-label text-slate-400 md:text-base text-sm" [for]="'sexOptionsAll'">All</label>
-                    </div>
-
-                    <!-- Other options -->
-                    <div
-                         class="flex items-center w-full mb-0"
-                         *ngFor="let sex of dependancies['sex']">
-
-                        <input
-                               class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2"
-                               type="checkbox"
-                               (click)="onDemographicChange($event, 'sex')"
-                               [checked]="isSelected(sex.id, 'sex')"
-                               [value]="sex.id"
-                               [id]="'sex-' +sex.id">
-                        <label class="form-check-label text-slate-400 md:text-base text-sm" [for]="'sex-' +sex.id">{{ sex.name}}</label>
-                    </div>
-
-
-                </div>
-            </div>
-
-
-            <!-- Relationship status -->
-            <div class="mb-7">
-                <h3 class="font-semibold md:text-xl text-base md:mb-4 mb-2 "> Relationship Status
-                </h3>
-
-                <div class="grid grid-cols-3 md:grid-cols-4 align-center gap-y-3 ">
-                    <!-- All -->
-                    <div class="flex items-center w-full mb-0">
-                        <input
-                               (change)="onDemographicChange($event, 'relationshipStatus')"
-                               class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2"
-                               type="checkbox"
-                               [checked]="form.value['relationshipStatus']?.length === 0 || form.value['relationshipStatus']?.length === dependancies['relationshipStatus'].length"
-                               [value]="-1"
-                               [id]="'relationshipStatusOptionsAll'">
-                        <label class="form-check-label text-slate-400 md:text-base text-sm" [for]="'relationshipStatusOptionsAll'">All</label>
-                    </div>
-
-                    <!-- Other options -->
-                    <div
-                         class="flex items-center w-full mb-0"
-                         *ngFor="let relationshipStatus of dependancies['relationshipStatus']">
-
-                        <input
-                               class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-indigo-600 focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 me-2"
-                               type="checkbox"
-                               (click)="onDemographicChange($event, 'relationshipStatus')"
-                               [checked]="isSelected(relationshipStatus.id, 'relationshipStatus')"
-                               [value]="relationshipStatus.id"
-                               [id]="'relationshipStatus-' + relationshipStatus.id">
-                        <label class="form-check-label text-slate-400 md:text-base text-sm" [for]="'relationshipStatus-' + relationshipStatus.id">{{
-                            relationshipStatus.name}}</label>
-                    </div>
-
-
-                </div>
-            </div>
-
-
-            <!-- Sumbit button -->
-            <!-- <div class="mb-7 text-center">
+      <!-- Sumbit button -->
+      <!-- <div class="mb-7 text-center">
                 <button type="submit"
                         class="text-white bg-primary hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-primary focus:outline-none dark:focus:ring-blue-800">Apply
                 </button>
             </div> -->
 
-        </div>
+    </div>
 
-        <!-- <div class="my-10 bg-white p-5 px-8">
+    <!-- <div class="my-10 bg-white p-5 px-8">
             <p class="font-bold text-lg text-center">
                 Demography
             </p>
@@ -283,5 +303,5 @@
                 </div>
             </div>
         </div> -->
-    </form>
+  </form>
 </div>

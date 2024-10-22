@@ -3,4 +3,5 @@ export const environment = {
   apiUrl: 'http://localhost:3000/api/v1',
   googlePlaceAPI: 'AIzaSyAUybOXb6_DDX08hdB-uVit5JlTUgdQwPY',
   production: false,
+  incentivePrice: 10,
 };

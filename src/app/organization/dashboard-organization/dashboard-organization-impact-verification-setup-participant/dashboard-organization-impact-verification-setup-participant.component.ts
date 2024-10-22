@@ -1,3 +1,4 @@
+import { TypeOrganizationEnum } from './../../type-organization/type-organization.enum';
 import { Component } from '@angular/core';
 import { ImpactVerificationSetupService } from '../../../impact-verification/impact-verification-setup/impact-verification-setup.service';
 import { SexService } from '../../../sex/sex.service';
@@ -49,6 +50,10 @@ export class DashboardOrganizationImpactVerificationSetupParticipantComponent ex
     return (x * 250).toString();
   });
 
+  get TypeOrganizationEnum() {
+    return TypeOrganizationEnum;
+  }
+
   constructor(
     public impactVerificationSetupService: ImpactVerificationSetupService,
     public sexService: SexService,
@@ -63,6 +68,11 @@ export class DashboardOrganizationImpactVerificationSetupParticipantComponent ex
 
   override ngOnInit(): void {
     super.ngOnInit();
+
+    console.log(
+      this.currentLoggedInOrganization?.type_organization_id !==
+        TypeOrganizationEnum.IMPACT_IMPLEMENTER
+    );
 
     this.subscriptions['sex'] = this.sexService.data$.subscribe((data) => {
       this.dependancies['sex'] = data;

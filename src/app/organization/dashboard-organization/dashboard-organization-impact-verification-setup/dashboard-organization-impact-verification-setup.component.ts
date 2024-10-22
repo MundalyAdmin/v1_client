@@ -25,6 +25,8 @@ import { Ethnicity } from '../../../ethnicity/ethnicity.model';
 import { ImpactVerification } from '../../../impact-verification/impact-verification.model';
 import { ImpactVerificationService } from '../../../impact-verification/impact-verification.service';
 import { StatusImpactVerificationEnum } from '../../../impact-verification/enums/status-impact-verification.enum';
+import { environment } from 'src/environments/environment';
+import { TypeOrganizationEnum } from '../../type-organization/type-organization.enum';
 
 const IMPACT_STORIES_COST_PER_100_PARTICIPANTS = 15;
 
@@ -124,26 +126,10 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
     );
   }
 
-  getIndividualInsightPrice(
-    reachLevel: CommunityReachLevel,
-    numberOfParticipants: number,
-    typeInsight: ImpactVerificationTypeInsightsEnum
-  ): number {
-    const matchingPricingTier = this.dependancies['pricingTier'].find(
-      (tier: ImpactVerificationPricingTier) =>
-        tier.community_reach_level_id === reachLevel.id &&
-        tier.impact_verification_type_insight_id === typeInsight &&
-        tier.min_number_of_participants <= numberOfParticipants &&
-        tier.max_number_of_participants >= numberOfParticipants
-    );
-
-    return matchingPricingTier ? +matchingPricingTier.price : 0;
-  }
-
   initForm() {
     this.form = this.fb.group({
       setupForm: this.fb.group({
-        location: [null, Validators.required],
+        location: [null],
         location_placeholder: [null, Validators.required],
         typeInsights: [[], Validators.required],
         impactVerificationId: [null, Validators.required],
@@ -154,6 +140,11 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
         communityReachLevel: [null, Validators.required],
         numberOfParticipants: [100, Validators.required],
         impactStoriesEnabled: [false, Validators.required],
+        incentiveEnabled: [
+          this.currentLoggedInOrganization?.type_organization_id !==
+            TypeOrganizationEnum.IMPACT_IMPLEMENTER,
+          Validators.required,
+        ],
         numberOfParticipantsPlaceholder: [0, Validators.required],
         ageRange: [[]],
         sex: [[]],
@@ -162,54 +153,20 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
       }),
       buildSurveyForm: this.fb.group({}),
       launchForm: this.fb.group({
-        paymentMethod: [null, Validators.required],
+        paymentMethod: [null],
       }),
     });
 
     this.impactVerificationSetupService.form = this.form;
+    this.updatePaymentMethodValidation();
 
     this.form.valueChanges.subscribe((value) => {
-      // Get the total price of the verification
-      const { totalPrice, discountedPrice } = this.getTotalPrice(
-        value['setupForm']['typeInsights'],
-        value['participantsForm']['communityReachLevel'],
-        +value['participantsForm']['numberOfParticipants'],
-        value['participantsForm']['impactStoriesEnabled']
-      );
+      this.updatePaymentMethodValidation();
 
-      this.totalPrice = totalPrice;
-      this.discountedPrice = discountedPrice;
-      this.shownPrice = totalPrice - discountedPrice;
-
-      this.impactVerificationSetupService.totalPrice$.next(totalPrice);
-      this.impactVerificationSetupService.discountedPrice$.next(
-        discountedPrice
-      );
+      this.updateTotalPrice();
 
       // Enforcing that either well-being or alignment is selected
-      if (
-        (!value['setupForm']['typeInsights']?.length ||
-          (!value['setupForm']['typeInsights']
-            .map((item: ImpactVerificationTypeInsights) => item?.id)
-            .includes(ImpactVerificationTypeInsightsEnum.DUE_DILIGENCE) &&
-            !value['setupForm']['typeInsights']
-              .map((item: ImpactVerificationTypeInsights) => item?.id)
-              .includes(ImpactVerificationTypeInsightsEnum.WELLBEING))) &&
-        this.dependancies['typeInsights'].length
-      ) {
-        this.form.controls['setupForm'].patchValue(
-          {
-            typeInsights: [
-              ...value['setupForm']['typeInsights'],
-              this.dependancies['typeInsights'][0],
-            ],
-          },
-          {
-            emitEvent: false,
-            onlySelf: true,
-          }
-        );
-      }
+      this.enforceTypeInsightsSelection();
 
       // Make sure to updated the validity of every steps
       this.steps.forEach((step) => {
@@ -218,34 +175,73 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
     });
   }
 
-  getTotalPrice(
-    typeInsights: ImpactVerificationTypeInsights[],
-    reachLevel: CommunityReachLevel,
-    numberOfParticipants: number,
-    isImpactStoriesEnabled = false
-  ) {
+  private enforceTypeInsightsSelection() {
+    const typeInsights = this.form.value['setupForm']['typeInsights'];
+    const typeInsightsIds = typeInsights.map(
+      (item: ImpactVerificationTypeInsights) => item?.id
+    );
+    if (
+      (!typeInsightsIds?.length ||
+        (!typeInsightsIds.includes(
+          ImpactVerificationTypeInsightsEnum.DUE_DILIGENCE
+        ) &&
+          !typeInsightsIds.includes(
+            ImpactVerificationTypeInsightsEnum.WELLBEING
+          ))) &&
+      this.dependancies['typeInsights'].length
+    ) {
+      this.form.controls['setupForm'].patchValue(
+        {
+          typeInsights: [...typeInsights, this.dependancies['typeInsights'][0]],
+        },
+        {
+          emitEvent: false,
+          onlySelf: true,
+        }
+      );
+    }
+  }
+
+  private updatePaymentMethodValidation() {
+    const isIncentiveEnabled =
+      this.form.value['participantsForm']['incentiveEnabled'];
+    const paymentMethodControl = this.form
+      .get('launchForm')
+      ?.get('paymentMethod');
+
+    if (isIncentiveEnabled) {
+      paymentMethodControl?.setValidators(Validators.required);
+    } else {
+      paymentMethodControl?.clearValidators();
+    }
+
+    paymentMethodControl?.updateValueAndValidity({
+      emitEvent: false,
+      onlySelf: true,
+    });
+  }
+
+  private updateTotalPrice() {
+    // Get the total price of the verification
+    const { totalPrice, discountedPrice } = this.getTotalPrice(
+      +this.form.value['participantsForm']['numberOfParticipants'],
+      this.form.value['participantsForm']['incentiveEnabled']
+    );
+
+    this.totalPrice = totalPrice;
+    this.discountedPrice = discountedPrice;
+    this.shownPrice = totalPrice - discountedPrice;
+
+    this.impactVerificationSetupService.totalPrice$.next(totalPrice);
+    this.impactVerificationSetupService.discountedPrice$.next(discountedPrice);
+  }
+
+  getTotalPrice(numberOfParticipants: number, isIncentiveEnabled = false) {
     let totalPrice = 0;
     let discountedPrice = 0;
 
-    typeInsights.forEach(
-      (insight: ImpactVerificationTypeInsights, index: number) => {
-        const individualPrice = this.getIndividualInsightPrice(
-          reachLevel,
-          numberOfParticipants,
-          insight.id!
-        );
-
-        // TODO: Uncomment this when we have a pricing tier for the alignment
-        // if (index > 0) {
-        discountedPrice += individualPrice * 1;
-        // }
-
-        totalPrice += individualPrice;
-      }
-    );
-
-    if (isImpactStoriesEnabled && totalPrice > 0) {
-      totalPrice += this.getImpactStoriesCost(numberOfParticipants);
+    if (isIncentiveEnabled) {
+      totalPrice = numberOfParticipants * environment.incentivePrice;
     }
 
     return { totalPrice, discountedPrice };
@@ -449,15 +445,24 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
         'ethnicity'
       ]?.map((item: Ethnicity) => item.id),
       payment_method: this.form.controls['launchForm'].value['paymentMethod'],
+
+      incentive_enabled:
+        this.form.controls['participantsForm'].value['incentiveEnabled'],
     };
 
     this.impactVerificationSetupService.store(data).subscribe({
-      next: (data) => {
-        window.location.href = data.data;
+      next: (response) => {
+        console.log(response);
+        const { checkoutSession, ...data } = response.data;
+
+        if (checkoutSession) {
+          window.location.href = checkoutSession.url;
+          return;
+        }
+
         this.loading = false;
         this.helper.notification.alertSuccess();
-        // this.initForm();
-        // this.router.navigate(['dashboard']);
+        this.router.navigate(['dashboard']);
       },
       error: () => {
         this.loading = false;

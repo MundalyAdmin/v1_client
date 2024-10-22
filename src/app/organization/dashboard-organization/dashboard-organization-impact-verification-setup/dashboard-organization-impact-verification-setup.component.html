@@ -1,28 +1,31 @@
 <app-page-loading *ngIf="pageLoading"></app-page-loading>
 
-<div class="bg-[#F4F5F6] flex relative flex-col" *ngIf="!pageLoading">
-    <div class="flex justify-center gap-7 p-5 bg-white">
-        <!-- Setup -->
-        <button class="flex gap-3 items-center cursor-pointer" [routerLink]="['./setup']">
-            <div
-                 class="flex justify-center items-center text-xs h-[20px] w-[20px] text-center  rounded-full border border-black"
-                 routerLinkActive="bg-black text-white">1</div>
-            <a class="md:text-base text-sm" routerLinkActive="font-bold">Setup</a>
-            <span class="block text-slate-600 text-lg"><i class="mdi mdi-chevron-right"></i></span>
-        </button>
+<div class="bg-[#F4F5F6] flex relative flex-col"
+     *ngIf="!pageLoading">
+  <div class="flex justify-center gap-7 p-5 bg-white">
+    <!-- Setup -->
+    <button class="flex gap-3 items-center cursor-pointer"
+            [routerLink]="['./setup']">
+      <div class="flex justify-center items-center text-xs h-[20px] w-[20px] text-center  rounded-full border border-black"
+           routerLinkActive="bg-black text-white">1</div>
+      <a class="md:text-base text-sm"
+         routerLinkActive="font-bold">Setup</a>
+      <span class="block text-slate-600 text-lg"><i class="mdi mdi-chevron-right"></i></span>
+    </button>
 
-        <!-- Participant -->
-        <button class="flex gap-3 items-center disabled:text-slate-500 disabled:cursor-not-allowed" [routerLink]="['./participants']"
-                [disabled]="!steps[0].completed">
-            <div
-                 class="flex justify-center  items-center text-xs h-[20px] w-[20px] text-center  rounded-full border border-black"
-                 routerLinkActive="bg-black text-white">2</div>
-            <a class="md:text-base text-sm" routerLinkActive="font-bold">Screen Participants</a>
-            <span class="block text-slate-600 text-lg"><i class="mdi mdi-chevron-right"></i></span>
-        </button>
+    <!-- Participant -->
+    <button class="flex gap-3 items-center disabled:text-slate-500 disabled:cursor-not-allowed"
+            [routerLink]="['./participants']"
+            [disabled]="!steps[0].completed">
+      <div class="flex justify-center  items-center text-xs h-[20px] w-[20px] text-center  rounded-full border border-black"
+           routerLinkActive="bg-black text-white">2</div>
+      <a class="md:text-base text-sm"
+         routerLinkActive="font-bold">Screen Participants</a>
+      <span class="block text-slate-600 text-lg"><i class="mdi mdi-chevron-right"></i></span>
+    </button>
 
-        <!-- Survey -->
-        <!-- <button class="flex gap-3 items-center disabled:text-slate-500 disabled:cursor-not-allowed " [routerLink]="['./survey']"
+    <!-- Survey -->
+    <!-- <button class="flex gap-3 items-center disabled:text-slate-500 disabled:cursor-not-allowed " [routerLink]="['./survey']"
                 [disabled]="!steps[1].completed"
                 *ngIf="isCustomInsightSelected()">
             <div
@@ -32,63 +35,66 @@
             <span class="block text-slate-600 text-lg"><i class="mdi mdi-chevron-right"></i></span>
         </button> -->
 
-        <!-- Launch -->
-        <button class="flex gap-3 items-center disabled:text-slate-500 disabled:cursor-not-allowed" [routerLink]="['./launch']">
-            <div
-                 class="flex justify-center items-center text-xs h-[20px] w-[20px] text-center  rounded-full border border-black"
-                 routerLinkActive="bg-black text-white">
-                <span>3</span>
-            </div>
-            <a class="md:text-base text-sm" routerLinkActive="font-bold">Launch</a>
+    <!-- Launch -->
+    <button class="flex gap-3 items-center disabled:text-slate-500 disabled:cursor-not-allowed"
+            [routerLink]="['./launch']">
+      <div class="flex justify-center items-center text-xs h-[20px] w-[20px] text-center  rounded-full border border-black"
+           routerLinkActive="bg-black text-white">
+        <span>3</span>
+      </div>
+      <a class="md:text-base text-sm"
+         routerLinkActive="font-bold">Launch</a>
+    </button>
+  </div>
+  <div class="">
+    <router-outlet #myTemplateVar="outlet"></router-outlet>
+  </div>
+
+  <div class="sticky border-t  flex bottom-0 justify-between  bg-white items-center p-3">
+    <div>
+    </div>
+    <div>
+      <div class="flex items-center font-normal md:text-base text-xs">
+        Respondents:
+        <span class="inline-block pl-1 font-extrabold text-sm md:text-lg"
+              *ngIf="this.form.get('participantsForm')?.get('numberOfParticipants')?.value <= 2000">
+          {{this.form.get('participantsForm')?.get('numberOfParticipants')?.value}}
+        </span>
+        <span class="inline-block pl-1 font-extrabold text-lg"
+              *ngIf="this.form.get('participantsForm')?.get('numberOfParticipants')?.value > 2000">
+          > 2000
+        </span>
+        <span class="w-[1px] md:text-base text-xs bg-gray-300 inline-block mx-7 h-5"> </span>
+
+        Amount:
+        <span class="inline-block pl-1 font-extrabold text-sm md:text-lg">
+          <b>${{shownPrice}}</b>
+          <!-- <b *ngIf="!totalPrice">Contact Sales</b> -->
+        </span>
+      </div>
+
+    </div>
+    <div>
+      <div class=""
+           *ngIf="activeStep?.name === 'launch'">
+        <button (click)="submit()"
+                [disabled]="form.invalid || loading"
+                class="lightbox disabled:bg-slate-400 disabled:cursor-not-allowed disabled:text-dark  md:py-1.5 py-1.5 md:px-5 px-2.5 w-auto inline-block font-semibold tracking-wide border align-middle duration-500 bg-primary-light md:text-lg text-sm text-white rounded-full">
+          Submit
+          <i class="mdi mdi-chevron-right"
+             *ngIf="!loading"></i>
+          <span *ngIf="loading"><app-loading></app-loading></span>
         </button>
+      </div>
+
+      <div class=""
+           *ngIf="activeStep?.name !== 'launch'">
+
+        <button (click)="nextStep()"
+                [disabled]="!activeStep?.completed"
+                class="lightbox disabled:bg-slate-400 disabled:cursor-not-allowed disabled:text-dark  md:py-1.5 py-1.5 md:px-5 px-2.5 w-auto inline-block font-semibold tracking-wide border align-middle duration-500 bg-primary-light md:text-lg text-sm text-white rounded-full">
+          Next <i class="mdi mdi-chevron-right"></i></button>
+      </div>
     </div>
-    <div class="">
-        <router-outlet #myTemplateVar="outlet"></router-outlet>
-    </div>
-
-    <div class="sticky border-t  flex bottom-0 justify-between  bg-white items-center p-3">
-        <div>
-        </div>
-        <div>
-            <div class="flex items-center font-normal md:text-base text-xs">
-                Respondents:
-                <span class="inline-block pl-1 font-extrabold text-sm md:text-lg"
-                      *ngIf="this.form.get('participantsForm')?.get('numberOfParticipants')?.value <= 2000">
-                    {{this.form.get('participantsForm')?.get('numberOfParticipants')?.value}}
-                </span>
-                <span class="inline-block pl-1 font-extrabold text-lg"
-                      *ngIf="this.form.get('participantsForm')?.get('numberOfParticipants')?.value > 2000">
-                    > 2000
-                </span>
-                <span class="w-[1px] md:text-base text-xs bg-gray-300 inline-block mx-7 h-5"> </span>
-
-                Amount:
-                <span class="inline-block pl-1 font-extrabold text-sm md:text-lg">
-                    <b *ngIf="totalPrice">${{shownPrice}}</b>
-                    <b *ngIf="!totalPrice">Contact Sales</b>
-                </span>
-            </div>
-
-        </div>
-        <div>
-            <div class="" *ngIf="activeStep?.name === 'launch'">
-                <button (click)="submit()"
-                        [disabled]="form.invalid || loading"
-
-                        class="lightbox disabled:bg-slate-400 disabled:cursor-not-allowed disabled:text-dark  md:py-1.5 py-1.5 md:px-5 px-2.5 w-auto inline-block font-semibold tracking-wide border align-middle duration-500 bg-primary-light md:text-lg text-sm text-white rounded-full">
-                    Submit
-                    <i class="mdi mdi-chevron-right" *ngIf="!loading"></i>
-                    <span *ngIf="loading"><app-loading></app-loading></span>
-                </button>
-            </div>
-
-            <div class="" *ngIf="activeStep?.name !== 'launch'">
-
-                <button (click)="nextStep()"
-                        [disabled]="!activeStep?.completed"
-                        class="lightbox disabled:bg-slate-400 disabled:cursor-not-allowed disabled:text-dark  md:py-1.5 py-1.5 md:px-5 px-2.5 w-auto inline-block font-semibold tracking-wide border align-middle duration-500 bg-primary-light md:text-lg text-sm text-white rounded-full">
-                    Next <i class="mdi mdi-chevron-right"></i></button>
-            </div>
-        </div>
-    </div>
+  </div>
 </div>
