@@ -1,70 +1,92 @@
 <div class="flex flex-col items-center md:p-10 px-5 py-5">
-    <h2 class="md:text-2xl text-lg font-bold md:py-5 py-2">
-        Setup Your Survey
-    </h2>
-    <form [formGroup]="form" class="md:min-w-[600px] md:w-[80%] w-full">
-        <label class="font-semibold md:text-base text-sm">
-            Select one or more type of insights
-        </label>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-5 my-2" *ngIf="dependancies['typeInsights'].length">
+  <h2 class="md:text-2xl text-lg font-bold md:py-5 py-2">
+    Setup Your Survey
+  </h2>
+  <form [formGroup]="form"
+        class="md:min-w-[600px] md:w-[80%] w-full">
+    <label class="font-semibold md:text-base text-sm">
+      Select one or more type of insights
+    </label>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-5 my-2"
+         *ngIf="dependancies['typeInsights'].length">
 
-            <div class="border border-gray p-3 cursor-pointer bg-white"
-                 [ngClass]="{ 'border-primary': isTypeInsightSelected(typeInsight.id) }" *ngFor="let typeInsight of dependancies['typeInsights']"
-                 (click)="toggleTypeInsightSelection(typeInsight)">
-                <div>
-                    <div class="flex md:items-center items-start">
-                        <input type="checkbox" class="ring-0" name="typeInsight" [checked]="isTypeInsightSelected(typeInsight.id)">
-                        <label
-                               class="inline-block px-1 md:px-3 md:text-base text-xs font-bold"> <span><i class="mdi mdi-lightbulb-on-10"></i></span>
-                            {{
-                            typeInsight.name }}</label>
-                    </div>
-                    <div>
-                        <p class="pl-6 py-1 md:text-sm text-[10px] text-gray">
-                            {{ typeInsight.description }}
-                        </p>
-                    </div>
-                </div>
-            </div>
+      <div class="border border-gray p-3 cursor-pointer bg-white"
+           [ngClass]="{ 'border-primary': isTypeInsightSelected(typeInsight.id) }"
+           *ngFor="let typeInsight of dependancies['typeInsights']"
+           (click)="toggleTypeInsightSelection(typeInsight)">
+        <div>
+          <div class="flex md:items-center items-start">
+            <input type="checkbox"
+                   class="ring-0"
+                   name="typeInsight"
+                   [checked]="isTypeInsightSelected(typeInsight.id)">
+            <label class="inline-block px-1 md:px-3 md:text-base text-xs font-bold"> <span><i class="mdi mdi-lightbulb-on-10"></i></span>
+              {{
+              typeInsight.name }}</label>
+          </div>
+          <div>
+            <p class="pl-6 py-1 md:text-sm text-[10px] text-gray">
+              {{ typeInsight.description }}
+            </p>
+          </div>
+        </div>
+      </div>
 
 
 
+    </div>
+
+    <!-- Survey name and link -->
+    <div class="mt-14 grid grid-cols-2 w-full gap-5"
+         *ngIf="isTypeInsightSelected(ImpactVerificationTypeInsightsEnum.CUSTOM_INSIGHTS)">
+      <div>
+        <label for="text"
+               class="block mb-2 md:text-sm text-[10px] font-medium text-gray-900 dark:text-white">What title would you give to
+          your
+          survey?</label>
+        <input type="text"
+               name="initiative-name"
+               id="initiative-name"
+               formControlName="surveyName"
+               class="bg-gray-50 border border-gray-300 text-gray-900 md:text-sm text-[10px] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:p-4 p-2 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+      </div>
+
+      <div>
+        <label for="text"
+               class="block mb-2 md:text-sm text-[10px] font-medium text-gray-900 dark:text-white">Do you have a link to your
+          survey?
+          (optional)</label>
+        <input type="url"
+               name="initiative-name"
+               id="initiative-name"
+               formControlName="surveyLink"
+               class="bg-gray-50 border border-gray-300 text-gray-900 md:text-sm text-[10px] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:p-4 p-2 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+      </div>
+    </div>
+
+    <div class="mt-14">
+      <label class="font-semibold md:text-base text-sm ">
+        Select Community location
+      </label>
+      <div class="py-2">
+
+        <p-autoComplete formControlName="location_placeholder"
+                        [suggestions]="cities"
+                        (completeMethod)="searchCitiesByName($event)"
+                        (onSelect)="handleAddressChange($event)"
+                        panelStyleClass="w-full h-full"
+                        placeholder="Search for a city"
+                        styleClass="w-full h-full"
+                        inputStyleClass="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                        field="name">
+
+        </p-autoComplete>
+
+        <div class="p-6 mt-9 bg-[#E6E8ED] text-center">
+          {{ form.value.location }}
         </div>
 
-        <!-- Survey name and link -->
-        <div class="mt-14 grid grid-cols-2 w-full gap-5" *ngIf="isTypeInsightSelected(ImpactVerificationTypeInsightsEnum.CUSTOM_INSIGHTS)">
-            <div>
-                <label for="text" class="block mb-2 md:text-sm text-[10px] font-medium text-gray-900 dark:text-white">What title would you give to
-                    your
-                    survey?</label>
-                <input type="text" name="initiative-name" id="initiative-name" formControlName="surveyName"
-                       class="bg-gray-50 border border-gray-300 text-gray-900 md:text-sm text-[10px] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:p-4 p-2 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
-            </div>
-
-            <div>
-                <label for="text" class="block mb-2 md:text-sm text-[10px] font-medium text-gray-900 dark:text-white">Do you have a link to your
-                    survey?
-                    (optional)</label>
-                <input type="url" name="initiative-name" id="initiative-name" formControlName="surveyLink"
-                       class="bg-gray-50 border border-gray-300 text-gray-900 md:text-sm text-[10px] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:p-4 p-2 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
-            </div>
-        </div>
-
-        <div class="mt-14">
-            <label class="font-semibold md:text-base text-sm ">
-                Select Community location
-            </label>
-            <div class="md:py-4 py-2">
-                <input ngx-gp-autocomplete [options]='options'
-                       formControlName="location_placeholder"
-                       (onAddressChange)="handleAddressChange($event)"
-                       class="border w-full p-1.5 text-sm outline-none focus:outline-none focus:border-blue-5 focus:ring-1" />
-
-                <div class="p-6 mt-9 bg-[#E6E8ED] text-center">
-                    {{ form.value.location }}
-                </div>
-
-            </div>
-        </div>
-    </form>
+      </div>
+    </div>
+  </form>
 </div>

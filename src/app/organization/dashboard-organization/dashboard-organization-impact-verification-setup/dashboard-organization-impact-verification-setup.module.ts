@@ -13,6 +13,7 @@ import { DashboardOrganizationImpactVerificationSetupLaunchComponent } from '../
 import { DashboardOrganizationImpactVerificationSetupBaseComponent } from '../dashboard-organization-impact-verification-setup-base/dashboard-organization-impact-verification-setup-base.component';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { DashboardOrganizationImpactVerificationSetupSurveyComponent } from '../dashboard-organization-impact-verification-setup-survey/dashboard-organization-impact-verification-setup-survey.component';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 const routes = [
   {
@@ -60,15 +61,7 @@ const routes = [
     NgxGpAutocompleteModule,
     RouterModule.forChild(routes),
     InputSwitchModule,
-  ],
-  providers: [
-    {
-      provide: Loader,
-      useValue: new Loader({
-        apiKey: environment.googlePlaceAPI || '',
-        libraries: ['places'],
-      }),
-    },
+    AutoCompleteModule,
   ],
 })
 export class DashboardOrganizationImpactVerificationSetupModule {}

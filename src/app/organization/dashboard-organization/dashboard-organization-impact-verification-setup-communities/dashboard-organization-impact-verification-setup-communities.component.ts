@@ -6,6 +6,8 @@ import { CommunityReachLevelService } from '../../../impact-verification/communi
 import { ImpactVerificationTypeInsightsService } from '../../../impact-verification/impact-verification-type-insights/impact-verification-type-insights.service';
 import { ImpactVerificationTypeInsights } from '../../../impact-verification/impact-verification-type-insights/impact-verification-type-insights.model';
 import { ImpactVerificationTypeInsightsEnum } from '../../../impact-verification/impact-verification-type-insights/impact-verification-type-insights.enum';
+import { CitySearchResult } from 'src/app/country/city-search-result.model';
+import { CountryService } from 'src/app/country/country.service';
 
 @Component({
   selector: 'app-dashboard-organization-impact-verification-setup-communities',
@@ -17,6 +19,8 @@ import { ImpactVerificationTypeInsightsEnum } from '../../../impact-verification
 })
 export class DashboardOrganizationImpactVerificationSetupCommunitiesComponent extends DashboardOrganizationImpactVerificationSetupBaseComponent {
   address: any;
+  cities: CitySearchResult[] = [];
+  searchCitiesLoading = false;
   dependancies: { [key: string]: any } = {
     ageRange: [],
     ethnicity: [],
@@ -25,11 +29,6 @@ export class DashboardOrganizationImpactVerificationSetupCommunitiesComponent ex
     communityReachLevel: [],
     pricingTier: [],
     typeInsights: [],
-  };
-  options = {
-    // componentRestrictions: {
-    //   country: ["AU"]
-    // }
   };
 
   get ImpactVerificationTypeInsightsEnum() {
@@ -53,10 +52,10 @@ export class DashboardOrganizationImpactVerificationSetupCommunitiesComponent ex
   }
 
   constructor(
-    public impactVerificationSetupService: ImpactVerificationSetupService,
-    public pricingTierService: ImpactVerificationPricingTierService,
-    public communityReachLevelService: CommunityReachLevelService,
-    public typeInsightsService: ImpactVerificationTypeInsightsService
+    private impactVerificationSetupService: ImpactVerificationSetupService,
+    private communityReachLevelService: CommunityReachLevelService,
+    private typeInsightsService: ImpactVerificationTypeInsightsService,
+    private countryService: CountryService
   ) {
     super(impactVerificationSetupService, 'setupForm');
   }
@@ -84,14 +83,21 @@ export class DashboardOrganizationImpactVerificationSetupCommunitiesComponent ex
 
     this.form.get('typeInsights')?.setValue(newTypeInsights);
     this.form.get('typeInsights')?.updateValueAndValidity();
-
-    console.log(this.form.get('typeInsights')?.value);
   }
 
-  public handleAddressChange(address: any) {
+  handleAddressChange(event: any) {
+    const address = event.value;
     this.form.patchValue({
-      location: address.formatted_address,
-      location_placeholder: address.formatted_address,
+      location: address.name,
+      location_placeholder: address.name,
+    });
+  }
+
+  searchCitiesByName(event: any) {
+    this.searchCitiesLoading = true;
+    this.countryService.searchCitiesByName(event.query).subscribe((data) => {
+      this.cities = data;
+      this.searchCitiesLoading = false;
     });
   }
 }
