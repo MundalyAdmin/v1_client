@@ -1,4 +1,3 @@
-import { NgxGpAutocompleteModule } from '@angular-magic/ngx-gp-autocomplete';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -56,7 +55,6 @@ const routes = [
     CommonModule,
     SharedModule,
     SliderModule,
-    NgxGpAutocompleteModule,
     RouterModule.forChild(routes),
     InputSwitchModule,
     AutoCompleteModule,
