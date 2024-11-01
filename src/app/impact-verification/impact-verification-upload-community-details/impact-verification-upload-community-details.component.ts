@@ -74,13 +74,10 @@ export class ImpactVerificationUploadCommunityDetailsComponent extends BaseCreat
         if (this.validateHeaders(results.meta.fields!)) {
           this.communityMembers = results.data
             .map((row: any) => ({
-              location: row.location,
               phone_number: row.phoneNumber,
               email: row.email,
-              age: row.age ? parseInt(row.age) : undefined,
-              gender: row.gender,
             }))
-            .filter((member) => member.location && member.phone_number);
+            .filter((member) => member.email && member.phone_number);
 
           this.form.patchValue({
             community_details: this.communityMembers,
@@ -88,12 +85,13 @@ export class ImpactVerificationUploadCommunityDetailsComponent extends BaseCreat
         } else {
           this.communityMembers = []; // Clear any previously parsed data
           this.helper.notification.toastDanger(
-            "Required headers 'location' and/or 'phoneNumber' not found in CSV file."
+            "Required headers 'email' and/or 'phoneNumber' not found in CSV file."
           );
         }
       },
       error: (error) => {
         console.error('Error parsing CSV:', error);
+        this.csvFile = null;
         this.helper.notification.toastDanger(
           'Error parsing CSV file. Please try again.'
         );
@@ -102,12 +100,12 @@ export class ImpactVerificationUploadCommunityDetailsComponent extends BaseCreat
   }
 
   validateHeaders(headers: string[]): boolean {
-    const requiredHeaders = ['location', 'phoneNumber'];
+    const requiredHeaders = ['email', 'phoneNumber'];
     return requiredHeaders.every((header) => headers.includes(header));
   }
 
   submit() {
-    if (this.form.valid) {
+    if (this.form.valid && this.csvFile) {
       this.loading = true;
       this.impactVerificationService
         .uploadCommunityMembersDetails(this.form.value)
@@ -126,6 +124,8 @@ export class ImpactVerificationUploadCommunityDetailsComponent extends BaseCreat
             this.loading = false;
           },
         });
+    } else {
+      this.helper.notification.toastDanger('Please upload a valid CSV file');
     }
   }
 }

@@ -123,6 +123,6 @@
           styleClass="md:w-[50vw] w-[95vw]"
           [draggable]="false"
           [resizable]="false">
-  <app-impact-verification-upload-community-details
+  <app-impact-verification-upload-community-details *ngIf="showUploadCommunityDetails"
                                                     (closeModal)="showUploadCommunityDetails = false"></app-impact-verification-upload-community-details>
 </p-dialog>
