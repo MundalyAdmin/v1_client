@@ -3,6 +3,7 @@ import { BaseComponent } from '../../../shared/base-component';
 import { ImpactVerification } from '../../../impact-verification/impact-verification.model';
 import { TypeOrganizationEnum } from '../../type-organization/type-organization.enum';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DashboardOrganizationService } from '../dashboard-organization.service';
 
 @Component({
   selector: 'app-dashboard-organization-impact-verification',
@@ -10,11 +11,18 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./dashboard-organization-impact-verification.component.scss'],
 })
 export class DashboardOrganizationImpactVerificationComponent extends BaseComponent<ImpactVerification> {
+  requestedVerificationRequests = 0;
+  receivedVerificationRequests = 0;
+
   get TypeOrganizationEnum() {
     return TypeOrganizationEnum;
   }
 
-  constructor(public router: Router, public route: ActivatedRoute) {
+  constructor(
+    public router: Router,
+    public route: ActivatedRoute,
+    public dashboardOrganizationService: DashboardOrganizationService
+  ) {
     super();
   }
 
@@ -38,5 +46,19 @@ export class DashboardOrganizationImpactVerificationComponent extends BaseCompon
           this.router.navigate(['requested'], { relativeTo: this.route });
         }
       });
+
+    this.subscriptions['requestedVerificationRequests'] =
+      this.dashboardOrganizationService.requestedVerificationRequests$.subscribe(
+        (count) => {
+          this.requestedVerificationRequests = count;
+        }
+      );
+
+    this.subscriptions['receivedVerificationRequests'] =
+      this.dashboardOrganizationService.receivedVerificationRequests$.subscribe(
+        (count) => {
+          this.receivedVerificationRequests = count;
+        }
+      );
   }
 }
