@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseComponent } from '../../../../shared/base-component';
-import { NetPromoterScore } from '../../../../scale/impact-story/net-promoter-score.model';
-import { ImpactStoryService } from '../../../../scale/impact-story/impact-story.service';
-import { OrganizationService } from '../../../organization.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TypeOrganizationEnum } from '../../../type-organization/type-organization.enum';
-import { AuthService } from '../../../../auth/auth.service';
 import { ImpactInitiativeService } from '../../../../scale/impact-initiative/impact-initiative.service';
-import { CategoryOrganizationEnum } from '../../../category-organization/category-organization.enum';
+import { ImpactStoryService } from '../../../../scale/impact-story/impact-story.service';
+import { NetPromoterScore } from '../../../../scale/impact-story/net-promoter-score.model';
+import { BaseComponent } from '../../../../shared/base-component';
+
+import { OrganizationService } from '../../../organization.service';
 
 @Component({
   selector: 'app-dashboard-organization-insights-net-promoter-score',
@@ -94,11 +92,7 @@ export class DashboardOrganizationInsightsNetPromoterScoreComponent
       ),
       datasets: [
         {
-          label:
-            this.currentLoggedInOrganization?.type_organization
-              ?.category_organization_id === CategoryOrganizationEnum.IMPACT
-              ? 'Community Satisfaction Score'
-              : 'Community Alignment Score',
+          label: 'Community Alignment Score',
           backgroundColor: ['#c1ddff', '#4f46e5', '#2196f3'],
           borderColor: documentStyle.getPropertyValue('--blue-500'),
           data: [...Object.values(nps)],

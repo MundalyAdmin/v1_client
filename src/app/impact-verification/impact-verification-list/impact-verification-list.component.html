@@ -1,116 +1,128 @@
-<div class="bg-white border text-slate-800 md:px-6 px-2 py-6 rounded-lg" *ngIf="!loading">
-    <h2 class="md:text-2xl  text-lg font-bold mb-4">{{ title }}</h2>
-    <table class="w-full">
-        <thead>
-            <tr class="text-left">
-                <th class="pb-3 text-sm md:text-base md:1/4 w-2/5" *ngIf="typeVerification === 'requested'">Target</th>
-                <th class="pb-3 text-sm md:text-base md:1/4 w-2/5" *ngIf="typeVerification === 'received'">Inquirer</th>
-                <th class="pb-3 text-sm md:text-base md:1/4 w-1.5/5 hidden md:table-cell">Type</th>
-                <th class="pb-3 text-sm md:text-base md:1/4 w-1.5/5">Status</th>
-                <th class="pb-3 text-sm md:text-base md:1/4 w-1.5/5">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of data;let i = index" class="border-t border-gray-700">
-                <td class="py-3" *ngIf="typeVerification === 'requested' && item.verified_organizations?.length">
-                    <div class="flex items-center">
-                        <img [src]="item.verified_organizations?.at(0)?.logo" alt="{{ item.verified_organizations?.at(0)?.name }}"
-                             *ngIf="item.verified_organizations?.at(0)?.logo"
-                             class="md:w-10 md:mr-3 mr-1 md:h-10 w-7 h-7 rounded-full border">
-                        <div class="md:w-10 md:mr-3 mr-1 md:h-10 w-7 h-7 bg-slate-200 flex items-center justify-center rounded-full"
-                             *ngIf="!item.verified_organizations?.at(0)?.logo">
-                            <div>
-                                <i class="mdi text-[16px] text-slate-800  font-semibold mdi-domain"></i>
-                            </div>
-                        </div>
-                        <span class="text-sm">{{ item.verified_organizations?.at(0)?.name }}</span>
+<div class="bg-white border text-slate-800 md:px-6 px-2 py-6 rounded-lg"
+     *ngIf="!loading">
+  <h2 class="md:text-2xl  text-lg font-bold mb-4">{{ title }}</h2>
+  <table class="w-full">
+    <thead>
+      <tr class="text-left">
+        <th class="pb-3 text-sm md:text-base md:1/4 w-2/5"
+            *ngIf="typeVerification === 'requested'">Target</th>
+        <th class="pb-3 text-sm md:text-base md:1/4 w-2/5"
+            *ngIf="typeVerification === 'received'">Inquirer</th>
+        <th class="pb-3 text-sm md:text-base md:1/4 w-1.5/5 hidden md:table-cell">Type</th>
+        <th class="pb-3 text-sm md:text-base md:1/4 w-1.5/5">Status</th>
+        <th class="pb-3 text-sm md:text-base md:1/4 w-1.5/5">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of data;let i = index"
+          class="border-t border-gray-700">
+        <td class="py-3"
+            *ngIf="typeVerification === 'requested' && item.verified_organizations?.length">
+          <div class="flex items-center">
+            <img [src]="item.verified_organizations?.at(0)?.logo"
+                 alt="{{ item.verified_organizations?.at(0)?.name }}"
+                 *ngIf="item.verified_organizations?.at(0)?.logo"
+                 class="md:w-10 md:mr-3 mr-1 md:h-10 w-7 h-7 rounded-full border">
+            <div class="md:w-10 md:mr-3 mr-1 md:h-10 w-7 h-7 bg-slate-200 flex items-center justify-center rounded-full"
+                 *ngIf="!item.verified_organizations?.at(0)?.logo">
+              <div>
+                <i class="mdi text-[16px] text-slate-800  font-semibold mdi-domain"></i>
+              </div>
+            </div>
+            <span class="text-sm">{{ item.verified_organizations?.at(0)?.name }}</span>
 
 
-                    </div>
-                </td>
+          </div>
+        </td>
 
-                <td class="py-3" *ngIf="typeVerification === 'received'">
-                    <div class="flex items-center">
-                        <img [src]="item.inquirer?.logo" alt="{{ item.inquirer?.name }}" *ngIf="item.inquirer?.logo"
-                             class="md:w-10 md:mr-3 mr-1 md:h-10 w-7 h-7 rounded-full border">
-                        <div class="md:w-10 md:mr-3 mr-1 md:h-10 w-7 h-7 bg-slate-200 flex items-center justify-center rounded-full"
-                             *ngIf="!item.inquirer?.logo">
-                            <div>
-                                <i class="mdi md:text-[16px] text-[12px] text-slate-800  font-semibold mdi-domain"></i>
-                            </div>
-                        </div>
-                        <span class="text-xs md:text-base">{{ item.inquirer?.name }}</span>
-                    </div>
-                </td>
-
-
-                <td class="py-3 text-sm md:text-base hidden md:table-cell">{{ item.type_impact_verification?.name }}</td>
-                <td class="py-3">
-                    <div [ngClass]="getStatusColor(item.status_impact_verification_id!)"
-                         class="px-3 py-1 rounded-full md:text-xs leading-4 w-fit text-[8px]">
-                        {{ item.status_impact_verification?.name }}
-                    </div>
-                </td>
-                <td class="py-3">
-                    <div class="flex md:gap-3 gap-1">
-                        <button type="button"
-                                (click)="displayUploadCommunityDetails(item)"
-                                *ngIf="item.status_impact_verification_id === StatusImpactVerificationEnum.PARTNER_COMPLETION && typeVerification === 'received'"
-                                class="text-primary  hover:text-white border border-primary hover:bg-secondary-dark focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg md:text-sm text-[10px] leading-4  md:px-5 px-2 md:py-2.5 py-1.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-primary bg-secondary">
-                            <span class="mdi mdi-table-arrow-up"></span>
-                            Upload Community Details
-                        </button>
-
-                        <ng-container *ngIf="typeVerification === 'requested'">
-                            <a type="button"
-                               [routerLink]="['/dashboard/impact-verification/', item.id] "
-                               *ngIf="item.status_impact_verification_id === StatusImpactVerificationEnum.INQUIRER_CONFIRMATION || item.status_impact_verification_id === StatusImpactVerificationEnum.SUSPENDED"
-                               class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg md:text-sm text-[10px] leading-4  md:px-5 px-3 md:py-2.5 py-1.5 text-center md:me-2 me-1 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
-                                <span class="mdi mdi-rocket-launch"></span>
-                                Launch
-                            </a>
-
-                            <button type="button"
-                                    (click)="updateStatus(item.id!, StatusImpactVerificationEnum.SUSPENDED, i)"
-                                    *ngIf="item.status_impact_verification_id === StatusImpactVerificationEnum.LAUNCHED"
-                                    class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg md:text-sm text-[10px] leading-4  md:px-5 px-3 md:py-2.5 py-1.5  text-center md:me-2 me-1 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">
-                                <span class="mdi mdi-pause-octagon"></span>
-                                Suspend
-                            </button>
-
-                            <button type="button"
-                                    *ngIf="item.status_impact_verification_id === StatusImpactVerificationEnum.ABORTED"
-                                    (click)="relauch(item.id!, i)"
-                                    class="focus:outline-none text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg md:text-sm text-[10px] leading-4  md:px-5 px-3 md:py-2.5 py-1.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-500 dark:focus:ring-green-900">
-                                <span class="mdi mdi-play"></span>
-                                Relaunch
-                            </button>
+        <td class="py-3"
+            *ngIf="typeVerification === 'received'">
+          <div class="flex items-center">
+            <img [src]="item.inquirer?.logo"
+                 alt="{{ item.inquirer?.name }}"
+                 *ngIf="item.inquirer?.logo"
+                 class="md:w-10 md:mr-3 mr-1 md:h-10 w-7 h-7 rounded-full border">
+            <div class="md:w-10 md:mr-3 mr-1 md:h-10 w-7 h-7 bg-slate-200 flex items-center justify-center rounded-full"
+                 *ngIf="!item.inquirer?.logo">
+              <div>
+                <i class="mdi md:text-[16px] text-[12px] text-slate-800  font-semibold mdi-domain"></i>
+              </div>
+            </div>
+            <span class="text-xs md:text-base">{{ item.inquirer?.name }}</span>
+          </div>
+        </td>
 
 
+        <td class="py-3 text-sm md:text-base hidden md:table-cell">{{ item.type_impact_verification?.name }}</td>
+        <td class="py-3">
+          <div [ngClass]="getStatusColor(item.status_impact_verification_id!)"
+               class="px-3 py-1 rounded-full md:text-xs leading-4 w-fit text-[8px]">
+            {{ item.status_impact_verification?.name }}
+          </div>
+        </td>
+        <td class="py-3">
+          <div class="flex md:gap-3 gap-1">
+            <button type="button"
+                    (click)="displayUploadCommunityDetails(item)"
+                    *ngIf="item.status_impact_verification_id === StatusImpactVerificationEnum.PARTNER_COMPLETION && typeVerification === 'received'"
+                    class="text-primary  hover:text-white border border-primary hover:bg-secondary-dark focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg md:text-sm text-[10px] leading-4  md:px-5 px-2 md:py-2.5 py-1.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-primary bg-secondary">
+              <span class="mdi mdi-table-arrow-up"></span>
+              Invite your community members
+            </button>
+
+            <ng-container *ngIf="typeVerification === 'requested'">
+              <a type="button"
+                 [routerLink]="['/dashboard/impact-verification/', item.id] "
+                 *ngIf="item.status_impact_verification_id === StatusImpactVerificationEnum.INQUIRER_CONFIRMATION || item.status_impact_verification_id === StatusImpactVerificationEnum.SUSPENDED"
+                 class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg md:text-sm text-[10px] leading-4  md:px-5 px-3 md:py-2.5 py-1.5 text-center md:me-2 me-1 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800">
+                <span class="mdi mdi-rocket-launch"></span>
+                Launch
+              </a>
+
+              <button type="button"
+                      (click)="updateStatus(item.id!, StatusImpactVerificationEnum.SUSPENDED, i)"
+                      *ngIf="item.status_impact_verification_id === StatusImpactVerificationEnum.LAUNCHED"
+                      class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg md:text-sm text-[10px] leading-4  md:px-5 px-3 md:py-2.5 py-1.5  text-center md:me-2 me-1 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">
+                <span class="mdi mdi-pause-octagon"></span>
+                Suspend
+              </button>
+
+              <button type="button"
+                      *ngIf="item.status_impact_verification_id === StatusImpactVerificationEnum.ABORTED"
+                      (click)="relauch(item.id!, i)"
+                      class="focus:outline-none text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg md:text-sm text-[10px] leading-4  md:px-5 px-3 md:py-2.5 py-1.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-500 dark:focus:ring-green-900">
+                <span class="mdi mdi-play"></span>
+                Relaunch
+              </button>
 
 
-                            <button type="button"
-                                    *ngIf="item.status_impact_verification_id !== StatusImpactVerificationEnum.ABORTED"
-                                    (click)="updateStatus(item.id!, StatusImpactVerificationEnum.ABORTED, i)"
-                                    class="focus:outline-none text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:ring-red-300 font-medium rounded-lg md:text-sm text-xs md:px-5 px-3 md:py-2.5 py-1.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-500 dark:focus:ring-red-900">
-                                <span class="mdi mdi-cancel"></span>
-                                Abort
-                            </button>
-                        </ng-container>
-                    </div>
-                </td>
 
-            </tr>
-        </tbody>
-    </table>
+
+              <button type="button"
+                      *ngIf="item.status_impact_verification_id !== StatusImpactVerificationEnum.ABORTED"
+                      (click)="updateStatus(item.id!, StatusImpactVerificationEnum.ABORTED, i)"
+                      class="focus:outline-none text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:ring-red-300 font-medium rounded-lg md:text-sm text-xs md:px-5 px-3 md:py-2.5 py-1.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-500 dark:focus:ring-red-900">
+                <span class="mdi mdi-cancel"></span>
+                Abort
+              </button>
+            </ng-container>
+          </div>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 
 <app-page-loading *ngIf="loading"></app-page-loading>
 
-<p-dialog header="Upload your community members details" [(visible)]="showUploadCommunityDetails" [modal]="true" styleClass="md:w-[50vw] w-[95vw]"
+<p-dialog header="Upload your community members details"
+          [(visible)]="showUploadCommunityDetails"
+          [modal]="true"
+          styleClass="md:w-[50vw] w-[95vw]"
           [draggable]="false"
           [resizable]="false">
-    <app-impact-verification-upload-community-details
-                                                      (closeModal)="showUploadCommunityDetails = false"></app-impact-verification-upload-community-details>
+  <app-impact-verification-upload-community-details
+                                                    (closeModal)="showUploadCommunityDetails = false"></app-impact-verification-upload-community-details>
 </p-dialog>

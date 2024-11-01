@@ -1,23 +1,20 @@
 <div class="md:p-8 p-4 border">
   <h5 class="text-sm md:text-lg font-light text-left mb-3">
-    <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT">Impact Fidelity Trends
-    </span>
-    <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION">Sustainability
-      Fidelity Trends </span>
+    Impact Fidelity Trends
+
   </h5>
 
-  <div class="flex gap-2 w-full" *ngIf="!loading && data.length">
+  <div class="flex gap-2 w-full"
+       *ngIf="!loading && data.length">
     <h5 class=" font-light text-center md:text-base text-xs  rotate-180 [writing-mode:vertical-lr] ml-[-10px]">
-      Avg.
-      <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT">Impact
-        Fidelity</span>
-      <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION">Sustainability
-        Fidelity</span>
+      Avg. Impact Fidelity
     </h5>
 
     <div class="flex justify-between gap-1 flex-1 overflow-hidden hover:overflow-auto scrollbar">
 
-      <app-dashboard-organization-insight-trend-data *ngFor="let trend of data" [month]="trend.month" [year]="trend.year.toString()"
+      <app-dashboard-organization-insight-trend-data *ngFor="let trend of data"
+                                                     [month]="trend.month"
+                                                     [year]="trend.year.toString()"
                                                      [score]="trend.score">
       </app-dashboard-organization-insight-trend-data>
 

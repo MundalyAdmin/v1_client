@@ -4,8 +4,8 @@ import { BaseService } from '../../../shared/services';
 @Injectable({
   providedIn: 'root',
 })
-export class DashboardOrganizationDueDiligenceService extends BaseService<any> {
+export class DashboardOrganizationImpactVerificationService extends BaseService<any> {
   constructor() {
-    super('organization-due-diligence-request');
+    super('organization-impact-verification-request');
   }
 }

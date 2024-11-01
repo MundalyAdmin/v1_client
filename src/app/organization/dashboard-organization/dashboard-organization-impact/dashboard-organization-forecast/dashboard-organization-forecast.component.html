@@ -6,23 +6,29 @@
 
   </div>
 
-  <div class="relative overflow-x-auto shadow-md " *ngIf="!loading && scaleService.score">
+  <div class="relative overflow-x-auto shadow-md "
+       *ngIf="!loading && scaleService.score">
     <table class="w-full md:text-base text-xs text-left rtl:text-right text-gray-500 dark:text-gray-400">
       <thead class=" text-gray-400 capitalize bg-slate-100  dark:bg-gray-700 dark:text-gray-400">
         <tr>
-          <th scope="col" class="md:px-6 md:py-6 p-3">
+          <th scope="col"
+              class="md:px-6 md:py-6 p-3">
             #
           </th>
-          <th scope="col" class="md:px-6 md:py-6 p-3 ">
+          <th scope="col"
+              class="md:px-6 md:py-6 p-3 ">
             Category
           </th>
-          <th scope="col" class="md:px-6 md:py-6 p-3">
+          <th scope="col"
+              class="md:px-6 md:py-6 p-3">
             Key
           </th>
-          <th scope="col" class="md:px-6 md:py-6 p-3">
+          <th scope="col"
+              class="md:px-6 md:py-6 p-3">
             Score
           </th>
-          <th scope="col" class="md:px-6 md:py-6 p-3">
+          <th scope="col"
+              class="md:px-6 md:py-6 p-3">
             Action
           </th>
         </tr>
@@ -38,11 +44,8 @@
 
           <!-- Name and Photo -->
           <th scope="row p-3 md:p-6">
-            <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT">Impact
-              Fidelity</span>
-            <span
-                  *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION">Sustainability
-              Fidelity</span>
+            Impact Fidelity
+
 
           </th>
 
@@ -65,7 +68,10 @@
                     class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                  class="mdi mdi-information"></i></button>
 
-            <p-dialog header="Impact Fidelity" [(visible)]="showImpactFidelityInfo" [modal]="true" styleClass="w-[95vw] md:w-[50vw]"
+            <p-dialog header="Impact Fidelity"
+                      [(visible)]="showImpactFidelityInfo"
+                      [modal]="true"
+                      styleClass="w-[95vw] md:w-[50vw]"
                       [draggable]="false"
                       [resizable]="false">
               <p class="m-0 md:text-base text-sm">
@@ -89,10 +95,8 @@
 
           <!-- Name and Photo -->
           <th scope="row p-3 md:p-6">
-            <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT">Community
-              Reputation</span>
-            <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION">Social
-              License</span>
+            Community Reputation
+
           </th>
 
           <!-- Key -->
@@ -114,7 +118,10 @@
                     class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                  class="mdi mdi-information"></i></button>
 
-            <p-dialog header="Community Reputation" [(visible)]="showCommunityReputationInfo" [modal]="true" styleClass="w-[95vw] md:w-[50vw]"
+            <p-dialog header="Community Reputation"
+                      [(visible)]="showCommunityReputationInfo"
+                      [modal]="true"
+                      styleClass="w-[95vw] md:w-[50vw]"
                       [draggable]="false"
                       [resizable]="false">
               <p class="m-0 md:text-base text-sm">
@@ -140,14 +147,10 @@
 
           <!-- Name and Photo -->
           <th scope="row p-3 md:p-6">
-            <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT">Facilitation
-              Strategy</span>
-            <span
-                  *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION">Whistleblowing
-              Risk</span>
-          </th>
+            Facilitation
+            Strategy
 
-          <!-- Key -->
+            <!-- Key -->
           <td class="p-3 md:p-6">
             {{ scaleService.getScoreKey(scaleService.score.facilitation_strategy_score!) }}
           </td>
@@ -166,7 +169,10 @@
                     class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                  class="mdi mdi-information"></i></button>
 
-            <p-dialog header="Facilitation Strategy" [(visible)]="showFacilitationStrategyInfo" [modal]="true" styleClass="w-[95vw] md:w-[50vw]"
+            <p-dialog header="Facilitation Strategy"
+                      [(visible)]="showFacilitationStrategyInfo"
+                      [modal]="true"
+                      styleClass="w-[95vw] md:w-[50vw]"
                       [draggable]="false"
                       [resizable]="false">
               <p class="m-0 md:text-base text-sm">
@@ -217,7 +223,10 @@
                     class="font-medium text-slate-400 text-xl dark:text-slate-500 hover:text-secondary-dark mr-3"><i
                  class="mdi mdi-information"></i></button>
 
-            <p-dialog header="Community Trust Score" [(visible)]="showCommunityTrustScoreInfo" [modal]="true" styleClass="w-[95vw] md:w-[50vw]"
+            <p-dialog header="Community Trust Score"
+                      [(visible)]="showCommunityTrustScoreInfo"
+                      [modal]="true"
+                      styleClass="w-[95vw] md:w-[50vw]"
                       [draggable]="false"
                       [resizable]="false">
               <p class="m-0 md:text-base text-sm">

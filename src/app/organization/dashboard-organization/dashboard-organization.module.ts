@@ -75,7 +75,7 @@ import { DashboardOrganizationDemographicsEhtnicityComponent } from './dashboard
 import { DashboardOrganizationDemographicsGenderComponent } from './dashboard-organization-demographics-gender/dashboard-organization-demographics-gender.component';
 import { DashboardOrganizationDemographicsRelationshipStatusComponent } from './dashboard-organization-demographics-relationship-status/dashboard-organization-demographics-relationship-status.component';
 import { DashboardOrganizationDueDiligenceOverviewSecondComponent } from './dashboard-organization-due-diligence-overview-second/dashboard-organization-due-diligence-overview-second.component';
-import { DashboardOrganizationDueDiligenceRequestComponent } from './dashboard-organization-due-diligence-request/dashboard-organization-due-diligence-request.component';
+import { DashboardOrganizationDueDiligenceRequestComponent } from './dashboard-organization-impact-verification-request/dashboard-organization-impact-verification-request.component';
 import { DashboardOrganizationDueDiligenceComponent } from './dashboard-organization-due-diligence/dashboard-organization-due-diligence.component';
 import { DashboardOrganizationEnvironmentalWellbeingComponent } from './dashboard-organization-environmental-wellbeing/dashboard-organization-environmental-wellbeing.component';
 import { DashboardOrganizationHeaderComponent } from './dashboard-organization-header/dashboard-organization-header.component';

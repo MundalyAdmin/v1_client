@@ -2,14 +2,17 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { BaseComponent } from '../../../shared/base-component';
 import { Organization } from '../../organization.model';
 import { OrganizationService } from '../../organization.service';
-import { DashboardOrganizationDueDiligenceService } from './dashboard-organization-due-diligence.service';
+import { DashboardOrganizationImpactVerificationService } from './dashboard-organization-impact-verification.service';
 import { ImpactVerificationService } from '../../../impact-verification/impact-verification.service';
 import { TypeImpactVerificationEnum } from '../../../impact-verification/enums/type-impact-verification.enum';
 
 @Component({
-  selector: 'app-dashboard-organization-due-diligence-request',
-  templateUrl: './dashboard-organization-due-diligence-request.component.html',
-  styleUrls: ['./dashboard-organization-due-diligence-request.component.scss'],
+  selector: 'app-dashboard-organization-impact-verification-request',
+  templateUrl:
+    './dashboard-organization-impact-verification-request.component.html',
+  styleUrls: [
+    './dashboard-organization-impact-verification-request.component.scss',
+  ],
 })
 export class DashboardOrganizationDueDiligenceRequestComponent
   extends BaseComponent<any>

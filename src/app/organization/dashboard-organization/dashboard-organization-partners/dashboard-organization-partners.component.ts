@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BaseComponent } from '../../../shared/base-component';
 import { Organization } from '../../organization.model';
-import { AuthService } from '../../../auth/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { DashboardOrganizationService } from '../dashboard-organization.service';
-import { CategoryOrganizationEnum } from '../../category-organization/category-organization.enum';
 import { TypeOrganizationEnum } from '../../type-organization/type-organization.enum';
+import { DashboardOrganizationService } from '../dashboard-organization.service';
 
 @Component({
   selector: 'app-dashboard-organization-partners',

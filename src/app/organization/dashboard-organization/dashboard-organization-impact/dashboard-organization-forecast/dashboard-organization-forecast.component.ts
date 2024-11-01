@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseComponent } from '../../../../shared/base-component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { StatusImpactVerificationEnum } from '../../../../impact-verification/enums/status-impact-verification.enum';
+import { ImpactInitiativeService } from '../../../../scale/impact-initiative/impact-initiative.service';
 import { CommunityTrustScore } from '../../../../scale/models/community-trust-score.model';
 import { ScaleService } from '../../../../scale/scale.service';
+import { BaseComponent } from '../../../../shared/base-component';
 import { OrganizationService } from '../../../organization.service';
-import { AuthService } from '../../../../auth/auth.service';
-import { ImpactInitiativeService } from '../../../../scale/impact-initiative/impact-initiative.service';
-import { TypeOrganizationEnum } from '../../../type-organization/type-organization.enum';
-import { Organization } from '../../../organization.model';
-import { CategoryOrganizationEnum } from '../../../category-organization/category-organization.enum';
-import { StatusImpactVerificationEnum } from '../../../../impact-verification/enums/status-impact-verification.enum';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-organization-forecast',
