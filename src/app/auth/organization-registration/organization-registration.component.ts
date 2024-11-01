@@ -77,7 +77,7 @@ export class OrganizationRegistrationComponent
     });
     this.initform();
 
-    this.getTypeOrganizationsByCategoryOrganization(1);
+    this.getAllTypeOrganizations();
   }
 
   initform() {
@@ -87,28 +87,15 @@ export class OrganizationRegistrationComponent
       organization_name: [null, Validators.required],
       type_organization: [null, Validators.required],
       phone_number: [null, Validators.required],
-      category_organization: [1, Validators.required],
     });
-
-    this.form.controls['category_organization'].valueChanges.subscribe(
-      (value) => {
-        if (value) this.getTypeOrganizationsByCategoryOrganization(value);
-      }
-    );
   }
 
-  getTypeOrganizationsByCategoryOrganization(categoryOrganizationId: number) {
+  getAllTypeOrganizations() {
     this.dependanciesLoading.typeOrganization = true;
-    this.typeOrganizationService
-      .getByCategoryOrganization(categoryOrganizationId)
-      .subscribe((typeOrganizations) => {
-        this.dependancies.typeOrganization = typeOrganizations;
-        this.dependanciesLoading.typeOrganization = false;
-      });
-  }
-
-  updateCategoryOrganization(categoryOrganiztionId: number) {
-    this.form.get('category_organization')!.setValue(categoryOrganiztionId);
+    this.typeOrganizationService.get().subscribe((typeOrganizations) => {
+      this.dependancies.typeOrganization = typeOrganizations;
+      this.dependanciesLoading.typeOrganization = false;
+    });
   }
 
   submit() {
@@ -118,7 +105,6 @@ export class OrganizationRegistrationComponent
       const data = {
         ...this.helper.object.removeFields(this.form.value, [
           'phone_number',
-          'category_organization',
           'type_organization',
         ]),
         type_organization_id: this.form.value.type_organization.id,
