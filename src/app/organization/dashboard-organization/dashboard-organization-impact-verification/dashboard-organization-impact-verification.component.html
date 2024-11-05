@@ -1,53 +1,38 @@
 <div class="text-base font-medium text-center md:mt-10 text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
-    <ul class="flex flex-wrap -mb-px">
-
-        <ng-container
-                      *ngIf="currentLoggedInOrganization?.type_organization_id === TypeOrganizationEnum.IMPACT_FUNDER || currentLoggedInOrganization?.type_organization_id === TypeOrganizationEnum.CORPORATION">
-            <li class="me-2">
-                <a [routerLink]="['requested']"
-                   routerLinkActive="text-primary border-primary font-semibold"
-                   class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-base md:text-lg">
-                    Requested
-                </a>
-            </li>
-
-            <li class="me-2">
-                <a [routerLink]="['received']"
-                   routerLinkActive="text-primary border-primary font-semibold"
-                   class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-base md:text-lg">
-                    Received
-                </a>
-            </li>
-        </ng-container>
+  <ul class="flex flex-wrap -mb-px">
 
 
+    <li class="me-2">
+      <a [routerLink]="['requested']"
+         routerLinkActive="text-primary border-primary font-semibold"
+         class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-base md:text-lg">
+        Requested <span *ngIf="requestedVerificationRequests"
+              class="inline-flex items-center  justify-center w-4 h-4 ms-2 text-xs font-semibold text-red-800 bg-red-200 rounded-full dark:bg-gray-700 dark:text-red-400">
+          {{ requestedVerificationRequests }}
+        </span>
+      </a>
+    </li>
 
-        <!-- Reverse it for Implementers -->
-        <ng-container
-                      *ngIf="currentLoggedInOrganization?.type_organization_id === TypeOrganizationEnum.IMPACT_IMPLEMENTER || currentLoggedInOrganization?.type_organization_id === TypeOrganizationEnum.SUPPLIER">
-            <li class="me-2">
-                <a [routerLink]="['received']"
-                   routerLinkActive="text-primary border-primary font-semibold"
-                   class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 md:text-lg text-base">
-                    Received
-                </a>
-            </li>
-            <li class="me-2">
-                <a [routerLink]="['requested']"
-                   routerLinkActive="text-primary border-primary font-semibold"
-                   class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 md:text-lg text-base">
-                    Requested
-                </a>
-            </li>
-
-
-        </ng-container>
+    <li class="me-2">
+      <a [routerLink]="['received']"
+         routerLinkActive="text-primary border-primary font-semibold"
+         class="inline-block  p-4 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 text-base md:text-lg">
+        Received <span *ngIf="receivedVerificationRequests"
+              class="inline-flex items-center  justify-center w-4 h-4 ms-2 text-xs font-semibold text-red-800 bg-red-200 rounded-full dark:bg-gray-700 dark:text-red-400">
+          {{ receivedVerificationRequests }}
+        </span>
+      </a>
+    </li>
 
 
 
-    </ul>
+
+
+
+
+  </ul>
 </div>
 
 <div class="bg-slate-100">
-    <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </div>

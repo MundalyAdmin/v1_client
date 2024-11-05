@@ -1,63 +1,42 @@
 <ul class="flex flex-wrap gap-3 -mb-px">
   <li class="me-2">
     <!-- For Impact -->
-    <a [queryParamsHandling]="'preserve'" [routerLink]="['impact-fidelity']"
-       *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT"
+    <a [queryParamsHandling]="'preserve'"
+       [routerLink]="['impact-fidelity']"
        routerLinkActive="text-primary border-primary font-semibold"
        class="inline-block  md:p-4 p-2 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-sm md:text-base">
       Impact Fidelity
     </a>
 
 
-    <!-- For Corporation -->
-    <a [queryParamsHandling]="'preserve'" [routerLink]="['impact-fidelity']"
-       *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION"
-       routerLinkActive="text-primary border-primary font-semibold"
-       class="inline-block  md:p-4 p-2 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-sm md:text-base">
-      Sustainability Fidelity
-    </a>
-
 
   </li>
 
 
   <li class="me-2">
     <!-- FOr Impact -->
-    <a [queryParamsHandling]="'preserve'" [routerLink]="['community-perception']"
-       *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT"
+    <a [queryParamsHandling]="'preserve'"
+       [routerLink]="['community-perception']"
        routerLinkActive="text-primary border-primary font-semibold"
        class="inline-block  md:p-4 p-2 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-sm md:text-base">
       Community Reputation
     </a>
 
 
-    <!-- FOr Corporation -->
-    <a [queryParamsHandling]="'preserve'" [routerLink]="['community-perception']"
-       *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION"
-       routerLinkActive="text-primary border-primary font-semibold"
-       class="inline-block  md:p-4 p-2 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-sm md:text-base">
-      Social Licence
-    </a>
+
   </li>
 
 
   <li class="me-2">
     <!-- FOr Impact -->
-    <a [queryParamsHandling]="'preserve'" [routerLink]="['facilitation-strategy']"
-       *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT"
+    <a [queryParamsHandling]="'preserve'"
+       [routerLink]="['facilitation-strategy']"
        routerLinkActive="text-primary border-primary font-semibold"
        class="inline-block  md:p-4 p-2 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-sm md:text-base">
       Facilitation Strategy
     </a>
 
 
-    <!-- FOr Corporation -->
-    <a [queryParamsHandling]="'preserve'" [routerLink]="['facilitation-strategy']"
-       *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION"
-       routerLinkActive="text-primary border-primary font-semibold"
-       class="inline-block  md:p-4 p-2 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-sm md:text-base">
-      Whistleblowing Risk
-    </a>
   </li>
 
 

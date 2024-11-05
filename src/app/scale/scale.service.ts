@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
-import { CategoryOrganizationEnum } from '../organization/category-organization/category-organization.enum';
+import { ApiResponse } from '../shared/models/ApiResponse';
 import { BaseScaleService } from './base-scale.service';
 import { CommunityTrustScore } from './models/community-trust-score.model';
-import { map, tap } from 'rxjs';
-import { PortfolioRiskScore } from './models/portfolio-risk-score.model';
-import { ApiResponse } from '../shared/models/ApiResponse';
 import { PortfolioOverallSnapshot } from './models/portfolio-overall-snapshot.model';
+import { PortfolioRiskScore } from './models/portfolio-risk-score.model';
 
 @Injectable({
   providedIn: 'root',
@@ -119,24 +118,14 @@ export class ScaleService extends BaseScaleService<any> {
     }
 
     if (trustScore) {
-      const isImpact =
-        this.authService.organization?.type_organization
-          ?.category_organization_id === CategoryOrganizationEnum.IMPACT;
-
       if (trustScore <= 55) {
-        return `${
-          isImpact ? 'Bad, Do Not Support' : 'High Risk, Do Not Support'
-        }`;
+        return `${'Bad, Do Not Support'}`;
       } else if (trustScore > 55 && trustScore <= 77) {
-        return `${
-          isImpact
-            ? 'Need more Information'
-            : 'Medium Risk, Need more Information'
-        }`;
+        return `${'Need more Information'}`;
       } else if (trustScore > 77 && trustScore <= 88) {
-        return `${isImpact ? 'Good, Support.' : 'Low Risk, Support.'}`;
+        return `${'Good, Support.'}`;
       } else {
-        return `${isImpact ? 'Excellent, Support.' : 'No Risk, Support.'}`;
+        return `${'Excellent, Support.'}`;
       }
     }
 

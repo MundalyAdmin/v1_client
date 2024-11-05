@@ -19,7 +19,8 @@ import { DashboardOrganizationService } from '../dashboard-organization.service'
   styleUrls: ['./dashboard-organization-sidebar.component.scss'],
 })
 export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
-  verificationRequests: number = 0;
+  receivedVerificationRequests: number = 0;
+  requestedVerificationRequests: number = 0;
   organization: Organization | null = null;
   selectedImpactPartner: Organization | null = null;
   selectedImpactInitiative: ImpactInitiative | null = null;
@@ -97,15 +98,8 @@ export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
   }
 
   countVerificationRequests(organizationId: number) {
-    if (
-      this.currentLoggedInOrganization?.type_organization_id ===
-        TypeOrganizationEnum.IMPACT_FUNDER ||
-      this.currentLoggedInOrganization?.type_organization_id ===
-        TypeOrganizationEnum.CORPORATION
-    ) {
-      this.countRequestedVerificationRequests(organizationId);
-      return;
-    }
+    this.countRequestedVerificationRequests(organizationId);
+
     this.countReceivedVerificationRequests(organizationId);
   }
 
@@ -113,7 +107,10 @@ export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
     this.impactVerificationService
       .countRequestedByOrganizationId(organizationId)
       .subscribe((res) => {
-        this.verificationRequests = +res.count;
+        this.requestedVerificationRequests = +res.count;
+        this.dashboardOrganizationService.requestedVerificationRequests$.next(
+          this.requestedVerificationRequests
+        );
       });
   }
 
@@ -121,7 +118,10 @@ export class DashboardOrganizationSidebarComponent extends BaseComponent<any> {
     this.impactVerificationService
       .countReceivedByOrganizationId(organizationId)
       .subscribe((res) => {
-        this.verificationRequests = +res.count;
+        this.receivedVerificationRequests = +res.count;
+        this.dashboardOrganizationService.receivedVerificationRequests$.next(
+          this.receivedVerificationRequests
+        );
       });
   }
 

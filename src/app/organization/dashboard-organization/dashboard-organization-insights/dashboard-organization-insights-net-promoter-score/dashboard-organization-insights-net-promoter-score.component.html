@@ -1,14 +1,14 @@
 <!-- Graph Titles -->
 <h5 class="text-sm md:text-lg font-light text-left mb-3">
-  <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT">Community Satisfaction
-    Score</span>
-  <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION">Community Due
-    Diligence Score</span>
+  Community Satisfaction Score
 </h5>
 <ng-container *ngIf="nps && !loading">
 
 
-  <p-chart type="bar" [data]="chartData" [options]="options" height="14rem"></p-chart>
+  <p-chart type="bar"
+           [data]="chartData"
+           [options]="options"
+           height="14rem"></p-chart>
 </ng-container>
 
 

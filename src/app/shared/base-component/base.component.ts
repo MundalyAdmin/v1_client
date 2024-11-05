@@ -7,7 +7,6 @@ import { Helper } from '../helpers/helper/helper';
 import { User } from '../../user/user.model';
 import { Organization } from '../../organization/organization.model';
 import { AuthService } from '../../auth/auth.service';
-import { CategoryOrganizationEnum } from '../../organization/category-organization/category-organization.enum';
 
 interface Subscriptions {
   [k: string]: Subscription;
@@ -29,10 +28,6 @@ export abstract class BaseComponent<T> implements OnDestroy, OnInit {
   currentLoggedInOrganization: Organization | null = null;
 
   public helper: Helper;
-
-  get CategoryOrganizationEnum() {
-    return CategoryOrganizationEnum;
-  }
 
   constructor(public service?: BaseService<T>) {
     this.helper = AppInjector.injector.get(Helper);

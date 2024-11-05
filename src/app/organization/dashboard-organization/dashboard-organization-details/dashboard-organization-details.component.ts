@@ -2,7 +2,6 @@ import { AfterViewInit, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StatusImpactVerificationEnum } from '../../../impact-verification/enums/status-impact-verification.enum';
 import { BaseSingleComponent } from '../../../shared/base-component';
-import { CategoryOrganizationEnum } from '../../category-organization/category-organization.enum';
 import { Organization } from '../../organization.model';
 import { OrganizationService } from '../../organization.service';
 import { DashboardOrganizationService } from '../dashboard-organization.service';
@@ -39,10 +38,7 @@ export class DashboardOrganizationDetailsComponent
 
   override ngOnInit(): void {
     super.ngOnInit();
-    this.dashboardService.title =
-      this.currentLoggedOrganizationCategory === CategoryOrganizationEnum.IMPACT
-        ? 'Impact Partners'
-        : 'Supply Chain Partners';
+    this.dashboardService.title = 'Impact Partners';
 
     this.route.params.subscribe((params) => {
       this.getSingle(params['id']);

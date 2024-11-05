@@ -77,9 +77,9 @@
            routerLinkActive="bg-secondary-dark">
           <span class=""><i class=" text-secondary-dark text-xl mdi mdi-email-seal-outline"
                routerLinkActive="text-white"></i></span>
-          <span class="ms-2">Verification Requests <span *ngIf="verificationRequests"
+          <span class="ms-2">Verification Requests <span *ngIf="requestedVerificationRequests || receivedVerificationRequests"
                   class="inline-flex items-center  justify-center w-4 h-4 ms-2 text-xs font-semibold text-red-800 bg-red-200 rounded-full dark:bg-gray-700 dark:text-red-400">
-              {{ verificationRequests }}
+              {{ requestedVerificationRequests + receivedVerificationRequests }}
             </span></span>
         </a>
       </li>

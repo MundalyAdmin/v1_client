@@ -1,14 +1,8 @@
 <ul class="flex flex-wrap gap-3 -mb-px">
   <li class="me-2">
-    <a [routerLink]="['fundability']"
-       *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT"
-       routerLinkActive="text-primary border-primary font-semibold"
-       class="inline-block  md:p-4 p-2 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-sm md:text-base">
-      Fundability
-    </a>
+
 
     <a [routerLink]="['fundability']"
-       *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION"
        routerLinkActive="text-primary border-primary font-semibold"
        class="inline-block  md:p-4 p-2 border-b-2  rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 font-normal text-sm md:text-base">
       Alignment

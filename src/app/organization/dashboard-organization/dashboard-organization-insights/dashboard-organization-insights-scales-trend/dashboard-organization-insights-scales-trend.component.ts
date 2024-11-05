@@ -118,29 +118,17 @@ export class DashboardOrganizationInsightsScalesTrendComponent extends BaseCompo
   getChartDataSets() {
     const trends = [
       {
-        name:
-          this.currentLoggedInOrganization?.type_organization
-            ?.category_organization_id === this.CategoryOrganizationEnum.IMPACT
-            ? 'IFS'
-            : 'SFS',
+        name: 'IFS',
         data: this.impactFidelityTrend,
         color: this.helper.color.getPredictableColor(0),
       },
       {
-        name:
-          this.currentLoggedInOrganization?.type_organization
-            ?.category_organization_id === this.CategoryOrganizationEnum.IMPACT
-            ? 'CRS'
-            : 'SLS',
+        name: 'CRS',
         data: this.communityPerceptionTrend,
         color: this.helper.color.getPredictableColor(5),
       },
       {
-        name:
-          this.currentLoggedInOrganization?.type_organization
-            ?.category_organization_id === this.CategoryOrganizationEnum.IMPACT
-            ? 'FSS'
-            : 'WRS',
+        name: 'FSS',
         data: this.facilitationStrategyTrend,
         color: this.helper.color.getPredictableColor(2),
       },

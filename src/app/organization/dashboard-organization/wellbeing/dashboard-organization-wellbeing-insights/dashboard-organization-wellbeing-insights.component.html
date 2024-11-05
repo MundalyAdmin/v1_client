@@ -75,10 +75,7 @@
 
 <ng-container *ngIf="organizationService.singleData?.verification_status_from_current_organization?.id !== StatusImpactVerificationEnum.LAUNCHED">
   <h3 class="text-xl text-left pl-8 font-bold">
-    <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT">Community Trust &
-      Fundability Analysis</span>
-    <span *ngIf="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.CORPORATION">Sustainability
-      Alignment Analysis</span>
+    Community Trust & Fundability Analysis
   </h3>
 
 

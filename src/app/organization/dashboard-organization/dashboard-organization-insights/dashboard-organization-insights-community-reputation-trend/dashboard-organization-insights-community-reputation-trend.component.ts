@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CommunityPerceptionIndexService } from '../../../../scale/community-perception-index/community-perception-index.service';
-import { BaseComponent } from '../../../../shared/base-component';
-import { OrganizationService } from '../../../organization.service';
-import { InsightsTrendData } from '../insights-trend.data.model';
 import { ActivatedRoute } from '@angular/router';
-import { TypeOrganizationEnum } from '../../../type-organization/type-organization.enum';
-import { AuthService } from '../../../../auth/auth.service';
-import { ImpactInitiativeService } from '../../../../scale/impact-initiative/impact-initiative.service';
-import { CategoryOrganizationEnum } from '../../../category-organization/category-organization.enum';
+import { CommunityPerceptionIndexService } from '../../../../scale/community-perception-index/community-perception-index.service';
+import { OrganizationService } from '../../../organization.service';
 import { DashboardOrganizationBaseScaleTrendComponent } from '../../dashboard-organization-base-scale-trend/dashboard-organization-base-scale-trend.component';
 
 @Component({
@@ -64,11 +58,7 @@ export class DashboardOrganizationInsightsCommunityReputationTrendComponent
       labels: this.chartLabels,
       datasets: [
         {
-          label:
-            this.currentLoggedInOrganization?.type_organization
-              ?.category_organization_id === CategoryOrganizationEnum.IMPACT
-              ? 'Avg. Community Reputation'
-              : 'Avg. Social Licence',
+          label: 'Avg. Community Reputation',
           data: this.chartDataset,
           fill: true,
           borderColor: '#4f46e5',

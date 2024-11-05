@@ -1,16 +1,17 @@
-<div class="grid grid-cols-2 md:grid-cols-1 gap-3" *ngIf="!loading && scaleService.score">
+<div class="grid grid-cols-2 md:grid-cols-1 gap-3"
+     *ngIf="!loading && scaleService.score">
   <!-- Impact Fidelity -->
-  <app-dashboard-organization-insights-scale-score [title]="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT ? 'Impact Fidelity' : 'Sustainability Fidelity'"
+  <app-dashboard-organization-insights-scale-score [title]="'Impact Fidelity'"
                                                    [score]="scaleService.score.impact_fidelity_score!">
   </app-dashboard-organization-insights-scale-score>
 
   <!-- Community Reputation -->
-  <app-dashboard-organization-insights-scale-score [title]="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT ? 'Community Reputation' : 'Social Licence'"
+  <app-dashboard-organization-insights-scale-score [title]="'Community Reputation'"
                                                    [score]="scaleService.score.community_perception_score!">
   </app-dashboard-organization-insights-scale-score>
 
   <!-- Facilitation Strategy -->
-  <app-dashboard-organization-insights-scale-score [title]="currentLoggedInOrganization?.type_organization?.category_organization_id === CategoryOrganizationEnum.IMPACT ? 'Faciliation Strategy' : 'Whistleblowing Risk'"
+  <app-dashboard-organization-insights-scale-score [title]="'Faciliation Strategy'"
                                                    [score]="scaleService.score.facilitation_strategy_score!">
   </app-dashboard-organization-insights-scale-score>
 </div>
