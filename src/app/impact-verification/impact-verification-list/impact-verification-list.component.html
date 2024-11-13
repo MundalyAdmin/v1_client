@@ -63,11 +63,30 @@
         <td class="py-3">
           <div class="flex md:gap-3 gap-1">
             <button type="button"
-                    (click)="displayUploadCommunityDetails(item)"
+                    [disabled]="item.is_community_members_uploaded"
+                    [ngClass]="{'opacity-50 cursor-not-allowed': item.is_community_members_uploaded}"
+                    (click)="displayUploadCommunityDetails(item, TypeCommunityMemberEnum.COMMUNITY_MEMBER)"
                     *ngIf="item.status_impact_verification_id === StatusImpactVerificationEnum.PARTNER_COMPLETION && typeVerification === 'received'"
                     class="text-primary  hover:text-white border border-primary hover:bg-secondary-dark focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg md:text-sm text-[10px] leading-4  md:px-5 px-2 md:py-2.5 py-1.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-primary bg-secondary">
-              <span class="mdi mdi-table-arrow-up"></span>
-              Invite your community members
+              <span class="mdi mdi-table-arrow-up font-bold"
+                    *ngIf="!item.is_community_members_uploaded"></span>
+              <span class="mdi mdi-check"
+                    *ngIf="item.is_community_members_uploaded"></span>
+              Invite community members
+            </button>
+
+
+            <button type="button"
+                    [disabled]="item.is_staff_members_uploaded"
+                    (click)="displayUploadCommunityDetails(item, TypeCommunityMemberEnum.STAFF_MEMBER)"
+                    *ngIf="item.status_impact_verification_id === StatusImpactVerificationEnum.PARTNER_COMPLETION && typeVerification === 'received'"
+                    [ngClass]="{'opacity-50 cursor-not-allowed ': item.is_staff_members_uploaded}"
+                    class="text-white  hover:text-white border border-white hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg md:text-sm text-[10px] leading-4  md:px-5 px-2 md:py-2.5 py-1.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-primary bg-primary">
+              <span class="mdi mdi-table-arrow-up"
+                    *ngIf="!item.is_staff_members_uploaded"></span>
+              <span class="mdi mdi-check"
+                    *ngIf="item.is_staff_members_uploaded"></span>
+              Invite staff members
             </button>
 
             <ng-container *ngIf="typeVerification === 'requested'">
@@ -117,12 +136,13 @@
 
 <app-page-loading *ngIf="loading"></app-page-loading>
 
-<p-dialog header="Upload your community members details"
+<p-dialog [header]="modalDetails.title"
           [(visible)]="showUploadCommunityDetails"
           [modal]="true"
           styleClass="md:w-[50vw] w-[95vw]"
           [draggable]="false"
           [resizable]="false">
   <app-impact-verification-upload-community-details *ngIf="showUploadCommunityDetails"
+                                                    [modalDetails]="modalDetails"
                                                     (closeModal)="showUploadCommunityDetails = false"></app-impact-verification-upload-community-details>
 </p-dialog>

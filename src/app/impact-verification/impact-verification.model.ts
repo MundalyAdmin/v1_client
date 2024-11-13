@@ -20,4 +20,8 @@ export interface ImpactVerification extends BaseModel {
   type_impact_verification?: CommonItem;
 
   status_impact_verification?: CommonItem;
+
+  is_community_members_uploaded?: boolean;
+
+  is_staff_members_uploaded?: boolean;
 }
