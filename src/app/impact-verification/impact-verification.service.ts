@@ -1,7 +1,8 @@
+import { TypeCommunityMemberEnum } from './impact-verification-upload-community-details/type-community-member.enum';
 import { Injectable } from '@angular/core';
 import { BaseService } from '../shared/services';
 import { ImpactVerification } from './impact-verification.model';
-import { map, tap } from 'rxjs';
+import { BehaviorSubject, catchError, map, tap } from 'rxjs';
 import { OrganizationService } from '../organization/organization.service';
 import { ApiResponse } from '../shared/models/ApiResponse';
 
@@ -9,8 +10,16 @@ import { ApiResponse } from '../shared/models/ApiResponse';
   providedIn: 'root',
 })
 export class ImpactVerificationService extends BaseService<ImpactVerification> {
+  typeCommunityMember$ = new BehaviorSubject<TypeCommunityMemberEnum>(
+    TypeCommunityMemberEnum.COMMUNITY_MEMBER
+  );
+
   constructor(public organizationService: OrganizationService) {
     super('impact-verifications');
+  }
+
+  set typeCommunityMember(value: TypeCommunityMemberEnum) {
+    this.typeCommunityMember$.next(value);
   }
 
   updateStatus(id: number, statusId: number) {
@@ -107,14 +116,22 @@ export class ImpactVerificationService extends BaseService<ImpactVerification> {
     return this.factory
       .post(`${this.endPoint}/community-details`, elements)
       .pipe(
-        tap({
-          next: (response) => {
-            this.updateItemInData(response.data.id, response.data);
-            this.notification$.next({});
-          },
-          error: (error) => {
-            this.errorResponseHandler(error);
-          },
+        tap((response) => {
+          const data = response.data;
+          switch (elements.type_impact_verification_community_details_id) {
+            case TypeCommunityMemberEnum.COMMUNITY_MEMBER:
+              data.is_community_members_uploaded = true;
+              break;
+            case TypeCommunityMemberEnum.STAFF_MEMBER:
+              data.is_staff_members_uploaded = true;
+              break;
+          }
+          this.updateItemInData(response.data.id, data);
+          this.notification$.next({});
+        }),
+        catchError((error) => {
+          this.errorResponseHandler(error);
+          throw error;
         })
       );
   }

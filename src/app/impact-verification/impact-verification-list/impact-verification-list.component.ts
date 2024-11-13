@@ -3,6 +3,16 @@ import { BaseComponent } from '../../shared/base-component';
 import { ImpactVerification } from '../impact-verification.model';
 import { ImpactVerificationService } from '../impact-verification.service';
 import { StatusImpactVerificationEnum } from '../enums/status-impact-verification.enum';
+import { TypeCommunityMemberEnum } from '../impact-verification-upload-community-details/type-community-member.enum';
+
+const MODAL_UPLOAD_COMMUNITY_DETAILS_TITLE =
+  'Upload your community members details';
+const MODAL_UPLOAD_COMMUNITY_DETAILS_DESCRIPTION =
+  "Please upload a CSV file containing your community members' information. The file should include either the phone number, the email or both of the community members.";
+
+const MODAL_UPLOAD_STAFF_DETAILS_TITLE = 'Upload your staff members details';
+const MODAL_UPLOAD_STAFF_DETAILS_DESCRIPTION =
+  "Please upload a CSV file containing your staff members' information. There are some scales that only them will answer. The file should include either the phone number, the email or both of the staff members.";
 
 @Component({
   selector: 'app-impact-verification-list',
@@ -15,10 +25,19 @@ export class ImpactVerificationListComponent extends BaseComponent<ImpactVerific
   @Input() override data: ImpactVerification[] = [];
 
   showUploadCommunityDetails = false;
+  modalDetails: { title: string; description: string } = {
+    title: '',
+    description: '',
+  };
 
   get StatusImpactVerificationEnum() {
     return StatusImpactVerificationEnum;
   }
+
+  get TypeCommunityMemberEnum() {
+    return TypeCommunityMemberEnum;
+  }
+
   constructor(public impactVerificationService: ImpactVerificationService) {
     super();
   }
@@ -27,6 +46,22 @@ export class ImpactVerificationListComponent extends BaseComponent<ImpactVerific
     super.ngOnInit();
     this.title =
       this.typeVerification === 'requested' ? 'Requested' : 'Received';
+
+    this.subscriptions['typeCommunityMember'] =
+      this.impactVerificationService.typeCommunityMember$.subscribe(
+        (typeCommunityMember) => {
+          this.modalDetails = {
+            [TypeCommunityMemberEnum.COMMUNITY_MEMBER]: {
+              title: MODAL_UPLOAD_COMMUNITY_DETAILS_TITLE,
+              description: MODAL_UPLOAD_COMMUNITY_DETAILS_DESCRIPTION,
+            },
+            [TypeCommunityMemberEnum.STAFF_MEMBER]: {
+              title: MODAL_UPLOAD_STAFF_DETAILS_TITLE,
+              description: MODAL_UPLOAD_STAFF_DETAILS_DESCRIPTION,
+            },
+          }[typeCommunityMember];
+        }
+      );
   }
 
   updateStatus(
@@ -63,9 +98,13 @@ export class ImpactVerificationListComponent extends BaseComponent<ImpactVerific
     );
   }
 
-  displayUploadCommunityDetails(impactInitiative: ImpactVerification) {
+  displayUploadCommunityDetails(
+    impactVerification: ImpactVerification,
+    typeCommunityMember: TypeCommunityMemberEnum
+  ) {
     this.showUploadCommunityDetails = true;
-    this.impactVerificationService.singleData = impactInitiative;
+    this.impactVerificationService.singleData = impactVerification;
+    this.impactVerificationService.typeCommunityMember = typeCommunityMember;
   }
 
   getStatusColor(status: StatusImpactVerificationEnum): string {

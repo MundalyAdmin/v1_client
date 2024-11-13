@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   BaseComponent,
   BaseCreateComponent,
@@ -15,6 +15,10 @@ import { ImpactVerification } from '../impact-verification.model';
   styleUrls: ['./impact-verification-upload-community-details.component.scss'],
 })
 export class ImpactVerificationUploadCommunityDetailsComponent extends BaseCreateComponent<CommunityMemberDetails> {
+  @Input() modalDetails: { title: string; description: string } = {
+    title: '',
+    description: '',
+  };
   impactVerification: ImpactVerification | null = null;
   showPreview = false;
   csvFile: File | null = null;
@@ -47,6 +51,15 @@ export class ImpactVerificationUploadCommunityDetailsComponent extends BaseCreat
           }
         }
       );
+
+    this.subscriptions['type-community-member'] =
+      this.impactVerificationService.typeCommunityMember$.subscribe(
+        (typeCommunityMember) => {
+          this.form.patchValue({
+            type_impact_verification_community_details_id: typeCommunityMember,
+          });
+        }
+      );
   }
 
   initform() {
@@ -54,13 +67,17 @@ export class ImpactVerificationUploadCommunityDetailsComponent extends BaseCreat
       community_details: [null, Validators.required],
       organization_id: [null, Validators.required],
       impact_verification_id: [null, Validators.required],
+      type_impact_verification_community_details_id: [
+        null,
+        Validators.required,
+      ],
     });
   }
 
   override onFileChanged(event: any) {
     let file: File = event.target.files[0];
     if (file.type !== 'text/csv') {
-      return this.helper.notification.alertDanger('Format Invalide');
+      return this.helper.notification.alertDanger('Format Invalid');
     }
 
     this.csvFile = file;
