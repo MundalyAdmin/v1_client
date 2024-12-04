@@ -30,9 +30,9 @@ export class ImpactPartnerService extends BaseService<ImpactPartner> {
     );
   }
 
-  getAlignmentByFunderId(funderId: number) {
+  getDueDiligenceByFunderId(funderId: number) {
     return this.factory
-      .get(`${this.endPoint}/funders/${funderId}/alignment`)
+      .get(`${this.endPoint}/funders/${funderId}/due-diligence`)
       .pipe(
         tap((response: ApiResponse<ImpactPartner>) => {
           this.data = response.data as ImpactPartner[];

@@ -4,16 +4,20 @@
       <!-- Table header -->
       <thead class=" text-gray-400 !font-medium bg-slate-100">
         <tr>
-          <th scope="col" class="px-6 py-4">
+          <th scope="col"
+              class="px-6 py-4">
             #
           </th>
-          <th scope="col" class="px-6 py-4">
+          <th scope="col"
+              class="px-6 py-4">
             Category
           </th>
-          <th scope="col" class="px-6 py-4">
+          <th scope="col"
+              class="px-6 py-4">
             Key
           </th>
-          <th scope="col" class="px-6 py-4">
+          <th scope="col"
+              class="px-6 py-4">
             Score(%)
           </th>
         </tr>
@@ -24,7 +28,8 @@
         <!-- Acceptabilty -->
         <tr class="bg-white border-b dark:bg-gray-800 font-semibold dark:border-gray-700">
           <!-- Number -->
-          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          <th scope="row"
+              class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
             01
           </th>
 
@@ -47,7 +52,8 @@
         <!-- Appropriateness -->
         <tr class="bg-white border-b dark:bg-gray-800 font-semibold dark:border-gray-700">
           <!-- Number -->
-          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          <th scope="row"
+              class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
             02
           </th>
 
@@ -70,7 +76,8 @@
         <!-- Feasibility -->
         <tr class="bg-white border-b dark:bg-gray-800 font-semibold dark:border-gray-700">
           <!-- Number -->
-          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          <th scope="row"
+              class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
             03
           </th>
 
@@ -94,7 +101,8 @@
         <!-- Quality of delivery -->
         <tr class="bg-white border-b dark:bg-gray-800 font-semibold dark:border-gray-700 blur-md">
           <!-- Number -->
-          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          <th scope="row"
+              class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
             04
           </th>
 
@@ -117,7 +125,8 @@
         <!-- Plan comprehensiveness -->
         <tr class="bg-white border-b dark:bg-gray-800 font-semibold dark:border-gray-700 blur-md">
           <!-- Number -->
-          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          <th scope="row"
+              class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
             05
           </th>
 
@@ -157,11 +166,12 @@
     </span>
 
     <!-- If the community has more than 10 respondents -->
-    <span class="font-bold" *ngIf="total_respondant >= 5 && company_reported_impact_strength">
+    <span class="font-bold"
+          *ngIf="total_respondant >= 5 && company_reported_impact_strength">
       Community members report
       {{ scaleService.getImpactStrengthKey(company_score_rating!) }}
       which
-      {{ scaleService.getScoresAlignmentKey(company_score_rating!, company_reported_impact_strength!) }}
+      {{ scaleService.getScoresDueDiligenceKey(company_score_rating!, company_reported_impact_strength!) }}
       what
       {{ organization?.name }}
       reported
@@ -169,7 +179,8 @@
 
 
     <!-- If the community has less than 10 respondents -->
-    <span class="font-bold italic" *ngIf="total_respondant < 5 || !company_reported_impact_strength">
+    <span class="font-bold italic"
+          *ngIf="total_respondant < 5 || !company_reported_impact_strength">
       Insufficient data for insights
     </span>
   </div>

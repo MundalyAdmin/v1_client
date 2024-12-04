@@ -104,7 +104,7 @@ import { DashboardOrganizationWellbeingOverviewSecondComponent } from './wellbei
 import { DashboardOrganizationWellbeingOverviewComponent } from './wellbeing/dashboard-organization-wellbeing-overview/dashboard-organization-wellbeing-overview.component';
 import { DashboardOrganizationWellbeingScoresComponent } from './wellbeing/dashboard-organization-wellbeing-scores/dashboard-organization-wellbeing-scores.component';
 import { DashboardOrganizationWellbeingSummaryComponent } from './wellbeing/dashboard-organization-wellbeing-summary/dashboard-organization-wellbeing-summary.component';
-import { DashboardOrganizationImpactPartnersAlignmentComponent } from './dashboard-organization-impact-partners-alignment/dashboard-organization-impact-partners-alignment.component';
+import { DashboardOrganizationImpactPartnersDueDiligenceComponent } from './dashboard-organization-impact-partners-due-diligence/dashboard-organization-impact-partners-due-diligence.component';
 import { DashboardOrganizationImpactPartnersWellbeingComponent } from './dashboard-organization-impact-partners-wellbeing/dashboard-organization-impact-partners-wellbeing.component';
 import { DashboardOrganizationReportsCreateComponent } from './dashboard-organization-reports-create/dashboard-organization-reports-create.component';
 
@@ -150,7 +150,7 @@ const routes: Routes = [
         component: DashboardOrganizationHomeComponent,
         children: [
           {
-            path: 'alignment',
+            path: 'due-diligence',
             component: DashboardOrganizationDueDiligenceOverviewSecondComponent,
           },
           {
@@ -164,7 +164,7 @@ const routes: Routes = [
 
           {
             path: '**',
-            redirectTo: 'alignment',
+            redirectTo: 'due-diligence',
           },
         ],
       },
@@ -199,14 +199,14 @@ const routes: Routes = [
         path: 'organizations/:id/surveys/:id',
         component: SurveyFormShowComponent,
       },
-      // Alignment
+      // Due Diligence
       {
-        path: 'alignment',
+        path: 'due-diligence',
         component: DashboardOrganizationDueDiligenceComponent,
         children: [
           {
             path: 'partners',
-            component: DashboardOrganizationImpactPartnersAlignmentComponent,
+            component: DashboardOrganizationImpactPartnersDueDiligenceComponent,
           },
           {
             path: 'community-needs',
@@ -235,7 +235,7 @@ const routes: Routes = [
         ],
       },
       {
-        path: 'alignment/partners/:id',
+        path: 'due-diligence/partners/:id',
         component: DashboardOrganizationDetailsComponent,
         children: [
           {
@@ -686,7 +686,7 @@ const routes: Routes = [
     OrganizationShowImpactStoriesComponent,
     DashboardOrganizationImpactStoriesListComponent,
     DashboardOrganizationOverviewFilterComponent,
-    DashboardOrganizationImpactPartnersAlignmentComponent,
+    DashboardOrganizationImpactPartnersDueDiligenceComponent,
     DashboardOrganizationImpactPartnersWellbeingComponent,
     DashboardOrganizationReportsCreateComponent,
   ],

@@ -43,15 +43,15 @@
         </a>
       </li>
 
-      <!-- Alignment -->
+      <!-- Due Diligence -->
       <li>
-        <a [routerLink]="['alignment']"
+        <a [routerLink]="['due-diligence']"
            (click)="hideSidebar()"
            class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
            routerLinkActive="bg-secondary-dark">
           <span class=""><i class=" text-secondary-dark text-xl mdi mdi-book-search"
                routerLinkActive="text-white"></i></span>
-          <span class="ms-2">Alignment</span>
+          <span class="ms-2">Due Diligence</span>
         </a>
       </li>
 
@@ -89,7 +89,7 @@
       <ng-container *ngIf="(selectedImpactPartner || selectedImpactInitiative)">
         <hr class="my-5  text-slate-50 opacity-20">
 
-        <!-- Alignment -->
+        <!-- Due Diligence -->
         <li *ngIf="(selectedImpactPartner || selectedImpactInitiative) && typeSubmenu == ImpactVerificationTypeInsightsEnum.DUE_DILIGENCE">
           <!-- Sidebar Selected Impact Partner -->
           <ul class="space-y-2 relative font-medium min-h-[250px] border border-primary rounded-xl bg-organization-dashboard-dark p-3 ml-[-10px] mr-[-7px]"
@@ -100,7 +100,7 @@
             </li>
             <!-- Home -->
             <li>
-              <a [routerLink]="['alignment', 'partners', selectedImpactPartner?.id,  'overview']"
+              <a [routerLink]="['due-diligence', 'partners', selectedImpactPartner?.id,  'overview']"
                  [queryParamsHandling]="'preserve'"
                  class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
                  routerLinkActive="bg-secondary-dark">
@@ -111,7 +111,7 @@
             </li>
 
             <li>
-              <a [routerLink]="['alignment', 'partners', selectedImpactPartner?.id,  'breakdown']"
+              <a [routerLink]="['due-diligence', 'partners', selectedImpactPartner?.id,  'breakdown']"
                  [queryParamsHandling]="'preserve'"
                  class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
                  routerLinkActive="bg-secondary-dark">
@@ -122,7 +122,7 @@
             </li>
 
             <li>
-              <a [routerLink]="['alignment', 'partners', selectedImpactPartner?.id,  'insights']"
+              <a [routerLink]="['due-diligence', 'partners', selectedImpactPartner?.id,  'insights']"
                  [queryParamsHandling]="'preserve'"
                  class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
                  routerLinkActive="bg-secondary-dark">
@@ -134,7 +134,7 @@
 
 
             <li>
-              <a [routerLink]="['alignment', 'partners', selectedImpactPartner?.id,  'reports']"
+              <a [routerLink]="['due-diligence', 'partners', selectedImpactPartner?.id,  'reports']"
                  [queryParamsHandling]="'preserve'"
                  class="flex items-center p-2  text-slate-50 rounded-lg dark:text-white hover:bg-secondary-dark :hover:*:text-slate-50 dark:hover:bg-gray-700 group"
                  routerLinkActive="bg-secondary-dark">

@@ -92,7 +92,7 @@ export class DashboardOrganizationInsightsNetPromoterScoreComponent
       ),
       datasets: [
         {
-          label: 'Community Alignment Score',
+          label: 'Due Diligence Score',
           backgroundColor: ['#c1ddff', '#4f46e5', '#2196f3'],
           borderColor: documentStyle.getPropertyValue('--blue-500'),
           data: [...Object.values(nps)],

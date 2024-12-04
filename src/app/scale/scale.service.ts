@@ -78,7 +78,7 @@ export class ScaleService extends BaseScaleService<any> {
     }
   }
 
-  getScoresAlignmentKey(
+  getScoresDueDiligenceKey(
     communityReportedScore: number,
     companyReportedScore: number
   ) {

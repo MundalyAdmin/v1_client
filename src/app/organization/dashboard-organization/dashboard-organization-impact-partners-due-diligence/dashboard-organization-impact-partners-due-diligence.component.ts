@@ -4,14 +4,14 @@ import { ImpactPartner } from '../impact-partner/impact-partner.model';
 import { ImpactPartnerService } from '../impact-partner/impact-partner.service';
 
 @Component({
-  selector: 'app-dashboard-organization-impact-partners-alignment',
+  selector: 'app-dashboard-organization-impact-partners-due-diligence',
   templateUrl:
-    './dashboard-organization-impact-partners-alignment.component.html',
+    './dashboard-organization-impact-partners-due-diligence.component.html',
   styleUrls: [
-    './dashboard-organization-impact-partners-alignment.component.scss',
+    './dashboard-organization-impact-partners-due-diligence.component.scss',
   ],
 })
-export class DashboardOrganizationImpactPartnersAlignmentComponent
+export class DashboardOrganizationImpactPartnersDueDiligenceComponent
   extends BaseComponent<ImpactPartner>
   implements OnInit
 {
@@ -24,15 +24,15 @@ export class DashboardOrganizationImpactPartnersAlignmentComponent
 
     this.authService.organization$.subscribe((organization) => {
       if (organization) {
-        this.getAlignmentByFunderId(organization.id!);
+        this.getDueDiligenceByFunderId(organization.id!);
       }
     });
   }
 
-  getAlignmentByFunderId(funderId: number) {
+  getDueDiligenceByFunderId(funderId: number) {
     this.loading = true;
     this.impactPartnerService
-      .getAlignmentByFunderId(funderId)
+      .getDueDiligenceByFunderId(funderId)
       .subscribe((data) => {
         this.data = data.map((item) => {
           return {

@@ -165,7 +165,7 @@ export class DashboardOrganizationImpactVerificationSetupComponent extends BaseC
 
       this.updateTotalPrice();
 
-      // Enforcing that either well-being or alignment is selected
+      // Enforcing that either well-being or due-diligence is selected
       this.enforceTypeInsightsSelection();
 
       // Make sure to updated the validity of every steps
