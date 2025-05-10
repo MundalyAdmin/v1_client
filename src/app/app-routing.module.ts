@@ -7,6 +7,7 @@ import { TempDashboardComponent } from './cart/temp-dashboard/temp-dashboard.com
 import { GeneratingReportComponent } from './generating-report/generating-report.component';
 import { verifiedUserGuard } from './auth/guards/verified-user.guard';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { V2RedirectComponent } from './v2-redirect/v2-redirect.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
         path: '',
         redirectTo: 'auth',
         pathMatch: 'full',
+      },
+      {
+        path: 'redirect',
+        component: V2RedirectComponent,
       },
       {
         path: 'public',

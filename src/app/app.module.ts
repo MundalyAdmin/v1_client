@@ -11,19 +11,22 @@ import { AppInjector } from './shared/services';
 import { SharedModule } from './shared/shared.module';
 import { DialogModule } from 'primeng/dialog';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { V2RedirectComponent } from './v2-redirect/v2-redirect.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GeneratingReportComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    V2RedirectComponent,
   ],
   imports: [
+    SharedModule,
     BrowserModule,
     BrowserAnimationsModule,
 
     AppRoutingModule,
-    SharedModule,
+
     NgMultiSelectDropDownModule.forRoot(),
     DialogModule,
   ],
